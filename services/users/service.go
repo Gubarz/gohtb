@@ -2,6 +2,7 @@ package users
 
 import (
 	"context"
+	"fmt"
 
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
@@ -29,6 +30,7 @@ func (h *Handle) ProfileBasic(ctx context.Context) (ProfileBasicResponse, error)
 		h.id,
 	)
 
+	fmt.Println(err)
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {

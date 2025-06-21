@@ -4906,7 +4906,7 @@ type UserProfile struct {
 	Avatar              *string          `json:"avatar,omitempty"`
 	CountryCode         *string          `json:"country_code,omitempty"`
 	CountryName         *string          `json:"country_name,omitempty"`
-	CurrentRankProgress *int             `json:"current_rank_progress,omitempty"`
+	CurrentRankProgress *float32         `json:"current_rank_progress,omitempty"`
 	Github              *string          `json:"github"`
 	Id                  *int             `json:"id,omitempty"`
 	IsDedicatedVip      *bool            `json:"isDedicatedVip,omitempty"`

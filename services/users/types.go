@@ -78,7 +78,7 @@ type UserProfile struct {
 	Avatar              string
 	CountryCode         string
 	CountryName         string
-	CurrentRankProgress int
+	CurrentRankProgress float32
 	Description         string
 	Github              string
 	Id                  int

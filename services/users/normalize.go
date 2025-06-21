@@ -10,7 +10,7 @@ func fromAPIUserProfile(data *v4client.UserProfile) UserProfile {
 		Avatar:              deref.String(data.Avatar),
 		CountryCode:         deref.String(data.CountryCode),
 		CountryName:         deref.String(data.CountryName),
-		CurrentRankProgress: deref.Int(data.CurrentRankProgress),
+		CurrentRankProgress: deref.Float32(data.CurrentRankProgress),
 		Github:              deref.String(data.Github),
 		Id:                  deref.Int(data.Id),
 		IsDedicatedVip:      deref.Bool(data.IsDedicatedVip),
