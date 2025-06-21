@@ -2,7 +2,6 @@ package users
 
 import (
 	"context"
-	"fmt"
 
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
@@ -30,11 +29,10 @@ func (h *Handle) ProfileBasic(ctx context.Context) (ProfileBasicResponse, error)
 		h.id,
 	)
 
-	fmt.Println(err)
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ProfileBasicResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ProfileBasicResponse {
 			return ProfileBasicResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -57,7 +55,7 @@ func (h *Handle) ProfileActivity(ctx context.Context) (ProfileActivityResposnse,
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ProfileActivityResposnse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ProfileActivityResposnse {
 			return ProfileActivityResposnse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}

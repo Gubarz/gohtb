@@ -126,7 +126,7 @@ func (q *ChallengeQuery) fetchResults(ctx context.Context) (ChallengeListRespons
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ChallengeListResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ChallengeListResponse {
 			return ChallengeListResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}

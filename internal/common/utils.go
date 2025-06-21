@@ -19,3 +19,10 @@ func FromAPIFlag(data httpclient.Flag) Flag {
 		Title:  deref.String(data.Title),
 	}
 }
+
+func SafeStatus(resp interface{ StatusCode() int }) int {
+	if resp != nil {
+		return resp.StatusCode()
+	}
+	return -1
+}

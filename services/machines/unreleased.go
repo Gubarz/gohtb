@@ -125,7 +125,7 @@ func (q *UnreleasedQuery) fetchResults(ctx context.Context) (MachineUnreleasedRe
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) MachineUnreleasedResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) MachineUnreleasedResponse {
 			return MachineUnreleasedResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}

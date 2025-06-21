@@ -28,7 +28,7 @@ func (h *Handle) Rewards(ctx context.Context) (RewardsResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) RewardsResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) RewardsResponse {
 			return RewardsResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -48,7 +48,7 @@ func (h *Handle) UserRank(ctx context.Context) (UserRankResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) UserRankResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) UserRankResponse {
 			return UserRankResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -68,7 +68,7 @@ func (h *Handle) UserFollowers(ctx context.Context) (UserFollowersResponse, erro
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) UserFollowersResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) UserFollowersResponse {
 			return UserFollowersResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -88,7 +88,7 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ListResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ListResponse {
 			return ListResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -108,7 +108,7 @@ func (s *Service) Machines(ctx context.Context) (MachinesResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) MachinesResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) MachinesResponse {
 			return MachinesResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -128,7 +128,7 @@ func (s *Service) ActiveMachine(ctx context.Context) (ActiveMachineResponse, err
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ActiveMachineResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ActiveMachineResponse {
 			return ActiveMachineResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}

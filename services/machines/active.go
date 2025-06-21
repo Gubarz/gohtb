@@ -142,7 +142,7 @@ func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinePaginatedRespons
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) MachinePaginatedResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) MachinePaginatedResponse {
 			return MachinePaginatedResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}

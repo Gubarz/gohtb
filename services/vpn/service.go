@@ -50,7 +50,7 @@ func (h *Handle) DownloadUDP(ctx context.Context) (VPNFileResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) VPNFileResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) VPNFileResponse {
 			return VPNFileResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -75,7 +75,7 @@ func (h *Handle) DownloadTCP(ctx context.Context) (VPNFileResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) VPNFileResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) VPNFileResponse {
 			return VPNFileResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -97,7 +97,7 @@ func (s *Service) Status(ctx context.Context) (ConnectionStatusResponse, error) 
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ConnectionStatusResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ConnectionStatusResponse {
 			return ConnectionStatusResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -119,7 +119,7 @@ func (s *Service) Connections(ctx context.Context) (ConnectionStatusResponse, er
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ConnectionStatusResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ConnectionStatusResponse {
 			return ConnectionStatusResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -163,7 +163,7 @@ func (q *ServerQuery) Results(ctx context.Context) (ConnectionsServersResponse, 
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ConnectionsServersResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ConnectionsServersResponse {
 			return ConnectionsServersResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -271,7 +271,7 @@ func (h *Handle) Switch(ctx context.Context) (common.MessageResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) common.MessageResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
 			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}

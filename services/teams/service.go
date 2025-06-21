@@ -33,7 +33,7 @@ func (h *Handle) Invitations(ctx context.Context) (InvitationsResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) InvitationsResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) InvitationsResponse {
 			return InvitationsResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -57,7 +57,7 @@ func (h *Handle) Members(ctx context.Context) (MembersResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) MembersResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) MembersResponse {
 			return MembersResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -81,7 +81,7 @@ func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ActivityResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ActivityResponse {
 			return ActivityResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -105,7 +105,7 @@ func (s *Service) AcceptInvite(ctx context.Context, id int) (common.MessageRespo
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) common.MessageResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
 			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -132,7 +132,7 @@ func (s *Service) RejectInvite(ctx context.Context, id int) (common.MessageRespo
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) common.MessageResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
 			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -159,7 +159,7 @@ func (s *Service) KickMember(ctx context.Context, id int) (common.MessageRespons
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) common.MessageResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
 			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}

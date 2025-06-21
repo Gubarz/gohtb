@@ -34,7 +34,7 @@ func (h *Handle) Reset(ctx context.Context) (Response, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) Response {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
 			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -62,7 +62,7 @@ func (h *Handle) Spawn(ctx context.Context) (Response, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) Response {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
 			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -90,7 +90,7 @@ func (h *Handle) Extend(ctx context.Context) (Response, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) Response {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
 			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -118,7 +118,7 @@ func (h *Handle) Terminate(ctx context.Context) (Response, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) Response {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
 			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -146,7 +146,7 @@ func (h *Handle) VoteReset(ctx context.Context) (Response, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) Response {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
 			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -174,7 +174,7 @@ func (h *Handle) VoteResetAccept(ctx context.Context) (Response, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) Response {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
 			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}

@@ -26,7 +26,7 @@ func (s *Service) Active(ctx context.Context) (ActiveResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ActiveResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ActiveResponse {
 			return ActiveResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -56,7 +56,7 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) InfoResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) InfoResponse {
 			return InfoResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -81,7 +81,7 @@ func (h *Handle) Own(ctx context.Context, flag string) (OwnResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) OwnResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) OwnResponse {
 			return OwnResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}

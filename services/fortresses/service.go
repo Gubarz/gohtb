@@ -41,7 +41,7 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 
 	raw := extract.Raw(resp)
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ListResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ListResponse {
 			return ListResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -95,7 +95,7 @@ func (h *Handle) Info(ctx context.Context) (Info, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) Info {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Info {
 			return Info{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -135,7 +135,7 @@ func (h *Handle) SubmitFlag(ctx context.Context, flag string) (SubmitFlagRespons
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) SubmitFlagResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) SubmitFlagResponse {
 			return SubmitFlagResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -177,7 +177,7 @@ func (h *Handle) Flags(ctx context.Context) (FlagData, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) FlagData {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) FlagData {
 			return FlagData{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}

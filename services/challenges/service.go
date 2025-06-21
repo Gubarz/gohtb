@@ -46,7 +46,7 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil || resp.JSON200.Challenge == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) InfoResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) InfoResponse {
 			return InfoResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -70,7 +70,7 @@ func (h *Handle) ToDo(ctx context.Context) (common.TodoUpdateResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil || resp.JSON200.Info == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) common.TodoUpdateResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.TodoUpdateResponse {
 			return common.TodoUpdateResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -95,7 +95,7 @@ func (h *Handle) Start(ctx context.Context) (common.MessageResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) common.MessageResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
 			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -122,7 +122,7 @@ func (h *Handle) Stop(ctx context.Context) (common.MessageResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil || resp.JSON200.Message == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) common.MessageResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
 			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -151,7 +151,7 @@ func (h *Handle) Own(ctx context.Context, flag string) (common.MessageResponse, 
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil || resp.JSON200.Message == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) common.MessageResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
 			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -176,7 +176,7 @@ func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil || resp.JSON200 == nil || resp.JSON200.Info == nil || resp.JSON200.Info.Activity == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) ActivityResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ActivityResponse {
 			return ActivityResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
@@ -199,7 +199,7 @@ func (h *Handle) Download(ctx context.Context) (DownloadResponse, error) {
 	raw := extract.Raw(resp)
 
 	if err != nil || resp == nil {
-		return errutil.UnwrapFailure(err, raw, resp.StatusCode(), func(raw []byte) DownloadResponse {
+		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) DownloadResponse {
 			return DownloadResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
 	}
