@@ -16,6 +16,7 @@ import (
 	"github.com/gubarz/gohtb/services/machines"
 	"github.com/gubarz/gohtb/services/seasons"
 	"github.com/gubarz/gohtb/services/teams"
+	"github.com/gubarz/gohtb/services/users"
 	"github.com/gubarz/gohtb/services/vms"
 	"github.com/gubarz/gohtb/services/vpn"
 )
@@ -43,6 +44,7 @@ type Client struct {
 	Machines   *machines.Service
 	Seasons    *seasons.Service
 	Teams      *teams.Service
+	Users      *users.Service
 	// VMs is a service for managing virtual machines.
 	// Can be used to Spawn, Stop, Extend, and Terminate VMs.
 	VMs *vms.Service
@@ -174,6 +176,7 @@ func wireServices(c *Client) {
 	c.Machines = machines.NewService(c.asServiceClient(), "machine")
 	c.Seasons = seasons.NewService(c.asServiceClient())
 	c.Teams = teams.NewService(c.asServiceClient())
+	c.Users = users.NewService(c.asServiceClient())
 	c.VMs = vms.NewService(c.asServiceClient())
 	c.VPN = vpn.NewService(c.asServiceClient())
 }
