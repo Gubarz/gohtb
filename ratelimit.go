@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"math/rand/v2"
+	"net"
 	"net/http"
 	"strconv"
 	"sync"
@@ -19,15 +20,17 @@ type RetryPolicy interface {
 }
 
 type RateLimiter struct {
-	mu     sync.Mutex
-	limit  RateLimitInfo
-	ctx    context.Context
-	logger Logger
+	mu          sync.Mutex
+	limit       RateLimitInfo
+	lastRequest time.Time
+	ctx         context.Context
+	logger      Logger
 }
 
 type RateLimitInfo struct {
 	Remaining int
 	Limit     int
+	Reset     time.Time
 }
 
 type APITransport struct {
@@ -69,21 +72,65 @@ func NewAPITransport(underlying http.RoundTripper, limiter *RateLimiter, retryCo
 
 func (r *RateLimiter) BeforeRequest() error {
 	r.mu.Lock()
+	now := time.Now()
+	elapsed := now.Sub(r.lastRequest)
+
 	info := r.limit
-	r.mu.Unlock()
-	if info.Remaining <= 1 {
-		r.logger.Info("Rate limit hit: %d/%d, sleeping...", info.Remaining, info.Limit)
-		return r.sleep(7 * time.Second)
+	var wait time.Duration
+
+	switch {
+	case info.Remaining <= 1:
+		wait = time.Until(info.Reset)
+		if wait <= 0 {
+			wait = 7 * time.Second
+		}
+		r.logger.Info("Rate limit hit (%d/%d), backing off for %v", info.Remaining, info.Limit, wait)
+
+	case info.Remaining <= 3:
+		wait = 5 * time.Second
+
+	case info.Remaining <= info.Limit/2:
+		wait = 2 * time.Second
+
+	default:
+		wait = 500 * time.Millisecond
 	}
+
+	if elapsed < wait {
+		sleepFor := wait - elapsed
+		r.lastRequest = now.Add(sleepFor)
+		r.mu.Unlock()
+		r.logger.Debug("Delaying %v due to rate pressure", sleepFor)
+		return r.sleep(sleepFor)
+	}
+
+	r.lastRequest = now
+	r.mu.Unlock()
 	return nil
 }
 
 func (r *RateLimiter) AfterResponse(resp *http.Response) {
-	remain, _ := strconv.Atoi(resp.Header.Get("X-Ratelimit-Remaining"))
-	limit, _ := strconv.Atoi(resp.Header.Get("X-Ratelimit-Limit"))
+	remain, rrErr := strconv.Atoi(resp.Header.Get("X-Ratelimit-Remaining"))
+	limit, rlErr := strconv.Atoi(resp.Header.Get("X-Ratelimit-Limit"))
+	resetUnix, reErr := strconv.ParseInt(resp.Header.Get("X-Ratelimit-Reset"), 10, 64)
 	r.mu.Lock()
-	r.limit = RateLimitInfo{Remaining: remain, Limit: limit}
-	r.mu.Unlock()
+	defer r.mu.Unlock()
+
+	reset := r.limit.Reset
+	if reErr == nil {
+		reset = time.Unix(resetUnix, 0)
+	}
+
+	if rrErr == nil && rlErr == nil {
+		r.limit = RateLimitInfo{Remaining: remain, Limit: limit, Reset: reset}
+	} else {
+		r.logger.Debug("Rate limit headers missing or invalid; keeping existing values")
+	}
+
+	r.logger.Debug(fmt.Sprintf(
+		"Rate limit headers — remaining: %d, limit: %d, reset: %v",
+		remain, limit, reset,
+	))
 }
 
 func (r *RateLimiter) Context() context.Context {
@@ -118,21 +165,36 @@ func (r *RateLimiter) sleep(d time.Duration) error {
 	}
 }
 
-// ... existing code ...
-
 // DefaultRetryPolicy provides a basic retry strategy.
 // It retries on 429 (Too Many Requests) and 5xx server errors.
 type DefaultRetryPolicy struct{}
 
+func isConnectionRefused(err error) bool {
+	var opErr *net.OpError
+	if errors.As(err, &opErr) {
+		return true
+	}
+	return false
+}
+
 // ShouldRetry determines if a request should be retried based on the response or error.
 func (p *DefaultRetryPolicy) ShouldRetry(resp *http.Response, err error) bool {
 	if err != nil {
-		// Retry on network errors, context deadline exceeded, etc.
-		// Be cautious about retrying context canceled errors immediately.
-		if errors.Is(err, context.Canceled) {
-			return false // Don't retry if context was explicitly canceled
+		if errors.Is(err, context.DeadlineExceeded) {
+			return true
 		}
-		return true // Retry most other errors
+
+		var netErr net.Error
+		if errors.As(err, &netErr) && netErr.Timeout() {
+			return true // Retry on timeouts
+		}
+
+		// Optionally retry on other connection-level errors
+		if isConnectionRefused(err) {
+			return true
+		}
+
+		return false
 	}
 
 	// Retry on specific HTTP status codes
@@ -236,6 +298,15 @@ func (t *APITransport) RoundTrip(req *http.Request) (*http.Response, error) {
 
 		// --- Wait Before Retrying ---
 		waitTime := t.retryConfig.RetryPolicy.Wait(retries + 1) // Pass the *next* retry attempt number
+
+		if resp != nil && resp.StatusCode == http.StatusTooManyRequests {
+			if retryAfter := resp.Header.Get("Retry-After"); retryAfter != "" {
+				if secs, err := strconv.Atoi(retryAfter); err == nil {
+					waitTime = time.Duration(secs) * time.Second
+				}
+			}
+		}
+
 		t.logger.Debug("Retrying request",
 			"attempt", retries+1,
 			"max_retries", t.retryConfig.MaxRetries,

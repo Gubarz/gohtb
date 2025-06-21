@@ -105,9 +105,9 @@ func New(token string, options ...Option) (*Client, error) {
 		server:    baseHTBServer,
 		logger:    logging.NoopLogger{},
 		userAgent: defaultUserAgent,
-		timeout:   15 * time.Second,
+		timeout:   60 * time.Second,
 		retryConfig: RetryConfig{
-			MaxRetries:  3,
+			MaxRetries:  4,
 			RetryPolicy: &DefaultRetryPolicy{},
 		},
 	}
@@ -193,6 +193,14 @@ func WithDebug(debug bool) Option {
 func WithLogger(logger Logger) Option {
 	return func(c *Client) {
 		c.logger = logger
+	}
+}
+
+// WithTimeout sets the request timeout for the internal HTTP client.
+// Default is 60 seconds.
+func WithTimeout(timeout time.Duration) Option {
+	return func(c *Client) {
+		c.timeout = timeout
 	}
 }
 

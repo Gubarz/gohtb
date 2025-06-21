@@ -75,7 +75,21 @@ func FromAPIHelpfulReviews(data v4client.HelpfulReviews) HelpfulReviews {
 	}
 }
 
-func FromAPIDifficultyChart(data v4client.DifficultyChart) DifficultyChart {
+func FromAPIDifficultyChart(data *v4client.DifficultyChart) DifficultyChart {
+	if data == nil {
+		return DifficultyChart{
+			CounterBitHard:   0,
+			CounterBrainFuck: 0,
+			CounterCake:      0,
+			CounterEasy:      0,
+			CounterExHard:    0,
+			CounterHard:      0,
+			CounterMedium:    0,
+			CounterTooEasy:   0,
+			CounterTooHard:   0,
+			CounterVeryEasy:  0,
+		}
+	}
 	return DifficultyChart{
 		CounterBitHard:   deref.Int(data.CounterBitHard),
 		CounterBrainFuck: deref.Int(data.CounterBrainFuck),
@@ -113,7 +127,15 @@ func FromAPIBloodInfo(data v4client.BloodInfo) BloodInfo {
 	}
 }
 
-func FromAPIMaker(data v4client.Maker) Maker {
+func FromAPIMaker(data *v4client.Maker) Maker {
+	if data == nil {
+		return Maker{
+			Avatar:      "",
+			Id:          0,
+			IsRespected: false,
+			Name:        "",
+		}
+	}
 	return Maker{
 		Avatar:      deref.String(data.Avatar),
 		Id:          deref.Int(data.Id),

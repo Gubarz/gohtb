@@ -1,6 +1,8 @@
 package common
 
 import (
+	"reflect"
+
 	"github.com/gubarz/gohtb/internal/deref"
 	httpclient "github.com/gubarz/gohtb/internal/httpclient/v4"
 )
@@ -20,9 +22,15 @@ func FromAPIFlag(data httpclient.Flag) Flag {
 	}
 }
 
-func SafeStatus(resp interface{ StatusCode() int }) int {
-	if resp != nil {
-		return resp.StatusCode()
+func SafeStatus(resp any) int {
+	switch r := resp.(type) {
+	case interface{ StatusCode() int }:
+		// Check if underlying value is nil
+		if reflect.ValueOf(r).IsNil() {
+			return -1
+		}
+		return r.StatusCode()
+	default:
+		return -1
 	}
-	return -1
 }

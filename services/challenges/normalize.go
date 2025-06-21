@@ -1,6 +1,8 @@
 package challenges
 
 import (
+	"strconv"
+
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/deref"
 	v4client "github.com/gubarz/gohtb/internal/httpclient/v4"
@@ -13,7 +15,7 @@ func fromAPIChallengeList(data v4client.ChallengeList) ChallengeList {
 		CategoryId:          deref.Int(data.CategoryId),
 		CategoryName:        deref.String(data.CategoryName),
 		Difficulty:          deref.String(data.Difficulty),
-		DifficultyChart:     common.FromAPIDifficultyChart(*data.DifficultyChart),
+		DifficultyChart:     common.FromAPIDifficultyChart(data.DifficultyChart),
 		Id:                  deref.Int(data.Id),
 		IsOwned:             deref.Bool(data.IsOwned),
 		Name:                deref.String(data.Name),
@@ -56,7 +58,7 @@ func fromAPIChallengeInfo(data v4client.Challenge) Challenge {
 		CreatorName:          deref.String(data.CreatorName),
 		Description:          deref.String(data.Description),
 		Difficulty:           deref.String(data.Difficulty),
-		DifficultyChart:      common.FromAPIDifficultyChart(*data.DifficultyChart),
+		DifficultyChart:      common.FromAPIDifficultyChart(data.DifficultyChart),
 		DislikeByAuthUser:    deref.Bool(data.DislikeByAuthUser),
 		Dislikes:             deref.Int(data.Dislikes),
 		Docker:               deref.Bool(data.Docker),
@@ -78,7 +80,7 @@ func fromAPIChallengeInfo(data v4client.Challenge) Challenge {
 		Name:                 deref.String(data.Name),
 		PlayInfo:             common.FromAPIPlayInfoAlt(*data.PlayInfo),
 		PlayMethods:          deref.Slice(data.PlayMethods),
-		Points:               deref.Int(data.Points),
+		Points:               pointsToInt(data.Points),
 		Recommended:          deref.Int(data.Recommended),
 		ReleaseDate:          deref.Time(data.ReleaseDate),
 		Released:             deref.Int(data.Released),
@@ -92,4 +94,21 @@ func fromAPIChallengeInfo(data v4client.Challenge) Challenge {
 		Tags:                 deref.Slice(data.Tags),
 		UserCanReview:        deref.Bool(data.UserCanReview),
 	}
+}
+
+func pointsToInt(v *v4client.Challenge_Points) int {
+	if v == nil {
+		return 0
+	}
+
+	if b, err := v.AsChallengePoints0(); err == nil {
+		return b
+	}
+	if b, err := v.AsChallengePoints1(); err == nil {
+		if v, err := strconv.Atoi(b); err == nil {
+			return v
+		}
+		return 0
+	}
+	return 0
 }

@@ -18,7 +18,7 @@ func fromAPIMachineData(data v4Client.MachineData) MachineData {
 		Difficulty:          deref.Int(data.Difficulty),
 		DifficultyText:      deref.String(data.DifficultyText),
 		EasyMonth:           deref.Int(data.EasyMonth),
-		FeedbackForChart:    common.FromAPIDifficultyChart(*data.FeedbackForChart),
+		FeedbackForChart:    common.FromAPIDifficultyChart(data.FeedbackForChart),
 		Free:                deref.Bool(data.Free),
 		Id:                  deref.Int(data.Id),
 		Ip:                  deref.String(data.Ip),
@@ -74,7 +74,7 @@ func fromAPIMachineProfileInfo(data v4Client.MachineProfileInfo) MachineProfileI
 		Avatar:                     deref.String(data.Avatar),
 		CanAccessWalkthrough:       deref.Bool(data.CanAccessWalkthrough),
 		DifficultyText:             deref.String(data.DifficultyText),
-		FeedbackForChart:           common.FromAPIDifficultyChart(*data.FeedbackForChart),
+		FeedbackForChart:           common.FromAPIDifficultyChart(data.FeedbackForChart),
 		Free:                       deref.Bool(data.Free),
 		HasChangelog:               deref.Bool(data.HasChangelog),
 		Id:                         deref.Int(data.Id),
@@ -83,12 +83,12 @@ func fromAPIMachineProfileInfo(data v4Client.MachineProfileInfo) MachineProfileI
 		IsGuidedEnabled:            deref.Bool(data.IsGuidedEnabled),
 		IsTodo:                     deref.Bool(data.IsTodo),
 		MachineMode:                deref.String(data.MachineMode),
-		Maker:                      common.FromAPIMaker(*data.Maker),
-		Maker2:                     common.FromAPIMaker(*data.Maker2),
+		Maker:                      common.FromAPIMaker(data.Maker),
+		Maker2:                     common.FromAPIMaker(data.Maker2),
 		Name:                       deref.String(data.Name),
 		Os:                         deref.String(data.Os),
 		OwnRank:                    deref.Int(data.OwnRank),
-		PlayInfo:                   fromAPIPlayInfoAlt(*data.PlayInfo),
+		PlayInfo:                   fromAPIPlayInfoAlt(data.PlayInfo),
 		Points:                     deref.Int(data.Points),
 		Recommended:                deref.Bool(data.Recommended),
 		Release:                    deref.Time(data.Release),
@@ -135,7 +135,7 @@ func fromAPIMachineUnreleasedData(data v4Client.MachineUnreleasedData) MachineUn
 	}
 }
 
-func fromAPIPlayInfoAlt(data v4Client.PlayInfoAlt) PlayInfoAlt {
+func fromAPIPlayInfoAlt(data *v4Client.PlayInfoAlt) PlayInfoAlt {
 	return PlayInfoAlt{
 		ExpiresAt: deref.Time(data.ExpiresAt),
 		Ip:        deref.String(data.Ip),

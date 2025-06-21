@@ -904,21 +904,32 @@ type Challenge struct {
 	Name                 *string          `json:"name,omitempty"`
 
 	// PlayInfo Alternate structure of PlayInfo used in Sherlocks and Challenges
-	PlayInfo      *PlayInfoAlt `json:"play_info,omitempty"`
-	PlayMethods   *StringArray `json:"play_methods,omitempty"`
-	Points        *int         `json:"points,omitempty"`
-	Recommended   *int         `json:"recommended,omitempty"`
-	ReleaseDate   *time.Time   `json:"release_date,omitempty"`
-	Released      *int         `json:"released,omitempty"`
-	Retired       *bool        `json:"retired,omitempty"`
-	ReviewsCount  *int         `json:"reviews_count,omitempty"`
-	Sha256        *string      `json:"sha256,omitempty"`
-	ShowGoVip     *bool        `json:"show_go_vip,omitempty"`
-	Solves        *int         `json:"solves,omitempty"`
-	Stars         *float32     `json:"stars,omitempty"`
-	State         *string      `json:"state,omitempty"`
-	Tags          *StringArray `json:"tags,omitempty"`
-	UserCanReview *bool        `json:"user_can_review,omitempty"`
+	PlayInfo      *PlayInfoAlt      `json:"play_info,omitempty"`
+	PlayMethods   *StringArray      `json:"play_methods,omitempty"`
+	Points        *Challenge_Points `json:"points,omitempty"`
+	Recommended   *int              `json:"recommended,omitempty"`
+	ReleaseDate   *time.Time        `json:"release_date,omitempty"`
+	Released      *int              `json:"released,omitempty"`
+	Retired       *bool             `json:"retired,omitempty"`
+	ReviewsCount  *int              `json:"reviews_count,omitempty"`
+	Sha256        *string           `json:"sha256,omitempty"`
+	ShowGoVip     *bool             `json:"show_go_vip,omitempty"`
+	Solves        *int              `json:"solves,omitempty"`
+	Stars         *float32          `json:"stars,omitempty"`
+	State         *string           `json:"state,omitempty"`
+	Tags          *StringArray      `json:"tags,omitempty"`
+	UserCanReview *bool             `json:"user_can_review,omitempty"`
+}
+
+// ChallengePoints0 defines model for .
+type ChallengePoints0 = int
+
+// ChallengePoints1 defines model for .
+type ChallengePoints1 = string
+
+// Challenge_Points defines model for Challenge.Points.
+type Challenge_Points struct {
+	union json.RawMessage
 }
 
 // ChallengeActivity Schema definition for Challenge Activity
@@ -6151,6 +6162,68 @@ type PostVMTerminateJSONRequestBody = SpawnExtendRequest
 
 // PostVMTerminateFormdataRequestBody defines body for PostVMTerminate for application/x-www-form-urlencoded ContentType.
 type PostVMTerminateFormdataRequestBody = SpawnExtendRequest
+
+// AsChallengePoints0 returns the union data inside the Challenge_Points as a ChallengePoints0
+func (t Challenge_Points) AsChallengePoints0() (ChallengePoints0, error) {
+	var body ChallengePoints0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChallengePoints0 overwrites any union data inside the Challenge_Points as the provided ChallengePoints0
+func (t *Challenge_Points) FromChallengePoints0(v ChallengePoints0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChallengePoints0 performs a merge with any union data inside the Challenge_Points, using the provided ChallengePoints0
+func (t *Challenge_Points) MergeChallengePoints0(v ChallengePoints0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsChallengePoints1 returns the union data inside the Challenge_Points as a ChallengePoints1
+func (t Challenge_Points) AsChallengePoints1() (ChallengePoints1, error) {
+	var body ChallengePoints1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromChallengePoints1 overwrites any union data inside the Challenge_Points as the provided ChallengePoints1
+func (t *Challenge_Points) FromChallengePoints1(v ChallengePoints1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeChallengePoints1 performs a merge with any union data inside the Challenge_Points, using the provided ChallengePoints1
+func (t *Challenge_Points) MergeChallengePoints1(v ChallengePoints1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t Challenge_Points) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *Challenge_Points) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
 
 // AsFlagsToNextRank0 returns the union data inside the FlagsToNextRank as a FlagsToNextRank0
 func (t FlagsToNextRank) AsFlagsToNextRank0() (FlagsToNextRank0, error) {
