@@ -110,7 +110,16 @@ func fromAPIMachineProfileInfo(data v4Client.MachineProfileInfo) MachineProfileI
 	}
 }
 
-func fromAPIMachineRetiring(data v4Client.MachineRetiring) MachineRetiring {
+func fromAPIMachineRetiring(data *v4Client.MachineRetiring) MachineRetiring {
+	if data == nil {
+		return MachineRetiring{
+			Avatar:         "",
+			DifficultyText: "",
+			Id:             0,
+			Name:           "",
+			Os:             "",
+		}
+	}
 	return MachineRetiring{
 		Avatar:         deref.String(data.Avatar),
 		DifficultyText: deref.String(data.DifficultyText),
@@ -131,7 +140,7 @@ func fromAPIMachineUnreleasedData(data v4Client.MachineUnreleasedData) MachineUn
 		Name:           deref.String(data.Name),
 		Os:             deref.String(data.Os),
 		Release:        deref.String(data.Release),
-		Retiring:       fromAPIMachineRetiring(*data.Retiring),
+		Retiring:       fromAPIMachineRetiring(data.Retiring),
 	}
 }
 
