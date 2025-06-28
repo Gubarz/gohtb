@@ -2295,7 +2295,7 @@ type MachineUnreleasedData struct {
 	Id             *int                `json:"id,omitempty"`
 	Name           *string             `json:"name,omitempty"`
 	Os             *string             `json:"os,omitempty"`
-	Release        *string             `json:"release,omitempty"`
+	Release        *time.Time          `json:"release,omitempty"`
 	Retiring       *MachineRetiring    `json:"retiring,omitempty"`
 }
 

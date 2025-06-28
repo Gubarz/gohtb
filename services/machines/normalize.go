@@ -139,7 +139,7 @@ func fromAPIMachineUnreleasedData(data v4Client.MachineUnreleasedData) MachineUn
 		Id:             deref.Int(data.Id),
 		Name:           deref.String(data.Name),
 		Os:             deref.String(data.Os),
-		Release:        deref.String(data.Release),
+		Release:        deref.Time(data.Release),
 		Retiring:       fromAPIMachineRetiring(data.Retiring),
 	}
 }

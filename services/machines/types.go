@@ -524,7 +524,7 @@ type MachineUnreleasedData struct {
 	Id             int
 	Name           string
 	Os             string
-	Release        string
+	Release        time.Time
 	Retiring       MachineRetiring
 }
 
