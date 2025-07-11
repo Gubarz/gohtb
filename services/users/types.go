@@ -104,7 +104,7 @@ type UserProfile struct {
 	Team                UserProfileTeam
 	Timezone            string
 	Twitter             string
-	University          string
+	University          UserProfileTeam
 	UniversityName      string
 	UserBloods          int
 	UserOwns            int

@@ -34,7 +34,7 @@ func fromAPIUserProfile(data *v4client.UserProfile) UserProfile {
 		SystemOwns:          deref.Int(data.SystemOwns),
 		Timezone:            deref.String(data.Timezone),
 		Twitter:             deref.String(data.Twitter),
-		University:          deref.String(data.University),
+		University:          fromAPIUserProfileUniversityTeam(data.University),
 		UniversityName:      deref.String(data.UniversityName),
 		UserBloods:          deref.Int(data.UserBloods),
 		UserOwns:            deref.Int(data.UserOwns),
@@ -43,11 +43,36 @@ func fromAPIUserProfile(data *v4client.UserProfile) UserProfile {
 }
 
 func fromAPIUserProfileTeam(data *v4client.UserProfileTeam) UserProfileTeam {
+	if data == nil {
+		return UserProfileTeam{
+			Id:      0,
+			Name:    "",
+			Ranking: 0,
+			Avatar:  "",
+		}
+	}
 	return UserProfileTeam{
 		Id:      deref.Int(data.Id),
 		Name:    deref.String(data.Name),
 		Ranking: deref.Int(data.Ranking),
 		Avatar:  deref.String(data.Avatar),
+	}
+}
+
+func fromAPIUserProfileUniversityTeam(data *v4client.UserProfileUniversityTeam) UserProfileTeam {
+	if data == nil {
+		return UserProfileTeam{
+			Id:      0,
+			Name:    "",
+			Ranking: 0,
+			Avatar:  "",
+		}
+	}
+	return UserProfileTeam{
+		Id:      deref.Int(data.Id),
+		Name:    deref.String(data.Name),
+		Ranking: deref.Int(data.Ranking),
+		Avatar:  deref.String(data.LogoThumbUrl),
 	}
 }
 

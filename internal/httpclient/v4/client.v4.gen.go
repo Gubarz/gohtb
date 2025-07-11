@@ -4914,38 +4914,38 @@ type UserOwnsUser struct {
 
 // UserProfile defines model for UserProfile.
 type UserProfile struct {
-	Avatar              *string          `json:"avatar,omitempty"`
-	CountryCode         *string          `json:"country_code,omitempty"`
-	CountryName         *string          `json:"country_name,omitempty"`
-	CurrentRankProgress *float32         `json:"current_rank_progress,omitempty"`
-	Github              *string          `json:"github"`
-	Id                  *int             `json:"id,omitempty"`
-	IsDedicatedVip      *bool            `json:"isDedicatedVip,omitempty"`
-	IsFollowed          *bool            `json:"isFollowed,omitempty"`
-	IsRespected         *bool            `json:"isRespected,omitempty"`
-	IsVip               *bool            `json:"isVip,omitempty"`
-	Linkedin            *string          `json:"linkedin"`
-	Name                *string          `json:"name,omitempty"`
-	NextRank            *string          `json:"next_rank"`
-	NextRankPoints      *float32         `json:"next_rank_points"`
-	Points              *int             `json:"points,omitempty"`
-	Public              *bool            `json:"public,omitempty"`
-	Rank                *string          `json:"rank,omitempty"`
-	RankId              *int             `json:"rank_id,omitempty"`
-	RankOwnership       *float32         `json:"rank_ownership,omitempty"`
-	RankRequirement     *int             `json:"rank_requirement"`
-	Ranking             *int             `json:"ranking,omitempty"`
-	Respects            *int             `json:"respects,omitempty"`
-	SsoId               *bool            `json:"sso_id,omitempty"`
-	SystemBloods        *int             `json:"system_bloods,omitempty"`
-	SystemOwns          *int             `json:"system_owns,omitempty"`
-	Team                *UserProfileTeam `json:"team,omitempty"`
-	Timezone            *string          `json:"timezone,omitempty"`
-	Twitter             *string          `json:"twitter"`
-	University          *string          `json:"university"`
-	UniversityName      *string          `json:"university_name"`
-	UserBloods          *int             `json:"user_bloods,omitempty"`
-	UserOwns            *int             `json:"user_owns,omitempty"`
+	Avatar              *string                    `json:"avatar,omitempty"`
+	CountryCode         *string                    `json:"country_code,omitempty"`
+	CountryName         *string                    `json:"country_name,omitempty"`
+	CurrentRankProgress *float32                   `json:"current_rank_progress,omitempty"`
+	Github              *string                    `json:"github"`
+	Id                  *int                       `json:"id,omitempty"`
+	IsDedicatedVip      *bool                      `json:"isDedicatedVip,omitempty"`
+	IsFollowed          *bool                      `json:"isFollowed,omitempty"`
+	IsRespected         *bool                      `json:"isRespected,omitempty"`
+	IsVip               *bool                      `json:"isVip,omitempty"`
+	Linkedin            *string                    `json:"linkedin"`
+	Name                *string                    `json:"name,omitempty"`
+	NextRank            *string                    `json:"next_rank"`
+	NextRankPoints      *float32                   `json:"next_rank_points"`
+	Points              *int                       `json:"points,omitempty"`
+	Public              *bool                      `json:"public,omitempty"`
+	Rank                *string                    `json:"rank,omitempty"`
+	RankId              *int                       `json:"rank_id,omitempty"`
+	RankOwnership       *float32                   `json:"rank_ownership,omitempty"`
+	RankRequirement     *int                       `json:"rank_requirement"`
+	Ranking             *int                       `json:"ranking,omitempty"`
+	Respects            *int                       `json:"respects,omitempty"`
+	SsoId               *bool                      `json:"sso_id,omitempty"`
+	SystemBloods        *int                       `json:"system_bloods,omitempty"`
+	SystemOwns          *int                       `json:"system_owns,omitempty"`
+	Team                *UserProfileTeam           `json:"team,omitempty"`
+	Timezone            *string                    `json:"timezone,omitempty"`
+	Twitter             *string                    `json:"twitter"`
+	University          *UserProfileUniversityTeam `json:"university"`
+	UniversityName      *string                    `json:"university_name"`
+	UserBloods          *int                       `json:"user_bloods,omitempty"`
+	UserOwns            *int                       `json:"user_owns,omitempty"`
 }
 
 // UserProfileBasicIdResponse Schema definition for User Profile Basic Id Response
@@ -5027,6 +5027,14 @@ type UserProfileTeam struct {
 	Id      *int    `json:"id,omitempty"`
 	Name    *string `json:"name,omitempty"`
 	Ranking *int    `json:"ranking,omitempty"`
+}
+
+// UserProfileUniversityTeam defines model for UserProfileUniversityTeam.
+type UserProfileUniversityTeam struct {
+	Id           *int    `json:"id,omitempty"`
+	LogoThumbUrl *string `json:"logo_thumb_url,omitempty"`
+	Name         *string `json:"name,omitempty"`
+	Ranking      *int    `json:"ranking,omitempty"`
 }
 
 // UserRanking defines model for UserRanking.
