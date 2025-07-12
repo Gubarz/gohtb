@@ -94,7 +94,7 @@ func fromAPIMachineProfileInfo(data v4Client.MachineProfileInfo) MachineProfileI
 		Release:                    deref.Time(data.Release),
 		Retired:                    deref.Bool(data.Retired),
 		ReviewsCount:               deref.Int(data.ReviewsCount),
-		RootBlood:                  common.FromAPIBloodInfo(*data.RootBlood),
+		RootBlood:                  common.FromAPIBloodInfo(data.RootBlood),
 		RootOwnsCount:              deref.Int(data.RootOwnsCount),
 		SeasonId:                   deref.Int(data.SeasonId),
 		ShowGoVip:                  deref.Bool(data.ShowGoVip),
@@ -104,7 +104,7 @@ func fromAPIMachineProfileInfo(data v4Client.MachineProfileInfo) MachineProfileI
 		StartMode:                  deref.String(data.StartMode),
 		StaticPoints:               deref.Int(data.StaticPoints),
 		Synopsis:                   deref.String(data.Synopsis),
-		UserBlood:                  common.FromAPIBloodInfo(*data.UserBlood),
+		UserBlood:                  common.FromAPIBloodInfo(data.UserBlood),
 		UserCanReview:              deref.Bool(data.UserCanReview),
 		UserOwnsCount:              deref.Int(data.UserOwnsCount),
 	}

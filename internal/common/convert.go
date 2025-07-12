@@ -119,7 +119,14 @@ func FromAPIPlayInfoAlt(data v4client.PlayInfoAlt) PlayInfoAlt {
 	}
 }
 
-func FromAPIBloodInfo(data v4client.BloodInfo) BloodInfo {
+func FromAPIBloodInfo(data *v4client.BloodInfo) BloodInfo {
+	if data == nil {
+		return BloodInfo{
+			BloodDifference: "",
+			CreatedAt:       "",
+			User:            UserBasicInfo{},
+		}
+	}
 	return BloodInfo{
 		BloodDifference: deref.String(data.BloodDifference),
 		CreatedAt:       deref.String(data.CreatedAt),
