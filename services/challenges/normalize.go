@@ -24,10 +24,23 @@ func fromAPIChallengeList(data v4client.ChallengeList) ChallengeList {
 		Rating:              deref.Float32(data.Rating),
 		RatingCount:         deref.Int(data.RatingCount),
 		ReleaseDate:         deref.Time(data.ReleaseDate),
-		Retires:             deref.TimeFromDate(data.Retires),
+		Retires:             fromAPIChallengeRetires(data.Retires),
 		Solves:              deref.Int(data.Solves),
 		State:               deref.String(data.State),
 		UserDifficulty:      deref.String(data.UserDifficulty),
+	}
+}
+
+func fromAPIChallengeRetires(data *v4client.ChallengeRetires) ChallengeRetires {
+	if data == nil {
+		return ChallengeRetires{
+			name:       "",
+			difficulty: "",
+		}
+	}
+	return ChallengeRetires{
+		name:       deref.String(data.Name),
+		difficulty: deref.String(data.Difficulty),
 	}
 }
 

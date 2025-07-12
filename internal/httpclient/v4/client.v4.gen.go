@@ -1004,24 +1004,24 @@ type ChallengeDifficulties = []struct {
 
 // ChallengeList Schema definition for Challenge List
 type ChallengeList struct {
-	AuthUserHasReviewed *bool               `json:"auth_user_has_reviewed,omitempty"`
-	Avatar              *string             `json:"avatar"`
-	CategoryId          *int                `json:"category_id,omitempty"`
-	CategoryName        *string             `json:"category_name,omitempty"`
-	Difficulty          *string             `json:"difficulty,omitempty"`
-	DifficultyChart     *DifficultyChart    `json:"difficulty_chart,omitempty"`
-	Id                  *int                `json:"id,omitempty"`
-	IsOwned             *bool               `json:"is_owned,omitempty"`
-	Name                *string             `json:"name,omitempty"`
-	Pinned              *bool               `json:"pinned,omitempty"`
-	PlayMethods         *StringArray        `json:"play_methods,omitempty"`
-	Rating              *float32            `json:"rating"`
-	RatingCount         *int                `json:"rating_count,omitempty"`
-	ReleaseDate         *time.Time          `json:"release_date,omitempty"`
-	Retires             *openapi_types.Date `json:"retires"`
-	Solves              *int                `json:"solves,omitempty"`
-	State               *string             `json:"state,omitempty"`
-	UserDifficulty      *string             `json:"user_difficulty,omitempty"`
+	AuthUserHasReviewed *bool             `json:"auth_user_has_reviewed,omitempty"`
+	Avatar              *string           `json:"avatar"`
+	CategoryId          *int              `json:"category_id,omitempty"`
+	CategoryName        *string           `json:"category_name,omitempty"`
+	Difficulty          *string           `json:"difficulty,omitempty"`
+	DifficultyChart     *DifficultyChart  `json:"difficulty_chart,omitempty"`
+	Id                  *int              `json:"id,omitempty"`
+	IsOwned             *bool             `json:"is_owned,omitempty"`
+	Name                *string           `json:"name,omitempty"`
+	Pinned              *bool             `json:"pinned,omitempty"`
+	PlayMethods         *StringArray      `json:"play_methods,omitempty"`
+	Rating              *float32          `json:"rating"`
+	RatingCount         *int              `json:"rating_count,omitempty"`
+	ReleaseDate         *time.Time        `json:"release_date,omitempty"`
+	Retires             *ChallengeRetires `json:"retires"`
+	Solves              *int              `json:"solves,omitempty"`
+	State               *string           `json:"state,omitempty"`
+	UserDifficulty      *string           `json:"user_difficulty,omitempty"`
 }
 
 // ChallengeListData defines model for ChallengeListData.
@@ -1077,6 +1077,12 @@ type ChallengeRecommendedRetiredResponse struct {
 type ChallengeResponse struct {
 	// Challenge Schema definition for Challenge
 	Challenge *Challenge `json:"challenge,omitempty"`
+}
+
+// ChallengeRetires defines model for ChallengeRetires.
+type ChallengeRetires struct {
+	Difficulty *string `json:"difficulty,omitempty"`
+	Name       *string `json:"name,omitempty"`
 }
 
 // ChallengeReviewsUserIdResponse Schema definition for Challenge Reviews User Id Response

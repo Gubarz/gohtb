@@ -102,10 +102,15 @@ type ChallengeList struct {
 	Rating              float32
 	RatingCount         int
 	ReleaseDate         time.Time
-	Retires             time.Time
+	Retires             ChallengeRetires
 	Solves              int
 	State               string
 	UserDifficulty      string
+}
+
+type ChallengeRetires struct {
+	name       string
+	difficulty string
 }
 
 type ChallengeActivity struct {
