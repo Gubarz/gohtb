@@ -76,7 +76,8 @@ func FromAPIHelpfulReviews(data v4client.HelpfulReviews) HelpfulReviews {
 }
 
 func FromAPIDifficultyChart(data *v4client.DifficultyChart) DifficultyChart {
-	if data == nil {
+	values, err := data.AsDifficultyChart1()
+	if err != nil {
 		return DifficultyChart{
 			CounterBitHard:   0,
 			CounterBrainFuck: 0,
@@ -91,16 +92,16 @@ func FromAPIDifficultyChart(data *v4client.DifficultyChart) DifficultyChart {
 		}
 	}
 	return DifficultyChart{
-		CounterBitHard:   deref.Int(data.CounterBitHard),
-		CounterBrainFuck: deref.Int(data.CounterBrainFuck),
-		CounterCake:      deref.Int(data.CounterCake),
-		CounterEasy:      deref.Int(data.CounterEasy),
-		CounterExHard:    deref.Int(data.CounterExHard),
-		CounterHard:      deref.Int(data.CounterHard),
-		CounterMedium:    deref.Int(data.CounterMedium),
-		CounterTooEasy:   deref.Int(data.CounterTooEasy),
-		CounterTooHard:   deref.Int(data.CounterTooHard),
-		CounterVeryEasy:  deref.Int(data.CounterVeryEasy),
+		CounterBitHard:   deref.Int(values.CounterBitHard),
+		CounterBrainFuck: deref.Int(values.CounterBrainFuck),
+		CounterCake:      deref.Int(values.CounterCake),
+		CounterEasy:      deref.Int(values.CounterEasy),
+		CounterExHard:    deref.Int(values.CounterExHard),
+		CounterHard:      deref.Int(values.CounterHard),
+		CounterMedium:    deref.Int(values.CounterMedium),
+		CounterTooEasy:   deref.Int(values.CounterTooEasy),
+		CounterTooHard:   deref.Int(values.CounterTooHard),
+		CounterVeryEasy:  deref.Int(values.CounterVeryEasy),
 	}
 }
 

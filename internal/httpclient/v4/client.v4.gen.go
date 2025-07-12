@@ -1354,6 +1354,14 @@ type DesignatedLevel struct {
 
 // DifficultyChart defines model for DifficultyChart.
 type DifficultyChart struct {
+	union json.RawMessage
+}
+
+// DifficultyChart0 defines model for .
+type DifficultyChart0 = []interface{}
+
+// DifficultyChart1 defines model for .
+type DifficultyChart1 struct {
 	CounterBitHard   *int `json:"counterBitHard,omitempty"`
 	CounterBrainFuck *int `json:"counterBrainFuck,omitempty"`
 	CounterCake      *int `json:"counterCake,omitempty"`
@@ -6235,6 +6243,68 @@ func (t Challenge_Points) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Challenge_Points) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsDifficultyChart0 returns the union data inside the DifficultyChart as a DifficultyChart0
+func (t DifficultyChart) AsDifficultyChart0() (DifficultyChart0, error) {
+	var body DifficultyChart0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDifficultyChart0 overwrites any union data inside the DifficultyChart as the provided DifficultyChart0
+func (t *DifficultyChart) FromDifficultyChart0(v DifficultyChart0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDifficultyChart0 performs a merge with any union data inside the DifficultyChart, using the provided DifficultyChart0
+func (t *DifficultyChart) MergeDifficultyChart0(v DifficultyChart0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsDifficultyChart1 returns the union data inside the DifficultyChart as a DifficultyChart1
+func (t DifficultyChart) AsDifficultyChart1() (DifficultyChart1, error) {
+	var body DifficultyChart1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromDifficultyChart1 overwrites any union data inside the DifficultyChart as the provided DifficultyChart1
+func (t *DifficultyChart) FromDifficultyChart1(v DifficultyChart1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeDifficultyChart1 performs a merge with any union data inside the DifficultyChart, using the provided DifficultyChart1
+func (t *DifficultyChart) MergeDifficultyChart1(v DifficultyChart1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t DifficultyChart) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *DifficultyChart) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
