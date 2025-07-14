@@ -17,6 +17,10 @@ func NewService(client service.Client) *Service {
 	}
 }
 
+// VM returns a handle for a specific virtual machine with the given ID.
+// This handle can be used to perform operations on the VM such as
+// spawning, resetting, extending, or terminating the instance.
+// The ID is typically obtained from machine listings or other API responses.
 func (s *Service) VM(id int) *Handle {
 	return &Handle{
 		client: s.base.Client,
@@ -24,6 +28,16 @@ func (s *Service) VM(id int) *Handle {
 	}
 }
 
+// Reset performs a hard reset of the virtual machine.
+// This operation forcefully restarts the VM instance.
+//
+// Example:
+//
+//	result, err := client.VMs.VM(12345).Reset(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Reset result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) Reset(ctx context.Context) (Response, error) {
 	resp, err := h.client.V4().PostVMResetWithResponse(
 		h.client.Limiter().Wrap(ctx),
@@ -52,6 +66,16 @@ func (h *Handle) Reset(ctx context.Context) (Response, error) {
 	}, nil
 }
 
+// Spawn starts a new instance of the virtual machine.
+// This creates and boots a VM instance for the specified machine.
+//
+// Example:
+//
+//	result, err := client.VMs.VM(12345).Spawn(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Spawn result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) Spawn(ctx context.Context) (Response, error) {
 	resp, err := h.client.V4().PostVMSpawnWithResponse(
 		h.client.Limiter().Wrap(ctx),
@@ -80,6 +104,16 @@ func (h *Handle) Spawn(ctx context.Context) (Response, error) {
 	}, nil
 }
 
+// Extend extends the runtime of the virtual machine instance.
+// This operation prolongs the active session time for the VM.
+//
+// Example:
+//
+//	result, err := client.VMs.VM(12345).Extend(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Extend result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) Extend(ctx context.Context) (Response, error) {
 	resp, err := h.client.V4().PostVMExtendWithResponse(
 		h.client.Limiter().Wrap(ctx),
@@ -108,6 +142,16 @@ func (h *Handle) Extend(ctx context.Context) (Response, error) {
 	}, nil
 }
 
+// Terminate stops and destroys the virtual machine instance.
+// This operation permanently shuts down the VM and releases resources.
+//
+// Example:
+//
+//	result, err := client.VMs.VM(12345).Terminate(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Terminate result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) Terminate(ctx context.Context) (Response, error) {
 	resp, err := h.client.V4().PostVMTerminateWithResponse(
 		h.client.Limiter().Wrap(ctx),
@@ -136,6 +180,17 @@ func (h *Handle) Terminate(ctx context.Context) (Response, error) {
 	}, nil
 }
 
+// VoteReset initiates a vote to reset the virtual machine.
+// This is typically used in shared environments where multiple users
+// can vote to reset a machine instance.
+//
+// Example:
+//
+//	result, err := client.VMs.VM(12345).VoteReset(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Vote reset result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) VoteReset(ctx context.Context) (Response, error) {
 	resp, err := h.client.V4().PostVMResetVoteWithResponse(
 		h.client.Limiter().Wrap(ctx),
@@ -164,6 +219,17 @@ func (h *Handle) VoteReset(ctx context.Context) (Response, error) {
 	}, nil
 }
 
+// VoteResetAccept accepts a pending reset vote for the virtual machine.
+// This operation confirms participation in a reset vote that was
+// previously initiated by VoteReset.
+//
+// Example:
+//
+//	result, err := client.VMs.VM(12345).VoteResetAccept(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Vote accept result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) VoteResetAccept(ctx context.Context) (Response, error) {
 	resp, err := h.client.V4().PostVMResetVoteAcceptWithResponse(
 		h.client.Limiter().Wrap(ctx),
