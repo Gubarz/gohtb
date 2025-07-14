@@ -38,7 +38,6 @@ func (s *Service) VPN(id int) *Handle {
 //
 // Example:
 //
-//	ctx := context.Background()
 //	resp, err := htb.VPN.VPN(256).DownloadUDP(ctx)
 //	fmt.Println("VPN file:", string(resp.Data))
 func (h *Handle) DownloadUDP(ctx context.Context) (VPNFileResponse, error) {
@@ -66,6 +65,12 @@ func (h *Handle) DownloadUDP(ctx context.Context) (VPNFileResponse, error) {
 	}, nil
 }
 
+// DownloadUDP downloads the OpenVPN configuration file for the specified VPN endpoint using TCP.
+//
+// Example:
+//
+//	resp, err := htb.VPN.VPN(256).DownloadTCP(ctx)
+//	fmt.Println("VPN file:", string(resp.Data))
 func (h *Handle) DownloadTCP(ctx context.Context) (VPNFileResponse, error) {
 	resp, err := h.client.V4().GetAccessOvpnfileVpnIdTCPWithResponse(
 		h.client.Limiter().Wrap(ctx),
@@ -91,6 +96,16 @@ func (h *Handle) DownloadTCP(ctx context.Context) (VPNFileResponse, error) {
 	}, nil
 }
 
+// Status retrieves the current VPN connection status information.
+// This includes details about active connections and their current state.
+//
+// Example:
+//
+//	status, err := client.VPN.Status(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Connection status: %+v\n", status.Data)
 func (s *Service) Status(ctx context.Context) (ConnectionStatusResponse, error) {
 	resp, err := s.base.Client.V4().GetConnectionStatusWithResponse(s.base.Client.Limiter().Wrap(ctx))
 
@@ -113,6 +128,18 @@ func (s *Service) Status(ctx context.Context) (ConnectionStatusResponse, error) 
 	}, nil
 }
 
+// Connections retrieves information about current VPN connections.
+// This is an alias for Status() and returns the same connection status data.
+//
+// Example:
+//
+//	connections, err := client.VPN.Connections(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	for _, conn := range connections.Data {
+//		fmt.Printf("Connection: %+v\n", conn)
+//	}
 func (s *Service) Connections(ctx context.Context) (ConnectionStatusResponse, error) {
 	resp, err := s.base.Client.V4().GetConnectionStatusWithResponse(s.base.Client.Limiter().Wrap(ctx))
 
@@ -135,6 +162,16 @@ func (s *Service) Connections(ctx context.Context) (ConnectionStatusResponse, er
 	}, nil
 }
 
+// Servers creates a new server query for the specified product.
+// This returns a ServerQuery that can be chained with filtering methods
+// like ByTier() and ByLocation() before calling Results().
+//
+// Common products include "labs", "release_arena", "endgame", etc.
+//
+// Example:
+//
+//	query := client.VPN.Servers("labs")
+//	servers, err := query.ByTier("free").ByLocation("US").Results(ctx)
 func (s *Service) Servers(product string) *ServerQuery {
 	return &ServerQuery{
 		client:  s.base.Client,
@@ -142,18 +179,50 @@ func (s *Service) Servers(product string) *ServerQuery {
 	}
 }
 
+// ByTier filters the server query by tier using case-insensitive matching.
+// Valid tiers include "free", "vip", "vip+", and "unknown".
+// Returns a new ServerQuery that can be further chained.
+//
+// Example:
+//
+//	freeServers := client.VPN.Servers("labs").ByTier("free").Results(ctx)
+//	vipServers := client.VPN.Servers("labs").ByTier("vip").Results(ctx)
 func (q *ServerQuery) ByTier(tier string) *ServerQuery {
 	qc := ptr.Clone(q)
 	qc.tier = tier
 	return qc
 }
 
+// ByLocation filters the server query by location using case-insensitive matching.
+// Returns a new ServerQuery that can be further chained.
+//
+// Example:
+//
+//	usServers := client.VPN.Servers("labs").ByLocation("US").Results(ctx)
+//	euServers := client.VPN.Servers("labs").ByLocation("EU").Results(ctx)
 func (q *ServerQuery) ByLocation(location string) *ServerQuery {
 	qc := ptr.Clone(q)
 	qc.location = location
 	return qc
 }
 
+// Results executes the server query and returns the filtered server list.
+// This method should be called last in the query chain to fetch the actual data.
+// The returned servers are flattened from the API's nested structure and include
+// tier information extracted from server names.
+//
+// Example:
+//
+//	servers, err := client.VPN.Servers("labs").
+//		ByTier("free").
+//		ByLocation("US").
+//		Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	for _, server := range servers.Data.Options {
+//		fmt.Printf("Server: %s (%s)\n", server.FriendlyName, server.Location)
+//	}
 func (q *ServerQuery) Results(ctx context.Context) (ConnectionsServersResponse, error) {
 	resp, err := q.client.V4().GetConnectionsServersWithResponse(q.client.Limiter().Wrap(ctx),
 		&v4client.GetConnectionsServersParams{
@@ -193,16 +262,6 @@ func (q *ServerQuery) Results(ctx context.Context) (ConnectionsServersResponse, 
 			CFRay:      resp.HTTPResponse.Header.Get("CF-Ray"),
 		},
 	}, nil
-}
-
-func fromAPIAssignedServerConnectionsServers(data *v4client.AssignedServerConnectionsServers) AssignedServerConnectionsServers {
-	return AssignedServerConnectionsServers{
-		CurrentClients:       deref.Int(data.CurrentClients),
-		FriendlyName:         deref.String(data.FriendlyName),
-		Id:                   deref.Int(data.Id),
-		Location:             deref.String(data.Location),
-		LocationTypeFriendly: deref.String(data.LocationTypeFriendly),
-	}
 }
 
 func flattenOptions(opts *v4client.Options, tier, location string) []Server {
@@ -262,6 +321,16 @@ func extractTierFromFriendly(name string) string {
 	}
 }
 
+// Switch changes the VPN connection to the server specified by this handle's ID.
+// Returns a message response indicating the result of the switch operation.
+//
+// Example:
+//
+//	result, err := client.VPN.VPN(256).Switch(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Println("Switch result:", result.Data.Message)
 func (h *Handle) Switch(ctx context.Context) (common.MessageResponse, error) {
 	resp, err := h.client.V4().PostConnectionsServersSwitchWithResponse(
 		h.client.Limiter().Wrap(ctx),
@@ -289,6 +358,12 @@ func (h *Handle) Switch(ctx context.Context) (common.MessageResponse, error) {
 	}, nil
 }
 
+// ByLocation filters servers by location using case-insensitive matching.
+// Returns a new OptionsServers slice containing only servers in the specified location.
+//
+// Example:
+//
+//	servers := response.Data.Options.ByLocation("US")
 func (o OptionsServers) ByLocation(location string) OptionsServers {
 	var d OptionsServers
 	for _, v := range o {
@@ -299,6 +374,14 @@ func (o OptionsServers) ByLocation(location string) OptionsServers {
 	return d
 }
 
+// ByTier filters servers by tier using case-insensitive matching.
+// Valid tiers include "free", "vip", "vip+", and "unknown".
+// Returns a new OptionsServers slice containing only servers of the specified tier.
+//
+// Example:
+//
+//	freeServers := response.Data.Options.ByTier("free")
+//	vipServers := response.Data.Options.ByTier("vip")
 func (o OptionsServers) ByTier(tier string) OptionsServers {
 	var d OptionsServers
 	for _, v := range o {
@@ -309,6 +392,13 @@ func (o OptionsServers) ByTier(tier string) OptionsServers {
 	return d
 }
 
+// SortByCurrentClients sorts servers by current client count in ascending order.
+// Servers with fewer current clients appear first in the returned slice.
+// This method modifies the original slice and returns it for method chaining.
+//
+// Example:
+//
+//	leastBusyFirst := response.Data.Options.SortByCurrentClients()
 func (o OptionsServers) SortByCurrentClients() OptionsServers {
 	sort.Slice(o, func(i, j int) bool {
 		return o[i].CurrentClients < o[j].CurrentClients
@@ -316,9 +406,52 @@ func (o OptionsServers) SortByCurrentClients() OptionsServers {
 	return o
 }
 
+// First returns the first server in the slice, or an empty Server if the slice is empty.
+// This is commonly used after filtering and sorting to get the best match.
+//
+// Example:
+//
+//	bestServer := response.Data.Options.
+//		ByTier("free").
+//		ByLocation("US").
+//		SortByCurrentClients().
+//		First()
 func (o OptionsServers) First() Server {
 	if len(o) == 0 {
 		return Server{}
 	}
 	return o[0]
+}
+
+func (h *Handle) switchAndDownload(ctx context.Context, useUDP bool) (VPNFileResponse, error) {
+	resp, err := h.Switch(ctx)
+
+	if err != nil {
+		return errutil.UnwrapFailure(err, resp.Raw, common.SafeStatus(resp), func(raw []byte) VPNFileResponse {
+			return VPNFileResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
+		})
+	}
+
+	if useUDP {
+		return h.DownloadUDP(ctx)
+	}
+	return h.DownloadTCP(ctx)
+}
+
+// SwitchAndDownloadUDP is a convenience method that switches servers and downloads UDP config.
+//
+// Example:
+//
+//	resp, err := htb.VPN.VPN(256).SwitchAndDownloadUCP(ctx)
+func (h *Handle) SwitchAndDownloadUDP(ctx context.Context) (VPNFileResponse, error) {
+	return h.switchAndDownload(ctx, true)
+}
+
+// SwitchAndDownloadTCP is a convenience method that switches servers and downloads TCP config.
+//
+// Example:
+//
+//	resp, err := htb.VPN.VPN(256).SwitchAndDownloadTCP(ctx)
+func (h *Handle) SwitchAndDownloadTCP(ctx context.Context) (VPNFileResponse, error) {
+	return h.switchAndDownload(ctx, false)
 }

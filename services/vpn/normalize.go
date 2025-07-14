@@ -38,3 +38,13 @@ func fromAPIConnectionStatusServer(data *v4client.ConnectionStatusServer) Connec
 		Id:           deref.Int(data.Id),
 	}
 }
+
+func fromAPIAssignedServerConnectionsServers(data *v4client.AssignedServerConnectionsServers) AssignedServerConnectionsServers {
+	return AssignedServerConnectionsServers{
+		CurrentClients:       deref.Int(data.CurrentClients),
+		FriendlyName:         deref.String(data.FriendlyName),
+		Id:                   deref.Int(data.Id),
+		Location:             deref.String(data.Location),
+		LocationTypeFriendly: deref.String(data.LocationTypeFriendly),
+	}
+}
