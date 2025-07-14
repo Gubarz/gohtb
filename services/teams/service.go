@@ -17,6 +17,9 @@ func NewService(client service.Client) *Service {
 	}
 }
 
+// Team returns a handle for a specific team with the given ID.
+// This handle can be used to perform operations related to that team,
+// such as retrieving members, invitations, and activity data.
 func (s *Service) Team(id int) *Handle {
 	return &Handle{
 		client: s.base.Client,
@@ -24,6 +27,19 @@ func (s *Service) Team(id int) *Handle {
 	}
 }
 
+// Invitations retrieves pending invitations for the team.
+// This returns a list of users who have been invited to join the team
+// but have not yet accepted or rejected the invitation.
+//
+// Example:
+//
+//	invitations, err := client.Teams.Team(12345).Invitations(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	for _, invite := range invitations.Data {
+//		fmt.Printf("Pending invite: %s\n", invite.Username)
+//	}
 func (h *Handle) Invitations(ctx context.Context) (InvitationsResponse, error) {
 	resp, err := h.client.V4().GetTeamInvitationsWithResponse(
 		h.client.Limiter().Wrap(ctx),
@@ -48,6 +64,19 @@ func (h *Handle) Invitations(ctx context.Context) (InvitationsResponse, error) {
 	}, nil
 }
 
+// Members retrieves the current members of the team.
+// This returns a list of all users who are currently part of the team,
+// including their roles and membership information.
+//
+// Example:
+//
+//	members, err := client.Teams.Team(12345).Members(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	for _, member := range members.Data {
+//		fmt.Printf("Member: %s (Role: %s)\n", member.Username, member.Role)
+//	}
 func (h *Handle) Members(ctx context.Context) (MembersResponse, error) {
 	resp, err := h.client.V4().GetTeamMembersWithResponse(
 		h.client.Limiter().Wrap(ctx),
@@ -72,6 +101,19 @@ func (h *Handle) Members(ctx context.Context) (MembersResponse, error) {
 	}, nil
 }
 
+// Activity retrieves the activity history for the team.
+// This includes recent team actions, achievements, and other team-related
+// activities on the HackTheBox platform.
+//
+// Example:
+//
+//	activity, err := client.Teams.Team(12345).Activity(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	for _, act := range activity.Data {
+//		fmt.Printf("Activity: %s at %s\n", act.Type, act.Date)
+//	}
 func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
 	resp, err := h.client.V4().GetTeamActivityWithResponse(
 		h.client.Limiter().Wrap(ctx),
@@ -96,6 +138,17 @@ func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
 	}, nil
 }
 
+// AcceptInvite accepts a team invitation with the specified ID.
+// This operation adds the current user to the team that sent the invitation.
+// This is the request ID not the User ID that sent the request.
+//
+// Example:
+//
+//	result, err := client.Teams.AcceptInvite(ctx, 67890)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Invite result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (s *Service) AcceptInvite(ctx context.Context, id int) (common.MessageResponse, error) {
 	resp, err := s.base.Client.V4().PostTeamInviteAcceptWithResponse(
 		s.base.Client.Limiter().Wrap(ctx),
@@ -123,6 +176,17 @@ func (s *Service) AcceptInvite(ctx context.Context, id int) (common.MessageRespo
 	}, nil
 }
 
+// RejectInvite rejects a team invitation with the specified ID.
+// This operation declines the team invitation without joining the team.
+// This is the request ID not the User ID that sent the request.
+//
+// Example:
+//
+//	result, err := client.Teams.RejectInvite(ctx, 67890)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Reject result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (s *Service) RejectInvite(ctx context.Context, id int) (common.MessageResponse, error) {
 	resp, err := s.base.Client.V4().DeleteTeamInviteRejectWithResponse(
 		s.base.Client.Limiter().Wrap(ctx),
@@ -150,6 +214,16 @@ func (s *Service) RejectInvite(ctx context.Context, id int) (common.MessageRespo
 	}, nil
 }
 
+// KickMember removes a user from the team with the specified user ID.
+// This operation requires appropriate permissions within the team.
+//
+// Example:
+//
+//	result, err := client.Teams.KickMember(ctx, 54321)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Kick result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (s *Service) KickMember(ctx context.Context, id int) (common.MessageResponse, error) {
 	resp, err := s.base.Client.V4().PostTeamKickUserWithResponse(
 		s.base.Client.Limiter().Wrap(ctx),
