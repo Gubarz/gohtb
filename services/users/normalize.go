@@ -6,6 +6,9 @@ import (
 )
 
 func fromAPIUserProfile(data *v4client.UserProfile) UserProfile {
+	if data == nil {
+		return UserProfile{}
+	}
 	return UserProfile{
 		Avatar:              deref.String(data.Avatar),
 		CountryCode:         deref.String(data.CountryCode),
@@ -44,12 +47,7 @@ func fromAPIUserProfile(data *v4client.UserProfile) UserProfile {
 
 func fromAPIUserProfileTeam(data *v4client.UserProfileTeam) UserProfileTeam {
 	if data == nil {
-		return UserProfileTeam{
-			Id:      0,
-			Name:    "",
-			Ranking: 0,
-			Avatar:  "",
-		}
+		return UserProfileTeam{}
 	}
 	return UserProfileTeam{
 		Id:      deref.Int(data.Id),
@@ -61,12 +59,7 @@ func fromAPIUserProfileTeam(data *v4client.UserProfileTeam) UserProfileTeam {
 
 func fromAPIUserProfileUniversityTeam(data *v4client.UserProfileUniversityTeam) UserProfileTeam {
 	if data == nil {
-		return UserProfileTeam{
-			Id:      0,
-			Name:    "",
-			Ranking: 0,
-			Avatar:  "",
-		}
+		return UserProfileTeam{}
 	}
 	return UserProfileTeam{
 		Id:      deref.Int(data.Id),

@@ -15,6 +15,9 @@ func fromAPIConnectionStatusItem(data v4client.ConnectionStatusItem) ConnectionS
 }
 
 func fromAPIConnection(data *v4client.Connection) Connection {
+	if data == nil {
+		return Connection{}
+	}
 	return Connection{
 		Down:          deref.Float32(data.Down),
 		Ip4:           deref.String(data.Ip4),
@@ -26,6 +29,9 @@ func fromAPIConnection(data *v4client.Connection) Connection {
 }
 
 func fromAPIConnectionStatusServer(data *v4client.ConnectionStatusServer) ConnectionStatusServer {
+	if data == nil {
+		return ConnectionStatusServer{}
+	}
 	return ConnectionStatusServer{
 		FriendlyName: deref.String(data.FriendlyName),
 		Hostname:     deref.String(data.Hostname),

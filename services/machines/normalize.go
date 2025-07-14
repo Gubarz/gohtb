@@ -24,10 +24,10 @@ func fromAPIMachineData(data v4Client.MachineData) MachineData {
 		Ip:                  deref.String(data.Ip),
 		IsTodo:              isTodo(data.IsTodo),
 		IsCompetitive:       deref.Bool(data.IsCompetitive),
-		Labels:              convert.Slice(*data.Labels, fromAPILabel),
+		Labels:              convert.SlicePointer(data.Labels, fromAPILabel),
 		Name:                deref.String(data.Name),
 		Os:                  deref.String(data.Os),
-		PlayInfo:            fromAPIMachinePlayInfo(*data.PlayInfo),
+		PlayInfo:            fromAPIMachinePlayInfo(data.PlayInfo),
 		Points:              deref.Int(data.Points),
 		Poweroff:            deref.Int(data.Poweroff),
 		Recommended:         deref.Int(data.Recommended),
@@ -54,16 +54,22 @@ func isTodo(v *v4Client.MachineData_IsTodo) bool {
 	return false
 }
 
-func fromAPIMachinePlayInfo(data v4Client.MachinePlayInfo) MachinePlayInfo {
+func fromAPIMachinePlayInfo(data *v4Client.MachinePlayInfo) MachinePlayInfo {
+	if data == nil {
+		return MachinePlayInfo{}
+	}
 	return MachinePlayInfo{
 		ExpiresAt: deref.String(data.ExpiresAt),
 		IsActive:  deref.Bool(data.IsActive),
 	}
 }
 
-func fromAPIMachineProfileInfo(data v4Client.MachineProfileInfo) MachineProfileInfo {
+func fromAPIMachineProfileInfo(data *v4Client.MachineProfileInfo) MachineProfileInfo {
+	if data == nil {
+		return MachineProfileInfo{}
+	}
 	return MachineProfileInfo{
-		AcademyModules:             convert.Slice(*data.AcademyModules, common.FromAPIAcademyModule),
+		AcademyModules:             convert.SlicePointer(data.AcademyModules, common.FromAPIAcademyModule),
 		Active:                     deref.Bool(data.Active),
 		AuthUserFirstRootTime:      deref.String(data.AuthUserFirstRootTime),
 		AuthUserFirstUserTime:      deref.String(data.AuthUserFirstUserTime),
@@ -112,13 +118,7 @@ func fromAPIMachineProfileInfo(data v4Client.MachineProfileInfo) MachineProfileI
 
 func fromAPIMachineRetiring(data *v4Client.MachineRetiring) MachineRetiring {
 	if data == nil {
-		return MachineRetiring{
-			Avatar:         "",
-			DifficultyText: "",
-			Id:             0,
-			Name:           "",
-			Os:             "",
-		}
+		return MachineRetiring{}
 	}
 	return MachineRetiring{
 		Avatar:         deref.String(data.Avatar),
@@ -132,10 +132,10 @@ func fromAPIMachineRetiring(data *v4Client.MachineRetiring) MachineRetiring {
 func fromAPIMachineUnreleasedData(data v4Client.MachineUnreleasedData) MachineUnreleasedData {
 	return MachineUnreleasedData{
 		Avatar:         deref.String(data.Avatar),
-		CoCreators:     convert.Slice(*data.CoCreators, common.FromAPIUserBasicInfo),
+		CoCreators:     convert.SlicePointer(data.CoCreators, common.FromAPIUserBasicInfo),
 		Difficulty:     deref.Int(data.Difficulty),
 		DifficultyText: deref.String(data.DifficultyText),
-		FirstCreator:   convert.Slice(*data.FirstCreator, common.FromAPIUserBasicInfo),
+		FirstCreator:   convert.SlicePointer(data.FirstCreator, common.FromAPIUserBasicInfo),
 		Id:             deref.Int(data.Id),
 		Name:           deref.String(data.Name),
 		Os:             deref.String(data.Os),
@@ -145,6 +145,9 @@ func fromAPIMachineUnreleasedData(data v4Client.MachineUnreleasedData) MachineUn
 }
 
 func fromAPIPlayInfoAlt(data *v4Client.PlayInfoAlt) PlayInfoAlt {
+	if data == nil {
+		return PlayInfoAlt{}
+	}
 	return PlayInfoAlt{
 		ExpiresAt: deref.Time(data.ExpiresAt),
 		Ip:        deref.String(data.Ip),
@@ -160,7 +163,10 @@ func fromAPILabel(data v4Client.Label) Label {
 	}
 }
 
-func fromAPIActiveMachineInfo(data v4Client.ActiveMachineInfoWrapper) ActiveMachineInfo {
+func fromAPIActiveMachineInfo(data *v4Client.ActiveMachineInfoWrapper) ActiveMachineInfo {
+	if data == nil {
+		return ActiveMachineInfo{}
+	}
 	return ActiveMachineInfo{
 		Avatar:      deref.String(data.Avatar),
 		ExpiresAt:   deref.String(data.ExpiresAt),

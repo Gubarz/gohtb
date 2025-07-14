@@ -33,10 +33,7 @@ func fromAPIChallengeList(data v4client.ChallengeList) ChallengeList {
 
 func fromAPIChallengeRetires(data *v4client.ChallengeRetires) ChallengeRetires {
 	if data == nil {
-		return ChallengeRetires{
-			name:       "",
-			difficulty: "",
-		}
+		return ChallengeRetires{}
 	}
 	return ChallengeRetires{
 		name:       deref.String(data.Name),
@@ -56,7 +53,10 @@ func fromAPIChallengeActivity(data v4client.ChallengeActivity) ChallengeActivity
 	}
 }
 
-func fromAPIChallengeInfo(data v4client.Challenge) Challenge {
+func fromAPIChallengeInfo(data *v4client.Challenge) Challenge {
+	if data == nil {
+		return Challenge{}
+	}
 	return Challenge{
 		AuthUserHasReviewed:  deref.Bool(data.AuthUserHasReviewed),
 		AuthUserSolve:        deref.Bool(data.AuthUserSolve),
@@ -91,7 +91,7 @@ func fromAPIChallengeInfo(data v4client.Challenge) Challenge {
 		LikeByAuthUser:       deref.Bool(data.LikeByAuthUser),
 		Likes:                deref.Int(data.Likes),
 		Name:                 deref.String(data.Name),
-		PlayInfo:             common.FromAPIPlayInfoAlt(*data.PlayInfo),
+		PlayInfo:             common.FromAPIPlayInfoAlt(data.PlayInfo),
 		PlayMethods:          deref.Slice(data.PlayMethods),
 		Points:               pointsToInt(data.Points),
 		Recommended:          deref.Int(data.Recommended),

@@ -51,7 +51,7 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 		})
 	}
 	return InfoResponse{
-		Data: fromAPIChallengeInfo(*resp.JSON200.Challenge),
+		Data: fromAPIChallengeInfo(resp.JSON200.Challenge),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
@@ -75,7 +75,7 @@ func (h *Handle) ToDo(ctx context.Context) (common.TodoUpdateResponse, error) {
 		})
 	}
 	return common.TodoUpdateResponse{
-		Data: convert.Slice(*resp.JSON200.Info, common.FromAPIInfoArray),
+		Data: convert.SlicePointer(resp.JSON200.Info, common.FromAPIInfoArray),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
@@ -181,7 +181,7 @@ func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
 		})
 	}
 	return ActivityResponse{
-		Data: convert.Slice(*resp.JSON200.Info.Activity, fromAPIChallengeActivity),
+		Data: convert.SlicePointer(resp.JSON200.Info.Activity, fromAPIChallengeActivity),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),

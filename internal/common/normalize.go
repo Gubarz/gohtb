@@ -14,7 +14,10 @@ func FromAPIUserBasicInfo(data v4client.UserBasicInfo) UserBasicInfo {
 	}
 }
 
-func FromAPILinks(data v4client.Links) Links {
+func FromAPILinks(data *v4client.Links) Links {
+	if data == nil {
+		return Links{}
+	}
 	return Links{
 		First: deref.String(data.First),
 		Last:  deref.String(data.Last),
@@ -23,12 +26,15 @@ func FromAPILinks(data v4client.Links) Links {
 	}
 }
 
-func FromAPIMeta(data v4client.Meta) Meta {
+func FromAPIMeta(data *v4client.Meta) Meta {
+	if data == nil {
+		return Meta{}
+	}
 	return Meta{
 		CurrentPage: deref.Int(data.CurrentPage),
 		From:        deref.Int(data.From),
 		LastPage:    deref.Int(data.LastPage),
-		Links:       convert.Slice(*data.Links, fromAPIPaginationLink),
+		Links:       convert.SlicePointer(data.Links, fromAPIPaginationLink),
 		Path:        deref.String(data.Path),
 		PerPage:     deref.Int(data.PerPage),
 		To:          deref.Int(data.To),
@@ -36,7 +42,10 @@ func FromAPIMeta(data v4client.Meta) Meta {
 	}
 }
 
-func FromAPIMetaAlt(data v4client.MetaAlt) MetaAlt {
+func FromAPIMetaAlt(data *v4client.MetaAlt) MetaAlt {
+	if data == nil {
+		return MetaAlt{}
+	}
 	return MetaAlt{
 		CurrentPage: deref.Int(data.CurrentPage),
 		Pages:       deref.Int(data.Pages),
@@ -59,15 +68,21 @@ func fromAPITag(data v4client.Tag) Tag {
 	}
 }
 
-func FromAPITagCategory(data v4client.TagCategory) TagCategory {
+func FromAPITagCategory(data *v4client.TagCategory) TagCategory {
+	if data == nil {
+		return TagCategory{}
+	}
 	return TagCategory{
 		Id:   deref.Int(data.Id),
 		Name: deref.String(data.Name),
-		Tags: convert.Slice(*data.Tags, fromAPITag),
+		Tags: convert.SlicePointer(data.Tags, fromAPITag),
 	}
 }
 
-func FromAPIHelpfulReviews(data v4client.HelpfulReviews) HelpfulReviews {
+func FromAPIHelpfulReviews(data *v4client.HelpfulReviews) HelpfulReviews {
+	if data == nil {
+		return HelpfulReviews{}
+	}
 	return HelpfulReviews{
 		Id:       deref.Int(data.Id),
 		ReviewId: deref.Int(data.ReviewId),
@@ -78,18 +93,7 @@ func FromAPIHelpfulReviews(data v4client.HelpfulReviews) HelpfulReviews {
 func FromAPIDifficultyChart(data *v4client.DifficultyChart) DifficultyChart {
 	values, err := data.AsDifficultyChart1()
 	if err != nil {
-		return DifficultyChart{
-			CounterBitHard:   0,
-			CounterBrainFuck: 0,
-			CounterCake:      0,
-			CounterEasy:      0,
-			CounterExHard:    0,
-			CounterHard:      0,
-			CounterMedium:    0,
-			CounterTooEasy:   0,
-			CounterTooHard:   0,
-			CounterVeryEasy:  0,
-		}
+		return DifficultyChart{}
 	}
 	return DifficultyChart{
 		CounterBitHard:   deref.Int(values.CounterBitHard),
@@ -111,7 +115,10 @@ func FromAPIInfoArray(data v4client.Item) Item {
 	}
 }
 
-func FromAPIPlayInfoAlt(data v4client.PlayInfoAlt) PlayInfoAlt {
+func FromAPIPlayInfoAlt(data *v4client.PlayInfoAlt) PlayInfoAlt {
+	if data == nil {
+		return PlayInfoAlt{}
+	}
 	return PlayInfoAlt{
 		ExpiresAt: deref.Time(data.ExpiresAt),
 		Ip:        deref.String(data.Ip),
@@ -122,11 +129,7 @@ func FromAPIPlayInfoAlt(data v4client.PlayInfoAlt) PlayInfoAlt {
 
 func FromAPIBloodInfo(data *v4client.BloodInfo) BloodInfo {
 	if data == nil {
-		return BloodInfo{
-			BloodDifference: "",
-			CreatedAt:       "",
-			User:            UserBasicInfo{},
-		}
+		return BloodInfo{}
 	}
 	return BloodInfo{
 		BloodDifference: deref.String(data.BloodDifference),
@@ -137,12 +140,7 @@ func FromAPIBloodInfo(data *v4client.BloodInfo) BloodInfo {
 
 func FromAPIMaker(data *v4client.Maker) Maker {
 	if data == nil {
-		return Maker{
-			Avatar:      "",
-			Id:          0,
-			IsRespected: false,
-			Name:        "",
-		}
+		return Maker{}
 	}
 	return Maker{
 		Avatar:      deref.String(data.Avatar),
@@ -152,7 +150,10 @@ func FromAPIMaker(data *v4client.Maker) Maker {
 	}
 }
 
-func FromAPIMatrixInfo(data v4client.MatrixInfo) MatrixInfo {
+func FromAPIMatrixInfo(data *v4client.MatrixInfo) MatrixInfo {
+	if data == nil {
+		return MatrixInfo{}
+	}
 	return MatrixInfo{
 		Ctf:    deref.Float32(data.Ctf),
 		Custom: deref.Float32(data.Custom),
@@ -162,7 +163,10 @@ func FromAPIMatrixInfo(data v4client.MatrixInfo) MatrixInfo {
 	}
 }
 
-func fromAPIAcademyDifficulty(data v4client.AcademyDifficulty) AcademyDifficulty {
+func fromAPIAcademyDifficulty(data *v4client.AcademyDifficulty) AcademyDifficulty {
+	if data == nil {
+		return AcademyDifficulty{}
+	}
 	return AcademyDifficulty{
 		Color: deref.String(data.Color),
 		Id:    deref.Int(data.Id),
@@ -176,16 +180,19 @@ func FromAPIAcademyModule(data v4client.AcademyModule) AcademyModule {
 	return AcademyModule{
 		Aggregates: deref.Slice(data.Aggregates),
 		Avatar:     deref.String(data.Avatar),
-		Difficulty: fromAPIAcademyDifficulty(*data.Difficulty),
+		Difficulty: fromAPIAcademyDifficulty(data.Difficulty),
 		Id:         deref.Int(data.Id),
 		Logo:       deref.String(data.Logo),
 		Name:       deref.String(data.Name),
-		Tier:       fromAPIAcademyTiers(*data.Tier),
+		Tier:       fromAPIAcademyTiers(data.Tier),
 		Url:        deref.String(data.Url),
 	}
 }
 
-func fromAPIAcademyTiers(data v4client.AcademyTiers) AcademyTiers {
+func fromAPIAcademyTiers(data *v4client.AcademyTiers) AcademyTiers {
+	if data == nil {
+		return AcademyTiers{}
+	}
 	return AcademyTiers{
 		Color:  deref.String(data.Color),
 		Name:   deref.String(data.Name),
@@ -193,22 +200,28 @@ func fromAPIAcademyTiers(data v4client.AcademyTiers) AcademyTiers {
 	}
 }
 
-func FromAPITeamMachineAttackPaths(data v4client.TeamMachineAttackPaths) TeamMachineAttackPaths {
+func FromAPITeamMachineAttackPaths(data *v4client.TeamMachineAttackPaths) TeamMachineAttackPaths {
+	if data == nil {
+		return TeamMachineAttackPaths{}
+	}
 	return TeamMachineAttackPaths{
-		BinaryAnalysis:            fromAPITeamsAttackPathCard(*data.BinaryAnalysis),
-		BinaryExploitation:        fromAPITeamsAttackPathCard(*data.BinaryExploitation),
-		ConfigurationAnalysis:     fromAPITeamsAttackPathCard(*data.ConfigurationAnalysis),
-		Fuzzing:                   fromAPITeamsAttackPathCard(*data.Fuzzing),
-		Impersonation:             fromAPITeamsAttackPathCard(*data.Impersonation),
-		PacketCaptureAnalysis:     fromAPITeamsAttackPathCard(*data.PacketCaptureAnalysis),
-		Pivoting:                  fromAPITeamsAttackPathCard(*data.Pivoting),
-		Reconnaissance:            fromAPITeamsAttackPathCard(*data.Reconnaissance),
-		UserEnumeration:           fromAPITeamsAttackPathCard(*data.UserEnumeration),
-		WebSiteStructureDiscovery: fromAPITeamsAttackPathCard(*data.WebSiteStructureDiscovery),
+		BinaryAnalysis:            fromAPITeamsAttackPathCard(data.BinaryAnalysis),
+		BinaryExploitation:        fromAPITeamsAttackPathCard(data.BinaryExploitation),
+		ConfigurationAnalysis:     fromAPITeamsAttackPathCard(data.ConfigurationAnalysis),
+		Fuzzing:                   fromAPITeamsAttackPathCard(data.Fuzzing),
+		Impersonation:             fromAPITeamsAttackPathCard(data.Impersonation),
+		PacketCaptureAnalysis:     fromAPITeamsAttackPathCard(data.PacketCaptureAnalysis),
+		Pivoting:                  fromAPITeamsAttackPathCard(data.Pivoting),
+		Reconnaissance:            fromAPITeamsAttackPathCard(data.Reconnaissance),
+		UserEnumeration:           fromAPITeamsAttackPathCard(data.UserEnumeration),
+		WebSiteStructureDiscovery: fromAPITeamsAttackPathCard(data.WebSiteStructureDiscovery),
 	}
 }
 
-func fromAPITeamsAttackPathCard(data v4client.TeamsAttackPathCard) TeamsAttackPathCard {
+func fromAPITeamsAttackPathCard(data *v4client.TeamsAttackPathCard) TeamsAttackPathCard {
+	if data == nil {
+		return TeamsAttackPathCard{}
+	}
 	return TeamsAttackPathCard{
 		AvgTeamsSolved: deref.Float32(data.AvgTeamsSolved),
 		Name:           deref.String(data.Name),

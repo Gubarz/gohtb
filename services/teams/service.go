@@ -39,7 +39,7 @@ func (h *Handle) Invitations(ctx context.Context) (InvitationsResponse, error) {
 	}
 
 	return InvitationsResponse{
-		Data: convert.Slice(*resp.JSON200.Original, fromAPIUserEntry),
+		Data: convert.SlicePointer(resp.JSON200.Original, fromAPIUserEntry),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
@@ -63,7 +63,7 @@ func (h *Handle) Members(ctx context.Context) (MembersResponse, error) {
 	}
 
 	return MembersResponse{
-		Data: convert.Slice(*resp.JSON200, fromAPITeamMember),
+		Data: convert.SlicePointer(resp.JSON200, fromAPITeamMember),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),

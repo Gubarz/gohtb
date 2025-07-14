@@ -148,7 +148,7 @@ func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinePaginatedRespons
 	}
 
 	return MachinePaginatedResponse{
-		Data: convert.Slice(*resp.JSON200.Data, fromAPIMachineData),
+		Data: convert.SlicePointer(resp.JSON200.Data, fromAPIMachineData),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),

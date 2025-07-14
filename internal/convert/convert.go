@@ -27,6 +27,13 @@ func SliceCast[From, To any](in []From, convertFn func(From) To) []To {
 	return out
 }
 
+func SlicePointer[In any, Out any](input *[]In, fn func(In) Out) []Out {
+	if input == nil {
+		return nil
+	}
+	return Slice(*input, fn)
+}
+
 func MapSlice[K comparable, V1 any, V2 any](m map[K]V1, f func(V1) V2) []V2 {
 	if m == nil {
 		return nil

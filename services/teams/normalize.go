@@ -17,6 +17,9 @@ func fromAPIUserEntry(data v4client.UserEntry) UserEntry {
 }
 
 func fromAPIUser(data *v4client.User) User {
+	if data == nil {
+		return User{}
+	}
 	return User{
 		AvatarThumb:      deref.String(data.AvatarThumb),
 		Id:               deref.Int(data.Id),
@@ -24,7 +27,7 @@ func fromAPIUser(data *v4client.User) User {
 		Points:           deref.Int(data.Points),
 		RankName:         deref.String(data.RankName),
 		Ranking:          userRankingToInt(data.Ranking),
-		Rankings:         convert.Slice(*data.Rankings, fromAPIUserRanking),
+		Rankings:         convert.SlicePointer(data.Rankings, fromAPIUserRanking),
 		RespectedByCount: deref.Int(data.RespectedByCount),
 		RootOwnsCount:    deref.Int(data.RootOwnsCount),
 		UserOwnsCount:    deref.Int(data.UserOwnsCount),
@@ -80,6 +83,9 @@ func fromAPITeamMember(data v4client.TeamMember) TeamMember {
 }
 
 func fromAPITeamMemberTeam(data *v4client.TeamMemberTeam) TeamMemberTeam {
+	if data == nil {
+		return TeamMemberTeam{}
+	}
 	return TeamMemberTeam{
 		Id:        deref.Int(data.Id),
 		CaptainId: deref.Int(data.CaptainId),
@@ -102,6 +108,9 @@ func fromAPITeamActivityItem(data v4client.TeamActivityItem) TeamActivityItem {
 }
 
 func fromAPITeamActivityUser(data *v4client.TeamActivityUser) TeamActivityUser {
+	if data == nil {
+		return TeamActivityUser{}
+	}
 	return TeamActivityUser{
 		AvatarThumb: deref.String(data.AvatarThumb),
 		Id:          deref.Int(data.Id),

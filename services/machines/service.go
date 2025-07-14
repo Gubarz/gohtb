@@ -32,7 +32,7 @@ func (s *Service) Active(ctx context.Context) (ActiveResponse, error) {
 	}
 
 	return ActiveResponse{
-		Data: fromAPIActiveMachineInfo(*resp.JSON200.Info),
+		Data: fromAPIActiveMachineInfo(resp.JSON200.Info),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
@@ -62,7 +62,7 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	}
 
 	return InfoResponse{
-		Data: fromAPIMachineProfileInfo(*resp.JSON200.Info),
+		Data: fromAPIMachineProfileInfo(resp.JSON200.Info),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),

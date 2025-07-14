@@ -7,11 +7,14 @@ import (
 	v4client "github.com/gubarz/gohtb/internal/httpclient/v4"
 )
 
-func fromAPISeasonMachineActive(data v4client.SeasonActiveData) SeasonActiveData {
+func fromAPISeasonMachineActive(data *v4client.SeasonActiveData) SeasonActiveData {
+	if data == nil {
+		return SeasonActiveData{}
+	}
 	return SeasonActiveData{
 		Avatar:          deref.String(data.Avatar),
-		Cocreators:      convert.Slice(*data.Cocreators, fromAPIUserBasicInfoWithRespec),
-		Creator:         convert.Slice(*data.Creator, fromAPIUserBasicInfoWithRespec),
+		Cocreators:      convert.SlicePointer(data.Cocreators, fromAPIUserBasicInfoWithRespec),
+		Creator:         convert.SlicePointer(data.Creator, fromAPIUserBasicInfoWithRespec),
 		DifficultyText:  deref.String(data.DifficultyText),
 		Id:              deref.Int(data.Id),
 		InfoStatus:      deref.String(data.InfoStatus),
@@ -24,7 +27,7 @@ func fromAPISeasonMachineActive(data v4client.SeasonActiveData) SeasonActiveData
 		MakerId:         deref.Int(data.MakerId),
 		Name:            deref.String(data.Name),
 		Os:              deref.String(data.Os),
-		PlayInfo:        fromAPIPlayInfo(*data.PlayInfo),
+		PlayInfo:        fromAPIPlayInfo(data.PlayInfo),
 		Points:          deref.Int(data.Points),
 		Poweroff:        deref.Int(data.Poweroff),
 		Production:      deref.Bool(data.Production),
@@ -51,7 +54,10 @@ func fromAPIUserBasicInfoWithRespec(data v4client.UserBasicInfoWithRespect) comm
 	}
 }
 
-func fromAPIPlayInfo(data v4client.PlayInfo) common.PlayInfo {
+func fromAPIPlayInfo(data *v4client.PlayInfo) common.PlayInfo {
+	if data == nil {
+		return common.PlayInfo{}
+	}
 	return common.PlayInfo{
 		ActivePlayerCount: deref.Int(data.ActivePlayerCount),
 		ExpiresAt:         deref.Time(data.ExpiresAt),
@@ -76,10 +82,13 @@ func fromAPISeasonListDataItem(data v4client.SeasonListDataItem) SeasonListDataI
 	}
 }
 
-func fromAPISeasonUserFollowerData(data v4client.SeasonUserFollowerData) SeasonUserFollowerData {
+func fromAPISeasonUserFollowerData(data *v4client.SeasonUserFollowerData) SeasonUserFollowerData {
+	if data == nil {
+		return SeasonUserFollowerData{}
+	}
 	return SeasonUserFollowerData{
-		TopRankedFollowers: convert.Slice(*data.TopRankedFollowers, fromAPITopUserItem),
-		TopSeasonUsers:     convert.Slice(*data.TopSeasonUsers, fromAPITopUserItem),
+		TopRankedFollowers: convert.SlicePointer(data.TopRankedFollowers, fromAPITopUserItem),
+		TopSeasonUsers:     convert.SlicePointer(data.TopSeasonUsers, fromAPITopUserItem),
 	}
 }
 
@@ -92,13 +101,16 @@ func fromAPITopUserItem(data v4client.TopUserItem) TopUserItem {
 	}
 }
 
-func fromAPISeasonUserRankData(data v4client.SeasonUserRankData) SeasonUserRankData {
+func fromAPISeasonUserRankData(data *v4client.SeasonUserRankData) SeasonUserRankData {
+	if data == nil {
+		return SeasonUserRankData{}
+	}
 	flagrank, err := data.FlagsToNextRank.AsFlagsToNextRank0()
 	if err != nil {
 		flagrank = v4client.FlagsToNextRank0{}
 	}
 	return SeasonUserRankData{
-		FlagsToNextRank:   fromAPIFlagsToNextRank(flagrank),
+		FlagsToNextRank:   fromAPIFlagsToNextRank(&flagrank),
 		League:            deref.String(data.League),
 		Rank:              deref.Int(data.Rank),
 		RankSuffix:        deref.String(data.RankSuffix),
@@ -107,7 +119,10 @@ func fromAPISeasonUserRankData(data v4client.SeasonUserRankData) SeasonUserRankD
 	}
 }
 
-func fromAPIFlagsToNextRank(data v4client.FlagsToNextRank0) FlagsToNextRank {
+func fromAPIFlagsToNextRank(data *v4client.FlagsToNextRank0) FlagsToNextRank {
+	if data == nil {
+		return FlagsToNextRank{}
+	}
 	return FlagsToNextRank{
 		Obtained: deref.Int(data.Obtained),
 		Total:    deref.Int(data.Total),
@@ -116,14 +131,17 @@ func fromAPIFlagsToNextRank(data v4client.FlagsToNextRank0) FlagsToNextRank {
 
 func fromAPISeasonRewardsDataItem(data v4client.SeasonRewardsDataItem) SeasonRewardsDataItem {
 	return SeasonRewardsDataItem{
-		RewardTypes: fromAPISeasonRewardTypes(*data.RewardTypes),
+		RewardTypes: fromAPISeasonRewardTypes(data.RewardTypes),
 	}
 }
 
-func fromAPISeasonRewardTypes(data v4client.SeasonRewardTypes) SeasonRewardTypes {
+func fromAPISeasonRewardTypes(data *v4client.SeasonRewardTypes) SeasonRewardTypes {
+	if data == nil {
+		return SeasonRewardTypes{}
+	}
 	return SeasonRewardTypes{
 		Description: deref.String(data.Description),
-		Groups:      convert.Slice(*data.Groups, fromAPISeasonRewardGroupItem),
+		Groups:      convert.SlicePointer(data.Groups, fromAPISeasonRewardGroupItem),
 		Id:          deref.Int(data.Id),
 		Name:        deref.String(data.Name),
 		Order:       deref.Float32(data.Order),
@@ -138,7 +156,7 @@ func fromAPISeasonRewardGroupItem(data v4client.SeasonRewardGroupItem) SeasonRew
 		Name:         deref.String(data.Name),
 		Order:        deref.Int(data.Order),
 		RewardTypeId: deref.Int(data.RewardTypeId),
-		Rewards:      convert.Slice(*data.Rewards, fromAPISeasonRewardItem),
+		Rewards:      convert.SlicePointer(data.Rewards, fromAPISeasonRewardItem),
 		Subtitle:     deref.String(data.Subtitle),
 	}
 }

@@ -131,7 +131,7 @@ func (q *UnreleasedQuery) fetchResults(ctx context.Context) (MachineUnreleasedRe
 	}
 
 	return MachineUnreleasedResponse{
-		Data: convert.Slice(*resp.JSON200.Data, fromAPIMachineUnreleasedData),
+		Data: convert.SlicePointer(resp.JSON200.Data, fromAPIMachineUnreleasedData),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),

@@ -8,12 +8,15 @@ import (
 )
 
 func fromFortressData(data *v4client.FortressData) Data {
+	if data == nil {
+		return Data{}
+	}
 	return Data{
 		Company:              fromFortressCompanyData(data.Company),
 		CompletionMessage:    deref.String(data.CompletionMessage),
 		CoverImageUrl:        deref.String(data.CoverImageUrl),
 		Description:          deref.String(data.Description),
-		Flags:                convert.Slice(*data.Flags, common.FromAPIFlag),
+		Flags:                convert.SlicePointer(data.Flags, common.FromAPIFlag),
 		HasCompletionMessage: deref.Bool(data.HasCompletionMessage),
 		Id:                   deref.Int(data.Id),
 		Image:                deref.String(data.Image),
@@ -28,6 +31,9 @@ func fromFortressData(data *v4client.FortressData) Data {
 }
 
 func fromFortressCompanyData(data *v4client.Company) Company {
+	if data == nil {
+		return Company{}
+	}
 	return Company{
 		Description: deref.String(data.Description),
 		Id:          deref.Int(data.Id),
@@ -38,6 +44,9 @@ func fromFortressCompanyData(data *v4client.Company) Company {
 }
 
 func fromFortressUserAvailabilityData(data *v4client.UserAvailability) UserAvailability {
+	if data == nil {
+		return UserAvailability{}
+	}
 	return UserAvailability{
 		Available: deref.Bool(data.Available),
 		Code:      deref.Int(data.Code),
@@ -46,6 +55,9 @@ func fromFortressUserAvailabilityData(data *v4client.UserAvailability) UserAvail
 }
 
 func toItem(data v4client.Fortress) Item {
+	if data.Id == nil {
+		return Item{}
+	}
 	return Item{
 		CoverImageUrl: deref.String(data.CoverImageUrl),
 		Id:            deref.Int(data.Id),

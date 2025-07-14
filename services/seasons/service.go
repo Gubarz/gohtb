@@ -34,7 +34,7 @@ func (h *Handle) Rewards(ctx context.Context) (RewardsResponse, error) {
 	}
 
 	return RewardsResponse{
-		Data: convert.Slice(*resp.JSON200.Data, fromAPISeasonRewardsDataItem),
+		Data: convert.SlicePointer(resp.JSON200.Data, fromAPISeasonRewardsDataItem),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
@@ -54,7 +54,7 @@ func (h *Handle) UserRank(ctx context.Context) (UserRankResponse, error) {
 	}
 
 	return UserRankResponse{
-		Data: fromAPISeasonUserRankData(*resp.JSON200.Data),
+		Data: fromAPISeasonUserRankData(resp.JSON200.Data),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
@@ -74,7 +74,7 @@ func (h *Handle) UserFollowers(ctx context.Context) (UserFollowersResponse, erro
 	}
 
 	return UserFollowersResponse{
-		Data: fromAPISeasonUserFollowerData(*resp.JSON200.Data),
+		Data: fromAPISeasonUserFollowerData(resp.JSON200.Data),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
@@ -94,7 +94,7 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 	}
 
 	return ListResponse{
-		Data: convert.Slice(*resp.JSON200.Data, fromAPISeasonListDataItem),
+		Data: convert.SlicePointer(resp.JSON200.Data, fromAPISeasonListDataItem),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
@@ -114,7 +114,7 @@ func (s *Service) Machines(ctx context.Context) (MachinesResponse, error) {
 	}
 
 	return MachinesResponse{
-		Data: convert.Slice(*resp.JSON200.Data, fromAPISeasonMachinesDataItem),
+		Data: convert.SlicePointer(resp.JSON200.Data, fromAPISeasonMachinesDataItem),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
@@ -134,7 +134,7 @@ func (s *Service) ActiveMachine(ctx context.Context) (ActiveMachineResponse, err
 	}
 
 	return ActiveMachineResponse{
-		Data: fromAPISeasonMachineActive(*resp.JSON200.Data),
+		Data: fromAPISeasonMachineActive(resp.JSON200.Data),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),

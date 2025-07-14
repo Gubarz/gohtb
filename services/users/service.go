@@ -61,7 +61,7 @@ func (h *Handle) ProfileActivity(ctx context.Context) (ProfileActivityResposnse,
 	}
 
 	return ProfileActivityResposnse{
-		Data: convert.Slice(*resp.JSON200.Profile.Activity, fromAPIUserActivity),
+		Data: convert.SlicePointer(resp.JSON200.Profile.Activity, fromAPIUserActivity),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
