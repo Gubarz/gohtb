@@ -8,6 +8,7 @@ import (
 	"github.com/gubarz/gohtb/internal/deref"
 	"github.com/gubarz/gohtb/internal/errutil"
 	"github.com/gubarz/gohtb/internal/extract"
+	v4Client "github.com/gubarz/gohtb/internal/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -115,9 +116,17 @@ func (h *Handle) Members(ctx context.Context) (MembersResponse, error) {
 //		fmt.Printf("Activity: %s at %s\n", act.Type, act.Date)
 //	}
 func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
+	// This is set to 90 days wich is max by the API
+	// Not setting it can pausibly return data that is not up to date
+	// Max items returned is 100
+	last := 90
+	params := &v4Client.GetTeamActivityParams{
+		NPastDays: &last,
+	}
 	resp, err := h.client.V4().GetTeamActivityWithResponse(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
+		params,
 	)
 
 	raw := extract.Raw(resp)

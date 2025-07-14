@@ -100,16 +100,18 @@ type TeamMemberTeam struct {
 }
 
 type TeamActivityItem struct {
-	Date          time.Time
-	DateDiff      string
-	FirstBlood    bool
-	Id            int
-	MachineAvatar string
-	Name          string
-	ObjectType    string
-	Points        int
-	Type          string
-	User          TeamActivityUser
+	ChallengeCategory string
+	Date              time.Time
+	DateDiff          string
+	FirstBlood        bool
+	FlagTitle         string
+	Id                int
+	MachineAvatar     string
+	Name              string
+	ObjectType        string
+	Points            int
+	Type              string
+	User              TeamActivityUser
 }
 
 type TeamActivityUser struct {

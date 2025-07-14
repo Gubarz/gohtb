@@ -94,27 +94,26 @@ func fromAPITeamMemberTeam(data *v4client.TeamMemberTeam) TeamMemberTeam {
 
 func fromAPITeamActivityItem(data v4client.TeamActivityItem) TeamActivityItem {
 	return TeamActivityItem{
-		Date:          deref.Time(data.Date),
-		DateDiff:      deref.String(data.DateDiff),
-		FirstBlood:    deref.Bool(data.FirstBlood),
-		Id:            deref.Int(data.Id),
-		MachineAvatar: deref.String(data.MachineAvatar),
-		Name:          deref.String(data.Name),
-		Points:        deref.Int(data.Points),
-		Type:          deref.String(data.Type),
-		ObjectType:    deref.String(data.ObjectType),
-		User:          fromAPITeamActivityUser(data.User),
+		ChallengeCategory: deref.String(data.ChallengeCategory),
+		Date:              data.Date,
+		DateDiff:          data.DateDiff,
+		FirstBlood:        data.FirstBlood,
+		FlagTitle:         deref.String(data.FlagTitle),
+		Id:                data.Id,
+		MachineAvatar:     deref.String(data.MachineAvatar),
+		Name:              data.Name,
+		Points:            data.Points,
+		Type:              data.Type,
+		ObjectType:        data.ObjectType,
+		User:              fromAPITeamActivityUser(data.User),
 	}
 }
 
-func fromAPITeamActivityUser(data *v4client.TeamActivityUser) TeamActivityUser {
-	if data == nil {
-		return TeamActivityUser{}
-	}
+func fromAPITeamActivityUser(data v4client.TeamActivityUser) TeamActivityUser {
 	return TeamActivityUser{
 		AvatarThumb: deref.String(data.AvatarThumb),
-		Id:          deref.Int(data.Id),
-		Name:        deref.String(data.Name),
-		Public:      deref.Int(data.Public),
+		Id:          data.Id,
+		Name:        data.Name,
+		Public:      data.Public,
 	}
 }

@@ -149,6 +149,8 @@ type Challenge struct {
 	FirstBloodUser       string
 	FirstBloodUserAvatar string
 	FirstBloodUserId     int
+	FileName             string
+	FileSize             string
 	HasChangelog         bool
 	Id                   int
 	IsRespected          bool

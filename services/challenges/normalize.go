@@ -83,6 +83,8 @@ func fromAPIChallengeInfo(data *v4client.Challenge) Challenge {
 		FirstBloodUser:       deref.String(data.FirstBloodUser),
 		FirstBloodUserAvatar: deref.String(data.FirstBloodUserAvatar),
 		FirstBloodUserId:     deref.Int(data.FirstBloodUserId),
+		FileName:             deref.String(data.FileName),
+		FileSize:             deref.String(data.FileSize),
 		HasChangelog:         deref.Bool(data.HasChangelog),
 		Id:                   deref.Int(data.Id),
 		IsRespected:          deref.Bool(data.IsRespected),

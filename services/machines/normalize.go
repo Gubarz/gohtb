@@ -94,7 +94,7 @@ func fromAPIMachineProfileInfo(data *v4Client.MachineProfileInfo) MachineProfile
 		Name:                       deref.String(data.Name),
 		Os:                         deref.String(data.Os),
 		OwnRank:                    deref.Int(data.OwnRank),
-		PlayInfo:                   fromAPIPlayInfoAlt(data.PlayInfo),
+		PlayInfo:                   fromAPIPlayInfo(data.PlayInfo),
 		Points:                     deref.Int(data.Points),
 		Recommended:                deref.Bool(data.Recommended),
 		Release:                    deref.Time(data.Release),
@@ -144,15 +144,16 @@ func fromAPIMachineUnreleasedData(data v4Client.MachineUnreleasedData) MachineUn
 	}
 }
 
-func fromAPIPlayInfoAlt(data *v4Client.PlayInfoAlt) PlayInfoAlt {
+func fromAPIPlayInfo(data *v4Client.PlayInfo) PlayInfo {
 	if data == nil {
-		return PlayInfoAlt{}
+		return PlayInfo{}
 	}
-	return PlayInfoAlt{
-		ExpiresAt: deref.Time(data.ExpiresAt),
-		Ip:        deref.String(data.Ip),
-		Ports:     deref.Slice(data.Ports),
-		Status:    deref.String(data.Status),
+	return PlayInfo{
+		ActivePlayerCount: deref.Int(data.ActivePlayerCount),
+		ExpiresAt:         deref.Time(data.ExpiresAt),
+		IsActive:          deref.Bool(data.IsActive),
+		IsSpawned:         deref.Bool(data.IsSpawned),
+		IsSpawning:        deref.Bool(data.IsSpawning),
 	}
 }
 

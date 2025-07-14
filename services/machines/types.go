@@ -403,7 +403,7 @@ type MachineProfileInfo struct {
 	Name                       string
 	Os                         string
 	OwnRank                    int
-	PlayInfo                   PlayInfoAlt
+	PlayInfo                   PlayInfo
 	Points                     int
 	Recommended                bool
 	Release                    time.Time

@@ -890,6 +890,8 @@ type Challenge struct {
 	DockerPorts          *string          `json:"docker_ports"`
 	DockerStatus         *string          `json:"docker_status"`
 	Download             *bool            `json:"download,omitempty"`
+	FileName             *string          `json:"file_name,omitempty"`
+	FileSize             *string          `json:"file_size,omitempty"`
 	FirstBloodTime       *string          `json:"first_blood_time,omitempty"`
 	FirstBloodUser       *string          `json:"first_blood_user,omitempty"`
 	FirstBloodUserAvatar *string          `json:"first_blood_user_avatar,omitempty"`
@@ -904,21 +906,22 @@ type Challenge struct {
 	Name                 *string          `json:"name,omitempty"`
 
 	// PlayInfo Alternate structure of PlayInfo used in Sherlocks and Challenges
-	PlayInfo      *PlayInfoAlt      `json:"play_info,omitempty"`
-	PlayMethods   *StringArray      `json:"play_methods,omitempty"`
-	Points        *Challenge_Points `json:"points,omitempty"`
-	Recommended   *int              `json:"recommended,omitempty"`
-	ReleaseDate   *time.Time        `json:"release_date,omitempty"`
-	Released      *int              `json:"released,omitempty"`
-	Retired       *bool             `json:"retired,omitempty"`
-	ReviewsCount  *int              `json:"reviews_count,omitempty"`
-	Sha256        *string           `json:"sha256,omitempty"`
-	ShowGoVip     *bool             `json:"show_go_vip,omitempty"`
-	Solves        *int              `json:"solves,omitempty"`
-	Stars         *float32          `json:"stars,omitempty"`
-	State         *string           `json:"state,omitempty"`
-	Tags          *StringArray      `json:"tags,omitempty"`
-	UserCanReview *bool             `json:"user_can_review,omitempty"`
+	PlayInfo                *PlayInfoAlt      `json:"play_info,omitempty"`
+	PlayMethods             *StringArray      `json:"play_methods,omitempty"`
+	Points                  *Challenge_Points `json:"points,omitempty"`
+	Recommended             *int              `json:"recommended,omitempty"`
+	ReleaseDate             *time.Time        `json:"release_date,omitempty"`
+	Released                *int              `json:"released,omitempty"`
+	Retired                 *bool             `json:"retired,omitempty"`
+	ReviewsCount            *int              `json:"reviews_count,omitempty"`
+	Sha256                  *string           `json:"sha256,omitempty"`
+	ShowGoVip               *bool             `json:"show_go_vip,omitempty"`
+	Solves                  *int              `json:"solves,omitempty"`
+	Stars                   *float32          `json:"stars,omitempty"`
+	State                   *string           `json:"state,omitempty"`
+	Tags                    *StringArray      `json:"tags,omitempty"`
+	UserCanReview           *bool             `json:"user_can_review,omitempty"`
+	UserSubmittedDifficulty *int              `json:"user_submitted_difficulty,omitempty"`
 }
 
 // ChallengePoints0 defines model for .
@@ -995,7 +998,7 @@ type ChallengeChangelogIdResponse struct {
 }
 
 // ChallengeDifficulties defines model for ChallengeDifficulties.
-type ChallengeDifficulties = []struct {
+type ChallengeDifficulties struct {
 	CompletionPercentage *float32 `json:"completion_percentage,omitempty"`
 	Name                 *string  `json:"name,omitempty"`
 	OwnedChallenges      *float32 `json:"owned_challenges,omitempty"`
@@ -2152,15 +2155,15 @@ type MachineProfileInfo struct {
 	Os      *string `json:"os,omitempty"`
 	OwnRank *int    `json:"ownRank"`
 
-	// PlayInfo Alternate structure of PlayInfo used in Sherlocks and Challenges
-	PlayInfo             *PlayInfoAlt `json:"playInfo,omitempty"`
-	Points               *int         `json:"points,omitempty"`
-	PriceTier            *int         `json:"priceTier,omitempty"`
-	Recommended          *bool        `json:"recommended,omitempty"`
-	Release              *time.Time   `json:"release,omitempty"`
-	RequiredSubscription *string      `json:"requiredSubscription"`
-	Retired              *bool        `json:"retired,omitempty"`
-	ReviewsCount         *int         `json:"reviews_count,omitempty"`
+	// PlayInfo Schema definition for Play Info
+	PlayInfo             *PlayInfo  `json:"playInfo,omitempty"`
+	Points               *int       `json:"points,omitempty"`
+	PriceTier            *int       `json:"priceTier,omitempty"`
+	Recommended          *bool      `json:"recommended,omitempty"`
+	Release              *time.Time `json:"release,omitempty"`
+	RequiredSubscription *string    `json:"requiredSubscription"`
+	Retired              *bool      `json:"retired,omitempty"`
+	ReviewsCount         *int       `json:"reviews_count,omitempty"`
 
 	// RootBlood Schema definition for Blood Info
 	RootBlood           *BloodInfo `json:"rootBlood,omitempty"`
@@ -2243,11 +2246,13 @@ type MachineReviewsMessageItem struct {
 	CreatedAt                *string              `json:"created_at,omitempty"`
 	Difficulty               *int                 `json:"difficulty"`
 	Featured                 *int                 `json:"featured,omitempty"`
+	Headline                 *string              `json:"headline"`
 	HelpfulReviews           *HelpfulReviewsItems `json:"helpful_reviews,omitempty"`
 	HelpfulReviewsCount      *float32             `json:"helpful_reviews_count,omitempty"`
 	Id                       *int                 `json:"id,omitempty"`
 	Message                  *string              `json:"message"`
 	Released                 *float32             `json:"released,omitempty"`
+	Review                   *string              `json:"review"`
 	Stars                    *float32             `json:"stars,omitempty"`
 	Title                    *string              `json:"title"`
 	User                     *UserBasicInfo       `json:"user"`
@@ -3537,11 +3542,13 @@ type ReviewMessageItem struct {
 	CreatedAt                *time.Time           `json:"created_at,omitempty"`
 	Difficulty               *int                 `json:"difficulty"`
 	Featured                 *int                 `json:"featured,omitempty"`
+	Headline                 *string              `json:"headline"`
 	HelpfulReviews           *HelpfulReviewsItems `json:"helpful_reviews,omitempty"`
 	HelpfulReviewsCount      *int                 `json:"helpful_reviews_count,omitempty"`
 	Id                       *int                 `json:"id,omitempty"`
 	Message                  *string              `json:"message,omitempty"`
 	Released                 *int                 `json:"released,omitempty"`
+	Review                   *string              `json:"review"`
 	Stars                    *int                 `json:"stars,omitempty"`
 	Title                    *string              `json:"title"`
 	User                     *UserBasicInfo       `json:"user"`
@@ -4028,6 +4035,7 @@ type SherlockNamedItemData struct {
 	ShowGoVip           *bool        `json:"show_go_vip,omitempty"`
 	State               *string      `json:"state,omitempty"`
 	Tags                *StringArray `json:"tags,omitempty"`
+	UserCanReview       *bool        `json:"user_can_review,omitempty"`
 	WriteupVisible      *bool        `json:"writeup_visible,omitempty"`
 }
 
@@ -4270,24 +4278,26 @@ type TeamActivityIdResponse = []TeamActivityItem
 
 // TeamActivityItem defines model for TeamActivityItem.
 type TeamActivityItem struct {
-	Date          *time.Time        `json:"date,omitempty"`
-	DateDiff      *string           `json:"date_diff,omitempty"`
-	FirstBlood    *bool             `json:"first_blood,omitempty"`
-	Id            *int              `json:"id,omitempty"`
-	MachineAvatar *string           `json:"machine_avatar,omitempty"`
-	Name          *string           `json:"name,omitempty"`
-	ObjectType    *string           `json:"object_type,omitempty"`
-	Points        *int              `json:"points,omitempty"`
-	Type          *string           `json:"type,omitempty"`
-	User          *TeamActivityUser `json:"user,omitempty"`
+	ChallengeCategory *string          `json:"challenge_category,omitempty"`
+	Date              time.Time        `json:"date"`
+	DateDiff          string           `json:"date_diff"`
+	FirstBlood        bool             `json:"first_blood"`
+	FlagTitle         *string          `json:"flag_title,omitempty"`
+	Id                int              `json:"id"`
+	MachineAvatar     *string          `json:"machine_avatar,omitempty"`
+	Name              string           `json:"name"`
+	ObjectType        string           `json:"object_type"`
+	Points            int              `json:"points"`
+	Type              string           `json:"type"`
+	User              TeamActivityUser `json:"user"`
 }
 
 // TeamActivityUser defines model for TeamActivityUser.
 type TeamActivityUser struct {
 	AvatarThumb *string `json:"avatar_thumb,omitempty"`
-	Id          *int    `json:"id,omitempty"`
-	Name        *string `json:"name,omitempty"`
-	Public      *int    `json:"public,omitempty"`
+	Id          int     `json:"id"`
+	Name        string  `json:"name"`
+	Public      int     `json:"public"`
 }
 
 // TeamGraphData defines model for TeamGraphData.
@@ -4905,6 +4915,7 @@ type UserInfo struct {
 	OptIn                      *int                   `json:"opt_in,omitempty"`
 	RankId                     *int                   `json:"rank_id,omitempty"`
 	ServerId                   *int                   `json:"server_id,omitempty"`
+	SubscriptionType           *string                `json:"subscriptionType,omitempty"`
 	SubscriptionPlan           *string                `json:"subscription_plan,omitempty"`
 	Team                       *ConnectionDataMachine `json:"team"`
 	Timezone                   *string                `json:"timezone,omitempty"`
@@ -5174,6 +5185,9 @@ type MachineId = int
 
 // MachineSlug defines model for MachineSlug.
 type MachineSlug = string
+
+// NPastDays defines model for NPastDays.
+type NPastDays = int
 
 // Os defines model for Os.
 type Os = []string
@@ -6046,6 +6060,12 @@ type PostSherlockTasksFlagJSONBody struct {
 // PostSherlockTasksFlagFormdataBody defines parameters for PostSherlockTasksFlag.
 type PostSherlockTasksFlagFormdataBody struct {
 	Flag *string `form:"flag,omitempty" json:"flag,omitempty"`
+}
+
+// GetTeamActivityParams defines parameters for GetTeamActivity.
+type GetTeamActivityParams struct {
+	// NPastDays number of past days, max 90
+	NPastDays *NPastDays `form:"n_past_days,omitempty" json:"n_past_days,omitempty"`
 }
 
 // GetTeamGraphParams defines parameters for GetTeamGraph.
@@ -7399,7 +7419,7 @@ type ClientInterface interface {
 	GetSPTiersProgress(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetTeamActivity request
-	GetTeamActivity(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetTeamActivity(ctx context.Context, teamId TeamId, params *GetTeamActivityParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetTeamChartChallengeCategories request
 	GetTeamChartChallengeCategories(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -9629,8 +9649,8 @@ func (c *Client) GetSPTiersProgress(ctx context.Context, reqEditors ...RequestEd
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetTeamActivity(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetTeamActivityRequest(c.Server, teamId)
+func (c *Client) GetTeamActivity(ctx context.Context, teamId TeamId, params *GetTeamActivityParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetTeamActivityRequest(c.Server, teamId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -16472,7 +16492,7 @@ func NewGetSPTiersProgressRequest(server string) (*http.Request, error) {
 }
 
 // NewGetTeamActivityRequest generates requests for GetTeamActivity
-func NewGetTeamActivityRequest(server string, teamId TeamId) (*http.Request, error) {
+func NewGetTeamActivityRequest(server string, teamId TeamId, params *GetTeamActivityParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -16495,6 +16515,28 @@ func NewGetTeamActivityRequest(server string, teamId TeamId) (*http.Request, err
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if params.NPastDays != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "n_past_days", runtime.ParamLocationQuery, *params.NPastDays); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -19193,7 +19235,7 @@ type ClientWithResponsesInterface interface {
 	GetSPTiersProgressWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSPTiersProgressResponse, error)
 
 	// GetTeamActivityWithResponse request
-	GetTeamActivityWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetTeamActivityResponse, error)
+	GetTeamActivityWithResponse(ctx context.Context, teamId TeamId, params *GetTeamActivityParams, reqEditors ...RequestEditorFn) (*GetTeamActivityResponse, error)
 
 	// GetTeamChartChallengeCategoriesWithResponse request
 	GetTeamChartChallengeCategoriesWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetTeamChartChallengeCategoriesResponse, error)
@@ -25716,8 +25758,8 @@ func (c *ClientWithResponses) GetSPTiersProgressWithResponse(ctx context.Context
 }
 
 // GetTeamActivityWithResponse request returning *GetTeamActivityResponse
-func (c *ClientWithResponses) GetTeamActivityWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetTeamActivityResponse, error) {
-	rsp, err := c.GetTeamActivity(ctx, teamId, reqEditors...)
+func (c *ClientWithResponses) GetTeamActivityWithResponse(ctx context.Context, teamId TeamId, params *GetTeamActivityParams, reqEditors ...RequestEditorFn) (*GetTeamActivityResponse, error) {
+	rsp, err := c.GetTeamActivity(ctx, teamId, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
