@@ -103,7 +103,7 @@ func (s *Service) Status(ctx context.Context) (ConnectionStatusResponse, error) 
 	}
 
 	return ConnectionStatusResponse{
-		Data: convert.Slice(*resp.JSON200, fromAPIConnectionStatusItem),
+		Data: convert.SlicePointer(resp.JSON200, fromAPIConnectionStatusItem),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
@@ -125,7 +125,7 @@ func (s *Service) Connections(ctx context.Context) (ConnectionStatusResponse, er
 	}
 
 	return ConnectionStatusResponse{
-		Data: convert.Slice(*resp.JSON200, fromAPIConnectionStatusItem),
+		Data: convert.SlicePointer(resp.JSON200, fromAPIConnectionStatusItem),
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
 			StatusCode: resp.StatusCode(),
