@@ -12,6 +12,14 @@ import (
 	"github.com/gubarz/gohtb/internal/ptr"
 )
 
+// ListRetired creates a new query for retired machines.
+// This returns an RetiredQuery that can be chained with filtering and pagination methods.
+// Retired machines are machines that are no longer publicly available.
+//
+// Example:
+//
+//	query := client.Machines.ListRetired()
+//	machines, err := query.ByDifficulty("Hard").ByOS("Linux").Results(ctx)
 func (s *Service) ListRetired() *RetiredQuery {
 	return &RetiredQuery{
 		client:  s.base.Client,
@@ -20,12 +28,25 @@ func (s *Service) ListRetired() *RetiredQuery {
 	}
 }
 
+// Next moves to the next page in the pagination sequence.
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	nextPage := query.Next().Results(ctx)
 func (q *RetiredQuery) Next() *RetiredQuery {
 	qc := ptr.Clone(q)
 	qc.page++
 	return qc
 }
 
+// Previous moves to the previous page in the pagination sequence.
+// If already on the first page, it remains on page 1.
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	prevPage := query.Previous().Results(ctx)
 func (q *RetiredQuery) Previous() *RetiredQuery {
 	qc := ptr.Clone(q)
 	if qc.page > 1 {
@@ -34,52 +55,108 @@ func (q *RetiredQuery) Previous() *RetiredQuery {
 	return qc
 }
 
+// Page sets the specific page number for pagination.
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	machines := query.Page(3).Results(ctx)
 func (q *RetiredQuery) Page(n int) *RetiredQuery {
 	qc := ptr.Clone(q)
 	qc.page = n
 	return qc
 }
 
+// PerPage sets the number of results per page.
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	machines := query.PerPage(50).Results(ctx)
 func (q *RetiredQuery) PerPage(n int) *RetiredQuery {
 	qc := ptr.Clone(q)
 	qc.perPage = n
 	return qc
 }
 
-// Completed, InComplete
+// ByCompleted filters machines by completion status.
+// Valid values are "Completed" and "InComplete".
+// Returns a new RetiredQuery that can be further chained.
+// By default, it does not filter by completion status and
+// includes both completed and incomplete machines.
+//
+// Example:
+//
+//	completed := query.ByCompleted("Completed").Results(ctx)
+//	incomplete := query.ByCompleted("InComplete").Results(ctx)
 func (q *RetiredQuery) ByCompleted(val string) *RetiredQuery {
 	qc := ptr.Clone(q)
 	qc.showCompleted = val
 	return qc
 }
 
-// Linux, Windows
+// ByOS filters machines by operating system.
+// Valid values include "Linux" and "Windows".
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	linuxMachines := query.ByOS("Linux").Results(ctx)
+//	linuxAndWindowsMachines := query.ByOS("Linux").ByOS("Windows").Results(ctx)
 func (q *RetiredQuery) ByOS(val string) *RetiredQuery {
 	return q.ByOSList(val)
 }
 
-// Linux, Windows
+// ByOSList filters machines by multiple operating systems.
+// Valid values include "Linux" and "Windows".
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	machines := query.ByOSList("Linux", "Windows").Results(ctx)
 func (q *RetiredQuery) ByOSList(val ...string) *RetiredQuery {
 	qc := ptr.Clone(q)
 	qc.os = append(append([]string{}, q.os...), val...)
 	return qc
 }
 
-// Easy, Medium, Hard, Insane
+// ByDifficultyList filters machines by multiple difficulty levels.
+// Valid values are "Easy", "Medium", "Hard", and "Insane".
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	machines := query.ByDifficultyList("Hard", "Insane").Results(ctx)
 func (q *RetiredQuery) ByDifficultyList(val ...string) *RetiredQuery {
 	qc := ptr.Clone(q)
 	qc.difficulty = append(append([]string{}, q.difficulty...), val...)
 	return qc
 }
 
-// Easy, Medium, Hard, Insane
+// ByDifficulty filters machines by difficulty level.
+// Valid values are "Easy", "Medium", "Hard", and "Insane".
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	hardMachines := query.ByDifficulty("Hard").Results(ctx)
+//	mediumAndInsaneMachines := query.ByDifficulty("Medium").ByDifficulty("Insane").Results(ctx)
 func (q *RetiredQuery) ByDifficulty(val string) *RetiredQuery {
 	return q.ByDifficultyList(val)
 }
 
-func (q *RetiredQuery) SortedBy(val v4Client.GetMachinePaginatedParamsSortBy) *RetiredQuery {
+// SortedBy sets the field to sort results by.
+// Valid values include "release-date", "name", "user-owns", "system-owns", "rating", "user-difficulty".
+// Returns a new RetiredQuery that can be further chained with Ascending() or Descending().
+//
+// Example:
+//
+//	machines := query.SortedBy("name").Ascending().Results(ctx)
+//	machines := query.SortedBy("user-difficulty").Descending().Results(ctx)
+func (q *RetiredQuery) SortedBy(field string) *RetiredQuery {
 	qc := ptr.Clone(q)
-	qc.sortBy = &val
+	sortBy := v4Client.GetMachinePaginatedParamsSortBy(field)
+	qc.sortBy = &sortBy
 	return qc
 }
 
@@ -90,13 +167,25 @@ func (q *RetiredQuery) sort(val v4Client.GetMachinePaginatedParamsSortBy, order 
 	return qc
 }
 
+// Ascending sets the sort order to ascending.
+// Must be called after SortedBy(). Returns a new ActiveQuery that can be further chained.
+//
+// Example:
+//
+//	machines := query.SortedBy("user-difficulty").Ascending().Results(ctx)
 func (q *RetiredQuery) Ascending() *RetiredQuery {
 	if q.sortBy == nil {
-		return q // or panic/log if you want to enforce setting sortBy first
+		return q
 	}
 	return q.sort(*q.sortBy, v4Client.GetMachinePaginatedParamsSortType("asc"))
 }
 
+// Descending sets the sort order to descending.
+// Must be called after SortedBy(). Returns a new ActiveQuery that can be further chained.
+//
+// Example:
+//
+//	machines := query.SortedBy("user-difficulty").Descending().Results(ctx)
 func (q *RetiredQuery) Descending() *RetiredQuery {
 	if q.sortBy == nil {
 		return q
@@ -151,10 +240,29 @@ func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinePaginatedRespon
 	}, nil
 }
 
+// Results executes the query and returns the current page of unreleased machines.
+// This method should be called last in the query chain to fetch the actual data.
+//
+// Example:
+//
+//	machines, err := client.Machines.ListUnreleased().
+//		ByDifficulty("Hard").
+//		ByOS("Linux").
+//		Page(1).
+//		Results(ctx)
 func (q *RetiredQuery) Results(ctx context.Context) (MachinePaginatedResponse, error) {
 	return q.fetchResults(ctx)
 }
 
+// AllResults executes the query and returns all pages of unreleased machines.
+// This method automatically paginates through all available results.
+// Use with caution for large datasets as it may consume significant memory.
+//
+// Example:
+//
+//	allMachines, err := client.Machines.ListUnreleased().
+//		ByDifficulty("Hard").
+//		AllResults(ctx)
 func (q *RetiredQuery) AllResults(ctx context.Context) (MachinePaginatedResponse, error) {
 	var all []MachineData
 	page := 1
