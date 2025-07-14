@@ -1,6 +1,8 @@
 package fortresses
 
 import (
+	"strconv"
+
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
@@ -10,6 +12,11 @@ import (
 func fromFortressData(data *v4client.FortressData) Data {
 	if data == nil {
 		return Data{}
+	}
+
+	points, err := strconv.Atoi(deref.String(data.Points))
+	if err != nil {
+		points = 0 // Default to 0 if conversion fails
 	}
 	return Data{
 		Company:              fromFortressCompanyData(data.Company),
@@ -23,7 +30,7 @@ func fromFortressData(data *v4client.FortressData) Data {
 		Ip:                   deref.String(data.Ip),
 		Name:                 deref.String(data.Name),
 		PlayersCompleted:     deref.Int(data.PlayersCompleted),
-		Points:               deref.String(data.Points),
+		Points:               points,
 		ProgressPercent:      deref.Float32(data.ProgressPercent),
 		ResetVotes:           deref.Int(data.ResetVotes),
 		UserAvailability:     fromFortressUserAvailabilityData(data.UserAvailability),

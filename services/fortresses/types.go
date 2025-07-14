@@ -43,7 +43,7 @@ type Data struct {
 	Ip                   string
 	Name                 string
 	PlayersCompleted     int
-	Points               string
+	Points               int
 	ProgressPercent      float32
 	ResetVotes           int
 	UserAvailability     UserAvailability
