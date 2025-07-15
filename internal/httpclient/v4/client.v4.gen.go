@@ -169,10 +169,11 @@ const (
 
 // Defines values for GetChallengesParamsDifficulty.
 const (
-	GetChallengesParamsDifficultyEasy   GetChallengesParamsDifficulty = "easy"
-	GetChallengesParamsDifficultyHard   GetChallengesParamsDifficulty = "hard"
-	GetChallengesParamsDifficultyInsane GetChallengesParamsDifficulty = "insane"
-	GetChallengesParamsDifficultyMedium GetChallengesParamsDifficulty = "medium"
+	GetChallengesParamsDifficultyEasy     GetChallengesParamsDifficulty = "easy"
+	GetChallengesParamsDifficultyHard     GetChallengesParamsDifficulty = "hard"
+	GetChallengesParamsDifficultyInsane   GetChallengesParamsDifficulty = "insane"
+	GetChallengesParamsDifficultyMedium   GetChallengesParamsDifficulty = "medium"
+	GetChallengesParamsDifficultyVeryEasy GetChallengesParamsDifficulty = "very-easy"
 )
 
 // Defines values for GetChallengesParamsTodo.
@@ -234,10 +235,11 @@ const (
 
 // Defines values for GetMachineListRetiredPaginatedParamsDifficulty.
 const (
-	GetMachineListRetiredPaginatedParamsDifficultyEasy   GetMachineListRetiredPaginatedParamsDifficulty = "easy"
-	GetMachineListRetiredPaginatedParamsDifficultyHard   GetMachineListRetiredPaginatedParamsDifficulty = "hard"
-	GetMachineListRetiredPaginatedParamsDifficultyInsane GetMachineListRetiredPaginatedParamsDifficulty = "insane"
-	GetMachineListRetiredPaginatedParamsDifficultyMedium GetMachineListRetiredPaginatedParamsDifficulty = "medium"
+	GetMachineListRetiredPaginatedParamsDifficultyEasy     GetMachineListRetiredPaginatedParamsDifficulty = "easy"
+	GetMachineListRetiredPaginatedParamsDifficultyHard     GetMachineListRetiredPaginatedParamsDifficulty = "hard"
+	GetMachineListRetiredPaginatedParamsDifficultyInsane   GetMachineListRetiredPaginatedParamsDifficulty = "insane"
+	GetMachineListRetiredPaginatedParamsDifficultyMedium   GetMachineListRetiredPaginatedParamsDifficulty = "medium"
+	GetMachineListRetiredPaginatedParamsDifficultyVeryEasy GetMachineListRetiredPaginatedParamsDifficulty = "very-easy"
 )
 
 // Defines values for GetMachineListRetiredPaginatedParamsOs.
@@ -273,10 +275,11 @@ const (
 
 // Defines values for GetMachinePaginatedParamsDifficulty.
 const (
-	GetMachinePaginatedParamsDifficultyEasy   GetMachinePaginatedParamsDifficulty = "easy"
-	GetMachinePaginatedParamsDifficultyHard   GetMachinePaginatedParamsDifficulty = "hard"
-	GetMachinePaginatedParamsDifficultyInsane GetMachinePaginatedParamsDifficulty = "insane"
-	GetMachinePaginatedParamsDifficultyMedium GetMachinePaginatedParamsDifficulty = "medium"
+	GetMachinePaginatedParamsDifficultyEasy     GetMachinePaginatedParamsDifficulty = "easy"
+	GetMachinePaginatedParamsDifficultyHard     GetMachinePaginatedParamsDifficulty = "hard"
+	GetMachinePaginatedParamsDifficultyInsane   GetMachinePaginatedParamsDifficulty = "insane"
+	GetMachinePaginatedParamsDifficultyMedium   GetMachinePaginatedParamsDifficulty = "medium"
+	GetMachinePaginatedParamsDifficultyVeryEasy GetMachinePaginatedParamsDifficulty = "very-easy"
 )
 
 // Defines values for GetMachinePaginatedParamsOs.
@@ -296,10 +299,11 @@ const (
 
 // Defines values for GetMachineTodoPaginatedParamsDifficulty.
 const (
-	GetMachineTodoPaginatedParamsDifficultyEasy   GetMachineTodoPaginatedParamsDifficulty = "easy"
-	GetMachineTodoPaginatedParamsDifficultyHard   GetMachineTodoPaginatedParamsDifficulty = "hard"
-	GetMachineTodoPaginatedParamsDifficultyInsane GetMachineTodoPaginatedParamsDifficulty = "insane"
-	GetMachineTodoPaginatedParamsDifficultyMedium GetMachineTodoPaginatedParamsDifficulty = "medium"
+	GetMachineTodoPaginatedParamsDifficultyEasy     GetMachineTodoPaginatedParamsDifficulty = "easy"
+	GetMachineTodoPaginatedParamsDifficultyHard     GetMachineTodoPaginatedParamsDifficulty = "hard"
+	GetMachineTodoPaginatedParamsDifficultyInsane   GetMachineTodoPaginatedParamsDifficulty = "insane"
+	GetMachineTodoPaginatedParamsDifficultyMedium   GetMachineTodoPaginatedParamsDifficulty = "medium"
+	GetMachineTodoPaginatedParamsDifficultyVeryEasy GetMachineTodoPaginatedParamsDifficulty = "very-easy"
 )
 
 // Defines values for GetMachineTodoPaginatedParamsShowCompleted.
@@ -319,10 +323,11 @@ const (
 
 // Defines values for GetMachineUnreleasedParamsDifficulty.
 const (
-	GetMachineUnreleasedParamsDifficultyEasy   GetMachineUnreleasedParamsDifficulty = "easy"
-	GetMachineUnreleasedParamsDifficultyHard   GetMachineUnreleasedParamsDifficulty = "hard"
-	GetMachineUnreleasedParamsDifficultyInsane GetMachineUnreleasedParamsDifficulty = "insane"
-	GetMachineUnreleasedParamsDifficultyMedium GetMachineUnreleasedParamsDifficulty = "medium"
+	GetMachineUnreleasedParamsDifficultyEasy     GetMachineUnreleasedParamsDifficulty = "easy"
+	GetMachineUnreleasedParamsDifficultyHard     GetMachineUnreleasedParamsDifficulty = "hard"
+	GetMachineUnreleasedParamsDifficultyInsane   GetMachineUnreleasedParamsDifficulty = "insane"
+	GetMachineUnreleasedParamsDifficultyMedium   GetMachineUnreleasedParamsDifficulty = "medium"
+	GetMachineUnreleasedParamsDifficultyVeryEasy GetMachineUnreleasedParamsDifficulty = "very-easy"
 )
 
 // Defines values for GetMachineUnreleasedParamsOs.
@@ -457,10 +462,11 @@ const (
 
 // Defines values for GetSherlocksParamsDifficulty.
 const (
-	GetSherlocksParamsDifficultyEasy   GetSherlocksParamsDifficulty = "easy"
-	GetSherlocksParamsDifficultyHard   GetSherlocksParamsDifficulty = "hard"
-	GetSherlocksParamsDifficultyInsane GetSherlocksParamsDifficulty = "insane"
-	GetSherlocksParamsDifficultyMedium GetSherlocksParamsDifficulty = "medium"
+	GetSherlocksParamsDifficultyEasy     GetSherlocksParamsDifficulty = "easy"
+	GetSherlocksParamsDifficultyHard     GetSherlocksParamsDifficulty = "hard"
+	GetSherlocksParamsDifficultyInsane   GetSherlocksParamsDifficulty = "insane"
+	GetSherlocksParamsDifficultyMedium   GetSherlocksParamsDifficulty = "medium"
+	GetSherlocksParamsDifficultyVeryEasy GetSherlocksParamsDifficulty = "very-easy"
 )
 
 // Defines values for GetSherlocksParamsState.
@@ -5680,7 +5686,7 @@ type GetChallengesParams struct {
 	SortType *GetChallengesParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty *Difficulty `form:"difficulty,omitempty" json:"difficulty,omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// Category Filter by category. You can provide multiple values. For example,
 	// category[]=15&category[]=20. See /v4/{productName}/categories/list for full list
@@ -5754,7 +5760,7 @@ type GetMachineListRetiredPaginatedParams struct {
 	SortType *GetMachineListRetiredPaginatedParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty *Difficulty `form:"difficulty,omitempty" json:"difficulty,omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// Os Filter by os
 	Os *Os `form:"os,omitempty" json:"os,omitempty"`
@@ -5802,7 +5808,7 @@ type GetMachinePaginatedParams struct {
 	SortType *GetMachinePaginatedParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty *Difficulty `form:"difficulty,omitempty" json:"difficulty,omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// Os Filter by os
 	Os *Os `form:"os,omitempty" json:"os,omitempty"`
@@ -5835,7 +5841,7 @@ type GetMachineTodoPaginatedParams struct {
 	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty *Difficulty `form:"difficulty,omitempty" json:"difficulty,omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// ShowCompleted Omit for both
 	ShowCompleted *GetMachineTodoPaginatedParamsShowCompleted `form:"show_completed,omitempty" json:"show_completed,omitempty"`
@@ -5865,7 +5871,7 @@ type GetMachineUnreleasedParams struct {
 	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty *Difficulty `form:"difficulty,omitempty" json:"difficulty,omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// Os Filter by os
 	Os *Os `form:"os,omitempty" json:"os,omitempty"`
@@ -6012,7 +6018,7 @@ type GetSherlocksParams struct {
 	SortType *GetSherlocksParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty *Difficulty `form:"difficulty,omitempty" json:"difficulty,omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// State Filter by state. You can provide multiple values. For example, state=active&state=retired.
 	State *State `form:"state,omitempty" json:"state,omitempty"`
@@ -11816,7 +11822,7 @@ func NewGetChallengesRequest(server string, params *GetChallengesParams) (*http.
 
 		if params.Difficulty != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -12869,7 +12875,7 @@ func NewGetMachineListRetiredPaginatedRequest(server string, params *GetMachineL
 
 		if params.Difficulty != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -13131,7 +13137,7 @@ func NewGetMachinePaginatedRequest(server string, params *GetMachinePaginatedPar
 
 		if params.Difficulty != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -13512,7 +13518,7 @@ func NewGetMachineTodoPaginatedRequest(server string, params *GetMachineTodoPagi
 
 		if params.Difficulty != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -13625,7 +13631,7 @@ func NewGetMachineUnreleasedRequest(server string, params *GetMachineUnreleasedP
 
 		if params.Difficulty != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -15814,7 +15820,7 @@ func NewGetSherlocksRequest(server string, params *GetSherlocksParams) (*http.Re
 
 		if params.Difficulty != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
