@@ -229,3 +229,11 @@ func fromAPITeamsAttackPathCard(data *v4client.TeamsAttackPathCard) TeamsAttackP
 		Total:          deref.Int(data.Total),
 	}
 }
+
+func FromAPIUserIdNameThumb(data v4client.UserIdNameThumb) UserIdNameThumb {
+	return UserIdNameThumb{
+		AvatarThumb: deref.String(data.AvatarThumb),
+		Id:          deref.Int(data.Id),
+		Name:        deref.String(data.Name),
+	}
+}

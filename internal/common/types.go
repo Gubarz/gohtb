@@ -215,3 +215,9 @@ type PlayInfoAlt struct {
 
 type IntArray = []int
 type StringArray = []string
+
+type UserIdNameThumb struct {
+	AvatarThumb string
+	Id          int
+	Name        string
+}

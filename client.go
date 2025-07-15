@@ -14,6 +14,7 @@ import (
 	"github.com/gubarz/gohtb/services/challenges"
 	"github.com/gubarz/gohtb/services/fortresses"
 	"github.com/gubarz/gohtb/services/machines"
+	prolabs "github.com/gubarz/gohtb/services/problabs"
 	"github.com/gubarz/gohtb/services/seasons"
 	"github.com/gubarz/gohtb/services/teams"
 	"github.com/gubarz/gohtb/services/users"
@@ -42,6 +43,7 @@ type Client struct {
 	Challenges *challenges.Service
 	Fortresses *fortresses.Service
 	Machines   *machines.Service
+	Prolabs    *prolabs.Service
 	Seasons    *seasons.Service
 	Teams      *teams.Service
 	Users      *users.Service
@@ -174,6 +176,7 @@ func wireServices(c *Client) {
 	c.Challenges = challenges.NewService(c.asServiceClient(), "challenge")
 	c.Fortresses = fortresses.NewService(c.asServiceClient())
 	c.Machines = machines.NewService(c.asServiceClient(), "machine")
+	c.Prolabs = prolabs.NewService(c.asServiceClient())
 	c.Seasons = seasons.NewService(c.asServiceClient())
 	c.Teams = teams.NewService(c.asServiceClient())
 	c.Users = users.NewService(c.asServiceClient())
