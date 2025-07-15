@@ -3,6 +3,7 @@ package errutil
 import (
 	"errors"
 	"fmt"
+	"strings"
 )
 
 type APIError struct {
@@ -11,6 +12,10 @@ type APIError struct {
 	Raw        []byte
 	Err        error
 }
+
+const (
+	StatusUnmarshalError = 1001
+)
 
 func (e *APIError) Error() string {
 	if e.Message != "" {
@@ -25,6 +30,15 @@ func (e *APIError) Unwrap() error {
 
 func UnwrapFailure[T any](err error, raw []byte, status int, constructor func([]byte) T) (T, *APIError) {
 	if err != nil {
+		if isUnmarshalError(err) {
+			return constructor(raw), &APIError{
+				StatusCode: StatusUnmarshalError,
+				Message:    "Failed to parse response JSON",
+				Raw:        raw,
+				Err:        err,
+			}
+		}
+
 		return constructor(raw), &APIError{
 			StatusCode: status,
 			Message:    "Request failed",
@@ -54,11 +68,29 @@ func UnwrapFailure[T any](err error, raw []byte, status int, constructor func([]
 			Raw:        raw,
 			Err:        errors.New("rate limit exceeded"),
 		}
+
+	case 500, 502, 503, 504:
+		return constructor(raw), &APIError{
+			StatusCode: status,
+			Message:    "Server error",
+			Raw:        raw,
+			Err:        fmt.Errorf("server error: %d", status),
+		}
 	}
+
 	return constructor(raw), &APIError{
 		StatusCode: status,
 		Message:    "Unknown error",
 		Raw:        raw,
 		Err:        fmt.Errorf("unknown error: %d", status),
 	}
+}
+
+func isUnmarshalError(err error) bool {
+	if err == nil {
+		return false
+	}
+	errStr := err.Error()
+	return strings.Contains(errStr, "json:") ||
+		strings.Contains(errStr, "unmarshal")
 }
