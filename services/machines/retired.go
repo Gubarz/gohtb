@@ -3,6 +3,7 @@ package machines
 import (
 	"context"
 	"errors"
+	"strings"
 
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
@@ -91,7 +92,7 @@ func (q *RetiredQuery) PerPage(n int) *RetiredQuery {
 //	incomplete := query.ByCompleted("InComplete").Results(ctx)
 func (q *RetiredQuery) ByCompleted(val string) *RetiredQuery {
 	qc := ptr.Clone(q)
-	qc.showCompleted = val
+	qc.showCompleted = strings.ToLower(val)
 	return qc
 }
 
@@ -116,7 +117,11 @@ func (q *RetiredQuery) ByOS(val string) *RetiredQuery {
 //	machines := query.ByOSList("Linux", "Windows").Results(ctx)
 func (q *RetiredQuery) ByOSList(val ...string) *RetiredQuery {
 	qc := ptr.Clone(q)
-	qc.os = append(append([]string{}, q.os...), val...)
+	lowercased := make([]string, len(val))
+	for i, v := range val {
+		lowercased[i] = strings.ToLower(v)
+	}
+	qc.os = append(append([]string{}, q.os...), lowercased...)
 	return qc
 }
 
@@ -129,7 +134,11 @@ func (q *RetiredQuery) ByOSList(val ...string) *RetiredQuery {
 //	machines := query.ByDifficultyList("Hard", "Insane").Results(ctx)
 func (q *RetiredQuery) ByDifficultyList(val ...string) *RetiredQuery {
 	qc := ptr.Clone(q)
-	qc.difficulty = append(append([]string{}, q.difficulty...), val...)
+	lowercased := make([]string, len(val))
+	for i, v := range val {
+		lowercased[i] = strings.ToLower(v)
+	}
+	qc.difficulty = append(append([]string{}, q.difficulty...), lowercased...)
 	return qc
 }
 
@@ -155,7 +164,7 @@ func (q *RetiredQuery) ByDifficulty(val string) *RetiredQuery {
 //	machines := query.SortedBy("user-difficulty").Descending().Results(ctx)
 func (q *RetiredQuery) SortedBy(field string) *RetiredQuery {
 	qc := ptr.Clone(q)
-	sortBy := v4Client.GetMachinePaginatedParamsSortBy(field)
+	sortBy := v4Client.GetMachinePaginatedParamsSortBy(strings.ToLower(field))
 	qc.sortBy = &sortBy
 	return qc
 }

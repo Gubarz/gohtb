@@ -3,6 +3,7 @@ package challenges
 import (
 	"context"
 	"errors"
+	"strings"
 
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
@@ -47,7 +48,11 @@ func (q *ChallengeQuery) ByState(val string) *ChallengeQuery {
 //	challenges := query.ByStateList("active", "retired").Results(ctx)
 func (q *ChallengeQuery) ByStateList(val ...string) *ChallengeQuery {
 	qc := ptr.Clone(q)
-	qc.state = &val
+	lowercased := make([]string, len(val))
+	for i, v := range val {
+		lowercased[i] = strings.ToLower(v)
+	}
+	qc.state = &lowercased
 	return qc
 }
 
@@ -72,7 +77,11 @@ func (q *ChallengeQuery) ByDifficulty(val string) *ChallengeQuery {
 //	challenges := query.ByDifficultyList("Hard", "Insane").Results(ctx)
 func (q *ChallengeQuery) ByDifficultyList(val ...string) *ChallengeQuery {
 	qc := ptr.Clone(q)
-	qc.difficulty = &val
+	lowercased := make([]string, len(val))
+	for i, v := range val {
+		lowercased[i] = strings.ToLower(v)
+	}
+	qc.difficulty = &lowercased
 	return qc
 }
 

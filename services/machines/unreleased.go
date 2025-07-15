@@ -3,6 +3,7 @@ package machines
 import (
 	"context"
 	"errors"
+	"strings"
 
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
@@ -100,7 +101,11 @@ func (q *UnreleasedQuery) ByOS(val string) *UnreleasedQuery {
 //	machines := query.ByOSList("Linux", "Windows").Results(ctx)
 func (q *UnreleasedQuery) ByOSList(val ...string) *UnreleasedQuery {
 	qc := ptr.Clone(q)
-	qc.os = append(append([]string{}, q.os...), val...)
+	lowercased := make([]string, len(val))
+	for i, v := range val {
+		lowercased[i] = strings.ToLower(v)
+	}
+	qc.os = append(append([]string{}, q.os...), lowercased...)
 	return qc
 }
 
@@ -114,7 +119,11 @@ func (q *UnreleasedQuery) ByOSList(val ...string) *UnreleasedQuery {
 //	mediumAndInsaneMachines := query.ByDifficulty("Medium").ByDifficulty("Insane").Results(ctx)
 func (q *UnreleasedQuery) ByDifficultyList(val ...string) *UnreleasedQuery {
 	qc := ptr.Clone(q)
-	qc.difficulty = append(append([]string{}, q.difficulty...), val...)
+	lowercased := make([]string, len(val))
+	for i, v := range val {
+		lowercased[i] = strings.ToLower(v)
+	}
+	qc.difficulty = append(append([]string{}, q.difficulty...), lowercased...)
 	return qc
 }
 
