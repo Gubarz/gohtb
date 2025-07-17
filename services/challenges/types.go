@@ -3,8 +3,8 @@ package challenges
 import (
 	"time"
 
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	v4Client "github.com/gubarz/gohtb/internal/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/service"
 )
 

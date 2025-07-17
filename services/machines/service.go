@@ -5,10 +5,10 @@ import (
 	"strconv"
 	"strings"
 
+	v5Client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/errutil"
 	"github.com/gubarz/gohtb/internal/extract"
-	v5Client "github.com/gubarz/gohtb/internal/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/service"
 	"github.com/gubarz/gohtb/services/vms"
 )

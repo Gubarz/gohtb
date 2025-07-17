@@ -3,8 +3,8 @@ package service
 import (
 	"context"
 
-	v4client "github.com/gubarz/gohtb/internal/httpclient/v4"
-	v5client "github.com/gubarz/gohtb/internal/httpclient/v5"
+	v4client "github.com/gubarz/gohtb/httpclient/v4"
+	v5client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/logging"
 )
 

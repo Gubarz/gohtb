@@ -4,11 +4,11 @@ import (
 	"regexp"
 	"strings"
 
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
+	v5Client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
-	v4Client "github.com/gubarz/gohtb/internal/httpclient/v4"
-	v5Client "github.com/gubarz/gohtb/internal/httpclient/v5"
 )
 
 func fromAPIMachineData(data v4Client.MachineData) MachineData {

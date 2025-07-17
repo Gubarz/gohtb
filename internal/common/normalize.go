@@ -1,9 +1,9 @@
 package common
 
 import (
+	v4client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
-	v4client "github.com/gubarz/gohtb/internal/httpclient/v4"
 )
 
 func FromAPIUserBasicInfo(data v4client.UserBasicInfo) UserBasicInfo {

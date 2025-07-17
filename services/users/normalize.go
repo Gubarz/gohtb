@@ -1,8 +1,8 @@
 package users
 
 import (
+	v4client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/deref"
-	v4client "github.com/gubarz/gohtb/internal/httpclient/v4"
 )
 
 func fromAPIUserProfile(data *v4client.UserProfile) UserProfile {

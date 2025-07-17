@@ -6,7 +6,7 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	v4client "github.com/gubarz/gohtb/internal/httpclient/v4"
+	v4client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/logging"
 	"github.com/stretchr/testify/require"
 )

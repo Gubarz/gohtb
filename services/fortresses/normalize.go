@@ -3,10 +3,10 @@ package fortresses
 import (
 	"strconv"
 
+	v4client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
-	v4client "github.com/gubarz/gohtb/internal/httpclient/v4"
 )
 
 func fromFortressData(data *v4client.FortressData) Data {

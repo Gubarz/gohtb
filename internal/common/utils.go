@@ -3,8 +3,8 @@ package common
 import (
 	"reflect"
 
+	httpclient "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/deref"
-	httpclient "github.com/gubarz/gohtb/internal/httpclient/v4"
 )
 
 func FromAPITodoItem(data httpclient.Item) TodoItem {

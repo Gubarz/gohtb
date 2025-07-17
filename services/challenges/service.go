@@ -4,12 +4,12 @@ import (
 	"context"
 	"strconv"
 
+	v4client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
 	"github.com/gubarz/gohtb/internal/errutil"
 	"github.com/gubarz/gohtb/internal/extract"
-	v4client "github.com/gubarz/gohtb/internal/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/service"
 )
 

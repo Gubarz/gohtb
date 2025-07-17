@@ -11,7 +11,7 @@ import (
 	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/ptr"
 
-	v4Client "github.com/gubarz/gohtb/internal/httpclient/v4"
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 )
 
 const (
