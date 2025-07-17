@@ -14,7 +14,7 @@ import (
 	"github.com/gubarz/gohtb/services/challenges"
 	"github.com/gubarz/gohtb/services/fortresses"
 	"github.com/gubarz/gohtb/services/machines"
-	prolabs "github.com/gubarz/gohtb/services/problabs"
+	prolabs "github.com/gubarz/gohtb/services/prolabs"
 	"github.com/gubarz/gohtb/services/seasons"
 	"github.com/gubarz/gohtb/services/teams"
 	"github.com/gubarz/gohtb/services/users"
