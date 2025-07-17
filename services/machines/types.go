@@ -377,6 +377,11 @@ type PlayInfoAlt struct {
 	Status    string
 }
 
+type Credentials struct {
+	Username string
+	Password string
+}
+
 type MachineProfileInfo struct {
 	AcademyModules             []common.AcademyModule
 	Active                     bool
@@ -388,6 +393,7 @@ type MachineProfileInfo struct {
 	AuthUserInUserOwns         bool
 	Avatar                     string
 	CanAccessWalkthrough       bool
+	Credentials                Credentials
 	DifficultyText             string
 	FeedbackForChart           common.DifficultyChart
 	Free                       bool
@@ -395,6 +401,7 @@ type MachineProfileInfo struct {
 	Id                         int
 	InfoStatus                 string
 	Ip                         string
+	IsAssumedBreach            bool
 	IsGuidedEnabled            bool
 	IsTodo                     bool
 	MachineMode                string

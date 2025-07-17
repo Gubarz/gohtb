@@ -1,6 +1,9 @@
 package machines
 
 import (
+	"regexp"
+	"strings"
+
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
@@ -64,10 +67,48 @@ func fromAPIMachinePlayInfo(data *v4Client.MachinePlayInfo) MachinePlayInfo {
 	}
 }
 
+func parseAssumedBreachStatus(info string) (bool, Credentials) {
+	if strings.Contains(strings.ToLower(info), "as is common in") {
+		return true, extractCredentials(info)
+	}
+	return false, Credentials{}
+}
+
+func extractCredentials(infostatus string) Credentials {
+	if strings.Contains(strings.ToLower(infostatus), "username:") && strings.Contains(strings.ToLower(infostatus), "password:") {
+		parts := strings.Split(infostatus, "Username:")
+		if len(parts) < 2 {
+			return Credentials{}
+		}
+		userPass := strings.Split(parts[1], "Password:")
+		if len(userPass) < 2 {
+			return Credentials{}
+		}
+		return Credentials{
+			Username: strings.TrimSpace(userPass[0]),
+			Password: strings.TrimSpace(userPass[1]),
+		}
+	}
+
+	re := regexp.MustCompile(`account[:\s]+([\w\.\-]+)\s*/\s*(\S+)`)
+	matches := re.FindStringSubmatch(infostatus)
+	if len(matches) == 3 {
+		return Credentials{
+			Username: strings.TrimSpace(matches[1]),
+			Password: strings.TrimSpace(matches[2]),
+		}
+	}
+	return Credentials{}
+}
+
 func fromAPIMachineProfileInfo(data *v4Client.MachineProfileInfo) MachineProfileInfo {
 	if data == nil {
 		return MachineProfileInfo{}
 	}
+
+	infostatus := deref.String(data.InfoStatus)
+	isAssumedBreach, credentials := parseAssumedBreachStatus(infostatus)
+
 	return MachineProfileInfo{
 		AcademyModules:             convert.SlicePointer(data.AcademyModules, common.FromAPIAcademyModule),
 		Active:                     deref.Bool(data.Active),
@@ -79,13 +120,15 @@ func fromAPIMachineProfileInfo(data *v4Client.MachineProfileInfo) MachineProfile
 		AuthUserInUserOwns:         deref.Bool(data.AuthUserInUserOwns),
 		Avatar:                     deref.String(data.Avatar),
 		CanAccessWalkthrough:       deref.Bool(data.CanAccessWalkthrough),
+		Credentials:                credentials,
 		DifficultyText:             deref.String(data.DifficultyText),
 		FeedbackForChart:           common.FromAPIDifficultyChart(data.FeedbackForChart),
 		Free:                       deref.Bool(data.Free),
 		HasChangelog:               deref.Bool(data.HasChangelog),
 		Id:                         deref.Int(data.Id),
-		InfoStatus:                 deref.String(data.InfoStatus),
+		InfoStatus:                 infostatus,
 		Ip:                         deref.String(data.Ip),
+		IsAssumedBreach:            isAssumedBreach,
 		IsGuidedEnabled:            deref.Bool(data.IsGuidedEnabled),
 		IsTodo:                     deref.Bool(data.IsTodo),
 		MachineMode:                deref.String(data.MachineMode),
