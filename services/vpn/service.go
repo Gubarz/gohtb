@@ -15,6 +15,13 @@ import (
 	"github.com/gubarz/gohtb/internal/service"
 )
 
+const (
+	Competitive   = v4Client.ProductCompetitive
+	Fortresses    = v4Client.ProductFortresses
+	Labs          = v4Client.ProductLabs
+	StartingPoint = v4Client.ProductStartingPoint
+)
+
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
@@ -157,7 +164,7 @@ func (s *Service) Connections(ctx context.Context) (ConnectionStatusResponse, er
 // This returns a ServerQuery that can be chained with filtering methods
 // like ByTier() and ByLocation() before calling Results().
 //
-// Common products include "labs", "release_arena", "endgame", etc.
+// Common products include "labs", "starting_point", "fortresses", etc.
 //
 // Example:
 //
@@ -303,6 +310,8 @@ func extractTierFromFriendly(name string) string {
 		return "vip"
 	case strings.Contains(" "+name+" ", " free "):
 		return "free"
+	case strings.Contains(" "+name+" ", " mini pro lab "):
+		return "subscription"
 	default:
 		return "unknown"
 	}
@@ -430,4 +439,90 @@ func (h *Handle) SwitchAndDownloadUDP(ctx context.Context) (VPNFileResponse, err
 //	resp, err := htb.VPN.VPN(256).SwitchAndDownloadTCP(ctx)
 func (h *Handle) SwitchAndDownloadTCP(ctx context.Context) (VPNFileResponse, error) {
 	return h.switchAndDownload(ctx, false)
+}
+
+func (s *Service) ProlabServers(id int) *ProlabQuery {
+	return &ProlabQuery{
+		client: s.base.Client,
+		prolab: id,
+	}
+}
+
+// ByTier filters the server query by tier using case-insensitive matching.
+// Valid tiers include "free", "vip", "vip+", and "unknown".
+// Returns a new ServerQuery that can be further chained.
+//
+// Example:
+//
+//	freeServers := client.VPN.ProlabServers(8).ByTier("free").Results(ctx)
+//	vipServers := client.VPN.ProlabServers(9).ByTier("subscription").Results(ctx)
+func (q *ProlabQuery) ByTier(tier string) *ProlabQuery {
+	qc := ptr.Clone(q)
+	qc.tier = tier
+	return qc
+}
+
+// ByLocation filters the server query by location using case-insensitive matching.
+// Returns a new ServerQuery that can be further chained.
+//
+// Example:
+//
+//	usServers := client.VPN.ProlabServers(8).ByLocation("US").Results(ctx)
+//	euServers := client.VPN.ProlabServers(9).ByLocation("EU").Results(ctx)
+func (q *ProlabQuery) ByLocation(location string) *ProlabQuery {
+	qc := ptr.Clone(q)
+	qc.location = location
+	return qc
+}
+
+// Results executes the server query and returns the filtered server list.
+// This method should be called last in the query chain to fetch the actual data.
+// The returned servers are flattened from the API's nested structure and include
+// tier information extracted from server names.
+//
+// Example:
+//
+//	servers, err := client.VPN.ProlabServers(8).
+//		ByTier("free").
+//		ByLocation("US").
+//		Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	for _, server := range servers.Data.Options {
+//		fmt.Printf("Server: %s (%s)\n", server.FriendlyName, server.Location)
+//	}
+func (q *ProlabQuery) Results(ctx context.Context) (ConnectionsServersResponse, error) {
+	resp, err := q.client.V4().GetConnectionsServersProlab(q.client.Limiter().Wrap(ctx),
+		q.prolab)
+
+	if err != nil {
+		return ConnectionsServersResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetConnectionsServersResponse)
+	if err != nil {
+		return ConnectionsServersResponse{ResponseMeta: meta}, err
+	}
+
+	var flat []Server
+	if parsed.JSON200.Data != nil && parsed.JSON200.Data.Options != nil {
+		flat = flattenOptions(parsed.JSON200.Data.Options, q.tier, q.location)
+	}
+
+	var assigned AssignedServerConnectionsServers
+	if parsed.JSON200.Data.Assigned != nil {
+		assigned = fromAPIAssignedServerConnectionsServers(parsed.JSON200.Data.Assigned)
+	}
+
+	res := ConnectionsServerData{
+		Assigned: assigned,
+		Disabled: deref.Bool(parsed.JSON200.Data.Disabled),
+		Options:  flat,
+	}
+
+	return ConnectionsServersResponse{
+		Data:         res,
+		ResponseMeta: meta,
+	}, nil
 }

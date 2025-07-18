@@ -21,6 +21,13 @@ type ServerQuery struct {
 	location string
 }
 
+type ProlabQuery struct {
+	client   service.Client
+	prolab   int
+	tier     string
+	location string
+}
+
 type VPNFileResponse struct {
 	Data         []byte
 	ResponseMeta common.ResponseMeta
