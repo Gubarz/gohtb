@@ -113,6 +113,7 @@ type ProlabData struct {
 	CanInteract      bool
 	CoverImageUrl    string
 	Description      string
+	DescriptionHTML  string
 	EntryPoints      common.StringArray
 	Id               int
 	Identifier       string
