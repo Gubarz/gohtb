@@ -26,8 +26,8 @@ import (
 // It holds configuration settings and provides access to various API endpoints
 // through its service fields (e.g., Challengs, Machines, Seasons).
 type Client struct {
-	v4api       *v4client.ClientWithResponses
-	v5api       *v5client.ClientWithResponses
+	v4api       v4client.ClientInterface
+	v5api       v5client.ClientInterface
 	httpClient  *http.Client
 	htbToken    string
 	logger      Logger
@@ -142,7 +142,7 @@ func New(token string, options ...Option) (*Client, error) {
 	}
 	c.rateLimiter = NewRateLimiter(context.Background(), c.logger)
 
-	v4, err := v4client.NewClientWithResponses(
+	v4, err := v4client.NewClient(
 		v4HTBServer,
 		v4client.WithHTTPClient(finalHTTPClient),
 		v4client.WithRequestEditorFn(c.addHeaders),
@@ -169,6 +169,7 @@ func New(token string, options ...Option) (*Client, error) {
 func (c *Client) addHeaders(ctx context.Context, req *http.Request) error {
 	req.Header.Set("Authorization", fmt.Sprintf("Bearer %s", c.htbToken))
 	req.Header.Set("User-Agent", c.userAgent)
+	req.Header.Set("Accept", "application/json")
 	return nil
 }
 
@@ -251,6 +252,6 @@ func WithHTTPClient(customClient *http.Client) Option {
 // - Not covered by documentation or support
 //
 // Use at your own risk. If it breaks, you get to keep both pieces.
-func (c *Client) Experimental() *v4client.ClientWithResponses {
+func (c *Client) Experimental() v4client.ClientInterface {
 	return c.v4api
 }

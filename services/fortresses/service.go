@@ -2,15 +2,12 @@ package fortresses
 
 import (
 	"context"
-	"fmt"
 	"sort"
 
-	v4client "github.com/gubarz/gohtb/httpclient/v4"
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
-	"github.com/gubarz/gohtb/internal/errutil"
-	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -36,18 +33,20 @@ func NewService(client service.Client) *Service {
 //		return
 //	}
 func (s *Service) List(ctx context.Context) (ListResponse, error) {
-	resp, err := s.base.Client.V4().GetFortressesWithResponse(
+	resp, err := s.base.Client.V4().GetFortresses(
 		s.base.Client.Limiter().Wrap(ctx))
-
-	raw := extract.Raw(resp)
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ListResponse {
-			return ListResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return ListResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetFortressesResponse)
+	if err != nil {
+		return ListResponse{ResponseMeta: meta}, err
+	}
+
 	var list []Item
-	if resp.JSON200.Data != nil {
-		for _, fortress := range *resp.JSON200.Data {
+	if parsed.JSON200.Data != nil {
+		for _, fortress := range *parsed.JSON200.Data {
 			list = append(list, toItem(fortress))
 		}
 	}
@@ -55,12 +54,8 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 		return list[i].Id < list[j].Id
 	})
 	return ListResponse{
-		Data: list,
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         list,
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -87,26 +82,22 @@ func (s *Service) Fortress(id int) *Handle {
 //		return
 //	}
 func (h *Handle) Info(ctx context.Context) (Info, error) {
-	resp, err := h.client.V4().GetFortressWithResponse(
+	resp, err := h.client.V4().GetFortress(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
+	if err != nil {
+		return Info{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Info {
-			return Info{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetFortressResponse)
+	if err != nil {
+		return Info{ResponseMeta: meta}, err
 	}
 
 	return Info{
-		Data: fromFortressData(resp.JSON200.Data),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromFortressData(parsed.JSON200.Data),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -124,31 +115,28 @@ func (h *Handle) Info(ctx context.Context) (Info, error) {
 //		return
 //	}
 func (h *Handle) SubmitFlag(ctx context.Context, flag string) (SubmitFlagResponse, error) {
-	resp, err := h.client.V4().PostFortressFlagWithResponse(
+	resp, err := h.client.V4().PostFortressFlag(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
-		v4client.PostFortressFlagJSONRequestBody{
+		v4Client.PostFortressFlagJSONRequestBody{
 			Flag: flag,
 		},
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) SubmitFlagResponse {
-			return SubmitFlagResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return SubmitFlagResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostFortressFlagResponse)
+	if err != nil {
+		return SubmitFlagResponse{ResponseMeta: meta}, err
+	}
+
 	return SubmitFlagResponse{
 		Data: SubmitFlagData{
-			Message: deref.String(resp.JSON200.Message),
-			Status:  deref.Int(resp.JSON200.Status),
+			Message: deref.String(parsed.JSON200.Message),
+			Status:  deref.Int(parsed.JSON200.Status),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -169,27 +157,23 @@ func (h *Handle) SubmitFlag(ctx context.Context, flag string) (SubmitFlagRespons
 //		fmt.Println(flag.Title)
 //	}
 func (h *Handle) Flags(ctx context.Context) (FlagData, error) {
-	resp, err := h.client.V4().GetFortressFlagsWithResponse(
+	resp, err := h.client.V4().GetFortressFlags(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
+	if err != nil {
+		return FlagData{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) FlagData {
-			return FlagData{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetFortressFlagsResponse)
+	if err != nil {
+		return FlagData{ResponseMeta: meta}, err
 	}
 
 	return FlagData{
-		Flags:  convert.Slice(*resp.JSON200.Data, common.FromAPIFlag),
-		Status: deref.Bool(resp.JSON200.Status),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Flags:        convert.Slice(*parsed.JSON200.Data, common.FromAPIFlag),
+		Status:       deref.Bool(parsed.JSON200.Status),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -207,25 +191,24 @@ func (h *Handle) Flags(ctx context.Context) (FlagData, error) {
 //		return
 //	}
 func (h *Handle) Reset(ctx context.Context) (ResetResponse, error) {
-	resp, err := h.client.V4().PostFortressResetWithResponse(
+	resp, err := h.client.V4().PostFortressReset(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return ResetResponse{}, fmt.Errorf("API error: %w", err)
+	if err != nil {
+		return ResetResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostFortressResetResponse)
+	if err != nil {
+		return ResetResponse{ResponseMeta: meta}, err
+	}
+
 	return ResetResponse{
 		Data: ResetFlagData{
-			Message: deref.String(resp.JSON200.Message),
-			Status:  deref.Bool(resp.JSON200.Status),
+			Message: deref.String(parsed.JSON200.Message),
+			Status:  deref.Bool(parsed.JSON200.Status),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }

@@ -8,8 +8,6 @@ import (
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
-	"github.com/gubarz/gohtb/internal/errutil"
-	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/ptr"
 )
 
@@ -229,23 +227,19 @@ func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinePaginatedRespon
 		params.ShowCompleted = &sc
 	}
 
-	resp, err := q.client.V4().GetMachineListRetiredPaginatedWithResponse(q.client.Limiter().Wrap(ctx), params)
-	raw := extract.Raw(resp)
+	resp, err := q.client.V4().GetMachineListRetiredPaginated(q.client.Limiter().Wrap(ctx), params)
+	if err != nil {
+		return MachinePaginatedResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) MachinePaginatedResponse {
-			return MachinePaginatedResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetMachineListRetiredPaginatedResponse)
+	if err != nil {
+		return MachinePaginatedResponse{ResponseMeta: meta}, err
 	}
 
 	return MachinePaginatedResponse{
-		Data: convert.SlicePointer(resp.JSON200.Data, fromAPIMachineData),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-			CFRay:      resp.HTTPResponse.Header.Get("CF-Ray"),
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPIMachineData),
+		ResponseMeta: meta,
 	}, nil
 }
 

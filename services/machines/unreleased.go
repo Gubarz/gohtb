@@ -8,8 +8,6 @@ import (
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
-	"github.com/gubarz/gohtb/internal/errutil"
-	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/ptr"
 )
 
@@ -155,23 +153,19 @@ func (q *UnreleasedQuery) fetchResults(ctx context.Context) (MachineUnreleasedRe
 		params.Os = &o
 	}
 
-	resp, err := q.client.V4().GetMachineUnreleasedWithResponse(q.client.Limiter().Wrap(ctx), params)
-	raw := extract.Raw(resp)
+	resp, err := q.client.V4().GetMachineUnreleased(q.client.Limiter().Wrap(ctx), params)
+	if err != nil {
+		return MachineUnreleasedResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) MachineUnreleasedResponse {
-			return MachineUnreleasedResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetMachineUnreleasedResponse)
+	if err != nil {
+		return MachineUnreleasedResponse{ResponseMeta: meta}, err
 	}
 
 	return MachineUnreleasedResponse{
-		Data: convert.SlicePointer(resp.JSON200.Data, fromAPIMachineUnreleasedData),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-			CFRay:      resp.HTTPResponse.Header.Get("CF-Ray"),
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPIMachineUnreleasedData),
+		ResponseMeta: meta,
 	}, nil
 }
 

@@ -5,7 +5,7 @@ import (
 	"sort"
 	"strings"
 
-	v4client "github.com/gubarz/gohtb/httpclient/v4"
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
@@ -41,14 +41,14 @@ func (s *Service) VPN(id int) *Handle {
 //	resp, err := htb.VPN.VPN(256).DownloadUDP(ctx)
 //	fmt.Println("VPN file:", string(resp.Data))
 func (h *Handle) DownloadUDP(ctx context.Context) (VPNFileResponse, error) {
-	resp, err := h.client.V4().GetAccessOvpnfileVpnIdUDPWithResponse(
+	resp, err := h.client.V4().GetAccessOvpnfileVpnIdUDP(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
 
 	raw := extract.Raw(resp)
 
-	if err != nil || resp == nil {
+	if err != nil || resp == nil || len(raw) == 0 {
 		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) VPNFileResponse {
 			return VPNFileResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
@@ -58,9 +58,9 @@ func (h *Handle) DownloadUDP(ctx context.Context) (VPNFileResponse, error) {
 		Data: raw,
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-			CFRay:      resp.HTTPResponse.Header.Get("CF-Ray"),
+			StatusCode: resp.StatusCode,
+			Headers:    resp.Header,
+			CFRay:      resp.Header.Get("CF-Ray"),
 		},
 	}, nil
 }
@@ -72,14 +72,14 @@ func (h *Handle) DownloadUDP(ctx context.Context) (VPNFileResponse, error) {
 //	resp, err := htb.VPN.VPN(256).DownloadTCP(ctx)
 //	fmt.Println("VPN file:", string(resp.Data))
 func (h *Handle) DownloadTCP(ctx context.Context) (VPNFileResponse, error) {
-	resp, err := h.client.V4().GetAccessOvpnfileVpnIdTCPWithResponse(
+	resp, err := h.client.V4().GetAccessOvpnfileVpnIdTCP(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
 
 	raw := extract.Raw(resp)
 
-	if err != nil || resp == nil {
+	if err != nil || resp == nil || len(raw) == 0 {
 		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) VPNFileResponse {
 			return VPNFileResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
 		})
@@ -89,9 +89,9 @@ func (h *Handle) DownloadTCP(ctx context.Context) (VPNFileResponse, error) {
 		Data: raw,
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-			CFRay:      resp.HTTPResponse.Header.Get("CF-Ray"),
+			StatusCode: resp.StatusCode,
+			Headers:    resp.Header,
+			CFRay:      resp.Header.Get("CF-Ray"),
 		},
 	}, nil
 }
@@ -107,24 +107,19 @@ func (h *Handle) DownloadTCP(ctx context.Context) (VPNFileResponse, error) {
 //	}
 //	fmt.Printf("Connection status: %+v\n", status.Data)
 func (s *Service) Status(ctx context.Context) (ConnectionStatusResponse, error) {
-	resp, err := s.base.Client.V4().GetConnectionStatusWithResponse(s.base.Client.Limiter().Wrap(ctx))
+	resp, err := s.base.Client.V4().GetConnectionStatus(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return ConnectionStatusResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ConnectionStatusResponse {
-			return ConnectionStatusResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetConnectionStatusResponse)
+	if err != nil {
+		return ConnectionStatusResponse{ResponseMeta: meta}, err
 	}
 
 	return ConnectionStatusResponse{
-		Data: convert.SlicePointer(resp.JSON200, fromAPIConnectionStatusItem),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-			CFRay:      resp.HTTPResponse.Header.Get("CF-Ray"),
-		},
+		Data:         convert.SlicePointer(parsed.JSON200, fromAPIConnectionStatusItem),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -141,24 +136,20 @@ func (s *Service) Status(ctx context.Context) (ConnectionStatusResponse, error) 
 //		fmt.Printf("Connection: %+v\n", conn)
 //	}
 func (s *Service) Connections(ctx context.Context) (ConnectionStatusResponse, error) {
-	resp, err := s.base.Client.V4().GetConnectionStatusWithResponse(s.base.Client.Limiter().Wrap(ctx))
+	resp, err := s.base.Client.V4().GetConnectionStatus(s.base.Client.Limiter().Wrap(ctx))
 
-	raw := extract.Raw(resp)
+	if err != nil {
+		return ConnectionStatusResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ConnectionStatusResponse {
-			return ConnectionStatusResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetConnectionStatusResponse)
+	if err != nil {
+		return ConnectionStatusResponse{ResponseMeta: meta}, err
 	}
 
 	return ConnectionStatusResponse{
-		Data: convert.SlicePointer(resp.JSON200, fromAPIConnectionStatusItem),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-			CFRay:      resp.HTTPResponse.Header.Get("CF-Ray"),
-		},
+		Data:         convert.SlicePointer(parsed.JSON200, fromAPIConnectionStatusItem),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -224,47 +215,43 @@ func (q *ServerQuery) ByLocation(location string) *ServerQuery {
 //		fmt.Printf("Server: %s (%s)\n", server.FriendlyName, server.Location)
 //	}
 func (q *ServerQuery) Results(ctx context.Context) (ConnectionsServersResponse, error) {
-	resp, err := q.client.V4().GetConnectionsServersWithResponse(q.client.Limiter().Wrap(ctx),
-		&v4client.GetConnectionsServersParams{
-			Product: v4client.GetConnectionsServersParamsProduct(q.product),
+	resp, err := q.client.V4().GetConnectionsServers(q.client.Limiter().Wrap(ctx),
+		&v4Client.GetConnectionsServersParams{
+			Product: v4Client.GetConnectionsServersParamsProduct(q.product),
 		})
 
-	raw := extract.Raw(resp)
+	if err != nil {
+		return ConnectionsServersResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ConnectionsServersResponse {
-			return ConnectionsServersResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetConnectionsServersResponse)
+	if err != nil {
+		return ConnectionsServersResponse{ResponseMeta: meta}, err
 	}
 
 	var flat []Server
-	if resp.JSON200.Data != nil && resp.JSON200.Data.Options != nil {
-		flat = flattenOptions(resp.JSON200.Data.Options, q.tier, q.location)
+	if parsed.JSON200.Data != nil && parsed.JSON200.Data.Options != nil {
+		flat = flattenOptions(parsed.JSON200.Data.Options, q.tier, q.location)
 	}
 
 	var assigned AssignedServerConnectionsServers
-	if resp.JSON200.Data.Assigned != nil {
-		assigned = fromAPIAssignedServerConnectionsServers(resp.JSON200.Data.Assigned)
+	if parsed.JSON200.Data.Assigned != nil {
+		assigned = fromAPIAssignedServerConnectionsServers(parsed.JSON200.Data.Assigned)
 	}
 
 	res := ConnectionsServerData{
 		Assigned: assigned,
-		Disabled: deref.Bool(resp.JSON200.Data.Disabled),
+		Disabled: deref.Bool(parsed.JSON200.Data.Disabled),
 		Options:  flat,
 	}
 
 	return ConnectionsServersResponse{
-		Data: res,
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-			CFRay:      resp.HTTPResponse.Header.Get("CF-Ray"),
-		},
+		Data:         res,
+		ResponseMeta: meta,
 	}, nil
 }
 
-func flattenOptions(opts *v4client.Options, tier, location string) []Server {
+func flattenOptions(opts *v4Client.Options, tier, location string) []Server {
 	tier = strings.ToLower(strings.TrimSpace(tier))
 	location = strings.ToLower(strings.TrimSpace(location))
 
@@ -332,29 +319,18 @@ func extractTierFromFriendly(name string) string {
 //	}
 //	fmt.Println("Switch result:", result.Data.Message)
 func (h *Handle) Switch(ctx context.Context) (common.MessageResponse, error) {
-	resp, err := h.client.V4().PostConnectionsServersSwitchWithResponse(
-		h.client.Limiter().Wrap(ctx),
-		h.id,
-	)
+	resp, err := h.client.V4().PostConnectionsServersSwitch(h.client.Limiter().Wrap(ctx), h.id)
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
-			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostVMTerminateResponse)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: meta}, err
 	}
 
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
+			Message: deref.String(parsed.JSON200.Message),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-			CFRay:      resp.HTTPResponse.Header.Get("CF-Ray"),
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 

@@ -4,7 +4,7 @@ import (
 	"context"
 	"strconv"
 
-	v4client "github.com/gubarz/gohtb/httpclient/v4"
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
@@ -60,25 +60,22 @@ func (s *Service) List() *ChallengeQuery {
 //	fmt.Printf("Challenge: %s (%s, %s)\n", info.Data.Name, info.Data.Difficulty, info.Data.Category)
 func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	slug := strconv.Itoa(h.id)
-	resp, err := h.client.V4().GetChallengeInfoWithResponse(
+	resp, err := h.client.V4().GetChallengeInfo(
 		h.client.Limiter().Wrap(ctx),
 		slug,
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil || resp.JSON200.Challenge == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) InfoResponse {
-			return InfoResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return InfoResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetChallengeInfoResponse)
+	if err != nil {
+		return InfoResponse{ResponseMeta: meta}, err
+	}
+
 	return InfoResponse{
-		Data: fromAPIChallengeInfo(resp.JSON200.Challenge),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPIChallengeInfo(parsed.JSON200.Challenge),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -93,26 +90,23 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 //	}
 //	fmt.Printf("Todo updated: %+v\n", result.Data)
 func (h *Handle) ToDo(ctx context.Context) (common.TodoUpdateResponse, error) {
-	resp, err := h.client.V4().PostTodoUpdateWithResponse(
+	resp, err := h.client.V4().PostTodoUpdate(
 		h.client.Limiter().Wrap(ctx),
-		v4client.PostTodoUpdateParamsProduct(h.product),
+		v4Client.PostTodoUpdateParamsProduct(h.product),
 		h.id,
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil || resp.JSON200.Info == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.TodoUpdateResponse {
-			return common.TodoUpdateResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return common.TodoUpdateResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostTodoUpdateResponse)
+	if err != nil {
+		return common.TodoUpdateResponse{ResponseMeta: meta}, err
+	}
+
 	return common.TodoUpdateResponse{
-		Data: convert.SlicePointer(resp.JSON200.Info, common.FromAPIInfoArray),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Info, common.FromAPIInfoArray),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -127,29 +121,26 @@ func (h *Handle) ToDo(ctx context.Context) (common.TodoUpdateResponse, error) {
 //	}
 //	fmt.Printf("Challenge started: %s\n", result.Data.Message)
 func (h *Handle) Start(ctx context.Context) (common.MessageResponse, error) {
-	resp, err := h.client.V4().PostChallengeStartWithFormdataBodyWithResponse(
+	resp, err := h.client.V4().PostChallengeStartWithFormdataBody(
 		h.client.Limiter().Wrap(ctx),
-		v4client.PostChallengeStartFormdataRequestBody{
+		v4Client.PostChallengeStartFormdataRequestBody{
 			ChallengeId: h.id,
 		},
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
-			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostChallengeStartResponse)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: meta}, err
+	}
+
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
+			Message: deref.String(parsed.JSON200.Message),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -164,30 +155,27 @@ func (h *Handle) Start(ctx context.Context) (common.MessageResponse, error) {
 //	}
 //	fmt.Printf("Challenge stopped: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) Stop(ctx context.Context) (common.MessageResponse, error) {
-	resp, err := h.client.V4().PostChallengeStopWithFormdataBodyWithResponse(
+	resp, err := h.client.V4().PostChallengeStopWithFormdataBody(
 		h.client.Limiter().Wrap(ctx),
-		v4client.PostChallengeStopFormdataRequestBody{
+		v4Client.PostChallengeStopFormdataRequestBody{
 			ChallengeId: h.id,
 		},
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil || resp.JSON200.Message == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
-			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostChallengeStopResponse)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: meta}, err
+	}
+
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
-			Success: deref.Bool(resp.JSON200.Success),
+			Message: deref.String(parsed.JSON200.Message),
+			Success: deref.Bool(parsed.JSON200.Success),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -202,30 +190,27 @@ func (h *Handle) Stop(ctx context.Context) (common.MessageResponse, error) {
 //	}
 //	fmt.Printf("Flag submission: %s\n", result.Data.Message)
 func (h *Handle) Own(ctx context.Context, flag string) (common.MessageResponse, error) {
-	resp, err := h.client.V4().PostChallengeOwnWithFormdataBodyWithResponse(
+	resp, err := h.client.V4().PostChallengeOwnWithFormdataBody(
 		h.client.Limiter().Wrap(ctx),
-		v4client.ChallengeOwnRequest{
+		v4Client.ChallengeOwnRequest{
 			ChallengeId: h.id,
 			Flag:        flag,
 		},
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil || resp.JSON200.Message == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
-			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostChallengeOwnResponse)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: meta}, err
+	}
+
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
+			Message: deref.String(parsed.JSON200.Message),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -242,25 +227,22 @@ func (h *Handle) Own(ctx context.Context, flag string) (common.MessageResponse, 
 //		fmt.Printf("Activity: %s at %s\n", act.Type, act.Date)
 //	}
 func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
-	resp, err := h.client.V4().GetChallengeActivityWithResponse(
+	resp, err := h.client.V4().GetChallengeActivity(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil || resp.JSON200.Info == nil || resp.JSON200.Info.Activity == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ActivityResponse {
-			return ActivityResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return ActivityResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetChallengeActivityResponse)
+	if err != nil {
+		return ActivityResponse{ResponseMeta: meta}, err
+	}
+
 	return ActivityResponse{
-		Data: convert.SlicePointer(resp.JSON200.Info.Activity, fromAPIChallengeActivity),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Info.Activity, fromAPIChallengeActivity),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -298,7 +280,7 @@ func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
 //
 //	fmt.Printf("Downloaded challenge files to: %s (%d bytes)\n", info.Data.FileName, len(download.Data))
 func (h *Handle) Download(ctx context.Context) (DownloadResponse, error) {
-	resp, err := h.client.V4().GetChallengeDownloadWithResponse(
+	resp, err := h.client.V4().GetChallengeDownload(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
@@ -314,8 +296,9 @@ func (h *Handle) Download(ctx context.Context) (DownloadResponse, error) {
 		Data: raw,
 		ResponseMeta: common.ResponseMeta{
 			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
+			StatusCode: resp.StatusCode,
+			Headers:    resp.Header,
+			CFRay:      resp.Header.Get("CF-Ray"),
 		},
 	}, nil
 }

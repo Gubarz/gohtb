@@ -3,12 +3,10 @@ package prolabs
 import (
 	"context"
 
-	v4client "github.com/gubarz/gohtb/httpclient/v4"
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
-	"github.com/gubarz/gohtb/internal/errutil"
-	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -26,247 +24,205 @@ func (s *Service) Prolab(id int) *Handle {
 }
 
 func (s *Service) List(ctx context.Context) (ListResponse, error) {
-	resp, err := s.base.Client.V4().GetProlabsWithResponse(
+	resp, err := s.base.Client.V4().GetProlabs(
 		s.base.Client.Limiter().Wrap(ctx))
 
-	raw := extract.Raw(resp)
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ListResponse {
-			return ListResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return ListResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabsResponse)
+	if err != nil {
+		return ListResponse{ResponseMeta: meta}, err
 	}
 
 	return ListResponse{
 		Data: ProlabsData{
-			Count: deref.Int(resp.JSON200.Data.Count),
-			Labs:  convert.SlicePointer(resp.JSON200.Data.Labs, fromAPIProlab),
+			Count: deref.Int(parsed.JSON200.Data.Count),
+			Labs:  convert.SlicePointer(parsed.JSON200.Data.Labs, fromAPIProlab),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
 func (h *Handle) FAQ(ctx context.Context) (FaqResponse, error) {
-	resp, err := h.client.V4().GetProlabFaqWithResponse(
+	resp, err := h.client.V4().GetProlabFaq(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
+	if err != nil {
+		return FaqResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) FaqResponse {
-			return FaqResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabFaqResponse)
+	if err != nil {
+		return FaqResponse{ResponseMeta: meta}, err
 	}
 
 	return FaqResponse{
-		Data: convert.SlicePointer(resp.JSON200.Data, fromAPIFaqItem),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPIFaqItem),
+		ResponseMeta: meta,
 	}, nil
 }
 
 func (h *Handle) Flags(ctx context.Context) (FlagsResponse, error) {
-	resp, err := h.client.V4().GetProlabFlagsWithResponse(
+	resp, err := h.client.V4().GetProlabFlags(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
+	if err != nil {
+		return FlagsResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) FlagsResponse {
-			return FlagsResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabFlagsResponse)
+	if err != nil {
+		return FlagsResponse{ResponseMeta: meta}, err
 	}
 
 	return FlagsResponse{
-		Data: convert.SlicePointer(resp.JSON200.Data, common.FromAPIFlag),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Data, common.FromAPIFlag),
+		ResponseMeta: meta,
 	}, nil
 }
 
 func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
-	resp, err := h.client.V4().GetProlabInfoWithResponse(
+	resp, err := h.client.V4().GetProlabInfo(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
+	if err != nil {
+		return InfoResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) InfoResponse {
-			return InfoResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabInfoResponse)
+	if err != nil {
+		return InfoResponse{ResponseMeta: meta}, err
 	}
 
 	return InfoResponse{
-		Data: fromAPIProlabData(resp.JSON200.Data),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPIProlabData(parsed.JSON200.Data),
+		ResponseMeta: meta,
 	}, nil
 }
 
 func (h *Handle) Machines(ctx context.Context) (MachinesResponse, error) {
-	resp, err := h.client.V4().GetProlabMachinesWithResponse(
+	resp, err := h.client.V4().GetProlabMachines(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
+	if err != nil {
+		return MachinesResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) MachinesResponse {
-			return MachinesResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabMachinesResponse)
+	if err != nil {
+		return MachinesResponse{ResponseMeta: meta}, err
 	}
 
 	return MachinesResponse{
-		Data: convert.SlicePointer(resp.JSON200.Data, fromAPIProlabMachineData),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPIProlabMachineData),
+		ResponseMeta: meta,
 	}, nil
 }
 
 func (h *Handle) Overview(ctx context.Context) (OverviewResponse, error) {
-	resp, err := h.client.V4().GetProlabOverviewWithResponse(
+	resp, err := h.client.V4().GetProlabOverview(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) OverviewResponse {
-			return OverviewResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return OverviewResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabOverviewResponse)
+	if err != nil {
+		return OverviewResponse{ResponseMeta: meta}, err
+	}
 	return OverviewResponse{
-		Data: fromAPIProlabOverviewData(resp.JSON200.Data),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPIProlabOverviewData(parsed.JSON200.Data),
+		ResponseMeta: meta,
 	}, nil
 }
 
 func (h *Handle) Progress(ctx context.Context) (ProgressResponse, error) {
-	resp, err := h.client.V4().GetProlabProgressWithResponse(
+	resp, err := h.client.V4().GetProlabProgress(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
+	if err != nil {
+		return ProgressResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ProgressResponse {
-			return ProgressResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabProgressResponse)
+	if err != nil {
+		return ProgressResponse{ResponseMeta: meta}, err
 	}
 
 	return ProgressResponse{
-		Data: fromAPIProlabProgressData(resp.JSON200.Data),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPIProlabProgressData(parsed.JSON200.Data),
+		ResponseMeta: meta,
 	}, nil
 }
 
 func (h *Handle) Rating(ctx context.Context) (RatingResponse, error) {
-	resp, err := h.client.V4().GetProlabRatingWithResponse(
+	resp, err := h.client.V4().GetProlabRating(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) RatingResponse {
-			return RatingResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return RatingResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabRatingResponse)
+	if err != nil {
+		return RatingResponse{ResponseMeta: meta}, err
+	}
 	return RatingResponse{
-		Data: deref.String(resp.JSON200.Data.Rating),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         deref.String(parsed.JSON200.Data.Rating),
+		ResponseMeta: meta,
 	}, nil
 }
 
 func (h *Handle) Subscription(ctx context.Context) (SubscriptionResponse, error) {
-	resp, err := h.client.V4().GetProlabSubscriptionWithResponse(
+	resp, err := h.client.V4().GetProlabSubscription(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) SubscriptionResponse {
-			return SubscriptionResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return SubscriptionResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabSubscriptionResponse)
+	if err != nil {
+		return SubscriptionResponse{ResponseMeta: meta}, err
+	}
 	return SubscriptionResponse{
-		Data: fromAPIProlabSubscription(resp.JSON200.Data),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPIProlabSubscription(parsed.JSON200.Data),
+		ResponseMeta: meta,
 	}, nil
 }
 
 func (h *Handle) SubmitFlag(ctx context.Context, flag string) (SubmitFlagResponse, error) {
-	resp, err := h.client.V4().PostProlabFlagWithResponse(
+	resp, err := h.client.V4().PostProlabFlag(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
-		v4client.PostProlabFlagJSONRequestBody{
+		v4Client.PostProlabFlagJSONRequestBody{
 			Flag: flag,
 		},
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) SubmitFlagResponse {
-			return SubmitFlagResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return SubmitFlagResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostProlabFlagResponse)
+	if err != nil {
+		return SubmitFlagResponse{ResponseMeta: meta}, err
+	}
 	return SubmitFlagResponse{
 		Data: MessageStatus{
-			Message: deref.String(resp.JSON200.Message),
-			Status:  deref.Int(resp.JSON200.Status),
+			Message: deref.String(parsed.JSON200.Message),
+			Status:  deref.Int(parsed.JSON200.Status),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }

@@ -3,11 +3,9 @@ package vms
 import (
 	"context"
 
-	v4client "github.com/gubarz/gohtb/httpclient/v4"
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/deref"
-	"github.com/gubarz/gohtb/internal/errutil"
-	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -39,30 +37,26 @@ func (s *Service) VM(id int) *Handle {
 //	}
 //	fmt.Printf("Reset result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) Reset(ctx context.Context) (Response, error) {
-	resp, err := h.client.V4().PostVMResetWithResponse(
-		h.client.Limiter().Wrap(ctx),
-		v4client.PostVMResetJSONRequestBody{
-			MachineId: h.id,
-		})
+	params := v4Client.PostVMResetJSONRequestBody{
+		MachineId: h.id,
+	}
 
-	raw := extract.Raw(resp)
+	resp, err := h.client.V4().PostVMReset(h.client.Limiter().Wrap(ctx), params)
+	if err != nil {
+		return Response{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
-			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostVMResetResponse)
+	if err != nil {
+		return Response{ResponseMeta: meta}, err
 	}
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
-			Success: deref.Bool(resp.JSON200.Success),
+			Message: deref.String(parsed.JSON200.Message),
+			Success: deref.Bool(parsed.JSON200.Success),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -77,30 +71,25 @@ func (h *Handle) Reset(ctx context.Context) (Response, error) {
 //	}
 //	fmt.Printf("Spawn result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) Spawn(ctx context.Context) (Response, error) {
-	resp, err := h.client.V4().PostVMSpawnWithResponse(
-		h.client.Limiter().Wrap(ctx),
-		v4client.PostVMSpawnJSONRequestBody{
-			MachineId: h.id,
-		})
+	params := v4Client.PostVMSpawnJSONRequestBody{
+		MachineId: h.id,
+	}
+	resp, err := h.client.V4().PostVMSpawn(h.client.Limiter().Wrap(ctx), params)
+	if err != nil {
+		return Response{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
-			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostVMSpawnResponse)
+	if err != nil {
+		return Response{ResponseMeta: meta}, err
 	}
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
-			Success: deref.Bool(resp.JSON200.Success),
+			Message: deref.String(parsed.JSON200.Message),
+			Success: deref.Bool(parsed.JSON200.Success),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -115,30 +104,25 @@ func (h *Handle) Spawn(ctx context.Context) (Response, error) {
 //	}
 //	fmt.Printf("Extend result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) Extend(ctx context.Context) (Response, error) {
-	resp, err := h.client.V4().PostVMExtendWithResponse(
-		h.client.Limiter().Wrap(ctx),
-		v4client.PostVMExtendJSONRequestBody{
-			MachineId: h.id,
-		})
+	params := v4Client.PostVMExtendJSONRequestBody{
+		MachineId: h.id,
+	}
+	resp, err := h.client.V4().PostVMExtend(h.client.Limiter().Wrap(ctx), params)
+	if err != nil {
+		return Response{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
-			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostVMExtendResponse)
+	if err != nil {
+		return Response{ResponseMeta: meta}, err
 	}
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
-			Success: deref.Bool(resp.JSON200.Success),
+			Message: deref.String(parsed.JSON200.Message),
+			Success: deref.Bool(parsed.JSON200.Success),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -153,30 +137,25 @@ func (h *Handle) Extend(ctx context.Context) (Response, error) {
 //	}
 //	fmt.Printf("Terminate result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) Terminate(ctx context.Context) (Response, error) {
-	resp, err := h.client.V4().PostVMTerminateWithResponse(
-		h.client.Limiter().Wrap(ctx),
-		v4client.PostVMTerminateJSONRequestBody{
-			MachineId: h.id,
-		})
+	params := v4Client.PostVMTerminateJSONRequestBody{
+		MachineId: h.id,
+	}
+	req, err := h.client.V4().PostVMTerminate(h.client.Limiter().Wrap(ctx), params)
+	if err != nil {
+		return Response{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
-			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(req, v4Client.ParsePostVMTerminateResponse)
+	if err != nil {
+		return Response{ResponseMeta: meta}, err
 	}
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
-			Success: deref.Bool(resp.JSON200.Success),
+			Message: deref.String(parsed.JSON200.Message),
+			Success: deref.Bool(parsed.JSON200.Success),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -192,30 +171,25 @@ func (h *Handle) Terminate(ctx context.Context) (Response, error) {
 //	}
 //	fmt.Printf("Vote reset result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) VoteReset(ctx context.Context) (Response, error) {
-	resp, err := h.client.V4().PostVMResetVoteWithResponse(
-		h.client.Limiter().Wrap(ctx),
-		v4client.PostVMResetVoteJSONRequestBody{
-			MachineId: h.id,
-		})
+	params := v4Client.PostVMResetVoteJSONRequestBody{
+		MachineId: h.id,
+	}
+	resp, err := h.client.V4().PostVMResetVote(h.client.Limiter().Wrap(ctx), params)
+	if err != nil {
+		return Response{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
-			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostVMResetVoteResponse)
+	if err != nil {
+		return Response{ResponseMeta: meta}, err
 	}
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
-			Success: deref.Bool(resp.JSON200.Success),
+			Message: deref.String(parsed.JSON200.Message),
+			Success: deref.Bool(parsed.JSON200.Success),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -231,29 +205,24 @@ func (h *Handle) VoteReset(ctx context.Context) (Response, error) {
 //	}
 //	fmt.Printf("Vote accept result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) VoteResetAccept(ctx context.Context) (Response, error) {
-	resp, err := h.client.V4().PostVMResetVoteAcceptWithResponse(
-		h.client.Limiter().Wrap(ctx),
-		v4client.PostVMResetVoteAcceptJSONRequestBody{
-			MachineId: h.id,
-		})
+	params := v4Client.PostVMResetVoteAcceptJSONRequestBody{
+		MachineId: h.id,
+	}
+	resp, err := h.client.V4().PostVMResetVoteAccept(h.client.Limiter().Wrap(ctx), params)
+	if err != nil {
+		return Response{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) Response {
-			return Response{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostVMResetVoteAcceptResponse)
+	if err != nil {
+		return Response{ResponseMeta: meta}, err
 	}
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
-			Success: deref.Bool(resp.JSON200.Success),
+			Message: deref.String(parsed.JSON200.Message),
+			Success: deref.Bool(parsed.JSON200.Success),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }

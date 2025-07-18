@@ -5,10 +5,9 @@ import (
 	"strconv"
 	"strings"
 
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	v5Client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/errutil"
-	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/service"
 	"github.com/gubarz/gohtb/services/vms"
 )
@@ -31,23 +30,19 @@ func NewService(client service.Client, product string) *Service {
 //	}
 //	fmt.Printf("Active machine: %s (ID: %d)\n", active.Data.Name, active.Data.Id)
 func (s *Service) Active(ctx context.Context) (ActiveResponse, error) {
-	resp, err := s.base.Client.V4().GetMachineActiveWithResponse(s.base.Client.Limiter().Wrap(ctx))
+	resp, err := s.base.Client.V4().GetMachineActive(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return ActiveResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ActiveResponse {
-			return ActiveResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetMachineActiveResponse)
+	if err != nil {
+		return ActiveResponse{ResponseMeta: meta}, err
 	}
 
 	return ActiveResponse{
-		Data: fromAPIActiveMachineInfo(resp.JSON200.Info),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPIActiveMachineInfo(parsed.JSON200.Info),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -75,23 +70,20 @@ func (s *Service) Machine(id int) *Handle {
 //	fmt.Printf("Machine: %s (%s, %s)\n", info.Data.Name, info.Data.Os, info.Data.DifficultyText)
 func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	slug := strconv.Itoa(h.id)
-	resp, err := h.client.V4().GetMachineProfileWithResponse(h.client.Limiter().Wrap(ctx), slug)
+	resp, err := h.client.V4().GetMachineProfile(h.client.Limiter().Wrap(ctx), slug)
 
-	raw := extract.Raw(resp)
+	if err != nil {
+		return InfoResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) InfoResponse {
-			return InfoResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetMachineProfileResponse)
+	if err != nil {
+		return InfoResponse{ResponseMeta: meta}, err
 	}
 
 	return InfoResponse{
-		Data: fromAPIMachineProfileInfo(resp.JSON200.Info),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPIMachineProfileInfo(parsed.JSON200.Info),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -106,27 +98,24 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 //	}
 //	fmt.Printf("Flag submission: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) Own(ctx context.Context, flag string) (OwnResponse, error) {
-	resp, err := h.client.V5().PostMachineOwnWithFormdataBodyWithResponse(h.client.Limiter().Wrap(ctx),
+	resp, err := h.client.V5().PostMachineOwnWithFormdataBody(h.client.Limiter().Wrap(ctx),
 		v5Client.PostMachineOwnJSONRequestBody{
 			Id:   h.id,
 			Flag: flag,
 		})
 
-	raw := extract.Raw(resp)
+	if err != nil {
+		return OwnResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) OwnResponse {
-			return OwnResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v5Client.ParsePostMachineOwnResponse)
+	if err != nil {
+		return OwnResponse{ResponseMeta: meta}, err
 	}
 
 	return OwnResponse{
-		Data: fromAPIMachineOwnResponse(*resp.JSON200),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPIMachineOwnResponse(*parsed.JSON200),
+		ResponseMeta: meta,
 	}, nil
 }
 

@@ -18,12 +18,12 @@ func (c *Client) asServiceClient() *serviceAdapter {
 }
 
 // Implement the service interface methods
-func (a *serviceAdapter) V4() v4client.ClientWithResponsesInterface {
+func (a *serviceAdapter) V4() v4client.ClientInterface {
 	return a.client.v4api
 }
 
 // Implement the service interface methods
-func (a *serviceAdapter) V5() v5client.ClientWithResponsesInterface {
+func (a *serviceAdapter) V5() v5client.ClientInterface {
 	return a.client.v5api
 }
 

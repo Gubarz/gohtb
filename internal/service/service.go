@@ -10,8 +10,8 @@ import (
 
 // Client defines the common interface that all services expect
 type Client interface {
-	V4() v4client.ClientWithResponsesInterface
-	V5() v5client.ClientWithResponsesInterface
+	V4() v4client.ClientInterface
+	V5() v5client.ClientInterface
 	Limiter() interface {
 		Wrap(context.Context) context.Context
 	}

@@ -3,10 +3,9 @@ package users
 import (
 	"context"
 
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
-	"github.com/gubarz/gohtb/internal/errutil"
-	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -38,26 +37,22 @@ func (s *Service) User(id int) *Handle {
 //	}
 //	fmt.Printf("User: %s (Rank: %d)\n", profile.Data.Username, profile.Data.Rank)
 func (h *Handle) ProfileBasic(ctx context.Context) (ProfileBasicResponse, error) {
-	resp, err := h.client.V4().GetUserProfileBasicWithResponse(
+	resp, err := h.client.V4().GetUserProfileBasic(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
+	if err != nil {
+		return ProfileBasicResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ProfileBasicResponse {
-			return ProfileBasicResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserProfileBasicResponse)
+	if err != nil {
+		return ProfileBasicResponse{ResponseMeta: meta}, err
 	}
 
 	return ProfileBasicResponse{
-		Data: fromAPIUserProfile(resp.JSON200.Profile),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPIUserProfile(parsed.JSON200.Profile),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -75,24 +70,21 @@ func (h *Handle) ProfileBasic(ctx context.Context) (ProfileBasicResponse, error)
 //		fmt.Printf("Activity: %s at %s\n", act.Type, act.Date)
 //	}
 func (h *Handle) ProfileActivity(ctx context.Context) (ProfileActivityResposnse, error) {
-	resp, err := h.client.V4().GetUserProfileActivityWithResponse(
+	resp, err := h.client.V4().GetUserProfileActivity(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
-	raw := extract.Raw(resp)
+	if err != nil {
+		return ProfileActivityResposnse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ProfileActivityResposnse {
-			return ProfileActivityResposnse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserProfileActivityResponse)
+	if err != nil {
+		return ProfileActivityResposnse{ResponseMeta: meta}, err
 	}
 
 	return ProfileActivityResposnse{
-		Data: convert.SlicePointer(resp.JSON200.Profile.Activity, fromAPIUserActivity),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Profile.Activity, fromAPIUserActivity),
+		ResponseMeta: meta,
 	}, nil
 }

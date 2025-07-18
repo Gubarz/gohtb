@@ -7,8 +7,6 @@ import (
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
-	"github.com/gubarz/gohtb/internal/errutil"
-	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -42,26 +40,22 @@ func (s *Service) Team(id int) *Handle {
 //		fmt.Printf("Pending invite: %s\n", invite.Username)
 //	}
 func (h *Handle) Invitations(ctx context.Context) (InvitationsResponse, error) {
-	resp, err := h.client.V4().GetTeamInvitationsWithResponse(
+	resp, err := h.client.V4().GetTeamInvitations(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) InvitationsResponse {
-			return InvitationsResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return InvitationsResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetTeamInvitationsResponse)
+	if err != nil {
+		return InvitationsResponse{ResponseMeta: meta}, err
+	}
 	return InvitationsResponse{
-		Data: convert.SlicePointer(resp.JSON200.Original, fromAPIUserEntry),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Original, fromAPIUserEntry),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -79,26 +73,22 @@ func (h *Handle) Invitations(ctx context.Context) (InvitationsResponse, error) {
 //		fmt.Printf("Member: %s (Role: %s)\n", member.Username, member.Role)
 //	}
 func (h *Handle) Members(ctx context.Context) (MembersResponse, error) {
-	resp, err := h.client.V4().GetTeamMembersWithResponse(
+	resp, err := h.client.V4().GetTeamMembers(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
+	if err != nil {
+		return MembersResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) MembersResponse {
-			return MembersResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetTeamMembersResponse)
+	if err != nil {
+		return MembersResponse{ResponseMeta: meta}, err
 	}
 
 	return MembersResponse{
-		Data: convert.SlicePointer(resp.JSON200, fromAPITeamMember),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.SlicePointer(parsed.JSON200, fromAPITeamMember),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -123,27 +113,23 @@ func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
 	params := &v4Client.GetTeamActivityParams{
 		NPastDays: &last,
 	}
-	resp, err := h.client.V4().GetTeamActivityWithResponse(
+	resp, err := h.client.V4().GetTeamActivity(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 		params,
 	)
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ActivityResponse {
-			return ActivityResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return ActivityResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetTeamActivityResponse)
+	if err != nil {
+		return ActivityResponse{ResponseMeta: meta}, err
+	}
 	return ActivityResponse{
-		Data: convert.Slice(*resp.JSON200, fromAPITeamActivityItem),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.Slice(*parsed.JSON200, fromAPITeamActivityItem),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -159,29 +145,26 @@ func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
 //	}
 //	fmt.Printf("Invite result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (s *Service) AcceptInvite(ctx context.Context, id int) (common.MessageResponse, error) {
-	resp, err := s.base.Client.V4().PostTeamInviteAcceptWithResponse(
+	resp, err := s.base.Client.V4().PostTeamInviteAccept(
 		s.base.Client.Limiter().Wrap(ctx),
 		id,
 	)
 
-	raw := extract.Raw(resp)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
-			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostTeamInviteAcceptResponse)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: meta}, err
 	}
 
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
-			Success: deref.Bool(resp.JSON200.Success),
+			Message: deref.String(parsed.JSON200.Message),
+			Success: deref.Bool(parsed.JSON200.Success),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -197,29 +180,24 @@ func (s *Service) AcceptInvite(ctx context.Context, id int) (common.MessageRespo
 //	}
 //	fmt.Printf("Reject result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (s *Service) RejectInvite(ctx context.Context, id int) (common.MessageResponse, error) {
-	resp, err := s.base.Client.V4().DeleteTeamInviteRejectWithResponse(
+	resp, err := s.base.Client.V4().DeleteTeamInviteReject(
 		s.base.Client.Limiter().Wrap(ctx),
 		id,
 	)
-
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
-			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
+	parsed, meta, err := common.Parse(resp, v4Client.ParseDeleteTeamInviteRejectResponse)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: meta}, err
+	}
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
-			Success: deref.Bool(resp.JSON200.Success),
+			Message: deref.String(parsed.JSON200.Message),
+			Success: deref.Bool(parsed.JSON200.Success),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -234,28 +212,24 @@ func (s *Service) RejectInvite(ctx context.Context, id int) (common.MessageRespo
 //	}
 //	fmt.Printf("Kick result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (s *Service) KickMember(ctx context.Context, id int) (common.MessageResponse, error) {
-	resp, err := s.base.Client.V4().PostTeamKickUserWithResponse(
+	resp, err := s.base.Client.V4().PostTeamKickUser(
 		s.base.Client.Limiter().Wrap(ctx),
 		id,
 	)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	raw := extract.Raw(resp)
-
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) common.MessageResponse {
-			return common.MessageResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostTeamKickUserResponse)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: meta}, err
 	}
 
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(resp.JSON200.Message),
-			Success: deref.Bool(resp.JSON200.Success),
+			Message: deref.String(parsed.JSON200.Message),
+			Success: deref.Bool(parsed.JSON200.Success),
 		},
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		ResponseMeta: meta,
 	}, nil
 }

@@ -8,8 +8,6 @@ import (
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
-	"github.com/gubarz/gohtb/internal/errutil"
-	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/ptr"
 )
 
@@ -222,23 +220,19 @@ func (q *ChallengeQuery) fetchResults(ctx context.Context) (ChallengeListRespons
 		Todo:       q.todo,
 	}
 
-	resp, err := q.client.V4().GetChallengesWithResponse(q.client.Limiter().Wrap(ctx), params)
-	raw := extract.Raw(resp)
+	resp, err := q.client.V4().GetChallenges(q.client.Limiter().Wrap(ctx), params)
+	if err != nil {
+		return ChallengeListResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ChallengeListResponse {
-			return ChallengeListResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetChallengesResponse)
+	if err != nil {
+		return ChallengeListResponse{ResponseMeta: meta}, err
 	}
 
 	return ChallengeListResponse{
-		Data: convert.Slice(*resp.JSON200.Data, fromAPIChallengeList),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-			CFRay:      resp.HTTPResponse.Header.Get("CF-Ray"),
-		},
+		Data:         convert.Slice(*parsed.JSON200.Data, fromAPIChallengeList),
+		ResponseMeta: meta,
 	}, nil
 }
 

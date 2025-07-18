@@ -3,10 +3,9 @@ package seasons
 import (
 	"context"
 
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
-	"github.com/gubarz/gohtb/internal/errutil"
-	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -40,22 +39,19 @@ func (s *Service) Season(id int) *Handle {
 //		fmt.Printf("Reward: %s (Points: %d)\n", reward.Name, reward.Points)
 //	}
 func (h *Handle) Rewards(ctx context.Context) (RewardsResponse, error) {
-	resp, err := h.client.V4().GetSeasonRewardsWithResponse(h.client.Limiter().Wrap(ctx), h.id)
-	raw := extract.Raw(resp)
+	resp, err := h.client.V4().GetSeasonRewards(h.client.Limiter().Wrap(ctx), h.id)
+	if err != nil {
+		return RewardsResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) RewardsResponse {
-			return RewardsResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonRewardsResponse)
+	if err != nil {
+		return RewardsResponse{ResponseMeta: meta}, err
 	}
 
 	return RewardsResponse{
-		Data: convert.SlicePointer(resp.JSON200.Data, fromAPISeasonRewardsDataItem),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPISeasonRewardsDataItem),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -70,22 +66,19 @@ func (h *Handle) Rewards(ctx context.Context) (RewardsResponse, error) {
 //	}
 //	fmt.Printf("Current rank: %d (Points: %d)\n", rank.Data.Position, rank.Data.Points)
 func (h *Handle) UserRank(ctx context.Context) (UserRankResponse, error) {
-	resp, err := h.client.V4().GetSeasonUserRankWithResponse(h.client.Limiter().Wrap(ctx), h.id)
-	raw := extract.Raw(resp)
+	resp, err := h.client.V4().GetSeasonUserRank(h.client.Limiter().Wrap(ctx), h.id)
+	if err != nil {
+		return UserRankResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) UserRankResponse {
-			return UserRankResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonUserRankResponse)
+	if err != nil {
+		return UserRankResponse{ResponseMeta: meta}, err
 	}
 
 	return UserRankResponse{
-		Data: fromAPISeasonUserRankData(resp.JSON200.Data),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPISeasonUserRankData(parsed.JSON200.Data),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -100,22 +93,19 @@ func (h *Handle) UserRank(ctx context.Context) (UserRankResponse, error) {
 //	}
 //	fmt.Printf("Followers: %d\n", len(followers.Data.Followers))
 func (h *Handle) UserFollowers(ctx context.Context) (UserFollowersResponse, error) {
-	resp, err := h.client.V4().GetSeasonUserFollowersWithResponse(h.client.Limiter().Wrap(ctx), h.id)
-	raw := extract.Raw(resp)
+	resp, err := h.client.V4().GetSeasonUserFollowers(h.client.Limiter().Wrap(ctx), h.id)
+	if err != nil {
+		return UserFollowersResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) UserFollowersResponse {
-			return UserFollowersResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonUserFollowersResponse)
+	if err != nil {
+		return UserFollowersResponse{ResponseMeta: meta}, err
 	}
 
 	return UserFollowersResponse{
-		Data: fromAPISeasonUserFollowerData(resp.JSON200.Data),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPISeasonUserFollowerData(parsed.JSON200.Data),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -132,22 +122,19 @@ func (h *Handle) UserFollowers(ctx context.Context) (UserFollowersResponse, erro
 //		fmt.Printf("Season: %s (ID: %d)\n", season.Name, season.Id)
 //	}
 func (s *Service) List(ctx context.Context) (ListResponse, error) {
-	resp, err := s.base.Client.V4().GetSeasonListWithResponse(s.base.Client.Limiter().Wrap(ctx))
-	raw := extract.Raw(resp)
+	resp, err := s.base.Client.V4().GetSeasonList(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return ListResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ListResponse {
-			return ListResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonListResponse)
+	if err != nil {
+		return ListResponse{ResponseMeta: meta}, err
 	}
 
 	return ListResponse{
-		Data: convert.SlicePointer(resp.JSON200.Data, fromAPISeasonListDataItem),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPISeasonListDataItem),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -165,22 +152,19 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 //		fmt.Printf("Machine: %s (Difficulty: %s)\n", machine.Name, machine.Difficulty)
 //	}
 func (s *Service) Machines(ctx context.Context) (MachinesResponse, error) {
-	resp, err := s.base.Client.V4().GetSeasonMachinesWithResponse(s.base.Client.Limiter().Wrap(ctx))
-	raw := extract.Raw(resp)
+	resp, err := s.base.Client.V4().GetSeasonMachines(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return MachinesResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) MachinesResponse {
-			return MachinesResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonMachinesResponse)
+	if err != nil {
+		return MachinesResponse{ResponseMeta: meta}, err
 	}
 
 	return MachinesResponse{
-		Data: convert.SlicePointer(resp.JSON200.Data, fromAPISeasonMachinesDataItem),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPISeasonMachinesDataItem),
+		ResponseMeta: meta,
 	}, nil
 }
 
@@ -196,21 +180,18 @@ func (s *Service) Machines(ctx context.Context) (MachinesResponse, error) {
 //	}
 //	fmt.Printf("Active machine: %s (ID: %d)\n", activeMachine.Data.Name, activeMachine.Data.Id)
 func (s *Service) ActiveMachine(ctx context.Context) (ActiveMachineResponse, error) {
-	resp, err := s.base.Client.V4().GetSeasonMachineActiveWithResponse(s.base.Client.Limiter().Wrap(ctx))
-	raw := extract.Raw(resp)
+	resp, err := s.base.Client.V4().GetSeasonMachineActive(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return ActiveMachineResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
-	if err != nil || resp == nil || resp.JSON200 == nil {
-		return errutil.UnwrapFailure(err, raw, common.SafeStatus(resp), func(raw []byte) ActiveMachineResponse {
-			return ActiveMachineResponse{ResponseMeta: common.ResponseMeta{Raw: raw}}
-		})
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonMachineActiveResponse)
+	if err != nil {
+		return ActiveMachineResponse{ResponseMeta: meta}, err
 	}
 
 	return ActiveMachineResponse{
-		Data: fromAPISeasonMachineActive(resp.JSON200.Data),
-		ResponseMeta: common.ResponseMeta{
-			Raw:        raw,
-			StatusCode: resp.StatusCode(),
-			Headers:    resp.HTTPResponse.Header,
-		},
+		Data:         fromAPISeasonMachineActive(parsed.JSON200.Data),
+		ResponseMeta: meta,
 	}, nil
 }
