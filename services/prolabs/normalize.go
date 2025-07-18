@@ -5,27 +5,7 @@ import (
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/deref"
-	"github.com/microcosm-cc/bluemonday"
 )
-
-var (
-	strictPolicy   = bluemonday.StrictPolicy()
-	sanitizePolicy = bluemonday.UGCPolicy()
-)
-
-func strictHTML(input string) string {
-	if input == "" {
-		return ""
-	}
-	return strictPolicy.Sanitize(input)
-}
-
-func sanitizeHTML(input string) string {
-	if input == "" {
-		return ""
-	}
-	return sanitizePolicy.Sanitize(input)
-}
 
 func fromAPIProlab(data v4client.Prolab) Prolab {
 	return Prolab{
@@ -61,12 +41,13 @@ func fromAPIProlabData(data *v4client.ProlabData) ProlabData {
 	if data == nil {
 		return ProlabData{}
 	}
+	description := deref.String(data.Description)
 	return ProlabData{
 		ActiveUsers:      deref.Int(data.ActiveUsers),
 		CanInteract:      deref.Bool(data.CanInteract),
 		CoverImageUrl:    deref.String(data.CoverImageUrl),
-		Description:      strictHTML(deref.String(data.Description)),
-		DescriptionHTML:  sanitizeHTML(deref.String(data.Description)),
+		Description:      common.StrictHTML(description),
+		DescriptionHTML:  common.SanitizeHTML(description),
 		EntryPoints:      deref.Slice(data.EntryPoints),
 		Id:               deref.Int(data.Id),
 		Identifier:       deref.String(data.Identifier),

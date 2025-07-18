@@ -5,6 +5,7 @@ import (
 
 	httpclient "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/deref"
+	"github.com/microcosm-cc/bluemonday"
 )
 
 func FromAPITodoItem(data httpclient.Item) TodoItem {
@@ -33,4 +34,23 @@ func SafeStatus(resp any) int {
 	default:
 		return -1
 	}
+}
+
+var (
+	strictPolicy   = bluemonday.StrictPolicy()
+	sanitizePolicy = bluemonday.UGCPolicy()
+)
+
+func StrictHTML(input string) string {
+	if input == "" {
+		return ""
+	}
+	return strictPolicy.Sanitize(input)
+}
+
+func SanitizeHTML(input string) string {
+	if input == "" {
+		return ""
+	}
+	return sanitizePolicy.Sanitize(input)
 }
