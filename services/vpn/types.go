@@ -64,6 +64,7 @@ type ConnectionStatusServer struct {
 	FriendlyName string
 	Hostname     string
 	Id           int
+	ProLabId     int
 }
 
 type ConnectionsServersResponse struct {

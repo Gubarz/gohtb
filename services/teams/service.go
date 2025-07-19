@@ -98,18 +98,20 @@ func (h *Handle) Members(ctx context.Context) (MembersResponse, error) {
 //
 // Example:
 //
-//	activity, err := client.Teams.Team(12345).Activity(ctx)
+//	activity, err := client.Teams.Team(12345).Activity(ctx, 30)
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	for _, act := range activity.Data {
 //		fmt.Printf("Activity: %s at %s\n", act.Type, act.Date)
 //	}
-func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
+func (h *Handle) Activity(ctx context.Context, days int) (ActivityResponse, error) {
 	// This is set to 90 days wich is max by the API
-	// Not setting it can pausibly return data that is not up to date
 	// Max items returned is 100
 	last := 90
+	if days >= 1 && days <= 90 {
+		last = days
+	}
 	params := &v4Client.GetTeamActivityParams{
 		NPastDays: &last,
 	}

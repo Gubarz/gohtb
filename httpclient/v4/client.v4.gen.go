@@ -81,6 +81,14 @@ const (
 	ProductStartingPoint Product = "starting_point"
 )
 
+// Defines values for ProductName.
+const (
+	ProductNameCompetitive   ProductName = "competitive"
+	ProductNameFortresses    ProductName = "fortresses"
+	ProductNameLabs          ProductName = "labs"
+	ProductNameStartingPoint ProductName = "starting_point"
+)
+
 // Defines values for ProductPath.
 const (
 	ProductPathChallenge ProductPath = "challenge"
@@ -183,17 +191,18 @@ const (
 
 // Defines values for GetConnectionStatusProductnameParamsProductName.
 const (
+	GetConnectionStatusProductnameParamsProductNameCompetitive   GetConnectionStatusProductnameParamsProductName = "competitive"
 	GetConnectionStatusProductnameParamsProductNameFortresses    GetConnectionStatusProductnameParamsProductName = "fortresses"
-	GetConnectionStatusProductnameParamsProductNameLab           GetConnectionStatusProductnameParamsProductName = "lab"
+	GetConnectionStatusProductnameParamsProductNameLabs          GetConnectionStatusProductnameParamsProductName = "labs"
 	GetConnectionStatusProductnameParamsProductNameStartingPoint GetConnectionStatusProductnameParamsProductName = "starting_point"
 )
 
 // Defines values for GetConnectionsServersParamsProduct.
 const (
-	Competitive   GetConnectionsServersParamsProduct = "competitive"
-	Fortresses    GetConnectionsServersParamsProduct = "fortresses"
-	Labs          GetConnectionsServersParamsProduct = "labs"
-	StartingPoint GetConnectionsServersParamsProduct = "starting_point"
+	GetConnectionsServersParamsProductCompetitive   GetConnectionsServersParamsProduct = "competitive"
+	GetConnectionsServersParamsProductFortresses    GetConnectionsServersParamsProduct = "fortresses"
+	GetConnectionsServersParamsProductLabs          GetConnectionsServersParamsProduct = "labs"
+	GetConnectionsServersParamsProductStartingPoint GetConnectionsServersParamsProduct = "starting_point"
 )
 
 // Defines values for GetMachineGraphActivityParamsPeriod.
@@ -607,6 +616,7 @@ type AssignedServerConnectionsServers struct {
 	Id                   *int    `json:"id,omitempty"`
 	Location             *string `json:"location,omitempty"`
 	LocationTypeFriendly *string `json:"location_type_friendly,omitempty"`
+	ProLabId             *int    `json:"pro_lab_id,omitempty"`
 }
 
 // BadRequestError Schema definition for Bad Request Error
@@ -1243,6 +1253,7 @@ type ConnectionServer struct {
 	FriendlyName *string `json:"friendly_name,omitempty"`
 	Hostname     *string `json:"hostname,omitempty"`
 	Id           *int    `json:"id,omitempty"`
+	ProLabId     *int    `json:"pro_lab_id,omitempty"`
 }
 
 // ConnectionServerSwitchResponse Schema definition for Connection Server Switch Response
@@ -1255,11 +1266,11 @@ type ConnectionServerSwitchResponse struct {
 
 // ConnectionStatusItem defines model for ConnectionStatusItem.
 type ConnectionStatusItem struct {
-	Connection           *Connection             `json:"connection,omitempty"`
-	ConnectionType       *string                 `json:"connection_type,omitempty"`
-	LocationTypeFriendly *string                 `json:"location_type_friendly,omitempty"`
-	Server               *ConnectionStatusServer `json:"server,omitempty"`
-	Type                 *string                 `json:"type,omitempty"`
+	Connection           *Connection       `json:"connection,omitempty"`
+	ConnectionType       *string           `json:"connection_type,omitempty"`
+	LocationTypeFriendly *string           `json:"location_type_friendly,omitempty"`
+	Server               *ConnectionServer `json:"server,omitempty"`
+	Type                 *string           `json:"type,omitempty"`
 }
 
 // ConnectionStatusProductData defines model for ConnectionStatusProductData.
@@ -1278,13 +1289,6 @@ type ConnectionStatusProductResponse struct {
 
 // ConnectionStatusResponse Schema definition for Connection Status Response
 type ConnectionStatusResponse = []ConnectionStatusItem
-
-// ConnectionStatusServer defines model for ConnectionStatusServer.
-type ConnectionStatusServer struct {
-	FriendlyName *string `json:"friendly_name,omitempty"`
-	Hostname     *string `json:"hostname,omitempty"`
-	Id           *int    `json:"id,omitempty"`
-}
 
 // ConnectionsData defines model for ConnectionsData.
 type ConnectionsData struct {
@@ -1319,7 +1323,8 @@ type ConnectionsServerResponse struct {
 
 // ConnectionsServersProlabData defines model for ConnectionsServersProlabData.
 type ConnectionsServersProlabData struct {
-	Assigned *map[string]interface{} `json:"assigned"`
+	// Assigned Schema definition for Assigned Server
+	Assigned *AssignedServerConnectionsServers `json:"assigned"`
 
 	// Options Schema definition for Options
 	Options *Options `json:"options,omitempty"`
@@ -1982,8 +1987,8 @@ type MachineChangelogIdResponse struct {
 
 // MachineCreatorResponse Schema definition for Machine Creator Resposne
 type MachineCreatorResponse struct {
-	Cocreator *UserBasicInfoItemsWithRespect `json:"cocreator"`
-	Creator   *UserBasicInfoItemsWithRespect `json:"creator"`
+	Cocreators *UserBasicInfoItemsWithRespect `json:"cocreators"`
+	Creator    *UserBasicInfoItemsWithRespect `json:"creator"`
 }
 
 // MachineData Schema definition for Machine Data
@@ -2605,7 +2610,7 @@ type OwnsItems struct {
 	DeletedAt       *interface{}        `json:"deleted_at,omitempty"`
 	DeletedIndexFix *int                `json:"deleted_index_fix,omitempty"`
 	Id              *int                `json:"id,omitempty"`
-	Machiine        *MachineOwnsTabloid `json:"machiine,omitempty"`
+	Machine         *MachineOwnsTabloid `json:"machine,omitempty"`
 	MachineFlagId   *int                `json:"machine_flag_id,omitempty"`
 	MachineId       *int                `json:"machine_id,omitempty"`
 	SpFlag          *int                `json:"sp_flag,omitempty"`
@@ -2647,9 +2652,9 @@ type PeriodsStringArray = []StringArray
 type PlayInfo struct {
 	ActivePlayerCount *int       `json:"active_player_count,omitempty"`
 	ExpiresAt         *time.Time `json:"expires_at"`
-	IsActive          *bool      `json:"is_active"`
-	IsSpawned         *bool      `json:"is_spawned"`
-	IsSpawning        *bool      `json:"is_spawning"`
+	IsActive          *bool      `json:"isActive"`
+	IsSpawned         *bool      `json:"isSpawned"`
+	IsSpawning        *bool      `json:"isSpawning"`
 }
 
 // PlayInfoAlt Alternate structure of PlayInfo used in Sherlocks and Challenges
@@ -4569,10 +4574,10 @@ type UniversityAllListResponse struct {
 
 // UniversityChartChallengeCategoriesItem defines model for UniversityChartChallengeCategoriesItem.
 type UniversityChartChallengeCategoriesItem struct {
-	AllTeamsAvgPercentage *float32 `json:"all_teams_avg_percentage,omitempty"`
-	Id                    *int     `json:"id,omitempty"`
-	Name                  *string  `json:"name,omitempty"`
-	TeamPercentage        *float32 `json:"team_percentage,omitempty"`
+	AllUniversitysAvgPercentage *float32 `json:"all_universitys_avg_percentage,omitempty"`
+	Id                          *int     `json:"id,omitempty"`
+	Name                        *string  `json:"name,omitempty"`
+	UniversityPercentage        *float32 `json:"university_percentage,omitempty"`
 }
 
 // UniversityChartChallengeCategoriesItems defines model for UniversityChartChallengeCategoriesItems.
@@ -5215,6 +5220,9 @@ type Product string
 
 // ProductId defines model for ProductId.
 type ProductId = int
+
+// ProductName defines model for ProductName.
+type ProductName string
 
 // ProductPath defines model for ProductPath.
 type ProductPath string
@@ -7058,9 +7066,6 @@ type ClientInterface interface {
 	// GetConnectionStatus request
 	GetConnectionStatus(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetConnectionStatusCompetitive request
-	GetConnectionStatusCompetitive(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetConnectionStatusProlab request
 	GetConnectionStatusProlab(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -8133,18 +8138,6 @@ func (c *Client) GetChangelogs(ctx context.Context, reqEditors ...RequestEditorF
 
 func (c *Client) GetConnectionStatus(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetConnectionStatusRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetConnectionStatusCompetitive(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetConnectionStatusCompetitiveRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -11916,33 +11909,6 @@ func NewGetConnectionStatusRequest(server string) (*http.Request, error) {
 	}
 
 	operationPath := fmt.Sprintf("/connection/status")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetConnectionStatusCompetitiveRequest generates requests for GetConnectionStatusCompetitive
-func NewGetConnectionStatusCompetitiveRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/connection/status/competitive")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -18874,9 +18840,6 @@ type ClientWithResponsesInterface interface {
 	// GetConnectionStatusWithResponse request
 	GetConnectionStatusWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetConnectionStatusResponse, error)
 
-	// GetConnectionStatusCompetitiveWithResponse request
-	GetConnectionStatusCompetitiveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetConnectionStatusCompetitiveResponse, error)
-
 	// GetConnectionStatusProlabWithResponse request
 	GetConnectionStatusProlabWithResponse(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*GetConnectionStatusProlabResponse, error)
 
@@ -20227,29 +20190,6 @@ func (r GetConnectionStatusResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetConnectionStatusResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetConnectionStatusCompetitiveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ConnectionStatusProductResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetConnectionStatusCompetitiveResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetConnectionStatusCompetitiveResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -24641,15 +24581,6 @@ func (c *ClientWithResponses) GetConnectionStatusWithResponse(ctx context.Contex
 	return ParseGetConnectionStatusResponse(rsp)
 }
 
-// GetConnectionStatusCompetitiveWithResponse request returning *GetConnectionStatusCompetitiveResponse
-func (c *ClientWithResponses) GetConnectionStatusCompetitiveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetConnectionStatusCompetitiveResponse, error) {
-	rsp, err := c.GetConnectionStatusCompetitive(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetConnectionStatusCompetitiveResponse(rsp)
-}
-
 // GetConnectionStatusProlabWithResponse request returning *GetConnectionStatusProlabResponse
 func (c *ClientWithResponses) GetConnectionStatusProlabWithResponse(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*GetConnectionStatusProlabResponse, error) {
 	rsp, err := c.GetConnectionStatusProlab(ctx, prolabId, reqEditors...)
@@ -27510,39 +27441,6 @@ func ParseGetConnectionStatusResponse(rsp *http.Response) (*GetConnectionStatusR
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ConnectionStatusResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetConnectionStatusCompetitiveResponse parses an HTTP response from a GetConnectionStatusCompetitiveWithResponse call
-func ParseGetConnectionStatusCompetitiveResponse(rsp *http.Response) (*GetConnectionStatusCompetitiveResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetConnectionStatusCompetitiveResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ConnectionStatusProductResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}

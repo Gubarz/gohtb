@@ -33,9 +33,9 @@ func main() {
 		}
 	}
 
-	// Get team activity
+	// Get team activity for the last 30 days
 	fmt.Printf("\n=== Team Activity ===\n")
-	activity, err := client.Teams.Team(teamID).Activity(ctx)
+	activity, err := client.Teams.Team(teamID).Activity(ctx, 30)
 	if err != nil {
 		log.Printf("Failed to get team activity: %v\n", err)
 	} else {

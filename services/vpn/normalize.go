@@ -28,7 +28,7 @@ func fromAPIConnection(data *v4client.Connection) Connection {
 	}
 }
 
-func fromAPIConnectionStatusServer(data *v4client.ConnectionStatusServer) ConnectionStatusServer {
+func fromAPIConnectionStatusServer(data *v4client.ConnectionServer) ConnectionStatusServer {
 	if data == nil {
 		return ConnectionStatusServer{}
 	}
@@ -36,6 +36,7 @@ func fromAPIConnectionStatusServer(data *v4client.ConnectionStatusServer) Connec
 		FriendlyName: deref.String(data.FriendlyName),
 		Hostname:     deref.String(data.Hostname),
 		Id:           deref.Int(data.Id),
+		ProLabId:     deref.Int(data.ProLabId),
 	}
 }
 
