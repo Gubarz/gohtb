@@ -47,6 +47,19 @@ func userRankingToInt(raw *v4client.User_Ranking) int {
 	return v
 }
 
+func teamUserRankingToInt(raw *v4client.TeamMember_Rank) int {
+	if raw == nil {
+		return 0
+	}
+
+	v, err := raw.AsTeamMemberRank0()
+	if err != nil {
+		return 0
+	}
+
+	return v
+}
+
 func fromAPIUserRanking(data v4client.UserRanking) UserRanking {
 	return UserRanking{
 		Challenges: deref.Int(data.Challenges),
@@ -71,7 +84,7 @@ func fromAPITeamMember(data v4client.TeamMember) TeamMember {
 		Name:            deref.String(data.Name),
 		Points:          deref.Int(data.Points),
 		Public:          deref.Int(data.Public),
-		Rank:            deref.String(data.Rank),
+		Rank:            teamUserRankingToInt(data.Rank),
 		RankText:        deref.String(data.RankText),
 		Role:            deref.String(data.Role),
 		RootBloodsCount: deref.Int(data.RootBloodsCount),

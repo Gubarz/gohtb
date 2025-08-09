@@ -2652,9 +2652,9 @@ type PeriodsStringArray = []StringArray
 type PlayInfo struct {
 	ActivePlayerCount *int       `json:"active_player_count,omitempty"`
 	ExpiresAt         *time.Time `json:"expires_at"`
-	IsActive          *bool      `json:"isActive"`
-	IsSpawned         *bool      `json:"isSpawned"`
-	IsSpawning        *bool      `json:"isSpawning"`
+	IsActive          *bool      `json:"is_active"`
+	IsSpawned         *bool      `json:"is_spawned"`
+	IsSpawning        *bool      `json:"is_spawning"`
 }
 
 // PlayInfoAlt Alternate structure of PlayInfo used in Sherlocks and Challenges
@@ -4419,21 +4419,32 @@ type TeamMachineAttackPaths struct {
 
 // TeamMember University Members Resposne
 type TeamMember struct {
-	Avatar          *string         `json:"avatar,omitempty"`
-	CountryCode     *string         `json:"country_code"`
-	CountryName     *string         `json:"country_name,omitempty"`
-	Id              *int            `json:"id,omitempty"`
-	Name            *string         `json:"name,omitempty"`
-	Points          *int            `json:"points,omitempty"`
-	Public          *int            `json:"public,omitempty"`
-	Rank            *string         `json:"rank,omitempty"`
-	RankText        *string         `json:"rank_text,omitempty"`
-	Role            *string         `json:"role,omitempty"`
-	RootBloodsCount *int            `json:"root_bloods_count,omitempty"`
-	RootOwns        *int            `json:"root_owns,omitempty"`
-	Team            *TeamMemberTeam `json:"team,omitempty"`
-	UserBloodsCount *int            `json:"user_bloods_count,omitempty"`
-	UserOwns        *int            `json:"user_owns,omitempty"`
+	Avatar          *string          `json:"avatar,omitempty"`
+	CountryCode     *string          `json:"country_code"`
+	CountryName     *string          `json:"country_name,omitempty"`
+	Id              *int             `json:"id,omitempty"`
+	Name            *string          `json:"name,omitempty"`
+	Points          *int             `json:"points,omitempty"`
+	Public          *int             `json:"public,omitempty"`
+	Rank            *TeamMember_Rank `json:"rank,omitempty"`
+	RankText        *string          `json:"rank_text,omitempty"`
+	Role            *string          `json:"role,omitempty"`
+	RootBloodsCount *int             `json:"root_bloods_count,omitempty"`
+	RootOwns        *int             `json:"root_owns,omitempty"`
+	Team            *TeamMemberTeam  `json:"team,omitempty"`
+	UserBloodsCount *int             `json:"user_bloods_count,omitempty"`
+	UserOwns        *int             `json:"user_owns,omitempty"`
+}
+
+// TeamMemberRank0 defines model for .
+type TeamMemberRank0 = int
+
+// TeamMemberRank1 defines model for .
+type TeamMemberRank1 = string
+
+// TeamMember_Rank defines model for TeamMember.Rank.
+type TeamMember_Rank struct {
+	union json.RawMessage
 }
 
 // TeamMemberTeam defines model for TeamMemberTeam.
@@ -6561,6 +6572,68 @@ func (t ProfileUserTeamWrapper) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ProfileUserTeamWrapper) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsTeamMemberRank0 returns the union data inside the TeamMember_Rank as a TeamMemberRank0
+func (t TeamMember_Rank) AsTeamMemberRank0() (TeamMemberRank0, error) {
+	var body TeamMemberRank0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromTeamMemberRank0 overwrites any union data inside the TeamMember_Rank as the provided TeamMemberRank0
+func (t *TeamMember_Rank) FromTeamMemberRank0(v TeamMemberRank0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeTeamMemberRank0 performs a merge with any union data inside the TeamMember_Rank, using the provided TeamMemberRank0
+func (t *TeamMember_Rank) MergeTeamMemberRank0(v TeamMemberRank0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsTeamMemberRank1 returns the union data inside the TeamMember_Rank as a TeamMemberRank1
+func (t TeamMember_Rank) AsTeamMemberRank1() (TeamMemberRank1, error) {
+	var body TeamMemberRank1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromTeamMemberRank1 overwrites any union data inside the TeamMember_Rank as the provided TeamMemberRank1
+func (t *TeamMember_Rank) FromTeamMemberRank1(v TeamMemberRank1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeTeamMemberRank1 performs a merge with any union data inside the TeamMember_Rank, using the provided TeamMemberRank1
+func (t *TeamMember_Rank) MergeTeamMemberRank1(v TeamMemberRank1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t TeamMember_Rank) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *TeamMember_Rank) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }

@@ -84,7 +84,7 @@ type TeamMember struct {
 	Name            string
 	Points          int
 	Public          int
-	Rank            string
+	Rank            int
 	RankText        string
 	Role            string
 	RootBloodsCount int
