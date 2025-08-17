@@ -187,7 +187,7 @@ func fromAPIMachineUnreleasedData(data v4Client.MachineUnreleasedData) MachineUn
 	}
 }
 
-func fromAPIPlayInfo(data *v4Client.PlayInfo) PlayInfo {
+func fromAPIPlayInfo(data *v4Client.PlayInfoCasing) PlayInfo {
 	if data == nil {
 		return PlayInfo{}
 	}

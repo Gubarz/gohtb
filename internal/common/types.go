@@ -150,16 +150,16 @@ type BloodInfo struct {
 }
 
 type TeamMachineAttackPaths struct {
-	BinaryAnalysis            TeamsAttackPathCard
-	BinaryExploitation        TeamsAttackPathCard
-	ConfigurationAnalysis     TeamsAttackPathCard
-	Fuzzing                   TeamsAttackPathCard
-	Impersonation             TeamsAttackPathCard
-	PacketCaptureAnalysis     TeamsAttackPathCard
-	Pivoting                  TeamsAttackPathCard
-	Reconnaissance            TeamsAttackPathCard
-	UserEnumeration           TeamsAttackPathCard
-	WebSiteStructureDiscovery TeamsAttackPathCard
+	Blockchain              TeamsAttackPathCard
+	Cloud                   TeamsAttackPathCard
+	EnterpriseNetwork       TeamsAttackPathCard
+	Forensics               TeamsAttackPathCard
+	Mobile                  TeamsAttackPathCard
+	NicheTechnologies       TeamsAttackPathCard
+	Person                  TeamsAttackPathCard
+	SecurityOperations      TeamsAttackPathCard
+	VulnerabilityAssessment TeamsAttackPathCard
+	WebApplication          TeamsAttackPathCard
 }
 
 type TeamsAttackPathCard struct {

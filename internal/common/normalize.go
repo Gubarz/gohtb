@@ -204,16 +204,16 @@ func FromAPITeamMachineAttackPaths(data *v4client.TeamMachineAttackPaths) TeamMa
 		return TeamMachineAttackPaths{}
 	}
 	return TeamMachineAttackPaths{
-		BinaryAnalysis:            fromAPITeamsAttackPathCard(data.BinaryAnalysis),
-		BinaryExploitation:        fromAPITeamsAttackPathCard(data.BinaryExploitation),
-		ConfigurationAnalysis:     fromAPITeamsAttackPathCard(data.ConfigurationAnalysis),
-		Fuzzing:                   fromAPITeamsAttackPathCard(data.Fuzzing),
-		Impersonation:             fromAPITeamsAttackPathCard(data.Impersonation),
-		PacketCaptureAnalysis:     fromAPITeamsAttackPathCard(data.PacketCaptureAnalysis),
-		Pivoting:                  fromAPITeamsAttackPathCard(data.Pivoting),
-		Reconnaissance:            fromAPITeamsAttackPathCard(data.Reconnaissance),
-		UserEnumeration:           fromAPITeamsAttackPathCard(data.UserEnumeration),
-		WebSiteStructureDiscovery: fromAPITeamsAttackPathCard(data.WebSiteStructureDiscovery),
+		Blockchain:              fromAPITeamsAttackPathCard(data.Blockchain),
+		Cloud:                   fromAPITeamsAttackPathCard(data.Cloud),
+		EnterpriseNetwork:       fromAPITeamsAttackPathCard(data.EnterpriseNetwork),
+		Forensics:               fromAPITeamsAttackPathCard(data.Forensics),
+		Mobile:                  fromAPITeamsAttackPathCard(data.Mobile),
+		NicheTechnologies:       fromAPITeamsAttackPathCard(data.NicheTechnologies),
+		Person:                  fromAPITeamsAttackPathCard(data.Person),
+		SecurityOperations:      fromAPITeamsAttackPathCard(data.SecurityOperations),
+		VulnerabilityAssessment: fromAPITeamsAttackPathCard(data.VulnerabilityAssessment),
+		WebApplication:          fromAPITeamsAttackPathCard(data.WebApplication),
 	}
 }
 

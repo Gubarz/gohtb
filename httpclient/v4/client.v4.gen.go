@@ -535,7 +535,6 @@ type AcademyDifficulty struct {
 
 // AcademyModule Academy Module Item
 type AcademyModule struct {
-	Aggregates *StringArray       `json:"aggregates,omitempty"`
 	Avatar     *string            `json:"avatar,omitempty"`
 	Difficulty *AcademyDifficulty `json:"difficulty,omitempty"`
 	Id         *int               `json:"id,omitempty"`
@@ -1292,10 +1291,10 @@ type ConnectionStatusResponse = []ConnectionStatusItem
 
 // ConnectionsData defines model for ConnectionsData.
 type ConnectionsData struct {
-	Competitive   *ConnectionCompetitive `json:"competitive,omitempty"`
 	Fortresses    *ConnectionLab         `json:"fortresses,omitempty"`
 	Lab           *ConnectionLab         `json:"lab,omitempty"`
 	ProLabs       *ConnectionProlab      `json:"pro_labs,omitempty"`
+	ReleaseArena  *ConnectionCompetitive `json:"release_arena,omitempty"`
 	StartingPoint *ConnectionLab         `json:"starting_point,omitempty"`
 }
 
@@ -1915,16 +1914,16 @@ type MachineAttackPathItem struct {
 
 // MachineAttackPaths defines model for MachineAttackPaths.
 type MachineAttackPaths struct {
-	BinaryAnalysis            *MachineAttackPathItem `json:"Binary Analysis,omitempty"`
-	BinaryExploitation        *MachineAttackPathItem `json:"Binary Exploitation,omitempty"`
-	ConfigurationAnalysis     *MachineAttackPathItem `json:"Configuration Analysis,omitempty"`
-	Fuzzing                   *MachineAttackPathItem `json:"Fuzzing,omitempty"`
-	Impersonation             *MachineAttackPathItem `json:"Impersonation,omitempty"`
-	PacketCaptureAnalysis     *MachineAttackPathItem `json:"Packet Capture Analysis,omitempty"`
-	Pivoting                  *MachineAttackPathItem `json:"Pivoting,omitempty"`
-	Reconnaissance            *MachineAttackPathItem `json:"Reconnaissance,omitempty"`
-	UserEnumeration           *MachineAttackPathItem `json:"User Enumeration,omitempty"`
-	WebSiteStructureDiscovery *MachineAttackPathItem `json:"Web Site Structure Discovery,omitempty"`
+	EnterpriseNetwork       *MachineAttackPathItem `json:"Enterprise Network,omitempty"`
+	Forensics               *MachineAttackPathItem `json:"Forensics,omitempty"`
+	IoT                     *MachineAttackPathItem `json:"IoT,omitempty"`
+	Mobile                  *MachineAttackPathItem `json:"Mobile,omitempty"`
+	NicheTechnologies       *MachineAttackPathItem `json:"Niche Technologies,omitempty"`
+	Person                  *MachineAttackPathItem `json:"Person,omitempty"`
+	Reconnaissance          *MachineAttackPathItem `json:"Reconnaissance,omitempty"`
+	SecurityOperations      *MachineAttackPathItem `json:"Security Operations,omitempty"`
+	VulnerabilityAssessment *MachineAttackPathItem `json:"Vulnerability Assessment,omitempty"`
+	WebApplication          *MachineAttackPathItem `json:"Web Application,omitempty"`
 }
 
 // MachineCard1 Schema definition for Machine Card
@@ -2167,14 +2166,14 @@ type MachineProfileInfo struct {
 	OwnRank *int    `json:"ownRank"`
 
 	// PlayInfo Schema definition for Play Info
-	PlayInfo             *PlayInfo  `json:"playInfo,omitempty"`
-	Points               *int       `json:"points,omitempty"`
-	PriceTier            *int       `json:"priceTier,omitempty"`
-	Recommended          *bool      `json:"recommended,omitempty"`
-	Release              *time.Time `json:"release,omitempty"`
-	RequiredSubscription *string    `json:"requiredSubscription"`
-	Retired              *bool      `json:"retired,omitempty"`
-	ReviewsCount         *int       `json:"reviews_count,omitempty"`
+	PlayInfo             *PlayInfoCasing `json:"playInfo,omitempty"`
+	Points               *int            `json:"points,omitempty"`
+	PriceTier            *int            `json:"priceTier,omitempty"`
+	Recommended          *bool           `json:"recommended,omitempty"`
+	Release              *time.Time      `json:"release,omitempty"`
+	RequiredSubscription *string         `json:"requiredSubscription"`
+	Retired              *bool           `json:"retired,omitempty"`
+	ReviewsCount         *int            `json:"reviews_count,omitempty"`
 
 	// RootBlood Schema definition for Blood Info
 	RootBlood           *BloodInfo `json:"rootBlood,omitempty"`
@@ -2733,11 +2732,8 @@ type ProfileChartMachineAttackProfile struct {
 
 // ProfileChartMachineAttackProfileMachineAttackPaths defines model for ProfileChartMachineAttackProfileMachineAttackPaths.
 type ProfileChartMachineAttackProfileMachineAttackPaths struct {
-	// Authentication Schema definition for Profile Chart Machine Attack Card
-	Authentication *ProfileChartMachineAttackCard `json:"Authentication,omitempty"`
-
-	// CommonApplications Schema definition for Profile Chart Machine Attack Card
-	CommonApplications *ProfileChartMachineAttackCard `json:"Common Applications,omitempty"`
+	// EnterpriseNetwork Schema definition for Profile Chart Machine Attack Card
+	EnterpriseNetwork *ProfileChartMachineAttackCard `json:"Enterprise Network,omitempty"`
 
 	// Injections Schema definition for Profile Chart Machine Attack Card
 	Injections *ProfileChartMachineAttackCard `json:"Injections,omitempty"`
@@ -2760,8 +2756,11 @@ type ProfileChartMachineAttackProfileMachineAttackPaths struct {
 	// SourceCodeAnalysis Schema definition for Profile Chart Machine Attack Card
 	SourceCodeAnalysis *ProfileChartMachineAttackCard `json:"Source Code Analysis,omitempty"`
 
-	// WebSiteStructureDiscovery Schema definition for Profile Chart Machine Attack Card
-	WebSiteStructureDiscovery *ProfileChartMachineAttackCard `json:"Web Site Structure Discovery,omitempty"`
+	// VulnerabilityAssessment Schema definition for Profile Chart Machine Attack Card
+	VulnerabilityAssessment *ProfileChartMachineAttackCard `json:"Vulnerability Assessment,omitempty"`
+
+	// WebApplication Schema definition for Profile Chart Machine Attack Card
+	WebApplication *ProfileChartMachineAttackCard `json:"Web Application,omitempty"`
 }
 
 // ProfileContentIdResponse Schema definition for Profile Content Id Response
@@ -3753,16 +3752,20 @@ type SeasonListData = []SeasonListDataItem
 
 // SeasonListDataItem defines model for SeasonListDataItem.
 type SeasonListDataItem struct {
-	Active          *bool      `json:"active,omitempty"`
-	BackgroundImage *string    `json:"background_image,omitempty"`
-	EndDate         *time.Time `json:"end_date,omitempty"`
-	Id              *int       `json:"id,omitempty"`
-	IsVisible       *bool      `json:"is_visible,omitempty"`
-	Logo            *string    `json:"logo,omitempty"`
-	Name            *string    `json:"name,omitempty"`
-	StartDate       *time.Time `json:"start_date,omitempty"`
-	State           *string    `json:"state,omitempty"`
-	Subtitle        *string    `json:"subtitle"`
+	Active             *bool      `json:"active,omitempty"`
+	BackgroundImage    *string    `json:"background_image,omitempty"`
+	CurrentWeek        *int       `json:"current_week"`
+	EndDate            *time.Time `json:"end_date,omitempty"`
+	Id                 *int       `json:"id,omitempty"`
+	IsVisible          *bool      `json:"is_visible,omitempty"`
+	Logo               *string    `json:"logo,omitempty"`
+	Name               *string    `json:"name,omitempty"`
+	NewBackgroundImage *string    `json:"new_background_image,omitempty"`
+	Players            *int       `json:"players,omitempty"`
+	StartDate          *time.Time `json:"start_date,omitempty"`
+	State              *string    `json:"state,omitempty"`
+	Subtitle           *string    `json:"subtitle"`
+	Weeks              *int       `json:"weeks,omitempty"`
 }
 
 // SeasonListResponse Schema definition for Season List Response
@@ -3789,6 +3792,8 @@ type SeasonMachinesDataItem struct {
 	Name           *string    `json:"name,omitempty"`
 	Os             *string    `json:"os,omitempty"`
 	Production     *int       `json:"production,omitempty"`
+	Rating         *int       `json:"rating,omitempty"`
+	RatingCount    *int       `json:"ratingCount,omitempty"`
 	ReleaseTime    *time.Time `json:"release_time,omitempty"`
 	RootPoints     *int       `json:"root_points,omitempty"`
 	Unknown        *bool      `json:"unknown,omitempty"`
@@ -3830,6 +3835,7 @@ type SeasonPlayersLeaderboardDataItem struct {
 	AccountId     *string  `json:"account_id,omitempty"`
 	AvatarThumb   *string  `json:"avatar_thumb,omitempty"`
 	Country       *string  `json:"country"`
+	CountryName   *string  `json:"country_name"`
 	LastOwn       *string  `json:"last_own,omitempty"`
 	LeagueRank    *string  `json:"league_rank,omitempty"`
 	Name          *string  `json:"name,omitempty"`
@@ -3872,14 +3878,16 @@ type SeasonRank struct {
 
 // SeasonRewardGroupItem defines model for SeasonRewardGroupItem.
 type SeasonRewardGroupItem struct {
-	Description  *string             `json:"description"`
-	Id           *int                `json:"id,omitempty"`
-	Image        *string             `json:"image"`
-	Name         *string             `json:"name,omitempty"`
-	Order        *int                `json:"order,omitempty"`
-	RewardTypeId *int                `json:"reward_type_id,omitempty"`
-	Rewards      *SeasonRewardsItems `json:"rewards,omitempty"`
-	Subtitle     *string             `json:"subtitle"`
+	Description       *string             `json:"description"`
+	FlagsNeeded       *int                `json:"flags_needed,omitempty"`
+	Id                *int                `json:"id,omitempty"`
+	Image             *string             `json:"image"`
+	Name              *string             `json:"name,omitempty"`
+	Order             *int                `json:"order,omitempty"`
+	RankUpRequirement *string             `json:"rank_up_requirement,omitempty"`
+	RewardTypeId      *int                `json:"reward_type_id,omitempty"`
+	Rewards           *SeasonRewardsItems `json:"rewards,omitempty"`
+	Subtitle          *string             `json:"subtitle"`
 }
 
 // SeasonRewardItem defines model for SeasonRewardItem.
@@ -3936,10 +3944,15 @@ type SeasonUserRank struct {
 type SeasonUserRankData struct {
 	FlagsToNextRank   *FlagsToNextRank `json:"flags_to_next_rank,omitempty"`
 	League            *string          `json:"league,omitempty"`
+	NextRank          *int             `json:"next_rank,omitempty"`
 	Rank              *int             `json:"rank,omitempty"`
 	RankSuffix        *string          `json:"rank_suffix,omitempty"`
+	RootBloods        *int             `json:"root_bloods,omitempty"`
+	RootOwns          *int             `json:"root_owns,omitempty"`
 	TotalRanks        *int             `json:"total_ranks,omitempty"`
 	TotalSeasonPoints *int             `json:"total_season_points,omitempty"`
+	UserBloods        *int             `json:"user_bloods,omitempty"`
+	UserOwns          *int             `json:"user_owns,omitempty"`
 }
 
 // Server Schema definition for Server
@@ -4386,35 +4399,35 @@ type TeamInvitationsIdResponse struct {
 
 // TeamMachineAttackPaths defines model for TeamMachineAttackPaths.
 type TeamMachineAttackPaths struct {
-	// BinaryAnalysis Schema definition for Teams Attack Path Card
-	BinaryAnalysis *TeamsAttackPathCard `json:"Binary Analysis,omitempty"`
+	// Blockchain Schema definition for Teams Attack Path Card
+	Blockchain *TeamsAttackPathCard `json:"Blockchain,omitempty"`
 
-	// BinaryExploitation Schema definition for Teams Attack Path Card
-	BinaryExploitation *TeamsAttackPathCard `json:"Binary Exploitation,omitempty"`
+	// Cloud Schema definition for Teams Attack Path Card
+	Cloud *TeamsAttackPathCard `json:"Cloud,omitempty"`
 
-	// ConfigurationAnalysis Schema definition for Teams Attack Path Card
-	ConfigurationAnalysis *TeamsAttackPathCard `json:"Configuration Analysis,omitempty"`
+	// EnterpriseNetwork Schema definition for Teams Attack Path Card
+	EnterpriseNetwork *TeamsAttackPathCard `json:"Enterprise Network,omitempty"`
 
-	// Fuzzing Schema definition for Teams Attack Path Card
-	Fuzzing *TeamsAttackPathCard `json:"Fuzzing,omitempty"`
+	// Forensics Schema definition for Teams Attack Path Card
+	Forensics *TeamsAttackPathCard `json:"Forensics,omitempty"`
 
-	// Impersonation Schema definition for Teams Attack Path Card
-	Impersonation *TeamsAttackPathCard `json:"Impersonation,omitempty"`
+	// Mobile Schema definition for Teams Attack Path Card
+	Mobile *TeamsAttackPathCard `json:"Mobile,omitempty"`
 
-	// PacketCaptureAnalysis Schema definition for Teams Attack Path Card
-	PacketCaptureAnalysis *TeamsAttackPathCard `json:"Packet Capture Analysis,omitempty"`
+	// NicheTechnologies Schema definition for Teams Attack Path Card
+	NicheTechnologies *TeamsAttackPathCard `json:"Niche Technologies,omitempty"`
 
-	// Pivoting Schema definition for Teams Attack Path Card
-	Pivoting *TeamsAttackPathCard `json:"Pivoting,omitempty"`
+	// Person Schema definition for Teams Attack Path Card
+	Person *TeamsAttackPathCard `json:"Person,omitempty"`
 
-	// Reconnaissance Schema definition for Teams Attack Path Card
-	Reconnaissance *TeamsAttackPathCard `json:"Reconnaissance,omitempty"`
+	// SecurityOperations Schema definition for Teams Attack Path Card
+	SecurityOperations *TeamsAttackPathCard `json:"Security Operations,omitempty"`
 
-	// UserEnumeration Schema definition for Teams Attack Path Card
-	UserEnumeration *TeamsAttackPathCard `json:"User Enumeration,omitempty"`
+	// VulnerabilityAssessment Schema definition for Teams Attack Path Card
+	VulnerabilityAssessment *TeamsAttackPathCard `json:"Vulnerability Assessment,omitempty"`
 
-	// WebSiteStructureDiscovery Schema definition for Teams Attack Path Card
-	WebSiteStructureDiscovery *TeamsAttackPathCard `json:"Web Site Structure Discovery,omitempty"`
+	// WebApplication Schema definition for Teams Attack Path Card
+	WebApplication *TeamsAttackPathCard `json:"Web Application,omitempty"`
 }
 
 // TeamMember University Members Resposne
@@ -4585,10 +4598,10 @@ type UniversityAllListResponse struct {
 
 // UniversityChartChallengeCategoriesItem defines model for UniversityChartChallengeCategoriesItem.
 type UniversityChartChallengeCategoriesItem struct {
-	AllUniversitysAvgPercentage *float32 `json:"all_universitys_avg_percentage,omitempty"`
-	Id                          *int     `json:"id,omitempty"`
-	Name                        *string  `json:"name,omitempty"`
-	UniversityPercentage        *float32 `json:"university_percentage,omitempty"`
+	AllTeamsAvgPercentage *float32 `json:"all_teams_avg_percentage,omitempty"`
+	Id                    *int     `json:"id,omitempty"`
+	Name                  *string  `json:"name,omitempty"`
+	TeamPercentage        *float32 `json:"team_percentage,omitempty"`
 }
 
 // UniversityChartChallengeCategoriesItems defines model for UniversityChartChallengeCategoriesItems.
