@@ -54,6 +54,75 @@ func fromAPISherlock(data *v4client.SherlockNamedItemData) SherlockNamedItemData
 	}
 }
 
+func fromAPISherlockDownloadLink(data *v4client.SherlockDownloadLink) SherlockDownloadLink {
+	if data == nil {
+		return SherlockDownloadLink{}
+	}
+	return SherlockDownloadLink{
+		ExpiresIn: deref.Int(data.ExpiresIn),
+		Url:       deref.String(data.Url),
+	}
+}
+
+func fromAPISherlockProgress(data *v4client.SherlockProgressData) SherlockProgressData {
+	if data == nil {
+		return SherlockProgressData{}
+	}
+	return SherlockProgressData{
+		IsOwned:       deref.Bool(data.IsOwned),
+		OwnRank:       deref.Int(data.OwnRank),
+		Progress:      deref.Int(data.Progress),
+		TasksAnswered: deref.Int(data.TasksAnswered),
+		TotalTasks:    deref.Int(data.TotalTasks),
+	}
+}
+
+func fromAPISherlockTasks(data v4client.SherlockTask) SherlockTask {
+	return SherlockTask{
+		Completed:      deref.Bool(data.Completed),
+		Description:    deref.String(data.Description),
+		Flag:           deref.String(data.Flag),
+		Hint:           deref.String(data.Hint),
+		Id:             deref.Int(data.Id),
+		MaskedFlag:     deref.String(data.MaskedFlag),
+		PrerequisiteId: deref.Int(data.PrerequisiteId),
+		TaskType:       fromAPITaskType(data.TaskType),
+		Title:          deref.String(data.Title),
+		Type:           fromAPITaskType(data.Type),
+	}
+}
+
+func fromAPITaskType(data *v4client.TaskType) TaskType {
+	if data == nil {
+		return TaskType{}
+	}
+	return TaskType{
+		Id:   deref.Int(data.Id),
+		Text: deref.String(data.Text),
+	}
+}
+
+func fromAPIOwnTask(data *v4client.TaskFlagResponse) TaskFlagResponse {
+	if data == nil {
+		return TaskFlagResponse{}
+	}
+	return TaskFlagResponse{
+		Message:  deref.String(data.Message),
+		UserTask: fromAPIUserTask(data.UserTask),
+	}
+}
+
+func fromAPIUserTask(data *v4client.UserTask) UserTask {
+	if data == nil {
+		return UserTask{}
+	}
+	return UserTask{
+		Id:     deref.Int(data.Id),
+		TaskId: deref.Int(data.TaskId),
+		UserId: deref.Int(data.UserId),
+	}
+}
+
 func fromStringArray(data *v4client.StringArray) []string {
 	if data == nil {
 		return nil

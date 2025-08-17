@@ -82,3 +82,67 @@ type SherlockNamedItemData struct {
 	UserCanReview       bool
 	WriteupVisible      bool
 }
+
+type DownloadResponse struct {
+	Data         SherlockDownloadLink
+	ResponseMeta common.ResponseMeta
+}
+
+type SherlockDownloadLink struct {
+	ExpiresIn int
+	Url       string
+}
+
+type ProgressResponse struct {
+	Data         SherlockProgressData
+	ResponseMeta common.ResponseMeta
+}
+
+type SherlockProgressData struct {
+	IsOwned       bool
+	OwnRank       int
+	Progress      int
+	TasksAnswered int
+	TotalTasks    int
+}
+
+type TasksResponse struct {
+	Data         SherlockTasksData
+	ResponseMeta common.ResponseMeta
+}
+
+type SherlockTasksData = []SherlockTask
+
+type SherlockTask struct {
+	Completed      bool
+	Description    string
+	Flag           string
+	Hint           string
+	Id             int
+	MaskedFlag     string
+	PrerequisiteId int
+	TaskType       TaskType
+	Title          string
+	Type           TaskType
+}
+
+type TaskType struct {
+	Id   int
+	Text string
+}
+
+type OwnResponse struct {
+	Data         TaskFlagResponse
+	ResponseMeta common.ResponseMeta
+}
+
+type TaskFlagResponse struct {
+	Message  string
+	UserTask UserTask
+}
+
+type UserTask struct {
+	Id     int
+	TaskId int
+	UserId int
+}
