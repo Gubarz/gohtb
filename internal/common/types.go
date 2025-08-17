@@ -58,7 +58,6 @@ type AcademyDifficulty struct {
 }
 
 type AcademyModule struct {
-	Aggregates []string
 	Avatar     string
 	Difficulty AcademyDifficulty
 	Id         int

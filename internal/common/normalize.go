@@ -178,7 +178,6 @@ func fromAPIAcademyDifficulty(data *v4client.AcademyDifficulty) AcademyDifficult
 
 func FromAPIAcademyModule(data v4client.AcademyModule) AcademyModule {
 	return AcademyModule{
-		Aggregates: deref.Slice(data.Aggregates),
 		Avatar:     deref.String(data.Avatar),
 		Difficulty: fromAPIAcademyDifficulty(data.Difficulty),
 		Id:         deref.Int(data.Id),
