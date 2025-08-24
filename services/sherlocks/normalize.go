@@ -2,6 +2,7 @@ package sherlocks
 
 import (
 	v4client "github.com/gubarz/gohtb/httpclient/v4"
+	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/deref"
 )
 
@@ -128,4 +129,22 @@ func fromStringArray(data *v4client.StringArray) []string {
 		return nil
 	}
 	return []string(*data)
+}
+
+func fromAPIPlaySherlock(data *v4client.SherlockPlay) SherlockPlay {
+	if data == nil {
+		return SherlockPlay{}
+	}
+	var makers []common.Maker
+	for _, v := range *data.Creators {
+		makers = append(makers, common.FromAPIMaker(&v))
+	}
+	return SherlockPlay{
+		Creators: makers,
+		FileName: deref.String(data.FileName),
+		FileSize: deref.String(data.FileSize),
+		Id:       deref.Int(data.Id),
+		PlayInfo: common.FromAPIPlayInfoAlt(data.PlayInfo),
+		Scenario: deref.String(data.Scenario),
+	}
 }

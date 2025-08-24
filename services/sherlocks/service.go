@@ -50,6 +50,26 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	}, nil
 }
 
+func (h *Handle) Play(ctx context.Context) (PlayResponse, error) {
+	resp, err := h.client.V4().GetSherlockPlay(
+		h.client.Limiter().Wrap(ctx),
+		h.id,
+	)
+	if err != nil {
+		return PlayResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSherlockPlayResponse)
+	if err != nil {
+		return PlayResponse{ResponseMeta: meta}, err
+	}
+
+	return PlayResponse{
+		Data:         fromAPIPlaySherlock(parsed.JSON200.Data),
+		ResponseMeta: meta,
+	}, nil
+}
+
 func (h *Handle) DownloadLink(ctx context.Context) (DownloadResponse, error) {
 	resp, err := h.client.V4().GetSherlockDownloadlink(
 		h.client.Limiter().Wrap(ctx),

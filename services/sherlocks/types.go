@@ -146,3 +146,17 @@ type UserTask struct {
 	TaskId int
 	UserId int
 }
+
+type PlayResponse struct {
+	Data         SherlockPlay
+	ResponseMeta common.ResponseMeta
+}
+
+type SherlockPlay struct {
+	Creators []common.Maker
+	FileName string
+	FileSize string
+	Id       int
+	PlayInfo common.PlayInfoAlt
+	Scenario string
+}
