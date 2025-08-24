@@ -23,6 +23,14 @@ func (s *Service) Sherlock(id int) *Handle {
 	}
 }
 
+func (s *Service) List() *SherlockQuery {
+	return &SherlockQuery{
+		client:  s.base.Client,
+		page:    1,
+		perPage: 100,
+	}
+}
+
 func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	slug := strconv.Itoa(h.id)
 	resp, err := h.client.V4().GetSherlock(h.client.Limiter().Wrap(ctx), slug)
