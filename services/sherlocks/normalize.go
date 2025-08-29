@@ -22,9 +22,20 @@ func fromAPISherlockList(data v4client.SherlockItem) SherlockItem {
 		Rating:              deref.Float32(data.Rating),
 		RatingCount:         deref.Int(data.RatingCount),
 		ReleaseDate:         deref.String(data.ReleaseDate),
-		Retires:             deref.Time(&data.Retires.Time),
+		Retires:             fromAPISherlockRetires(data.Retires),
 		Solves:              deref.Int(data.Solves),
 		State:               deref.String(data.State),
+	}
+}
+
+func fromAPISherlockRetires(data *v4client.SherlockRetires) SherlockRetires {
+	if data == nil {
+		return SherlockRetires{}
+	}
+	return SherlockRetires{
+		AvatarUrl:  deref.String(data.AvatarUrl),
+		Difficulty: deref.String(data.Difficulty),
+		Name:       deref.String(data.Name),
 	}
 }
 

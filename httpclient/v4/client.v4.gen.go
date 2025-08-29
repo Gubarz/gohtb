@@ -4000,22 +4000,22 @@ type SherlockInfo struct {
 
 // SherlockItem Schema definition for Sherlock Item
 type SherlockItem struct {
-	AuthUserHasReviewed *bool               `json:"auth_user_has_reviewed,omitempty"`
-	Avatar              *string             `json:"avatar,omitempty"`
-	CategoryId          *int                `json:"category_id,omitempty"`
-	CategoryName        *string             `json:"category_name,omitempty"`
-	Difficulty          *string             `json:"difficulty,omitempty"`
-	Id                  *int                `json:"id,omitempty"`
-	IsOwned             *bool               `json:"is_owned,omitempty"`
-	Name                *string             `json:"name,omitempty"`
-	Pinned              *bool               `json:"pinned,omitempty"`
-	PlayMethods         *StringArray        `json:"play_methods,omitempty"`
-	Progress            *int                `json:"progress,omitempty"`
-	Rating              *float32            `json:"rating,omitempty"`
-	RatingCount         *int                `json:"rating_count,omitempty"`
-	ReleaseDate         *string             `json:"release_date,omitempty"`
-	Retires             *openapi_types.Date `json:"retires"`
-	Solves              *int                `json:"solves,omitempty"`
+	AuthUserHasReviewed *bool            `json:"auth_user_has_reviewed,omitempty"`
+	Avatar              *string          `json:"avatar,omitempty"`
+	CategoryId          *int             `json:"category_id,omitempty"`
+	CategoryName        *string          `json:"category_name,omitempty"`
+	Difficulty          *string          `json:"difficulty,omitempty"`
+	Id                  *int             `json:"id,omitempty"`
+	IsOwned             *bool            `json:"is_owned,omitempty"`
+	Name                *string          `json:"name,omitempty"`
+	Pinned              *bool            `json:"pinned,omitempty"`
+	PlayMethods         *StringArray     `json:"play_methods,omitempty"`
+	Progress            *int             `json:"progress,omitempty"`
+	Rating              *float32         `json:"rating"`
+	RatingCount         *int             `json:"rating_count,omitempty"`
+	ReleaseDate         *string          `json:"release_date,omitempty"`
+	Retires             *SherlockRetires `json:"retires"`
+	Solves              *int             `json:"solves,omitempty"`
 
 	// State The state of the item.
 	State *string `json:"state,omitempty"`
@@ -4095,6 +4095,13 @@ type SherlockProgressData struct {
 	Progress      *int  `json:"progress,omitempty"`
 	TasksAnswered *int  `json:"tasks_answered,omitempty"`
 	TotalTasks    *int  `json:"total_tasks,omitempty"`
+}
+
+// SherlockRetires defines model for SherlockRetires.
+type SherlockRetires struct {
+	AvatarUrl  *string `json:"avatar_url,omitempty"`
+	Difficulty *string `json:"difficulty,omitempty"`
+	Name       *string `json:"name,omitempty"`
 }
 
 // SherlockTask Schema definition for Sherlock Task

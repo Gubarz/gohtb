@@ -56,7 +56,7 @@ type SherlockItem struct {
 	Rating              float32
 	RatingCount         int
 	ReleaseDate         string
-	Retires             time.Time
+	Retires             SherlockRetires
 	Solves              int
 	State               string
 }
@@ -159,4 +159,10 @@ type SherlockPlay struct {
 	Id       int
 	PlayInfo common.PlayInfoAlt
 	Scenario string
+}
+
+type SherlockRetires struct {
+	AvatarUrl  string
+	Difficulty string
+	Name       string
 }
