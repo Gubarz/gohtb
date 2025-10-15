@@ -100,7 +100,7 @@ const (
 //	// Use the client...
 //	info, err := client.Users.Info(context.Background())
 func New(token string, options ...Option) (*Client, error) {
-	if token == "" {
+	if token == "" || len(token) < 900 {
 		return nil, fmt.Errorf("htb token is required")
 	}
 
