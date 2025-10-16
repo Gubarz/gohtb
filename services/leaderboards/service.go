@@ -59,7 +59,7 @@ func (h *Handle) Teams(ctx context.Context) (TeamRankingsResponse, error) {
 
 func (h *Handle) Countries(ctx context.Context) (CountryRankingsResponse, error) {
 	// for `rankings/countries` endpoint
-	resp, err := h.client.V4().GetRankingsTeams(h.client.Limiter().Wrap(ctx))
+	resp, err := h.client.V4().GetRankingsCountries(h.client.Limiter().Wrap(ctx))
 	if err != nil {
 		return CountryRankingsResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
