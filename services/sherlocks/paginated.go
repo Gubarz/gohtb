@@ -7,7 +7,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/ptr"
 )
 
@@ -50,7 +49,7 @@ func (q *SherlockQuery) ByStateList(val ...string) *SherlockQuery {
 	for i, v := range val {
 		lowercased[i] = strings.ToLower(v)
 	}
-	qc.state = &lowercased
+	qc.state = lowercased
 	return qc
 }
 
@@ -79,7 +78,7 @@ func (q *SherlockQuery) ByDifficultyList(val ...string) *SherlockQuery {
 	for i, v := range val {
 		lowercased[i] = strings.ToLower(v)
 	}
-	qc.difficulty = &lowercased
+	qc.difficulty = lowercased
 	return qc
 }
 
@@ -104,7 +103,7 @@ func (q *SherlockQuery) ByCategory(val ...int) *SherlockQuery {
 //	Sherlocks := query.ByCategoryList(1, 2, 3).Results(ctx)
 func (q *SherlockQuery) ByCategoryList(val ...int) *SherlockQuery {
 	qc := ptr.Clone(q)
-	qc.category = &val
+	qc.category = val
 	return qc
 }
 
@@ -119,14 +118,14 @@ func (q *SherlockQuery) ByCategoryList(val ...int) *SherlockQuery {
 func (q *SherlockQuery) SortedBy(field string) *SherlockQuery {
 	qc := ptr.Clone(q)
 	sortBy := v4Client.GetSherlocksParamsSortBy(field)
-	qc.sortBy = &sortBy
+	qc.sortBy = sortBy
 	return qc
 }
 
 func (q *SherlockQuery) sort(val v4Client.GetSherlocksParamsSortBy, order v4Client.GetSherlocksParamsSortType) *SherlockQuery {
 	qc := ptr.Clone(q)
-	qc.sortBy = &val
-	qc.sortType = &order
+	qc.sortBy = val
+	qc.sortType = order
 	return qc
 }
 
@@ -137,10 +136,10 @@ func (q *SherlockQuery) sort(val v4Client.GetSherlocksParamsSortBy, order v4Clie
 //
 //	Sherlocks := query.SortedBy("Rating").Ascending().Results(ctx)
 func (q *SherlockQuery) Ascending() *SherlockQuery {
-	if q.sortBy == nil {
+	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(*q.sortBy, v4Client.GetSherlocksParamsSortType("asc"))
+	return q.sort(q.sortBy, v4Client.GetSherlocksParamsSortType("asc"))
 }
 
 // Descending sets the sort order to descending.
@@ -150,10 +149,10 @@ func (q *SherlockQuery) Ascending() *SherlockQuery {
 //
 //	Sherlocks := query.SortedBy("Rating").Descending().Results(ctx)
 func (q *SherlockQuery) Descending() *SherlockQuery {
-	if q.sortBy == nil {
+	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(*q.sortBy, v4Client.GetSherlocksParamsSortType("desc"))
+	return q.sort(q.sortBy, v4Client.GetSherlocksParamsSortType("desc"))
 }
 
 // Page sets the specific page number for pagination.
@@ -209,8 +208,8 @@ func (q *SherlockQuery) Previous() *SherlockQuery {
 
 func (q *SherlockQuery) fetchResults(ctx context.Context) (SherlockListResponse, error) {
 	params := &v4Client.GetSherlocksParams{
-		Page:       &q.page,
-		PerPage:    &q.perPage,
+		Page:       q.page,
+		PerPage:    q.perPage,
 		Difficulty: q.difficulty,
 		Category:   q.category,
 		SortBy:     q.sortBy,
@@ -230,7 +229,7 @@ func (q *SherlockQuery) fetchResults(ctx context.Context) (SherlockListResponse,
 	}
 
 	return SherlockListResponse{
-		Data:         convert.Slice(*parsed.JSON200.Data, fromAPISherlockList),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }

@@ -6,8 +6,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
-	"github.com/gubarz/gohtb/internal/deref"
 	"github.com/gubarz/gohtb/internal/errutil"
 	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/service"
@@ -74,7 +72,7 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	}
 
 	return InfoResponse{
-		Data:         fromAPIChallengeInfo(parsed.JSON200.Challenge),
+		Data:         parsed.JSON200.Challenge,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -105,7 +103,7 @@ func (h *Handle) ToDo(ctx context.Context) (common.TodoUpdateResponse, error) {
 	}
 
 	return common.TodoUpdateResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Info, common.FromAPIInfoArray),
+		Data:         parsed.JSON200.Info,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -138,7 +136,7 @@ func (h *Handle) Start(ctx context.Context) (common.MessageResponse, error) {
 
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
+			Message: parsed.JSON200.Message,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -172,8 +170,8 @@ func (h *Handle) Stop(ctx context.Context) (common.MessageResponse, error) {
 
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
-			Success: deref.Bool(parsed.JSON200.Success),
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -208,7 +206,7 @@ func (h *Handle) Own(ctx context.Context, flag string) (common.MessageResponse, 
 
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
+			Message: parsed.JSON200.Message,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -241,7 +239,7 @@ func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
 	}
 
 	return ActivityResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Info.Activity, fromAPIChallengeActivity),
+		Data:         parsed.JSON200.Info.Activity,
 		ResponseMeta: meta,
 	}, nil
 }

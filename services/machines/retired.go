@@ -7,7 +7,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/ptr"
 )
 
@@ -163,14 +162,14 @@ func (q *RetiredQuery) ByDifficulty(val string) *RetiredQuery {
 func (q *RetiredQuery) SortedBy(field string) *RetiredQuery {
 	qc := ptr.Clone(q)
 	sortBy := v4Client.GetMachinePaginatedParamsSortBy(strings.ToLower(field))
-	qc.sortBy = &sortBy
+	qc.sortBy = sortBy
 	return qc
 }
 
 func (q *RetiredQuery) sort(val v4Client.GetMachinePaginatedParamsSortBy, order v4Client.GetMachinePaginatedParamsSortType) *RetiredQuery {
 	qc := ptr.Clone(q)
-	qc.sortBy = &val
-	qc.sortType = &order
+	qc.sortBy = val
+	qc.sortType = order
 	return qc
 }
 
@@ -181,10 +180,10 @@ func (q *RetiredQuery) sort(val v4Client.GetMachinePaginatedParamsSortBy, order 
 //
 //	machines := query.SortedBy("user-difficulty").Ascending().Results(ctx)
 func (q *RetiredQuery) Ascending() *RetiredQuery {
-	if q.sortBy == nil {
+	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(*q.sortBy, v4Client.GetMachinePaginatedParamsSortType("asc"))
+	return q.sort(q.sortBy, v4Client.GetMachinePaginatedParamsSortType("asc"))
 }
 
 // Descending sets the sort order to descending.
@@ -194,37 +193,37 @@ func (q *RetiredQuery) Ascending() *RetiredQuery {
 //
 //	machines := query.SortedBy("user-difficulty").Descending().Results(ctx)
 func (q *RetiredQuery) Descending() *RetiredQuery {
-	if q.sortBy == nil {
+	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(*q.sortBy, v4Client.GetMachinePaginatedParamsSortType("desc"))
+	return q.sort(q.sortBy, v4Client.GetMachinePaginatedParamsSortType("desc"))
 }
 
 func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinePaginatedResponse, error) {
 	params := &v4Client.GetMachineListRetiredPaginatedParams{
-		PerPage: &q.perPage,
-		Page:    &q.page,
+		PerPage: q.perPage,
+		Page:    q.page,
 		Keyword: q.keyword,
 	}
 
 	if len(q.difficulty) > 0 {
 		d := q.difficulty
-		params.Difficulty = &d
+		params.Difficulty = d
 	}
 
 	if len(q.os) > 0 {
 		o := q.os
-		params.Os = &o
+		params.Os = o
 	}
 
 	if len(q.tags) > 0 {
 		d := q.tags
-		params.Tags = &d
+		params.Tags = d
 	}
 
 	if q.showCompleted != "" {
 		sc := v4Client.GetMachineListRetiredPaginatedParamsShowCompleted(q.showCompleted)
-		params.ShowCompleted = &sc
+		params.ShowCompleted = sc
 	}
 
 	resp, err := q.client.V4().GetMachineListRetiredPaginated(q.client.Limiter().Wrap(ctx), params)
@@ -238,7 +237,7 @@ func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinePaginatedRespon
 	}
 
 	return MachinePaginatedResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPIMachineData),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }

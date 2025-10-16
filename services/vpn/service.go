@@ -7,8 +7,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
-	"github.com/gubarz/gohtb/internal/deref"
 	"github.com/gubarz/gohtb/internal/errutil"
 	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/ptr"
@@ -125,7 +123,7 @@ func (s *Service) Status(ctx context.Context) (ConnectionStatusResponse, error) 
 	}
 
 	return ConnectionStatusResponse{
-		Data:         convert.SlicePointer(parsed.JSON200, fromAPIConnectionStatusItem),
+		Data:         *parsed.JSON200,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -155,7 +153,7 @@ func (s *Service) Connections(ctx context.Context) (ConnectionStatusResponse, er
 	}
 
 	return ConnectionStatusResponse{
-		Data:         convert.SlicePointer(parsed.JSON200, fromAPIConnectionStatusItem),
+		Data:         *parsed.JSON200,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -237,18 +235,21 @@ func (q *ServerQuery) Results(ctx context.Context) (ConnectionsServersResponse, 
 	}
 
 	var flat []Server
-	if parsed.JSON200.Data != nil && parsed.JSON200.Data.Options != nil {
-		flat = flattenOptions(parsed.JSON200.Data.Options, q.tier, q.location)
-	}
-
 	var assigned AssignedServerConnectionsServers
-	if parsed.JSON200.Data.Assigned != nil {
-		assigned = fromAPIAssignedServerConnectionsServers(parsed.JSON200.Data.Assigned)
+
+	if parsed != nil && parsed.JSON200 != nil {
+		data := parsed.JSON200.Data
+
+		if data.Options != nil {
+			flat = flattenOptions(data.Options, q.tier, q.location)
+		}
+
+		assigned = data.Assigned
 	}
 
 	res := ConnectionsServerData{
 		Assigned: assigned,
-		Disabled: deref.Bool(parsed.JSON200.Data.Disabled),
+		Disabled: parsed.JSON200.Data.Disabled,
 		Options:  flat,
 	}
 
@@ -258,20 +259,20 @@ func (q *ServerQuery) Results(ctx context.Context) (ConnectionsServersResponse, 
 	}, nil
 }
 
-func flattenOptions(opts *v4Client.Options, tier, location string) []Server {
+func flattenOptions(opts v4Client.Options, tier, location string) []Server {
 	tier = strings.ToLower(strings.TrimSpace(tier))
 	location = strings.ToLower(strings.TrimSpace(location))
 
 	var out []Server
 
-	for _, regionMap := range *opts {
+	for _, regionMap := range opts {
 		for _, group := range regionMap {
 			if group.Servers == nil {
 				continue
 			}
-			for _, server := range *group.Servers {
-				loc := deref.String(server.Location)
-				name := deref.String(server.FriendlyName)
+			for _, server := range group.Servers {
+				loc := server.Location
+				name := server.FriendlyName
 
 				actualTier := extractTierFromFriendly(name)
 
@@ -283,11 +284,11 @@ func flattenOptions(opts *v4Client.Options, tier, location string) []Server {
 				}
 
 				out = append(out, Server{
-					Id:             deref.Int(server.Id),
+					Id:             server.Id,
 					FriendlyName:   name,
 					Location:       loc,
-					CurrentClients: deref.Int(server.CurrentClients),
-					Full:           deref.Bool(server.Full),
+					CurrentClients: server.CurrentClients,
+					Full:           server.Full,
 					Tier:           actualTier,
 				})
 			}
@@ -329,6 +330,9 @@ func extractTierFromFriendly(name string) string {
 //	fmt.Println("Switch result:", result.Data.Message)
 func (h *Handle) Switch(ctx context.Context) (common.MessageResponse, error) {
 	resp, err := h.client.V4().PostConnectionsServersSwitch(h.client.Limiter().Wrap(ctx), h.id)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
 
 	parsed, meta, err := common.Parse(resp, v4Client.ParsePostVMTerminateResponse)
 	if err != nil {
@@ -337,7 +341,7 @@ func (h *Handle) Switch(ctx context.Context) (common.MessageResponse, error) {
 
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
+			Message: parsed.JSON200.Message,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -506,18 +510,21 @@ func (q *ProlabQuery) Results(ctx context.Context) (ConnectionsServersResponse, 
 	}
 
 	var flat []Server
-	if parsed.JSON200.Data != nil && parsed.JSON200.Data.Options != nil {
-		flat = flattenOptions(parsed.JSON200.Data.Options, q.tier, q.location)
-	}
-
 	var assigned AssignedServerConnectionsServers
-	if parsed.JSON200.Data.Assigned != nil {
-		assigned = fromAPIAssignedServerConnectionsServers(parsed.JSON200.Data.Assigned)
+
+	if parsed != nil && parsed.JSON200 != nil {
+		data := parsed.JSON200.Data
+
+		if data.Options != nil {
+			flat = flattenOptions(data.Options, q.tier, q.location)
+		}
+
+		assigned = data.Assigned
 	}
 
 	res := ConnectionsServerData{
 		Assigned: assigned,
-		Disabled: deref.Bool(parsed.JSON200.Data.Disabled),
+		Disabled: parsed.JSON200.Data.Disabled,
 		Options:  flat,
 	}
 

@@ -6,7 +6,6 @@ import (
 	"strings"
 
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/ptr"
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
@@ -175,14 +174,14 @@ func (q *ActiveQuery) ByDifficulty(val string) *ActiveQuery {
 func (q *ActiveQuery) SortedBy(field string) *ActiveQuery {
 	qc := ptr.Clone(q)
 	sortBy := v4Client.GetMachinePaginatedParamsSortBy(strings.ToLower(field))
-	qc.sortBy = &sortBy
+	qc.sortBy = sortBy
 	return qc
 }
 
 func (q *ActiveQuery) sort(val v4Client.GetMachinePaginatedParamsSortBy, order v4Client.GetMachinePaginatedParamsSortType) *ActiveQuery {
 	qc := ptr.Clone(q)
-	qc.sortBy = &val
-	qc.sortType = &order
+	qc.sortBy = val
+	qc.sortType = order
 	return qc
 }
 
@@ -193,10 +192,10 @@ func (q *ActiveQuery) sort(val v4Client.GetMachinePaginatedParamsSortBy, order v
 //
 //	machines := query.SortedBy("user-difficulty").Ascending().Results(ctx)
 func (q *ActiveQuery) Ascending() *ActiveQuery {
-	if q.sortBy == nil {
+	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(*q.sortBy, v4Client.GetMachinePaginatedParamsSortType("asc"))
+	return q.sort(q.sortBy, v4Client.GetMachinePaginatedParamsSortType("asc"))
 }
 
 // Descending sets the sort order to descending.
@@ -206,16 +205,16 @@ func (q *ActiveQuery) Ascending() *ActiveQuery {
 //
 //	machines := query.SortedBy("user-difficulty").Descending().Results(ctx)
 func (q *ActiveQuery) Descending() *ActiveQuery {
-	if q.sortBy == nil {
+	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(*q.sortBy, v4Client.GetMachinePaginatedParamsSortType("desc"))
+	return q.sort(q.sortBy, v4Client.GetMachinePaginatedParamsSortType("desc"))
 }
 
 func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinePaginatedResponse, error) {
 	params := &v4Client.GetMachinePaginatedParams{
-		PerPage:  &q.perPage,
-		Page:     &q.page,
+		PerPage:  q.perPage,
+		Page:     q.page,
 		SortBy:   q.sortBy,
 		SortType: q.sortType,
 		Keyword:  q.keyword,
@@ -223,17 +222,17 @@ func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinePaginatedRespons
 
 	if len(q.difficulty) > 0 {
 		d := q.difficulty
-		params.Difficulty = &d
+		params.Difficulty = d
 	}
 
 	if len(q.os) > 0 {
 		o := q.os
-		params.Os = &o
+		params.Os = o
 	}
 
 	if q.showCompleted != "" {
 		sc := v4Client.GetMachinePaginatedParamsShowCompleted(q.showCompleted)
-		params.ShowCompleted = &sc
+		params.ShowCompleted = sc
 	}
 
 	resp, err := q.client.V4().GetMachinePaginated(q.client.Limiter().Wrap(ctx), params)
@@ -247,7 +246,7 @@ func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinePaginatedRespons
 	}
 
 	return MachinePaginatedResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPIMachineData),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }

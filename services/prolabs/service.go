@@ -5,8 +5,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
-	"github.com/gubarz/gohtb/internal/deref"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -37,10 +35,7 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 	}
 
 	return ListResponse{
-		Data: ProlabsData{
-			Count: deref.Int(parsed.JSON200.Data.Count),
-			Labs:  convert.SlicePointer(parsed.JSON200.Data.Labs, fromAPIProlab),
-		},
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -60,7 +55,7 @@ func (h *Handle) FAQ(ctx context.Context) (FaqResponse, error) {
 	}
 
 	return FaqResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPIFaqItem),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -80,7 +75,7 @@ func (h *Handle) Flags(ctx context.Context) (FlagsResponse, error) {
 	}
 
 	return FlagsResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Data, common.FromAPIFlag),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -100,7 +95,7 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	}
 
 	return InfoResponse{
-		Data:         fromAPIProlabData(parsed.JSON200.Data),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -120,7 +115,7 @@ func (h *Handle) Machines(ctx context.Context) (MachinesResponse, error) {
 	}
 
 	return MachinesResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPIProlabMachineData),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -139,7 +134,7 @@ func (h *Handle) Overview(ctx context.Context) (OverviewResponse, error) {
 		return OverviewResponse{ResponseMeta: meta}, err
 	}
 	return OverviewResponse{
-		Data:         fromAPIProlabOverviewData(parsed.JSON200.Data),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -159,7 +154,7 @@ func (h *Handle) Progress(ctx context.Context) (ProgressResponse, error) {
 	}
 
 	return ProgressResponse{
-		Data:         fromAPIProlabProgressData(parsed.JSON200.Data),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -178,7 +173,7 @@ func (h *Handle) Rating(ctx context.Context) (RatingResponse, error) {
 		return RatingResponse{ResponseMeta: meta}, err
 	}
 	return RatingResponse{
-		Data:         deref.String(parsed.JSON200.Data.Rating),
+		Data:         parsed.JSON200.Data.Rating,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -197,7 +192,7 @@ func (h *Handle) Subscription(ctx context.Context) (SubscriptionResponse, error)
 		return SubscriptionResponse{ResponseMeta: meta}, err
 	}
 	return SubscriptionResponse{
-		Data:         fromAPIProlabSubscription(parsed.JSON200.Data),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -220,8 +215,8 @@ func (h *Handle) SubmitFlag(ctx context.Context, flag string) (SubmitFlagRespons
 	}
 	return SubmitFlagResponse{
 		Data: MessageStatus{
-			Message: deref.String(parsed.JSON200.Message),
-			Status:  deref.Int(parsed.JSON200.Status),
+			Message: parsed.JSON200.Message,
+			Status:  parsed.JSON200.Status,
 		},
 		ResponseMeta: meta,
 	}, nil

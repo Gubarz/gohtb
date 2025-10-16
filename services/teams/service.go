@@ -5,8 +5,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
-	"github.com/gubarz/gohtb/internal/deref"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -54,7 +52,7 @@ func (h *Handle) Invitations(ctx context.Context) (InvitationsResponse, error) {
 		return InvitationsResponse{ResponseMeta: meta}, err
 	}
 	return InvitationsResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Original, fromAPIUserEntry),
+		Data:         parsed.JSON200.Original,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -87,7 +85,7 @@ func (h *Handle) Members(ctx context.Context) (MembersResponse, error) {
 	}
 
 	return MembersResponse{
-		Data:         convert.SlicePointer(parsed.JSON200, fromAPITeamMember),
+		Data:         *parsed.JSON200,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -113,7 +111,7 @@ func (h *Handle) Activity(ctx context.Context, days int) (ActivityResponse, erro
 		last = days
 	}
 	params := &v4Client.GetTeamActivityParams{
-		NPastDays: &last,
+		NPastDays: last,
 	}
 	resp, err := h.client.V4().GetTeamActivity(
 		h.client.Limiter().Wrap(ctx),
@@ -130,7 +128,7 @@ func (h *Handle) Activity(ctx context.Context, days int) (ActivityResponse, erro
 		return ActivityResponse{ResponseMeta: meta}, err
 	}
 	return ActivityResponse{
-		Data:         convert.Slice(*parsed.JSON200, fromAPITeamActivityItem),
+		Data:         *parsed.JSON200,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -163,8 +161,8 @@ func (s *Service) AcceptInvite(ctx context.Context, id int) (common.MessageRespo
 
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
-			Success: deref.Bool(parsed.JSON200.Success),
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -196,8 +194,8 @@ func (s *Service) RejectInvite(ctx context.Context, id int) (common.MessageRespo
 	}
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
-			Success: deref.Bool(parsed.JSON200.Success),
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -229,8 +227,8 @@ func (s *Service) KickMember(ctx context.Context, id int) (common.MessageRespons
 
 	return common.MessageResponse{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
-			Success: deref.Bool(parsed.JSON200.Success),
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
 		},
 		ResponseMeta: meta,
 	}, nil

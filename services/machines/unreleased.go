@@ -7,7 +7,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/ptr"
 )
 
@@ -138,19 +137,19 @@ func (q *UnreleasedQuery) ByDifficulty(val string) *UnreleasedQuery {
 
 func (q *UnreleasedQuery) fetchResults(ctx context.Context) (MachineUnreleasedResponse, error) {
 	params := &v4Client.GetMachineUnreleasedParams{
-		PerPage: &q.perPage,
-		Page:    &q.page,
+		PerPage: q.perPage,
+		Page:    q.page,
 		Keyword: q.keyword,
 	}
 
 	if len(q.difficulty) > 0 {
 		d := q.difficulty
-		params.Difficulty = &d
+		params.Difficulty = d
 	}
 
 	if len(q.os) > 0 {
 		o := q.os
-		params.Os = &o
+		params.Os = o
 	}
 
 	resp, err := q.client.V4().GetMachineUnreleased(q.client.Limiter().Wrap(ctx), params)
@@ -164,7 +163,7 @@ func (q *UnreleasedQuery) fetchResults(ctx context.Context) (MachineUnreleasedRe
 	}
 
 	return MachineUnreleasedResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPIMachineUnreleasedData),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }

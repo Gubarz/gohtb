@@ -1,6 +1,7 @@
 package vpn
 
 import (
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/service"
 )
@@ -37,34 +38,11 @@ type ConnectionStatusResponse struct {
 	ResponseMeta common.ResponseMeta
 }
 
-type ConnectionStatusItem struct {
-	Connection           Connection
-	LocationTypeFriendly string
-	Server               ConnectionStatusServer
-	Type                 string
-}
-
 type ServerConnection struct {
 	CurrentClients int
 	FriendlyName   string
 	Id             int
 	Location       string
-}
-
-type Connection struct {
-	Down          float32
-	Ip4           string
-	Ip6           string
-	Name          string
-	ThroughPwnbox bool
-	Up            float32
-}
-
-type ConnectionStatusServer struct {
-	FriendlyName string
-	Hostname     string
-	Id           int
-	ProLabId     int
 }
 
 type ConnectionsServersResponse struct {
@@ -81,14 +59,6 @@ type ConnectionsServerData struct {
 	Options OptionsServers
 }
 
-type AssignedServerConnectionsServers struct {
-	CurrentClients       int
-	FriendlyName         string
-	Id                   int
-	Location             string
-	LocationTypeFriendly string
-}
-
 type Server struct {
 	CurrentClients int
 	FriendlyName   string
@@ -97,3 +67,8 @@ type Server struct {
 	Location       string
 	Tier           string
 }
+
+type ConnectionStatusItem = v4Client.ConnectionStatusItem
+type Connection = v4Client.Connection
+type ConnectionStatusServer = v4Client.ConnectionServer
+type AssignedServerConnectionsServers = v4Client.AssignedServerConnectionsServers

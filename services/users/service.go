@@ -5,7 +5,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -51,7 +50,7 @@ func (h *Handle) ProfileBasic(ctx context.Context) (ProfileBasicResponse, error)
 	}
 
 	return ProfileBasicResponse{
-		Data:         fromAPIUserProfile(parsed.JSON200.Profile),
+		Data:         wrapUserProfile(parsed.JSON200.Profile),
 		ResponseMeta: meta,
 	}, nil
 }
@@ -84,7 +83,7 @@ func (h *Handle) ProfileActivity(ctx context.Context) (ProfileActivityResposnse,
 	}
 
 	return ProfileActivityResposnse{
-		Data:         convert.SlicePointer(parsed.JSON200.Profile.Activity, fromAPIUserActivity),
+		Data:         parsed.JSON200.Profile.Activity,
 		ResponseMeta: meta,
 	}, nil
 }

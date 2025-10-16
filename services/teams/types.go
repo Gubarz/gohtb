@@ -1,8 +1,7 @@
 package teams
 
 import (
-	"time"
-
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/service"
 )
@@ -31,92 +30,10 @@ type ActivityResponse struct {
 	ResponseMeta common.ResponseMeta
 }
 
-type UserEntry struct {
-	Id          int
-	TeamId      int
-	User        User
-	UserId      int
-	UserRequest int
-}
-
-type User struct {
-	AvatarThumb      string
-	Id               int
-	Name             string
-	Points           int
-	RankName         string
-	Ranking          int
-	Rankings         []UserRanking
-	RespectedByCount int
-	RootOwnsCount    int
-	UserOwnsCount    int
-}
-
-type UserRanking struct {
-	Challenges int
-	CreatedAt  time.Time
-	Endgame    int
-	Fc         int
-	Fortress   int
-	Fr         int
-	Fu         int
-	Id         int
-	Ownership  string
-	Points     int
-	Pro        int
-	Rank       int
-	Respect    int
-	Roots      int
-	Sr         int
-	Su         int
-	Tr         int
-	Tu         int
-	UpdatedAt  time.Time
-	UserId     int
-	Users      int
-}
-
-type TeamMember struct {
-	Avatar          string
-	CountryCode     string
-	CountryName     string
-	Id              int
-	Name            string
-	Points          int
-	Public          int
-	Rank            int
-	RankText        string
-	Role            string
-	RootBloodsCount int
-	RootOwns        int
-	Team            TeamMemberTeam
-	UserBloodsCount int
-	UserOwns        int
-}
-
-type TeamMemberTeam struct {
-	CaptainId int
-	Id        int
-}
-
-type TeamActivityItem struct {
-	ChallengeCategory string
-	Date              time.Time
-	DateDiff          string
-	FirstBlood        bool
-	FlagTitle         string
-	Id                int
-	MachineAvatar     string
-	Name              string
-	ObjectType        string
-	Points            int
-	Type              string
-	User              TeamActivityUser
-}
-
-type TeamActivityUser struct {
-	AvatarThumb string
-	Id          int
-	Name        string
-	Public      int
-}
+type UserEntry = v4Client.UserEntry
+type User = v4Client.User
+type UserRanking = v4Client.UserRanking
+type TeamMember = v4Client.TeamMember
+type TeamMemberTeam = v4Client.TeamMemberTeam
+type TeamActivityItem = v4Client.TeamActivityItem
+type TeamActivityUser = v4Client.TeamActivityUser

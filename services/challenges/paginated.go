@@ -7,7 +7,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/ptr"
 )
 
@@ -50,7 +49,7 @@ func (q *ChallengeQuery) ByStateList(val ...string) *ChallengeQuery {
 	for i, v := range val {
 		lowercased[i] = strings.ToLower(v)
 	}
-	qc.state = &lowercased
+	qc.state = lowercased
 	return qc
 }
 
@@ -79,7 +78,7 @@ func (q *ChallengeQuery) ByDifficultyList(val ...string) *ChallengeQuery {
 	for i, v := range val {
 		lowercased[i] = strings.ToLower(v)
 	}
-	qc.difficulty = &lowercased
+	qc.difficulty = lowercased
 	return qc
 }
 
@@ -104,7 +103,7 @@ func (q *ChallengeQuery) ByCategory(val ...int) *ChallengeQuery {
 //	challenges := query.ByCategoryList(1, 2, 3).Results(ctx)
 func (q *ChallengeQuery) ByCategoryList(val ...int) *ChallengeQuery {
 	qc := ptr.Clone(q)
-	qc.category = &val
+	qc.category = val
 	return qc
 }
 
@@ -119,14 +118,14 @@ func (q *ChallengeQuery) ByCategoryList(val ...int) *ChallengeQuery {
 func (q *ChallengeQuery) SortedBy(field string) *ChallengeQuery {
 	qc := ptr.Clone(q)
 	sortBy := v4Client.GetChallengesParamsSortBy(field)
-	qc.sortBy = &sortBy
+	qc.sortBy = sortBy
 	return qc
 }
 
 func (q *ChallengeQuery) sort(val v4Client.GetChallengesParamsSortBy, order v4Client.GetChallengesParamsSortType) *ChallengeQuery {
 	qc := ptr.Clone(q)
-	qc.sortBy = &val
-	qc.sortType = &order
+	qc.sortBy = val
+	qc.sortType = order
 	return qc
 }
 
@@ -137,10 +136,10 @@ func (q *ChallengeQuery) sort(val v4Client.GetChallengesParamsSortBy, order v4Cl
 //
 //	challenges := query.SortedBy("Rating").Ascending().Results(ctx)
 func (q *ChallengeQuery) Ascending() *ChallengeQuery {
-	if q.sortBy == nil {
+	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(*q.sortBy, v4Client.GetChallengesParamsSortType("asc"))
+	return q.sort(q.sortBy, v4Client.GetChallengesParamsSortType("asc"))
 }
 
 // Descending sets the sort order to descending.
@@ -150,10 +149,10 @@ func (q *ChallengeQuery) Ascending() *ChallengeQuery {
 //
 //	challenges := query.SortedBy("Rating").Descending().Results(ctx)
 func (q *ChallengeQuery) Descending() *ChallengeQuery {
-	if q.sortBy == nil {
+	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(*q.sortBy, v4Client.GetChallengesParamsSortType("desc"))
+	return q.sort(q.sortBy, v4Client.GetChallengesParamsSortType("desc"))
 }
 
 // Page sets the specific page number for pagination.
@@ -209,8 +208,8 @@ func (q *ChallengeQuery) Previous() *ChallengeQuery {
 
 func (q *ChallengeQuery) fetchResults(ctx context.Context) (ChallengeListResponse, error) {
 	params := &v4Client.GetChallengesParams{
-		Page:       &q.page,
-		PerPage:    &q.perPage,
+		Page:       q.page,
+		PerPage:    q.perPage,
 		Difficulty: q.difficulty,
 		Category:   q.category,
 		SortBy:     q.sortBy,
@@ -231,7 +230,7 @@ func (q *ChallengeQuery) fetchResults(ctx context.Context) (ChallengeListRespons
 	}
 
 	return ChallengeListResponse{
-		Data:         convert.Slice(*parsed.JSON200.Data, fromAPIChallengeList),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }

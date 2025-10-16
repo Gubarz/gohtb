@@ -1,6 +1,7 @@
 package fortresses
 
 import (
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/service"
 )
@@ -17,38 +18,6 @@ type Handle struct {
 type FlagData = common.FlagData
 type Flag = common.Flag
 
-type Company struct {
-	Description string
-	Id          int
-	Image       string
-	Name        string
-	Url         string
-}
-
-type UserAvailability struct {
-	Available bool
-	Code      int
-	Message   string
-}
-
-type Data struct {
-	Company              Company
-	CompletionMessage    string
-	CoverImageUrl        string
-	Description          string
-	Flags                []Flag
-	HasCompletionMessage bool
-	Id                   int
-	Image                string
-	Ip                   string
-	Name                 string
-	PlayersCompleted     int
-	Points               int
-	ProgressPercent      float32
-	ResetVotes           int
-	UserAvailability     UserAvailability
-}
-
 type Info struct {
 	Data         Data
 	ResponseMeta common.ResponseMeta
@@ -57,15 +26,6 @@ type Info struct {
 type ListResponse struct {
 	Data         []Item
 	ResponseMeta common.ResponseMeta
-}
-
-type Item struct {
-	CoverImageUrl string
-	Id            int
-	Image         string
-	Name          string
-	New           bool
-	NumberOfFlags int
 }
 
 type SubmitFlagResponse struct {
@@ -87,3 +47,8 @@ type ResetFlagData struct {
 	Message string
 	Status  bool
 }
+
+type Data = v4Client.FortressData
+type Company = v4Client.Company
+type UserAvailability = v4Client.UserAvailability
+type Item = v4Client.Fortress

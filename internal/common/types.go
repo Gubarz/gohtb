@@ -2,8 +2,34 @@ package common
 
 import (
 	"net/http"
-	"time"
+
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 )
+
+type TodoItem = v4Client.Item
+type Flag = v4Client.Flag
+type UserBasicInfo = v4Client.UserBasicInfo
+type Links = v4Client.Links
+type Meta = v4Client.Meta
+type MetaAlt = v4Client.MetaAlt
+type PaginationLink = v4Client.PaginationLink
+type Tag = v4Client.Tag
+type TagCategory = v4Client.TagCategory
+type HelpfulReviews = v4Client.HelpfulReviews
+type DifficultyChart = v4Client.DifficultyChart
+type Item = v4Client.Item
+type PlayInfoAlt = v4Client.PlayInfoAlt
+type BloodInfo = v4Client.BloodInfo
+type Maker = v4Client.Maker
+type MatrixInfo = v4Client.MatrixInfo
+type AcademyTiers = v4Client.AcademyTiers
+type TeamMachineAttackPaths = v4Client.TeamMachineAttackPaths
+type TeamsAttackPathCard = v4Client.TeamsAttackPathCard
+type UserIdNameThumb = v4Client.UserIdNameThumb
+type AcademyDifficulty = v4Client.AcademyDifficulty
+type AcademyModule = v4Client.AcademyModule
+type UserBasicInfoWithRespect = v4Client.UserBasicInfoWithRespect
+type PlayInfo = v4Client.PlayInfo
 
 type MessageResponse struct {
 	Data Message
@@ -24,175 +50,14 @@ type FlagData struct {
 }
 type InfoArray = []Item
 
-type Item struct {
-	Id int
-}
-
 type TodoUpdateResponse struct {
 	Data InfoArray
 	ResponseMeta
 }
 
-type Flag struct {
-	Id     int
-	Owned  bool
-	Points int
-	Title  string
-}
-
-type TodoItem struct {
-	Id int
-}
-
 type Message struct {
 	Message string
 	Success bool
-}
-
-type AcademyDifficulty struct {
-	Color string
-	Id    int
-	Level int
-	Text  string
-	Title string
-}
-
-type AcademyModule struct {
-	Avatar     string
-	Difficulty AcademyDifficulty
-	Id         int
-	Logo       string
-	Name       string
-	Tier       AcademyTiers
-	Url        string
-}
-
-type AcademyTiers struct {
-	Color  string
-	Name   string
-	Number int
-}
-
-type DifficultyChart struct {
-	CounterBitHard   int
-	CounterBrainFuck int
-	CounterCake      int
-	CounterEasy      int
-	CounterExHard    int
-	CounterHard      int
-	CounterMedium    int
-	CounterTooEasy   int
-	CounterTooHard   int
-	CounterVeryEasy  int
-}
-
-type Links struct {
-	First string
-	Last  string
-	Next  string
-	Prev  string
-}
-
-type Maker struct {
-	Avatar      string
-	Id          int
-	IsRespected bool
-	Name        string
-}
-
-type MatrixInfo struct {
-	Ctf    float32
-	Custom float32
-	Cve    float32
-	Enum   float32
-	Real   float32
-}
-
-type Meta struct {
-	CurrentPage int
-	From        int
-	LastPage    int
-	Links       []PaginationLink
-	Path        string
-	PerPage     int
-	To          int
-	Total       int
-}
-
-type MetaAlt struct {
-	CurrentPage int
-	Pages       int
-}
-
-type PaginationLink struct {
-	Active bool
-	Label  string
-	Url    string
-}
-
-type UserBasicInfo struct {
-	Avatar string
-	Id     int
-	Name   string
-}
-
-type UserBasicInfoWithRespect struct {
-	Avatar      string
-	Id          int
-	Name        string
-	IsRespected bool
-}
-
-type BloodInfo struct {
-	BloodDifference string
-	CreatedAt       string
-	User            UserBasicInfo
-}
-
-type TeamMachineAttackPaths struct {
-	Blockchain              TeamsAttackPathCard
-	Cloud                   TeamsAttackPathCard
-	EnterpriseNetwork       TeamsAttackPathCard
-	Forensics               TeamsAttackPathCard
-	Mobile                  TeamsAttackPathCard
-	NicheTechnologies       TeamsAttackPathCard
-	Person                  TeamsAttackPathCard
-	SecurityOperations      TeamsAttackPathCard
-	VulnerabilityAssessment TeamsAttackPathCard
-	WebApplication          TeamsAttackPathCard
-}
-
-type TeamsAttackPathCard struct {
-	AvgTeamsSolved float32
-	Name           string
-	Solved         int
-	Total          int
-}
-
-type HelpfulReviews struct {
-	Id       int
-	ReviewId int
-	UserId   int
-}
-
-type Tag struct {
-	Id            int
-	Name          string
-	TagCategoryId int
-}
-
-type TagCategory struct {
-	Id   int
-	Name string
-	Tags []Tag
-}
-
-type PlayInfo struct {
-	ActivePlayerCount int
-	ExpiresAt         time.Time
-	IsActive          bool
-	IsSpawned         bool
-	IsSpawning        bool
 }
 
 type OwnsResponse struct {
@@ -205,18 +70,5 @@ type Messagesuccess struct {
 	Success bool
 }
 
-type PlayInfoAlt struct {
-	ExpiresAt time.Time
-	Ip        string
-	Ports     IntArray
-	Status    string
-}
-
 type IntArray = []int
 type StringArray = []string
-
-type UserIdNameThumb struct {
-	AvatarThumb string
-	Id          int
-	Name        string
-}

@@ -2,6 +2,7 @@ package machines
 
 import (
 	"context"
+	"regexp"
 	"strconv"
 	"strings"
 
@@ -41,7 +42,7 @@ func (s *Service) Active(ctx context.Context) (ActiveResponse, error) {
 	}
 
 	return ActiveResponse{
-		Data:         fromAPIActiveMachineInfo(parsed.JSON200.Info),
+		Data:         parsed.JSON200.Info,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -81,8 +82,11 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 		return InfoResponse{ResponseMeta: meta}, err
 	}
 
+	wrapped := wrapMachineProfileInfo(parsed.JSON200.Info)
+	wrapped.IsAssumedBreach, wrapped.Credentials = parseAssumedBreachStatus(wrapped.InfoStatus)
+
 	return InfoResponse{
-		Data:         fromAPIMachineProfileInfo(parsed.JSON200.Info),
+		Data:         wrapped,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -114,7 +118,7 @@ func (h *Handle) Own(ctx context.Context, flag string) (OwnResponse, error) {
 	}
 
 	return OwnResponse{
-		Data:         fromAPIMachineOwnResponse(*parsed.JSON200),
+		Data:         *parsed.JSON200,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -213,10 +217,10 @@ func (m MachineDataItems) First() MachineData {
 //
 //	lastMachine := machines.Data.Last()
 func (m MachineDataItems) Last() MachineData {
-	for i := len(m) - 1; i >= 0; i-- {
-		return m[i]
+	if len(m) == 0 {
+		return MachineData{}
 	}
-	return MachineData{}
+	return m[len(m)-1]
 }
 
 // ByDifficulty filters machines by difficulty level using case-insensitive matching.
@@ -235,4 +239,33 @@ func (m MachineDataItems) ByDifficulty(difficulty string) MachineDataItems {
 		}
 	}
 	return out
+}
+
+func parseAssumedBreachStatus(info string) (bool, Credentials) {
+	if strings.Contains(strings.ToLower(info), "as is common in") {
+		return true, extractCredentials(info)
+	}
+	return false, Credentials{}
+}
+
+func extractCredentials(s string) Credentials {
+	// 1) Username: <user> Password: <pass>
+	reUserPass := regexp.MustCompile(`(?i)\busername\b[:\s]*([^\s:;,/]+)\s*(?:[:;,\-]\s*)?\bpassword\b[:\s]*(\S+)`)
+	if m := reUserPass.FindStringSubmatch(s); len(m) == 3 {
+		return Credentials{Username: strings.TrimSpace(m[1]), Password: strings.TrimSpace(m[2])}
+	}
+
+	// 2) account ...: user / pass   (covers the MSSQL example and similar)
+	reAccount := regexp.MustCompile(`(?i)account[^:]*:\s*([^\s/]+)\s*/\s*(\S+)`)
+	if m := reAccount.FindStringSubmatch(s); len(m) == 3 {
+		return Credentials{Username: strings.TrimSpace(m[1]), Password: strings.TrimSpace(m[2])}
+	}
+
+	// 3) fallback: "user X / Y" like "user: alice / p@ss"
+	reLoose := regexp.MustCompile(`(?i)\b(?:user|username|account)\b[:\s]*([^\s/]+)\s*/\s*(\S+)`)
+	if m := reLoose.FindStringSubmatch(s); len(m) == 3 {
+		return Credentials{Username: strings.TrimSpace(m[1]), Password: strings.TrimSpace(m[2])}
+	}
+
+	return Credentials{}
 }

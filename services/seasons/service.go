@@ -5,7 +5,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -50,7 +49,7 @@ func (h *Handle) Rewards(ctx context.Context) (RewardsResponse, error) {
 	}
 
 	return RewardsResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPISeasonRewardsDataItem),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -77,7 +76,7 @@ func (h *Handle) UserRank(ctx context.Context) (UserRankResponse, error) {
 	}
 
 	return UserRankResponse{
-		Data:         fromAPISeasonUserRankData(parsed.JSON200.Data),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -104,7 +103,7 @@ func (h *Handle) UserFollowers(ctx context.Context) (UserFollowersResponse, erro
 	}
 
 	return UserFollowersResponse{
-		Data:         fromAPISeasonUserFollowerData(parsed.JSON200.Data),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -133,7 +132,7 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 	}
 
 	return ListResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPISeasonListDataItem),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -163,7 +162,7 @@ func (s *Service) Machines(ctx context.Context) (MachinesResponse, error) {
 	}
 
 	return MachinesResponse{
-		Data:         convert.SlicePointer(parsed.JSON200.Data, fromAPISeasonMachinesDataItem),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -191,7 +190,7 @@ func (s *Service) ActiveMachine(ctx context.Context) (ActiveMachineResponse, err
 	}
 
 	return ActiveMachineResponse{
-		Data:         fromAPISeasonMachineActive(parsed.JSON200.Data),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }

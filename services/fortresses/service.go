@@ -6,8 +6,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
-	"github.com/gubarz/gohtb/internal/deref"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -46,8 +44,8 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 
 	var list []Item
 	if parsed.JSON200.Data != nil {
-		for _, fortress := range *parsed.JSON200.Data {
-			list = append(list, toItem(fortress))
+		for _, fortress := range parsed.JSON200.Data {
+			list = append(list, fortress)
 		}
 	}
 	sort.Slice(list, func(i, j int) bool {
@@ -96,7 +94,7 @@ func (h *Handle) Info(ctx context.Context) (Info, error) {
 	}
 
 	return Info{
-		Data:         fromFortressData(parsed.JSON200.Data),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -133,8 +131,8 @@ func (h *Handle) SubmitFlag(ctx context.Context, flag string) (SubmitFlagRespons
 
 	return SubmitFlagResponse{
 		Data: SubmitFlagData{
-			Message: deref.String(parsed.JSON200.Message),
-			Status:  deref.Int(parsed.JSON200.Status),
+			Message: parsed.JSON200.Message,
+			Status:  parsed.JSON200.Status,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -171,8 +169,8 @@ func (h *Handle) Flags(ctx context.Context) (FlagData, error) {
 	}
 
 	return FlagData{
-		Flags:        convert.Slice(*parsed.JSON200.Data, common.FromAPIFlag),
-		Status:       deref.Bool(parsed.JSON200.Status),
+		Flags:        parsed.JSON200.Data,
+		Status:       parsed.JSON200.Status,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -206,8 +204,8 @@ func (h *Handle) Reset(ctx context.Context) (ResetResponse, error) {
 
 	return ResetResponse{
 		Data: ResetFlagData{
-			Message: deref.String(parsed.JSON200.Message),
-			Status:  deref.Bool(parsed.JSON200.Status),
+			Message: parsed.JSON200.Message,
+			Status:  parsed.JSON200.Status,
 		},
 		ResponseMeta: meta,
 	}, nil

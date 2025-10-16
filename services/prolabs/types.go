@@ -1,8 +1,7 @@
 package prolabs
 
 import (
-	"time"
-
+	v4client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/service"
 )
@@ -73,127 +72,24 @@ type InfoResponse struct {
 
 type ProlabFaqData = []FaqItem
 
-type FaqItem struct {
-	Answer   string
-	Generic  bool
-	Question string
-}
-
-type ProlabsData struct {
-	Count int
-	Labs  ProlabDataItems
-}
-
 type ProlabDataItems = []Prolab
 
-type Prolab struct {
-	CoverImgUrl                string
-	DesignatedCategory         string
-	Id                         int
-	Identifier                 string
-	LabServersCount            int
-	Level                      int
-	Mini                       bool
-	Name                       string
-	New                        bool
-	Ownership                  float32
-	ProFlagsCount              int
-	ProMachinesCount           int
-	ReleaseAt                  time.Time
-	SkillLevel                 string
-	State                      string
-	Team                       string
-	UserEligibleForCertificate bool
-}
-
 type FlagsItems = []common.Flag
-
-type ProlabData struct {
-	ActiveUsers      int
-	CanInteract      bool
-	CoverImageUrl    string
-	Description      string
-	DescriptionHTML  string
-	EntryPoints      common.StringArray
-	Id               int
-	Identifier       string
-	LabMasters       LabMasterItems
-	LabServersCount  int
-	Mini             bool
-	Name             string
-	ProFlagsCount    int
-	ProMachinesCount int
-	State            string
-	Version          string
-	VideoUrl         string
-	Writeup          string
-}
 
 type LabMasterItems = []common.UserIdNameThumb
 
 type ProlabMachineData = []Machine
 
-type Machine struct {
-	AvatarThumbUrl string
-	Id             int
-	Name           string
-	Os             string
-}
-
-type ProlabOverviewData struct {
-	DesignatedLevel    DesignatedLevel
-	Excerpt            string
-	Id                 int
-	Identifier         string
-	LabMasters         LabMasterItems
-	Mini               bool
-	Name               string
-	NewVersion         bool
-	OverviewImageUrl   string
-	ProFlagsCount      int
-	ProMachinesCount   int
-	SkillLevel         string
-	SocialLinks        SocialLinks
-	State              string
-	UserEligibleToPlay bool
-	Version            string
-}
-
-type DesignatedLevel struct {
-	Category    string
-	Description string
-	Level       int
-	Team        string
-}
-
-type SocialLinks struct {
-	Discord string
-	Forum   string
-}
-
-type ProlabProgressData struct {
-	KeyedProLabMileStone              KeyedProlabMileStoneItems
-	Ownership                         float32
-	OwnershipRequiredForCertification float32
-	UserEligibleForCertificate        bool
-}
-
 type KeyedProlabMileStoneItems = []KeyedProLabMileStone
 
-type KeyedProLabMileStone struct {
-	Description        string
-	Icon               string
-	IsMilestoneReached bool
-	Percent            float32
-	Rarity             float32
-	Text               string
-}
-
-type ProlabSubscription struct {
-	Active             bool
-	EndsAt             string
-	Name               string
-	RenewsAt           string
-	SubscriptionPeriod string
-	Type               string
-}
+type Prolab = v4client.Prolab
+type FaqItem = v4client.FaqItem
+type ProlabData = v4client.ProlabData
+type ProlabOverviewData = v4client.ProlabOverviewData
+type Machine = v4client.Machine
+type DesignatedLevel = v4client.DesignatedLevel
+type SocialLinks = v4client.SocialLinks
+type ProlabProgressData = v4client.ProlabProgressData
+type KeyedProLabMileStone = v4client.KeyedProLabMileStone
+type ProlabSubscription = v4client.ProlabSubscription
+type ProlabsData = v4client.ProlabsData

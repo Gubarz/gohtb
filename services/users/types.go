@@ -3,6 +3,7 @@ package users
 import (
 	"time"
 
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/service"
 )
@@ -59,60 +60,9 @@ type UserActivityItemMachine struct {
 	Type          string
 }
 
-type UserActivityItem struct {
-	ChallengeCategory string
-	Date              time.Time
-	DateDiff          string
-	FirstBlood        bool
-	FlagTitle         string
-	Id                int
-	MachineAvatar     string
-	Name              string
-	Points            int
-	Type              string
-	ActivityType      string
-	ObjectType        string
-}
+type UserProfile struct{ v4Client.UserProfile }
+type UserProfileTeam = v4Client.UserProfileTeam
+type UserActivityItem = v4Client.UserActivityItem
+type UserActivity = []UserActivityItem
 
-type UserProfile struct {
-	Avatar              string
-	CountryCode         string
-	CountryName         string
-	CurrentRankProgress float32
-	Description         string
-	Github              string
-	Id                  int
-	IsDedicatedVip      bool
-	IsFollowed          bool
-	IsRespected         bool
-	IsVip               bool
-	Linkedin            string
-	Name                string
-	NextRank            string
-	NextRankPoints      float32
-	Points              int
-	Public              bool
-	Rank                string
-	RankId              int
-	RankOwnership       float32
-	RankRequirement     int
-	Ranking             int
-	Respects            int
-	SsoId               bool
-	SystemBloods        int
-	SystemOwns          int
-	Team                UserProfileTeam
-	Timezone            string
-	Twitter             string
-	University          UserProfileTeam
-	UniversityName      string
-	UserBloods          int
-	UserOwns            int
-}
-
-type UserProfileTeam struct {
-	Avatar  string
-	Id      int
-	Name    string
-	Ranking int
-}
+func wrapUserProfile(x v4Client.UserProfile) UserProfile { return UserProfile{x} }

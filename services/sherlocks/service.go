@@ -6,7 +6,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/convert"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -45,7 +44,7 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	}
 
 	return InfoResponse{
-		Data:         fromAPISherlock(parsed.JSON200.Data),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -65,7 +64,7 @@ func (h *Handle) Play(ctx context.Context) (PlayResponse, error) {
 	}
 
 	return PlayResponse{
-		Data:         fromAPIPlaySherlock(parsed.JSON200.Data),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -85,7 +84,7 @@ func (h *Handle) DownloadLink(ctx context.Context) (DownloadResponse, error) {
 	}
 
 	return DownloadResponse{
-		Data:         fromAPISherlockDownloadLink(parsed.JSON200),
+		Data:         *parsed.JSON200,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -105,7 +104,7 @@ func (h *Handle) Progress(ctx context.Context) (ProgressResponse, error) {
 	}
 
 	return ProgressResponse{
-		Data:         fromAPISherlockProgress(parsed.JSON200.Data),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -125,14 +124,14 @@ func (h *Handle) Tasks(ctx context.Context) (TasksResponse, error) {
 	}
 
 	return TasksResponse{
-		Data:         convert.Slice(*parsed.JSON200.Data, fromAPISherlockTasks),
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
 
 func (h *Handle) Own(ctx context.Context, taskId int, flag string) (OwnResponse, error) {
 	body := v4Client.PostSherlockTasksFlagJSONRequestBody{
-		Flag: &flag,
+		Flag: flag,
 	}
 	resp, err := h.client.V4().PostSherlockTasksFlag(
 		h.client.Limiter().Wrap(ctx),
@@ -150,7 +149,7 @@ func (h *Handle) Own(ctx context.Context, taskId int, flag string) (OwnResponse,
 	}
 
 	return OwnResponse{
-		Data:         fromAPIOwnTask(parsed.JSON201),
+		Data:         *parsed.JSON201,
 		ResponseMeta: meta,
 	}, nil
 }

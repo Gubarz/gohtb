@@ -5,7 +5,6 @@ import (
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
-	"github.com/gubarz/gohtb/internal/deref"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -53,8 +52,8 @@ func (h *Handle) Reset(ctx context.Context) (Response, error) {
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
-			Success: deref.Bool(parsed.JSON200.Success),
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -86,8 +85,8 @@ func (h *Handle) Spawn(ctx context.Context) (Response, error) {
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
-			Success: deref.Bool(parsed.JSON200.Success),
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -119,8 +118,8 @@ func (h *Handle) Extend(ctx context.Context) (Response, error) {
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
-			Success: deref.Bool(parsed.JSON200.Success),
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -152,8 +151,8 @@ func (h *Handle) Terminate(ctx context.Context) (Response, error) {
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
-			Success: deref.Bool(parsed.JSON200.Success),
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -186,8 +185,8 @@ func (h *Handle) VoteReset(ctx context.Context) (Response, error) {
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
-			Success: deref.Bool(parsed.JSON200.Success),
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
 		},
 		ResponseMeta: meta,
 	}, nil
@@ -220,8 +219,8 @@ func (h *Handle) VoteResetAccept(ctx context.Context) (Response, error) {
 
 	return Response{
 		Data: common.Message{
-			Message: deref.String(parsed.JSON200.Message),
-			Success: deref.Bool(parsed.JSON200.Success),
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
 		},
 		ResponseMeta: meta,
 	}, nil
