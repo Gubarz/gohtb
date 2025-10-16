@@ -38,3 +38,37 @@ func (h *Handle) Users(ctx context.Context) (UserRankingsResponse, error) {
 		ResponseMeta: meta,
 	}, nil
 }
+
+func (h *Handle) Teams(ctx context.Context) (TeamRankingsResponse, error) {
+	// for `rankings/teams` endpoint
+	resp, err := h.client.V4().GetRankingsTeams(h.client.Limiter().Wrap(ctx))
+	if err != nil {
+		return TeamRankingsResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetRankingsTeamsResponse)
+	if err != nil {
+		return TeamRankingsResponse{ResponseMeta: meta}, err
+	}
+	return TeamRankingsResponse{
+		Data: convert.SlicePointer(parsed.JSON200.Data, fromLeaderBoardDataTeams), 
+		ResponseMeta: meta,
+	}, nil
+}
+
+
+
+func (h *Handle) Countries(ctx context.Context) (CountryRankingsResponse, error) {
+	// for `rankings/countries` endpoint
+	resp, err := h.client.V4().GetRankingsTeams(h.client.Limiter().Wrap(ctx))
+	if err != nil {
+		return CountryRankingsResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetRankingsCountriesResponse)
+	if err != nil {
+		return CountryRankingsResponse{ResponseMeta: meta}, err
+	}
+	return CountryRankingsResponse{
+		Data: convert.SlicePointer(parsed.JSON200.Data, fromLeaderBoardDataCountries), 
+		ResponseMeta: meta,
+	}, nil
+}

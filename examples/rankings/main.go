@@ -16,7 +16,7 @@ func main(){
 	if err != nil {
 		log.Fatalln("Failed to create HTB client:", err)
 	}
-	ranks, err := client.Rankings.Rankings().Users(ctx)
+	ranks, err := client.Rankings.Rankings().Countries(ctx)
 	if err != nil {
 		panic(err)
 	}

@@ -38,3 +38,46 @@ type UserRankingsResponse struct {
 }
 
 // end of `rankings/users` types
+// start of `rankings/teams` types
+type RankingsTeamItem struct {
+	Avatar_thumb string
+	Challenge_bloods int
+	Challenge_owns int
+	Country	string
+	Fortress	int
+	Id	int
+	Name string
+	Points int
+	Rank int
+	Ranks_diff int
+	Root_bloods int
+	Root_owns int
+	User_bloods int
+	User_owns int
+}
+type TeamRankingsResponse struct {
+	// Data UserRankings
+	Data []RankingsTeamItem
+	ResponseMeta common.ResponseMeta
+}
+// end of `rankings/teams` types
+// start of `/rankings/countries`
+type RankingsCountries struct {
+	Challenge_owns int
+	Country string
+	Fortress int
+	Members int
+	Name string
+	Points int
+	Rank int
+	Ranks_diff int
+	Root_bloods int
+	Root_owns int
+	User_bloods int
+	User_owns int
+}
+type CountryRankingsResponse struct {
+	// Data UserRankings
+	Data []RankingsCountries
+	ResponseMeta common.ResponseMeta
+}
