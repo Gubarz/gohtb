@@ -3,6 +3,9 @@ package gohtb
 
 import (
 	"context"
+	"encoding/base64"
+	"encoding/json"
+	"errors"
 	"fmt"
 	"net/http"
 	"strings"
@@ -102,6 +105,10 @@ const (
 func New(token string, options ...Option) (*Client, error) {
 	if token == "" {
 		return nil, fmt.Errorf("htb token is required")
+	}
+
+	if err := isLikelyJWT(token); err != nil {
+		return nil, err
 	}
 
 	c := &Client{
@@ -257,4 +264,40 @@ func WithHTTPClient(customClient *http.Client) Option {
 // Use at your own risk. If it breaks, you get to keep both pieces.
 func (c *Client) Experimental() v4client.ClientInterface {
 	return c.v4api
+}
+
+func isLikelyJWT(s string) error {
+	parts := strings.Split(s, ".")
+	if len(parts) != 3 {
+		return errors.New("invalid token")
+	}
+
+	decodePart := func(part string) ([]byte, error) {
+		decoded, err := base64.RawURLEncoding.DecodeString(part)
+		if err != nil {
+			return nil, errors.New("invalid token")
+		}
+		return decoded, nil
+	}
+
+	header, err := decodePart(parts[0])
+	if err != nil {
+		return errors.New("invalid token")
+	}
+	payload, err := decodePart(parts[1])
+	if err != nil {
+		return errors.New("invalid token")
+	}
+
+	if len(parts[2]) > 0 {
+		if _, err := decodePart(parts[2]); err != nil {
+			return errors.New("invalid token")
+		}
+	}
+
+	if !json.Valid(header) || !json.Valid(payload) {
+		return errors.New("invalid token")
+	}
+
+	return nil
 }
