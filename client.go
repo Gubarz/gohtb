@@ -21,6 +21,7 @@ import (
 	"github.com/gubarz/gohtb/services/users"
 	"github.com/gubarz/gohtb/services/vms"
 	"github.com/gubarz/gohtb/services/vpn"
+	"github.com/gubarz/gohtb/services/leaderboards"
 )
 
 // Client is the main API client for interacting with Hack The Box services.
@@ -55,6 +56,8 @@ type Client struct {
 	// VPN is a service for managing VPN connections and configurations.
 	// This contains the endpoints for Access and Connections.
 	VPN *vpn.Service
+	// Rankings and leaderboards
+	Rankings *leaderboards.Service
 }
 
 // Logger defines the logging interface used by the client.
@@ -186,6 +189,7 @@ func wireServices(c *Client) {
 	c.Users = users.NewService(c.asServiceClient())
 	c.VMs = vms.NewService(c.asServiceClient())
 	c.VPN = vpn.NewService(c.asServiceClient())
+	c.Rankings = leaderboards.NewService(c.asServiceClient())
 }
 
 // WithDebug enables or disables debug logging within the client's internal operations.
