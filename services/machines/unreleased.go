@@ -8,7 +8,26 @@ import (
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/ptr"
+	"github.com/gubarz/gohtb/internal/service"
 )
+
+type MachineUnreleasedData = v4Client.MachineUnreleasedData
+
+type UnreleasedDataItems []MachineUnreleasedData
+
+type MachineUnreleasedResponse struct {
+	Data         UnreleasedDataItems
+	ResponseMeta common.ResponseMeta
+}
+
+type UnreleasedQuery struct {
+	client     service.Client
+	perPage    int
+	page       int
+	difficulty v4Client.Difficulty
+	os         v4Client.Os
+	keyword    v4Client.Keyword
+}
 
 // ListUnreleased creates a new query for unreleased machines.
 // This returns an UnreleasedQuery that can be chained with filtering and pagination methods.

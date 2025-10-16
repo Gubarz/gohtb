@@ -24,6 +24,11 @@ const (
 	StateUnreleased = "unreleased"
 )
 
+type ChallengeListResponse struct {
+	Data         []ChallengeList
+	ResponseMeta common.ResponseMeta
+}
+
 // ByState filters challenges by state.
 // Valid values are "active", "retired", and "unreleased".
 // Returns a new ChallengeQuery that can be further chained.
@@ -248,6 +253,8 @@ func (q *ChallengeQuery) fetchResults(ctx context.Context) (ChallengeListRespons
 func (q *ChallengeQuery) Results(ctx context.Context) (ChallengeListResponse, error) {
 	return q.fetchResults(ctx)
 }
+
+type ChallengeList = v4Client.ChallengeList
 
 // AllResults executes the query and returns all pages of challenges.
 // This method automatically paginates through all available results.

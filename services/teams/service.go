@@ -8,10 +8,19 @@ import (
 	"github.com/gubarz/gohtb/internal/service"
 )
 
+type Service struct {
+	base service.Base
+}
+
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
 	}
+}
+
+type Handle struct {
+	client service.Client
+	id     int
 }
 
 // Team returns a handle for a specific team with the given ID.
@@ -22,6 +31,13 @@ func (s *Service) Team(id int) *Handle {
 		client: s.base.Client,
 		id:     id,
 	}
+}
+
+type UserEntry = v4Client.UserEntry
+
+type InvitationsResponse struct {
+	Data         []UserEntry
+	ResponseMeta common.ResponseMeta
 }
 
 // Invitations retrieves pending invitations for the team.
@@ -57,6 +73,13 @@ func (h *Handle) Invitations(ctx context.Context) (InvitationsResponse, error) {
 	}, nil
 }
 
+type TeamMember = v4Client.TeamMember
+
+type MembersResponse struct {
+	Data         []TeamMember
+	ResponseMeta common.ResponseMeta
+}
+
 // Members retrieves the current members of the team.
 // This returns a list of all users who are currently part of the team,
 // including their roles and membership information.
@@ -88,6 +111,13 @@ func (h *Handle) Members(ctx context.Context) (MembersResponse, error) {
 		Data:         *parsed.JSON200,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type TeamActivityItem = v4Client.TeamActivityItem
+
+type ActivityResponse struct {
+	Data         []TeamActivityItem
+	ResponseMeta common.ResponseMeta
 }
 
 // Activity retrieves the activity history for the team.

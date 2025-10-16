@@ -20,10 +20,70 @@ const (
 	StartingPoint = v4Client.ProductStartingPoint
 )
 
+type ServerQuery struct {
+	client   service.Client
+	product  string
+	tier     string
+	location string
+}
+
+type ProlabQuery struct {
+	client   service.Client
+	prolab   int
+	tier     string
+	location string
+}
+
+type VPNFileResponse struct {
+	Data         []byte
+	ResponseMeta common.ResponseMeta
+}
+
+type ConnectionStatusItem = v4Client.ConnectionStatusItem
+
+type ConnectionStatusResponse struct {
+	Data         []ConnectionStatusItem
+	ResponseMeta common.ResponseMeta
+}
+
+type ConnectionsServersResponse struct {
+	Data         ConnectionsServerData
+	ResponseMeta common.ResponseMeta
+}
+
+type AssignedServerConnectionsServers = v4Client.AssignedServerConnectionsServers
+
+type OptionsServers []Server
+
+type ConnectionsServerData struct {
+	Assigned AssignedServerConnectionsServers
+	Disabled bool
+
+	Options OptionsServers
+}
+
+type Server struct {
+	CurrentClients int
+	FriendlyName   string
+	Full           bool
+	Id             int
+	Location       string
+	Tier           string
+}
+
+type Service struct {
+	base service.Base
+}
+
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
 	}
+}
+
+type Handle struct {
+	client service.Client
+	id     int
 }
 
 // VPN returns a handle for a specific VPN endpoints

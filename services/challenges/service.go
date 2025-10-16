@@ -11,11 +11,35 @@ import (
 	"github.com/gubarz/gohtb/internal/service"
 )
 
+type ChallengeQuery struct {
+	client     service.Client
+	status     v4Client.GetChallengesParamsStatus
+	state      v4Client.State
+	sortBy     v4Client.GetChallengesParamsSortBy
+	sortType   v4Client.GetChallengesParamsSortType
+	difficulty v4Client.Difficulty
+	category   v4Client.Category
+	todo       v4Client.GetChallengesParamsTodo
+	page       int
+	perPage    int
+}
+
+type Service struct {
+	base    service.Base
+	product string
+}
+
 func NewService(client service.Client, product string) *Service {
 	return &Service{
 		base:    service.NewBase(client),
 		product: product,
 	}
+}
+
+type Handle struct {
+	client  service.Client
+	id      int
+	product string
 }
 
 // Challenge returns a handle for a specific challenge with the given ID.
@@ -43,6 +67,13 @@ func (s *Service) List() *ChallengeQuery {
 		page:    1,
 		perPage: 100,
 	}
+}
+
+type Challenge = v4Client.Challenge
+
+type InfoResponse struct {
+	Data         Challenge
+	ResponseMeta common.ResponseMeta
 }
 
 // Info retrieves detailed information about the challenge.
@@ -212,6 +243,13 @@ func (h *Handle) Own(ctx context.Context, flag string) (common.MessageResponse, 
 	}, nil
 }
 
+type ChallengeActivity = v4Client.ChallengeActivity
+
+type ActivityResponse struct {
+	Data         []ChallengeActivity
+	ResponseMeta common.ResponseMeta
+}
+
 // Activity retrieves the recent activity history for the challenge.
 // This includes recent solves, attempts, and other challenge-related activities.
 //
@@ -242,6 +280,11 @@ func (h *Handle) Activity(ctx context.Context) (ActivityResponse, error) {
 		Data:         parsed.JSON200.Info.Activity,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type DownloadResponse struct {
+	Data         []byte
+	ResponseMeta common.ResponseMeta
 }
 
 // Download retrieves the challenge files for download.

@@ -8,10 +8,19 @@ import (
 	"github.com/gubarz/gohtb/internal/service"
 )
 
+type Service struct {
+	base service.Base
+}
+
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
 	}
+}
+
+type Handle struct {
+	client service.Client
+	id     int
 }
 
 // User returns a handle for a specific user with the given ID.
@@ -22,6 +31,13 @@ func (s *Service) User(id int) *Handle {
 		client: s.base.Client,
 		id:     id,
 	}
+}
+
+type UserProfile = v4Client.UserProfile
+
+type ProfileBasicResponse struct {
+	Data         UserProfile
+	ResponseMeta common.ResponseMeta
 }
 
 // ProfileBasic retrieves basic profile information for the user.
@@ -50,9 +66,16 @@ func (h *Handle) ProfileBasic(ctx context.Context) (ProfileBasicResponse, error)
 	}
 
 	return ProfileBasicResponse{
-		Data:         wrapUserProfile(parsed.JSON200.Profile),
+		Data:         parsed.JSON200.Profile,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type UserActivityItem = v4Client.UserActivityItem
+
+type ProfileActivityResposnse struct {
+	Data         []UserActivityItem
+	ResponseMeta common.ResponseMeta
 }
 
 // ProfileActivity retrieves the activity history for the user.

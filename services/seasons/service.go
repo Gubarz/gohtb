@@ -8,10 +8,19 @@ import (
 	"github.com/gubarz/gohtb/internal/service"
 )
 
+type Service struct {
+	base service.Base
+}
+
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
 	}
+}
+
+type Handle struct {
+	client service.Client
+	id     int
 }
 
 // Season returns a handle for a specific season with the given ID.
@@ -22,6 +31,13 @@ func (s *Service) Season(id int) *Handle {
 		client: s.base.Client,
 		id:     id,
 	}
+}
+
+type SeasonRewardsDataItem = v4Client.SeasonRewardsDataItem
+
+type RewardsResponse struct {
+	Data         []SeasonRewardsDataItem
+	ResponseMeta common.ResponseMeta
 }
 
 // Rewards retrieves the rewards available for the specified season.
@@ -54,6 +70,13 @@ func (h *Handle) Rewards(ctx context.Context) (RewardsResponse, error) {
 	}, nil
 }
 
+type SeasonUserRankData = v4Client.SeasonUserRankData
+
+type UserRankResponse struct {
+	Data         SeasonUserRankData
+	ResponseMeta common.ResponseMeta
+}
+
 // UserRank retrieves the current user's ranking information for the specified season.
 // This includes position, points, and other ranking details for the authenticated user.
 //
@@ -81,6 +104,13 @@ func (h *Handle) UserRank(ctx context.Context) (UserRankResponse, error) {
 	}, nil
 }
 
+type SeasonUserFollowerData = v4Client.SeasonUserFollowerData
+
+type UserFollowersResponse struct {
+	Data         SeasonUserFollowerData
+	ResponseMeta common.ResponseMeta
+}
+
 // UserFollowers retrieves follower information for the current user in the specified season.
 // This includes details about users following the authenticated user during the season.
 //
@@ -106,6 +136,13 @@ func (h *Handle) UserFollowers(ctx context.Context) (UserFollowersResponse, erro
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type SeasonListDataItem = v4Client.SeasonListDataItem
+
+type ListResponse struct {
+	Data         []SeasonListDataItem
+	ResponseMeta common.ResponseMeta
 }
 
 // List retrieves all available seasons on the HackTheBox platform.
@@ -137,6 +174,13 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 	}, nil
 }
 
+type SeasonMachinesDataItem = v4Client.SeasonMachinesDataItem
+
+type MachinesResponse struct {
+	Data         []SeasonMachinesDataItem
+	ResponseMeta common.ResponseMeta
+}
+
 // Machines retrieves all machines available in the current season.
 // This returns information about machines that are part of the active season,
 // including their difficulty, points, and availability status.
@@ -165,6 +209,13 @@ func (s *Service) Machines(ctx context.Context) (MachinesResponse, error) {
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type SeasonActiveData = v4Client.SeasonActiveData
+
+type ActiveMachineResponse struct {
+	Data         SeasonActiveData
+	ResponseMeta common.ResponseMeta
 }
 
 // ActiveMachine retrieves information about the currently active machine in the season.

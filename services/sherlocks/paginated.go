@@ -24,6 +24,13 @@ const (
 	StateUnreleased = "unreleased"
 )
 
+type SherlockItem = v4Client.SherlockItem
+
+type SherlockListResponse struct {
+	Data         []SherlockItem
+	ResponseMeta common.ResponseMeta
+}
+
 // ByState filters Sherlocks by state.
 // Valid values are "active", "retired", and "unreleased".
 // Returns a new SherlockQuery that can be further chained.

@@ -9,10 +9,31 @@ import (
 	"github.com/gubarz/gohtb/internal/service"
 )
 
+type SherlockQuery struct {
+	client     service.Client
+	status     v4Client.GetSherlocksParamsStatus
+	state      v4Client.State
+	sortBy     v4Client.GetSherlocksParamsSortBy
+	sortType   v4Client.GetSherlocksParamsSortType
+	difficulty v4Client.Difficulty
+	category   v4Client.Category
+	page       int
+	perPage    int
+}
+
+type Service struct {
+	base service.Base
+}
+
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
 	}
+}
+
+type Handle struct {
+	client service.Client
+	id     int
 }
 
 func (s *Service) Sherlock(id int) *Handle {
@@ -28,6 +49,13 @@ func (s *Service) List() *SherlockQuery {
 		page:    1,
 		perPage: 100,
 	}
+}
+
+type SherlockNamedItemData = v4Client.SherlockNamedItemData
+
+type InfoResponse struct {
+	Data         SherlockNamedItemData
+	ResponseMeta common.ResponseMeta
 }
 
 func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
@@ -47,6 +75,13 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type SherlockPlay = v4Client.SherlockPlay
+
+type PlayResponse struct {
+	Data         SherlockPlay
+	ResponseMeta common.ResponseMeta
 }
 
 func (h *Handle) Play(ctx context.Context) (PlayResponse, error) {
@@ -69,6 +104,13 @@ func (h *Handle) Play(ctx context.Context) (PlayResponse, error) {
 	}, nil
 }
 
+type SherlockDownloadLink = v4Client.SherlockDownloadLink
+
+type DownloadResponse struct {
+	Data         SherlockDownloadLink
+	ResponseMeta common.ResponseMeta
+}
+
 func (h *Handle) DownloadLink(ctx context.Context) (DownloadResponse, error) {
 	resp, err := h.client.V4().GetSherlockDownloadlink(
 		h.client.Limiter().Wrap(ctx),
@@ -87,6 +129,13 @@ func (h *Handle) DownloadLink(ctx context.Context) (DownloadResponse, error) {
 		Data:         *parsed.JSON200,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type SherlockProgressData = v4Client.SherlockProgressData
+
+type ProgressResponse struct {
+	Data         SherlockProgressData
+	ResponseMeta common.ResponseMeta
 }
 
 func (h *Handle) Progress(ctx context.Context) (ProgressResponse, error) {
@@ -109,6 +158,15 @@ func (h *Handle) Progress(ctx context.Context) (ProgressResponse, error) {
 	}, nil
 }
 
+type SherlockTask = v4Client.SherlockTask
+
+type SherlockTasksData = []SherlockTask
+
+type TasksResponse struct {
+	Data         SherlockTasksData
+	ResponseMeta common.ResponseMeta
+}
+
 func (h *Handle) Tasks(ctx context.Context) (TasksResponse, error) {
 	resp, err := h.client.V4().GetSherlockTasks(
 		h.client.Limiter().Wrap(ctx),
@@ -127,6 +185,13 @@ func (h *Handle) Tasks(ctx context.Context) (TasksResponse, error) {
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type TaskFlagResponse = v4Client.TaskFlagResponse
+
+type OwnResponse struct {
+	Data         TaskFlagResponse
+	ResponseMeta common.ResponseMeta
 }
 
 func (h *Handle) Own(ctx context.Context, taskId int, flag string) (OwnResponse, error) {

@@ -8,10 +8,19 @@ import (
 	"github.com/gubarz/gohtb/internal/service"
 )
 
+type Service struct {
+	base service.Base
+}
+
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
 	}
+}
+
+type Handle struct {
+	client service.Client
+	id     int
 }
 
 // VM returns a handle for a specific virtual machine with the given ID.
@@ -23,6 +32,11 @@ func (s *Service) VM(id int) *Handle {
 		client: s.base.Client,
 		id:     id,
 	}
+}
+
+type Response struct {
+	Data         common.Message
+	ResponseMeta common.ResponseMeta
 }
 
 // Reset performs a hard reset of the virtual machine.

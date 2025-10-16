@@ -8,7 +8,21 @@ import (
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/ptr"
+	"github.com/gubarz/gohtb/internal/service"
 )
+
+type RetiredQuery struct {
+	client        service.Client
+	perPage       int
+	page          int
+	showCompleted string
+	sortBy        v4Client.GetMachinePaginatedParamsSortBy
+	sortType      v4Client.GetMachinePaginatedParamsSortType
+	difficulty    v4Client.Difficulty
+	os            v4Client.Os
+	keyword       v4Client.Keyword
+	tags          v4Client.Tags
+}
 
 // ListRetired creates a new query for retired machines.
 // This returns an RetiredQuery that can be chained with filtering and pagination methods.

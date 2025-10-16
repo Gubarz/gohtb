@@ -9,10 +9,21 @@ import (
 	"github.com/gubarz/gohtb/internal/service"
 )
 
+type Service struct {
+	base service.Base
+}
+
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
 	}
+}
+
+type Item = v4Client.Fortress
+
+type ListResponse struct {
+	Data         []Item
+	ResponseMeta common.ResponseMeta
 }
 
 // List retrieves basic information about the fortresses.
@@ -57,11 +68,23 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 	}, nil
 }
 
+type Handle struct {
+	client service.Client
+	id     int
+}
+
 func (s *Service) Fortress(id int) *Handle {
 	return &Handle{
 		client: s.base.Client,
 		id:     id,
 	}
+}
+
+type Data = v4Client.FortressData
+
+type Info struct {
+	Data         Data
+	ResponseMeta common.ResponseMeta
 }
 
 // Info retrieves detailed information about the fortress.
@@ -97,6 +120,16 @@ func (h *Handle) Info(ctx context.Context) (Info, error) {
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type SubmitFlagData struct {
+	Message string
+	Status  int
+}
+
+type SubmitFlagResponse struct {
+	Data         SubmitFlagData
+	ResponseMeta common.ResponseMeta
 }
 
 // SubmitFlag submits a flag for the fortress and returns the server's response message.
@@ -138,6 +171,8 @@ func (h *Handle) SubmitFlag(ctx context.Context, flag string) (SubmitFlagRespons
 	}, nil
 }
 
+type FlagData = common.FlagData
+
 // Flags retrieves all available flags for the fortress.
 //
 // Example:
@@ -173,6 +208,16 @@ func (h *Handle) Flags(ctx context.Context) (FlagData, error) {
 		Status:       parsed.JSON200.Status,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type ResetFlagData struct {
+	Message string
+	Status  bool
+}
+
+type ResetResponse struct {
+	Data         ResetFlagData
+	ResponseMeta common.ResponseMeta
 }
 
 // Reset sends a reset request for the associated fortress VM.

@@ -13,11 +13,41 @@ import (
 	"github.com/gubarz/gohtb/services/vms"
 )
 
+type PagingMeta struct {
+	CurrentPage int
+	PerPage     int
+	Total       int
+	TotalPages  int
+	Count       int
+}
+
+type MachineData = v4Client.MachineData
+
+type MachineDataItems []MachineData
+
+type MachinePaginatedResponse struct {
+	Data         MachineDataItems
+	Pagination   PagingMeta
+	ResponseMeta common.ResponseMeta
+}
+
+type Service struct {
+	base    service.Base
+	product string
+}
+
 func NewService(client service.Client, product string) *Service {
 	return &Service{
 		base:    service.NewBase(client),
 		product: product,
 	}
+}
+
+type ActiveMachineInfo = v4Client.ActiveMachineInfo
+
+type ActiveResponse struct {
+	Data         ActiveMachineInfo
+	ResponseMeta common.ResponseMeta
 }
 
 // Active retrieves information about the currently active machine.
@@ -47,6 +77,12 @@ func (s *Service) Active(ctx context.Context) (ActiveResponse, error) {
 	}, nil
 }
 
+type Handle struct {
+	client  service.Client
+	id      int
+	product string
+}
+
 // Machine returns a handle for a specific machine with the given ID.
 // This handle can be used to perform operations on the machine such as
 // retrieving information, submitting flags, or managing VM instances.
@@ -56,6 +92,22 @@ func (s *Service) Machine(id int) *Handle {
 		id:      id,
 		product: s.product,
 	}
+}
+
+type Credentials struct {
+	Username string
+	Password string
+}
+
+type MachineProfileInfo struct {
+	v4Client.MachineProfileInfo
+	Credentials
+	IsAssumedBreach bool
+}
+
+type InfoResponse struct {
+	Data         MachineProfileInfo
+	ResponseMeta common.ResponseMeta
 }
 
 // Info retrieves detailed information about the machine.
@@ -89,6 +141,13 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 		Data:         wrapped,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type MachineOwnResponse = v5Client.MachineOwnResponse
+
+type OwnResponse struct {
+	Data         MachineOwnResponse
+	ResponseMeta common.ResponseMeta
 }
 
 // Own submits a flag for the machine to claim ownership.
@@ -268,4 +327,8 @@ func extractCredentials(s string) Credentials {
 	}
 
 	return Credentials{}
+}
+
+func wrapMachineProfileInfo(x v4Client.MachineProfileInfo) MachineProfileInfo {
+	return MachineProfileInfo{MachineProfileInfo: x}
 }

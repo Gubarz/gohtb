@@ -8,10 +8,19 @@ import (
 	"github.com/gubarz/gohtb/internal/service"
 )
 
+type Service struct {
+	base service.Base
+}
+
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
 	}
+}
+
+type Handle struct {
+	client service.Client
+	id     int
 }
 
 func (s *Service) Prolab(id int) *Handle {
@@ -19,6 +28,13 @@ func (s *Service) Prolab(id int) *Handle {
 		client: s.base.Client,
 		id:     id,
 	}
+}
+
+type ProlabsData = v4Client.ProlabsData
+
+type ListResponse struct {
+	Data         ProlabsData
+	ResponseMeta common.ResponseMeta
 }
 
 func (s *Service) List(ctx context.Context) (ListResponse, error) {
@@ -38,6 +54,15 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type FaqItem = v4Client.FaqItem
+
+type ProlabFaqData = []FaqItem
+
+type FaqResponse struct {
+	Data         ProlabFaqData
+	ResponseMeta common.ResponseMeta
 }
 
 func (h *Handle) FAQ(ctx context.Context) (FaqResponse, error) {
@@ -60,6 +85,11 @@ func (h *Handle) FAQ(ctx context.Context) (FaqResponse, error) {
 	}, nil
 }
 
+type FlagsResponse struct {
+	Data         []common.Flag
+	ResponseMeta common.ResponseMeta
+}
+
 func (h *Handle) Flags(ctx context.Context) (FlagsResponse, error) {
 	resp, err := h.client.V4().GetProlabFlags(
 		h.client.Limiter().Wrap(ctx),
@@ -78,6 +108,13 @@ func (h *Handle) Flags(ctx context.Context) (FlagsResponse, error) {
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type ProlabData = v4Client.ProlabData
+
+type InfoResponse struct {
+	Data         ProlabData
+	ResponseMeta common.ResponseMeta
 }
 
 func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
@@ -100,6 +137,15 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	}, nil
 }
 
+type Machine = v4Client.Machine
+
+type ProlabMachineData = []Machine
+
+type MachinesResponse struct {
+	Data         ProlabMachineData
+	ResponseMeta common.ResponseMeta
+}
+
 func (h *Handle) Machines(ctx context.Context) (MachinesResponse, error) {
 	resp, err := h.client.V4().GetProlabMachines(
 		h.client.Limiter().Wrap(ctx),
@@ -120,6 +166,13 @@ func (h *Handle) Machines(ctx context.Context) (MachinesResponse, error) {
 	}, nil
 }
 
+type ProlabOverviewData = v4Client.ProlabOverviewData
+
+type OverviewResponse struct {
+	Data         ProlabOverviewData
+	ResponseMeta common.ResponseMeta
+}
+
 func (h *Handle) Overview(ctx context.Context) (OverviewResponse, error) {
 	resp, err := h.client.V4().GetProlabOverview(
 		h.client.Limiter().Wrap(ctx),
@@ -137,6 +190,13 @@ func (h *Handle) Overview(ctx context.Context) (OverviewResponse, error) {
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type ProlabProgressData = v4Client.ProlabProgressData
+
+type ProgressResponse struct {
+	Data         ProlabProgressData
+	ResponseMeta common.ResponseMeta
 }
 
 func (h *Handle) Progress(ctx context.Context) (ProgressResponse, error) {
@@ -159,6 +219,11 @@ func (h *Handle) Progress(ctx context.Context) (ProgressResponse, error) {
 	}, nil
 }
 
+type RatingResponse struct {
+	Data         string
+	ResponseMeta common.ResponseMeta
+}
+
 func (h *Handle) Rating(ctx context.Context) (RatingResponse, error) {
 	resp, err := h.client.V4().GetProlabRating(
 		h.client.Limiter().Wrap(ctx),
@@ -178,6 +243,13 @@ func (h *Handle) Rating(ctx context.Context) (RatingResponse, error) {
 	}, nil
 }
 
+type ProlabSubscription = v4Client.ProlabSubscription
+
+type SubscriptionResponse struct {
+	Data         ProlabSubscription
+	ResponseMeta common.ResponseMeta
+}
+
 func (h *Handle) Subscription(ctx context.Context) (SubscriptionResponse, error) {
 	resp, err := h.client.V4().GetProlabSubscription(
 		h.client.Limiter().Wrap(ctx),
@@ -195,6 +267,16 @@ func (h *Handle) Subscription(ctx context.Context) (SubscriptionResponse, error)
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type MessageStatus struct {
+	Message string
+	Status  int
+}
+
+type SubmitFlagResponse struct {
+	Data         MessageStatus
+	ResponseMeta common.ResponseMeta
 }
 
 func (h *Handle) SubmitFlag(ctx context.Context, flag string) (SubmitFlagResponse, error) {

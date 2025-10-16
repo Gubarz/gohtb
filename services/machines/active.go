@@ -7,6 +7,7 @@ import (
 
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/ptr"
+	"github.com/gubarz/gohtb/internal/service"
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 )
@@ -19,6 +20,18 @@ const (
 	SortByDifficulty  = v4Client.GetMachinePaginatedParamsSortBy("user-difficulty")
 	SortByRating      = v4Client.GetMachinePaginatedParamsSortBy("rating")
 )
+
+type ActiveQuery struct {
+	client        service.Client
+	perPage       int
+	page          int
+	showCompleted string
+	sortBy        v4Client.GetMachinePaginatedParamsSortBy
+	sortType      v4Client.GetMachinePaginatedParamsSortType
+	difficulty    v4Client.Difficulty
+	os            v4Client.Os
+	keyword       v4Client.Keyword
+}
 
 // ListActive creates a new query for active machines.
 // This returns an ActiveQuery that can be chained with filtering and pagination methods.
