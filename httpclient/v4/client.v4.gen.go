@@ -5654,28 +5654,28 @@ type PostArenaOwnFormdataBody struct {
 // GetCareerCompanyParams defines parameters for GetCareerCompany.
 type GetCareerCompanyParams struct {
 	// Page Page number
-	Page Page `form:"page,omitempty" json:"page,omitempty"`
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 }
 
 // GetCareerRequestsParams defines parameters for GetCareerRequests.
 type GetCareerRequestsParams struct {
 	// Page Page number
-	Page Page `form:"page,omitempty" json:"page,omitempty"`
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 }
 
 // GetCareerSearchParams defines parameters for GetCareerSearch.
 type GetCareerSearchParams struct {
 	// SearchQuery Search Param
-	SearchQuery SearchQuery `form:"search_query,omitempty" json:"search_query,omitempty"`
+	SearchQuery *SearchQuery `form:"search_query,omitempty" json:"search_query,omitempty"`
 
 	// Page Page number
-	Page Page `form:"page,omitempty" json:"page,omitempty"`
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// AfterDate Get items after a date in the past
-	AfterDate AfterDate `form:"after_date,omitempty" json:"after_date,omitempty"`
+	AfterDate *AfterDate `form:"after_date,omitempty" json:"after_date,omitempty"`
 
 	// Rank Rank integer
-	Rank Rank `form:"rank[],omitempty" json:"rank[],omitempty"`
+	Rank *Rank `form:"rank[],omitempty" json:"rank[],omitempty"`
 }
 
 // PostCareerTemporaryContactOptinJSONBody defines parameters for PostCareerTemporaryContactOptin.
@@ -5707,32 +5707,32 @@ type PostChallengeStopFormdataBody struct {
 // GetChallengesParams defines parameters for GetChallenges.
 type GetChallengesParams struct {
 	// Page Page number
-	Page Page `form:"page,omitempty" json:"page,omitempty"`
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PerPage Limit results per page
-	PerPage PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
 
 	// Status Omit for both
-	Status GetChallengesParamsStatus `form:"status,omitempty" json:"status,omitempty"`
+	Status *GetChallengesParamsStatus `form:"status,omitempty" json:"status,omitempty"`
 
 	// State Filter by state. You can provide multiple values. For example, state=active&state=retired.
-	State State `form:"state,omitempty" json:"state,omitempty"`
+	State *State `form:"state,omitempty" json:"state,omitempty"`
 
 	// SortBy Field to sort by
-	SortBy GetChallengesParamsSortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy *GetChallengesParamsSortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
 
 	// SortType Sort type (asc or desc)
-	SortType GetChallengesParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType *GetChallengesParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// Category Filter by category. You can provide multiple values. For example,
 	// category[]=15&category[]=20. See /v4/{productName}/categories/list for full list
-	Category Category `form:"category[],omitempty" json:"category[],omitempty"`
+	Category *Category `form:"category[],omitempty" json:"category[],omitempty"`
 
 	// Todo Filter ToDo
-	Todo GetChallengesParamsTodo `form:"todo,omitempty" json:"todo,omitempty"`
+	Todo *GetChallengesParamsTodo `form:"todo,omitempty" json:"todo,omitempty"`
 }
 
 // GetChallengesParamsStatus defines parameters for GetChallenges.
@@ -5781,34 +5781,34 @@ type GetMachineGraphActivityParamsPeriod string
 // GetMachineListRetiredPaginatedParams defines parameters for GetMachineListRetiredPaginated.
 type GetMachineListRetiredPaginatedParams struct {
 	// Free limits retired results to free machines, values must either be 1 for true or 0 for false or omit the parameter for no filter
-	Free GetMachineListRetiredPaginatedParamsFree `form:"free,omitempty" json:"free,omitempty"`
+	Free *GetMachineListRetiredPaginatedParamsFree `form:"free,omitempty" json:"free,omitempty"`
 
 	// PerPage Limit results per page
-	PerPage PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
 
 	// Page Page number
-	Page Page `form:"page,omitempty" json:"page,omitempty"`
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// ShowCompleted Omit for both
-	ShowCompleted GetMachineListRetiredPaginatedParamsShowCompleted `form:"show_completed,omitempty" json:"show_completed,omitempty"`
+	ShowCompleted *GetMachineListRetiredPaginatedParamsShowCompleted `form:"show_completed,omitempty" json:"show_completed,omitempty"`
 
 	// SortBy Field to sort by
-	SortBy GetMachineListRetiredPaginatedParamsSortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy *GetMachineListRetiredPaginatedParamsSortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
 
 	// SortType Sort type (asc or desc)
-	SortType GetMachineListRetiredPaginatedParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType *GetMachineListRetiredPaginatedParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// Os Filter by os
-	Os Os `form:"os,omitempty" json:"os,omitempty"`
+	Os *Os `form:"os[],omitempty" json:"os[],omitempty"`
 
 	// Tags Filter by tag ID. Can be repeated.
-	Tags Tags `form:"tags,omitempty" json:"tags,omitempty"`
+	Tags *Tags `form:"tags,omitempty" json:"tags,omitempty"`
 
 	// Keyword Search String
-	Keyword Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 // GetMachineListRetiredPaginatedParamsFree defines parameters for GetMachineListRetiredPaginated.
@@ -5832,28 +5832,28 @@ type GetMachineListRetiredPaginatedParamsOs string
 // GetMachinePaginatedParams defines parameters for GetMachinePaginated.
 type GetMachinePaginatedParams struct {
 	// PerPage Limit results per page
-	PerPage PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
 
 	// Page Page number
-	Page Page `form:"page,omitempty" json:"page,omitempty"`
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// ShowCompleted Omit for both
-	ShowCompleted GetMachinePaginatedParamsShowCompleted `form:"show_completed,omitempty" json:"show_completed,omitempty"`
+	ShowCompleted *GetMachinePaginatedParamsShowCompleted `form:"show_completed,omitempty" json:"show_completed,omitempty"`
 
 	// SortBy Field to sort by
-	SortBy GetMachinePaginatedParamsSortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy *GetMachinePaginatedParamsSortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
 
 	// SortType Sort type (asc or desc)
-	SortType GetMachinePaginatedParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType *GetMachinePaginatedParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// Os Filter by os
-	Os Os `form:"os,omitempty" json:"os,omitempty"`
+	Os *Os `form:"os[],omitempty" json:"os[],omitempty"`
 
 	// Keyword Search String
-	Keyword Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 // GetMachinePaginatedParamsShowCompleted defines parameters for GetMachinePaginated.
@@ -5874,19 +5874,19 @@ type GetMachinePaginatedParamsOs string
 // GetMachineTodoPaginatedParams defines parameters for GetMachineTodoPaginated.
 type GetMachineTodoPaginatedParams struct {
 	// SortType Sort type (asc or desc)
-	SortType GetMachineTodoPaginatedParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType *GetMachineTodoPaginatedParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
 
 	// Keyword Search String
-	Keyword Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// ShowCompleted Omit for both
-	ShowCompleted GetMachineTodoPaginatedParamsShowCompleted `form:"show_completed,omitempty" json:"show_completed,omitempty"`
+	ShowCompleted *GetMachineTodoPaginatedParamsShowCompleted `form:"show_completed,omitempty" json:"show_completed,omitempty"`
 
 	// Os Filter by os
-	Os Os `form:"os,omitempty" json:"os,omitempty"`
+	Os *Os `form:"os[],omitempty" json:"os[],omitempty"`
 }
 
 // GetMachineTodoPaginatedParamsSortType defines parameters for GetMachineTodoPaginated.
@@ -5904,19 +5904,19 @@ type GetMachineTodoPaginatedParamsOs string
 // GetMachineUnreleasedParams defines parameters for GetMachineUnreleased.
 type GetMachineUnreleasedParams struct {
 	// Page Page number
-	Page Page `form:"page,omitempty" json:"page,omitempty"`
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 
 	// PerPage Limit results per page
-	PerPage PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// Os Filter by os
-	Os Os `form:"os,omitempty" json:"os,omitempty"`
+	Os *Os `form:"os[],omitempty" json:"os[],omitempty"`
 
 	// Keyword Search String
-	Keyword Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
 }
 
 // GetMachineUnreleasedParamsDifficulty defines parameters for GetMachineUnreleased.
@@ -6025,7 +6025,7 @@ type GetSearchFetchParams struct {
 	Query Query `form:"query" json:"query"`
 
 	// Tags Search Term
-	Tags SearchTags `form:"tags,omitempty" json:"tags,omitempty"`
+	Tags *SearchTags `form:"tags,omitempty" json:"tags,omitempty"`
 }
 
 // GetSearchFetchParamsTags defines parameters for GetSearchFetch.
@@ -6054,32 +6054,32 @@ type GetSeasonLeaderboardTopParamsLeaderboard string
 // GetSherlocksParams defines parameters for GetSherlocks.
 type GetSherlocksParams struct {
 	// SortType Sort type (asc or desc)
-	SortType GetSherlocksParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
+	SortType *GetSherlocksParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
 
 	// Difficulty Filter by difficulty level
-	Difficulty Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
+	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
 	// State Filter by state. You can provide multiple values. For example, state=active&state=retired.
-	State State `form:"state,omitempty" json:"state,omitempty"`
+	State *State `form:"state,omitempty" json:"state,omitempty"`
 
 	// SortBy Attribute to sort by
-	SortBy GetSherlocksParamsSortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
+	SortBy *GetSherlocksParamsSortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
 
 	// Category Filter by category. You can provide multiple values. For example,
 	// category[]=15&category[]=20. See /v4/{productName}/categories/list for full list
-	Category Category `form:"category[],omitempty" json:"category[],omitempty"`
+	Category *Category `form:"category[],omitempty" json:"category[],omitempty"`
 
 	// Keyword Search String
-	Keyword Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
+	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
 
 	// Status Omit for both
-	Status GetSherlocksParamsStatus `form:"status,omitempty" json:"status,omitempty"`
+	Status *GetSherlocksParamsStatus `form:"status,omitempty" json:"status,omitempty"`
 
 	// PerPage Limit results per page
-	PerPage PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
 
 	// Page Page number
-	Page Page `form:"page,omitempty" json:"page,omitempty"`
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 }
 
 // GetSherlocksParamsSortType defines parameters for GetSherlocks.
@@ -6110,7 +6110,7 @@ type PostSherlockTasksFlagFormdataBody struct {
 // GetTeamActivityParams defines parameters for GetTeamActivity.
 type GetTeamActivityParams struct {
 	// NPastDays number of past days, max 90
-	NPastDays NPastDays `form:"n_past_days,omitempty" json:"n_past_days,omitempty"`
+	NPastDays *NPastDays `form:"n_past_days,omitempty" json:"n_past_days,omitempty"`
 }
 
 // GetTeamGraphParams defines parameters for GetTeamGraph.
@@ -6125,10 +6125,10 @@ type GetTeamGraphParamsPeriod string
 // GetUniversityAllListParams defines parameters for GetUniversityAllList.
 type GetUniversityAllListParams struct {
 	// Search Search
-	Search Search `form:"search,omitempty" json:"search,omitempty"`
+	Search *Search `form:"search,omitempty" json:"search,omitempty"`
 
 	// Page Page number
-	Page Page `form:"page,omitempty" json:"page,omitempty"`
+	Page *Page `form:"page,omitempty" json:"page,omitempty"`
 }
 
 // PostUserApptokenCreateJSONBody defines parameters for PostUserApptokenCreate.
@@ -10882,16 +10882,20 @@ func NewGetCareerCompanyRequest(server string, companyId CompanyId, params *GetC
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, params.Page); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -11042,16 +11046,20 @@ func NewGetCareerRequestsRequest(server string, params *GetCareerRequestsParams)
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, params.Page); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -11087,52 +11095,68 @@ func NewGetCareerSearchRequest(server string, params *GetCareerSearchParams) (*h
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search_query", runtime.ParamLocationQuery, params.SearchQuery); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.SearchQuery != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search_query", runtime.ParamLocationQuery, *params.SearchQuery); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, params.Page); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "after_date", runtime.ParamLocationQuery, params.AfterDate); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.AfterDate != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "after_date", runtime.ParamLocationQuery, *params.AfterDate); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "rank[]", runtime.ParamLocationQuery, params.Rank); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Rank != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "rank[]", runtime.ParamLocationQuery, *params.Rank); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -11786,112 +11810,148 @@ func NewGetChallengesRequest(server string, params *GetChallengesParams) (*http.
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, params.Page); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, params.PerPage); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, *params.PerPage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "status", runtime.ParamLocationQuery, params.Status); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "status", runtime.ParamLocationQuery, *params.Status); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, params.State); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_by", runtime.ParamLocationQuery, params.SortBy); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.SortBy != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_by", runtime.ParamLocationQuery, *params.SortBy); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, params.SortType); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.SortType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, *params.SortType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, params.Difficulty); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Difficulty != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category[]", runtime.ParamLocationQuery, params.Category); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Category != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category[]", runtime.ParamLocationQuery, *params.Category); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "todo", runtime.ParamLocationQuery, params.Todo); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Todo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "todo", runtime.ParamLocationQuery, *params.Todo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -12776,124 +12836,164 @@ func NewGetMachineListRetiredPaginatedRequest(server string, params *GetMachineL
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "free", runtime.ParamLocationQuery, params.Free); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Free != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "free", runtime.ParamLocationQuery, *params.Free); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, params.PerPage); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, *params.PerPage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, params.Page); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "show_completed", runtime.ParamLocationQuery, params.ShowCompleted); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.ShowCompleted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "show_completed", runtime.ParamLocationQuery, *params.ShowCompleted); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_by", runtime.ParamLocationQuery, params.SortBy); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.SortBy != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_by", runtime.ParamLocationQuery, *params.SortBy); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, params.SortType); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.SortType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, *params.SortType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, params.Difficulty); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Difficulty != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os", runtime.ParamLocationQuery, params.Os); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Os != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os[]", runtime.ParamLocationQuery, *params.Os); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags", runtime.ParamLocationQuery, params.Tags); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Tags != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags", runtime.ParamLocationQuery, *params.Tags); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, params.Keyword); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -13014,100 +13114,132 @@ func NewGetMachinePaginatedRequest(server string, params *GetMachinePaginatedPar
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, params.PerPage); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, *params.PerPage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, params.Page); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "show_completed", runtime.ParamLocationQuery, params.ShowCompleted); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.ShowCompleted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "show_completed", runtime.ParamLocationQuery, *params.ShowCompleted); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_by", runtime.ParamLocationQuery, params.SortBy); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.SortBy != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_by", runtime.ParamLocationQuery, *params.SortBy); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, params.SortType); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.SortType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, *params.SortType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, params.Difficulty); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Difficulty != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os", runtime.ParamLocationQuery, params.Os); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Os != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os[]", runtime.ParamLocationQuery, *params.Os); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, params.Keyword); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -13411,64 +13543,84 @@ func NewGetMachineTodoPaginatedRequest(server string, params *GetMachineTodoPagi
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, params.SortType); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.SortType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, *params.SortType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, params.Keyword); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, params.Difficulty); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Difficulty != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "show_completed", runtime.ParamLocationQuery, params.ShowCompleted); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.ShowCompleted != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "show_completed", runtime.ParamLocationQuery, *params.ShowCompleted); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os", runtime.ParamLocationQuery, params.Os); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Os != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os[]", runtime.ParamLocationQuery, *params.Os); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -13504,64 +13656,84 @@ func NewGetMachineUnreleasedRequest(server string, params *GetMachineUnreleasedP
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, params.Page); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, params.PerPage); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, *params.PerPage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, params.Difficulty); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Difficulty != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os", runtime.ParamLocationQuery, params.Os); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Os != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os[]", runtime.ParamLocationQuery, *params.Os); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, params.Keyword); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -15263,16 +15435,20 @@ func NewGetSearchFetchRequest(server string, params *GetSearchFetchParams) (*htt
 			}
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags", runtime.ParamLocationQuery, params.Tags); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Tags != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags", runtime.ParamLocationQuery, *params.Tags); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -15677,112 +15853,148 @@ func NewGetSherlocksRequest(server string, params *GetSherlocksParams) (*http.Re
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, params.SortType); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.SortType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, *params.SortType); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, params.Difficulty); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Difficulty != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, params.State); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.State != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "state", runtime.ParamLocationQuery, *params.State); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_by", runtime.ParamLocationQuery, params.SortBy); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.SortBy != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_by", runtime.ParamLocationQuery, *params.SortBy); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category[]", runtime.ParamLocationQuery, params.Category); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Category != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category[]", runtime.ParamLocationQuery, *params.Category); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, params.Keyword); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "status", runtime.ParamLocationQuery, params.Status); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Status != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "status", runtime.ParamLocationQuery, *params.Status); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, params.PerPage); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, *params.PerPage); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, params.Page); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -16365,16 +16577,20 @@ func NewGetTeamActivityRequest(server string, teamId TeamId, params *GetTeamActi
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "n_past_days", runtime.ParamLocationQuery, params.NPastDays); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.NPastDays != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "n_past_days", runtime.ParamLocationQuery, *params.NPastDays); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -16931,28 +17147,36 @@ func NewGetUniversityAllListRequest(server string, params *GetUniversityAllListP
 	if params != nil {
 		queryValues := queryURL.Query()
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, params.Search); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Search != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search", runtime.ParamLocationQuery, *params.Search); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, params.Page); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()

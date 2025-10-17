@@ -1,6 +1,6 @@
 module github.com/gubarz/gohtb
 
-go 1.23.7
+go 1.24
 
 require (
 	github.com/microcosm-cc/bluemonday v1.0.25

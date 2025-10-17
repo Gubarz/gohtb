@@ -215,14 +215,14 @@ func (q *SherlockQuery) Previous() *SherlockQuery {
 
 func (q *SherlockQuery) fetchResults(ctx context.Context) (SherlockListResponse, error) {
 	params := &v4Client.GetSherlocksParams{
-		Page:       q.page,
-		PerPage:    q.perPage,
-		Difficulty: q.difficulty,
-		Category:   q.category,
-		SortBy:     q.sortBy,
-		Status:     q.status,
-		SortType:   q.sortType,
-		State:      q.state,
+		Page:       &q.page,
+		PerPage:    &q.perPage,
+		Difficulty: &q.difficulty,
+		Category:   &q.category,
+		SortBy:     &q.sortBy,
+		Status:     &q.status,
+		SortType:   &q.sortType,
+		State:      &q.state,
 	}
 
 	resp, err := q.client.V4().GetSherlocks(q.client.Limiter().Wrap(ctx), params)

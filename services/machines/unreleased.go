@@ -26,7 +26,7 @@ type UnreleasedQuery struct {
 	page       int
 	difficulty v4Client.Difficulty
 	os         v4Client.Os
-	keyword    v4Client.Keyword
+	keyword    *v4Client.Keyword
 }
 
 // ListUnreleased creates a new query for unreleased machines.
@@ -156,19 +156,19 @@ func (q *UnreleasedQuery) ByDifficulty(val string) *UnreleasedQuery {
 
 func (q *UnreleasedQuery) fetchResults(ctx context.Context) (MachineUnreleasedResponse, error) {
 	params := &v4Client.GetMachineUnreleasedParams{
-		PerPage: q.perPage,
-		Page:    q.page,
+		PerPage: &q.perPage,
+		Page:    &q.page,
 		Keyword: q.keyword,
 	}
 
 	if len(q.difficulty) > 0 {
 		d := q.difficulty
-		params.Difficulty = d
+		params.Difficulty = &d
 	}
 
 	if len(q.os) > 0 {
 		o := q.os
-		params.Os = o
+		params.Os = &o
 	}
 
 	resp, err := q.client.V4().GetMachineUnreleased(q.client.Limiter().Wrap(ctx), params)

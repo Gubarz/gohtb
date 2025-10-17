@@ -141,7 +141,7 @@ func (h *Handle) Activity(ctx context.Context, days int) (ActivityResponse, erro
 		last = days
 	}
 	params := &v4Client.GetTeamActivityParams{
-		NPastDays: last,
+		NPastDays: &last,
 	}
 	resp, err := h.client.V4().GetTeamActivity(
 		h.client.Limiter().Wrap(ctx),

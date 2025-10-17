@@ -215,29 +215,29 @@ func (q *RetiredQuery) Descending() *RetiredQuery {
 
 func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinePaginatedResponse, error) {
 	params := &v4Client.GetMachineListRetiredPaginatedParams{
-		PerPage: q.perPage,
-		Page:    q.page,
-		Keyword: q.keyword,
+		PerPage: &q.perPage,
+		Page:    &q.page,
+		Keyword: &q.keyword,
 	}
 
 	if len(q.difficulty) > 0 {
 		d := q.difficulty
-		params.Difficulty = d
+		params.Difficulty = &d
 	}
 
 	if len(q.os) > 0 {
 		o := q.os
-		params.Os = o
+		params.Os = &o
 	}
 
 	if len(q.tags) > 0 {
 		d := q.tags
-		params.Tags = d
+		params.Tags = &d
 	}
 
 	if q.showCompleted != "" {
 		sc := v4Client.GetMachineListRetiredPaginatedParamsShowCompleted(q.showCompleted)
-		params.ShowCompleted = sc
+		params.ShowCompleted = &sc
 	}
 
 	resp, err := q.client.V4().GetMachineListRetiredPaginated(q.client.Limiter().Wrap(ctx), params)

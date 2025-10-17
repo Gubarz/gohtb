@@ -226,26 +226,26 @@ func (q *ActiveQuery) Descending() *ActiveQuery {
 
 func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinePaginatedResponse, error) {
 	params := &v4Client.GetMachinePaginatedParams{
-		PerPage:  q.perPage,
-		Page:     q.page,
-		SortBy:   q.sortBy,
-		SortType: q.sortType,
-		Keyword:  q.keyword,
+		PerPage:  &q.perPage,
+		Page:     &q.page,
+		SortBy:   &q.sortBy,
+		SortType: &q.sortType,
+		Keyword:  &q.keyword,
 	}
 
 	if len(q.difficulty) > 0 {
 		d := q.difficulty
-		params.Difficulty = d
+		params.Difficulty = &d
 	}
 
 	if len(q.os) > 0 {
 		o := q.os
-		params.Os = o
+		params.Os = &o
 	}
 
 	if q.showCompleted != "" {
 		sc := v4Client.GetMachinePaginatedParamsShowCompleted(q.showCompleted)
-		params.ShowCompleted = sc
+		params.ShowCompleted = &sc
 	}
 
 	resp, err := q.client.V4().GetMachinePaginated(q.client.Limiter().Wrap(ctx), params)

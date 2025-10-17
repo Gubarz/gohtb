@@ -213,15 +213,15 @@ func (q *ChallengeQuery) Previous() *ChallengeQuery {
 
 func (q *ChallengeQuery) fetchResults(ctx context.Context) (ChallengeListResponse, error) {
 	params := &v4Client.GetChallengesParams{
-		Page:       q.page,
-		PerPage:    q.perPage,
-		Difficulty: q.difficulty,
-		Category:   q.category,
-		SortBy:     q.sortBy,
-		Status:     q.status,
-		SortType:   q.sortType,
-		State:      q.state,
-		Todo:       q.todo,
+		Page:       &q.page,
+		PerPage:    &q.perPage,
+		Difficulty: &q.difficulty,
+		Category:   &q.category,
+		SortBy:     &q.sortBy,
+		Status:     &q.status,
+		SortType:   &q.sortType,
+		State:      &q.state,
+		Todo:       &q.todo,
 	}
 
 	resp, err := q.client.V4().GetChallenges(q.client.Limiter().Wrap(ctx), params)
