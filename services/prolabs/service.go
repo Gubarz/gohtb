@@ -110,7 +110,14 @@ func (h *Handle) Flags(ctx context.Context) (FlagsResponse, error) {
 	}, nil
 }
 
-type ProlabData = v4Client.ProlabData
+type ProlabData struct {
+	v4Client.ProlabData
+	DescriptionHTML string
+}
+
+func wrapProlabData(x v4Client.ProlabData) ProlabData {
+	return ProlabData{ProlabData: x}
+}
 
 type InfoResponse struct {
 	Data         ProlabData
@@ -130,9 +137,12 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	if err != nil {
 		return InfoResponse{ResponseMeta: meta}, err
 	}
+	wrapped := wrapProlabData(parsed.JSON200.Data)
+	wrapped.DescriptionHTML = common.SanitizeHTML(wrapped.Description)
+	wrapped.Description = common.StrictHTML(wrapped.Description)
 
 	return InfoResponse{
-		Data:         parsed.JSON200.Data,
+		Data:         wrapped,
 		ResponseMeta: meta,
 	}, nil
 }
