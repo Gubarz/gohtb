@@ -3394,8 +3394,8 @@ type RankingsTeamOverviewResponse struct {
 	Status bool                     `json:"status,omitempty"`
 }
 
-// RankingsTeamRankingBacketData defines model for RankingsTeamRankingBacketData.
-type RankingsTeamRankingBacketData struct {
+// RankingsTeamRankingBracketData defines model for RankingsTeamRankingBracketData.
+type RankingsTeamRankingBracketData struct {
 	CurrentBracket       string `json:"current_bracket,omitempty"`
 	NextBracket          string `json:"next_bracket"`
 	Points               int    `json:"points,omitempty"`
@@ -3405,8 +3405,8 @@ type RankingsTeamRankingBacketData struct {
 
 // RankingsTeamRankingBracketResponse Schema definition for Rankings Team Ranking Bracket Response
 type RankingsTeamRankingBracketResponse struct {
-	Data   RankingsTeamRankingBacketData `json:"data,omitempty"`
-	Status bool                          `json:"status,omitempty"`
+	Data   RankingsTeamRankingBracketData `json:"data,omitempty"`
+	Status bool                           `json:"status,omitempty"`
 }
 
 // RankingsTeamResponse Schema definition for Rankings Team Response
