@@ -39,6 +39,7 @@ func NewService(client service.Client, product string) *Service {
 type Handle struct {
 	client  service.Client
 	id      int
+	name    string
 	product string
 }
 
@@ -49,6 +50,14 @@ func (s *Service) Challenge(id int) *Handle {
 	return &Handle{
 		client:  s.base.Client,
 		id:      id,
+		product: s.product,
+	}
+}
+
+func (s *Service) ChallengeName(name string) *Handle {
+	return &Handle{
+		client:  s.base.Client,
+		name:    name,
 		product: s.product,
 	}
 }
@@ -88,7 +97,12 @@ type InfoResponse struct {
 //	}
 //	fmt.Printf("Challenge: %s (%s, %s)\n", info.Data.Name, info.Data.Difficulty, info.Data.Category)
 func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
-	slug := strconv.Itoa(h.id)
+	var slug string
+	if h.name != "" {
+		slug = h.name
+	} else {
+		slug = strconv.Itoa(h.id)
+	}
 	resp, err := h.client.V4().GetChallengeInfo(
 		h.client.Limiter().Wrap(ctx),
 		slug,
