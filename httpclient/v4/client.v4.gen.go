@@ -3638,6 +3638,7 @@ type ReviewsResponse struct {
 
 // SearchChallengeItem defines model for SearchChallengeItem.
 type SearchChallengeItem struct {
+	CategoryName        string `json:"category_name,omitempty"`
 	ChallengeCategoryId int    `json:"challenge_category_id,omitempty"`
 	Description         string `json:"description,omitempty"`
 	Id                  int    `json:"id,omitempty"`
