@@ -3652,7 +3652,7 @@ type SearchFetchMachinesItem struct {
 	Avatar string `json:"avatar,omitempty"`
 	Id     int    `json:"id,omitempty"`
 	IsSp   bool   `json:"isSp,omitempty"`
-	TierId string `json:"tierId"`
+	TierId int    `json:"tierId"`
 	Value  string `json:"value,omitempty"`
 }
 
@@ -3689,7 +3689,7 @@ type SearchTeamItems = []SearchTeamItem
 
 // SearchUserItem defines model for SearchUserItem.
 type SearchUserItem struct {
-	Avatar string `json:"avatar,omitempty"`
+	Avatar string `json:"avatar"`
 	Id     int    `json:"id,omitempty"`
 	Value  string `json:"value,omitempty"`
 }
@@ -22281,6 +22281,7 @@ func (r GetReviewPaginatedResponse) StatusCode() int {
 type GetSearchFetchResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *SearchFetchResponse
 	JSON400      *GenericError
 }
 
@@ -30398,6 +30399,13 @@ func ParseGetSearchFetchResponse(rsp *http.Response) (*GetSearchFetchResponse, e
 	}
 
 	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SearchFetchResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest GenericError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
