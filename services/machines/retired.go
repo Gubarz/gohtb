@@ -232,7 +232,7 @@ func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinePaginatedRespon
 
 	if len(q.tags) > 0 {
 		d := q.tags
-		params.Tags = &d
+		params.Tag = &d
 	}
 
 	if q.showCompleted != "" {

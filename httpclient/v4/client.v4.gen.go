@@ -1117,11 +1117,10 @@ type ChallengeStartResponse struct {
 
 // ChallengeSuggestedData defines model for ChallengeSuggestedData.
 type ChallengeSuggestedData struct {
-	ChallengeCategoryName string      `json:"challenge_category_name,omitempty"`
-	Id                    int         `json:"id,omitempty"`
-	Name                  string      `json:"name,omitempty"`
-	PlayMethods           StringArray `json:"play_methods,omitempty"`
-	UrlName               string      `json:"url_name,omitempty"`
+	ChallengeCategoryName string `json:"challenge_category_name,omitempty"`
+	Id                    int    `json:"id,omitempty"`
+	Name                  string `json:"name,omitempty"`
+	UrlName               string `json:"url_name,omitempty"`
 }
 
 // ChallengeSuggestedResponse Schema definition for Challenge Suggested Response
@@ -1244,8 +1243,8 @@ type ConnectionProlabLab struct {
 	CanAccess            bool             `json:"can_access,omitempty"`
 	LocationTypeFriendly string           `json:"location_type_friendly"`
 
-	// ProLab Schema definition for Common Id Name
-	ProLab CommonIdName `json:"pro_lab,omitempty"`
+	// ProLab Schema definition for Id Name Identifier
+	ProLab IdNameIdentifier `json:"pro_lab,omitempty"`
 }
 
 // ConnectionServer defines model for ConnectionServer.
@@ -1788,6 +1787,13 @@ type HomeUserTodoData struct {
 // HomeUserTodoRepsonse Schema definition for Home User Todo Repsonse
 type HomeUserTodoRepsonse struct {
 	Data HomeUserTodoData `json:"data,omitempty"`
+}
+
+// IdNameIdentifier Schema definition for Id Name Identifier
+type IdNameIdentifier struct {
+	Id         int    `json:"id,omitempty"`
+	Identifier string `json:"identifier,omitempty"`
+	Name       string `json:"name,omitempty"`
 }
 
 // InfoArray defines model for InfoArray.
@@ -2648,7 +2654,7 @@ type PaginatedMachineDataItems = []MachineData
 type PaginationLink struct {
 	Active bool   `json:"active,omitempty"`
 	Label  string `json:"label,omitempty"`
-	Page   int    `json:"page,omitempty"`
+	Page   int    `json:"page"`
 	Url    string `json:"url"`
 }
 
@@ -5838,8 +5844,8 @@ type GetMachineListRetiredPaginatedParams struct {
 	// Os Filter by os
 	Os *Os `form:"os[],omitempty" json:"os[],omitempty"`
 
-	// Tags Filter by tag ID. Can be repeated.
-	Tags *Tags `form:"tags,omitempty" json:"tags,omitempty"`
+	// Tag Filter by tag ID. Can be repeated.
+	Tag *Tags `form:"tag[],omitempty" json:"tag[],omitempty"`
 
 	// Keyword Search String
 	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
@@ -12998,9 +13004,9 @@ func NewGetMachineListRetiredPaginatedRequest(server string, params *GetMachineL
 
 		}
 
-		if params.Tags != nil {
+		if params.Tag != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags", runtime.ParamLocationQuery, *params.Tags); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag[]", runtime.ParamLocationQuery, *params.Tag); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
