@@ -211,6 +211,18 @@ func (q *ChallengeQuery) Previous() *ChallengeQuery {
 	return qc
 }
 
+// ByKeyword filters Challenge name
+// Returns a new ChallengeQuery that can be further chained.
+//
+// Example:
+//
+//	challenges := query.ByKeyword("spo").Results(ctx)
+func (q *ChallengeQuery) ByKeyword(keyword string) *ChallengeQuery {
+	qc := ptr.Clone(q)
+	qc.keyword = v4Client.Keyword(keyword)
+	return qc
+}
+
 func (q *ChallengeQuery) fetchResults(ctx context.Context) (ChallengeListResponse, error) {
 	params := &v4Client.GetChallengesParams{
 		Page:    &q.page,
@@ -240,6 +252,10 @@ func (q *ChallengeQuery) fetchResults(ctx context.Context) (ChallengeListRespons
 
 	if len(q.status) > 0 {
 		params.Status = &q.status
+	}
+
+	if q.keyword != "" {
+		params.Keyword = &q.keyword
 	}
 
 	resp, err := q.client.V4().GetChallenges(q.client.Limiter().Wrap(ctx), params)

@@ -20,8 +20,13 @@ type PagingMeta struct {
 	TotalPages  int
 	Count       int
 }
+type DifficultyChart = v4Client.DifficultyChart1
 
-type MachineData = v4Client.MachineData
+type MachineData struct {
+	v4Client.MachineData
+	IsTodo           bool
+	FeedbackForChart v4Client.DifficultyChart1
+}
 
 type MachineDataItems []MachineData
 
@@ -41,6 +46,30 @@ func NewService(client service.Client, product string) *Service {
 		base:    service.NewBase(client),
 		product: product,
 	}
+}
+
+type MachinetagsListInfoItems = v4Client.MachinetagsListInfoItems
+
+type MachineTagResponse struct {
+	Data         TagCatalog
+	ResponseMeta common.ResponseMeta
+}
+
+func (s *Service) Tags(ctx context.Context) (MachineTagResponse, error) {
+	resp, err := s.base.Client.V4().GetMachineTagsList(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return MachineTagResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetMachineTagsListResponse)
+	if err != nil {
+		return MachineTagResponse{ResponseMeta: meta}, err
+	}
+
+	return MachineTagResponse{
+		Data:         buildCatalog(parsed.JSON200.Info),
+		ResponseMeta: meta,
+	}, nil
 }
 
 type ActiveMachineInfo = v4Client.ActiveMachineInfo
@@ -345,4 +374,79 @@ func extractCredentials(s string) Credentials {
 
 func wrapMachineProfileInfo(x v4Client.MachineProfileInfo) MachineProfileInfo {
 	return MachineProfileInfo{MachineProfileInfo: x}
+}
+
+type TagCategory = v4Client.TagCategory
+
+type Tag = v4Client.Tag
+
+type TagCatalog struct {
+	Categories       []TagCategory
+	Tags             []Tag
+	TagsByID         map[int]Tag
+	CategoriesByID   map[int]TagCategory
+	TagsByCat        map[int][]Tag
+	TagsByName       map[string]Tag
+	CategoriesByName map[string]TagCategory
+}
+
+func buildCatalog(cats []TagCategory) TagCatalog {
+	tagsByID := make(map[int]Tag, 512)
+	categoriesByID := make(map[int]TagCategory, len(cats))
+	tagsByCat := make(map[int][]Tag, len(cats))
+	tagsByName := make(map[string]Tag, 512)
+	categoriesByName := make(map[string]TagCategory, len(cats))
+
+	for _, c := range cats {
+		categoriesByID[c.Id] = c
+		categoriesByName[c.Name] = c
+		for _, t := range c.Tags {
+			tagsByID[t.Id] = t
+			tagsByCat[t.TagCategoryId] = append(tagsByCat[t.TagCategoryId], t)
+			tagsByName[t.Name] = t
+		}
+	}
+
+	var allTags []Tag
+	for _, t := range tagsByID {
+		allTags = append(allTags, t)
+	}
+
+	return TagCatalog{
+		Categories:       cats,
+		Tags:             allTags,
+		TagsByID:         tagsByID,
+		CategoriesByID:   categoriesByID,
+		TagsByCat:        tagsByCat,
+		TagsByName:       tagsByName,
+		CategoriesByName: categoriesByName,
+	}
+}
+
+func isTodo(u v4Client.MachineData_IsTodo) bool {
+	n, err := u.AsMachineDataIsTodo1()
+	if err != nil {
+		return false
+	}
+	return n > 0
+}
+
+func feedbackForChart(u v4Client.DifficultyChart) DifficultyChart {
+	n, err := u.AsDifficultyChart1()
+	if err != nil {
+		return DifficultyChart{}
+	}
+	return n
+}
+
+func wrapMachineData(list []v4Client.MachineData) []MachineData {
+	out := make([]MachineData, len(list))
+	for i, m := range list {
+		out[i] = MachineData{
+			MachineData:      m,
+			IsTodo:           isTodo(m.IsTodo),
+			FeedbackForChart: feedbackForChart(m.FeedbackForChart),
+		}
+	}
+	return out
 }

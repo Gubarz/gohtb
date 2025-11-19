@@ -19,6 +19,7 @@ type ChallengeQuery struct {
 	sortType   v4Client.GetChallengesParamsSortType
 	difficulty v4Client.Difficulty
 	category   v4Client.Category
+	keyword    v4Client.Keyword
 	todo       v4Client.GetChallengesParamsTodo
 	page       int
 	perPage    int
@@ -41,6 +42,29 @@ type Handle struct {
 	id      int
 	name    string
 	product string
+}
+
+type CategoriesListInfo = v4Client.CategoriesListInfo
+type CategoriesListInfoResponse struct {
+	Data         CategoriesListInfo
+	ResponseMeta common.ResponseMeta
+}
+
+func (s *Service) Categories(ctx context.Context) (CategoriesListInfoResponse, error) {
+	resp, err := s.base.Client.V4().GetChallengeCategoriesList(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return CategoriesListInfoResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetChallengeCategoriesListResponse)
+	if err != nil {
+		return CategoriesListInfoResponse{ResponseMeta: meta}, err
+	}
+
+	return CategoriesListInfoResponse{
+		Data:         parsed.JSON200.Info,
+		ResponseMeta: meta,
+	}, nil
 }
 
 // Challenge returns a handle for a specific challenge with the given ID.

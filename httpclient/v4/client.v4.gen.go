@@ -5768,6 +5768,9 @@ type GetChallengesParams struct {
 	// Difficulty Filter by difficulty level
 	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
+	// Keyword Search String
+	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
+
 	// Category Filter by category. You can provide multiple values. For example,
 	// category[]=15&category[]=20. See /v4/{productName}/categories/list for full list
 	Category *Category `form:"category[],omitempty" json:"category[],omitempty"`
@@ -11950,6 +11953,22 @@ func NewGetChallengesRequest(server string, params *GetChallengesParams) (*http.
 		if params.Difficulty != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err

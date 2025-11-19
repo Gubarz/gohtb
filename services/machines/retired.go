@@ -188,7 +188,7 @@ func (q *RetiredQuery) sort(val v4Client.GetMachinePaginatedParamsSortBy, order 
 }
 
 // Ascending sets the sort order to ascending.
-// Must be called after SortedBy(). Returns a new ActiveQuery that can be further chained.
+// Must be called after SortedBy(). Returns a new RetiredQuery that can be further chained.
 //
 // Example:
 //
@@ -201,7 +201,7 @@ func (q *RetiredQuery) Ascending() *RetiredQuery {
 }
 
 // Descending sets the sort order to descending.
-// Must be called after SortedBy(). Returns a new ActiveQuery that can be further chained.
+// Must be called after SortedBy(). Returns a new RetiredQuery that can be further chained.
 //
 // Example:
 //
@@ -211,6 +211,40 @@ func (q *RetiredQuery) Descending() *RetiredQuery {
 		return q
 	}
 	return q.sort(q.sortBy, v4Client.GetMachinePaginatedParamsSortType("desc"))
+}
+
+// Keyword filters machines names.
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	machines := query.Keyword("buffer").Results(ctx)
+func (q *RetiredQuery) Keyword(val string) *RetiredQuery {
+	qc := ptr.Clone(q)
+	qc.keyword = val
+	return qc
+}
+
+// ByTag filters machines by a single tag ID.
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	machines := query.ByTag(123).Results(ctx)
+func (q *RetiredQuery) ByTag(val int) *RetiredQuery {
+	return q.ByTagList(val)
+}
+
+// ByTagList filters machines by multiple tag IDs.
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	machines := query.ByTagList(123, 456).Results(ctx)
+func (q *RetiredQuery) ByTagList(val ...int) *RetiredQuery {
+	qc := ptr.Clone(q)
+	qc.tags = append(append([]int{}, q.tags...), val...)
+	return qc
 }
 
 func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinePaginatedResponse, error) {
@@ -251,7 +285,7 @@ func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinePaginatedRespon
 	}
 
 	return MachinePaginatedResponse{
-		Data:         parsed.JSON200.Data,
+		Data:         wrapMachineData(parsed.JSON200.Data),
 		ResponseMeta: meta,
 	}, nil
 }

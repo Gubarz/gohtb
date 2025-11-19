@@ -213,6 +213,18 @@ func (q *SherlockQuery) Previous() *SherlockQuery {
 	return qc
 }
 
+// ByKeyword filters Sherlocks name
+// Returns a new SherlockQuery that can be further chained.
+//
+// Example:
+//
+//	sherlocks := query.ByKeyword("bru").Results(ctx)
+func (q *SherlockQuery) ByKeyword(keyword string) *SherlockQuery {
+	qc := ptr.Clone(q)
+	qc.keyword = v4Client.Keyword(keyword)
+	return qc
+}
+
 func (q *SherlockQuery) fetchResults(ctx context.Context) (SherlockListResponse, error) {
 	params := &v4Client.GetSherlocksParams{
 		Page:    &q.page,
@@ -241,6 +253,10 @@ func (q *SherlockQuery) fetchResults(ctx context.Context) (SherlockListResponse,
 
 	if len(q.status) > 0 {
 		params.Status = &q.status
+	}
+
+	if q.keyword != "" {
+		params.Keyword = &q.keyword
 	}
 
 	resp, err := q.client.V4().GetSherlocks(q.client.Limiter().Wrap(ctx), params)
