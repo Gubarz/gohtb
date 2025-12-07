@@ -3660,22 +3660,27 @@ type SearchFetchMachinesItem struct {
 // SearchFetchResponse Schema definition for Search Fetch Response
 type SearchFetchResponse struct {
 	Challenges SearchChallengesItems `json:"challenges,omitempty"`
-	Joboffers  SearchJobOffersItems  `json:"joboffers,omitempty"`
 	Machines   SearchMachinesItems   `json:"machines,omitempty"`
+	Sherlocks  SearchSherlocksItems  `json:"sherlocks,omitempty"`
 	Teams      SearchTeamItems       `json:"teams,omitempty"`
 	Users      SearchUsersItems      `json:"users,omitempty"`
 }
 
-// SearchJobOfferItem defines model for SearchJobOfferItem.
-type SearchJobOfferItem struct {
-	Id string `json:"id,omitempty"`
-}
-
-// SearchJobOffersItems defines model for SearchJobOffersItems.
-type SearchJobOffersItems = []SearchJobOfferItem
-
 // SearchMachinesItems defines model for SearchMachinesItems.
 type SearchMachinesItems = []SearchFetchMachinesItem
+
+// SearchSherlockItem defines model for SearchSherlockItem.
+type SearchSherlockItem struct {
+	Avatar              string `json:"avatar,omitempty"`
+	CategoryName        string `json:"category_name,omitempty"`
+	ChallengeCategoryId int    `json:"challenge_category_id,omitempty"`
+	Description         string `json:"description,omitempty"`
+	Id                  int    `json:"id,omitempty"`
+	Value               string `json:"value,omitempty"`
+}
+
+// SearchSherlocksItems defines model for SearchSherlocksItems.
+type SearchSherlocksItems = []SearchSherlockItem
 
 // SearchTeamItem defines model for SearchTeamItem.
 type SearchTeamItem struct {
@@ -3971,17 +3976,24 @@ type SeasonUserRank struct {
 
 // SeasonUserRankData defines model for SeasonUserRankData.
 type SeasonUserRankData struct {
-	FlagsToNextRank   FlagsToNextRank `json:"flags_to_next_rank,omitempty"`
-	League            string          `json:"league,omitempty"`
-	NextRank          int             `json:"next_rank,omitempty"`
-	Rank              int             `json:"rank,omitempty"`
-	RankSuffix        string          `json:"rank_suffix,omitempty"`
-	RootBloods        int             `json:"root_bloods,omitempty"`
-	RootOwns          int             `json:"root_owns,omitempty"`
-	TotalRanks        int             `json:"total_ranks,omitempty"`
-	TotalSeasonPoints int             `json:"total_season_points,omitempty"`
-	UserBloods        int             `json:"user_bloods,omitempty"`
-	UserOwns          int             `json:"user_owns,omitempty"`
+	FlagsToNextRank   FlagsToNextRank                    `json:"flags_to_next_rank,omitempty"`
+	League            string                             `json:"league,omitempty"`
+	NextRank          int                                `json:"next_rank,omitempty"`
+	Rank              int                                `json:"rank,omitempty"`
+	RankSuffix        string                             `json:"rank_suffix,omitempty"`
+	RootBloods        int                                `json:"root_bloods,omitempty"`
+	RootOwns          int                                `json:"root_owns,omitempty"`
+	TotalRanks        int                                `json:"total_ranks,omitempty"`
+	TotalSeasonFlags  SeasonUserRankDataTotalSeasonFlags `json:"total_season_flags,omitempty"`
+	TotalSeasonPoints int                                `json:"total_season_points,omitempty"`
+	UserBloods        int                                `json:"user_bloods,omitempty"`
+	UserOwns          int                                `json:"user_owns,omitempty"`
+}
+
+// SeasonUserRankDataTotalSeasonFlags defines model for SeasonUserRankDataTotalSeasonFlags.
+type SeasonUserRankDataTotalSeasonFlags struct {
+	Obtained int `json:"obtained,omitempty"`
+	Total    int `json:"total,omitempty"`
 }
 
 // Server Schema definition for Server

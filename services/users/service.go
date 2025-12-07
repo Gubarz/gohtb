@@ -4,6 +4,7 @@ import (
 	"context"
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
+	v5Client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/service"
 )
@@ -78,20 +79,23 @@ type ProfileActivityResposnse struct {
 	ResponseMeta common.ResponseMeta
 }
 
-// ProfileActivity retrieves the activity history for the user.
+// ProfileActivityDepreciated retrieves the activity history for the user.
 // This includes recent actions, submissions, and other user activities
 // on the HackTheBox platform.
 //
+// Note: This method is considered deprecated. If you want starting point
+// activities you still need to use this method.
+//
 // Example:
 //
-//	activity, err := client.Users.User(12345).ProfileActivity(ctx)
+//	activity, err := client.Users.User(12345).ProfileActivityDepreciated(ctx)
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	for _, act := range activity.Data {
 //		fmt.Printf("Activity: %s at %s\n", act.Type, act.Date)
 //	}
-func (h *Handle) ProfileActivity(ctx context.Context) (ProfileActivityResposnse, error) {
+func (h *Handle) ProfileActivityDepreciated(ctx context.Context) (ProfileActivityResposnse, error) {
 	resp, err := h.client.V4().GetUserProfileActivity(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
@@ -109,4 +113,49 @@ func (h *Handle) ProfileActivity(ctx context.Context) (ProfileActivityResposnse,
 		Data:         parsed.JSON200.Profile.Activity,
 		ResponseMeta: meta,
 	}, nil
+}
+
+type UserProfileActivityItem = v5Client.UserProfileActivityItem
+
+type UserProfileActivity struct {
+	v5Client.UserProfileActivityBase
+	Challenge  v5Client.UserProfileActivityChallenge
+	Fortress   v5Client.UserProfileActivityFortress
+	MachineOwn v5Client.UserProfileActivityMachineOwn
+	Prolab     v5Client.UserProfileActivityProlab
+	Sherlock   v5Client.UserProfileActivitySherlock
+}
+
+func (a UserProfileActivity) AsChallenge() (v5Client.UserProfileActivityChallenge, bool) {
+	return a.Challenge, a.Type == string(v5Client.UserProfileActivityChallengeTypeChallenge)
+}
+
+func (a UserProfileActivity) AsFortress() (v5Client.UserProfileActivityFortress, bool) {
+	return a.Fortress, a.Type == "fortress"
+}
+
+func (a UserProfileActivity) AsMachineOwn() (v5Client.UserProfileActivityMachineOwn, bool) {
+	switch a.Type {
+	case string(v5Client.UserProfileActivityMachineOwnTypeRoot), string(v5Client.UserProfileActivityMachineOwnTypeUser):
+		return a.MachineOwn, true
+	default:
+		return v5Client.UserProfileActivityMachineOwn{}, false
+	}
+}
+
+func (a UserProfileActivity) AsProlab() (v5Client.UserProfileActivityProlab, bool) {
+	return a.Prolab, a.Type == string(v5Client.UserProfileActivityProlabTypeProlab)
+}
+
+func (a UserProfileActivity) AsSherlock() (v5Client.UserProfileActivitySherlock, bool) {
+	return a.Sherlock, a.Type == string(v5Client.UserProfileActivitySherlockTypeSherlock)
+}
+
+func (h *Handle) ProfileActivity() *UserProfileActivityQuery {
+	return &UserProfileActivityQuery{
+		client:  h.client,
+		id:      h.id,
+		page:    1,
+		perPage: 20,
+	}
 }

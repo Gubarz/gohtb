@@ -37,6 +37,8 @@ type ActiveQuery struct {
 // This returns an ActiveQuery that can be chained with filtering and pagination methods.
 // Active machines are machines that are currently available.
 //
+// Note: Deprecated, use List() instead.
+//
 // Example:
 //
 //	query := client.Machines.ListActive()

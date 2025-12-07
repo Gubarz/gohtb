@@ -36,6 +36,18 @@ type MachinePaginatedResponse struct {
 	ResponseMeta common.ResponseMeta
 }
 
+type MachinesData struct {
+	v5Client.MachinesItem
+}
+
+type MachinesDataItems []MachinesData
+
+type MachinesResponse struct {
+	Data         MachinesDataItems
+	Pagination   PagingMeta
+	ResponseMeta common.ResponseMeta
+}
+
 type Service struct {
 	base    service.Base
 	product string
@@ -140,7 +152,8 @@ type Credentials struct {
 type MachineProfileInfo struct {
 	v4Client.MachineProfileInfo
 	Credentials
-	IsAssumedBreach bool
+	IsAssumedBreach  bool
+	FeedbackForChart DifficultyChart
 }
 
 type InfoResponse struct {
@@ -179,6 +192,7 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 
 	wrapped := wrapMachineProfileInfo(parsed.JSON200.Info)
 	wrapped.IsAssumedBreach, wrapped.Credentials = parseAssumedBreachStatus(wrapped.InfoStatus)
+	wrapped.FeedbackForChart = feedbackForChart(wrapped.MachineProfileInfo.FeedbackForChart)
 
 	return InfoResponse{
 		Data:         wrapped,
