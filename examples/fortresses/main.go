@@ -37,7 +37,7 @@ func main() {
 		} else {
 			fmt.Printf("\n=== Fortress Details: %s ===\n", fortressDetails.Data.Name)
 			fmt.Printf("Description: %s\n", fortressDetails.Data.Description)
-			fmt.Printf("Points: %d\n", fortressDetails.Data.Points)
+			fmt.Printf("Points: %s\n", fortressDetails.Data.Points)
 
 			// Optional: Print raw response
 			fmt.Println("\nRaw Response:", string(fortressDetails.ResponseMeta.Raw))
