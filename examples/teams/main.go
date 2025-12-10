@@ -48,4 +48,20 @@ func main() {
 		}
 	}
 
+	fmt.Printf("\n=== Team Info ===\n")
+	info, err := client.Teams.TeamInfo(ctx, teamID)
+	if err != nil {
+		log.Printf("failed to get team info: %v\n", err)
+	}else {
+		fmt.Printf("Team Motto: %s", info.Data.Motto)
+	}
+
+	fmt.Printf("\n=== Team Stats ===\n")
+	stats, err := client.Teams.Stats(ctx, teamID)
+	if err != nil {
+		log.Printf("failed to get team stats: %v\n", err)
+	}else {
+		fmt.Printf("team stats:\n Bloods: %d\n System Owns: %d\n User Owns: %d", stats.Data.FirstBloods, stats.Data.SystemOwns, stats.Data.UserOwns)
+	}
+
 }
