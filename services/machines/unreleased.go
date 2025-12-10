@@ -33,6 +33,8 @@ type UnreleasedQuery struct {
 // This returns an UnreleasedQuery that can be chained with filtering and pagination methods.
 // Unreleased machines are machines that are not yet publicly available.
 //
+// Note: Deprecated, use List() instead.
+//
 // Example:
 //
 //	query := client.Machines.ListUnreleased()

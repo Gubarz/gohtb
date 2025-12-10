@@ -34,7 +34,7 @@ func main() {
 
 	// Get user activity
 	fmt.Printf("\n=== User Activity ===\n")
-	activity, err := client.Users.User(userID).ProfileActivity(ctx)
+	activity, err := client.Users.User(userID).ProfileActivity().Results(ctx)
 	if err != nil {
 		log.Printf("Failed to get user activity: %v\n", err)
 	} else {
@@ -43,7 +43,7 @@ func main() {
 			if i >= 5 { // Show only first 5 activities
 				break
 			}
-			fmt.Printf("- %s: %s (%s)\n", act.Date, act.Type, act.Name)
+			fmt.Printf("- %s: %s (%s)\n", act.OwnDate, act.Type, act.Name)
 		}
 	}
 }

@@ -550,6 +550,7 @@ type AcademyModulesItems = []AcademyModule
 // AcademyTiers defines model for AcademyTiers.
 type AcademyTiers struct {
 	Color  string `json:"color,omitempty"`
+	Id     int    `json:"id,omitempty"`
 	Name   string `json:"name,omitempty"`
 	Number int    `json:"number,omitempty"`
 }
@@ -1116,11 +1117,10 @@ type ChallengeStartResponse struct {
 
 // ChallengeSuggestedData defines model for ChallengeSuggestedData.
 type ChallengeSuggestedData struct {
-	ChallengeCategoryName string      `json:"challenge_category_name,omitempty"`
-	Id                    int         `json:"id,omitempty"`
-	Name                  string      `json:"name,omitempty"`
-	PlayMethods           StringArray `json:"play_methods,omitempty"`
-	UrlName               string      `json:"url_name,omitempty"`
+	ChallengeCategoryName string `json:"challenge_category_name,omitempty"`
+	Id                    int    `json:"id,omitempty"`
+	Name                  string `json:"name,omitempty"`
+	UrlName               string `json:"url_name,omitempty"`
 }
 
 // ChallengeSuggestedResponse Schema definition for Challenge Suggested Response
@@ -1232,8 +1232,8 @@ type ConnectionProlab struct {
 	// AssignedServer Schema definition for Assigned Server
 	AssignedServer ServerConnection    `json:"assigned_server"`
 	CanAccess      bool                `json:"can_access,omitempty"`
-	Fullhouse      ConnectionProlabLab `json:"fullhouse,omitempty"`
-	Solar          ConnectionProlabLab `json:"solar,omitempty"`
+	Mythical       ConnectionProlabLab `json:"mythical,omitempty"`
+	Puppet         ConnectionProlabLab `json:"puppet,omitempty"`
 }
 
 // ConnectionProlabLab defines model for ConnectionProlabLab.
@@ -1243,8 +1243,8 @@ type ConnectionProlabLab struct {
 	CanAccess            bool             `json:"can_access,omitempty"`
 	LocationTypeFriendly string           `json:"location_type_friendly"`
 
-	// ProLab Schema definition for Common Id Name
-	ProLab CommonIdName `json:"pro_lab,omitempty"`
+	// ProLab Schema definition for Id Name Identifier
+	ProLab IdNameIdentifier `json:"pro_lab,omitempty"`
 }
 
 // ConnectionServer defines model for ConnectionServer.
@@ -1291,6 +1291,7 @@ type ConnectionStatusResponse = []ConnectionStatusItem
 
 // ConnectionsData defines model for ConnectionsData.
 type ConnectionsData struct {
+	Competitive   ConnectionCompetitive `json:"competitive,omitempty"`
 	Fortresses    ConnectionLab         `json:"fortresses,omitempty"`
 	Lab           ConnectionLab         `json:"lab,omitempty"`
 	ProLabs       ConnectionProlab      `json:"pro_labs,omitempty"`
@@ -1788,6 +1789,13 @@ type HomeUserTodoRepsonse struct {
 	Data HomeUserTodoData `json:"data,omitempty"`
 }
 
+// IdNameIdentifier Schema definition for Id Name Identifier
+type IdNameIdentifier struct {
+	Id         int    `json:"id,omitempty"`
+	Identifier string `json:"identifier,omitempty"`
+	Name       string `json:"name,omitempty"`
+}
+
 // InfoArray defines model for InfoArray.
 type InfoArray = []Item
 
@@ -1853,6 +1861,14 @@ type Label struct {
 
 // LabelItems defines model for LabelItems.
 type LabelItems = []Label
+
+// LatestSeason Schema definition for Latest Season
+type LatestSeason struct {
+	BackgroundImage string `json:"background_image,omitempty"`
+	Id              int    `json:"id,omitempty"`
+	Name            string `json:"name,omitempty"`
+	State           string `json:"state,omitempty"`
+}
 
 // Links Schema definition for Links
 type Links struct {
@@ -2517,8 +2533,8 @@ type NavigationMainResponse struct {
 
 // NavigationNmainSeasonRanking defines model for NavigationNmainSeasonRanking.
 type NavigationNmainSeasonRanking struct {
-	// LatestSeason Schema definition for Common Id Name
-	LatestSeason   CommonIdName   `json:"latest_season,omitempty"`
+	// LatestSeason Schema definition for Latest Season
+	LatestSeason   LatestSeason   `json:"latest_season,omitempty"`
 	League         string         `json:"league,omitempty"`
 	Rank           int            `json:"rank,omitempty"`
 	RankSuffix     string         `json:"rank_suffix,omitempty"`
@@ -2638,6 +2654,7 @@ type PaginatedMachineDataItems = []MachineData
 type PaginationLink struct {
 	Active bool   `json:"active,omitempty"`
 	Label  string `json:"label,omitempty"`
+	Page   int    `json:"page"`
 	Url    string `json:"url"`
 }
 
@@ -2682,6 +2699,7 @@ type PorfileContentProfile struct {
 type PorfileContentProfileContent struct {
 	Challenges []interface{}              `json:"challenges,omitempty"`
 	Machines   ProfileContentMachineItems `json:"machines,omitempty"`
+	Sherlocks  []interface{}              `json:"sherlocks,omitempty"`
 	Writeups   []interface{}              `json:"writeups,omitempty"`
 }
 
@@ -2698,8 +2716,11 @@ type ProfileBadgesIdRepsonse struct {
 
 // ProfileBadgesItem defines model for ProfileBadgesItem.
 type ProfileBadgesItem struct {
-	Id    int                    `json:"id,omitempty"`
-	Pivot ProfileBadgesItemPivot `json:"pivot,omitempty"`
+	Description string                 `json:"description,omitempty"`
+	Icon        string                 `json:"icon,omitempty"`
+	Id          int                    `json:"id,omitempty"`
+	Name        string                 `json:"name,omitempty"`
+	Pivot       ProfileBadgesItemPivot `json:"pivot,omitempty"`
 }
 
 // ProfileBadgesItemPivot defines model for ProfileBadgesItemPivot.
@@ -2864,8 +2885,10 @@ type ProfileProgressProfileFortresses = []ProfileProgressFortressProfileItem
 
 // ProfileProgressProlabItem defines model for ProfileProgressProlabItem.
 type ProfileProgressProlabItem struct {
+	Avatar               string  `json:"avatar,omitempty"`
 	AverageRatings       float32 `json:"average_ratings"`
 	CompletionPercentage int     `json:"completion_percentage,omitempty"`
+	Mini                 bool    `json:"mini,omitempty"`
 	Name                 string  `json:"name,omitempty"`
 	OwnedFlags           int     `json:"owned_flags,omitempty"`
 	TotalFlags           int     `json:"total_flags,omitempty"`
@@ -2877,6 +2900,7 @@ type ProfileProgressProlabItems = []ProfileProgressProlabItem
 
 // ProfileUserStats defines model for ProfileUserStats.
 type ProfileUserStats struct {
+	ChallengeBloods     int                    `json:"challenge_bloods,omitempty"`
 	CurrentRankProgress float32                `json:"current_rank_progress,omitempty"`
 	Growths             Growths                `json:"growths,omitempty"`
 	Id                  int                    `json:"id,omitempty"`
@@ -3614,6 +3638,7 @@ type ReviewsResponse struct {
 
 // SearchChallengeItem defines model for SearchChallengeItem.
 type SearchChallengeItem struct {
+	CategoryName        string `json:"category_name,omitempty"`
 	ChallengeCategoryId int    `json:"challenge_category_id,omitempty"`
 	Description         string `json:"description,omitempty"`
 	Id                  int    `json:"id,omitempty"`
@@ -3628,29 +3653,34 @@ type SearchFetchMachinesItem struct {
 	Avatar string `json:"avatar,omitempty"`
 	Id     int    `json:"id,omitempty"`
 	IsSp   bool   `json:"isSp,omitempty"`
-	TierId string `json:"tierId"`
+	TierId int    `json:"tierId"`
 	Value  string `json:"value,omitempty"`
 }
 
 // SearchFetchResponse Schema definition for Search Fetch Response
 type SearchFetchResponse struct {
 	Challenges SearchChallengesItems `json:"challenges,omitempty"`
-	Joboffers  SearchJobOffersItems  `json:"joboffers,omitempty"`
 	Machines   SearchMachinesItems   `json:"machines,omitempty"`
+	Sherlocks  SearchSherlocksItems  `json:"sherlocks,omitempty"`
 	Teams      SearchTeamItems       `json:"teams,omitempty"`
 	Users      SearchUsersItems      `json:"users,omitempty"`
 }
 
-// SearchJobOfferItem defines model for SearchJobOfferItem.
-type SearchJobOfferItem struct {
-	Id string `json:"id,omitempty"`
-}
-
-// SearchJobOffersItems defines model for SearchJobOffersItems.
-type SearchJobOffersItems = []SearchJobOfferItem
-
 // SearchMachinesItems defines model for SearchMachinesItems.
 type SearchMachinesItems = []SearchFetchMachinesItem
+
+// SearchSherlockItem defines model for SearchSherlockItem.
+type SearchSherlockItem struct {
+	Avatar              string `json:"avatar,omitempty"`
+	CategoryName        string `json:"category_name,omitempty"`
+	ChallengeCategoryId int    `json:"challenge_category_id,omitempty"`
+	Description         string `json:"description,omitempty"`
+	Id                  int    `json:"id,omitempty"`
+	Value               string `json:"value,omitempty"`
+}
+
+// SearchSherlocksItems defines model for SearchSherlocksItems.
+type SearchSherlocksItems = []SearchSherlockItem
 
 // SearchTeamItem defines model for SearchTeamItem.
 type SearchTeamItem struct {
@@ -3665,7 +3695,7 @@ type SearchTeamItems = []SearchTeamItem
 
 // SearchUserItem defines model for SearchUserItem.
 type SearchUserItem struct {
-	Avatar string `json:"avatar,omitempty"`
+	Avatar string `json:"avatar"`
 	Id     int    `json:"id,omitempty"`
 	Value  string `json:"value,omitempty"`
 }
@@ -3765,6 +3795,7 @@ type SeasonListDataItem struct {
 	StartDate          time.Time `json:"start_date,omitempty"`
 	State              string    `json:"state,omitempty"`
 	Subtitle           string    `json:"subtitle"`
+	Trailer            string    `json:"trailer,omitempty"`
 	Weeks              int       `json:"weeks,omitempty"`
 }
 
@@ -3780,24 +3811,26 @@ type SeasonMachines struct {
 
 // SeasonMachinesDataItem defines model for SeasonMachinesDataItem.
 type SeasonMachinesDataItem struct {
-	Active         bool      `json:"active,omitempty"`
-	Avatar         string    `json:"avatar,omitempty"`
-	DifficultyText string    `json:"difficulty_text,omitempty"`
-	Id             int       `json:"id,omitempty"`
-	IsOwnedRoot    bool      `json:"is_owned_root,omitempty"`
-	IsOwnedUser    bool      `json:"is_owned_user,omitempty"`
-	IsReleased     bool      `json:"is_released,omitempty"`
-	IsRootBlood    bool      `json:"is_root_blood,omitempty"`
-	IsUserBlood    bool      `json:"is_user_blood,omitempty"`
-	Name           string    `json:"name,omitempty"`
-	Os             string    `json:"os,omitempty"`
-	Production     int       `json:"production,omitempty"`
-	Rating         int       `json:"rating,omitempty"`
-	RatingCount    int       `json:"ratingCount,omitempty"`
-	ReleaseTime    time.Time `json:"release_time,omitempty"`
-	RootPoints     int       `json:"root_points,omitempty"`
-	Unknown        bool      `json:"unknown,omitempty"`
-	UserPoints     int       `json:"user_points,omitempty"`
+	Active          bool      `json:"active,omitempty"`
+	Avatar          string    `json:"avatar,omitempty"`
+	DifficultyText  string    `json:"difficulty_text,omitempty"`
+	Id              int       `json:"id,omitempty"`
+	IsOwnedRoot     bool      `json:"is_owned_root,omitempty"`
+	IsOwnedUser     bool      `json:"is_owned_user,omitempty"`
+	IsReleased      bool      `json:"is_released,omitempty"`
+	IsRootBlood     bool      `json:"is_root_blood,omitempty"`
+	IsUserBlood     bool      `json:"is_user_blood,omitempty"`
+	Name            string    `json:"name,omitempty"`
+	Os              string    `json:"os,omitempty"`
+	Production      int       `json:"production,omitempty"`
+	Rating          int       `json:"rating,omitempty"`
+	RatingCount     int       `json:"ratingCount,omitempty"`
+	ReleaseTime     time.Time `json:"release_time,omitempty"`
+	RootBloodPoints int       `json:"root_blood_points,omitempty"`
+	RootPoints      int       `json:"root_points,omitempty"`
+	Unknown         bool      `json:"unknown,omitempty"`
+	UserBloodPoints int       `json:"user_blood_points,omitempty"`
+	UserPoints      int       `json:"user_points,omitempty"`
 }
 
 // SeasonMachinesDataItems defines model for SeasonMachinesDataItems.
@@ -3814,6 +3847,7 @@ type SeasonOwns struct {
 type SeasonPlatersLeaderboardTopDataItem struct {
 	AvatarThumb string  `json:"avatar_thumb,omitempty"`
 	Country     string  `json:"country"`
+	CountryName string  `json:"country_name,omitempty"`
 	IsRespected bool    `json:"is_respected,omitempty"`
 	LastOwn     string  `json:"last_own"`
 	LeagueRank  string  `json:"league_rank,omitempty"`
@@ -3942,17 +3976,24 @@ type SeasonUserRank struct {
 
 // SeasonUserRankData defines model for SeasonUserRankData.
 type SeasonUserRankData struct {
-	FlagsToNextRank   FlagsToNextRank `json:"flags_to_next_rank,omitempty"`
-	League            string          `json:"league,omitempty"`
-	NextRank          int             `json:"next_rank,omitempty"`
-	Rank              int             `json:"rank,omitempty"`
-	RankSuffix        string          `json:"rank_suffix,omitempty"`
-	RootBloods        int             `json:"root_bloods,omitempty"`
-	RootOwns          int             `json:"root_owns,omitempty"`
-	TotalRanks        int             `json:"total_ranks,omitempty"`
-	TotalSeasonPoints int             `json:"total_season_points,omitempty"`
-	UserBloods        int             `json:"user_bloods,omitempty"`
-	UserOwns          int             `json:"user_owns,omitempty"`
+	FlagsToNextRank   FlagsToNextRank                    `json:"flags_to_next_rank,omitempty"`
+	League            string                             `json:"league,omitempty"`
+	NextRank          int                                `json:"next_rank,omitempty"`
+	Rank              int                                `json:"rank,omitempty"`
+	RankSuffix        string                             `json:"rank_suffix,omitempty"`
+	RootBloods        int                                `json:"root_bloods,omitempty"`
+	RootOwns          int                                `json:"root_owns,omitempty"`
+	TotalRanks        int                                `json:"total_ranks,omitempty"`
+	TotalSeasonFlags  SeasonUserRankDataTotalSeasonFlags `json:"total_season_flags,omitempty"`
+	TotalSeasonPoints int                                `json:"total_season_points,omitempty"`
+	UserBloods        int                                `json:"user_bloods,omitempty"`
+	UserOwns          int                                `json:"user_owns,omitempty"`
+}
+
+// SeasonUserRankDataTotalSeasonFlags defines model for SeasonUserRankDataTotalSeasonFlags.
+type SeasonUserRankDataTotalSeasonFlags struct {
+	Obtained int `json:"obtained,omitempty"`
+	Total    int `json:"total,omitempty"`
 }
 
 // Server Schema definition for Server
@@ -4058,9 +4099,11 @@ type SherlockNamedItemData struct {
 	Retired             bool        `json:"retired,omitempty"`
 	ShowGoVip           bool        `json:"show_go_vip,omitempty"`
 	State               string      `json:"state,omitempty"`
-	Tags                StringArray `json:"tags,omitempty"`
-	UserCanReview       bool        `json:"user_can_review,omitempty"`
-	WriteupVisible      bool        `json:"writeup_visible,omitempty"`
+
+	// Tags Schema definition for Tag
+	Tags           Tag  `json:"tags,omitempty"`
+	UserCanReview  bool `json:"user_can_review,omitempty"`
+	WriteupVisible bool `json:"writeup_visible,omitempty"`
 }
 
 // SherlockPlay defines model for SherlockPlay.
@@ -4730,9 +4773,10 @@ type UniversityTopListResponse struct {
 
 // UpcomingSeason defines model for UpcomingSeason.
 type UpcomingSeason struct {
-	Date string `json:"date"`
-	Id   string `json:"id"`
-	Name string `json:"name"`
+	BackgroundImage string `json:"background_image"`
+	Date            string `json:"date"`
+	Id              string `json:"id"`
+	Name            string `json:"name"`
 }
 
 // UpdateResponse Update Response
@@ -4939,9 +4983,11 @@ type UserInfo struct {
 	CanAccessDedilab           bool                  `json:"canAccessDedilab,omitempty"`
 	CanAccessVIP               bool                  `json:"canAccessVIP,omitempty"`
 	CanDeleteAvatar            bool                  `json:"can_delete_avatar,omitempty"`
+	Currency                   string                `json:"currency,omitempty"`
 	DunningExists              bool                  `json:"dunning_exists,omitempty"`
 	Email                      string                `json:"email,omitempty"`
 	HasAppTokens               bool                  `json:"hasAppTokens,omitempty"`
+	HasReviewedPlatform        bool                  `json:"hasReviewedPlatform,omitempty"`
 	HasTeamInvitation          bool                  `json:"hasTeamInvitation,omitempty"`
 	Id                         int                   `json:"id,omitempty"`
 	Identifier                 string                `json:"identifier,omitempty"`
@@ -4982,15 +5028,18 @@ type UserOwnsUser struct {
 // UserProfile defines model for UserProfile.
 type UserProfile struct {
 	Avatar              string                    `json:"avatar,omitempty"`
+	ChallengeBloods     int                       `json:"challenge_bloods,omitempty"`
 	CountryCode         string                    `json:"country_code,omitempty"`
 	CountryName         string                    `json:"country_name,omitempty"`
 	CurrentRankProgress float32                   `json:"current_rank_progress,omitempty"`
+	FollowedByCount     int                       `json:"followed_by_count,omitempty"`
 	Github              string                    `json:"github"`
 	Id                  int                       `json:"id,omitempty"`
 	IsDedicatedVip      bool                      `json:"isDedicatedVip,omitempty"`
 	IsFollowed          bool                      `json:"isFollowed,omitempty"`
 	IsRespected         bool                      `json:"isRespected,omitempty"`
 	IsVip               bool                      `json:"isVip,omitempty"`
+	JoinedDate          time.Time                 `json:"joined_date,omitempty"`
 	Linkedin            string                    `json:"linkedin"`
 	Name                string                    `json:"name,omitempty"`
 	NextRank            string                    `json:"next_rank"`
@@ -5012,7 +5061,9 @@ type UserProfile struct {
 	University          UserProfileUniversityTeam `json:"university"`
 	UniversityName      string                    `json:"university_name"`
 	UserBloods          int                       `json:"user_bloods,omitempty"`
+	UserFollows         int                       `json:"user_follows,omitempty"`
 	UserOwns            int                       `json:"user_owns,omitempty"`
+	UserRespects        int                       `json:"user_respects,omitempty"`
 }
 
 // UserProfileBasicIdResponse Schema definition for User Profile Basic Id Response
@@ -5090,10 +5141,12 @@ type UserProfileProgressSherlocksResponse struct {
 
 // UserProfileTeam defines model for UserProfileTeam.
 type UserProfileTeam struct {
-	Avatar  string `json:"avatar,omitempty"`
-	Id      int    `json:"id,omitempty"`
-	Name    string `json:"name,omitempty"`
-	Ranking int    `json:"ranking,omitempty"`
+	Avatar       string `json:"avatar,omitempty"`
+	Id           int    `json:"id,omitempty"`
+	LogoThumbUrl string `json:"logo_thumb_url,omitempty"`
+	MemberCount  int    `json:"member_count,omitempty"`
+	Name         string `json:"name,omitempty"`
+	Ranking      int    `json:"ranking,omitempty"`
 }
 
 // UserProfileUniversityTeam defines model for UserProfileUniversityTeam.
@@ -5727,6 +5780,9 @@ type GetChallengesParams struct {
 	// Difficulty Filter by difficulty level
 	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
 
+	// Keyword Search String
+	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
+
 	// Category Filter by category. You can provide multiple values. For example,
 	// category[]=15&category[]=20. See /v4/{productName}/categories/list for full list
 	Category *Category `form:"category[],omitempty" json:"category[],omitempty"`
@@ -5804,8 +5860,8 @@ type GetMachineListRetiredPaginatedParams struct {
 	// Os Filter by os
 	Os *Os `form:"os[],omitempty" json:"os[],omitempty"`
 
-	// Tags Filter by tag ID. Can be repeated.
-	Tags *Tags `form:"tags,omitempty" json:"tags,omitempty"`
+	// Tag Filter by tag ID. Can be repeated.
+	Tag *Tags `form:"tag[],omitempty" json:"tag[],omitempty"`
 
 	// Keyword Search String
 	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
@@ -11922,6 +11978,22 @@ func NewGetChallengesRequest(server string, params *GetChallengesParams) (*http.
 
 		}
 
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
 		if params.Category != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "category[]", runtime.ParamLocationQuery, *params.Category); err != nil {
@@ -12964,9 +13036,9 @@ func NewGetMachineListRetiredPaginatedRequest(server string, params *GetMachineL
 
 		}
 
-		if params.Tags != nil {
+		if params.Tag != nil {
 
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tags", runtime.ParamLocationQuery, *params.Tags); err != nil {
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag[]", runtime.ParamLocationQuery, *params.Tag); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err
@@ -22241,6 +22313,7 @@ func (r GetReviewPaginatedResponse) StatusCode() int {
 type GetSearchFetchResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
+	JSON200      *SearchFetchResponse
 	JSON400      *GenericError
 }
 
@@ -30358,6 +30431,13 @@ func ParseGetSearchFetchResponse(rsp *http.Response) (*GetSearchFetchResponse, e
 	}
 
 	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SearchFetchResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest GenericError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {

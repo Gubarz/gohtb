@@ -496,6 +496,7 @@ paths:
         - $ref: '#/components/parameters/SortBy'
         - $ref: '#/components/parameters/SortType'
         - $ref: '#/components/parameters/Difficulty'
+        - $ref: '#/components/parameters/Keyword'
         - $ref: '#/components/parameters/Category'
         - $ref: '#/components/parameters/Todo'
       responses:
@@ -744,6 +745,7 @@ paths:
         - Home
   /lab/list:
     get:
+      deprecated: true
       description: Retrieves information related to /lab/list
       operationId: getLabList
       responses:
@@ -3163,6 +3165,14 @@ components:
           type: string
         type: array
       style: form
+    Keyword:
+      description: Search String
+      in: query
+      name: keyword
+      required: false
+      schema:
+        example: hack
+        type: string
     Category:
       description: |
         Filter by category. You can provide multiple values. For example,
@@ -3284,21 +3294,13 @@ components:
       description: Filter by tag ID. Can be repeated.
       explode: true
       in: query
-      name: tags
+      name: tag[]
       required: false
       schema:
         items:
           type: integer
         type: array
       style: form
-    Keyword:
-      description: Search String
-      in: query
-      name: keyword
-      required: false
-      schema:
-        example: hack
-        type: string
     MachineSlug:
       description: Can be the ID or Name of a box
       in: path
@@ -4347,8 +4349,6 @@ components:
           type: integer
         name:
           type: string
-        play_methods:
-          $ref: '#/components/schemas/StringArray'
         url_name:
           type: string
       type: object
@@ -4487,6 +4487,10 @@ components:
         label:
           example: '1'
           type: string
+        page:
+          example: 1
+          type: integer
+          nullable: true
         url:
           example: https://labs.hackthebox.com/api/v4/prolab/1/reviews?page=1
           nullable: true
@@ -4679,14 +4683,16 @@ components:
         location_type_friendly:
           type: string
       type: object
-    CommonIdName:
-      description: Schema definition for Common Id Name
+    IdNameIdentifier:
+      description: Schema definition for Id Name Identifier
       properties:
         id:
           type: integer
         name:
           type: string
-      title: Common Id Name
+        identifier:
+          type: string
+      title: Id Name Identifier
       type: object
     ConnectionProlabLab:
       properties:
@@ -4699,7 +4705,7 @@ components:
           nullable: true
           type: string
         pro_lab:
-          $ref: '#/components/schemas/CommonIdName'
+          $ref: '#/components/schemas/IdNameIdentifier'
       type: object
     ConnectionProlab:
       properties:
@@ -4707,9 +4713,9 @@ components:
           $ref: '#/components/schemas/ServerConnection'
         can_access:
           type: boolean
-        fullhouse:
+        puppet:
           $ref: '#/components/schemas/ConnectionProlabLab'
-        solar:
+        mythical:
           $ref: '#/components/schemas/ConnectionProlabLab'
       type: object
     ConnectionMachine:
@@ -4743,6 +4749,8 @@ components:
         pro_labs:
           $ref: '#/components/schemas/ConnectionProlab'
         release_arena:
+          $ref: '#/components/schemas/ConnectionCompetitive'
+        competitive:
           $ref: '#/components/schemas/ConnectionCompetitive'
         starting_point:
           $ref: '#/components/schemas/ConnectionLab'
@@ -5962,6 +5970,8 @@ components:
         number:
           example: 1
           type: integer
+        id:
+          type: integer
       type: object
     AcademyModule:
       description: Academy Module Item
@@ -6803,6 +6813,19 @@ components:
         next_rank_xp:
           type: number
       type: object
+    LatestSeason:
+      description: Schema definition for Latest Season
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        state:
+          type: string
+        background_image:
+          type: string
+      title: Latest Season
+      type: object
     UpcomingSeason:
       properties:
         date:
@@ -6814,11 +6837,14 @@ components:
         name:
           nullable: true
           type: string
+        background_image:
+          type: string
+          nullable: true
       type: object
     NavigationNmainSeasonRanking:
       properties:
         latest_season:
-          $ref: '#/components/schemas/CommonIdName'
+          $ref: '#/components/schemas/LatestSeason'
         league:
           type: string
         rank:
@@ -7186,6 +7212,15 @@ components:
         meta:
           $ref: '#/components/schemas/Meta'
       title: Prolab Id Reviews Response
+      type: object
+    CommonIdName:
+      description: Schema definition for Common Id Name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+      title: Common Id Name
       type: object
     ReviewOverview:
       description: Schema definition for Review Overview
@@ -8105,6 +8140,9 @@ components:
         challenge_category_id:
           example: 10
           type: integer
+        category_name:
+          type: string
+          example: Pwn
         description:
           example: Our agents got caught during a mission...
           type: string
@@ -8118,16 +8156,6 @@ components:
     SearchChallengesItems:
       items:
         $ref: '#/components/schemas/SearchChallengeItem'
-      type: array
-    SearchJobOfferItem:
-      properties:
-        id:
-          example: '644'
-          type: string
-      type: object
-    SearchJobOffersItems:
-      items:
-        $ref: '#/components/schemas/SearchJobOfferItem'
       type: array
     SearchFetchMachinesItem:
       properties:
@@ -8143,7 +8171,7 @@ components:
         tierId:
           example: null
           nullable: true
-          type: string
+          type: integer
         value:
           example: Hackback
           type: string
@@ -8177,6 +8205,7 @@ components:
         avatar:
           example: 23531cbb5210aebc5a094e8f18e10ec5.png
           type: string
+          nullable: true
         id:
           example: 85187
           type: integer
@@ -8188,19 +8217,44 @@ components:
       items:
         $ref: '#/components/schemas/SearchUserItem'
       type: array
+    SearchSherlockItem:
+      properties:
+        avatar:
+          type: string
+          example: https://htb-mp-prod-public-storage.s3.eu-central-1.amazonaws.com/challenges/9246444d94f081e3549803b928260f56.png
+        challenge_category_id:
+          example: 16
+          type: integer
+        category_name:
+          type: string
+          example: Malware Analysis
+        description:
+          example: In this Sherlock, players will investigate the Demodex rootkit attributed to Salt Typhoon.
+          type: string
+        id:
+          example: 1006
+          type: integer
+        value:
+          example: SalineBreeze-2
+          type: string
+      type: object
+    SearchSherlocksItems:
+      items:
+        $ref: '#/components/schemas/SearchSherlockItem'
+      type: array
     SearchFetchResponse:
       description: Schema definition for Search Fetch Response
       properties:
         challenges:
           $ref: '#/components/schemas/SearchChallengesItems'
-        joboffers:
-          $ref: '#/components/schemas/SearchJobOffersItems'
         machines:
           $ref: '#/components/schemas/SearchMachinesItems'
         teams:
           $ref: '#/components/schemas/SearchTeamItems'
         users:
           $ref: '#/components/schemas/SearchUsersItems'
+        sherlocks:
+          $ref: '#/components/schemas/SearchSherlocksItems'
       title: Search Fetch Response
       type: object
     BloodsObtained:
@@ -8288,6 +8342,8 @@ components:
         players:
           type: integer
         new_background_image:
+          type: string
+        trailer:
           type: string
       type: object
     SeasonListData:
@@ -8439,6 +8495,10 @@ components:
           type: integer
         ratingCount:
           type: integer
+        user_blood_points:
+          type: integer
+        root_blood_points:
+          type: integer
       type: object
     SeasonMachinesDataItems:
       items:
@@ -8581,6 +8641,13 @@ components:
         - maxItems: 0
           type: array
           items: {}
+    SeasonUserRankDataTotalSeasonFlags:
+      type: object
+      properties:
+        obtained:
+          type: integer
+        total:
+          type: integer
     SeasonUserRankData:
       properties:
         flags_to_next_rank:
@@ -8605,6 +8672,8 @@ components:
           type: integer
         user_bloods:
           type: integer
+        total_season_flags:
+          $ref: '#/components/schemas/SeasonUserRankDataTotalSeasonFlags'
       type: object
     SeasonUserRank:
       description: Schema definition for Season User Rank
@@ -8693,6 +8762,8 @@ components:
           type: number
         user_owns:
           type: number
+        country_name:
+          type: string
       type: object
     SeasonPlayersLeaderBoardTopData:
       items:
@@ -8956,7 +9027,7 @@ components:
           example: retired_free
           type: string
         tags:
-          $ref: '#/components/schemas/StringArray'
+          $ref: '#/components/schemas/Tag'
         writeup_visible:
           type: boolean
         user_can_review:
@@ -10380,6 +10451,9 @@ components:
         can_delete_avatar:
           example: false
           type: boolean
+        currency:
+          type: string
+          example: USD
         dunning_exists:
           example: false
           type: boolean
@@ -10389,6 +10463,9 @@ components:
         hasAppTokens:
           example: true
           type: boolean
+        hasReviewedPlatform:
+          type: boolean
+          example: false
         hasTeamInvitation:
           type: boolean
         id:
@@ -10519,6 +10596,12 @@ components:
       properties:
         id:
           type: integer
+        name:
+          type: string
+        icon:
+          type: string
+        description:
+          type: string
         pivot:
           $ref: '#/components/schemas/ProfileBadgesItemPivot'
       type: object
@@ -10542,6 +10625,10 @@ components:
         name:
           type: string
         ranking:
+          type: integer
+        logo_thumb_url:
+          type: string
+        member_count:
           type: integer
       type: object
     UserProfileUniversityTeam:
@@ -10628,6 +10715,17 @@ components:
         user_bloods:
           type: integer
         user_owns:
+          type: integer
+        followed_by_count:
+          type: integer
+        user_respects:
+          type: integer
+        joined_date:
+          type: string
+          format: date-time
+        user_follows:
+          type: integer
+        challenge_bloods:
           type: integer
       type: object
     UserProfileBasicIdResponse:
@@ -10776,6 +10874,9 @@ components:
         machines:
           $ref: '#/components/schemas/ProfileContentMachineItems'
         writeups:
+          items: {}
+          type: array
+        sherlocks:
           items: {}
           type: array
       type: object
@@ -10941,6 +11042,10 @@ components:
           type: integer
         total_machines:
           type: integer
+        mini:
+          type: boolean
+        avatar:
+          type: string
       type: object
     ProfileProgressProlabItems:
       items:
@@ -11093,6 +11198,8 @@ components:
         user_bloods:
           type: integer
         user_owns:
+          type: integer
+        challenge_bloods:
           type: integer
       type: object
     ProfileIdRepsonse:
@@ -12323,7 +12430,7 @@ components:
           $ref: '#/components/headers/XRateLimitRemainingHeader'
     SearchFetchResponse:
       content:
-        text/html:
+        application/json:
           schema:
             $ref: '#/components/schemas/SearchFetchResponse'
       description: Search results

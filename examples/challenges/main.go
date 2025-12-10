@@ -21,8 +21,8 @@ func main() {
 	fmt.Println("=== Active Hard Challenges ===")
 	challenges, err := client.Challenges.List().
 		ByState("active").
-		ByDifficulty("Hard").
-		SortedBy("Rating").Descending().
+		ByDifficulty("hard").
+		SortedBy("rating").Descending().
 		Results(ctx)
 	if err != nil {
 		log.Printf("Failed to get challenges: %v\n", err)

@@ -37,6 +37,8 @@ type ActiveQuery struct {
 // This returns an ActiveQuery that can be chained with filtering and pagination methods.
 // Active machines are machines that are currently available.
 //
+// Note: Deprecated, use List() instead.
+//
 // Example:
 //
 //	query := client.Machines.ListActive()
@@ -224,6 +226,18 @@ func (q *ActiveQuery) Descending() *ActiveQuery {
 	return q.sort(q.sortBy, v4Client.GetMachinePaginatedParamsSortType("desc"))
 }
 
+// ByKeyword filters machines names.
+// Returns a new ActiveQuery that can be further chained.
+//
+// Example:
+//
+//	machines := query.ByKeyword("buffer").Results(ctx)
+func (q *ActiveQuery) ByKeyword(val string) *ActiveQuery {
+	qc := ptr.Clone(q)
+	qc.keyword = val
+	return qc
+}
+
 func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinePaginatedResponse, error) {
 	params := &v4Client.GetMachinePaginatedParams{
 		PerPage:  &q.perPage,
@@ -259,7 +273,7 @@ func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinePaginatedRespons
 	}
 
 	return MachinePaginatedResponse{
-		Data:         parsed.JSON200.Data,
+		Data:         wrapMachineData(parsed.JSON200.Data),
 		ResponseMeta: meta,
 	}, nil
 }

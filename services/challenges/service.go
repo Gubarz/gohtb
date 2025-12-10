@@ -19,6 +19,7 @@ type ChallengeQuery struct {
 	sortType   v4Client.GetChallengesParamsSortType
 	difficulty v4Client.Difficulty
 	category   v4Client.Category
+	keyword    v4Client.Keyword
 	todo       v4Client.GetChallengesParamsTodo
 	page       int
 	perPage    int
@@ -39,7 +40,31 @@ func NewService(client service.Client, product string) *Service {
 type Handle struct {
 	client  service.Client
 	id      int
+	name    string
 	product string
+}
+
+type CategoriesListInfo = v4Client.CategoriesListInfo
+type CategoriesListInfoResponse struct {
+	Data         CategoriesListInfo
+	ResponseMeta common.ResponseMeta
+}
+
+func (s *Service) Categories(ctx context.Context) (CategoriesListInfoResponse, error) {
+	resp, err := s.base.Client.V4().GetChallengeCategoriesList(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return CategoriesListInfoResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetChallengeCategoriesListResponse)
+	if err != nil {
+		return CategoriesListInfoResponse{ResponseMeta: meta}, err
+	}
+
+	return CategoriesListInfoResponse{
+		Data:         parsed.JSON200.Info,
+		ResponseMeta: meta,
+	}, nil
 }
 
 // Challenge returns a handle for a specific challenge with the given ID.
@@ -49,6 +74,14 @@ func (s *Service) Challenge(id int) *Handle {
 	return &Handle{
 		client:  s.base.Client,
 		id:      id,
+		product: s.product,
+	}
+}
+
+func (s *Service) ChallengeName(name string) *Handle {
+	return &Handle{
+		client:  s.base.Client,
+		name:    name,
 		product: s.product,
 	}
 }
@@ -88,7 +121,12 @@ type InfoResponse struct {
 //	}
 //	fmt.Printf("Challenge: %s (%s, %s)\n", info.Data.Name, info.Data.Difficulty, info.Data.Category)
 func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
-	slug := strconv.Itoa(h.id)
+	var slug string
+	if h.name != "" {
+		slug = h.name
+	} else {
+		slug = strconv.Itoa(h.id)
+	}
 	resp, err := h.client.V4().GetChallengeInfo(
 		h.client.Limiter().Wrap(ctx),
 		slug,

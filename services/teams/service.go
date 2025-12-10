@@ -73,7 +73,10 @@ func (h *Handle) Invitations(ctx context.Context) (InvitationsResponse, error) {
 	}, nil
 }
 
-type TeamMember = v4Client.TeamMember
+type TeamMember struct {
+	v4Client.TeamMember
+	Rank int
+}
 
 type MembersResponse struct {
 	Data         []TeamMember
@@ -108,9 +111,28 @@ func (h *Handle) Members(ctx context.Context) (MembersResponse, error) {
 	}
 
 	return MembersResponse{
-		Data:         *parsed.JSON200,
+		Data:         wrapMembers(*parsed.JSON200),
 		ResponseMeta: meta,
 	}, nil
+}
+
+func wrapMembers(list []v4Client.TeamMember) []TeamMember {
+	out := make([]TeamMember, len(list))
+	for i, m := range list {
+		out[i] = TeamMember{
+			TeamMember: m,
+			Rank:       rankToInt(m.Rank),
+		}
+	}
+	return out
+}
+
+func rankToInt(u v4Client.TeamMember_Rank) int {
+	n, err := u.AsTeamMemberRank0()
+	if err != nil {
+		return 0
+	}
+	return n
 }
 
 type TeamActivityItem = v4Client.TeamActivityItem

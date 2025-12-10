@@ -17,6 +17,7 @@ type SherlockQuery struct {
 	sortType   v4Client.GetSherlocksParamsSortType
 	difficulty v4Client.Difficulty
 	category   v4Client.Category
+	keyword    v4Client.Keyword
 	page       int
 	perPage    int
 }
@@ -34,6 +35,30 @@ func NewService(client service.Client) *Service {
 type Handle struct {
 	client service.Client
 	id     int
+}
+
+type CategoriesListInfo = v4Client.CategoriesListInfo
+
+type CategoriesListInfoResponse struct {
+	Data         CategoriesListInfo
+	ResponseMeta common.ResponseMeta
+}
+
+func (s *Service) Categories(ctx context.Context) (CategoriesListInfoResponse, error) {
+	resp, err := s.base.Client.V4().GetSherlocksCategoriesList(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return CategoriesListInfoResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSherlocksCategoriesListResponse)
+	if err != nil {
+		return CategoriesListInfoResponse{ResponseMeta: meta}, err
+	}
+
+	return CategoriesListInfoResponse{
+		Data:         parsed.JSON200.Info,
+		ResponseMeta: meta,
+	}, nil
 }
 
 func (s *Service) Sherlock(id int) *Handle {
