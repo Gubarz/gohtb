@@ -48,6 +48,7 @@ func main() {
 		}
 	}
 
+	// team info
 	fmt.Printf("\n=== Team Info ===\n")
 	info, err := client.Teams.TeamInfo(ctx, teamID)
 	if err != nil {
@@ -56,6 +57,7 @@ func main() {
 		fmt.Printf("Team Motto: %s", info.Data.Motto)
 	}
 
+	// team stats
 	fmt.Printf("\n=== Team Stats ===\n")
 	stats, err := client.Teams.Stats(ctx, teamID)
 	if err != nil {
