@@ -142,6 +142,19 @@ type ActivityResponse struct {
 	ResponseMeta common.ResponseMeta
 }
 
+type TeamStats = v4Client.TeamStatsOwnsTeamIdResponse
+type StatsResponse struct {
+	Data TeamStats
+	ResponseMeta common.ResponseMeta
+}
+
+type TeamInfo = v4Client.TeamInfoTeamIdResponse
+
+type TeamInfoResponse struct {
+	Data TeamInfo
+	ResponseMeta common.ResponseMeta
+}
+
 // Activity retrieves the activity history for the team.
 // This includes recent team actions, achievements, and other team-related
 // activities on the HackTheBox platform.
@@ -282,6 +295,61 @@ func (s *Service) KickMember(ctx context.Context, id int) (common.MessageRespons
 			Message: parsed.JSON200.Message,
 			Success: parsed.JSON200.Success,
 		},
+		ResponseMeta: meta,
+	}, nil
+}
+// Stats gets the team stats like user owns, system owns, bloods, points
+//
+// Example:
+//
+//	stats, err := client.Teams.Stats(ctx, teamID)
+// if err != nil {
+// 	log.Printf("failed to get team stats: %v\n", err)
+// }else {
+// 	fmt.Printf("team stats:\n Bloods: %d\n System Owns: %d\n User Owns: %d", stats.Data.FirstBloods, stats.Data.SystemOwns, stats.Data.UserOwns)
+// }
+func (s *Service) Stats(ctx context.Context, id int) (StatsResponse, error) {
+	resp, err := s.base.Client.V4().GetTeamStatsOwns(
+		s.base.Client.Limiter().Wrap(ctx),
+		id,
+	)
+	if err != nil {
+		return StatsResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetTeamStatsOwnsResponse)
+	if err != nil {
+		return StatsResponse{ResponseMeta: meta}, err
+	}
+	return StatsResponse{
+		Data:         *parsed.JSON200,
+		ResponseMeta: meta,
+	}, nil
+}
+
+// Team info gets the team information like members, motto, description, country, etc.
+//
+// Example:
+//
+//	info, err := client.Teams.TeamInfo(ctx, teamID)
+// if err != nil {
+// 	log.Printf("failed to get team info: %v\n", err)
+// }else {
+// 	fmt.Printf("Team Motto: %s", info.Data.Motto)
+// }
+func (s *Service) TeamInfo(ctx context.Context, id int) (TeamInfoResponse, error) {
+	resp, err := s.base.Client.V4().GetTeamInfo(
+		s.base.Client.Limiter().Wrap(ctx),
+		id,
+	)
+	if err != nil {
+		return TeamInfoResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetTeamInfoResponse)
+	if err != nil {
+		return TeamInfoResponse{ResponseMeta: meta}, err
+	}
+	return TeamInfoResponse{
+		Data:         *parsed.JSON200,
 		ResponseMeta: meta,
 	}, nil
 }
