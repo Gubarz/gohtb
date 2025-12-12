@@ -1071,7 +1071,7 @@ type GetMachinesParams struct {
 	Free *GetMachinesParamsFree `form:"free,omitempty" json:"free,omitempty"`
 
 	// Todo Filter ToDo
-	Todo GetMachinesParamsTodo `form:"todo,omitempty" json:"todo,omitempty"`
+	Todo *GetMachinesParamsTodo `form:"todo,omitempty" json:"todo,omitempty"`
 }
 
 // GetMachinesParamsState defines parameters for GetMachines.
@@ -1996,16 +1996,20 @@ func NewGetMachinesRequest(server string, params *GetMachinesParams) (*http.Requ
 
 		}
 
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "todo", runtime.ParamLocationQuery, params.Todo); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
+		if params.Todo != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "todo", runtime.ParamLocationQuery, *params.Todo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
 				}
 			}
+
 		}
 
 		queryURL.RawQuery = queryValues.Encode()

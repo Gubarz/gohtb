@@ -22,7 +22,8 @@ type MachineQuery struct {
 	os            v5Client.Os
 	keyword       v5Client.Keyword
 	state         v5Client.State
-	free          v5Client.GetMachinesParamsFree
+	free          *v5Client.GetMachinesParamsFree
+	todo          *v5Client.GetMachinesParamsTodo
 }
 
 // List creates a new query for machines.
@@ -240,15 +241,39 @@ func (q *MachineQuery) Keyword(val string) *MachineQuery {
 	return qc
 }
 
-func (q *MachineQuery) Free(val bool) *MachineQuery {
-	var free v5Client.GetMachinesParamsFree
+// ByFree filters machines that are free or paid.
+// This is useful for distinguishing between free and VIP machines.
+// Also this has no bearing on active/retired status as there are free retired machines.
+// Returns a new MachineQuery that can be further chained.
+//
+// Example:
+//
+//	freeMachines := query.ByFree(true).Results(ctx)
+//	paidMachines := query.ByFree(false).Results(ctx)
+func (q *MachineQuery) ByFree(val bool) *MachineQuery {
+	v := v5Client.GetMachinesParamsFree(0)
 	if val {
-		free = v5Client.GetMachinesParamsFree(1)
-	} else {
-		free = v5Client.GetMachinesParamsFree(0)
+		v = 1
 	}
 	qc := ptr.Clone(q)
-	qc.free = free
+	qc.free = &v
+	return qc
+}
+
+// ByTodo filters machines that have been marked as todo/favorite.
+// Returns a new MachineQuery that can be further chained.
+//
+// Example:
+//
+//	todoMachines := query.ByTodo(true).Results(ctx)
+//	nonTodoMachines := query.ByTodo(false).Results(ctx)
+func (q *MachineQuery) ByTodo(val bool) *MachineQuery {
+	v := v5Client.GetMachinesParamsTodo(0)
+	if val {
+		v = 1
+	}
+	qc := ptr.Clone(q)
+	qc.todo = &v
 	return qc
 }
 
@@ -256,7 +281,10 @@ func (q *MachineQuery) fetchResults(ctx context.Context) (MachinesResponse, erro
 	params := &v5Client.GetMachinesParams{
 		PerPage: &q.perPage,
 		Page:    &q.page,
-		Keyword: &q.keyword,
+	}
+
+	if q.keyword != "" {
+		params.Keyword = &q.keyword
 	}
 
 	if len(q.difficulty) > 0 {
@@ -269,14 +297,32 @@ func (q *MachineQuery) fetchResults(ctx context.Context) (MachinesResponse, erro
 		params.Os = &o
 	}
 
-	if q.free == 1 || q.free == 0 {
-		f := q.free
-		params.Free = &f
+	if q.free != nil {
+		params.Free = q.free
+	}
+
+	if q.todo != nil {
+		params.Todo = q.todo
 	}
 
 	if q.showCompleted != "" {
 		sc := v5Client.GetMachinesParamsShowCompleted(q.showCompleted)
 		params.ShowCompleted = &sc
+	}
+
+	if len(q.state) > 0 {
+		s := q.state
+		params.State = &s
+	}
+
+	if q.sortBy != "" {
+		sb := q.sortBy
+		params.SortBy = &sb
+	}
+
+	if q.sortType != "" {
+		st := q.sortType
+		params.SortType = &st
 	}
 
 	resp, err := q.client.V5().GetMachines(q.client.Limiter().Wrap(ctx), params)
@@ -357,6 +403,14 @@ func (q *MachineQuery) AllResults(ctx context.Context) (MachinesResponse, error)
 	}, nil
 }
 
+// First executes the query and returns the first result of machines.
+// If no results are found, an error is returned.
+//
+// Example:
+//
+//	firstMachine, err := client.Machines.List().
+//		ByDifficulty("Hard").
+//		First(ctx)
 func (q *MachineQuery) First(ctx context.Context) (MachinesResponse, error) {
 	resp, err := q.fetchResults(ctx)
 	if err != nil {
