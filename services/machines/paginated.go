@@ -313,8 +313,10 @@ func (q *MachineQuery) fetchResults(ctx context.Context) (MachinesResponse, erro
 	if len(q.state) > 0 {
 		s := q.state
 		params.State = &s
+	}else {
+		s := q.ByStateList("free","retired","retired_free","unreleased").state // default to get all states (old code didn't get unreleased machines)
+		params.State = &s
 	}
-
 	if q.sortBy != "" {
 		sb := q.sortBy
 		params.SortBy = &sb
@@ -354,8 +356,9 @@ func wrapMachinesData(items []v5Client.MachinesItem) MachinesDataItems {
 //
 // Example:
 //
-//	machines, err := client.Machines.ListUnreleased().
+//	machines, err := client.Machines.List().
 //		ByDifficulty("Hard").
+//		ByState("unreleased").
 //		ByOS("Linux").
 //		Page(1).
 //		Results(ctx)
@@ -369,8 +372,9 @@ func (q *MachineQuery) Results(ctx context.Context) (MachinesResponse, error) {
 //
 // Example:
 //
-//	allMachines, err := client.Machines.ListUnreleased().
+//	allMachines, err := client.Machines.List().
 //		ByDifficulty("Hard").
+//		ByState("unreleased").
 //		AllResults(ctx)
 func (q *MachineQuery) AllResults(ctx context.Context) (MachinesResponse, error) {
 	var all MachinesDataItems

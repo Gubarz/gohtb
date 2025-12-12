@@ -27,5 +27,19 @@ func main() {
 			info.Data.Name, info.Data.Id, info.Data.Os, info.Data.DifficultyText)
 
 	}
+	// Get unreleased machine from all Results without any filtering
+	fmt.Println("=== Getting unreleased machines using new `List().AllResults(ctx)` ===")
+	v5_search, err := client.Machines.List().AllResults(ctx)
+	if err != nil {
+		log.Printf("Failed to get machine info: %v\n", err)
+	} else {
+		for _, info := range v5_search.Data {
+		if info.State == "unreleased"{
+			fmt.Printf("Name: %s (ID: %d, OS: %s, Difficulty: %s State: %s)\n",
+				info.Name, info.Id, info.Os, info.DifficultyText, info.State)
+			}
+		}
+
+	}
 
 }
