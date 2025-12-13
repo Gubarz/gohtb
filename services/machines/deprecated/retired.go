@@ -5,7 +5,7 @@ import (
 	"errors"
 	"strings"
 
-	v5Client "github.com/gubarz/gohtb/httpclient/v5"
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/ptr"
 	"github.com/gubarz/gohtb/internal/service"
@@ -16,19 +16,19 @@ type RetiredQuery struct {
 	perPage       int
 	page          int
 	showCompleted string
-	sortBy        v5Client.GetMachinesParamsSortBy
-	sortType      v5Client.GetMachinesParamsSortType
-	difficulty    v5Client.MachineDifficulty
-	os            v5Client.Os
-	keyword       v5Client.Keyword
-	// tags          []v5Client.MachineLabel v5 has no tags
+	sortBy        v4Client.GetMachinePaginatedParamsSortBy
+	sortType      v4Client.GetMachinePaginatedParamsSortType
+	difficulty    v4Client.Difficulty
+	os            v4Client.Os
+	keyword       v4Client.Keyword
+	tags          v4Client.Tags
 }
 
 // ListRetired creates a new query for retired machines.
 // This returns an RetiredQuery that can be chained with filtering and pagination methods.
 // Retired machines are machines that are no longer publicly available.
 //
-// Note: Note: Updated by Ceald 🐱
+// Note: Deprecated, use List() instead.
 //
 // Example:
 //
@@ -177,12 +177,12 @@ func (q *RetiredQuery) ByDifficulty(val string) *RetiredQuery {
 //	machines := query.SortedBy("user-difficulty").Descending().Results(ctx)
 func (q *RetiredQuery) SortedBy(field string) *RetiredQuery {
 	qc := ptr.Clone(q)
-	sortBy := v5Client.GetMachinesParamsSortBy(strings.ToLower(field))
+	sortBy := v4Client.GetMachinePaginatedParamsSortBy(strings.ToLower(field))
 	qc.sortBy = sortBy
 	return qc
 }
 
-func (q *RetiredQuery) sort(val v5Client.GetMachinesParamsSortBy, order v5Client.GetMachinesParamsSortType) *RetiredQuery {
+func (q *RetiredQuery) sort(val v4Client.GetMachinePaginatedParamsSortBy, order v4Client.GetMachinePaginatedParamsSortType) *RetiredQuery {
 	qc := ptr.Clone(q)
 	qc.sortBy = val
 	qc.sortType = order
@@ -199,7 +199,7 @@ func (q *RetiredQuery) Ascending() *RetiredQuery {
 	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(q.sortBy, v5Client.GetMachinesParamsSortType("asc"))
+	return q.sort(q.sortBy, v4Client.GetMachinePaginatedParamsSortType("asc"))
 }
 
 // Descending sets the sort order to descending.
@@ -212,11 +212,8 @@ func (q *RetiredQuery) Descending() *RetiredQuery {
 	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(q.sortBy, v5Client.GetMachinesParamsSortType("desc"))
+	return q.sort(q.sortBy, v4Client.GetMachinePaginatedParamsSortType("desc"))
 }
-
-
-// ** Tags are obsolete in v5
 
 // Keyword filters machines names.
 // Returns a new RetiredQuery that can be further chained.
@@ -224,21 +221,21 @@ func (q *RetiredQuery) Descending() *RetiredQuery {
 // Example:
 //
 //	machines := query.Keyword("buffer").Results(ctx)
-// func (q *RetiredQuery) Keyword(val string) *RetiredQuery {
-// 	qc := ptr.Clone(q)
-// 	qc.keyword = val
-// 	return qc
-// }
+func (q *RetiredQuery) Keyword(val string) *RetiredQuery {
+	qc := ptr.Clone(q)
+	qc.keyword = val
+	return qc
+}
 
-// // ByTag filters machines by a single tag ID.
-// // Returns a new RetiredQuery that can be further chained.
-// //
-// // Example:
-// //
-// //	machines := query.ByTag(123).Results(ctx)
-// func (q *RetiredQuery) ByTag(val int) *RetiredQuery {
-// 	return q.ByTagList(val)
-// }
+// ByTag filters machines by a single tag ID.
+// Returns a new RetiredQuery that can be further chained.
+//
+// Example:
+//
+//	machines := query.ByTag(123).Results(ctx)
+func (q *RetiredQuery) ByTag(val int) *RetiredQuery {
+	return q.ByTagList(val)
+}
 
 // ByTagList filters machines by multiple tag IDs.
 // Returns a new RetiredQuery that can be further chained.
@@ -246,25 +243,17 @@ func (q *RetiredQuery) Descending() *RetiredQuery {
 // Example:
 //
 //	machines := query.ByTagList(123, 456).Results(ctx)
-// func (q *RetiredQuery) ByTagList(val ...string) *RetiredQuery {
-// 	qc := ptr.Clone(q)
-// 	qc.tags = append(append([]string{}, q.tags...), val...)
-// 	return qc
-// }
+func (q *RetiredQuery) ByTagList(val ...int) *RetiredQuery {
+	qc := ptr.Clone(q)
+	qc.tags = append(append([]int{}, q.tags...), val...)
+	return qc
+}
 
-// **
-
-
-
-func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinesResponse, error) {
-	var state v5Client.State
-	state = append(state, "retired", "retired_free")
-	params := &v5Client.GetMachinesParams{
+func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinePaginatedResponse, error) {
+	params := &v4Client.GetMachineListRetiredPaginatedParams{
 		PerPage: &q.perPage,
 		Page:    &q.page,
 		Keyword: &q.keyword,
-		State: &state,
-
 	}
 
 	if len(q.difficulty) > 0 {
@@ -277,28 +266,28 @@ func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinesResponse, erro
 		params.Os = &o
 	}
 
-	// if len(q.tags) > 0 {
-	// 	d := q.tags
-	// 	params.Tag = &d
-	// }
+	if len(q.tags) > 0 {
+		d := q.tags
+		params.Tag = &d
+	}
 
 	if q.showCompleted != "" {
-		sc := v5Client.GetMachinesParamsShowCompleted(q.showCompleted)
+		sc := v4Client.GetMachineListRetiredPaginatedParamsShowCompleted(q.showCompleted)
 		params.ShowCompleted = &sc
 	}
 
-	resp, err := q.client.V5().GetMachines(q.client.Limiter().Wrap(ctx), params)
+	resp, err := q.client.V4().GetMachineListRetiredPaginated(q.client.Limiter().Wrap(ctx), params)
 	if err != nil {
-		return MachinesResponse{ResponseMeta: common.ResponseMeta{}}, err
+		return MachinePaginatedResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
-	parsed, meta, err := common.Parse(resp, v5Client.ParseGetMachinesResponse)
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetMachineListRetiredPaginatedResponse)
 	if err != nil {
-		return MachinesResponse{ResponseMeta: meta}, err
+		return MachinePaginatedResponse{ResponseMeta: meta}, err
 	}
 
-	return MachinesResponse{
-		Data:         wrapMachinesData(parsed.JSON200.Data),
+	return MachinePaginatedResponse{
+		Data:         wrapMachineData(parsed.JSON200.Data),
 		ResponseMeta: meta,
 	}, nil
 }
@@ -313,7 +302,7 @@ func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinesResponse, erro
 //		ByOS("Linux").
 //		Page(1).
 //		Results(ctx)
-func (q *RetiredQuery) Results(ctx context.Context) (MachinesResponse, error) {
+func (q *RetiredQuery) Results(ctx context.Context) (MachinePaginatedResponse, error) {
 	return q.fetchResults(ctx)
 }
 
@@ -326,8 +315,8 @@ func (q *RetiredQuery) Results(ctx context.Context) (MachinesResponse, error) {
 //	allMachines, err := client.Machines.ListUnreleased().
 //		ByDifficulty("Hard").
 //		AllResults(ctx)
-func (q *RetiredQuery) AllResults(ctx context.Context) (MachinesResponse, error) {
-	var all []MachinesData
+func (q *RetiredQuery) AllResults(ctx context.Context) (MachinePaginatedResponse, error) {
+	var all []MachineData
 	page := 1
 	var meta common.ResponseMeta
 
@@ -337,7 +326,7 @@ func (q *RetiredQuery) AllResults(ctx context.Context) (MachinesResponse, error)
 
 		resp, err := qp.fetchResults(ctx)
 		if err != nil {
-			return MachinesResponse{}, err
+			return MachinePaginatedResponse{}, err
 		}
 
 		all = append(all, resp.Data...)
@@ -351,21 +340,21 @@ func (q *RetiredQuery) AllResults(ctx context.Context) (MachinesResponse, error)
 		page++
 	}
 
-	return MachinesResponse{
+	return MachinePaginatedResponse{
 		Data:         all,
 		ResponseMeta: meta,
 	}, nil
 }
 
-func (q *RetiredQuery) First(ctx context.Context) (MachinesResponse, error) {
+func (q *RetiredQuery) First(ctx context.Context) (MachinePaginatedResponse, error) {
 	resp, err := q.fetchResults(ctx)
 	if err != nil {
-		return MachinesResponse{}, err
+		return MachinePaginatedResponse{}, err
 	}
 	if len(resp.Data) == 0 {
-		return MachinesResponse{}, errors.New("no results found")
+		return MachinePaginatedResponse{}, errors.New("no results found")
 	}
-	return MachinesResponse{
+	return MachinePaginatedResponse{
 		Data:         resp.Data[:1],
 		ResponseMeta: resp.ResponseMeta,
 	}, nil

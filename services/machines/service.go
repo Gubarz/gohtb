@@ -453,14 +453,14 @@ func feedbackForChart(u v4Client.DifficultyChart) DifficultyChart {
 	return n
 }
 
-func wrapMachineData(list []v4Client.MachineData) []MachineData {
-	out := make([]MachineData, len(list))
-	for i, m := range list {
-		out[i] = MachineData{
-			MachineData:      m,
-			IsTodo:           isTodo(m.IsTodo),
-			FeedbackForChart: feedbackForChart(m.FeedbackForChart),
-		}
-	}
-	return out
-}
+// func wrapMachineData(list []v4Client.MachineData) []MachineData {
+// 	out := make([]MachineData, len(list))
+// 	for i, m := range list {
+// 		out[i] = MachineData{
+// 			MachineData:      m,
+// 			IsTodo:           isTodo(m.IsTodo),
+// 			FeedbackForChart: feedbackForChart(m.FeedbackForChart),
+// 		}
+// 	}
+// 	return out
+// } // not needed anymore because of v5 updates
