@@ -47,8 +47,17 @@ func main() {
 			fmt.Printf("Name: %s (OS: %s Difficulty: %s)\n", machine.Name, machine.Os, machine.DifficultyText)
 		}
 	}
+	fmt.Println("=== Testing retired machines ===")
+	infos, err = client.Machines.ListRetired().Results(ctx)
+	if err != nil {
+		log.Panicf("Failed to get retired machines: %v\n", err)
+	} else {
+		for _, machine := range infos.Data[:10] {
+			fmt.Printf("Name: %s (OS: %s Difficulty: %s State: %s)\n", machine.Name, machine.Os, machine.DifficultyText, machine.State)
+		}
+	}
 
-	
+
 	// Get unreleased machine from all Results without any filtering
 	fmt.Println("=== Getting unreleased machines using new `List().AllResults(ctx)` ===")
 	v5_search, err := client.Machines.List().AllResults(ctx)

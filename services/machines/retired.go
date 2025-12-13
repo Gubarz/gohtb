@@ -258,7 +258,7 @@ func (q *RetiredQuery) Descending() *RetiredQuery {
 
 func (q *RetiredQuery) fetchResults(ctx context.Context) (MachinesResponse, error) {
 	var state v5Client.State
-	state = append(state, "retired", "retired_free")
+	state = append(state, "retired")
 	params := &v5Client.GetMachinesParams{
 		PerPage: &q.perPage,
 		Page:    &q.page,
