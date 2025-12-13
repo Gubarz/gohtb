@@ -44,7 +44,7 @@ func (q *SherlockQuery) ByState(val string) *SherlockQuery {
 }
 
 // ByStateList filters Sherlocks by multiple states.
-// Valid values are "active", "retired", and "unreleased".
+// Valid values are "active", "retired", "retired_free", and "unreleased".
 // Returns a new SherlockQuery that can be further chained.
 //
 // Example:
@@ -241,6 +241,9 @@ func (q *SherlockQuery) fetchResults(ctx context.Context) (SherlockListResponse,
 
 	if q.state != nil {
 		params.State = &q.state
+	}else{
+		s := q.ByStateList("unreleased","active","retired", "retired_free").state
+		params.State = &s
 	}
 
 	if len(q.sortBy) > 0 {

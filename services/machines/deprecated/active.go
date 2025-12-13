@@ -9,16 +9,16 @@ import (
 	"github.com/gubarz/gohtb/internal/ptr"
 	"github.com/gubarz/gohtb/internal/service"
 
-	v5Client "github.com/gubarz/gohtb/httpclient/v5"
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 )
 
 const (
-	SortByReleaseDate = v5Client.GetMachinesParamsSortBy("release-date")
-	SortByName        = v5Client.GetMachinesParamsSortBy("name")
-	SortByUserOwns    = v5Client.GetMachinesParamsSortBy("user-owns")
-	SortBySystemOwns  = v5Client.GetMachinesParamsSortBy("system-owns")
-	SortByDifficulty  = v5Client.GetMachinesParamsSortBy("user-difficulty")
-	SortByRating      = v5Client.GetMachinesParamsSortBy("rating")
+	SortByReleaseDate = v4Client.GetMachinePaginatedParamsSortBy("release-date")
+	SortByName        = v4Client.GetMachinePaginatedParamsSortBy("name")
+	SortByUserOwns    = v4Client.GetMachinePaginatedParamsSortBy("user-owns")
+	SortBySystemOwns  = v4Client.GetMachinePaginatedParamsSortBy("system-owns")
+	SortByDifficulty  = v4Client.GetMachinePaginatedParamsSortBy("user-difficulty")
+	SortByRating      = v4Client.GetMachinePaginatedParamsSortBy("rating")
 )
 
 type ActiveQuery struct {
@@ -26,18 +26,18 @@ type ActiveQuery struct {
 	perPage       int
 	page          int
 	showCompleted string
-	sortBy        v5Client.GetMachinesParamsSortBy
-	sortType      v5Client.GetMachinesParamsSortType
-	difficulty    v5Client.MachineDifficulty
-	os            v5Client.Os
-	keyword       v5Client.Keyword
+	sortBy        v4Client.GetMachinePaginatedParamsSortBy
+	sortType      v4Client.GetMachinePaginatedParamsSortType
+	difficulty    v4Client.Difficulty
+	os            v4Client.Os
+	keyword       v4Client.Keyword
 }
 
 // ListActive creates a new query for active machines.
 // This returns an ActiveQuery that can be chained with filtering and pagination methods.
 // Active machines are machines that are currently available.
 //
-// Note: Updated by Ceald 🐱
+// Note: Deprecated, use List() instead.
 //
 // Example:
 //
@@ -188,12 +188,12 @@ func (q *ActiveQuery) ByDifficulty(val string) *ActiveQuery {
 //	machines := query.SortedBy("user-difficulty").Descending().Results(ctx)
 func (q *ActiveQuery) SortedBy(field string) *ActiveQuery {
 	qc := ptr.Clone(q)
-	sortBy := v5Client.GetMachinesParamsSortBy(strings.ToLower(field))
+	sortBy := v4Client.GetMachinePaginatedParamsSortBy(strings.ToLower(field))
 	qc.sortBy = sortBy
 	return qc
 }
 
-func (q *ActiveQuery) sort(val v5Client.GetMachinesParamsSortBy, order v5Client.GetMachinesParamsSortType) *ActiveQuery {
+func (q *ActiveQuery) sort(val v4Client.GetMachinePaginatedParamsSortBy, order v4Client.GetMachinePaginatedParamsSortType) *ActiveQuery {
 	qc := ptr.Clone(q)
 	qc.sortBy = val
 	qc.sortType = order
@@ -210,7 +210,7 @@ func (q *ActiveQuery) Ascending() *ActiveQuery {
 	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(q.sortBy, v5Client.GetMachinesParamsSortType("asc"))
+	return q.sort(q.sortBy, v4Client.GetMachinePaginatedParamsSortType("asc"))
 }
 
 // Descending sets the sort order to descending.
@@ -223,7 +223,7 @@ func (q *ActiveQuery) Descending() *ActiveQuery {
 	if q.sortBy == "" {
 		return q
 	}
-	return q.sort(q.sortBy, v5Client.GetMachinesParamsSortType("desc"))
+	return q.sort(q.sortBy, v4Client.GetMachinePaginatedParamsSortType("desc"))
 }
 
 // ByKeyword filters machines names.
@@ -238,16 +238,13 @@ func (q *ActiveQuery) ByKeyword(val string) *ActiveQuery {
 	return qc
 }
 
-func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinesResponse, error) {
-	var state v5Client.State
-	state = append(state, "active") // specify ONLY active machines
-	params := &v5Client.GetMachinesParams{
+func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinePaginatedResponse, error) {
+	params := &v4Client.GetMachinePaginatedParams{
 		PerPage:  &q.perPage,
 		Page:     &q.page,
 		SortBy:   &q.sortBy,
 		SortType: &q.sortType,
 		Keyword:  &q.keyword,
-		State: &state,
 	}
 
 	if len(q.difficulty) > 0 {
@@ -261,22 +258,22 @@ func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinesResponse, error
 	}
 
 	if q.showCompleted != "" {
-		sc := v5Client.GetMachinesParamsShowCompleted(q.showCompleted)
+		sc := v4Client.GetMachinePaginatedParamsShowCompleted(q.showCompleted)
 		params.ShowCompleted = &sc
 	}
 
-	resp, err := q.client.V5().GetMachines(q.client.Limiter().Wrap(ctx), params)
+	resp, err := q.client.V4().GetMachinePaginated(q.client.Limiter().Wrap(ctx), params)
 	if err != nil {
-		return MachinesResponse{ResponseMeta: common.ResponseMeta{}}, err
+		return MachinePaginatedResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
-	parsed, meta, err := common.Parse(resp, v5Client.ParseGetMachinesResponse)
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetMachinePaginatedResponse)
 	if err != nil {
-		return MachinesResponse{ResponseMeta: meta}, err
+		return MachinePaginatedResponse{ResponseMeta: meta}, err
 	}
 
-	return MachinesResponse{
-		Data:         wrapMachinesData(parsed.JSON200.Data),
+	return MachinePaginatedResponse{
+		Data:         wrapMachineData(parsed.JSON200.Data),
 		ResponseMeta: meta,
 	}, nil
 }
@@ -291,7 +288,7 @@ func (q *ActiveQuery) fetchResults(ctx context.Context) (MachinesResponse, error
 //		ByOS("Linux").
 //		Page(1).
 //		Results(ctx)
-func (q *ActiveQuery) Results(ctx context.Context) (MachinesResponse, error) {
+func (q *ActiveQuery) Results(ctx context.Context) (MachinePaginatedResponse, error) {
 	return q.fetchResults(ctx)
 }
 
@@ -304,8 +301,8 @@ func (q *ActiveQuery) Results(ctx context.Context) (MachinesResponse, error) {
 //	allMachines, err := client.Machines.ListActive().
 //		ByDifficulty("Hard").
 //		AllResults(ctx)
-func (q *ActiveQuery) AllResults(ctx context.Context) (MachinesResponse, error) {
-	var all []MachinesData
+func (q *ActiveQuery) AllResults(ctx context.Context) (MachinePaginatedResponse, error) {
+	var all []MachineData
 	page := 1
 	var meta common.ResponseMeta
 
@@ -329,7 +326,7 @@ func (q *ActiveQuery) AllResults(ctx context.Context) (MachinesResponse, error) 
 		page++
 	}
 
-	return MachinesResponse{
+	return MachinePaginatedResponse{
 		Data:         all,
 		ResponseMeta: meta,
 	}, nil
@@ -343,15 +340,15 @@ func (q *ActiveQuery) AllResults(ctx context.Context) (MachinesResponse, error) 
 //	firstMachine, err := client.Machines.ListActive().
 //		ByDifficulty("Insane").
 //		First(ctx)
-func (q *ActiveQuery) First(ctx context.Context) (MachinesResponse, error) {
+func (q *ActiveQuery) First(ctx context.Context) (MachinePaginatedResponse, error) {
 	resp, err := q.fetchResults(ctx)
 	if err != nil {
-		return MachinesResponse{}, err
+		return MachinePaginatedResponse{}, err
 	}
 	if len(resp.Data) == 0 {
-		return MachinesResponse{}, errors.New("no results found")
+		return MachinePaginatedResponse{}, errors.New("no results found")
 	}
-	return MachinesResponse{
+	return MachinePaginatedResponse{
 		Data:         resp.Data[:1],
 		ResponseMeta: resp.ResponseMeta,
 	}, nil

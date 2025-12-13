@@ -5,13 +5,13 @@ import (
 	"errors"
 	"strings"
 
-	v5Client "github.com/gubarz/gohtb/httpclient/v5"
+	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/ptr"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
-type MachineUnreleasedData = v5Client.MachinesItem
+type MachineUnreleasedData = v4Client.MachineUnreleasedData
 
 type UnreleasedDataItems []MachineUnreleasedData
 
@@ -24,16 +24,16 @@ type UnreleasedQuery struct {
 	client     service.Client
 	perPage    int
 	page       int
-	difficulty v5Client.MachineDifficulty
-	os         v5Client.Os
-	keyword    *v5Client.Keyword
+	difficulty v4Client.Difficulty
+	os         v4Client.Os
+	keyword    *v4Client.Keyword
 }
 
 // ListUnreleased creates a new query for unreleased machines.
 // This returns an UnreleasedQuery that can be chained with filtering and pagination methods.
 // Unreleased machines are machines that are not yet publicly available.
 //
-// Note: Note: Updated by Ceald 🐱
+// Note: Deprecated, use List() instead.
 //
 // Example:
 //
@@ -156,14 +156,11 @@ func (q *UnreleasedQuery) ByDifficulty(val string) *UnreleasedQuery {
 	return q.ByDifficultyList(val)
 }
 
-func (q *UnreleasedQuery) fetchResults(ctx context.Context) (MachinesResponse, error) {
-	var state v5Client.State
-	state = append(state, "unreleased") // specify ONLY unreleased machines
-	params := &v5Client.GetMachinesParams{
+func (q *UnreleasedQuery) fetchResults(ctx context.Context) (MachineUnreleasedResponse, error) {
+	params := &v4Client.GetMachineUnreleasedParams{
 		PerPage: &q.perPage,
 		Page:    &q.page,
 		Keyword: q.keyword,
-		State: &state,
 	}
 
 	if len(q.difficulty) > 0 {
@@ -176,18 +173,18 @@ func (q *UnreleasedQuery) fetchResults(ctx context.Context) (MachinesResponse, e
 		params.Os = &o
 	}
 
-	resp, err := q.client.V5().GetMachines(q.client.Limiter().Wrap(ctx), params)
+	resp, err := q.client.V4().GetMachineUnreleased(q.client.Limiter().Wrap(ctx), params)
 	if err != nil {
-		return MachinesResponse{ResponseMeta: common.ResponseMeta{}}, err
+		return MachineUnreleasedResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
-	parsed, meta, err := common.Parse(resp, v5Client.ParseGetMachinesResponse)
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetMachineUnreleasedResponse)
 	if err != nil {
-		return MachinesResponse{ResponseMeta: meta}, err
+		return MachineUnreleasedResponse{ResponseMeta: meta}, err
 	}
 
-	return MachinesResponse{
-		Data:         wrapMachinesData(parsed.JSON200.Data),
+	return MachineUnreleasedResponse{
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
@@ -202,7 +199,7 @@ func (q *UnreleasedQuery) fetchResults(ctx context.Context) (MachinesResponse, e
 //		ByOS("Linux").
 //		Page(1).
 //		Results(ctx)
-func (q *UnreleasedQuery) Results(ctx context.Context) (MachinesResponse, error) {
+func (q *UnreleasedQuery) Results(ctx context.Context) (MachineUnreleasedResponse, error) {
 	return q.fetchResults(ctx)
 }
 
@@ -215,8 +212,8 @@ func (q *UnreleasedQuery) Results(ctx context.Context) (MachinesResponse, error)
 //	allMachines, err := client.Machines.ListUnreleased().
 //		ByDifficulty("Hard").
 //		AllResults(ctx)
-func (q *UnreleasedQuery) AllResults(ctx context.Context) (MachinesResponse, error) {
-	var all []MachinesData
+func (q *UnreleasedQuery) AllResults(ctx context.Context) (MachineUnreleasedResponse, error) {
+	var all []MachineUnreleasedData
 	page := 1
 	var meta common.ResponseMeta
 
@@ -226,7 +223,7 @@ func (q *UnreleasedQuery) AllResults(ctx context.Context) (MachinesResponse, err
 
 		resp, err := qp.fetchResults(ctx)
 		if err != nil {
-			return MachinesResponse{}, err
+			return MachineUnreleasedResponse{}, err
 		}
 
 		all = append(all, resp.Data...)
@@ -240,7 +237,7 @@ func (q *UnreleasedQuery) AllResults(ctx context.Context) (MachinesResponse, err
 		page++
 	}
 
-	return MachinesResponse{
+	return MachineUnreleasedResponse{
 		Data:         all,
 		ResponseMeta: meta,
 	}, nil
@@ -254,15 +251,15 @@ func (q *UnreleasedQuery) AllResults(ctx context.Context) (MachinesResponse, err
 //	firstMachine, err := client.Machines.ListUnreleased().
 //		ByDifficulty("Insane").
 //		First(ctx)
-func (q *UnreleasedQuery) First(ctx context.Context) (MachinesResponse, error) {
+func (q *UnreleasedQuery) First(ctx context.Context) (MachineUnreleasedResponse, error) {
 	resp, err := q.fetchResults(ctx)
 	if err != nil {
-		return MachinesResponse{}, err
+		return MachineUnreleasedResponse{}, err
 	}
 	if len(resp.Data) == 0 {
-		return MachinesResponse{}, errors.New("no results found")
+		return MachineUnreleasedResponse{}, errors.New("no results found")
 	}
-	return MachinesResponse{
+	return MachineUnreleasedResponse{
 		Data:         resp.Data[:1],
 		ResponseMeta: resp.ResponseMeta,
 	}, nil
