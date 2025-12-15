@@ -922,22 +922,22 @@ type Challenge struct {
 	Name                 string          `json:"name,omitempty"`
 
 	// PlayInfo Alternate structure of PlayInfo used in Sherlocks and Challenges
-	PlayInfo                PlayInfoAlt      `json:"play_info,omitempty"`
-	PlayMethods             StringArray      `json:"play_methods,omitempty"`
-	Points                  Challenge_Points `json:"points,omitempty"`
-	Recommended             int              `json:"recommended,omitempty"`
-	ReleaseDate             time.Time        `json:"release_date,omitempty"`
-	Released                int              `json:"released,omitempty"`
-	Retired                 bool             `json:"retired,omitempty"`
-	ReviewsCount            int              `json:"reviews_count,omitempty"`
-	Sha256                  string           `json:"sha256,omitempty"`
-	ShowGoVip               bool             `json:"show_go_vip,omitempty"`
-	Solves                  int              `json:"solves,omitempty"`
-	Stars                   float32          `json:"stars,omitempty"`
-	State                   string           `json:"state,omitempty"`
-	Tags                    StringArray      `json:"tags,omitempty"`
-	UserCanReview           bool             `json:"user_can_review,omitempty"`
-	UserSubmittedDifficulty int              `json:"user_submitted_difficulty,omitempty"`
+	PlayInfo                PlayInfoAlt          `json:"play_info,omitempty"`
+	PlayMethods             StringArray          `json:"play_methods,omitempty"`
+	Points                  Challenge_Points     `json:"points,omitempty"`
+	Recommended             int                  `json:"recommended,omitempty"`
+	ReleaseDate             time.Time            `json:"release_date,omitempty"`
+	Released                int                  `json:"released,omitempty"`
+	Retired                 bool                 `json:"retired,omitempty"`
+	ReviewsCount            int                  `json:"reviews_count,omitempty"`
+	Sha256                  string               `json:"sha256,omitempty"`
+	ShowGoVip               bool                 `json:"show_go_vip,omitempty"`
+	Solves                  int                  `json:"solves,omitempty"`
+	Stars                   float32              `json:"stars,omitempty"`
+	State                   string               `json:"state,omitempty"`
+	Tags                    TagCategoryTagsItems `json:"tags,omitempty"`
+	UserCanReview           bool                 `json:"user_can_review,omitempty"`
+	UserSubmittedDifficulty int                  `json:"user_submitted_difficulty,omitempty"`
 }
 
 // ChallengePoints0 defines model for .
@@ -1031,6 +1031,7 @@ type ChallengeList struct {
 	DifficultyChart     DifficultyChart  `json:"difficulty_chart,omitempty"`
 	Id                  int              `json:"id,omitempty"`
 	IsOwned             bool             `json:"is_owned,omitempty"`
+	Labels              LabelItems       `json:"labels,omitempty"`
 	Name                string           `json:"name,omitempty"`
 	Pinned              bool             `json:"pinned,omitempty"`
 	PlayMethods         StringArray      `json:"play_methods,omitempty"`
@@ -4059,7 +4060,8 @@ type SherlockItem struct {
 	Solves              int             `json:"solves,omitempty"`
 
 	// State The state of the item.
-	State string `json:"state,omitempty"`
+	State string               `json:"state,omitempty"`
+	Tags  TagCategoryTagsItems `json:"tags,omitempty"`
 }
 
 // SherlockItemList Schema definition for Sherlock Item List
@@ -5320,6 +5322,9 @@ type Query = string
 // Rank defines model for Rank.
 type Rank = []int
 
+// Rare defines model for Rare.
+type Rare = int
+
 // RequestId defines model for RequestId.
 type RequestId = int
 
@@ -6196,6 +6201,12 @@ type PostUserApptokenCreateJSONBody struct {
 // PostUserApptokenDeleteJSONBody defines parameters for PostUserApptokenDelete.
 type PostUserApptokenDeleteJSONBody struct {
 	Name string `json:"name,omitempty"`
+}
+
+// GetUserProfileBadgesParams defines parameters for GetUserProfileBadges.
+type GetUserProfileBadgesParams struct {
+	// Rare Number of rare badges to retrieve
+	Rare Rare `form:"rare,omitempty" json:"rare,omitempty"`
 }
 
 // GetUserProfileGraphParamsPeriod defines parameters for GetUserProfileGraph.
@@ -7517,6 +7528,9 @@ type ClientInterface interface {
 	// GetSeasonUserRank request
 	GetSeasonUserRank(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetSeasonUserUserIdRank request
+	GetSeasonUserUserIdRank(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetSeasonLeaderboard request
 	GetSeasonLeaderboard(ctx context.Context, leaderboard GetSeasonLeaderboardParamsLeaderboard, params *GetSeasonLeaderboardParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -7700,7 +7714,7 @@ type ClientInterface interface {
 	GetUserProfileActivity(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetUserProfileBadges request
-	GetUserProfileBadges(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetUserProfileBadges(ctx context.Context, userId UserId, params *GetUserProfileBadgesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetUserProfileBasic request
 	GetUserProfileBasic(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -9545,6 +9559,18 @@ func (c *Client) GetSeasonUserRank(ctx context.Context, seasonId SeasonId, reqEd
 	return c.Client.Do(req)
 }
 
+func (c *Client) GetSeasonUserUserIdRank(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSeasonUserUserIdRankRequest(c.Server, userId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) GetSeasonLeaderboard(ctx context.Context, leaderboard GetSeasonLeaderboardParamsLeaderboard, params *GetSeasonLeaderboardParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetSeasonLeaderboardRequest(c.Server, leaderboard, params)
 	if err != nil {
@@ -10289,8 +10315,8 @@ func (c *Client) GetUserProfileActivity(ctx context.Context, userId UserId, reqE
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetUserProfileBadges(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUserProfileBadgesRequest(c.Server, userId)
+func (c *Client) GetUserProfileBadges(ctx context.Context, userId UserId, params *GetUserProfileBadgesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetUserProfileBadgesRequest(c.Server, userId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -15792,6 +15818,40 @@ func NewGetSeasonUserRankRequest(server string, seasonId SeasonId) (*http.Reques
 	return req, nil
 }
 
+// NewGetSeasonUserUserIdRankRequest generates requests for GetSeasonUserUserIdRank
+func NewGetSeasonUserUserIdRankRequest(server string, userId UserId) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "userId", runtime.ParamLocationPath, userId)
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/season/user/%s/ranks", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("GET", queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewGetSeasonLeaderboardRequest generates requests for GetSeasonLeaderboard
 func NewGetSeasonLeaderboardRequest(server string, leaderboard GetSeasonLeaderboardParamsLeaderboard, params *GetSeasonLeaderboardParams) (*http.Request, error) {
 	var err error
@@ -17960,7 +18020,7 @@ func NewGetUserProfileActivityRequest(server string, userId UserId) (*http.Reque
 }
 
 // NewGetUserProfileBadgesRequest generates requests for GetUserProfileBadges
-func NewGetUserProfileBadgesRequest(server string, userId UserId) (*http.Request, error) {
+func NewGetUserProfileBadgesRequest(server string, userId UserId, params *GetUserProfileBadgesParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -17983,6 +18043,24 @@ func NewGetUserProfileBadgesRequest(server string, userId UserId) (*http.Request
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+		queryValues := queryURL.Query()
+
+		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "rare", runtime.ParamLocationQuery, params.Rare); err != nil {
+			return nil, err
+		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+			return nil, err
+		} else {
+			for k, v := range parsed {
+				for _, v2 := range v {
+					queryValues.Add(k, v2)
+				}
+			}
+		}
+
+		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -19299,6 +19377,9 @@ type ClientWithResponsesInterface interface {
 	// GetSeasonUserRankWithResponse request
 	GetSeasonUserRankWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonUserRankResponse, error)
 
+	// GetSeasonUserUserIdRankWithResponse request
+	GetSeasonUserUserIdRankWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetSeasonUserUserIdRankResponse, error)
+
 	// GetSeasonLeaderboardWithResponse request
 	GetSeasonLeaderboardWithResponse(ctx context.Context, leaderboard GetSeasonLeaderboardParamsLeaderboard, params *GetSeasonLeaderboardParams, reqEditors ...RequestEditorFn) (*GetSeasonLeaderboardResponse, error)
 
@@ -19482,7 +19563,7 @@ type ClientWithResponsesInterface interface {
 	GetUserProfileActivityWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileActivityResponse, error)
 
 	// GetUserProfileBadgesWithResponse request
-	GetUserProfileBadgesWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileBadgesResponse, error)
+	GetUserProfileBadgesWithResponse(ctx context.Context, userId UserId, params *GetUserProfileBadgesParams, reqEditors ...RequestEditorFn) (*GetUserProfileBadgesResponse, error)
 
 	// GetUserProfileBasicWithResponse request
 	GetUserProfileBasicWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileBasicResponse, error)
@@ -22511,6 +22592,29 @@ func (r GetSeasonUserRankResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetSeasonUserRankResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type GetSeasonUserUserIdRankResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SeasonUserRankSeasonIdResponse
+	JSON400      *GenericError
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSeasonUserUserIdRankResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSeasonUserUserIdRankResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -25665,6 +25769,15 @@ func (c *ClientWithResponses) GetSeasonUserRankWithResponse(ctx context.Context,
 	return ParseGetSeasonUserRankResponse(rsp)
 }
 
+// GetSeasonUserUserIdRankWithResponse request returning *GetSeasonUserUserIdRankResponse
+func (c *ClientWithResponses) GetSeasonUserUserIdRankWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetSeasonUserUserIdRankResponse, error) {
+	rsp, err := c.GetSeasonUserUserIdRank(ctx, userId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSeasonUserUserIdRankResponse(rsp)
+}
+
 // GetSeasonLeaderboardWithResponse request returning *GetSeasonLeaderboardResponse
 func (c *ClientWithResponses) GetSeasonLeaderboardWithResponse(ctx context.Context, leaderboard GetSeasonLeaderboardParamsLeaderboard, params *GetSeasonLeaderboardParams, reqEditors ...RequestEditorFn) (*GetSeasonLeaderboardResponse, error) {
 	rsp, err := c.GetSeasonLeaderboard(ctx, leaderboard, params, reqEditors...)
@@ -26220,8 +26333,8 @@ func (c *ClientWithResponses) GetUserProfileActivityWithResponse(ctx context.Con
 }
 
 // GetUserProfileBadgesWithResponse request returning *GetUserProfileBadgesResponse
-func (c *ClientWithResponses) GetUserProfileBadgesWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileBadgesResponse, error) {
-	rsp, err := c.GetUserProfileBadges(ctx, userId, reqEditors...)
+func (c *ClientWithResponses) GetUserProfileBadgesWithResponse(ctx context.Context, userId UserId, params *GetUserProfileBadgesParams, reqEditors ...RequestEditorFn) (*GetUserProfileBadgesResponse, error) {
+	rsp, err := c.GetUserProfileBadges(ctx, userId, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -30690,6 +30803,39 @@ func ParseGetSeasonUserRankResponse(rsp *http.Response) (*GetSeasonUserRankRespo
 	}
 
 	response := &GetSeasonUserRankResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SeasonUserRankSeasonIdResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest GenericError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetSeasonUserUserIdRankResponse parses an HTTP response from a GetSeasonUserUserIdRankWithResponse call
+func ParseGetSeasonUserUserIdRankResponse(rsp *http.Response) (*GetSeasonUserUserIdRankResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSeasonUserUserIdRankResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
