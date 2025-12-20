@@ -2160,6 +2160,7 @@ type MachineProfileInfo struct {
 	AuthUserInRootOwns         bool                `json:"authUserInRootOwns,omitempty"`
 	AuthUserInUserOwns         bool                `json:"authUserInUserOwns,omitempty"`
 	Avatar                     string              `json:"avatar,omitempty"`
+	BotHasBlood                bool                `json:"botHasBlood,omitempty"`
 	CanAccessWalkthrough       bool                `json:"can_access_walkthrough,omitempty"`
 	DifficultyText             string              `json:"difficultyText,omitempty"`
 	FeedbackForChart           DifficultyChart     `json:"feedbackForChart,omitempty"`
@@ -2465,8 +2466,9 @@ type MachinetagsListInfoItems = []TagCategory
 type Maker struct {
 	Avatar      string `json:"avatar"`
 	Id          int    `json:"id"`
-	IsRespected bool   `json:"isRespected"`
+	IsRespected bool   `json:"isRespected,omitempty"`
 	Name        string `json:"name"`
+	ProfileUrl  string `json:"profile_url"`
 }
 
 // MaschineReviewsMessageItems defines model for MaschineReviewsMessageItems.
@@ -4049,19 +4051,19 @@ type SherlockItem struct {
 	Difficulty          string          `json:"difficulty,omitempty"`
 	Id                  int             `json:"id,omitempty"`
 	IsOwned             bool            `json:"is_owned,omitempty"`
+	Labels              LabelItems      `json:"labels,omitempty"`
 	Name                string          `json:"name,omitempty"`
 	Pinned              bool            `json:"pinned,omitempty"`
 	PlayMethods         StringArray     `json:"play_methods,omitempty"`
 	Progress            int             `json:"progress,omitempty"`
 	Rating              float32         `json:"rating"`
 	RatingCount         int             `json:"rating_count,omitempty"`
-	ReleaseDate         string          `json:"release_date,omitempty"`
+	ReleaseDate         time.Time       `json:"release_date,omitempty"`
 	Retires             SherlockRetires `json:"retires"`
 	Solves              int             `json:"solves,omitempty"`
 
 	// State The state of the item.
-	State string               `json:"state,omitempty"`
-	Tags  TagCategoryTagsItems `json:"tags,omitempty"`
+	State string `json:"state,omitempty"`
 }
 
 // SherlockItemList Schema definition for Sherlock Item List
@@ -4085,27 +4087,25 @@ type SherlockNamedItem struct {
 
 // SherlockNamedItemData defines model for SherlockNamedItemData.
 type SherlockNamedItemData struct {
-	AuthUserHasReviewed bool        `json:"auth_user_has_reviewed,omitempty"`
-	Avatar              string      `json:"avatar,omitempty"`
-	CategoryId          int         `json:"category_id,omitempty"`
-	CategoryName        string      `json:"category_name,omitempty"`
-	Difficulty          string      `json:"difficulty,omitempty"`
-	Favorite            bool        `json:"favorite,omitempty"`
-	Id                  int         `json:"id,omitempty"`
-	IsTodo              bool        `json:"isTodo,omitempty"`
-	Name                string      `json:"name,omitempty"`
-	PlayMethods         StringArray `json:"play_methods,omitempty"`
-	Rating              float32     `json:"rating,omitempty"`
-	RatingCount         int         `json:"rating_count,omitempty"`
-	ReleaseAt           time.Time   `json:"release_at,omitempty"`
-	Retired             bool        `json:"retired,omitempty"`
-	ShowGoVip           bool        `json:"show_go_vip,omitempty"`
-	State               string      `json:"state,omitempty"`
-
-	// Tags Schema definition for Tag
-	Tags           Tag  `json:"tags,omitempty"`
-	UserCanReview  bool `json:"user_can_review,omitempty"`
-	WriteupVisible bool `json:"writeup_visible,omitempty"`
+	AuthUserHasReviewed bool                 `json:"auth_user_has_reviewed,omitempty"`
+	Avatar              string               `json:"avatar,omitempty"`
+	CategoryId          int                  `json:"category_id,omitempty"`
+	CategoryName        string               `json:"category_name,omitempty"`
+	Difficulty          string               `json:"difficulty,omitempty"`
+	Favorite            bool                 `json:"favorite,omitempty"`
+	Id                  int                  `json:"id,omitempty"`
+	IsTodo              bool                 `json:"isTodo,omitempty"`
+	Name                string               `json:"name,omitempty"`
+	PlayMethods         StringArray          `json:"play_methods,omitempty"`
+	Rating              float32              `json:"rating,omitempty"`
+	RatingCount         int                  `json:"rating_count,omitempty"`
+	ReleaseAt           time.Time            `json:"release_at,omitempty"`
+	Retired             bool                 `json:"retired,omitempty"`
+	ShowGoVip           bool                 `json:"show_go_vip,omitempty"`
+	State               string               `json:"state,omitempty"`
+	Tags                TagCategoryTagsItems `json:"tags,omitempty"`
+	UserCanReview       bool                 `json:"user_can_review,omitempty"`
+	WriteupVisible      bool                 `json:"writeup_visible,omitempty"`
 }
 
 // SherlockPlay defines model for SherlockPlay.
@@ -5033,8 +5033,11 @@ type UserProfile struct {
 	ChallengeBloods     int                       `json:"challenge_bloods,omitempty"`
 	CountryCode         string                    `json:"country_code,omitempty"`
 	CountryName         string                    `json:"country_name,omitempty"`
+	CpeId               int                       `json:"cpe_id"`
 	CurrentRankProgress float32                   `json:"current_rank_progress,omitempty"`
+	Cv                  string                    `json:"cv"`
 	FollowedByCount     int                       `json:"followed_by_count,omitempty"`
+	FullName            string                    `json:"full_name,omitempty"`
 	Github              string                    `json:"github"`
 	Id                  int                       `json:"id,omitempty"`
 	IsDedicatedVip      bool                      `json:"isDedicatedVip,omitempty"`
@@ -5046,6 +5049,7 @@ type UserProfile struct {
 	Name                string                    `json:"name,omitempty"`
 	NextRank            string                    `json:"next_rank"`
 	NextRankPoints      float32                   `json:"next_rank_points"`
+	PhoneNumber         string                    `json:"phone_number"`
 	Points              int                       `json:"points,omitempty"`
 	Public              bool                      `json:"public,omitempty"`
 	Rank                string                    `json:"rank,omitempty"`
@@ -5054,6 +5058,7 @@ type UserProfile struct {
 	RankRequirement     int                       `json:"rank_requirement"`
 	Ranking             int                       `json:"ranking,omitempty"`
 	Respects            int                       `json:"respects,omitempty"`
+	Server              string                    `json:"server"`
 	SsoId               bool                      `json:"sso_id,omitempty"`
 	SystemBloods        int                       `json:"system_bloods,omitempty"`
 	SystemOwns          int                       `json:"system_owns,omitempty"`
