@@ -903,7 +903,7 @@ type Challenge struct {
 	Dislikes             int             `json:"dislikes,omitempty"`
 	Docker               bool            `json:"docker"`
 	DockerIp             string          `json:"docker_ip"`
-	DockerPorts          string          `json:"docker_ports"`
+	DockerPorts          IntArray        `json:"docker_ports,omitempty"`
 	DockerStatus         string          `json:"docker_status"`
 	Download             bool            `json:"download,omitempty"`
 	FileName             string          `json:"file_name,omitempty"`
