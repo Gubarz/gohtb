@@ -4148,9 +4148,8 @@ components:
           nullable: true
           type: string
         docker_ports:
-          example: null
           nullable: true
-          type: string
+          $ref: '#/components/schemas/IntArray'
         download:
           example: true
           type: boolean
@@ -4258,15 +4257,30 @@ components:
         - flag
       title: Own Request
       type: object
+    NewRank:
+      properties:
+        id:
+          example: 5
+          type: integer
+        text:
+          nullable: true
+          type: string
+      type: object
+    UserRank:
+      properties:
+        changed:
+          type: boolean
+        newrank:
+          $ref: '#/components/schemas/NewRank'
+      type: object
     OwnResponse:
       description: Schema definition for Own Response
       properties:
         message:
           example: machine owned successfully!
           type: string
-        status:
-          example: 200
-          type: integer
+        user_rank:
+          $ref: '#/components/schemas/UserRank'
       title: Own Response
       type: object
     RecommendedCard:
