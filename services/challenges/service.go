@@ -295,13 +295,12 @@ func (h *Handle) Stop(ctx context.Context) (common.MessageResponse, error) {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("Flag submission: %s\n", result.Data.Message)
-func (h *Handle) Own(ctx context.Context, flag string, difficulty int) (common.MessageResponse, error) {
+func (h *Handle) Own(ctx context.Context, flag string) (common.MessageResponse, error) {
 	resp, err := h.client.V4().PostChallengeOwnWithFormdataBody(
 		h.client.Limiter().Wrap(ctx),
 		v4Client.ChallengeOwnRequest{
 			ChallengeId: h.id,
 			Flag:        flag,
-			Difficulty:  difficulty,
 		},
 	)
 	if err != nil {
