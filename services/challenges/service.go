@@ -102,11 +102,46 @@ func (s *Service) List() *ChallengeQuery {
 	}
 }
 
-type Challenge = v4Client.Challenge
-
 type InfoResponse struct {
 	Data         Challenge
 	ResponseMeta common.ResponseMeta
+}
+
+type DifficultyChart = v4Client.DifficultyChart1
+type Points = v4Client.ChallengePoints0
+
+type Challenge struct {
+	v4Client.Challenge
+	DifficultyChart v4Client.DifficultyChart1
+	Points          v4Client.ChallengePoints0
+}
+
+func feedbackForChart(u v4Client.DifficultyChart) DifficultyChart {
+	n, err := u.AsDifficultyChart1()
+	if err != nil {
+		return DifficultyChart{}
+	}
+	return n
+}
+
+func points(u v4Client.Challenge_Points) int {
+	n, err := u.AsChallengePoints0()
+	if err != nil {
+		m, err := u.AsChallengePoints1()
+		if err != nil {
+			return 0
+		}
+		v, err := strconv.Atoi(m)
+		if err != nil {
+			return 0
+		}
+		return v
+	}
+	return n
+}
+
+func wrapChallengeInfo(x v4Client.Challenge) Challenge {
+	return Challenge{Challenge: x}
 }
 
 // Info retrieves detailed information about the challenge.
@@ -140,8 +175,12 @@ func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 		return InfoResponse{ResponseMeta: meta}, err
 	}
 
+	wrapped := wrapChallengeInfo(parsed.JSON200.Challenge)
+	wrapped.DifficultyChart = feedbackForChart(wrapped.Challenge.DifficultyChart)
+	wrapped.Points = points(wrapped.Challenge.Points)
+
 	return InfoResponse{
-		Data:         parsed.JSON200.Challenge,
+		Data:         wrapped,
 		ResponseMeta: meta,
 	}, nil
 }
