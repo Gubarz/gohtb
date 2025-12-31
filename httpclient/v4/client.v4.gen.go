@@ -903,7 +903,7 @@ type Challenge struct {
 	Dislikes             int             `json:"dislikes,omitempty"`
 	Docker               bool            `json:"docker"`
 	DockerIp             string          `json:"docker_ip"`
-	DockerPorts          string          `json:"docker_ports"`
+	DockerPorts          IntArray        `json:"docker_ports,omitempty"`
 	DockerStatus         string          `json:"docker_status"`
 	Download             bool            `json:"download,omitempty"`
 	FileName             string          `json:"file_name,omitempty"`
@@ -2544,6 +2544,12 @@ type NavigationNmainSeasonRanking struct {
 	UpcomingSeason UpcomingSeason `json:"upcoming_season,omitempty"`
 }
 
+// NewRank defines model for NewRank.
+type NewRank struct {
+	Id   int    `json:"id,omitempty"`
+	Text string `json:"text"`
+}
+
 // NoticeDataItems defines model for NoticeDataItems.
 type NoticeDataItems = []NoticesItem
 
@@ -2605,8 +2611,8 @@ type OwnRequest struct {
 
 // OwnResponse Schema definition for Own Response
 type OwnResponse struct {
-	Message string `json:"message,omitempty"`
-	Status  int    `json:"status,omitempty"`
+	Message  string   `json:"message,omitempty"`
+	UserRank UserRank `json:"user_rank,omitempty"`
 }
 
 // OwnStats Schema definition for Own Stats
@@ -5162,6 +5168,12 @@ type UserProfileUniversityTeam struct {
 	LogoThumbUrl string `json:"logo_thumb_url,omitempty"`
 	Name         string `json:"name,omitempty"`
 	Ranking      int    `json:"ranking,omitempty"`
+}
+
+// UserRank defines model for UserRank.
+type UserRank struct {
+	Changed bool    `json:"changed,omitempty"`
+	Newrank NewRank `json:"newrank,omitempty"`
 }
 
 // UserRanking defines model for UserRanking.
