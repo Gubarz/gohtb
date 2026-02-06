@@ -888,6 +888,7 @@ type Challenge struct {
 	AuthUserHasReviewed  bool            `json:"authUserHasReviewed,omitempty"`
 	AuthUserSolve        bool            `json:"authUserSolve,omitempty"`
 	AuthUserSolveTime    string          `json:"authUserSolveTime"`
+	AvatarUrl            string          `json:"avatar_url,omitempty"`
 	CanAccessWalkthough  bool            `json:"can_access_walkthough,omitempty"`
 	CategoryName         string          `json:"category_name,omitempty"`
 	Creator2Avatar       string          `json:"creator2_avatar"`
@@ -1118,6 +1119,7 @@ type ChallengeStartResponse struct {
 
 // ChallengeSuggestedData defines model for ChallengeSuggestedData.
 type ChallengeSuggestedData struct {
+	AvatarUrl             string `json:"avatar_url,omitempty"`
 	ChallengeCategoryName string `json:"challenge_category_name,omitempty"`
 	Id                    int    `json:"id,omitempty"`
 	Name                  string `json:"name,omitempty"`
@@ -1554,20 +1556,47 @@ type HomeProgresTracksCardItem struct {
 	Url        string  `json:"url,omitempty"`
 }
 
+// HomeProgressChallengeCardItem defines model for HomeProgressChallengeCardItem.
+type HomeProgressChallengeCardItem struct {
+	Avatar      string  `json:"avatar,omitempty"`
+	AvatarUrl   string  `json:"avatarUrl,omitempty"`
+	CategoryID  string  `json:"categoryID,omitempty"`
+	Difficulty  string  `json:"difficulty,omitempty"`
+	Id          int     `json:"id,omitempty"`
+	Name        string  `json:"name,omitempty"`
+	Points      float32 `json:"points"`
+	Progress    float32 `json:"progress"`
+	Rating      float32 `json:"rating,omitempty"`
+	RatingCount int     `json:"ratingCount,omitempty"`
+	Status      string  `json:"status"`
+	Type        string  `json:"type,omitempty"`
+	Url         string  `json:"url,omitempty"`
+	UrlName     string  `json:"urlName,omitempty"`
+}
+
 // HomeProgressMachineCard Schema definition for Home Machine Card
 type HomeProgressMachineCard = []HomeProgressMachineCardItem
 
 // HomeProgressMachineCardItem defines model for HomeProgressMachineCardItem.
 type HomeProgressMachineCardItem struct {
-	Avatar     string  `json:"avatar,omitempty"`
-	Difficulty string  `json:"difficulty,omitempty"`
-	Id         int     `json:"id,omitempty"`
-	Name       string  `json:"name,omitempty"`
-	Os         string  `json:"os,omitempty"`
-	Points     float32 `json:"points"`
-	RootFlag   int     `json:"root_flag,omitempty"`
-	Url        string  `json:"url,omitempty"`
-	UserFlag   int     `json:"user_flag,omitempty"`
+	Avatar         string  `json:"avatar,omitempty"`
+	AvatarUrl      string  `json:"avatarUrl,omitempty"`
+	Difficulty     string  `json:"difficulty,omitempty"`
+	Guided         bool    `json:"guided,omitempty"`
+	Id             int     `json:"id,omitempty"`
+	Name           string  `json:"name,omitempty"`
+	Os             string  `json:"os,omitempty"`
+	Points         float32 `json:"points"`
+	Progress       float32 `json:"progress"`
+	Rating         float32 `json:"rating,omitempty"`
+	RatingCount    int     `json:"ratingCount,omitempty"`
+	RootFlag       int     `json:"root_flag,omitempty"`
+	Status         string  `json:"status"`
+	TasksCompleted int     `json:"tasksCompleted,omitempty"`
+	TasksTotal     int     `json:"tasksTotal,omitempty"`
+	Type           string  `json:"type,omitempty"`
+	Url            string  `json:"url,omitempty"`
+	UserFlag       int     `json:"user_flag,omitempty"`
 }
 
 // HomeProgressProlabCard Schema definition for Home Prolab Card
@@ -1592,15 +1621,21 @@ type HomeRecommendedChallengeCard = []HomeRecommendedChallengeItems
 
 // HomeRecommendedChallengeItems defines model for HomeRecommendedChallengeItems.
 type HomeRecommendedChallengeItems struct {
-	Avatar     string `json:"avatar,omitempty"`
-	CategoryID int    `json:"categoryID,omitempty"`
-	Difficulty string `json:"difficulty,omitempty"`
-	Id         int    `json:"id,omitempty"`
-	Name       string `json:"name,omitempty"`
-	Points     int    `json:"points"`
-	Type       string `json:"type,omitempty"`
-	Url        string `json:"url,omitempty"`
-	UrlName    string `json:"urlName,omitempty"`
+	Avatar       string  `json:"avatar,omitempty"`
+	AvatarUrl    string  `json:"avatarUrl,omitempty"`
+	CategoryID   int     `json:"categoryID,omitempty"`
+	CategoryName string  `json:"categoryName,omitempty"`
+	Difficulty   string  `json:"difficulty,omitempty"`
+	Id           int     `json:"id,omitempty"`
+	Name         string  `json:"name,omitempty"`
+	Points       int     `json:"points"`
+	Progress     float32 `json:"progress"`
+	Rating       float32 `json:"rating,omitempty"`
+	RatingCount  int     `json:"ratingCount,omitempty"`
+	Status       string  `json:"status"`
+	Type         string  `json:"type,omitempty"`
+	Url          string  `json:"url,omitempty"`
+	UrlName      string  `json:"urlName,omitempty"`
 }
 
 // HomeRecommendedData defines model for HomeRecommendedData.
@@ -1629,14 +1664,24 @@ type HomeRecommendedMachineCard = []HomeRecommendedMachineCardItem
 
 // HomeRecommendedMachineCardItem defines model for HomeRecommendedMachineCardItem.
 type HomeRecommendedMachineCardItem struct {
-	Avatar     string  `json:"avatar,omitempty"`
-	Difficulty string  `json:"difficulty,omitempty"`
-	Id         int     `json:"id,omitempty"`
-	Name       string  `json:"name,omitempty"`
-	Os         string  `json:"os,omitempty"`
-	Points     float32 `json:"points"`
-	Type       string  `json:"type,omitempty"`
-	Url        string  `json:"url,omitempty"`
+	Avatar         string  `json:"avatar,omitempty"`
+	AvatarUrl      string  `json:"avatarUrl,omitempty"`
+	Difficulty     string  `json:"difficulty,omitempty"`
+	Guided         bool    `json:"guided,omitempty"`
+	Id             int     `json:"id,omitempty"`
+	Name           string  `json:"name,omitempty"`
+	Os             string  `json:"os,omitempty"`
+	Points         float32 `json:"points"`
+	Progress       float32 `json:"progress"`
+	Rating         int     `json:"rating,omitempty"`
+	RatingCount    int     `json:"ratingCount,omitempty"`
+	RootFlag       bool    `json:"root_flag,omitempty"`
+	Status         string  `json:"status"`
+	TasksCompleted float32 `json:"tasksCompleted,omitempty"`
+	TasksTotal     int     `json:"tasksTotal,omitempty"`
+	Type           string  `json:"type,omitempty"`
+	Url            string  `json:"url,omitempty"`
+	UserFlag       bool    `json:"user_flag,omitempty"`
 }
 
 // HomeRecommendedProlabCard Schema definition for Home Prolab Card
@@ -1644,14 +1689,21 @@ type HomeRecommendedProlabCard = []HomeRecommendedProlabCardItem
 
 // HomeRecommendedProlabCardItem defines model for HomeRecommendedProlabCardItem.
 type HomeRecommendedProlabCardItem struct {
-	Avatar     string `json:"avatar"`
-	Difficulty string `json:"difficulty,omitempty"`
-	Id         int    `json:"id,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
-	Name       string `json:"name,omitempty"`
-	Points     int    `json:"points,omitempty"`
-	Type       string `json:"type,omitempty"`
-	Url        string `json:"url,omitempty"`
+	Avatar         string  `json:"avatar"`
+	AvatarUrl      string  `json:"avatarUrl,omitempty"`
+	CategoryName   string  `json:"categoryName,omitempty"`
+	Difficulty     string  `json:"difficulty,omitempty"`
+	Id             int     `json:"id,omitempty"`
+	Identifier     string  `json:"identifier,omitempty"`
+	Name           string  `json:"name,omitempty"`
+	Points         int     `json:"points,omitempty"`
+	Progress       float32 `json:"progress"`
+	Rating         float32 `json:"rating,omitempty"`
+	RatingCount    int     `json:"ratingCount,omitempty"`
+	TasksCompleted int     `json:"tasksCompleted,omitempty"`
+	TasksTotal     int     `json:"tasksTotal,omitempty"`
+	Type           string  `json:"type,omitempty"`
+	Url            string  `json:"url,omitempty"`
 }
 
 // HomeRecommendedRepsonse Schema definition for Home Recommended Repsonse
@@ -1664,14 +1716,22 @@ type HomeRecommendedSherlocksCard = []HomeRecommendedSherlocksCardItem
 
 // HomeRecommendedSherlocksCardItem defines model for HomeRecommendedSherlocksCardItem.
 type HomeRecommendedSherlocksCardItem struct {
-	Avatar     string `json:"avatar,omitempty"`
-	CategoryID int    `json:"categoryID,omitempty"`
-	Difficulty string `json:"difficulty,omitempty"`
-	Id         int    `json:"id,omitempty"`
-	Name       string `json:"name,omitempty"`
-	Type       string `json:"type,omitempty"`
-	Url        string `json:"url,omitempty"`
-	UrlName    string `json:"urlName,omitempty"`
+	Avatar         string  `json:"avatar,omitempty"`
+	AvatarUrl      string  `json:"avatarUrl,omitempty"`
+	CategoryID     int     `json:"categoryID,omitempty"`
+	CategoryName   string  `json:"categoryName,omitempty"`
+	Difficulty     string  `json:"difficulty,omitempty"`
+	Id             int     `json:"id,omitempty"`
+	Name           string  `json:"name,omitempty"`
+	Progress       float32 `json:"progress"`
+	Rating         float32 `json:"rating,omitempty"`
+	RatingCount    int     `json:"ratingCount,omitempty"`
+	Status         string  `json:"status"`
+	TasksCompleted int     `json:"tasksCompleted,omitempty"`
+	TasksTotal     int     `json:"tasksTotal,omitempty"`
+	Type           string  `json:"type,omitempty"`
+	Url            string  `json:"url,omitempty"`
+	UrlName        string  `json:"urlName,omitempty"`
 }
 
 // HomeRecommendedTracksCard Schema definition for Home Tracks Card
@@ -1737,6 +1797,7 @@ type HomeTodoProlabCardItem struct {
 
 // HomeUserProgressData defines model for HomeUserProgressData.
 type HomeUserProgressData struct {
+	Challenges HomeProgressChallengeCardItem  `json:"challenges,omitempty"`
 	Fortresses HomeUserProgressFortressesCard `json:"fortresses,omitempty"`
 
 	// Machines Schema definition for Home Machine Card
@@ -1821,38 +1882,8 @@ type KeyedProLabMileStone struct {
 // KeyedProlabMileStoneItems defines model for KeyedProlabMileStoneItems.
 type KeyedProlabMileStoneItems = []KeyedProLabMileStone
 
-// LabCategory Schema definition for Lab Category
-type LabCategory struct {
-	Code     string `json:"code,omitempty"`
-	Location string `json:"location,omitempty"`
-	Name     string `json:"name,omitempty"`
-}
-
-// LabListCategoriesItems defines model for LabListCategoriesItems.
-type LabListCategoriesItems = []LabCategory
-
-// LabListResponse Schema definition for Lab List Response
-type LabListResponse struct {
-	Disabled         bool                   `json:"disabled,omitempty"`
-	LabCategories    LabListCategoriesItems `json:"lab_categories,omitempty"`
-	LabCategoryCode  string                 `json:"lab_category_code,omitempty"`
-	ReleaseArenaLabs LabListCategoriesItems `json:"release_arena_labs,omitempty"`
-	ServerId         int                    `json:"server_id,omitempty"`
-	Servers          LabListServersItems    `json:"servers,omitempty"`
-}
-
-// LabListServersItems defines model for LabListServersItems.
-type LabListServersItems = []LabServer
-
 // LabMasterItems defines model for LabMasterItems.
 type LabMasterItems = []UserIdNameThumb
-
-// LabServer Schema definition for Lab Server
-type LabServer struct {
-	CurrentClients int    `json:"current_clients,omitempty"`
-	FriendlyName   string `json:"friendly_name,omitempty"`
-	Id             int    `json:"id,omitempty"`
-}
 
 // Label Schema definition for Label
 type Label struct {
@@ -2172,6 +2203,7 @@ type MachineProfileInfo struct {
 	IsGuidedEnabled            bool                `json:"isGuidedEnabled,omitempty"`
 	IsSingleFlag               bool                `json:"isSingleFlag,omitempty"`
 	IsTodo                     bool                `json:"isTodo,omitempty"`
+	MachinePwnedDate           time.Time           `json:"machinePwnedDate,omitempty"`
 	MachineMode                string              `json:"machine_mode"`
 
 	// Maker Schema definition for Maker
@@ -2582,17 +2614,6 @@ type OfficialWriteup struct {
 // OpenVpn Schema definition for Open Vpn
 type OpenVpn = openapi_types.File
 
-// OperatingSystems defines model for OperatingSystems.
-type OperatingSystems struct {
-	CompletionPercentage float32 `json:"completion_percentage,omitempty"`
-	Name                 string  `json:"name,omitempty"`
-	OwnedMachines        float32 `json:"owned_machines,omitempty"`
-	TotalMachines        float32 `json:"total_machines,omitempty"`
-}
-
-// OperatyingSystemsItems defines model for OperatyingSystemsItems.
-type OperatyingSystemsItems = []OperatingSystems
-
 // Options Schema definition for Options
 type Options map[string]map[string]ServerGroup
 
@@ -2697,6 +2718,7 @@ type PlayInfoCasing struct {
 	IsActive          bool      `json:"isActive"`
 	IsSpawned         bool      `json:"isSpawned"`
 	IsSpawning        bool      `json:"isSpawning"`
+	LifeRemaining     int       `json:"life_remaining"`
 }
 
 // PorfileContentProfile defines model for PorfileContentProfile.
@@ -2866,6 +2888,7 @@ type ProfileProgressFortressProfile struct {
 type ProfileProgressFortressProfileItem struct {
 	Avatar               string `json:"avatar,omitempty"`
 	CompletionPercentage int    `json:"completion_percentage,omitempty"`
+	Id                   int    `json:"id,omitempty"`
 	Name                 string `json:"name,omitempty"`
 	OwnedFlags           int    `json:"owned_flags,omitempty"`
 	TotalFlags           int    `json:"total_flags,omitempty"`
@@ -3542,6 +3565,7 @@ type RankingsUsersResponse struct {
 
 // RecommendedCard Schema definition for Recommended Card
 type RecommendedCard struct {
+	AvatarUrl         string  `json:"avatar_url,omitempty"`
 	CategoryName      string  `json:"category_name,omitempty"`
 	Difficulty        string  `json:"difficulty,omitempty"`
 	Id                int     `json:"id,omitempty"`
@@ -3647,9 +3671,9 @@ type ReviewsResponse struct {
 
 // SearchChallengeItem defines model for SearchChallengeItem.
 type SearchChallengeItem struct {
+	AvatarUrl           string `json:"avatar_url,omitempty"`
 	CategoryName        string `json:"category_name,omitempty"`
 	ChallengeCategoryId int    `json:"challenge_category_id,omitempty"`
-	Description         string `json:"description,omitempty"`
 	Id                  int    `json:"id,omitempty"`
 	Value               string `json:"value,omitempty"`
 }
@@ -4360,6 +4384,7 @@ type TeamActivityIdResponse = []TeamActivityItem
 
 // TeamActivityItem defines model for TeamActivityItem.
 type TeamActivityItem struct {
+	AvatarUrl         string           `json:"avatar_url,omitempty"`
 	ChallengeCategory string           `json:"challenge_category,omitempty"`
 	Date              time.Time        `json:"date"`
 	DateDiff          string           `json:"date_diff"`
@@ -4656,10 +4681,10 @@ type UniversityAllListResponse struct {
 
 // UniversityChartChallengeCategoriesItem defines model for UniversityChartChallengeCategoriesItem.
 type UniversityChartChallengeCategoriesItem struct {
-	AllTeamsAvgPercentage float32 `json:"all_teams_avg_percentage,omitempty"`
-	Id                    int     `json:"id,omitempty"`
-	Name                  string  `json:"name,omitempty"`
-	TeamPercentage        float32 `json:"team_percentage,omitempty"`
+	AllUniversitysAvgPercentage float32 `json:"all_universitys_avg_percentage,omitempty"`
+	Id                          int     `json:"id,omitempty"`
+	Name                        string  `json:"name,omitempty"`
+	UniversityPercentage        float32 `json:"university_percentage,omitempty"`
 }
 
 // UniversityChartChallengeCategoriesItems defines model for UniversityChartChallengeCategoriesItems.
@@ -4907,11 +4932,6 @@ type UserAvailability struct {
 	Message   string `json:"message"`
 }
 
-// UserBannedResponse Schema definition for User Banned Response
-type UserBannedResponse struct {
-	Banned bool `json:"banned,omitempty"`
-}
-
 // UserBasicInfo defines model for UserBasicInfo.
 type UserBasicInfo struct {
 	Avatar string `json:"avatar,omitempty"`
@@ -4986,6 +5006,7 @@ type UserIdNameThumb struct {
 
 // UserInfo Schema definition for User Info
 type UserInfo struct {
+	AccountId                  string                `json:"account_id,omitempty"`
 	Avatar                     string                `json:"avatar,omitempty"`
 	BetaTester                 int                   `json:"beta_tester,omitempty"`
 	CanAccessDedilab           bool                  `json:"canAccessDedilab,omitempty"`
@@ -5114,16 +5135,6 @@ type UserProfileBloodsProfile struct {
 // UserProfileBloodsResponse defines model for UserProfileBloodsResponse.
 type UserProfileBloodsResponse struct {
 	Profile UserProfileBloodsProfile `json:"profile,omitempty"`
-}
-
-// UserProfileProgressMChinesOsProfile defines model for UserProfileProgressMChinesOsProfile.
-type UserProfileProgressMChinesOsProfile struct {
-	OperatingSystems OperatyingSystemsItems `json:"operating_systems,omitempty"`
-}
-
-// UserProfileProgressMachinesOsResponse defines model for UserProfileProgressMachinesOsResponse.
-type UserProfileProgressMachinesOsResponse struct {
-	Profile UserProfileProgressMChinesOsProfile `json:"profile,omitempty"`
 }
 
 // UserProfileProgressSherlockProfile defines model for UserProfileProgressSherlockProfile.
@@ -7295,9 +7306,6 @@ type ClientInterface interface {
 	// GetHomeUserTodo request
 	GetHomeUserTodo(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetLabList request
-	GetLabList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetMachineActive request
 	GetMachineActive(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -7703,9 +7711,6 @@ type ClientInterface interface {
 	// GetUserApptokenList request
 	GetUserApptokenList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetUserBanned request
-	GetUserBanned(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetUserConnectionStatus request
 	GetUserConnectionStatus(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -7753,9 +7758,6 @@ type ClientInterface interface {
 
 	// GetUserProfileProgressFortress request
 	GetUserProfileProgressFortress(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetUserProfileProgressMachinesOs request
-	GetUserProfileProgressMachinesOs(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetUserProfileProgressProlab request
 	GetUserProfileProgressProlab(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -8534,18 +8536,6 @@ func (c *Client) GetHomeUserProgress(ctx context.Context, reqEditors ...RequestE
 
 func (c *Client) GetHomeUserTodo(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetHomeUserTodoRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetLabList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetLabListRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -10224,18 +10214,6 @@ func (c *Client) GetUserApptokenList(ctx context.Context, reqEditors ...RequestE
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetUserBanned(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUserBannedRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetUserConnectionStatus(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetUserConnectionStatusRequest(c.Server)
 	if err != nil {
@@ -10418,18 +10396,6 @@ func (c *Client) GetUserProfileProgressChallenges(ctx context.Context, userId Us
 
 func (c *Client) GetUserProfileProgressFortress(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetUserProfileProgressFortressRequest(c.Server, userId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetUserProfileProgressMachinesOs(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUserProfileProgressMachinesOsRequest(c.Server, userId)
 	if err != nil {
 		return nil, err
 	}
@@ -12647,33 +12613,6 @@ func NewGetHomeUserTodoRequest(server string) (*http.Request, error) {
 	}
 
 	operationPath := fmt.Sprintf("/home/user/todo")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetLabListRequest generates requests for GetLabList
-func NewGetLabListRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/lab/list")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -17772,33 +17711,6 @@ func NewGetUserApptokenListRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewGetUserBannedRequest generates requests for GetUserBanned
-func NewGetUserBannedRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/user/banned")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetUserConnectionStatusRequest generates requests for GetUserConnectionStatus
 func NewGetUserConnectionStatusRequest(server string) (*http.Request, error) {
 	var err error
@@ -18316,40 +18228,6 @@ func NewGetUserProfileProgressFortressRequest(server string, userId UserId) (*ht
 	}
 
 	operationPath := fmt.Sprintf("/user/profile/progress/fortress/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetUserProfileProgressMachinesOsRequest generates requests for GetUserProfileProgressMachinesOs
-func NewGetUserProfileProgressMachinesOsRequest(server string, userId UserId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "userId", runtime.ParamLocationPath, userId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/user/profile/progress/machines/os/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -19144,9 +19022,6 @@ type ClientWithResponsesInterface interface {
 	// GetHomeUserTodoWithResponse request
 	GetHomeUserTodoWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetHomeUserTodoResponse, error)
 
-	// GetLabListWithResponse request
-	GetLabListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetLabListResponse, error)
-
 	// GetMachineActiveWithResponse request
 	GetMachineActiveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetMachineActiveResponse, error)
 
@@ -19552,9 +19427,6 @@ type ClientWithResponsesInterface interface {
 	// GetUserApptokenListWithResponse request
 	GetUserApptokenListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserApptokenListResponse, error)
 
-	// GetUserBannedWithResponse request
-	GetUserBannedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserBannedResponse, error)
-
 	// GetUserConnectionStatusWithResponse request
 	GetUserConnectionStatusWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserConnectionStatusResponse, error)
 
@@ -19602,9 +19474,6 @@ type ClientWithResponsesInterface interface {
 
 	// GetUserProfileProgressFortressWithResponse request
 	GetUserProfileProgressFortressWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileProgressFortressResponse, error)
-
-	// GetUserProfileProgressMachinesOsWithResponse request
-	GetUserProfileProgressMachinesOsWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileProgressMachinesOsResponse, error)
 
 	// GetUserProfileProgressProlabWithResponse request
 	GetUserProfileProgressProlabWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileProgressProlabResponse, error)
@@ -20813,29 +20682,6 @@ func (r GetHomeUserTodoResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetHomeUserTodoResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetLabListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *LabListResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetLabListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetLabListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -23755,29 +23601,6 @@ func (r GetUserApptokenListResponse) StatusCode() int {
 	return 0
 }
 
-type GetUserBannedResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UserBannedResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUserBannedResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUserBannedResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetUserConnectionStatusResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -24140,29 +23963,6 @@ func (r GetUserProfileProgressFortressResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetUserProfileProgressFortressResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetUserProfileProgressMachinesOsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UserProfileProgressMachinesOsResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUserProfileProgressMachinesOsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUserProfileProgressMachinesOsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -25018,15 +24818,6 @@ func (c *ClientWithResponses) GetHomeUserTodoWithResponse(ctx context.Context, r
 		return nil, err
 	}
 	return ParseGetHomeUserTodoResponse(rsp)
-}
-
-// GetLabListWithResponse request returning *GetLabListResponse
-func (c *ClientWithResponses) GetLabListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetLabListResponse, error) {
-	rsp, err := c.GetLabList(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetLabListResponse(rsp)
 }
 
 // GetMachineActiveWithResponse request returning *GetMachineActiveResponse
@@ -26268,15 +26059,6 @@ func (c *ClientWithResponses) GetUserApptokenListWithResponse(ctx context.Contex
 	return ParseGetUserApptokenListResponse(rsp)
 }
 
-// GetUserBannedWithResponse request returning *GetUserBannedResponse
-func (c *ClientWithResponses) GetUserBannedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserBannedResponse, error) {
-	rsp, err := c.GetUserBanned(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUserBannedResponse(rsp)
-}
-
 // GetUserConnectionStatusWithResponse request returning *GetUserConnectionStatusResponse
 func (c *ClientWithResponses) GetUserConnectionStatusWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserConnectionStatusResponse, error) {
 	rsp, err := c.GetUserConnectionStatus(ctx, reqEditors...)
@@ -26419,15 +26201,6 @@ func (c *ClientWithResponses) GetUserProfileProgressFortressWithResponse(ctx con
 		return nil, err
 	}
 	return ParseGetUserProfileProgressFortressResponse(rsp)
-}
-
-// GetUserProfileProgressMachinesOsWithResponse request returning *GetUserProfileProgressMachinesOsResponse
-func (c *ClientWithResponses) GetUserProfileProgressMachinesOsWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileProgressMachinesOsResponse, error) {
-	rsp, err := c.GetUserProfileProgressMachinesOs(ctx, userId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUserProfileProgressMachinesOsResponse(rsp)
 }
 
 // GetUserProfileProgressProlabWithResponse request returning *GetUserProfileProgressProlabResponse
@@ -28257,39 +28030,6 @@ func ParseGetHomeUserTodoResponse(rsp *http.Response) (*GetHomeUserTodoResponse,
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest HomeUserTodoResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetLabListResponse parses an HTTP response from a GetLabListWithResponse call
-func ParseGetLabListResponse(rsp *http.Response) (*GetLabListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetLabListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest LabListResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -32421,39 +32161,6 @@ func ParseGetUserApptokenListResponse(rsp *http.Response) (*GetUserApptokenListR
 	return response, nil
 }
 
-// ParseGetUserBannedResponse parses an HTTP response from a GetUserBannedWithResponse call
-func ParseGetUserBannedResponse(rsp *http.Response) (*GetUserBannedResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUserBannedResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserBannedResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetUserConnectionStatusResponse parses an HTTP response from a GetUserConnectionStatusWithResponse call
 func ParseGetUserConnectionStatusResponse(rsp *http.Response) (*GetUserConnectionStatusResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -32965,39 +32672,6 @@ func ParseGetUserProfileProgressFortressResponse(rsp *http.Response) (*GetUserPr
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ProfileProgressFortressUserIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetUserProfileProgressMachinesOsResponse parses an HTTP response from a GetUserProfileProgressMachinesOsWithResponse call
-func ParseGetUserProfileProgressMachinesOsResponse(rsp *http.Response) (*GetUserProfileProgressMachinesOsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUserProfileProgressMachinesOsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserProfileProgressMachinesOsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
