@@ -10,8 +10,20 @@ import (
 	"net"
 	"net/http"
 	"strconv"
+	"strings"
 	"sync"
 	"time"
+)
+
+const (
+	// defaultRateLimitBurst is the initial (and max) value for the
+	// remaining request budget when no rate limit headers are available.
+	defaultRateLimitBurst = 10
+
+	// defaultRefillInterval is how often one token is added back to the
+	// budget when operating without server-provided rate limit headers.
+	// 250ms means 4 tokens/second sustained throughput after the initial burst.
+	defaultRefillInterval = 250 * time.Millisecond
 )
 
 type RetryPolicy interface {
@@ -20,11 +32,12 @@ type RetryPolicy interface {
 }
 
 type RateLimiter struct {
-	mu          sync.Mutex
-	limit       RateLimitInfo
-	lastRequest time.Time
-	ctx         context.Context
-	logger      Logger
+	mu         sync.Mutex
+	limit      RateLimitInfo
+	lastRefill time.Time
+	pauseUntil time.Time
+	ctx        context.Context
+	logger     Logger
 }
 
 type RateLimitInfo struct {
@@ -44,7 +57,7 @@ func NewRateLimiter(ctx context.Context, logger Logger) *RateLimiter {
 	if logger == nil {
 		logger = NoopLogger{}
 	}
-	return &RateLimiter{ctx: ctx, logger: logger, limit: RateLimitInfo{Remaining: 10, Limit: 10}}
+	return &RateLimiter{ctx: ctx, logger: logger, limit: RateLimitInfo{Remaining: defaultRateLimitBurst, Limit: defaultRateLimitBurst}}
 }
 
 func NewAPITransport(underlying http.RoundTripper, limiter *RateLimiter, retryConfig RetryConfig, logger Logger) *APITransport {
@@ -72,65 +85,110 @@ func NewAPITransport(underlying http.RoundTripper, limiter *RateLimiter, retryCo
 
 func (r *RateLimiter) BeforeRequest() error {
 	r.mu.Lock()
-	now := time.Now()
-	elapsed := now.Sub(r.lastRequest)
 
-	info := r.limit
-	var wait time.Duration
+	for {
+		now := time.Now()
 
-	switch {
-	case info.Remaining <= 1:
-		wait = time.Until(info.Reset)
-		if wait <= 0 {
-			wait = 7 * time.Second
+		// If a CloudFlare backoff is active, wait until it expires before
+		// proceeding. This blocks ALL goroutines, not just the one that
+		// received the 429.
+		if !r.pauseUntil.IsZero() {
+			if now.Before(r.pauseUntil) {
+				wait := time.Until(r.pauseUntil)
+				r.logger.Debug("CloudFlare backoff active, waiting %v", wait)
+				r.mu.Unlock()
+				if err := r.sleep(wait); err != nil {
+					return err
+				}
+				r.mu.Lock()
+				continue
+			}
+			// Pause expired. Clear it and reset the refill baseline
+			// so tokens start replenishing from this point.
+			r.pauseUntil = time.Time{}
+			r.limit.Remaining = r.limit.Limit
+			r.lastRefill = now
+			r.logger.Debug("CloudFlare backoff expired, refilled to %d/%d", r.limit.Remaining, r.limit.Limit)
 		}
-		r.logger.Info("Rate limit hit (%d/%d), backing off for %v", info.Remaining, info.Limit, wait)
 
-	case info.Remaining <= 3:
-		wait = 5 * time.Second
+		// Time-based token refill: add tokens based on elapsed time since
+		// the last refill. This provides steady-state pacing when the API
+		// does not return rate limit headers. When headers ARE present,
+		// AfterResponse sets Remaining authoritatively, so the refill acts
+		// as a gentle supplement that gets corrected immediately.
+		if !r.lastRefill.IsZero() {
+			elapsed := now.Sub(r.lastRefill)
+			newTokens := int(elapsed / defaultRefillInterval)
+			if newTokens > 0 {
+				r.limit.Remaining += newTokens
+				if r.limit.Remaining > r.limit.Limit {
+					r.limit.Remaining = r.limit.Limit
+				}
+				// Advance by consumed intervals (not to now) to preserve
+				// fractional time for the next refill calculation.
+				r.lastRefill = r.lastRefill.Add(time.Duration(newTokens) * defaultRefillInterval)
+			}
+		} else {
+			r.lastRefill = now
+		}
 
-	case info.Remaining <= info.Limit/2:
-		wait = 2 * time.Second
+		if r.limit.Remaining > 0 {
+			break
+		}
 
-	default:
-		wait = 500 * time.Millisecond
-	}
-
-	if elapsed < wait {
-		sleepFor := wait - elapsed
-		r.lastRequest = now.Add(sleepFor)
+		// Budget exhausted. Wait for the next token to become available.
+		r.logger.Debug("Rate limit budget exhausted (0/%d), waiting %v for next token", r.limit.Limit, defaultRefillInterval)
 		r.mu.Unlock()
-		r.logger.Debug("Delaying %v due to rate pressure", sleepFor)
-		return r.sleep(sleepFor)
+		if err := r.sleep(defaultRefillInterval); err != nil {
+			return err
+		}
+		r.mu.Lock()
 	}
 
-	r.lastRequest = now
+	// Consume a token. This prevents concurrent goroutines from all seeing
+	// the same high Remaining value and flooding the API.
+	r.limit.Remaining--
 	r.mu.Unlock()
 	return nil
 }
 
 func (r *RateLimiter) AfterResponse(resp *http.Response) {
+	// Detect CloudFlare 429s: these arrive without Retry-After or rate limit
+	// headers. Enforce a hard 10s global backoff so every goroutine pauses,
+	// not just the one that received the 429.
+	if resp.StatusCode == http.StatusTooManyRequests &&
+		strings.Contains(strings.ToLower(resp.Header.Get("Server")), "cloudflare") {
+		r.mu.Lock()
+		backoff := 10 * time.Second
+		r.pauseUntil = time.Now().Add(backoff)
+		r.limit.Remaining = 0
+		r.logger.Info("CloudFlare 429 detected, global backoff for %v", backoff)
+		r.mu.Unlock()
+		return
+	}
+
 	remain, rrErr := strconv.Atoi(resp.Header.Get("X-Ratelimit-Remaining"))
 	limit, rlErr := strconv.Atoi(resp.Header.Get("X-Ratelimit-Limit"))
 	resetUnix, reErr := strconv.ParseInt(resp.Header.Get("X-Ratelimit-Reset"), 10, 64)
 	r.mu.Lock()
 	defer r.mu.Unlock()
 
-	reset := r.limit.Reset
-	if reErr == nil {
-		reset = time.Unix(resetUnix, 0)
-	}
-
 	if rrErr == nil && rlErr == nil {
+		// Authoritative update from server headers.
+		reset := r.limit.Reset
+		if reErr == nil {
+			reset = time.Unix(resetUnix, 0)
+		}
 		r.limit = RateLimitInfo{Remaining: remain, Limit: limit, Reset: reset}
+		// Reset the refill baseline so the time-based refill doesn't
+		// immediately add phantom tokens on top of the server's value.
+		r.lastRefill = time.Now()
+		r.logger.Debug("Rate limit updated from headers — remaining: %d, limit: %d, reset: %v", remain, limit, reset)
 	} else {
-		r.logger.Debug("Rate limit headers missing or invalid; keeping existing values")
+		// No rate limit headers returned. The time-based refill in
+		// BeforeRequest handles pacing; nothing to adjust here.
+		r.logger.Debug("Rate limit headers missing; current state — remaining: %d/%d", r.limit.Remaining, r.limit.Limit)
 	}
-
-	r.logger.Debug(fmt.Sprintf(
-		"Rate limit headers — remaining: %d, limit: %d, reset: %v",
-		remain, limit, reset,
-	))
 }
 
 func (r *RateLimiter) Context() context.Context {
