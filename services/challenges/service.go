@@ -287,19 +287,25 @@ func (h *Handle) Stop(ctx context.Context) (common.MessageResponse, error) {
 
 // Own submits a flag for the challenge to claim ownership.
 // This is used to submit the solution flag to complete the challenge.
+// The difficulty parameter is a user rating (1-100) of how difficult the challenge was.
+// If difficulty is 0 or negative, it defaults to 10.
 //
 // Example:
 //
-//	result, err := client.Challenges.Challenge(12345).Own(ctx, "HTB{example_flag_here}")
+//	result, err := client.Challenges.Challenge(12345).Own(ctx, "HTB{example_flag_here}", 10)
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("Flag submission: %s\n", result.Data.Message)
-func (h *Handle) Own(ctx context.Context, flag string) (common.MessageResponse, error) {
+func (h *Handle) Own(ctx context.Context, flag string, difficulty int) (common.MessageResponse, error) {
+	if difficulty <= 0 {
+		difficulty = 10
+	}
 	resp, err := h.client.V4().PostChallengeOwnWithFormdataBody(
 		h.client.Limiter().Wrap(ctx),
 		v4Client.ChallengeOwnRequest{
 			ChallengeId: h.id,
+			Difficulty:  difficulty,
 			Flag:        flag,
 		},
 	)
