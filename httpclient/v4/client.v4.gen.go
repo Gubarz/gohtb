@@ -2209,7 +2209,7 @@ type MachineProfileInfo struct {
 	IsGuidedEnabled            bool                `json:"isGuidedEnabled,omitempty"`
 	IsSingleFlag               bool                `json:"isSingleFlag,omitempty"`
 	IsTodo                     bool                `json:"isTodo,omitempty"`
-	MachinePwnedDate           time.Time           `json:"machinePwnedDate,omitempty"`
+	MachinePwnedDate           string              `json:"machinePwnedDate,omitempty"`
 	MachineMode                string              `json:"machine_mode"`
 
 	// Maker Schema definition for Maker
