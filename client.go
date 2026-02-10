@@ -15,6 +15,7 @@ import (
 	v5client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/logging"
 	"github.com/gubarz/gohtb/services/challenges"
+	"github.com/gubarz/gohtb/services/containers"
 	"github.com/gubarz/gohtb/services/fortresses"
 	"github.com/gubarz/gohtb/services/machines"
 	"github.com/gubarz/gohtb/services/prolabs"
@@ -47,6 +48,7 @@ type Client struct {
 	// Services
 
 	Challenges *challenges.Service
+	Containers *containers.Service
 	Fortresses *fortresses.Service
 	Machines   *machines.Service
 	Rankings   *rankings.Service
@@ -188,6 +190,7 @@ func (c *Client) addHeaders(ctx context.Context, req *http.Request) error {
 
 func wireServices(c *Client) {
 	c.Challenges = challenges.NewService(c.asServiceClient(), "challenge")
+	c.Containers = containers.NewService(c.asServiceClient())
 	c.Fortresses = fortresses.NewService(c.asServiceClient())
 	c.Machines = machines.NewService(c.asServiceClient(), "machine")
 	c.Rankings = rankings.NewService(c.asServiceClient())

@@ -1339,6 +1339,12 @@ type ConnectionsServersProlabResponse struct {
 	Status bool                         `json:"status,omitempty"`
 }
 
+// ContainerStartResponse Schema definition for Container Start Response
+type ContainerStartResponse struct {
+	Id      int    `json:"id,omitempty"`
+	Message string `json:"message,omitempty"`
+}
+
 // ContentStatsResponse Schema definition for Content Stats Response
 type ContentStatsResponse struct {
 	Challenges int `json:"challenges,omitempty"`
@@ -5449,6 +5455,9 @@ type ConnectionsServersResponse = ConnectionsServerResponse
 // ConnectionsServersSwitchVpnIdResponse Schema definition for Connection Server Switch Response
 type ConnectionsServersSwitchVpnIdResponse = ConnectionServerSwitchResponse
 
+// ContainerStopResponse Schema definition for Message
+type ContainerStopResponse = Messagesuccess
+
 // FortressFortressIdResponse Schema definition for Fortress Id Response
 type FortressFortressIdResponse = FortressIdResponse
 
@@ -5709,6 +5718,11 @@ type ArenaOwnRequest struct {
 	Id   int    `json:"id"`
 }
 
+// ContainerStartStopRequest defines model for ContainerStartStopRequest.
+type ContainerStartStopRequest struct {
+	ContainerableId int `json:"containerable_id"`
+}
+
 // MultiOwnRequest defines model for MultiOwnRequest.
 type MultiOwnRequest struct {
 	Flag string `json:"flag"`
@@ -5853,6 +5867,26 @@ type GetConnectionsServersParams struct {
 
 // GetConnectionsServersParamsProduct defines parameters for GetConnectionsServers.
 type GetConnectionsServersParamsProduct string
+
+// PostContainerStartJSONBody defines parameters for PostContainerStart.
+type PostContainerStartJSONBody struct {
+	ContainerableId int `json:"containerable_id"`
+}
+
+// PostContainerStartFormdataBody defines parameters for PostContainerStart.
+type PostContainerStartFormdataBody struct {
+	ContainerableId int `form:"containerable_id" json:"containerable_id"`
+}
+
+// PostContainerStopJSONBody defines parameters for PostContainerStop.
+type PostContainerStopJSONBody struct {
+	ContainerableId int `json:"containerable_id"`
+}
+
+// PostContainerStopFormdataBody defines parameters for PostContainerStop.
+type PostContainerStopFormdataBody struct {
+	ContainerableId int `form:"containerable_id" json:"containerable_id"`
+}
 
 // PostFortressFlagJSONBody defines parameters for PostFortressFlag.
 type PostFortressFlagJSONBody struct {
@@ -6266,6 +6300,18 @@ type PostChallengeStartFormdataRequestBody PostChallengeStartFormdataBody
 
 // PostChallengeStopFormdataRequestBody defines body for PostChallengeStop for application/x-www-form-urlencoded ContentType.
 type PostChallengeStopFormdataRequestBody PostChallengeStopFormdataBody
+
+// PostContainerStartJSONRequestBody defines body for PostContainerStart for application/json ContentType.
+type PostContainerStartJSONRequestBody PostContainerStartJSONBody
+
+// PostContainerStartFormdataRequestBody defines body for PostContainerStart for application/x-www-form-urlencoded ContentType.
+type PostContainerStartFormdataRequestBody PostContainerStartFormdataBody
+
+// PostContainerStopJSONRequestBody defines body for PostContainerStop for application/json ContentType.
+type PostContainerStopJSONRequestBody PostContainerStopJSONBody
+
+// PostContainerStopFormdataRequestBody defines body for PostContainerStop for application/x-www-form-urlencoded ContentType.
+type PostContainerStopFormdataRequestBody PostContainerStopFormdataBody
 
 // PostFortressFlagJSONRequestBody defines body for PostFortressFlag for application/json ContentType.
 type PostFortressFlagJSONRequestBody PostFortressFlagJSONBody
@@ -7271,6 +7317,20 @@ type ClientInterface interface {
 
 	// PostConnectionsServersSwitch request
 	PostConnectionsServersSwitch(ctx context.Context, vpnId VpnId, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PostContainerStartWithBody request with any body
+	PostContainerStartWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PostContainerStart(ctx context.Context, body PostContainerStartJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PostContainerStartWithFormdataBody(ctx context.Context, body PostContainerStartFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PostContainerStopWithBody request with any body
+	PostContainerStopWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PostContainerStop(ctx context.Context, body PostContainerStopJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PostContainerStopWithFormdataBody(ctx context.Context, body PostContainerStopFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetContentStats request
 	GetContentStats(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -8392,6 +8452,78 @@ func (c *Client) GetConnectionsServersProlab(ctx context.Context, prolabId Prola
 
 func (c *Client) PostConnectionsServersSwitch(ctx context.Context, vpnId VpnId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPostConnectionsServersSwitchRequest(c.Server, vpnId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PostContainerStartWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostContainerStartRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PostContainerStart(ctx context.Context, body PostContainerStartJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostContainerStartRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PostContainerStartWithFormdataBody(ctx context.Context, body PostContainerStartFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostContainerStartRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PostContainerStopWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostContainerStopRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PostContainerStop(ctx context.Context, body PostContainerStopJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostContainerStopRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PostContainerStopWithFormdataBody(ctx context.Context, body PostContainerStopFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostContainerStopRequestWithFormdataBody(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -12304,6 +12436,108 @@ func NewPostConnectionsServersSwitchRequest(server string, vpnId VpnId) (*http.R
 	if err != nil {
 		return nil, err
 	}
+
+	return req, nil
+}
+
+// NewPostContainerStartRequest calls the generic PostContainerStart builder with application/json body
+func NewPostContainerStartRequest(server string, body PostContainerStartJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPostContainerStartRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPostContainerStartRequestWithFormdataBody calls the generic PostContainerStart builder with application/x-www-form-urlencoded body
+func NewPostContainerStartRequestWithFormdataBody(server string, body PostContainerStartFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewPostContainerStartRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewPostContainerStartRequestWithBody generates requests for PostContainerStart with any type of body
+func NewPostContainerStartRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/container/start")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPostContainerStopRequest calls the generic PostContainerStop builder with application/json body
+func NewPostContainerStopRequest(server string, body PostContainerStopJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPostContainerStopRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPostContainerStopRequestWithFormdataBody calls the generic PostContainerStop builder with application/x-www-form-urlencoded body
+func NewPostContainerStopRequestWithFormdataBody(server string, body PostContainerStopFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewPostContainerStopRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewPostContainerStopRequestWithBody generates requests for PostContainerStop with any type of body
+func NewPostContainerStopRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/container/stop")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -18988,6 +19222,20 @@ type ClientWithResponsesInterface interface {
 	// PostConnectionsServersSwitchWithResponse request
 	PostConnectionsServersSwitchWithResponse(ctx context.Context, vpnId VpnId, reqEditors ...RequestEditorFn) (*PostConnectionsServersSwitchResponse, error)
 
+	// PostContainerStartWithBodyWithResponse request with any body
+	PostContainerStartWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostContainerStartResponse, error)
+
+	PostContainerStartWithResponse(ctx context.Context, body PostContainerStartJSONRequestBody, reqEditors ...RequestEditorFn) (*PostContainerStartResponse, error)
+
+	PostContainerStartWithFormdataBodyWithResponse(ctx context.Context, body PostContainerStartFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostContainerStartResponse, error)
+
+	// PostContainerStopWithBodyWithResponse request with any body
+	PostContainerStopWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostContainerStopResponse, error)
+
+	PostContainerStopWithResponse(ctx context.Context, body PostContainerStopJSONRequestBody, reqEditors ...RequestEditorFn) (*PostContainerStopResponse, error)
+
+	PostContainerStopWithFormdataBodyWithResponse(ctx context.Context, body PostContainerStopFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostContainerStopResponse, error)
+
 	// GetContentStatsWithResponse request
 	GetContentStatsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetContentStatsResponse, error)
 
@@ -20452,6 +20700,52 @@ func (r PostConnectionsServersSwitchResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r PostConnectionsServersSwitchResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PostContainerStartResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ContainerStartResponse
+	JSON400      *GenericError
+}
+
+// Status returns HTTPResponse.Status
+func (r PostContainerStartResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PostContainerStartResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PostContainerStopResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *ContainerStopResponse
+	JSON400      *GenericError
+}
+
+// Status returns HTTPResponse.Status
+func (r PostContainerStopResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PostContainerStopResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -24714,6 +25008,56 @@ func (c *ClientWithResponses) PostConnectionsServersSwitchWithResponse(ctx conte
 	return ParsePostConnectionsServersSwitchResponse(rsp)
 }
 
+// PostContainerStartWithBodyWithResponse request with arbitrary body returning *PostContainerStartResponse
+func (c *ClientWithResponses) PostContainerStartWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostContainerStartResponse, error) {
+	rsp, err := c.PostContainerStartWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostContainerStartResponse(rsp)
+}
+
+func (c *ClientWithResponses) PostContainerStartWithResponse(ctx context.Context, body PostContainerStartJSONRequestBody, reqEditors ...RequestEditorFn) (*PostContainerStartResponse, error) {
+	rsp, err := c.PostContainerStart(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostContainerStartResponse(rsp)
+}
+
+func (c *ClientWithResponses) PostContainerStartWithFormdataBodyWithResponse(ctx context.Context, body PostContainerStartFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostContainerStartResponse, error) {
+	rsp, err := c.PostContainerStartWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostContainerStartResponse(rsp)
+}
+
+// PostContainerStopWithBodyWithResponse request with arbitrary body returning *PostContainerStopResponse
+func (c *ClientWithResponses) PostContainerStopWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostContainerStopResponse, error) {
+	rsp, err := c.PostContainerStopWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostContainerStopResponse(rsp)
+}
+
+func (c *ClientWithResponses) PostContainerStopWithResponse(ctx context.Context, body PostContainerStopJSONRequestBody, reqEditors ...RequestEditorFn) (*PostContainerStopResponse, error) {
+	rsp, err := c.PostContainerStop(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostContainerStopResponse(rsp)
+}
+
+func (c *ClientWithResponses) PostContainerStopWithFormdataBodyWithResponse(ctx context.Context, body PostContainerStopFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostContainerStopResponse, error) {
+	rsp, err := c.PostContainerStopWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostContainerStopResponse(rsp)
+}
+
 // GetContentStatsWithResponse request returning *GetContentStatsResponse
 func (c *ClientWithResponses) GetContentStatsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetContentStatsResponse, error) {
 	rsp, err := c.GetContentStats(ctx, reqEditors...)
@@ -27700,6 +28044,72 @@ func ParsePostConnectionsServersSwitchResponse(rsp *http.Response) (*PostConnect
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ConnectionsServersSwitchVpnIdResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest GenericError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePostContainerStartResponse parses an HTTP response from a PostContainerStartWithResponse call
+func ParsePostContainerStartResponse(rsp *http.Response) (*PostContainerStartResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PostContainerStartResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ContainerStartResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest GenericError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePostContainerStopResponse parses an HTTP response from a PostContainerStopWithResponse call
+func ParsePostContainerStopResponse(rsp *http.Response) (*PostContainerStopResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PostContainerStopResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest ContainerStopResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}

@@ -437,30 +437,10 @@ func buildCatalog(cats []TagCategory) TagCatalog {
 	}
 }
 
-func isTodo(u v4Client.MachineData_IsTodo) bool {
-	n, err := u.AsMachineDataIsTodo1()
-	if err != nil {
-		return false
-	}
-	return n > 0
-}
-
 func feedbackForChart(u v4Client.DifficultyChart) DifficultyChart {
 	n, err := u.AsDifficultyChart1()
 	if err != nil {
 		return DifficultyChart{}
 	}
 	return n
-}
-
-func wrapMachineData(list []v4Client.MachineData) []MachineData {
-	out := make([]MachineData, len(list))
-	for i, m := range list {
-		out[i] = MachineData{
-			MachineData:      m,
-			IsTodo:           isTodo(m.IsTodo),
-			FeedbackForChart: feedbackForChart(m.FeedbackForChart),
-		}
-	}
-	return out
 }
