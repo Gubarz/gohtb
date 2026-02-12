@@ -3,6 +3,7 @@ package vpn
 import (
 	"context"
 	"sort"
+	"strconv"
 	"strings"
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
@@ -68,7 +69,8 @@ type Server struct {
 	Full           bool
 	Id             int
 	Location       string
-	Tier           string
+	VpnType        string
+	VpnNumber      int
 }
 
 type Service struct {
@@ -334,12 +336,12 @@ func flattenOptions(opts v4Client.Options, tier, location string) []Server {
 				loc := server.Location
 				name := server.FriendlyName
 
-				actualTier := extractTierFromFriendly(name)
+				vpnType, vpnNumber := extractTierFromFriendly(name)
 
 				if location != "" && !matchLocationField(loc, location) {
 					continue
 				}
-				if tier != "" && actualTier != tier {
+				if tier != "" && vpnType != tier {
 					continue
 				}
 
@@ -349,7 +351,8 @@ func flattenOptions(opts v4Client.Options, tier, location string) []Server {
 					Location:       loc,
 					CurrentClients: server.CurrentClients,
 					Full:           server.Full,
-					Tier:           actualTier,
+					VpnType:        vpnType,
+					VpnNumber:      vpnNumber,
 				})
 			}
 		}
@@ -362,20 +365,34 @@ func matchLocationField(locationField, filter string) bool {
 	return strings.EqualFold(strings.TrimSpace(locationField), strings.TrimSpace(filter))
 }
 
-func extractTierFromFriendly(name string) string {
+func extractTierFromFriendly(name string) (string, int) {
+	var vpnType string
+	var vpnNumber int
 	name = strings.ToLower(name)
 	switch {
-	case strings.Contains(" "+name+" ", " vip+ "):
-		return "vip+"
-	case strings.Contains(" "+name+" ", " vip "):
-		return "vip"
-	case strings.Contains(" "+name+" ", " free "):
-		return "free"
-	case strings.Contains(" "+name+" ", " mini pro lab "):
-		return "subscription"
+	case strings.Contains(name, "vip+"):
+		vpnType = "dedivip"
+	case strings.Contains(name, "release arena"):
+		vpnType = "release"
+	case strings.Contains(name, "fortress"):
+		vpnType = "fort"
+	case strings.Contains(name, "startingpoint"):
+		vpnType = "starting-point"
+	case strings.Contains(name, "mini pro lab free"):
+		vpnType = "mini-prolab-free"
 	default:
-		return "unknown"
+		// Servers without specific markers are free tier
+		vpnType = "free"
 	}
+	// Attempt to extract last part which is the number
+	parts := strings.Split(name, " ")
+	lastPart := parts[len(parts)-1]
+	vpnNumber, err := strconv.Atoi(lastPart)
+	if err != nil {
+		vpnNumber = 0
+	}
+
+	return vpnType, vpnNumber
 }
 
 // Switch changes the VPN connection to the server specified by this handle's ID.
@@ -423,18 +440,18 @@ func (o OptionsServers) ByLocation(location string) OptionsServers {
 	return d
 }
 
-// ByTier filters servers by tier using case-insensitive matching.
-// Valid tiers include "free", "vip", "vip+", and "unknown".
-// Returns a new OptionsServers slice containing only servers of the specified tier.
+// ByType filters servers by VPN type using case-insensitive matching.
+// Valid types include "free", "starting-point", "fort", "dedivip", and "release".
+// Returns a new OptionsServers slice containing only servers of the specified type.
 //
 // Example:
 //
-//	freeServers := response.Data.Options.ByTier("free")
-//	vipServers := response.Data.Options.ByTier("vip")
-func (o OptionsServers) ByTier(tier string) OptionsServers {
+//	freeServers := response.Data.Options.ByType("free")
+//	vipServers := response.Data.Options.ByType("vip")
+func (o OptionsServers) ByType(vpnType string) OptionsServers {
 	var d OptionsServers
 	for _, v := range o {
-		if strings.EqualFold(v.Tier, tier) {
+		if strings.EqualFold(v.VpnType, vpnType) {
 			d = append(d, v)
 		}
 	}

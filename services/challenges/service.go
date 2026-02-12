@@ -9,6 +9,7 @@ import (
 	"github.com/gubarz/gohtb/internal/errutil"
 	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/service"
+	"github.com/gubarz/gohtb/services/containers"
 )
 
 type ChallengeQuery struct {
@@ -227,27 +228,7 @@ func (h *Handle) ToDo(ctx context.Context) (common.TodoUpdateResponse, error) {
 //	}
 //	fmt.Printf("Challenge started: %s\n", result.Data.Message)
 func (h *Handle) Start(ctx context.Context) (common.MessageResponse, error) {
-	resp, err := h.client.V4().PostChallengeStartWithFormdataBody(
-		h.client.Limiter().Wrap(ctx),
-		v4Client.PostChallengeStartFormdataRequestBody{
-			ChallengeId: h.id,
-		},
-	)
-	if err != nil {
-		return common.MessageResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParsePostChallengeStartResponse)
-	if err != nil {
-		return common.MessageResponse{ResponseMeta: meta}, err
-	}
-
-	return common.MessageResponse{
-		Data: common.Message{
-			Message: parsed.JSON200.Message,
-		},
-		ResponseMeta: meta,
-	}, nil
+	return containers.NewService(h.client).Container(h.id).Start(ctx)
 }
 
 // Stop terminates the running challenge instance.
@@ -261,45 +242,30 @@ func (h *Handle) Start(ctx context.Context) (common.MessageResponse, error) {
 //	}
 //	fmt.Printf("Challenge stopped: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
 func (h *Handle) Stop(ctx context.Context) (common.MessageResponse, error) {
-	resp, err := h.client.V4().PostChallengeStopWithFormdataBody(
-		h.client.Limiter().Wrap(ctx),
-		v4Client.PostChallengeStopFormdataRequestBody{
-			ChallengeId: h.id,
-		},
-	)
-	if err != nil {
-		return common.MessageResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParsePostChallengeStopResponse)
-	if err != nil {
-		return common.MessageResponse{ResponseMeta: meta}, err
-	}
-
-	return common.MessageResponse{
-		Data: common.Message{
-			Message: parsed.JSON200.Message,
-			Success: parsed.JSON200.Success,
-		},
-		ResponseMeta: meta,
-	}, nil
+	return containers.NewService(h.client).Container(h.id).Stop(ctx)
 }
 
 // Own submits a flag for the challenge to claim ownership.
 // This is used to submit the solution flag to complete the challenge.
+// The difficulty parameter is a user rating (1-100) of how difficult the challenge was.
+// If difficulty is 0 or negative, it defaults to 10.
 //
 // Example:
 //
-//	result, err := client.Challenges.Challenge(12345).Own(ctx, "HTB{example_flag_here}")
+//	result, err := client.Challenges.Challenge(12345).Own(ctx, "HTB{example_flag_here}", 10)
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("Flag submission: %s\n", result.Data.Message)
-func (h *Handle) Own(ctx context.Context, flag string) (common.MessageResponse, error) {
+func (h *Handle) Own(ctx context.Context, flag string, difficulty int) (common.MessageResponse, error) {
+	if difficulty <= 0 {
+		difficulty = 10
+	}
 	resp, err := h.client.V4().PostChallengeOwnWithFormdataBody(
 		h.client.Limiter().Wrap(ctx),
 		v4Client.ChallengeOwnRequest{
 			ChallengeId: h.id,
+			Difficulty:  difficulty,
 			Flag:        flag,
 		},
 	)

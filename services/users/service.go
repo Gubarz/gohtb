@@ -156,6 +156,6 @@ func (h *Handle) ProfileActivity() *UserProfileActivityQuery {
 		client:  h.client,
 		id:      h.id,
 		page:    1,
-		perPage: 20,
+		perPage: 100,
 	}
 }

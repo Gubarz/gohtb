@@ -22,6 +22,8 @@ tags:
     name: Challenges
   - description: Endpoints related to VPN connections
     name: Connection
+  - description: Containers
+    name: Containers
   - description: Endpoints related to Fortresses
     name: Fortresses
   - description: Endpoints related to the Home page banner
@@ -126,6 +128,7 @@ paths:
   /career/companies:
     get:
       description: Get /career/companies
+      deprecated: true
       operationId: getCareerCompanies
       responses:
         '200':
@@ -138,6 +141,7 @@ paths:
   /career/company/{companyId}:
     get:
       description: Get company detail
+      deprecated: true
       operationId: getCareerCompany
       parameters:
         - $ref: '#/components/parameters/Page'
@@ -153,6 +157,7 @@ paths:
   /career/featured:
     get:
       description: Returns a list of featured jobs
+      deprecated: true
       operationId: getCareerFeatured
       responses:
         '200':
@@ -165,6 +170,7 @@ paths:
   /career/history:
     get:
       description: Returns a list of all jobs that the user has applied for
+      deprecated: true
       operationId: getCareerHistory
       responses:
         '200':
@@ -177,6 +183,7 @@ paths:
   /career/info/{jobId}:
     get:
       description: Get career info
+      deprecated: true
       operationId: getCareerInfo
       parameters:
         - $ref: '#/components/parameters/JobId'
@@ -191,6 +198,7 @@ paths:
   /career/profile:
     get:
       description: Returns a list of profile information related to the user's career settings
+      deprecated: true
       operationId: getCareerProfile
       responses:
         '200':
@@ -203,6 +211,7 @@ paths:
   /career/requests:
     get:
       description: Get /career/requests
+      deprecated: true
       operationId: getCareerRequests
       parameters:
         - $ref: '#/components/parameters/Page'
@@ -217,6 +226,7 @@ paths:
   /career/search:
     get:
       description: Returns a list of all jobs that match the search query
+      deprecated: true
       operationId: getCareerSearch
       parameters:
         - $ref: '#/components/parameters/SearchQuery'
@@ -234,6 +244,7 @@ paths:
   /career/stats:
     get:
       description: Returns a number of new jobs posted today and the total number of jobs posted on the platform
+      deprecated: true
       operationId: getCareerStats
       responses:
         '200':
@@ -246,6 +257,7 @@ paths:
   /career/temporary/contact/optin:
     post:
       description: This is the toggle in the career page to allow companies to reach out to you
+      deprecated: true
       operationId: postCareerTemporaryContactOptin
       requestBody:
         content:
@@ -419,6 +431,7 @@ paths:
   /challenge/start:
     post:
       description: Starts a challenge container with challenge_id
+      deprecated: true
       operationId: postChallengeStart
       requestBody:
         $ref: '#/components/requestBodies/ChallengeStartStopRequest'
@@ -427,12 +440,13 @@ paths:
           $ref: '#/components/responses/ChallengeStartResponse'
         '400':
           $ref: '#/components/responses/GenericError'
-      summary: Starts a challenge
+      summary: Starts a challenge - Use Container Start
       tags:
         - Challenges
   /challenge/stop:
     post:
       description: Stops a challenge container with challenge_id
+      deprecated: true
       operationId: postChallengeStop
       requestBody:
         $ref: '#/components/requestBodies/ChallengeStartStopRequest'
@@ -441,7 +455,7 @@ paths:
           $ref: '#/components/responses/ChallengeStopResponse'
         '400':
           $ref: '#/components/responses/GenericError'
-      summary: Stops a challenge
+      summary: Stops a challenge - Use Container Stop
       tags:
         - Challenges
   /challenge/suggested:
@@ -613,6 +627,34 @@ paths:
       summary: Swtich VPN server
       tags:
         - Connection
+  /container/start:
+    post:
+      description: Starts a container with container_id
+      operationId: postContainerStart
+      requestBody:
+        $ref: '#/components/requestBodies/ContainerStartStopRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ContainerStartResponse'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      summary: Starts a Container
+      tags:
+        - Containers
+  /container/stop:
+    post:
+      description: Stops a container with container_id
+      operationId: postContainerStop
+      requestBody:
+        $ref: '#/components/requestBodies/ContainerStartStopRequest'
+      responses:
+        '200':
+          $ref: '#/components/responses/ContainerStopResponse'
+        '400':
+          $ref: '#/components/responses/GenericError'
+      summary: Stops a Container
+      tags:
+        - Containers
   /content/stats:
     get:
       description: Retrieves information related to /content/stats
@@ -743,19 +785,6 @@ paths:
       summary: Home User ToDo
       tags:
         - Home
-  /lab/list:
-    get:
-      deprecated: true
-      description: Retrieves information related to /lab/list
-      operationId: getLabList
-      responses:
-        '200':
-          $ref: '#/components/responses/LabListResponse'
-        '400':
-          $ref: '#/components/responses/GenericError'
-      summary: 'Dashboard: list HTB servers (Connection Points)'
-      tags:
-        - Platform
   /machine/active:
     get:
       description: Retrieves information related to /machine/active
@@ -2590,18 +2619,6 @@ paths:
       summary: User App Tokens List
       tags:
         - User
-  /user/banned:
-    get:
-      description: Retrieves if user is banned
-      operationId: getUserBanned
-      responses:
-        '200':
-          $ref: '#/components/responses/UserBannedResponse'
-        '400':
-          $ref: '#/components/responses/GenericError'
-      summary: 'Bearer: Is Banned'
-      tags:
-        - User
   /user/connection/status:
     get:
       description: Retrieves information related to /user/connection/status
@@ -2765,6 +2782,7 @@ paths:
   /user/profile/content/{userId}:
     get:
       description: Retrieves information related to /user/profile/content/{user id}
+      deprecated: true
       operationId: getUserProfileContent
       parameters:
         - $ref: '#/components/parameters/UserId'
@@ -2773,7 +2791,7 @@ paths:
           $ref: '#/components/responses/ProfileContentUserIdResponse'
         '400':
           $ref: '#/components/responses/GenericError'
-      summary: 'User profile: Submitted Content'
+      summary: 'User profile: Submitted Content - See v5'
       tags:
         - User
   /user/profile/graph/{period}/{userId}:
@@ -2817,20 +2835,6 @@ paths:
         '400':
           $ref: '#/components/responses/GenericError'
       summary: 'User Progress: fortress'
-      tags:
-        - User
-  /user/profile/progress/machines/os/{userId}:
-    get:
-      description: Get user os profile
-      operationId: getUserProfileProgressMachinesOs
-      parameters:
-        - $ref: '#/components/parameters/UserId'
-      responses:
-        '200':
-          $ref: '#/components/responses/UserProfileProgressMachinesOsResponse'
-        '400':
-          $ref: '#/components/responses/GenericError'
-      summary: Get a user os profile
       tags:
         - User
   /user/profile/progress/prolab/{userId}:
@@ -4230,6 +4234,8 @@ components:
           type: boolean
         user_submitted_difficulty:
           type: integer
+        avatar_url:
+          type: string
       title: Challenge
       type: object
     ChallengeResponse:
@@ -4315,6 +4321,8 @@ components:
           type: string
         url_name:
           example: prometheon
+          type: string
+        avatar_url:
           type: string
       title: Recommended Card
       type: object
@@ -4408,6 +4416,8 @@ components:
         name:
           type: string
         url_name:
+          type: string
+        avatar_url:
           type: string
       type: object
     ChallengeSuggestedResponse:
@@ -4949,6 +4959,17 @@ components:
           type: boolean
       title: Connection Server Switch Resposne
       type: object
+    ContainerStartResponse:
+      description: Schema definition for Container Start Response
+      properties:
+        id:
+          example: 1214160
+          type: integer
+        message:
+          example: Instance Created!
+          type: string
+      title: Container Start Response
+      type: object
     ContentStatsResponse:
       description: Schema definition for Content Stats Response
       properties:
@@ -5173,6 +5194,20 @@ components:
           type: string
         urlName:
           type: string
+        rating:
+          type: number
+        ratingCount:
+          type: integer
+        progress:
+          type: number
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        categoryName:
+          type: string
+        avatarUrl:
+          type: string
       type: object
     HomeRecommendedChallengeCard:
       description: Schema definition for Home Challenge Card
@@ -5200,6 +5235,28 @@ components:
           type: string
         url:
           type: string
+        tasksCompleted:
+          type: number
+        guided:
+          type: boolean
+        root_flag:
+          type: boolean
+        rating:
+          type: integer
+        status:
+          type: string
+          nullable: true
+        user_flag:
+          type: boolean
+        ratingCount:
+          type: integer
+        tasksTotal:
+          type: integer
+        avatarUrl:
+          type: string
+        progress:
+          type: number
+          nullable: true
       type: object
     HomeRecommendedMachineCard:
       description: Schema definition for Home Machine Card
@@ -5227,6 +5284,21 @@ components:
           type: string
         url:
           type: string
+        categoryName:
+          type: string
+        ratingCount:
+          type: integer
+        progress:
+          type: number
+          nullable: true
+        tasksCompleted:
+          type: integer
+        rating:
+          type: number
+        tasksTotal:
+          type: integer
+        avatarUrl:
+          type: string
       type: object
     HomeRecommendedProlabCard:
       description: Schema definition for Home Prolab Card
@@ -5253,6 +5325,24 @@ components:
           type: string
         urlName:
           type: string
+        categoryName:
+          type: string
+        rating:
+          type: number
+        progress:
+          type: number
+          nullable: true
+        ratingCount:
+          type: integer
+        status:
+          type: string
+          nullable: true
+        avatarUrl:
+          type: string
+        tasksCompleted:
+          type: integer
+        tasksTotal:
+          type: integer
       type: object
     HomeRecommendedSherlocksCard:
       description: Schema definition for Home Tracks Card
@@ -5327,6 +5417,40 @@ components:
           $ref: '#/components/schemas/HomeRecommendedData'
       title: Home Recommended Repsonse
       type: object
+    HomeProgressChallengeCardItem:
+      properties:
+        difficulty:
+          type: string
+        url:
+          type: string
+        avatar:
+          type: string
+        urlName:
+          type: string
+        points:
+          nullable: true
+          type: number
+        categoryID:
+          type: string
+        avatarUrl:
+          type: string
+        rating:
+          type: number
+        ratingCount:
+          type: integer
+        progress:
+          type: number
+          nullable: true
+        status:
+          type: string
+          nullable: true
+        id:
+          type: integer
+        name:
+          type: string
+        type:
+          type: string
+      type: object
     HomeUserProgressFortressItem:
       properties:
         avatar:
@@ -5373,6 +5497,26 @@ components:
         url:
           type: string
         user_flag:
+          type: integer
+        avatarUrl:
+          type: string
+        status:
+          type: string
+          nullable: true
+        type:
+          type: string
+        rating:
+          type: number
+        tasksTotal:
+          type: integer
+        progress:
+          type: number
+          nullable: true
+        guided:
+          type: boolean
+        tasksCompleted:
+          type: integer
+        ratingCount:
           type: integer
       type: object
     HomeProgressMachineCard:
@@ -5436,6 +5580,8 @@ components:
       type: object
     HomeUserProgressData:
       properties:
+        challenges:
+          $ref: '#/components/schemas/HomeProgressChallengeCardItem'
         fortresses:
           $ref: '#/components/schemas/HomeUserProgressFortressesCard'
         machines:
@@ -5556,62 +5702,6 @@ components:
         data:
           $ref: '#/components/schemas/HomeUserTodoData'
       title: Home User Todo Repsonse
-      type: object
-    LabCategory:
-      description: Schema definition for Lab Category
-      properties:
-        code:
-          example: aufree
-          type: string
-        location:
-          example: AU
-          type: string
-        name:
-          example: AU - Free Lab
-          type: string
-      title: Lab Category
-      type: object
-    LabListCategoriesItems:
-      items:
-        $ref: '#/components/schemas/LabCategory'
-      type: array
-    LabServer:
-      description: Schema definition for Lab Server
-      properties:
-        current_clients:
-          example: 85
-          type: integer
-        friendly_name:
-          example: US VIP+ 1
-          type: string
-        id:
-          example: 289
-          type: integer
-      title: Lab Server
-      type: object
-    LabListServersItems:
-      items:
-        $ref: '#/components/schemas/LabServer'
-      type: array
-    LabListResponse:
-      description: Schema definition for Lab List Response
-      properties:
-        disabled:
-          example: false
-          type: boolean
-        lab_categories:
-          $ref: '#/components/schemas/LabListCategoriesItems'
-        lab_category_code:
-          example: usdedivip
-          type: string
-        release_arena_labs:
-          $ref: '#/components/schemas/LabListCategoriesItems'
-        server_id:
-          example: 289
-          type: integer
-        servers:
-          $ref: '#/components/schemas/LabListServersItems'
-      title: Lab List Response
       type: object
     ActiveMachineInfo:
       properties:
@@ -6103,6 +6193,9 @@ components:
         isSpawning:
           nullable: true
           type: boolean
+        life_remaining:
+          type: integer
+          nullable: true
       title: Play Info
       type: object
     UserBasicInfo:
@@ -6181,6 +6274,9 @@ components:
           example: null
           nullable: true
           type: string
+        machinePwnedDate:
+          type: string
+          format: string
         ip:
           example: 10.10.10.10
           format: ipv4
@@ -8195,8 +8291,7 @@ components:
         category_name:
           type: string
           example: Pwn
-        description:
-          example: Our agents got caught during a mission...
+        avatar_url:
           type: string
         id:
           example: 217
@@ -9375,6 +9470,8 @@ components:
           type: string
         user:
           $ref: '#/components/schemas/TeamActivityUser'
+        avatar_url:
+          type: string
       type: object
       required:
         - date
@@ -10010,13 +10107,13 @@ components:
           type: string
     UniversityChartChallengeCategoriesItem:
       properties:
-        all_teams_avg_percentage:
+        all_universitys_avg_percentage:
           type: number
         id:
           type: integer
         name:
           type: string
-        team_percentage:
+        university_percentage:
           type: number
       type: object
     UniversityChartChallengeCategoriesItems:
@@ -10323,13 +10420,6 @@ components:
         tokens:
           $ref: '#/components/schemas/UserApptokenListItems'
       type: object
-    UserBannedResponse:
-      description: Schema definition for User Banned Response
-      properties:
-        banned:
-          type: boolean
-      title: User Banned Response
-      type: object
     UserConnectionStatusResponse:
       description: Schema definition for User Connection Status Response
       properties:
@@ -10579,6 +10669,8 @@ components:
           example: true
           type: boolean
         subscriptionType:
+          type: string
+        account_id:
           type: string
       title: User Info
       type: object
@@ -11044,6 +11136,8 @@ components:
       type: object
     ProfileProgressFortressProfileItem:
       properties:
+        id:
+          type: integer
         avatar:
           type: string
         completion_percentage:
@@ -11070,31 +11164,6 @@ components:
         profile:
           $ref: '#/components/schemas/ProfileProgressFortressProfile'
       title: Profile Progress Fortress Id Repsonse
-      type: object
-    OperatingSystems:
-      properties:
-        completion_percentage:
-          type: number
-        name:
-          type: string
-        owned_machines:
-          type: number
-        total_machines:
-          type: number
-      type: object
-    OperatyingSystemsItems:
-      items:
-        $ref: '#/components/schemas/OperatingSystems'
-      type: array
-    UserProfileProgressMChinesOsProfile:
-      properties:
-        operating_systems:
-          $ref: '#/components/schemas/OperatyingSystemsItems'
-      type: object
-    UserProfileProgressMachinesOsResponse:
-      properties:
-        profile:
-          $ref: '#/components/schemas/UserProfileProgressMChinesOsProfile'
       type: object
     ProfileProgressProlabItem:
       properties:
@@ -11772,6 +11841,30 @@ components:
           $ref: '#/components/headers/XRateLimitHeader'
         x-ratelimit-remaining:
           $ref: '#/components/headers/XRateLimitRemainingHeader'
+    ContainerStartResponse:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ContainerStartResponse'
+      description: Container Start Response
+      headers:
+        x-ratelimit-limit:
+          $ref: '#/components/headers/XRateLimitHeader'
+        x-ratelimit-remaining:
+          $ref: '#/components/headers/XRateLimitRemainingHeader'
+    ContainerStopResponse:
+      content:
+        application/json:
+          example:
+            message: Container Stopped
+          schema:
+            $ref: '#/components/schemas/Messagesuccess'
+      description: Container Stop Response
+      headers:
+        x-ratelimit-limit:
+          $ref: '#/components/headers/XRateLimitHeader'
+        x-ratelimit-remaining:
+          $ref: '#/components/headers/XRateLimitRemainingHeader'
     ContentStatsResponse:
       content:
         application/json:
@@ -11888,12 +11981,6 @@ components:
           $ref: '#/components/headers/XRateLimitHeader'
         x-ratelimit-remaining:
           $ref: '#/components/headers/XRateLimitRemainingHeader'
-    LabListResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/LabListResponse'
-      description: Lab List Response
     MachineActiveResponse:
       content:
         application/json:
@@ -13112,12 +13199,6 @@ components:
           $ref: '#/components/headers/XRateLimitHeader'
         x-ratelimit-remaining:
           $ref: '#/components/headers/XRateLimitRemainingHeader'
-    UserBannedResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UserBannedResponse'
-      description: User Submissions Challenges Response
     UserConnectionStatusResponse:
       content:
         application/json:
@@ -13262,17 +13343,6 @@ components:
           schema:
             $ref: '#/components/schemas/ProfileProgressFortressIdRepsonse'
       description: Profile Progress Fortress Response
-      headers:
-        x-ratelimit-limit:
-          $ref: '#/components/headers/XRateLimitHeader'
-        x-ratelimit-remaining:
-          $ref: '#/components/headers/XRateLimitRemainingHeader'
-    UserProfileProgressMachinesOsResponse:
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/UserProfileProgressMachinesOsResponse'
-      description: OK
       headers:
         x-ratelimit-limit:
           $ref: '#/components/headers/XRateLimitHeader'
@@ -13463,6 +13533,26 @@ components:
               - challenge_id
             type: object
       description: use challenge_id
+      required: true
+    ContainerStartStopRequest:
+      content:
+        application/x-www-form-urlencoded:
+          schema:
+            properties:
+              containerable_id:
+                type: integer
+            required:
+              - containerable_id
+            type: object
+        application/json:
+          schema:
+            properties:
+              containerable_id:
+                type: integer
+            required:
+              - containerable_id
+            type: object
+      description: use containerable_id
       required: true
     MultiOwnRequest:
       content:
