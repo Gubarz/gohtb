@@ -74,12 +74,12 @@ func (h *Handle) ProfileBasic(ctx context.Context) (ProfileBasicResponse, error)
 
 type UserActivityItem = v4Client.UserActivityItem
 
-type ProfileActivityResposnse struct {
+type ProfileActivityResponse struct {
 	Data         []UserActivityItem
 	ResponseMeta common.ResponseMeta
 }
 
-// ProfileActivityDepreciated retrieves the activity history for the user.
+// ProfileActivityDeprecated retrieves the activity history for the user.
 // This includes recent actions, submissions, and other user activities
 // on the HackTheBox platform.
 //
@@ -88,28 +88,28 @@ type ProfileActivityResposnse struct {
 //
 // Example:
 //
-//	activity, err := client.Users.User(12345).ProfileActivityDepreciated(ctx)
+//	activity, err := client.Users.User(12345).ProfileActivityDeprecated(ctx)
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	for _, act := range activity.Data {
 //		fmt.Printf("Activity: %s at %s\n", act.Type, act.Date)
 //	}
-func (h *Handle) ProfileActivityDepreciated(ctx context.Context) (ProfileActivityResposnse, error) {
+func (h *Handle) ProfileActivityDeprecated(ctx context.Context) (ProfileActivityResponse, error) {
 	resp, err := h.client.V4().GetUserProfileActivity(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
 	if err != nil {
-		return ProfileActivityResposnse{ResponseMeta: common.ResponseMeta{}}, err
+		return ProfileActivityResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
 	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserProfileActivityResponse)
 	if err != nil {
-		return ProfileActivityResposnse{ResponseMeta: meta}, err
+		return ProfileActivityResponse{ResponseMeta: meta}, err
 	}
 
-	return ProfileActivityResposnse{
+	return ProfileActivityResponse{
 		Data:         parsed.JSON200.Profile.Activity,
 		ResponseMeta: meta,
 	}, nil

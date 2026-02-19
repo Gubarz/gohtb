@@ -32,15 +32,11 @@ type ListResponse struct {
 //
 // Example:
 //
-//	list, err := htb.Fortresses.List(ctx)
+//	fortresses, err := client.Fortresses.List(ctx)
 //	if err != nil {
-//		if apiErr, ok := gohtb.AsAPIError(err); ok {
-//		fmt.Println("API error:", apiErr.StatusCode, apiErr.Message)
-//		} else {
-//			fmt.Println("Unexpected error:", err)
-//		}
-//		return
+//		log.Fatal(err)
 //	}
+//	fmt.Printf("Fortresses found: %d\n", len(fortresses.Data))
 func (s *Service) List(ctx context.Context) (ListResponse, error) {
 	resp, err := s.base.Client.V4().GetFortresses(
 		s.base.Client.Limiter().Wrap(ctx))
@@ -93,15 +89,11 @@ type Info struct {
 //
 // Example:
 //
-//	info, err := htb.Fortresses.Fortress(1).Info(ctx)
+//	info, err := client.Fortresses.Fortress(1).Info(ctx)
 //	if err != nil {
-//		if apiErr, ok := gohtb.AsAPIError(err); ok {
-//		fmt.Println("API error:", apiErr.StatusCode, apiErr.Message)
-//		} else {
-//			fmt.Println("Unexpected error:", err)
-//		}
-//		return
+//		log.Fatal(err)
 //	}
+//	fmt.Printf("Fortress: %s (ID: %d)\n", info.Data.Name, info.Data.Id)
 func (h *Handle) Info(ctx context.Context) (Info, error) {
 	resp, err := h.client.V4().GetFortress(
 		h.client.Limiter().Wrap(ctx),
@@ -136,15 +128,11 @@ type SubmitFlagResponse struct {
 //
 // Example:
 //
-//	msg, err := htb.Fortresses.Fortress(1).SubmitFlag(ctx, "HTB{3x4mp13_f14g}")
+//	result, err := client.Fortresses.Fortress(1).SubmitFlag(ctx, "HTB{3x4mp13_f14g}")
 //	if err != nil {
-//		if apiErr, ok := gohtb.AsAPIError(err); ok {
-//		fmt.Println("API error:", apiErr.StatusCode, apiErr.Message)
-//		} else {
-//			fmt.Println("Unexpected error:", err)
-//		}
-//		return
+//		log.Fatal(err)
 //	}
+//	fmt.Printf("Flag submission: %s (Status: %d)\n", result.Data.Message, result.Data.Status)
 func (h *Handle) SubmitFlag(ctx context.Context, flag string) (SubmitFlagResponse, error) {
 	resp, err := h.client.V4().PostFortressFlag(
 		h.client.Limiter().Wrap(ctx),
@@ -177,18 +165,11 @@ type FlagData = common.FlagData
 //
 // Example:
 //
-//	flags, err := htb.Fortresses.Fortress(1).Flags(ctx)
+//	flags, err := client.Fortresses.Fortress(1).Flags(ctx)
 //	if err != nil {
-//		if apiErr, ok := gohtb.AsAPIError(err); ok {
-//		fmt.Println("API error:", apiErr.StatusCode, apiErr.Message)
-//		} else {
-//			fmt.Println("Unexpected error:", err)
-//		}
-//		return
+//		log.Fatal(err)
 //	}
-//	for _, flag := range flags {
-//		fmt.Println(flag.Title)
-//	}
+//	fmt.Printf("Flags available: %d\n", len(flags.Flags))
 func (h *Handle) Flags(ctx context.Context) (FlagData, error) {
 	resp, err := h.client.V4().GetFortressFlags(
 		h.client.Limiter().Wrap(ctx),
@@ -224,15 +205,11 @@ type ResetResponse struct {
 //
 // Example:
 //
-//	msg, err := htb.Fortresses.Fortress(1).Reset(ctx)
+//	result, err := client.Fortresses.Fortress(1).Reset(ctx)
 //	if err != nil {
-//		if apiErr, ok := gohtb.AsAPIError(err); ok {
-//		fmt.Println("API error:", apiErr.StatusCode, apiErr.Message)
-//		} else {
-//			fmt.Println("Unexpected error:", err)
-//		}
-//		return
+//		log.Fatal(err)
 //	}
+//	fmt.Printf("Reset result: %s (Status: %t)\n", result.Data.Message, result.Data.Status)
 func (h *Handle) Reset(ctx context.Context) (ResetResponse, error) {
 	resp, err := h.client.V4().PostFortressReset(
 		h.client.Limiter().Wrap(ctx),

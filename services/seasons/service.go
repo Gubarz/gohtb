@@ -51,7 +51,7 @@ type RewardsResponse struct {
 //		log.Fatal(err)
 //	}
 //	for _, reward := range rewards.Data {
-//		fmt.Printf("Reward: %s (Points: %d)\n", reward.Name, reward.Points)
+//		fmt.Printf("Reward: %s\n", reward.RewardTypes.Name)
 //	}
 func (h *Handle) Rewards(ctx context.Context) (RewardsResponse, error) {
 	resp, err := h.client.V4().GetSeasonRewards(h.client.Limiter().Wrap(ctx), h.id)
@@ -86,7 +86,7 @@ type UserRankResponse struct {
 //	if err != nil {
 //		log.Fatal(err)
 //	}
-//	fmt.Printf("Current rank: %d (Points: %d)\n", rank.Data.Position, rank.Data.Points)
+//	fmt.Printf("Current rank: %d (Points: %d)\n", rank.Data.Rank, rank.Data.TotalSeasonPoints)
 func (h *Handle) UserRank(ctx context.Context) (UserRankResponse, error) {
 	resp, err := h.client.V4().GetSeasonUserRank(h.client.Limiter().Wrap(ctx), h.id)
 	if err != nil {
@@ -120,7 +120,7 @@ type UserFollowersResponse struct {
 //	if err != nil {
 //		log.Fatal(err)
 //	}
-//	fmt.Printf("Followers: %d\n", len(followers.Data.Followers))
+//	fmt.Printf("Top ranked followers: %d\n", len(followers.Data.TopRankedFollowers))
 func (h *Handle) UserFollowers(ctx context.Context) (UserFollowersResponse, error) {
 	resp, err := h.client.V4().GetSeasonUserFollowers(h.client.Limiter().Wrap(ctx), h.id)
 	if err != nil {
@@ -192,7 +192,7 @@ type MachinesResponse struct {
 //		log.Fatal(err)
 //	}
 //	for _, machine := range machines.Data {
-//		fmt.Printf("Machine: %s (Difficulty: %s)\n", machine.Name, machine.Difficulty)
+//		fmt.Printf("Machine: %s (Difficulty: %s)\n", machine.Name, machine.DifficultyText)
 //	}
 func (s *Service) Machines(ctx context.Context) (MachinesResponse, error) {
 	resp, err := s.base.Client.V4().GetSeasonMachines(s.base.Client.Limiter().Wrap(ctx))

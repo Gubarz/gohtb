@@ -12,7 +12,7 @@ import (
 
 const (
 	SortBySherlock    = v4Client.GetSherlocksParamsSortBy("Sherlock")
-	SortByCatagory    = v4Client.GetSherlocksParamsSortBy("Catagory")
+	SortByCategory    = v4Client.GetSherlocksParamsSortBy("Catagory")
 	SortByRating      = v4Client.GetSherlocksParamsSortBy("Rating")
 	SortByUsersSolves = v4Client.GetSherlocksParamsSortBy("Solves")
 	SortByReleaseDate = v4Client.GetSherlocksParamsSortBy("ReleaseDate")
@@ -37,8 +37,11 @@ type SherlockListResponse struct {
 //
 // Example:
 //
-//	activeSherlocks := query.ByState("active").Results(ctx)
-//	retiredSherlocks := query.ByState("retired").Results(ctx)
+//	sherlocks, err := query.ByState("active").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Active sherlocks: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) ByState(val string) *SherlockQuery {
 	return q.ByStateList(val)
 }
@@ -49,7 +52,11 @@ func (q *SherlockQuery) ByState(val string) *SherlockQuery {
 //
 // Example:
 //
-//	Sherlocks := query.ByStateList("active", "retired").Results(ctx)
+//	sherlocks, err := query.ByStateList("active", "retired").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Sherlocks found: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) ByStateList(val ...string) *SherlockQuery {
 	qc := ptr.Clone(q)
 	lowercased := make([]string, len(val))
@@ -66,8 +73,11 @@ func (q *SherlockQuery) ByStateList(val ...string) *SherlockQuery {
 //
 // Example:
 //
-//	hardSherlocks := query.ByDifficulty("Hard").Results(ctx)
-//	easySherlocks := query.ByDifficulty("Hard").ByDifficulty("Easy").Results(ctx)
+//	sherlocks, err := query.ByDifficulty("Hard").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Hard sherlocks: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) ByDifficulty(val string) *SherlockQuery {
 	return q.ByDifficultyList(val)
 }
@@ -78,7 +88,11 @@ func (q *SherlockQuery) ByDifficulty(val string) *SherlockQuery {
 //
 // Example:
 //
-//	Sherlocks := query.ByDifficultyList("Hard", "Insane").Results(ctx)
+//	sherlocks, err := query.ByDifficultyList("Hard", "Insane").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Hard/Insane sherlocks: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) ByDifficultyList(val ...string) *SherlockQuery {
 	qc := ptr.Clone(q)
 	lowercased := make([]string, len(val))
@@ -95,8 +109,11 @@ func (q *SherlockQuery) ByDifficultyList(val ...string) *SherlockQuery {
 //
 // Example:
 //
-//	webSherlocks := query.ByCategory(1).Results(ctx)
-//	cryptoSherlocks := query.ByCategory(2).Results(ctx)
+//	sherlocks, err := query.ByCategory(1).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Category matches: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) ByCategory(val ...int) *SherlockQuery {
 	return q.ByCategoryList(val...)
 }
@@ -107,7 +124,11 @@ func (q *SherlockQuery) ByCategory(val ...int) *SherlockQuery {
 //
 // Example:
 //
-//	Sherlocks := query.ByCategoryList(1, 2, 3).Results(ctx)
+//	sherlocks, err := query.ByCategoryList(1, 2, 3).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Category matches: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) ByCategoryList(val ...int) *SherlockQuery {
 	qc := ptr.Clone(q)
 	qc.category = val
@@ -115,13 +136,16 @@ func (q *SherlockQuery) ByCategoryList(val ...int) *SherlockQuery {
 }
 
 // SortedBy sets the field to sort results by.
-// Valid values include "Sherlock", "Catagory", "Rating", "Solves", and "ReleaseDate".
+// Valid values include "Sherlock", "Category", "Rating", "Solves", and "ReleaseDate".
 // Returns a new SherlockQuery that can be further chained with Ascending() or Descending().
 //
 // Example:
 //
-//	Sherlocks := query.SortedBy("Rating").Descending().Results(ctx)
-//	Sherlocks := query.SortedBy("ReleaseDate").Ascending().Results(ctx)
+//	sherlocks, err := query.SortedBy("Rating").Descending().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Sorted sherlocks: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) SortedBy(field string) *SherlockQuery {
 	qc := ptr.Clone(q)
 	sortBy := v4Client.GetSherlocksParamsSortBy(field)
@@ -141,7 +165,11 @@ func (q *SherlockQuery) sort(val v4Client.GetSherlocksParamsSortBy, order v4Clie
 //
 // Example:
 //
-//	Sherlocks := query.SortedBy("Rating").Ascending().Results(ctx)
+//	sherlocks, err := query.SortedBy("Rating").Ascending().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Sorted sherlocks: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) Ascending() *SherlockQuery {
 	if q.sortBy == "" {
 		return q
@@ -154,7 +182,11 @@ func (q *SherlockQuery) Ascending() *SherlockQuery {
 //
 // Example:
 //
-//	Sherlocks := query.SortedBy("Rating").Descending().Results(ctx)
+//	sherlocks, err := query.SortedBy("Rating").Descending().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Sorted sherlocks: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) Descending() *SherlockQuery {
 	if q.sortBy == "" {
 		return q
@@ -167,7 +199,11 @@ func (q *SherlockQuery) Descending() *SherlockQuery {
 //
 // Example:
 //
-//	Sherlocks := query.Page(3).Results(ctx)
+//	sherlocks, err := query.Page(3).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Page 3 sherlocks: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) Page(n int) *SherlockQuery {
 	qc := ptr.Clone(q)
 	qc.page = n
@@ -179,7 +215,11 @@ func (q *SherlockQuery) Page(n int) *SherlockQuery {
 //
 // Example:
 //
-//	Sherlocks := query.PerPage(50).Results(ctx)
+//	sherlocks, err := query.PerPage(50).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Sherlocks in page: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) PerPage(n int) *SherlockQuery {
 	qc := ptr.Clone(q)
 	qc.perPage = n
@@ -191,7 +231,11 @@ func (q *SherlockQuery) PerPage(n int) *SherlockQuery {
 //
 // Example:
 //
-//	nextPage := query.Next().Results(ctx)
+//	sherlocks, err := query.Next().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Next page sherlocks: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) Next() *SherlockQuery {
 	qc := ptr.Clone(q)
 	qc.page++
@@ -204,7 +248,11 @@ func (q *SherlockQuery) Next() *SherlockQuery {
 //
 // Example:
 //
-//	prevPage := query.Previous().Results(ctx)
+//	sherlocks, err := query.Previous().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Previous page sherlocks: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) Previous() *SherlockQuery {
 	qc := ptr.Clone(q)
 	if qc.page > 1 {
@@ -218,7 +266,11 @@ func (q *SherlockQuery) Previous() *SherlockQuery {
 //
 // Example:
 //
-//	sherlocks := query.ByKeyword("bru").Results(ctx)
+//	sherlocks, err := query.ByKeyword("bru").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Keyword matches: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) ByKeyword(keyword string) *SherlockQuery {
 	qc := ptr.Clone(q)
 	qc.keyword = v4Client.Keyword(keyword)
@@ -280,11 +332,15 @@ func (q *SherlockQuery) fetchResults(ctx context.Context) (SherlockListResponse,
 //
 // Example:
 //
-//	Sherlocks, err := client.Sherlocks.List().
+//	sherlocks, err := client.Sherlocks.List().
 //		ByDifficulty("Hard").
 //		ByState("active").
 //		SortedBy("Rating").Descending().
 //		Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Sherlocks found: %d\n", len(sherlocks.Data))
 func (q *SherlockQuery) Results(ctx context.Context) (SherlockListResponse, error) {
 	return q.fetchResults(ctx)
 }
@@ -298,6 +354,10 @@ func (q *SherlockQuery) Results(ctx context.Context) (SherlockListResponse, erro
 //	allSherlocks, err := client.Sherlocks.List().
 //		ByDifficulty("Hard").
 //		AllResults(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Total sherlocks found: %d\n", len(allSherlocks.Data))
 func (q *SherlockQuery) AllResults(ctx context.Context) (SherlockListResponse, error) {
 	var all []SherlockItem
 	page := 1
@@ -338,6 +398,10 @@ func (q *SherlockQuery) AllResults(ctx context.Context) (SherlockListResponse, e
 //		ByDifficulty("Insane").
 //		SortedBy("Rating").Descending().
 //		First(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("First sherlock: %s\n", firstSherlock.Data[0].Name)
 func (q *SherlockQuery) First(ctx context.Context) (SherlockListResponse, error) {
 	resp, err := q.fetchResults(ctx)
 	if err != nil {

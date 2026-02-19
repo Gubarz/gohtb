@@ -156,7 +156,7 @@ type ActivityResponse struct {
 //		fmt.Printf("Activity: %s at %s\n", act.Type, act.Date)
 //	}
 func (h *Handle) Activity(ctx context.Context, days int) (ActivityResponse, error) {
-	// This is set to 90 days wich is max by the API
+	// This is set to 90 days which is max by the API
 	// Max items returned is 100
 	last := 90
 	if days >= 1 && days <= 90 {
@@ -296,14 +296,11 @@ type TeamStatsResponse struct {
 //
 // Example:
 //
-//	stats, err := client.Teams.Team(id).Stats(ctx)
-//
+//	stats, err := client.Teams.Team(12345).Stats(ctx)
 //	if err != nil {
-//		log.Printf("failed to get team stats: %v\n", err)
-//	}else {
-//
-//		fmt.Printf("team stats:\n Bloods: %d\n System Owns: %d\n User Owns: %d", stats.Data.FirstBloods, stats.Data.SystemOwns, stats.Data.UserOwns)
+//		log.Fatal(err)
 //	}
+//	fmt.Printf("Team stats: bloods=%d systemOwns=%d userOwns=%d\n", stats.Data.FirstBloods, stats.Data.SystemOwns, stats.Data.UserOwns)
 func (h *Handle) Stats(ctx context.Context) (TeamStatsResponse, error) {
 	resp, err := h.client.V4().GetTeamStatsOwns(
 		h.client.Limiter().Wrap(ctx),
@@ -333,14 +330,11 @@ type TeamInfoResponse struct {
 //
 // Example:
 //
-//	info, err := client.Teams.Team(id).Info(ctx)
-//
+//	info, err := client.Teams.Team(12345).Info(ctx)
 //	if err != nil {
-//		log.Printf("failed to get team info: %v\n", err)
-//	}else {
-//
-//		fmt.Printf("Team Motto: %s", info.Data.Motto)
+//		log.Fatal(err)
 //	}
+//	fmt.Printf("Team: %s (Motto: %s)\n", info.Data.Name, info.Data.Motto)
 func (h *Handle) Info(ctx context.Context) (TeamInfoResponse, error) {
 	resp, err := h.client.V4().GetTeamInfo(
 		h.client.Limiter().Wrap(ctx),

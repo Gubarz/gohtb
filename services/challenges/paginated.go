@@ -12,7 +12,7 @@ import (
 
 const (
 	SortByChallenge   = v4Client.GetChallengesParamsSortBy("Challenge")
-	SortByCatagory    = v4Client.GetChallengesParamsSortBy("Catagory")
+	SortByCategory    = v4Client.GetChallengesParamsSortBy("Catagory")
 	SortByRating      = v4Client.GetChallengesParamsSortBy("Rating")
 	SortByUsersSolves = v4Client.GetChallengesParamsSortBy("Solves")
 	SortByReleaseDate = v4Client.GetChallengesParamsSortBy("ReleaseDate")
@@ -35,8 +35,11 @@ type ChallengeListResponse struct {
 //
 // Example:
 //
-//	activeChallenges := query.ByState("active").Results(ctx)
-//	retiredChallenges := query.ByState("retired").Results(ctx)
+//	challenges, err := query.ByState("active").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Active challenges: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) ByState(val string) *ChallengeQuery {
 	return q.ByStateList(val)
 }
@@ -47,7 +50,11 @@ func (q *ChallengeQuery) ByState(val string) *ChallengeQuery {
 //
 // Example:
 //
-//	challenges := query.ByStateList("active", "retired").Results(ctx)
+//	challenges, err := query.ByStateList("active", "retired").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Challenges found: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) ByStateList(val ...string) *ChallengeQuery {
 	qc := ptr.Clone(q)
 	lowercased := make([]string, len(val))
@@ -64,8 +71,11 @@ func (q *ChallengeQuery) ByStateList(val ...string) *ChallengeQuery {
 //
 // Example:
 //
-//	hardChallenges := query.ByDifficulty("Hard").Results(ctx)
-//	easyChallenges := query.ByDifficulty("Hard").ByDifficulty("Easy").Results(ctx)
+//	challenges, err := query.ByDifficulty("Hard").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Hard challenges: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) ByDifficulty(val string) *ChallengeQuery {
 	return q.ByDifficultyList(val)
 }
@@ -76,7 +86,11 @@ func (q *ChallengeQuery) ByDifficulty(val string) *ChallengeQuery {
 //
 // Example:
 //
-//	challenges := query.ByDifficultyList("Hard", "Insane").Results(ctx)
+//	challenges, err := query.ByDifficultyList("Hard", "Insane").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Hard/Insane challenges: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) ByDifficultyList(val ...string) *ChallengeQuery {
 	qc := ptr.Clone(q)
 	lowercased := make([]string, len(val))
@@ -93,8 +107,11 @@ func (q *ChallengeQuery) ByDifficultyList(val ...string) *ChallengeQuery {
 //
 // Example:
 //
-//	webChallenges := query.ByCategory(1).Results(ctx)
-//	cryptoChallenges := query.ByCategory(2).Results(ctx)
+//	challenges, err := query.ByCategory(1).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Category matches: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) ByCategory(val ...int) *ChallengeQuery {
 	return q.ByCategoryList(val...)
 }
@@ -105,7 +122,11 @@ func (q *ChallengeQuery) ByCategory(val ...int) *ChallengeQuery {
 //
 // Example:
 //
-//	challenges := query.ByCategoryList(1, 2, 3).Results(ctx)
+//	challenges, err := query.ByCategoryList(1, 2, 3).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Category matches: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) ByCategoryList(val ...int) *ChallengeQuery {
 	qc := ptr.Clone(q)
 	qc.category = val
@@ -113,13 +134,16 @@ func (q *ChallengeQuery) ByCategoryList(val ...int) *ChallengeQuery {
 }
 
 // SortedBy sets the field to sort results by.
-// Valid values include "Challenge", "Catagory", "Rating", "Solves", and "ReleaseDate".
+// Valid values include "Challenge", "Category", "Rating", "Solves", and "ReleaseDate".
 // Returns a new ChallengeQuery that can be further chained with Ascending() or Descending().
 //
 // Example:
 //
-//	challenges := query.SortedBy("Rating").Descending().Results(ctx)
-//	challenges := query.SortedBy("ReleaseDate").Ascending().Results(ctx)
+//	challenges, err := query.SortedBy("Rating").Descending().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Sorted challenges: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) SortedBy(field string) *ChallengeQuery {
 	qc := ptr.Clone(q)
 	sortBy := v4Client.GetChallengesParamsSortBy(field)
@@ -139,7 +163,11 @@ func (q *ChallengeQuery) sort(val v4Client.GetChallengesParamsSortBy, order v4Cl
 //
 // Example:
 //
-//	challenges := query.SortedBy("Rating").Ascending().Results(ctx)
+//	challenges, err := query.SortedBy("Rating").Ascending().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Sorted challenges: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) Ascending() *ChallengeQuery {
 	if q.sortBy == "" {
 		return q
@@ -152,7 +180,11 @@ func (q *ChallengeQuery) Ascending() *ChallengeQuery {
 //
 // Example:
 //
-//	challenges := query.SortedBy("Rating").Descending().Results(ctx)
+//	challenges, err := query.SortedBy("Rating").Descending().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Sorted challenges: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) Descending() *ChallengeQuery {
 	if q.sortBy == "" {
 		return q
@@ -165,7 +197,11 @@ func (q *ChallengeQuery) Descending() *ChallengeQuery {
 //
 // Example:
 //
-//	challenges := query.Page(3).Results(ctx)
+//	challenges, err := query.Page(3).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Page 3 challenges: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) Page(n int) *ChallengeQuery {
 	qc := ptr.Clone(q)
 	qc.page = n
@@ -177,7 +213,11 @@ func (q *ChallengeQuery) Page(n int) *ChallengeQuery {
 //
 // Example:
 //
-//	challenges := query.PerPage(50).Results(ctx)
+//	challenges, err := query.PerPage(50).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Challenges in page: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) PerPage(n int) *ChallengeQuery {
 	qc := ptr.Clone(q)
 	qc.perPage = n
@@ -189,7 +229,11 @@ func (q *ChallengeQuery) PerPage(n int) *ChallengeQuery {
 //
 // Example:
 //
-//	nextPage := query.Next().Results(ctx)
+//	challenges, err := query.Next().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Next page challenges: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) Next() *ChallengeQuery {
 	qc := ptr.Clone(q)
 	qc.page++
@@ -202,7 +246,11 @@ func (q *ChallengeQuery) Next() *ChallengeQuery {
 //
 // Example:
 //
-//	prevPage := query.Previous().Results(ctx)
+//	challenges, err := query.Previous().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Previous page challenges: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) Previous() *ChallengeQuery {
 	qc := ptr.Clone(q)
 	if qc.page > 1 {
@@ -216,7 +264,11 @@ func (q *ChallengeQuery) Previous() *ChallengeQuery {
 //
 // Example:
 //
-//	challenges := query.ByKeyword("spo").Results(ctx)
+//	challenges, err := query.ByKeyword("spo").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Keyword matches: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) ByKeyword(keyword string) *ChallengeQuery {
 	qc := ptr.Clone(q)
 	qc.keyword = v4Client.Keyword(keyword)
@@ -284,6 +336,10 @@ func (q *ChallengeQuery) fetchResults(ctx context.Context) (ChallengeListRespons
 //		ByState("active").
 //		SortedBy("Rating").Descending().
 //		Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Challenges found: %d\n", len(challenges.Data))
 func (q *ChallengeQuery) Results(ctx context.Context) (ChallengeListResponse, error) {
 	return q.fetchResults(ctx)
 }
@@ -299,6 +355,10 @@ type ChallengeList = v4Client.ChallengeList
 //	allChallenges, err := client.Challenges.List().
 //		ByDifficulty("Hard").
 //		AllResults(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Total challenges found: %d\n", len(allChallenges.Data))
 func (q *ChallengeQuery) AllResults(ctx context.Context) (ChallengeListResponse, error) {
 	var all []ChallengeList
 	page := 1
@@ -339,6 +399,10 @@ func (q *ChallengeQuery) AllResults(ctx context.Context) (ChallengeListResponse,
 //		ByDifficulty("Insane").
 //		SortedBy("Rating").Descending().
 //		First(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("First challenge: %s\n", firstChallenge.Data[0].Name)
 func (q *ChallengeQuery) First(ctx context.Context) (ChallengeListResponse, error) {
 	resp, err := q.fetchResults(ctx)
 	if err != nil {

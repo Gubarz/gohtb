@@ -31,7 +31,7 @@ import (
 
 // Client is the main API client for interacting with Hack The Box services.
 // It holds configuration settings and provides access to various API endpoints
-// through its service fields (e.g., Challengs, Machines, Seasons).
+// through its service fields (e.g., Challenges, Machines, Seasons).
 type Client struct {
 	v4api       v4client.ClientInterface
 	v5api       v5client.ClientInterface

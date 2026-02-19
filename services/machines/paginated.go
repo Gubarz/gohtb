@@ -34,6 +34,10 @@ type MachineQuery struct {
 //
 //	query := client.Machines.List()
 //	machines, err := query.ByDifficulty("Hard").ByOS("Linux").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Machines found: %d\n", len(machines.Data))
 func (s *Service) List() *MachineQuery {
 	return &MachineQuery{
 		client:  s.base.Client,
@@ -47,7 +51,11 @@ func (s *Service) List() *MachineQuery {
 //
 // Example:
 //
-//	nextPage := query.Next().Results(ctx)
+//	machines, err := query.Next().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Next page machines: %d\n", len(machines.Data))
 func (q *MachineQuery) Next() *MachineQuery {
 	qc := ptr.Clone(q)
 	qc.page++
@@ -60,7 +68,11 @@ func (q *MachineQuery) Next() *MachineQuery {
 //
 // Example:
 //
-//	prevPage := query.Previous().Results(ctx)
+//	machines, err := query.Previous().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Previous page machines: %d\n", len(machines.Data))
 func (q *MachineQuery) Previous() *MachineQuery {
 	qc := ptr.Clone(q)
 	if qc.page > 1 {
@@ -74,7 +86,11 @@ func (q *MachineQuery) Previous() *MachineQuery {
 //
 // Example:
 //
-//	machines := query.Page(3).Results(ctx)
+//	machines, err := query.Page(3).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Page 3 machines: %d\n", len(machines.Data))
 func (q *MachineQuery) Page(n int) *MachineQuery {
 	qc := ptr.Clone(q)
 	qc.page = n
@@ -86,7 +102,11 @@ func (q *MachineQuery) Page(n int) *MachineQuery {
 //
 // Example:
 //
-//	machines := query.PerPage(50).Results(ctx)
+//	machines, err := query.PerPage(50).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Machines per page: %d\n", len(machines.Data))
 func (q *MachineQuery) PerPage(n int) *MachineQuery {
 	qc := ptr.Clone(q)
 	qc.perPage = n
@@ -101,8 +121,11 @@ func (q *MachineQuery) PerPage(n int) *MachineQuery {
 //
 // Example:
 //
-//	completed := query.ByCompleted("Completed").Results(ctx)
-//	incomplete := query.ByCompleted("InComplete").Results(ctx)
+//	machines, err := query.ByCompleted("Completed").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Completed machines: %d\n", len(machines.Data))
 func (q *MachineQuery) ByCompleted(val string) *MachineQuery {
 	qc := ptr.Clone(q)
 	qc.showCompleted = strings.ToLower(val)
@@ -115,8 +138,11 @@ func (q *MachineQuery) ByCompleted(val string) *MachineQuery {
 //
 // Example:
 //
-//	linuxMachines := query.ByOS("Linux").Results(ctx)
-//	linuxAndWindowsMachines := query.ByOS("Linux").ByOS("Windows").Results(ctx)
+//	machines, err := query.ByOS("Linux").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Linux machines: %d\n", len(machines.Data))
 func (q *MachineQuery) ByOS(val string) *MachineQuery {
 	return q.ByOSList(val)
 }
@@ -127,7 +153,11 @@ func (q *MachineQuery) ByOS(val string) *MachineQuery {
 //
 // Example:
 //
-//	machines := query.ByOSList("Linux", "Windows").Results(ctx)
+//	machines, err := query.ByOSList("Linux", "Windows").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Linux/Windows machines: %d\n", len(machines.Data))
 func (q *MachineQuery) ByOSList(val ...string) *MachineQuery {
 	qc := ptr.Clone(q)
 	lowercased := make([]string, len(val))
@@ -144,7 +174,11 @@ func (q *MachineQuery) ByOSList(val ...string) *MachineQuery {
 //
 // Example:
 //
-//	machines := query.ByDifficultyList("Hard", "Insane").Results(ctx)
+//	machines, err := query.ByDifficultyList("Hard", "Insane").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Hard/Insane machines: %d\n", len(machines.Data))
 func (q *MachineQuery) ByDifficultyList(val ...string) *MachineQuery {
 	qc := ptr.Clone(q)
 	lowercased := make([]string, len(val))
@@ -161,8 +195,11 @@ func (q *MachineQuery) ByDifficultyList(val ...string) *MachineQuery {
 //
 // Example:
 //
-//	hardMachines := query.ByDifficulty("Hard").Results(ctx)
-//	mediumAndInsaneMachines := query.ByDifficulty("Medium").ByDifficulty("Insane").Results(ctx)
+//	machines, err := query.ByDifficulty("Hard").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Hard machines: %d\n", len(machines.Data))
 func (q *MachineQuery) ByDifficulty(val string) *MachineQuery {
 	return q.ByDifficultyList(val)
 }
@@ -187,8 +224,11 @@ func (q *MachineQuery) ByState(val string) *MachineQuery {
 //
 // Example:
 //
-//	machines := query.SortedBy("name").Ascending().Results(ctx)
-//	machines := query.SortedBy("user-difficulty").Descending().Results(ctx)
+//	machines, err := query.SortedBy("name").Ascending().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Sorted machines: %d\n", len(machines.Data))
 func (q *MachineQuery) SortedBy(field string) *MachineQuery {
 	qc := ptr.Clone(q)
 	sortBy := v5Client.GetMachinesParamsSortBy(strings.ToLower(field))
@@ -208,7 +248,11 @@ func (q *MachineQuery) sort(val v5Client.GetMachinesParamsSortBy, order v5Client
 //
 // Example:
 //
-//	machines := query.SortedBy("user-difficulty").Ascending().Results(ctx)
+//	machines, err := query.SortedBy("user-difficulty").Ascending().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Machines sorted ascending: %d\n", len(machines.Data))
 func (q *MachineQuery) Ascending() *MachineQuery {
 	if q.sortBy == "" {
 		return q
@@ -221,7 +265,11 @@ func (q *MachineQuery) Ascending() *MachineQuery {
 //
 // Example:
 //
-//	machines := query.SortedBy("user-difficulty").Descending().Results(ctx)
+//	machines, err := query.SortedBy("user-difficulty").Descending().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Machines sorted descending: %d\n", len(machines.Data))
 func (q *MachineQuery) Descending() *MachineQuery {
 	if q.sortBy == "" {
 		return q
@@ -234,7 +282,11 @@ func (q *MachineQuery) Descending() *MachineQuery {
 //
 // Example:
 //
-//	machines := query.Keyword("buffer").Results(ctx)
+//	machines, err := query.Keyword("buffer").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Keyword matches: %d\n", len(machines.Data))
 func (q *MachineQuery) Keyword(val string) *MachineQuery {
 	qc := ptr.Clone(q)
 	qc.keyword = val
@@ -248,8 +300,11 @@ func (q *MachineQuery) Keyword(val string) *MachineQuery {
 //
 // Example:
 //
-//	freeMachines := query.ByFree(true).Results(ctx)
-//	paidMachines := query.ByFree(false).Results(ctx)
+//	machines, err := query.ByFree(true).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Free machines: %d\n", len(machines.Data))
 func (q *MachineQuery) ByFree(val bool) *MachineQuery {
 	v := v5Client.GetMachinesParamsFree(0)
 	if val {
@@ -265,8 +320,11 @@ func (q *MachineQuery) ByFree(val bool) *MachineQuery {
 //
 // Example:
 //
-//	todoMachines := query.ByTodo(true).Results(ctx)
-//	nonTodoMachines := query.ByTodo(false).Results(ctx)
+//	machines, err := query.ByTodo(true).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Todo machines: %d\n", len(machines.Data))
 func (q *MachineQuery) ByTodo(val bool) *MachineQuery {
 	v := v5Client.GetMachinesParamsTodo(0)
 	if val {
@@ -354,11 +412,15 @@ func wrapMachinesData(items []v5Client.MachinesItem) MachinesDataItems {
 //
 // Example:
 //
-//	machines, err := client.Machines.ListUnreleased().
+//	machines, err := client.Machines.List().
 //		ByDifficulty("Hard").
 //		ByOS("Linux").
 //		Page(1).
 //		Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Machines found: %d\n", len(machines.Data))
 func (q *MachineQuery) Results(ctx context.Context) (MachinesResponse, error) {
 	return q.fetchResults(ctx)
 }
@@ -369,9 +431,13 @@ func (q *MachineQuery) Results(ctx context.Context) (MachinesResponse, error) {
 //
 // Example:
 //
-//	allMachines, err := client.Machines.ListUnreleased().
+//	allMachines, err := client.Machines.List().
 //		ByDifficulty("Hard").
 //		AllResults(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Total machines found: %d\n", len(allMachines.Data))
 func (q *MachineQuery) AllResults(ctx context.Context) (MachinesResponse, error) {
 	var all MachinesDataItems
 	page := 1
@@ -411,6 +477,10 @@ func (q *MachineQuery) AllResults(ctx context.Context) (MachinesResponse, error)
 //	firstMachine, err := client.Machines.List().
 //		ByDifficulty("Hard").
 //		First(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("First machine: %s\n", firstMachine.Data[0].Name)
 func (q *MachineQuery) First(ctx context.Context) (MachinesResponse, error) {
 	resp, err := q.fetchResults(ctx)
 	if err != nil {

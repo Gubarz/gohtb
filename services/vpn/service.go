@@ -105,8 +105,11 @@ func (s *Service) VPN(id int) *Handle {
 //
 // Example:
 //
-//	resp, err := htb.VPN.VPN(256).DownloadUDP(ctx)
-//	fmt.Println("VPN file:", string(resp.Data))
+//	resp, err := client.VPN.VPN(256).DownloadUDP(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Downloaded UDP config: %d bytes\n", len(resp.Data))
 func (h *Handle) DownloadUDP(ctx context.Context) (VPNFileResponse, error) {
 	resp, err := h.client.V4().GetAccessOvpnfileVpnIdUDP(
 		h.client.Limiter().Wrap(ctx),
@@ -132,12 +135,15 @@ func (h *Handle) DownloadUDP(ctx context.Context) (VPNFileResponse, error) {
 	}, nil
 }
 
-// DownloadUDP downloads the OpenVPN configuration file for the specified VPN endpoint using TCP.
+// DownloadTCP downloads the OpenVPN configuration file for the specified VPN endpoint using TCP.
 //
 // Example:
 //
-//	resp, err := htb.VPN.VPN(256).DownloadTCP(ctx)
-//	fmt.Println("VPN file:", string(resp.Data))
+//	resp, err := client.VPN.VPN(256).DownloadTCP(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Downloaded TCP config: %d bytes\n", len(resp.Data))
 func (h *Handle) DownloadTCP(ctx context.Context) (VPNFileResponse, error) {
 	resp, err := h.client.V4().GetAccessOvpnfileVpnIdTCP(
 		h.client.Limiter().Wrap(ctx),
@@ -230,6 +236,10 @@ func (s *Service) Connections(ctx context.Context) (ConnectionStatusResponse, er
 //
 //	query := client.VPN.Servers("labs")
 //	servers, err := query.ByTier("free").ByLocation("US").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Matching servers: %d\n", len(servers.Data.Options))
 func (s *Service) Servers(product string) *ServerQuery {
 	return &ServerQuery{
 		client:  s.base.Client,
@@ -238,13 +248,16 @@ func (s *Service) Servers(product string) *ServerQuery {
 }
 
 // ByTier filters the server query by tier using case-insensitive matching.
-// Valid tiers include "free", "vip", "vip+", and "unknown".
+// Common values include "free", "dedivip", "release", "fort", and "starting-point".
 // Returns a new ServerQuery that can be further chained.
 //
 // Example:
 //
-//	freeServers := client.VPN.Servers("labs").ByTier("free").Results(ctx)
-//	vipServers := client.VPN.Servers("labs").ByTier("vip").Results(ctx)
+//	servers, err := client.VPN.Servers("labs").ByTier("free").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Free servers: %d\n", len(servers.Data.Options))
 func (q *ServerQuery) ByTier(tier string) *ServerQuery {
 	qc := ptr.Clone(q)
 	qc.tier = tier
@@ -256,8 +269,11 @@ func (q *ServerQuery) ByTier(tier string) *ServerQuery {
 //
 // Example:
 //
-//	usServers := client.VPN.Servers("labs").ByLocation("US").Results(ctx)
-//	euServers := client.VPN.Servers("labs").ByLocation("EU").Results(ctx)
+//	servers, err := client.VPN.Servers("labs").ByLocation("US").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("US servers: %d\n", len(servers.Data.Options))
 func (q *ServerQuery) ByLocation(location string) *ServerQuery {
 	qc := ptr.Clone(q)
 	qc.location = location
@@ -447,7 +463,7 @@ func (o OptionsServers) ByLocation(location string) OptionsServers {
 // Example:
 //
 //	freeServers := response.Data.Options.ByType("free")
-//	vipServers := response.Data.Options.ByType("vip")
+//	dedicatedVIPServers := response.Data.Options.ByType("dedivip")
 func (o OptionsServers) ByType(vpnType string) OptionsServers {
 	var d OptionsServers
 	for _, v := range o {
@@ -478,7 +494,7 @@ func (o OptionsServers) SortByCurrentClients() OptionsServers {
 // Example:
 //
 //	bestServer := response.Data.Options.
-//		ByTier("free").
+//		ByType("free").
 //		ByLocation("US").
 //		SortByCurrentClients().
 //		First()
@@ -508,7 +524,11 @@ func (h *Handle) switchAndDownload(ctx context.Context, useUDP bool) (VPNFileRes
 //
 // Example:
 //
-//	resp, err := htb.VPN.VPN(256).SwitchAndDownloadUCP(ctx)
+//	resp, err := client.VPN.VPN(256).SwitchAndDownloadUDP(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Downloaded UDP config: %d bytes\n", len(resp.Data))
 func (h *Handle) SwitchAndDownloadUDP(ctx context.Context) (VPNFileResponse, error) {
 	return h.switchAndDownload(ctx, true)
 }
@@ -517,7 +537,11 @@ func (h *Handle) SwitchAndDownloadUDP(ctx context.Context) (VPNFileResponse, err
 //
 // Example:
 //
-//	resp, err := htb.VPN.VPN(256).SwitchAndDownloadTCP(ctx)
+//	resp, err := client.VPN.VPN(256).SwitchAndDownloadTCP(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Downloaded TCP config: %d bytes\n", len(resp.Data))
 func (h *Handle) SwitchAndDownloadTCP(ctx context.Context) (VPNFileResponse, error) {
 	return h.switchAndDownload(ctx, false)
 }
@@ -530,13 +554,16 @@ func (s *Service) ProlabServers(id int) *ProlabQuery {
 }
 
 // ByTier filters the server query by tier using case-insensitive matching.
-// Valid tiers include "free", "vip", "vip+", and "unknown".
+// Common values include "free", "dedivip", "release", "fort", and "starting-point".
 // Returns a new ServerQuery that can be further chained.
 //
 // Example:
 //
-//	freeServers := client.VPN.ProlabServers(8).ByTier("free").Results(ctx)
-//	vipServers := client.VPN.ProlabServers(9).ByTier("subscription").Results(ctx)
+//	servers, err := client.VPN.ProlabServers(8).ByTier("free").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Prolab servers: %d\n", len(servers.Data.Options))
 func (q *ProlabQuery) ByTier(tier string) *ProlabQuery {
 	qc := ptr.Clone(q)
 	qc.tier = tier
@@ -548,8 +575,11 @@ func (q *ProlabQuery) ByTier(tier string) *ProlabQuery {
 //
 // Example:
 //
-//	usServers := client.VPN.ProlabServers(8).ByLocation("US").Results(ctx)
-//	euServers := client.VPN.ProlabServers(9).ByLocation("EU").Results(ctx)
+//	servers, err := client.VPN.ProlabServers(8).ByLocation("US").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("US prolab servers: %d\n", len(servers.Data.Options))
 func (q *ProlabQuery) ByLocation(location string) *ProlabQuery {
 	qc := ptr.Clone(q)
 	qc.location = location

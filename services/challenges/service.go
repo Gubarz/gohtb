@@ -95,6 +95,10 @@ func (s *Service) ChallengeName(name string) *Handle {
 //
 //	query := client.Challenges.List()
 //	challenges, err := query.ByDifficulty("Hard").ByState("active").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Challenges found: %d\n", len(challenges.Data))
 func (s *Service) List() *ChallengeQuery {
 	return &ChallengeQuery{
 		client:  s.base.Client,

@@ -45,16 +45,16 @@ func (q *UserProfileActivityQuery) Previous() *UserProfileActivityQuery {
 
 type UserProfileActivityItems []UserProfileActivity
 
-type UserProfileActivityResposnse struct {
+type UserProfileActivityResponse struct {
 	Data         UserProfileActivityItems
 	ResponseMeta common.ResponseMeta
 }
 
-func (q *UserProfileActivityQuery) Results(ctx context.Context) (UserProfileActivityResposnse, error) {
+func (q *UserProfileActivityQuery) Results(ctx context.Context) (UserProfileActivityResponse, error) {
 	return q.fetchResults(ctx)
 }
 
-func (q *UserProfileActivityQuery) AllResults(ctx context.Context) (UserProfileActivityResposnse, error) {
+func (q *UserProfileActivityQuery) AllResults(ctx context.Context) (UserProfileActivityResponse, error) {
 	var all []UserProfileActivity
 	page := 1
 	var meta common.ResponseMeta
@@ -65,7 +65,7 @@ func (q *UserProfileActivityQuery) AllResults(ctx context.Context) (UserProfileA
 
 		resp, err := qp.fetchResults(ctx)
 		if err != nil {
-			return UserProfileActivityResposnse{}, err
+			return UserProfileActivityResponse{}, err
 		}
 
 		all = append(all, resp.Data...)
@@ -79,38 +79,38 @@ func (q *UserProfileActivityQuery) AllResults(ctx context.Context) (UserProfileA
 		page++
 	}
 
-	return UserProfileActivityResposnse{
+	return UserProfileActivityResponse{
 		Data:         all,
 		ResponseMeta: meta,
 	}, nil
 }
 
-func (q *UserProfileActivityQuery) fetchResults(ctx context.Context) (UserProfileActivityResposnse, error) {
+func (q *UserProfileActivityQuery) fetchResults(ctx context.Context) (UserProfileActivityResponse, error) {
 	params := &v5Client.GetUserProfileActivityParams{
 		Page:    &q.page,
 		PerPage: &q.perPage,
 	}
 
 	if q.id == 0 {
-		return UserProfileActivityResposnse{}, fmt.Errorf("user ID is required")
+		return UserProfileActivityResponse{}, fmt.Errorf("user ID is required")
 	}
 
 	resp, err := q.client.V5().GetUserProfileActivity(q.client.Limiter().Wrap(ctx), q.id, params)
 	if err != nil {
-		return UserProfileActivityResposnse{ResponseMeta: common.ResponseMeta{}}, err
+		return UserProfileActivityResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
 	parsed, meta, err := common.Parse(resp, v5Client.ParseGetUserProfileActivityResponse)
 	if err != nil {
-		return UserProfileActivityResposnse{ResponseMeta: meta}, err
+		return UserProfileActivityResponse{ResponseMeta: meta}, err
 	}
 
 	activities, err := wrapUserProfileActivityItems(parsed.JSON200.Data)
 	if err != nil {
-		return UserProfileActivityResposnse{ResponseMeta: meta}, err
+		return UserProfileActivityResponse{ResponseMeta: meta}, err
 	}
 
-	return UserProfileActivityResposnse{
+	return UserProfileActivityResponse{
 		Data:         activities,
 		ResponseMeta: meta,
 	}, nil
