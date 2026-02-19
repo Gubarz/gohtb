@@ -17,24 +17,60 @@ type UserProfileActivityQuery struct {
 	id      int
 }
 
+// Page sets the page number for the activity query.
+//
+// Example:
+//
+//	activity, err := client.Users.User(12345).ProfileActivity().Page(2).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Activity items: %d\n", len(activity.Data))
 func (q *UserProfileActivityQuery) Page(n int) *UserProfileActivityQuery {
 	qc := ptr.Clone(q)
 	qc.page = n
 	return qc
 }
 
+// PerPage sets the number of items returned per page.
+//
+// Example:
+//
+//	activity, err := client.Users.User(12345).ProfileActivity().PerPage(25).Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Activity items on page: %d\n", len(activity.Data))
 func (q *UserProfileActivityQuery) PerPage(n int) *UserProfileActivityQuery {
 	qc := ptr.Clone(q)
 	qc.perPage = n
 	return qc
 }
 
+// Next advances the activity query to the next page.
+//
+// Example:
+//
+//	activity, err := query.Next().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Next page activity items: %d\n", len(activity.Data))
 func (q *UserProfileActivityQuery) Next() *UserProfileActivityQuery {
 	qc := ptr.Clone(q)
 	qc.page++
 	return qc
 }
 
+// Previous moves the activity query to the previous page.
+//
+// Example:
+//
+//	activity, err := query.Previous().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Previous page activity items: %d\n", len(activity.Data))
 func (q *UserProfileActivityQuery) Previous() *UserProfileActivityQuery {
 	qc := ptr.Clone(q)
 	if qc.page > 1 {
@@ -50,10 +86,28 @@ type UserProfileActivityResponse struct {
 	ResponseMeta common.ResponseMeta
 }
 
+// Results executes the activity query and returns the current page.
+//
+// Example:
+//
+//	activity, err := client.Users.User(12345).ProfileActivity().Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Activity items: %d\n", len(activity.Data))
 func (q *UserProfileActivityQuery) Results(ctx context.Context) (UserProfileActivityResponse, error) {
 	return q.fetchResults(ctx)
 }
 
+// AllResults executes the activity query and returns all pages.
+//
+// Example:
+//
+//	activity, err := client.Users.User(12345).ProfileActivity().AllResults(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Total activity items: %d\n", len(activity.Data))
 func (q *UserProfileActivityQuery) AllResults(ctx context.Context) (UserProfileActivityResponse, error) {
 	var all []UserProfileActivity
 	page := 1

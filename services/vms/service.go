@@ -12,6 +12,12 @@ type Service struct {
 	base service.Base
 }
 
+// NewService creates a new virtual machines service bound to a shared client.
+//
+// Example:
+//
+//	vmService := vms.NewService(client)
+//	_ = vmService
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
@@ -27,6 +33,11 @@ type Handle struct {
 // This handle can be used to perform operations on the VM such as
 // spawning, resetting, extending, or terminating the instance.
 // The ID is typically obtained from machine listings or other API responses.
+//
+// Example:
+//
+//	vm := client.VMs.VM(12345)
+//	_ = vm
 func (s *Service) VM(id int) *Handle {
 	return &Handle{
 		client: s.base.Client,

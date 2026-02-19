@@ -77,6 +77,12 @@ type Service struct {
 	base service.Base
 }
 
+// NewService creates a new VPN service bound to a shared client.
+//
+// Example:
+//
+//	vpnService := vpn.NewService(client)
+//	_ = vpnService
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
@@ -94,6 +100,11 @@ type Handle struct {
 // downloading configuration files or switching servers.
 // The ID is typically obtained from the VPN Status
 // or from the Server.Data.Options results.
+//
+// Example:
+//
+//	endpoint := client.VPN.VPN(256)
+//	_ = endpoint
 func (s *Service) VPN(id int) *Handle {
 	return &Handle{
 		client: s.base.Client,
@@ -546,6 +557,12 @@ func (h *Handle) SwitchAndDownloadTCP(ctx context.Context) (VPNFileResponse, err
 	return h.switchAndDownload(ctx, false)
 }
 
+// ProlabServers creates a prolab VPN server query for a specific prolab ID.
+//
+// Example:
+//
+//	query := client.VPN.ProlabServers(8)
+//	_ = query
 func (s *Service) ProlabServers(id int) *ProlabQuery {
 	return &ProlabQuery{
 		client: s.base.Client,

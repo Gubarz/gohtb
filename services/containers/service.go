@@ -12,6 +12,12 @@ type Service struct {
 	base service.Base
 }
 
+// NewService creates a new containers service bound to a shared client.
+//
+// Example:
+//
+//	containerService := containers.NewService(client)
+//	_ = containerService
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
@@ -26,6 +32,11 @@ type Handle struct {
 // Container returns a handle for a specific container with the given ID.
 // This handle can be used to perform operations on the container such as
 // retrieving information, starting/stopping instances, or submitting flags.
+//
+// Example:
+//
+//	container := client.Containers.Container(12345)
+//	_ = container
 func (s *Service) Container(id int) *Handle {
 	return &Handle{
 		client: s.base.Client,

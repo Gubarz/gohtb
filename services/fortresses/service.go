@@ -13,6 +13,12 @@ type Service struct {
 	base service.Base
 }
 
+// NewService creates a new fortresses service bound to a shared client.
+//
+// Example:
+//
+//	fortressService := fortresses.NewService(client)
+//	_ = fortressService
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
@@ -69,6 +75,12 @@ type Handle struct {
 	id     int
 }
 
+// Fortress returns a handle for a specific fortress with the given ID.
+//
+// Example:
+//
+//	fortress := client.Fortresses.Fortress(1)
+//	_ = fortress
 func (s *Service) Fortress(id int) *Handle {
 	return &Handle{
 		client: s.base.Client,

@@ -204,6 +204,16 @@ func (q *MachineQuery) ByDifficulty(val string) *MachineQuery {
 	return q.ByDifficultyList(val)
 }
 
+// ByStateList filters machines by one or more lifecycle states.
+// Valid values include "active", "retired", and "unreleased".
+//
+// Example:
+//
+//	machines, err := query.ByStateList("active", "retired").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Machines in selected states: %d\n", len(machines.Data))
 func (q *MachineQuery) ByStateList(val ...string) *MachineQuery {
 	qc := ptr.Clone(q)
 	lowercased := make([]string, len(val))
@@ -214,6 +224,15 @@ func (q *MachineQuery) ByStateList(val ...string) *MachineQuery {
 	return qc
 }
 
+// ByState filters machines by a single lifecycle state.
+//
+// Example:
+//
+//	machines, err := query.ByState("active").Results(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Active machines: %d\n", len(machines.Data))
 func (q *MachineQuery) ByState(val string) *MachineQuery {
 	return q.ByStateList(val)
 }

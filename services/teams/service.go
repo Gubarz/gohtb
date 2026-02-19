@@ -12,6 +12,12 @@ type Service struct {
 	base service.Base
 }
 
+// NewService creates a new teams service bound to a shared client.
+//
+// Example:
+//
+//	teamService := teams.NewService(client)
+//	_ = teamService
 func NewService(client service.Client) *Service {
 	return &Service{
 		base: service.NewBase(client),
@@ -26,6 +32,11 @@ type Handle struct {
 // Team returns a handle for a specific team with the given ID.
 // This handle can be used to perform operations related to that team,
 // such as retrieving members, invitations, and activity data.
+//
+// Example:
+//
+//	team := client.Teams.Team(12345)
+//	_ = team
 func (s *Service) Team(id int) *Handle {
 	return &Handle{
 		client: s.base.Client,
