@@ -200,6 +200,18 @@ func (r *RateLimiter) Wrap(userCtx context.Context) context.Context {
 		return r.ctx
 	}
 
+	// Fast path: if limiter context is not cancelable (e.g. Background/TODO),
+	// there's nothing to merge and creating a bridge goroutine would leak.
+	if r.ctx == nil || r.ctx.Done() == nil {
+		return userCtx
+	}
+
+	// If caller context is not cancelable, prefer limiter context directly to
+	// avoid creating a bridge goroutine that may live indefinitely.
+	if userCtx.Done() == nil {
+		return r.ctx
+	}
+
 	ctx, cancel := context.WithCancel(userCtx)
 	go func() {
 		select {
@@ -352,6 +364,12 @@ func (t *APITransport) RoundTrip(req *http.Request) (*http.Response, error) {
 		if !shouldRetry || retries >= t.retryConfig.MaxRetries {
 			// If we shouldn't retry, or we've exhausted retries, break the loop.
 			break
+		}
+
+		// Close the current response body before retrying to avoid leaking
+		// connections/file descriptors across attempts.
+		if resp != nil && resp.Body != nil {
+			_ = resp.Body.Close()
 		}
 
 		// --- Wait Before Retrying ---
