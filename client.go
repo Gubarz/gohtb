@@ -88,8 +88,6 @@ type Option func(*Client)
 
 const (
 	baseHTBServer    = "https://labs.hackthebox.com/api"
-	v4HTBServer      = baseHTBServer + "/v4"
-	v5HTBServer      = baseHTBServer + "/v5"
 	defaultUserAgent = "htb-go/" + version
 	version          = "0.1"
 )
@@ -155,10 +153,10 @@ func New(token string, options ...Option) (*Client, error) {
 		}
 		c.httpClient = finalHTTPClient
 	}
-	c.rateLimiter = NewRateLimiter(context.Background(), c.logger)
 
+	v4Server := c.server + "/v4"
 	v4, err := v4client.NewClient(
-		v4HTBServer,
+		v4Server,
 		v4client.WithHTTPClient(finalHTTPClient),
 		v4client.WithRequestEditorFn(c.addHeaders),
 	)
@@ -166,8 +164,9 @@ func New(token string, options ...Option) (*Client, error) {
 		return nil, fmt.Errorf("failed to create API client: %w", err)
 	}
 
+	v5Server := c.server + "/v5"
 	v5, err := v5client.NewClientWithResponses(
-		v5HTBServer,
+		v5Server,
 		v5client.WithHTTPClient(finalHTTPClient),
 		v5client.WithRequestEditorFn(c.addHeaders),
 	)
@@ -260,10 +259,37 @@ func WithHTTPClient(customClient *http.Client) Option {
 	}
 }
 
-// Experimental returns the underlying OpenAPI client used to make requests.
+// ExperimentalClient provides direct access to the generated OpenAPI clients.
+//
+// This is intended as an advanced escape hatch for unsupported endpoints or
+// custom request/response handling.
+type ExperimentalClient struct {
+	client *Client
+}
+
+// V4 returns the generated v4 OpenAPI client.
+func (e ExperimentalClient) V4() v4client.ClientInterface {
+	return e.client.v4api
+}
+
+// V5 returns the generated v5 OpenAPI client.
+func (e ExperimentalClient) V5() v5client.ClientInterface {
+	return e.client.v5api
+}
+
+// WrapContext returns the context wrapped with the same limiter context used
+// by service calls in this SDK.
+func (e ExperimentalClient) WrapContext(ctx context.Context) context.Context {
+	if e.client == nil || e.client.rateLimiter == nil {
+		return ctx
+	}
+	return e.client.rateLimiter.Wrap(ctx)
+}
+
+// Experimental returns direct access to the underlying OpenAPI clients.
 //
 // WARNING: This is an advanced escape hatch for power users.
-// The returned client is auto-generated.
+// The returned clients are auto-generated.
 //
 // This method is:
 // - Unstable across versions (breaking changes will not be versioned or warned about)
@@ -271,8 +297,8 @@ func WithHTTPClient(customClient *http.Client) Option {
 // - Not covered by documentation or support
 //
 // Use at your own risk. If it breaks, you get to keep both pieces.
-func (c *Client) Experimental() v4client.ClientInterface {
-	return c.v4api
+func (c *Client) Experimental() ExperimentalClient {
+	return ExperimentalClient{client: c}
 }
 
 func isLikelyJWT(s string) error {
