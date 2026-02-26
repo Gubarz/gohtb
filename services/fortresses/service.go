@@ -80,7 +80,7 @@ func (s *Service) Fortress(id int) *Handle {
 
 type Data = v4Client.FortressData
 
-type Info struct {
+type InfoResponse struct {
 	Data         Data
 	ResponseMeta common.ResponseMeta
 }
@@ -96,21 +96,21 @@ type Info struct {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("Fortress: %s (ID: %d)\n", info.Data.Name, info.Data.Id)
-func (h *Handle) Info(ctx context.Context) (Info, error) {
+func (h *Handle) Info(ctx context.Context) (InfoResponse, error) {
 	resp, err := h.client.V4().GetFortress(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
 	)
 	if err != nil {
-		return Info{ResponseMeta: common.ResponseMeta{}}, err
+		return InfoResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
 	parsed, meta, err := common.Parse(resp, v4Client.ParseGetFortressResponse)
 	if err != nil {
-		return Info{ResponseMeta: meta}, err
+		return InfoResponse{ResponseMeta: meta}, err
 	}
 
-	return Info{
+	return InfoResponse{
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil

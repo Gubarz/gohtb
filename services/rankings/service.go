@@ -176,32 +176,50 @@ func (c *Country) Members(ctx context.Context) (CountryRankingsByMembersResponse
 	}, nil
 }
 
-type Team struct {
+type CurrentTeam struct {
 	client service.Client
 }
 
-// Team returns a handle for team ranking endpoints.
+// CurrentTeam returns a handle for current-team ranking endpoints.
 //
 // Example:
 //
-//	team := client.Rankings.Team(0)
+//	team := client.Rankings.CurrentTeam()
 //	_ = team
-func (s *Service) Team(id int) *Team {
-	return &Team{
+func (s *Service) CurrentTeam() *CurrentTeam {
+	return &CurrentTeam{
 		client: s.base.Client,
 	}
 }
 
-// Best retrieves global team best-history ranking data.
+type Team struct {
+	client service.Client
+	id     int
+}
+
+// Team returns a handle for team ranking endpoints scoped to a specific team ID.
 //
 // Example:
 //
-//	best, err := client.Rankings.Team(0).Best(ctx, "1Y")
+//	team := client.Rankings.Team(12345)
+//	_ = team
+func (s *Service) Team(id int) *Team {
+	return &Team{
+		client: s.base.Client,
+		id:     id,
+	}
+}
+
+// Best retrieves global current-team best-history ranking data.
+//
+// Example:
+//
+//	best, err := client.Rankings.CurrentTeam().Best(ctx, "1Y")
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("Team best rank: %d\n", best.Data.Rank)
-func (t *Team) Best(ctx context.Context, period string) (TeamBestResponse, error) {
+func (t *CurrentTeam) Best(ctx context.Context, period string) (TeamBestResponse, error) {
 	var p v4Client.GetRankingsTeamBestParamsPeriod = "1Y"
 	if period != "" {
 		p = v4Client.GetRankingsTeamBestParamsPeriod(period)
@@ -224,16 +242,16 @@ func (t *Team) Best(ctx context.Context, period string) (TeamBestResponse, error
 	}, nil
 }
 
-// Overview retrieves global team trend metrics.
+// Overview retrieves global current-team trend metrics.
 //
 // Example:
 //
-//	overview, err := client.Rankings.Team(0).Overview(ctx, "1Y")
+//	overview, err := client.Rankings.CurrentTeam().Overview(ctx, "1Y")
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("Team points diff: %d\n", overview.Data.PointsDiff)
-func (t *Team) Overview(ctx context.Context, period string) (TeamOverviewResponse, error) {
+func (t *CurrentTeam) Overview(ctx context.Context, period string) (TeamOverviewResponse, error) {
 	var p v4Client.GetRankingsTeamOverviewParamsPeriod = "1Y"
 	if period != "" {
 		p = v4Client.GetRankingsTeamOverviewParamsPeriod(period)
@@ -256,16 +274,16 @@ func (t *Team) Overview(ctx context.Context, period string) (TeamOverviewRespons
 	}, nil
 }
 
-// RankingBracket retrieves global team ranking bracket data.
+// RankingBracket retrieves global current-team ranking bracket data.
 //
 // Example:
 //
-//	bracket, err := client.Rankings.Team(0).RankingBracket(ctx)
+//	bracket, err := client.Rankings.CurrentTeam().RankingBracket(ctx)
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("Team bracket: %s\n", bracket.Data.CurrentBracket)
-func (t *Team) RankingBracket(ctx context.Context) (TeamBracketResponse, error) {
+func (t *CurrentTeam) RankingBracket(ctx context.Context) (TeamBracketResponse, error) {
 	resp, err := t.client.V4().GetRankingsTeamRankingBracket(t.client.Limiter().Wrap(ctx))
 	if err != nil {
 		return TeamBracketResponse{ResponseMeta: common.ResponseMeta{}}, err
@@ -280,24 +298,6 @@ func (t *Team) RankingBracket(ctx context.Context) (TeamBracketResponse, error) 
 	}, nil
 }
 
-// ByID returns a handle for team ranking endpoints scoped to a specific team ID.
-//
-// Example:
-//
-//	team := client.Rankings.Team(0).ByID(12345)
-//	_ = team
-func (t *Team) ByID(id int) *TeamByID {
-	return &TeamByID{
-		client: t.client,
-		id:     id,
-	}
-}
-
-type TeamByID struct {
-	client service.Client
-	id     int
-}
-
 type RankingsTeamBestData = v4Client.RankingsTeamBestData
 type TeamBestResponse struct {
 	Data         RankingsTeamBestData
@@ -308,12 +308,12 @@ type TeamBestResponse struct {
 //
 // Example:
 //
-//	best, err := client.Rankings.Team(0).ByID(12345).Best(ctx, "1Y")
+//	best, err := client.Rankings.Team(12345).Best(ctx, "1Y")
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("Team best rank: %d\n", best.Data.Rank)
-func (t *TeamByID) Best(ctx context.Context, period string) (TeamBestResponse, error) {
+func (t *Team) Best(ctx context.Context, period string) (TeamBestResponse, error) {
 	var p v4Client.GetRankingsTeamBestIdParamsPeriod = "1Y"
 	if period != "" {
 		p = v4Client.GetRankingsTeamBestIdParamsPeriod(period)
@@ -347,12 +347,12 @@ type TeamOverviewResponse struct {
 //
 // Example:
 //
-//	overview, err := client.Rankings.Team(0).ByID(12345).Overview(ctx, "1Y")
+//	overview, err := client.Rankings.Team(12345).Overview(ctx, "1Y")
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("Team points growth: %s\n", overview.Data.PointsGrowth)
-func (t *TeamByID) Overview(ctx context.Context, period string) (TeamOverviewResponse, error) {
+func (t *Team) Overview(ctx context.Context, period string) (TeamOverviewResponse, error) {
 	var p v4Client.GetRankingsTeamOverviewIdParamsPeriod = "1Y"
 	if period != "" {
 		p = v4Client.GetRankingsTeamOverviewIdParamsPeriod(period)
@@ -386,12 +386,12 @@ type TeamBracketResponse struct {
 //
 // Example:
 //
-//	bracket, err := client.Rankings.Team(0).ByID(12345).RankingBracket(ctx)
+//	bracket, err := client.Rankings.Team(12345).RankingBracket(ctx)
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("Team rank: %d\n", bracket.Data.Rank)
-func (t *TeamByID) RankingBracket(ctx context.Context) (TeamBracketResponse, error) {
+func (t *Team) RankingBracket(ctx context.Context) (TeamBracketResponse, error) {
 	resp, err := t.client.V4().GetRankingsTeamRankingBracketId(t.client.Limiter().Wrap(ctx),
 		v4Client.TeamId(t.id))
 	if err != nil {

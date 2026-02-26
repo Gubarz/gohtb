@@ -297,11 +297,11 @@ type EndResponse struct {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("Season-end rank: %d\n", end.Data.Rank.Current)
-func (h *Handle) End(ctx context.Context, userID int) (EndResponse, error) {
+func (h *Handle) End(ctx context.Context, userId int) (EndResponse, error) {
 	resp, err := h.client.V4().GetSeasonEnd(
 		h.client.Limiter().Wrap(ctx),
 		h.id,
-		userID,
+		userId,
 	)
 	if err != nil {
 		return EndResponse{ResponseMeta: common.ResponseMeta{}}, err
@@ -359,19 +359,19 @@ type UserRankRanksResponse struct {
 	ResponseMeta common.ResponseMeta
 }
 
-// UserRankByID retrieves season rank data for a specific user ID.
+// UserRankById retrieves season rank data for a specific user ID.
 //
 // Example:
 //
-//	rank, err := client.Seasons.UserRankByID(ctx, 12345)
+//	rank, err := client.Seasons.UserRankById(ctx, 12345)
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("User rank: %d\n", rank.Data.Rank)
-func (s *Service) UserRankByID(ctx context.Context, userID int) (UserRankRanksResponse, error) {
+func (s *Service) UserRankById(ctx context.Context, userId int) (UserRankRanksResponse, error) {
 	resp, err := s.base.Client.V4().GetSeasonUserUserIdRank(
 		s.base.Client.Limiter().Wrap(ctx),
-		userID,
+		userId,
 	)
 	if err != nil {
 		return UserRankRanksResponse{ResponseMeta: common.ResponseMeta{}}, err

@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
+	v5Client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/errutil"
 	"github.com/gubarz/gohtb/internal/extract"
@@ -192,36 +193,6 @@ func (h *Handle) DownloadTCP(ctx context.Context) (VPNFileResponse, error) {
 //	fmt.Printf("Connection status: %+v\n", status.Data)
 func (s *Service) Status(ctx context.Context) (ConnectionStatusResponse, error) {
 	resp, err := s.base.Client.V4().GetConnectionStatus(s.base.Client.Limiter().Wrap(ctx))
-	if err != nil {
-		return ConnectionStatusResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetConnectionStatusResponse)
-	if err != nil {
-		return ConnectionStatusResponse{ResponseMeta: meta}, err
-	}
-
-	return ConnectionStatusResponse{
-		Data:         *parsed.JSON200,
-		ResponseMeta: meta,
-	}, nil
-}
-
-// Connections retrieves information about current VPN connections.
-// This is an alias for Status() and returns the same connection status data.
-//
-// Example:
-//
-//	connections, err := client.VPN.Connections(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	for _, conn := range connections.Data {
-//		fmt.Printf("Connection: %+v\n", conn)
-//	}
-func (s *Service) Connections(ctx context.Context) (ConnectionStatusResponse, error) {
-	resp, err := s.base.Client.V4().GetConnectionStatus(s.base.Client.Limiter().Wrap(ctx))
-
 	if err != nil {
 		return ConnectionStatusResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
@@ -656,4 +627,133 @@ func (q *ProlabQuery) Results(ctx context.Context) (ConnectionsServersResponse, 
 		Data:         res,
 		ResponseMeta: meta,
 	}, nil
+}
+
+// ProductName identifies product names accepted by the connection status endpoint.
+type ProductName = v4Client.GetConnectionStatusProductnameParamsProductName
+
+const (
+	ProductNameCompetitive   ProductName = v4Client.GetConnectionStatusProductnameParamsProductNameCompetitive
+	ProductNameFortresses    ProductName = v4Client.GetConnectionStatusProductnameParamsProductNameFortresses
+	ProductNameLabs          ProductName = v4Client.GetConnectionStatusProductnameParamsProductNameLabs
+	ProductNameStartingPoint ProductName = v4Client.GetConnectionStatusProductnameParamsProductNameStartingPoint
+)
+
+type ProductConnectionStatusData = v4Client.ConnectionStatusProductResponse
+
+// ProductConnectionStatusResponse contains connection status data for a specific product/prolab.
+type ProductConnectionStatusResponse struct {
+	Data         ProductConnectionStatusData
+	ResponseMeta common.ResponseMeta
+}
+
+// StatusByProlab retrieves connection status for a specific prolab.
+//
+// Example:
+//
+//	status, err := client.VPN.StatusByProlab(ctx, 1)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Prolab connection status: %+v\n", status.Data)
+func (s *Service) StatusByProlab(ctx context.Context, prolabId int) (ProductConnectionStatusResponse, error) {
+	resp, err := s.base.Client.V4().GetConnectionStatusProlab(s.base.Client.Limiter().Wrap(ctx), prolabId)
+	if err != nil {
+		return ProductConnectionStatusResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetConnectionStatusProlabResponse)
+	if err != nil {
+		return ProductConnectionStatusResponse{ResponseMeta: meta}, err
+	}
+
+	return ProductConnectionStatusResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}
+
+// StatusByProductName retrieves connection status for a specific product name.
+//
+// Example:
+//
+//	status, err := client.VPN.StatusByProductName(ctx, vpn.ProductNameLabs)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Product connection status: %+v\n", status.Data)
+func (s *Service) StatusByProductName(ctx context.Context, productName ProductName) (ProductConnectionStatusResponse, error) {
+	resp, err := s.base.Client.V4().GetConnectionStatusProductname(
+		s.base.Client.Limiter().Wrap(ctx),
+		v4Client.GetConnectionStatusProductnameParamsProductName(productName),
+	)
+	if err != nil {
+		return ProductConnectionStatusResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetConnectionStatusProductnameResponse)
+	if err != nil {
+		return ProductConnectionStatusResponse{ResponseMeta: meta}, err
+	}
+
+	return ProductConnectionStatusResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}
+
+type ConnectionsV4Data = v4Client.ConnectionsResponse
+
+// ConnectionsV4Response contains v4 connections payload.
+type ConnectionsV4Response struct {
+	Data         ConnectionsV4Data
+	ResponseMeta common.ResponseMeta
+}
+
+// ConnectionsDeprecated retrieves v4 connection inventory from /connections.
+//
+// Example:
+//
+//	connections, err := client.VPN.ConnectionsDeprecated(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("V4 connections payload: %+v\n", connections.Data)
+func (s *Service) ConnectionsDeprecated(ctx context.Context) (ConnectionsV4Response, error) {
+	resp, err := s.base.Client.V4().GetConnections(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return ConnectionsV4Response{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetConnectionsResponse)
+	if err != nil {
+		return ConnectionsV4Response{ResponseMeta: meta}, err
+	}
+
+	return ConnectionsV4Response{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}
+
+type ConnectionsV5Data = v5Client.ConnectionsResponse
+
+// ConnectionsV5Response contains v5 connections payload.
+type ConnectionsV5Response struct {
+	Data         ConnectionsV5Data
+	ResponseMeta common.ResponseMeta
+}
+
+// Connections retrieves v5 connection inventory from /connections.
+//
+// Example:
+//
+//	connections, err := client.VPN.Connections(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("V5 connections payload: %+v\n", connections.Data)
+func (s *Service) Connections(ctx context.Context) (ConnectionsV5Response, error) {
+	resp, err := s.base.Client.V5().GetConnections(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return ConnectionsV5Response{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v5Client.ParseGetConnectionsResponse)
+	if err != nil {
+		return ConnectionsV5Response{ResponseMeta: meta}, err
+	}
+
+	return ConnectionsV5Response{Data: *parsed.JSON200, ResponseMeta: meta}, nil
 }

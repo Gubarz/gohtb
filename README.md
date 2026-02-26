@@ -59,15 +59,21 @@ func main() {
 
 Services currently exposed:
 
+- `Badges`
 - `Challenges`
 - `Containers`
 - `Fortresses`
+- `Home`
 - `Machines`
+- `Platform`
 - `Prolabs`
+- `PwnBox`
 - `Rankings`
+- `Reviews`
 - `Search`
 - `Seasons`
 - `Sherlocks`
+- `Tags`
 - `Teams`
 - `Tracks`
 - `Users`
@@ -75,11 +81,8 @@ Services currently exposed:
 - `VPN`
 
 Current known missing wrappers:
-- `Home` dashboard endpoints
-- `Platform` endpoints
-- `Reviews` endpoints
 - `Universities` endpoints
-- `Users` related ranking and stats endpoints
+- `StartingPoint` endpoints
 
 Use `client.Experimental()` for unsupported endpoints.
 

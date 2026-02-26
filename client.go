@@ -14,15 +14,21 @@ import (
 	v4client "github.com/gubarz/gohtb/httpclient/v4"
 	v5client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/logging"
+	"github.com/gubarz/gohtb/services/badges"
 	"github.com/gubarz/gohtb/services/challenges"
 	"github.com/gubarz/gohtb/services/containers"
 	"github.com/gubarz/gohtb/services/fortresses"
+	"github.com/gubarz/gohtb/services/home"
 	"github.com/gubarz/gohtb/services/machines"
+	"github.com/gubarz/gohtb/services/platform"
 	"github.com/gubarz/gohtb/services/prolabs"
+	"github.com/gubarz/gohtb/services/pwnbox"
 	"github.com/gubarz/gohtb/services/rankings"
+	"github.com/gubarz/gohtb/services/reviews"
 	"github.com/gubarz/gohtb/services/search"
 	"github.com/gubarz/gohtb/services/seasons"
 	"github.com/gubarz/gohtb/services/sherlocks"
+	"github.com/gubarz/gohtb/services/tags"
 	"github.com/gubarz/gohtb/services/teams"
 	"github.com/gubarz/gohtb/services/tracks"
 	"github.com/gubarz/gohtb/services/users"
@@ -48,15 +54,21 @@ type Client struct {
 
 	// Services
 
+	Badges     *badges.Service
 	Challenges *challenges.Service
 	Containers *containers.Service
 	Fortresses *fortresses.Service
+	Home       *home.Service
 	Machines   *machines.Service
+	Platform   *platform.Service
+	Pwnbox     *pwnbox.Service
 	Rankings   *rankings.Service
 	Prolabs    *prolabs.Service
+	Reviews    *reviews.Service
 	Search     *search.Service
 	Seasons    *seasons.Service
 	Sherlocks  *sherlocks.Service
+	Tags       *tags.Service
 	Teams      *teams.Service
 	Tracks     *tracks.Service
 	Users      *users.Service
@@ -91,7 +103,7 @@ type Option func(*Client)
 const (
 	baseHTBServer    = "https://labs.hackthebox.com/api"
 	defaultUserAgent = "gohtb/" + version
-	version          = "0.2.1"
+	version          = "0.2.2"
 )
 
 // New creates and configures a new Hack The Box API Client.
@@ -190,15 +202,21 @@ func (c *Client) addHeaders(ctx context.Context, req *http.Request) error {
 }
 
 func wireServices(c *Client) {
+	c.Badges = badges.NewService(c.asServiceClient())
 	c.Challenges = challenges.NewService(c.asServiceClient(), "challenge")
 	c.Containers = containers.NewService(c.asServiceClient())
 	c.Fortresses = fortresses.NewService(c.asServiceClient())
+	c.Home = home.NewService(c.asServiceClient())
 	c.Machines = machines.NewService(c.asServiceClient(), "machine")
+	c.Platform = platform.NewService(c.asServiceClient())
+	c.Pwnbox = pwnbox.NewService(c.asServiceClient())
 	c.Rankings = rankings.NewService(c.asServiceClient())
 	c.Prolabs = prolabs.NewService(c.asServiceClient())
+	c.Reviews = reviews.NewService(c.asServiceClient())
 	c.Search = search.NewService(c.asServiceClient())
 	c.Seasons = seasons.NewService(c.asServiceClient())
 	c.Sherlocks = sherlocks.NewService(c.asServiceClient())
+	c.Tags = tags.NewService(c.asServiceClient())
 	c.Teams = teams.NewService(c.asServiceClient())
 	c.Tracks = tracks.NewService(c.asServiceClient())
 	c.Users = users.NewService(c.asServiceClient())

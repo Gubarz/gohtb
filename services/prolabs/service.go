@@ -422,3 +422,106 @@ func (h *Handle) SubmitFlag(ctx context.Context, flag string) (SubmitFlagRespons
 		ResponseMeta: meta,
 	}, nil
 }
+
+// ChangelogsData contains prolab changelog entries.
+type ChangelogsData struct {
+	Data   []map[string]interface{}
+	Status bool
+}
+
+// ChangelogsResponse contains prolab changelog payload.
+type ChangelogsResponse struct {
+	Data         ChangelogsData
+	ResponseMeta common.ResponseMeta
+}
+
+// Changelogs retrieves changelog entries for the selected prolab.
+//
+// Example:
+//
+//	changelogs, err := client.Prolabs.Prolab(1).Changelogs(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Prolab changelog entries: %d\n", len(changelogs.Data.Data))
+func (h *Handle) Changelogs(ctx context.Context) (ChangelogsResponse, error) {
+	resp, err := h.client.V4().GetProlabChangelogs(h.client.Limiter().Wrap(ctx), h.id)
+	if err != nil {
+		return ChangelogsResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabChangelogsResponse)
+	if err != nil {
+		return ChangelogsResponse{ResponseMeta: meta}, err
+	}
+
+	return ChangelogsResponse{
+		Data: ChangelogsData{
+			Data:   parsed.JSON200.Data,
+			Status: parsed.JSON200.Status,
+		},
+		ResponseMeta: meta,
+	}, nil
+}
+
+type ReviewsData = v4Client.ProlabreviewsResponse
+
+// ReviewsResponse contains paginated prolab reviews.
+type ReviewsResponse struct {
+	Data         ReviewsData
+	ResponseMeta common.ResponseMeta
+}
+
+// Reviews retrieves reviews for the selected prolab.
+//
+// Example:
+//
+//	reviews, err := client.Prolabs.Prolab(1).Reviews(ctx, nil)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Prolab reviews payload: %+v\n", reviews.Data)
+func (h *Handle) Reviews(ctx context.Context, params *v4Client.GetProlabReviewsParams) (ReviewsResponse, error) {
+	resp, err := h.client.V4().GetProlabReviews(h.client.Limiter().Wrap(ctx), h.id, params)
+	if err != nil {
+		return ReviewsResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabReviewsResponse)
+	if err != nil {
+		return ReviewsResponse{ResponseMeta: meta}, err
+	}
+
+	return ReviewsResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}
+
+type ReviewsOverviewData = v4Client.ProlabreviewsOverviewResponse
+
+// ReviewsOverviewResponse contains aggregate review metrics for a prolab.
+type ReviewsOverviewResponse struct {
+	Data         ReviewsOverviewData
+	ResponseMeta common.ResponseMeta
+}
+
+// ReviewsOverview retrieves aggregate review metrics for the selected prolab.
+//
+// Example:
+//
+//	overview, err := client.Prolabs.Prolab(1).ReviewsOverview(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Prolab reviews overview: %+v\n", overview.Data)
+func (h *Handle) ReviewsOverview(ctx context.Context) (ReviewsOverviewResponse, error) {
+	resp, err := h.client.V4().GetProlabReviewsOverview(h.client.Limiter().Wrap(ctx), h.id)
+	if err != nil {
+		return ReviewsOverviewResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetProlabReviewsOverviewResponse)
+	if err != nil {
+		return ReviewsOverviewResponse{ResponseMeta: meta}, err
+	}
+
+	return ReviewsOverviewResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}

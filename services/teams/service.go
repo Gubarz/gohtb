@@ -363,3 +363,96 @@ func (h *Handle) Info(ctx context.Context) (TeamInfoResponse, error) {
 		ResponseMeta: meta,
 	}, nil
 }
+
+type ChartChallengeCategoriesData = v4Client.TeamChartChallengeTeamIdResponse
+
+// ChartChallengeCategoriesResponse contains challenge category chart data.
+type ChartChallengeCategoriesResponse struct {
+	Data         ChartChallengeCategoriesData
+	ResponseMeta common.ResponseMeta
+}
+
+// ChartChallengeCategories retrieves challenge category chart data for the team.
+//
+// Example:
+//
+//	chart, err := client.Teams.Team(12345).ChartChallengeCategories(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Challenge category chart: %+v\n", chart.Data)
+func (h *Handle) ChartChallengeCategories(ctx context.Context) (ChartChallengeCategoriesResponse, error) {
+	resp, err := h.client.V4().GetTeamChartChallengeCategories(h.client.Limiter().Wrap(ctx), h.id)
+	if err != nil {
+		return ChartChallengeCategoriesResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetTeamChartChallengeCategoriesResponse)
+	if err != nil {
+		return ChartChallengeCategoriesResponse{ResponseMeta: meta}, err
+	}
+
+	return ChartChallengeCategoriesResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}
+
+type ChartMachinesAttackData = v4Client.TeamChartMachinesAttackTeamIdResponse
+
+// ChartMachinesAttackResponse contains machine attack chart data.
+type ChartMachinesAttackResponse struct {
+	Data         ChartMachinesAttackData
+	ResponseMeta common.ResponseMeta
+}
+
+// ChartMachinesAttack retrieves machine attack chart data for the team.
+//
+// Example:
+//
+//	chart, err := client.Teams.Team(12345).ChartMachinesAttack(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Machine attack chart: %+v\n", chart.Data)
+func (h *Handle) ChartMachinesAttack(ctx context.Context) (ChartMachinesAttackResponse, error) {
+	resp, err := h.client.V4().GetTeamChartMachinesAttack(h.client.Limiter().Wrap(ctx), h.id)
+	if err != nil {
+		return ChartMachinesAttackResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetTeamChartMachinesAttackResponse)
+	if err != nil {
+		return ChartMachinesAttackResponse{ResponseMeta: meta}, err
+	}
+
+	return ChartMachinesAttackResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}
+
+type GraphData = v4Client.TeamGraphTeamIdResponse
+
+// GraphResponse contains team graph data.
+type GraphResponse struct {
+	Data         GraphData
+	ResponseMeta common.ResponseMeta
+}
+
+// Graph retrieves graph data for the team.
+//
+// Example:
+//
+//	graph, err := client.Teams.Team(12345).Graph(ctx, nil)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Team graph: %+v\n", graph.Data)
+func (h *Handle) Graph(ctx context.Context, params *v4Client.GetTeamGraphParams) (GraphResponse, error) {
+	resp, err := h.client.V4().GetTeamGraph(h.client.Limiter().Wrap(ctx), h.id, params)
+	if err != nil {
+		return GraphResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetTeamGraphResponse)
+	if err != nil {
+		return GraphResponse{ResponseMeta: meta}, err
+	}
+
+	return GraphResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}

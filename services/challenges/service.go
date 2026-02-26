@@ -660,3 +660,79 @@ func (h *Handle) Download(ctx context.Context) (DownloadResponse, error) {
 		},
 	}, nil
 }
+
+// ReviewRequest contains fields used to submit a challenge review.
+type ReviewRequest struct {
+	Headline string
+	Review   string
+	Stars    int
+}
+
+// Review submits a review for the selected challenge.
+//
+// Example:
+//
+//	result, err := client.Challenges.Challenge(12345).Review(ctx, challenges.ReviewRequest{
+//		Headline: "Great challenge",
+//		Review:   "Clear path and fun pivots.",
+//		Stars:    5,
+//	})
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Review submit result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
+func (h *Handle) Review(ctx context.Context, req ReviewRequest) (common.MessageResponse, error) {
+	body := v4Client.PostChallengeReviewFormdataRequestBody{
+		Headline: req.Headline,
+		Id:       h.id,
+		Review:   req.Review,
+		Stars:    v4Client.PostChallengeReviewFormdataBodyStars(req.Stars),
+	}
+
+	resp, err := h.client.V4().PostChallengeReviewWithFormdataBody(h.client.Limiter().Wrap(ctx), body)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostChallengeReviewResponse)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: meta}, err
+	}
+
+	return common.MessageResponse{
+		Data: common.Message{
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
+		},
+		ResponseMeta: meta,
+	}, nil
+}
+
+// MarkReviewHelpful marks a challenge review as helpful.
+//
+// Example:
+//
+//	result, err := client.Challenges.Challenge(12345).MarkReviewHelpful(ctx, 67890)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Helpful vote result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
+func (h *Handle) MarkReviewHelpful(ctx context.Context, reviewId int) (common.MessageResponse, error) {
+	resp, err := h.client.V4().PostChallengeHelpfull(h.client.Limiter().Wrap(ctx), reviewId)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParsePostChallengeHelpfullResponse)
+	if err != nil {
+		return common.MessageResponse{ResponseMeta: meta}, err
+	}
+
+	return common.MessageResponse{
+		Data: common.Message{
+			Message: parsed.JSON200.Message,
+			Success: parsed.JSON200.Success,
+		},
+		ResponseMeta: meta,
+	}, nil
+}

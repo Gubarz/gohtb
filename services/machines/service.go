@@ -1163,8 +1163,8 @@ type Tag = v4Client.Tag
 type TagCatalog struct {
 	Categories       []TagCategory
 	Tags             []Tag
-	TagsByID         map[int]Tag
-	CategoriesByID   map[int]TagCategory
+	TagsById         map[int]Tag
+	CategoriesById   map[int]TagCategory
 	TagsByCat        map[int][]Tag
 	TagsByName       map[string]Tag
 	CategoriesByName map[string]TagCategory
