@@ -343,3 +343,48 @@ func (s *Service) DeleteAppToken(ctx context.Context, req AppTokenDeleteRequest)
 		ResponseMeta: meta,
 	}, nil
 }
+
+type UserBadges = v4Client.ProfileBadgesItems
+
+type ProfileBadgesResponse struct {
+	Data         UserBadges
+	ResponseMeta common.ResponseMeta
+}
+
+// ProfileBadges retrieves badge information for the user.
+// This includes details about the badges the user has earned.
+//
+// Example:
+//
+//	badges, err := client.Users.User(12345).ProfileBadges(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("User has %d badges\n", len(badges.Data))
+//	profile, err := client.Users.User(12345).ProfileBasic(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	for _, badge := range badges.Data {
+//		fmt.Printf("Badge: %s (Date: %s)\n", badge.Name, badge.Pivot.CreatedAt)
+//	}
+func (h *Handle) ProfileBadges(ctx context.Context) (ProfileBadgesResponse, error) {
+	resp, err := h.client.V4().GetUserProfileBadges(
+		h.client.Limiter().Wrap(ctx),
+		h.id,
+		nil,
+	)
+	if err != nil {
+		return ProfileBadgesResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserProfileBadgesResponse)
+	if err != nil {
+		return ProfileBadgesResponse{ResponseMeta: meta}, err
+	}
+
+	return ProfileBadgesResponse{
+		Data:         parsed.JSON200.Badges,
+		ResponseMeta: meta,
+	}, nil
+}

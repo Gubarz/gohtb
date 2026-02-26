@@ -1,0 +1,9 @@
+package: v4
+output: ../../httpclient/v4/client.v4.gen.go
+generate:
+  models: true
+  client: true
+output-options:
+  prefer-skip-optional-pointer: true
+  overlay:
+    path: ../../api/v4/overlayv4.yaml

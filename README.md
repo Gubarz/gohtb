@@ -188,6 +188,19 @@ Rather than duplicate logic across projects, `gohtb` was designed to:
 This SDK is based on [UnOfficial HackTheBox OpenAPI spec](https://github.com/gubarz/unofficial-htb-api).
 It uses [oapi-codegen](https://github.com/deepmap/oapi-codegen) for base generation.
 
+### Regenerating HTTP Clients
+
+When API specs are updated:
+
+1. Move or update the spec files in `api/v4` or `api/v5`.
+2. Regenerate clients:
+
+```bash
+go generate ./httpclient/...
+```
+
+3. Commit both the updated `api/vX/*` files and generated `httpclient/vX/client.vX.gen.go` files.
+
 ## Contributions
 
 Contributions are welcome! If you’d like to add features, improve documentation, or report bugs, feel free to open an issue or submit a pull request.

@@ -68,39 +68,6 @@ func NewService(client service.Client, product string) *Service {
 	}
 }
 
-type MachinetagsListInfoItems = v4Client.MachinetagsListInfoItems
-
-type MachineTagResponse struct {
-	Data         TagCatalog
-	ResponseMeta common.ResponseMeta
-}
-
-// Tags retrieves the machine tag catalog.
-//
-// Example:
-//
-//	tags, err := client.Machines.Tags(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Machine tags: %d\n", len(tags.Data.Tags))
-func (s *Service) Tags(ctx context.Context) (MachineTagResponse, error) {
-	resp, err := s.base.Client.V4().GetMachineTagsList(s.base.Client.Limiter().Wrap(ctx))
-	if err != nil {
-		return MachineTagResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetMachineTagsListResponse)
-	if err != nil {
-		return MachineTagResponse{ResponseMeta: meta}, err
-	}
-
-	return MachineTagResponse{
-		Data:         buildCatalog(parsed.JSON200.Info),
-		ResponseMeta: meta,
-	}, nil
-}
-
 type ActiveMachineInfo = v4Client.ActiveMachineInfo
 
 type ActiveResponse struct {
@@ -1201,39 +1168,6 @@ type TagCatalog struct {
 	TagsByCat        map[int][]Tag
 	TagsByName       map[string]Tag
 	CategoriesByName map[string]TagCategory
-}
-
-func buildCatalog(cats []TagCategory) TagCatalog {
-	tagsByID := make(map[int]Tag, 512)
-	categoriesByID := make(map[int]TagCategory, len(cats))
-	tagsByCat := make(map[int][]Tag, len(cats))
-	tagsByName := make(map[string]Tag, 512)
-	categoriesByName := make(map[string]TagCategory, len(cats))
-
-	for _, c := range cats {
-		categoriesByID[c.Id] = c
-		categoriesByName[c.Name] = c
-		for _, t := range c.Tags {
-			tagsByID[t.Id] = t
-			tagsByCat[t.TagCategoryId] = append(tagsByCat[t.TagCategoryId], t)
-			tagsByName[t.Name] = t
-		}
-	}
-
-	var allTags []Tag
-	for _, t := range tagsByID {
-		allTags = append(allTags, t)
-	}
-
-	return TagCatalog{
-		Categories:       cats,
-		Tags:             allTags,
-		TagsByID:         tagsByID,
-		CategoriesByID:   categoriesByID,
-		TagsByCat:        tagsByCat,
-		TagsByName:       tagsByName,
-		CategoriesByName: categoriesByName,
-	}
 }
 
 func feedbackForChart(u v4Client.DifficultyChart) DifficultyChart {

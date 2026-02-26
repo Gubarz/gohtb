@@ -90,8 +90,8 @@ type Option func(*Client)
 
 const (
 	baseHTBServer    = "https://labs.hackthebox.com/api"
-	defaultUserAgent = "htb-go/" + version
-	version          = "0.2"
+	defaultUserAgent = "gohtb/" + version
+	version          = "0.2.1"
 )
 
 // New creates and configures a new Hack The Box API Client.

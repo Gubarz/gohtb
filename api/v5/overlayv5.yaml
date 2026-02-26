@@ -1,0 +1,38 @@
+overlay: 1.0.0
+info:
+  title: Local tweaks
+  version: 1.0.0
+actions:
+  - target: $.components.parameters.State.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.SortBy.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.SortType.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Free.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Page.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.PerPage.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.MachineDifficulty.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Os.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Keyword.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.ShowCompleted.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Todo.schema
+    update:
+      x-go-type-skip-optional-pointer: false

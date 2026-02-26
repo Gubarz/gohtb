@@ -1,0 +1,77 @@
+overlay: 1.0.0
+info:
+  title: Local tweaks
+  version: 1.0.0
+actions:
+  - target: $.components.parameters.SearchQuery.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.AfterDate.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Rank.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Status.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.State.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.SortBy.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.SortType.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Category.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Todo.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Product.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Free.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Page.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.PerPage.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Difficulty.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Os.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Keyword.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.ShowCompleted.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Tags.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.PeriodQuery.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Query.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.SearchTags.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.SherlockSortBy.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.NPastDays.schema
+    update:
+      x-go-type-skip-optional-pointer: false
+  - target: $.components.parameters.Search.schema
+    update:
+      x-go-type-skip-optional-pointer: false

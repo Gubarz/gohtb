@@ -305,7 +305,7 @@ func (h *Handle) Progress(ctx context.Context) (ProgressResponse, error) {
 }
 
 type RatingResponse struct {
-	Data         string
+	Data         float32
 	ResponseMeta common.ResponseMeta
 }
 
@@ -331,8 +331,15 @@ func (h *Handle) Rating(ctx context.Context) (RatingResponse, error) {
 	if err != nil {
 		return RatingResponse{ResponseMeta: meta}, err
 	}
+
+	var rating float32
+	rating, err = parsed.JSON200.Data.Rating.AsProlabRatingDataRating0()
+	if err != nil {
+		return RatingResponse{ResponseMeta: meta}, err
+	}
+
 	return RatingResponse{
-		Data:         parsed.JSON200.Data.Rating,
+		Data:         rating,
 		ResponseMeta: meta,
 	}, nil
 }

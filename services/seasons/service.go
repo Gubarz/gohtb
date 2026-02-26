@@ -354,6 +354,11 @@ func (h *Handle) MachinesCompleted(ctx context.Context) (CompletedMachinesRespon
 	}, nil
 }
 
+type UserRankRanksResponse struct {
+	Data         []SeasonUserRankData
+	ResponseMeta common.ResponseMeta
+}
+
 // UserRankByID retrieves season rank data for a specific user ID.
 //
 // Example:
@@ -363,21 +368,21 @@ func (h *Handle) MachinesCompleted(ctx context.Context) (CompletedMachinesRespon
 //		log.Fatal(err)
 //	}
 //	fmt.Printf("User rank: %d\n", rank.Data.Rank)
-func (s *Service) UserRankByID(ctx context.Context, userID int) (UserRankResponse, error) {
+func (s *Service) UserRankByID(ctx context.Context, userID int) (UserRankRanksResponse, error) {
 	resp, err := s.base.Client.V4().GetSeasonUserUserIdRank(
 		s.base.Client.Limiter().Wrap(ctx),
 		userID,
 	)
 	if err != nil {
-		return UserRankResponse{ResponseMeta: common.ResponseMeta{}}, err
+		return UserRankRanksResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
 	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonUserUserIdRankResponse)
 	if err != nil {
-		return UserRankResponse{ResponseMeta: meta}, err
+		return UserRankRanksResponse{ResponseMeta: meta}, err
 	}
 
-	return UserRankResponse{
+	return UserRankRanksResponse{
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil

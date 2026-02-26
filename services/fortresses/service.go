@@ -2,7 +2,6 @@ package fortresses
 
 import (
 	"context"
-	"sort"
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	"github.com/gubarz/gohtb/internal/common"
@@ -25,10 +24,10 @@ func NewService(client service.Client) *Service {
 	}
 }
 
-type Item = v4Client.Fortress
+type Fortress = v4Client.Fortress
 
 type ListResponse struct {
-	Data         []Item
+	Data         []Fortress
 	ResponseMeta common.ResponseMeta
 }
 
@@ -55,17 +54,8 @@ func (s *Service) List(ctx context.Context) (ListResponse, error) {
 		return ListResponse{ResponseMeta: meta}, err
 	}
 
-	var list []Item
-	if parsed.JSON200.Data != nil {
-		for _, fortress := range parsed.JSON200.Data {
-			list = append(list, fortress)
-		}
-	}
-	sort.Slice(list, func(i, j int) bool {
-		return list[i].Id < list[j].Id
-	})
 	return ListResponse{
-		Data:         list,
+		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
 }
