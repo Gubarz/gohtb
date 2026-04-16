@@ -3,7 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
+	"io"
 	"log"
+	"net/http"
 	"os"
 
 	"github.com/gubarz/gohtb"
@@ -53,15 +55,32 @@ func main() {
 				// Check if challenge has downloadable files
 				if info.Data.FileName != "" {
 					fmt.Printf("\n=== Downloading Challenge Files ===\n")
-					download, err := client.Challenges.Challenge(firstChallenge.Id).Download(ctx)
+					resp, err := client.Challenges.Challenge(firstChallenge.Id).DownloadLink(ctx)
 					if err != nil {
-						log.Printf("Failed to download files: %v\n", err)
+						log.Printf("Failed to get download link: %v\n", err)
 					} else {
-						err = os.WriteFile(info.Data.FileName, download.Data, 0644)
+						fmt.Printf("Download URL: %s\n", resp.Data.Url)
+
+						// Download the file
+						downloadResp, err := http.Get(resp.Data.Url)
+						if err != nil {
+							log.Printf("Failed to download file: %v\n", err)
+							return
+						}
+
+						downloadData, err := io.ReadAll(downloadResp.Body)
+						if err != nil {
+							log.Printf("Failed to read downloaded data: %v\n", err)
+							return
+						}
+						downloadResp.Body.Close()
+
+						// Save the file locally
+						err = os.WriteFile(info.Data.FileName, downloadData, 0644)
 						if err != nil {
 							log.Printf("Failed to save file: %v\n", err)
 						} else {
-							fmt.Printf("Downloaded: %s (%d bytes)\n", info.Data.FileName, len(download.Data))
+							fmt.Printf("Downloaded: %s (%d bytes)\n", info.Data.FileName, len(downloadData))
 						}
 					}
 				} else {

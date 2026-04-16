@@ -56,14 +56,4 @@ func main() {
 	} else {
 		fmt.Printf("Team Motto: %s", info.Data.Motto)
 	}
-
-	// team stats
-	fmt.Printf("\n=== Team Stats ===\n")
-	stats, err := client.Teams.Team(teamID).Stats(ctx)
-	if err != nil {
-		log.Printf("failed to get team stats: %v\n", err)
-	} else {
-		fmt.Printf("team stats:\n Bloods: %d\n System Owns: %d\n User Owns: %d", stats.Data.FirstBloods, stats.Data.SystemOwns, stats.Data.UserOwns)
-	}
-
 }

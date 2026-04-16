@@ -87,49 +87,6 @@ func (h *Handle) ProfileBasic(ctx context.Context) (ProfileBasicResponse, error)
 	}, nil
 }
 
-type UserActivityItem = v4Client.UserActivityItem
-
-type ProfileActivityResponse struct {
-	Data         []UserActivityItem
-	ResponseMeta common.ResponseMeta
-}
-
-// ProfileActivityDeprecated retrieves the activity history for the user.
-// This includes recent actions, submissions, and other user activities
-// on the HackTheBox platform.
-//
-// Note: This method is considered deprecated. If you want starting point
-// activities you still need to use this method.
-//
-// Example:
-//
-//	activity, err := client.Users.User(12345).ProfileActivityDeprecated(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	for _, act := range activity.Data {
-//		fmt.Printf("Activity: %s at %s\n", act.Type, act.Date)
-//	}
-func (h *Handle) ProfileActivityDeprecated(ctx context.Context) (ProfileActivityResponse, error) {
-	resp, err := h.client.V4().GetUserProfileActivity(
-		h.client.Limiter().Wrap(ctx),
-		h.id,
-	)
-	if err != nil {
-		return ProfileActivityResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserProfileActivityResponse)
-	if err != nil {
-		return ProfileActivityResponse{ResponseMeta: meta}, err
-	}
-
-	return ProfileActivityResponse{
-		Data:         parsed.JSON200.Profile.Activity,
-		ResponseMeta: meta,
-	}, nil
-}
-
 type UserProfileActivityItem = v5Client.UserProfileActivityItem
 
 type UserProfileActivity struct {
@@ -474,68 +431,6 @@ func (s *Service) ConnectionStatus(ctx context.Context) (ConnectionStatusRespons
 	}
 
 	return ConnectionStatusResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
-}
-
-type DashboardData = v4Client.UserDashboardResponse
-
-// DashboardResponse contains dashboard payload for current user.
-type DashboardResponse struct {
-	Data         DashboardData
-	ResponseMeta common.ResponseMeta
-}
-
-// Dashboard retrieves v4 user dashboard data.
-//
-// Example:
-//
-//	dashboard, err := client.Users.Dashboard(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Dashboard data: %+v\n", dashboard.Data)
-func (s *Service) Dashboard(ctx context.Context) (DashboardResponse, error) {
-	resp, err := s.base.Client.V4().GetUserDashboard(s.base.Client.Limiter().Wrap(ctx))
-	if err != nil {
-		return DashboardResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserDashboardResponse)
-	if err != nil {
-		return DashboardResponse{ResponseMeta: meta}, err
-	}
-
-	return DashboardResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
-}
-
-type DashboardTabloidData = v4Client.UserDashboardTabloidResponse
-
-// DashboardTabloidResponse contains dashboard tabloid payload.
-type DashboardTabloidResponse struct {
-	Data         DashboardTabloidData
-	ResponseMeta common.ResponseMeta
-}
-
-// DashboardTabloid retrieves v4 user dashboard tabloid data.
-//
-// Example:
-//
-//	tabloid, err := client.Users.DashboardTabloid(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Dashboard tabloid: %+v\n", tabloid.Data)
-func (s *Service) DashboardTabloid(ctx context.Context) (DashboardTabloidResponse, error) {
-	resp, err := s.base.Client.V4().GetUserDashboardTabloid(s.base.Client.Limiter().Wrap(ctx))
-	if err != nil {
-		return DashboardTabloidResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserDashboardTabloidResponse)
-	if err != nil {
-		return DashboardTabloidResponse{ResponseMeta: meta}, err
-	}
-
-	return DashboardTabloidResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
 }
 
 type DashboardFavoritesData = v5Client.UserDashboardFavoritesResponse

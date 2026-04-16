@@ -3,15 +3,6 @@ info:
   title: Local tweaks
   version: 1.0.0
 actions:
-  - target: $.components.parameters.SearchQuery.schema
-    update:
-      x-go-type-skip-optional-pointer: false
-  - target: $.components.parameters.AfterDate.schema
-    update:
-      x-go-type-skip-optional-pointer: false
-  - target: $.components.parameters.Rank.schema
-    update:
-      x-go-type-skip-optional-pointer: false
   - target: $.components.parameters.Status.schema
     update:
       x-go-type-skip-optional-pointer: false
@@ -33,9 +24,6 @@ actions:
   - target: $.components.parameters.Product.schema
     update:
       x-go-type-skip-optional-pointer: false
-  - target: $.components.parameters.Free.schema
-    update:
-      x-go-type-skip-optional-pointer: false
   - target: $.components.parameters.Page.schema
     update:
       x-go-type-skip-optional-pointer: false
@@ -45,16 +33,7 @@ actions:
   - target: $.components.parameters.Difficulty.schema
     update:
       x-go-type-skip-optional-pointer: false
-  - target: $.components.parameters.Os.schema
-    update:
-      x-go-type-skip-optional-pointer: false
   - target: $.components.parameters.Keyword.schema
-    update:
-      x-go-type-skip-optional-pointer: false
-  - target: $.components.parameters.ShowCompleted.schema
-    update:
-      x-go-type-skip-optional-pointer: false
-  - target: $.components.parameters.Tags.schema
     update:
       x-go-type-skip-optional-pointer: false
   - target: $.components.parameters.PeriodQuery.schema

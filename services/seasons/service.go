@@ -115,40 +115,6 @@ func (h *Handle) UserRank(ctx context.Context) (UserRankResponse, error) {
 	}, nil
 }
 
-type SeasonUserFollowerData = v4Client.SeasonUserFollowerData
-
-type UserFollowersResponse struct {
-	Data         SeasonUserFollowerData
-	ResponseMeta common.ResponseMeta
-}
-
-// UserFollowers retrieves follower information for the current user in the specified season.
-// This includes details about users following the authenticated user during the season.
-//
-// Example:
-//
-//	followers, err := client.Seasons.Season(123).UserFollowers(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Top ranked followers: %d\n", len(followers.Data.TopRankedFollowers))
-func (h *Handle) UserFollowers(ctx context.Context) (UserFollowersResponse, error) {
-	resp, err := h.client.V4().GetSeasonUserFollowers(h.client.Limiter().Wrap(ctx), h.id)
-	if err != nil {
-		return UserFollowersResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonUserFollowersResponse)
-	if err != nil {
-		return UserFollowersResponse{ResponseMeta: meta}, err
-	}
-
-	return UserFollowersResponse{
-		Data:         parsed.JSON200.Data,
-		ResponseMeta: meta,
-	}, nil
-}
-
 type SeasonListDataItem = v4Client.SeasonListDataItem
 
 type ListResponse struct {
@@ -198,15 +164,15 @@ type MachinesResponse struct {
 //
 // Example:
 //
-//	machines, err := client.Seasons.Machines(ctx)
+//	machines, err := client.Seasons.Season(3).Machines(ctx)
 //	if err != nil {
 //		log.Fatal(err)
 //	}
 //	for _, machine := range machines.Data {
 //		fmt.Printf("Machine: %s (Difficulty: %s)\n", machine.Name, machine.DifficultyText)
 //	}
-func (s *Service) Machines(ctx context.Context) (MachinesResponse, error) {
-	resp, err := s.base.Client.V4().GetSeasonMachines(s.base.Client.Limiter().Wrap(ctx))
+func (h *Handle) Machines(ctx context.Context) (MachinesResponse, error) {
+	resp, err := h.client.V4().GetSeasonMachines(h.client.Limiter().Wrap(ctx), h.id)
 	if err != nil {
 		return MachinesResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
@@ -280,79 +246,6 @@ const (
 	LeaderboardTopPeriod6M LeaderboardTopPeriod = v4Client.GetSeasonLeaderboardTopParamsPeriodN6M
 	LeaderboardTopPeriod1Y LeaderboardTopPeriod = v4Client.GetSeasonLeaderboardTopParamsPeriodN1Y
 )
-
-type EndData = v4Client.SeasonEndData
-
-type EndResponse struct {
-	Data         EndData
-	ResponseMeta common.ResponseMeta
-}
-
-// End retrieves season-end summary data for a specific user in this season.
-//
-// Example:
-//
-//	end, err := client.Seasons.Season(3).End(ctx, 12345)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Season-end rank: %d\n", end.Data.Rank.Current)
-func (h *Handle) End(ctx context.Context, userId int) (EndResponse, error) {
-	resp, err := h.client.V4().GetSeasonEnd(
-		h.client.Limiter().Wrap(ctx),
-		h.id,
-		userId,
-	)
-	if err != nil {
-		return EndResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonEndResponse)
-	if err != nil {
-		return EndResponse{ResponseMeta: meta}, err
-	}
-
-	return EndResponse{
-		Data:         parsed.JSON200.Data,
-		ResponseMeta: meta,
-	}, nil
-}
-
-type CompletedMachinesData = v4Client.SeasonCompletedMachineData
-
-type CompletedMachinesResponse struct {
-	Data         CompletedMachinesData
-	ResponseMeta common.ResponseMeta
-}
-
-// MachinesCompleted retrieves completed machine counters for this season.
-//
-// Example:
-//
-//	completed, err := client.Seasons.Season(3).MachinesCompleted(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Season flags: %d\n", completed.Data.SeasonFlags)
-func (h *Handle) MachinesCompleted(ctx context.Context) (CompletedMachinesResponse, error) {
-	resp, err := h.client.V4().GetSeasonMachinesCompleted(
-		h.client.Limiter().Wrap(ctx),
-		h.id,
-	)
-	if err != nil {
-		return CompletedMachinesResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonMachinesCompletedResponse)
-	if err != nil {
-		return CompletedMachinesResponse{ResponseMeta: meta}, err
-	}
-
-	return CompletedMachinesResponse{
-		Data:         parsed.JSON200.Data,
-		ResponseMeta: meta,
-	}, nil
-}
 
 type UserRankRanksResponse struct {
 	Data         []SeasonUserRankData

@@ -99,6 +99,13 @@ const (
 	SortTypeDesc SortType = "desc"
 )
 
+// Defines values for SpTier.
+const (
+	SpTierN1 SpTier = 1
+	SpTierN2 SpTier = 2
+	SpTierN3 SpTier = 3
+)
+
 // Defines values for Todo.
 const (
 	TodoN1 Todo = 1
@@ -166,6 +173,13 @@ const (
 // Defines values for GetMachinesParamsTodo.
 const (
 	GetMachinesParamsTodoN1 GetMachinesParamsTodo = 1
+)
+
+// Defines values for GetMachinesParamsSpTier.
+const (
+	GetMachinesParamsSpTierN1 GetMachinesParamsSpTier = 1
+	GetMachinesParamsSpTierN2 GetMachinesParamsSpTier = 2
+	GetMachinesParamsSpTierN3 GetMachinesParamsSpTier = 3
 )
 
 // Defines values for GetUserProfileContentParamsType.
@@ -405,12 +419,12 @@ type MachinesResponse struct {
 // Meta Schema definition for Meta
 type Meta struct {
 	CurrentPage int             `json:"current_page,omitempty"`
-	From        int             `json:"from,omitempty"`
+	From        int             `json:"from"`
 	LastPage    int             `json:"last_page,omitempty"`
 	Links       PaginationLinks `json:"links,omitempty"`
 	Path        string          `json:"path,omitempty"`
 	PerPage     int             `json:"per_page,omitempty"`
-	To          int             `json:"to,omitempty"`
+	To          int             `json:"to"`
 	Total       int             `json:"total,omitempty"`
 }
 
@@ -431,7 +445,6 @@ type NewRank struct {
 type PaginationLink struct {
 	Active bool   `json:"active,omitempty"`
 	Label  string `json:"label,omitempty"`
-	Page   int    `json:"page"`
 	Url    string `json:"url"`
 }
 
@@ -622,6 +635,9 @@ type UserDashboardProlab struct {
 
 	// Identifier Short identifier or slug.
 	Identifier string `json:"identifier"`
+
+	// Mini Is item a mini-prolab or not
+	Mini bool `json:"mini"`
 
 	// Name Pro Lab display name.
 	Name string `json:"name"`
@@ -1015,6 +1031,9 @@ type SortBy string
 // SortType defines model for SortType.
 type SortType string
 
+// SpTier defines model for SpTier.
+type SpTier int
+
 // State defines model for State.
 type State = []string
 
@@ -1073,6 +1092,9 @@ type GetMachinesParams struct {
 
 	// Todo Filter ToDo
 	Todo *GetMachinesParamsTodo `form:"todo,omitempty" json:"todo,omitempty"`
+
+	// SpTier Filter by StartingPoint Tier (tier + 1), ie if you want StartingPoint 0 machines you use spTier=1
+	SpTier *GetMachinesParamsSpTier `form:"spTier,omitempty" json:"spTier,omitempty"`
 }
 
 // GetMachinesParamsState defines parameters for GetMachines.
@@ -1098,6 +1120,9 @@ type GetMachinesParamsFree int
 
 // GetMachinesParamsTodo defines parameters for GetMachines.
 type GetMachinesParamsTodo int
+
+// GetMachinesParamsSpTier defines parameters for GetMachines.
+type GetMachinesParamsSpTier int
 
 // GetUserProfileActivityParams defines parameters for GetUserProfileActivity.
 type GetUserProfileActivityParams struct {
@@ -1285,7 +1310,7 @@ func (t UserProfileActivityItem) AsUserProfileActivityMachineOwn() (UserProfileA
 
 // FromUserProfileActivityMachineOwn overwrites any union data inside the UserProfileActivityItem as the provided UserProfileActivityMachineOwn
 func (t *UserProfileActivityItem) FromUserProfileActivityMachineOwn(v UserProfileActivityMachineOwn) error {
-	v.Type = "root"
+	v.Type = "user"
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
@@ -1293,7 +1318,7 @@ func (t *UserProfileActivityItem) FromUserProfileActivityMachineOwn(v UserProfil
 
 // MergeUserProfileActivityMachineOwn performs a merge with any union data inside the UserProfileActivityItem, using the provided UserProfileActivityMachineOwn
 func (t *UserProfileActivityItem) MergeUserProfileActivityMachineOwn(v UserProfileActivityMachineOwn) error {
-	v.Type = "root"
+	v.Type = "user"
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -1408,10 +1433,10 @@ func (t UserProfileActivityItem) ValueByDiscriminator() (interface{}, error) {
 		return t.AsUserProfileActivityFortress()
 	case "prolab":
 		return t.AsUserProfileActivityProlab()
-	case "root":
-		return t.AsUserProfileActivityMachineOwn()
 	case "sherlock":
 		return t.AsUserProfileActivitySherlock()
+	case "user":
+		return t.AsUserProfileActivityMachineOwn()
 	default:
 		return nil, errors.New("unknown discriminator value: " + discriminator)
 	}
@@ -2000,6 +2025,22 @@ func NewGetMachinesRequest(server string, params *GetMachinesParams) (*http.Requ
 		if params.Todo != nil {
 
 			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "todo", runtime.ParamLocationQuery, *params.Todo); err != nil {
+				return nil, err
+			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
+				return nil, err
+			} else {
+				for k, v := range parsed {
+					for _, v2 := range v {
+						queryValues.Add(k, v2)
+					}
+				}
+			}
+
+		}
+
+		if params.SpTier != nil {
+
+			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "spTier", runtime.ParamLocationQuery, *params.SpTier); err != nil {
 				return nil, err
 			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
 				return nil, err

@@ -176,7 +176,7 @@ func (h *Handle) Play(ctx context.Context) (PlayResponse, error) {
 	}, nil
 }
 
-type SherlockDownloadLink = v4Client.SherlockDownloadLink
+type SherlockDownloadLink = v4Client.DownloadLink
 
 type DownloadResponse struct {
 	Data         SherlockDownloadLink

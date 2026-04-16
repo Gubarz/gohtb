@@ -24,12 +24,12 @@ func NewService(client service.Client) *Service {
 }
 
 // Product identifies a reviewable product type.
-type Product = v4Client.GetReviewParamsProduct
+type Product = string
 
 const (
-	ProductChallenge Product = v4Client.GetReviewParamsProductChallenge
-	ProductMachine   Product = v4Client.GetReviewParamsProductMachine
-	ProductSherlock  Product = v4Client.GetReviewParamsProductSherlock
+	ProductChallenge Product = "challenge"
+	ProductMachine   Product = "machine"
+	ProductSherlock  Product = "sherlock"
 )
 
 // Handle scopes review operations to a specific product and product ID.
@@ -37,14 +37,6 @@ type Handle struct {
 	client    service.Client
 	product   Product
 	productId int
-}
-
-type ReviewData = v4Client.ReviewProductResponse
-
-// ReviewResponse contains review summary data for a product.
-type ReviewResponse struct {
-	Data         ReviewData
-	ResponseMeta common.ResponseMeta
 }
 
 type ReviewPaginatedData = v4Client.ReviewProductPaginatedResponse
@@ -97,33 +89,6 @@ func (s *Service) Machine(machineId int) *Handle {
 //	_ = sherlockReviews
 func (s *Service) Sherlock(sherlockId int) *Handle {
 	return s.Target(ProductSherlock, sherlockId)
-}
-
-// Info retrieves review summary information for the handle target.
-//
-// Example:
-//
-//	review, err := client.Reviews.Machine(12345).Info(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Review data: %+v\n", review.Data)
-func (h *Handle) Info(ctx context.Context) (ReviewResponse, error) {
-	resp, err := h.client.V4().GetReview(
-		h.client.Limiter().Wrap(ctx),
-		v4Client.GetReviewParamsProduct(h.product),
-		h.productId,
-	)
-	if err != nil {
-		return ReviewResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetReviewResponse)
-	if err != nil {
-		return ReviewResponse{ResponseMeta: meta}, err
-	}
-
-	return ReviewResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
 }
 
 // List creates a paginated review query for the handle target.

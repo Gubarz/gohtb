@@ -3,6 +3,9 @@ info:
   title: Local tweaks
   version: 1.0.0
 actions:
+  - target: $.components.parameters.SpTier.schema
+    update:
+      x-go-type-skip-optional-pointer: false
   - target: $.components.parameters.State.schema
     update:
       x-go-type-skip-optional-pointer: false

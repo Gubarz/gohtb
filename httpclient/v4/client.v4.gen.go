@@ -43,12 +43,6 @@ const (
 	Unranked UserRanking1 = "unranked"
 )
 
-// Defines values for Free.
-const (
-	FreeN0 Free = 0
-	FreeN1 Free = 1
-)
-
 // Defines values for Leaderboard.
 const (
 	LeaderboardPlayers Leaderboard = "players"
@@ -81,14 +75,6 @@ const (
 	ProductStartingPoint Product = "starting_point"
 )
 
-// Defines values for ProductName.
-const (
-	ProductNameCompetitive   ProductName = "competitive"
-	ProductNameFortresses    ProductName = "fortresses"
-	ProductNameLabs          ProductName = "labs"
-	ProductNameStartingPoint ProductName = "starting_point"
-)
-
 // Defines values for ProductPath.
 const (
 	ProductPathChallenge ProductPath = "challenge"
@@ -102,12 +88,6 @@ const (
 	SherlockSortByName     SherlockSortBy = "name"
 	SherlockSortByRating   SherlockSortBy = "rating"
 	SherlockSortBySolves   SherlockSortBy = "solves"
-)
-
-// Defines values for ShowCompleted.
-const (
-	ShowCompletedComplete   ShowCompleted = "complete"
-	ShowCompletedIncomplete ShowCompleted = "incomplete"
 )
 
 // Defines values for SortBy.
@@ -135,15 +115,6 @@ const (
 // Defines values for Todo.
 const (
 	TodoN1 Todo = 1
-)
-
-// Defines values for PostChallengeReviewFormdataBodyStars.
-const (
-	PostChallengeReviewFormdataBodyStarsN1 PostChallengeReviewFormdataBodyStars = 1
-	PostChallengeReviewFormdataBodyStarsN2 PostChallengeReviewFormdataBodyStars = 2
-	PostChallengeReviewFormdataBodyStarsN3 PostChallengeReviewFormdataBodyStars = 3
-	PostChallengeReviewFormdataBodyStarsN4 PostChallengeReviewFormdataBodyStars = 4
-	PostChallengeReviewFormdataBodyStarsN5 PostChallengeReviewFormdataBodyStars = 5
 )
 
 // Defines values for GetChallengesParamsStatus.
@@ -189,242 +160,12 @@ const (
 	GetChallengesParamsTodoN1 GetChallengesParamsTodo = 1
 )
 
-// Defines values for GetConnectionStatusProductnameParamsProductName.
-const (
-	GetConnectionStatusProductnameParamsProductNameCompetitive   GetConnectionStatusProductnameParamsProductName = "competitive"
-	GetConnectionStatusProductnameParamsProductNameFortresses    GetConnectionStatusProductnameParamsProductName = "fortresses"
-	GetConnectionStatusProductnameParamsProductNameLabs          GetConnectionStatusProductnameParamsProductName = "labs"
-	GetConnectionStatusProductnameParamsProductNameStartingPoint GetConnectionStatusProductnameParamsProductName = "starting_point"
-)
-
 // Defines values for GetConnectionsServersParamsProduct.
 const (
 	GetConnectionsServersParamsProductCompetitive   GetConnectionsServersParamsProduct = "competitive"
 	GetConnectionsServersParamsProductFortresses    GetConnectionsServersParamsProduct = "fortresses"
 	GetConnectionsServersParamsProductLabs          GetConnectionsServersParamsProduct = "labs"
 	GetConnectionsServersParamsProductStartingPoint GetConnectionsServersParamsProduct = "starting_point"
-)
-
-// Defines values for GetMachineGraphActivityParamsPeriod.
-const (
-	GetMachineGraphActivityParamsPeriodN1M GetMachineGraphActivityParamsPeriod = "1M"
-	GetMachineGraphActivityParamsPeriodN1W GetMachineGraphActivityParamsPeriod = "1W"
-	GetMachineGraphActivityParamsPeriodN1Y GetMachineGraphActivityParamsPeriod = "1Y"
-	GetMachineGraphActivityParamsPeriodN3M GetMachineGraphActivityParamsPeriod = "3M"
-	GetMachineGraphActivityParamsPeriodN6M GetMachineGraphActivityParamsPeriod = "6M"
-)
-
-// Defines values for GetMachineListRetiredPaginatedParamsFree.
-const (
-	N0 GetMachineListRetiredPaginatedParamsFree = 0
-	N1 GetMachineListRetiredPaginatedParamsFree = 1
-)
-
-// Defines values for GetMachineListRetiredPaginatedParamsShowCompleted.
-const (
-	GetMachineListRetiredPaginatedParamsShowCompletedComplete   GetMachineListRetiredPaginatedParamsShowCompleted = "complete"
-	GetMachineListRetiredPaginatedParamsShowCompletedIncomplete GetMachineListRetiredPaginatedParamsShowCompleted = "incomplete"
-)
-
-// Defines values for GetMachineListRetiredPaginatedParamsSortBy.
-const (
-	GetMachineListRetiredPaginatedParamsSortByName           GetMachineListRetiredPaginatedParamsSortBy = "name"
-	GetMachineListRetiredPaginatedParamsSortByRating         GetMachineListRetiredPaginatedParamsSortBy = "rating"
-	GetMachineListRetiredPaginatedParamsSortByReleaseDate    GetMachineListRetiredPaginatedParamsSortBy = "release-date"
-	GetMachineListRetiredPaginatedParamsSortBySystemOwns     GetMachineListRetiredPaginatedParamsSortBy = "system-owns"
-	GetMachineListRetiredPaginatedParamsSortByUserDifficulty GetMachineListRetiredPaginatedParamsSortBy = "user-difficulty"
-	GetMachineListRetiredPaginatedParamsSortByUserOwns       GetMachineListRetiredPaginatedParamsSortBy = "user-owns"
-)
-
-// Defines values for GetMachineListRetiredPaginatedParamsSortType.
-const (
-	GetMachineListRetiredPaginatedParamsSortTypeAsc  GetMachineListRetiredPaginatedParamsSortType = "asc"
-	GetMachineListRetiredPaginatedParamsSortTypeDesc GetMachineListRetiredPaginatedParamsSortType = "desc"
-)
-
-// Defines values for GetMachineListRetiredPaginatedParamsDifficulty.
-const (
-	GetMachineListRetiredPaginatedParamsDifficultyEasy     GetMachineListRetiredPaginatedParamsDifficulty = "easy"
-	GetMachineListRetiredPaginatedParamsDifficultyHard     GetMachineListRetiredPaginatedParamsDifficulty = "hard"
-	GetMachineListRetiredPaginatedParamsDifficultyInsane   GetMachineListRetiredPaginatedParamsDifficulty = "insane"
-	GetMachineListRetiredPaginatedParamsDifficultyMedium   GetMachineListRetiredPaginatedParamsDifficulty = "medium"
-	GetMachineListRetiredPaginatedParamsDifficultyVeryEasy GetMachineListRetiredPaginatedParamsDifficulty = "very-easy"
-)
-
-// Defines values for GetMachineListRetiredPaginatedParamsOs.
-const (
-	GetMachineListRetiredPaginatedParamsOsFreebsd GetMachineListRetiredPaginatedParamsOs = "freebsd"
-	GetMachineListRetiredPaginatedParamsOsLinux   GetMachineListRetiredPaginatedParamsOs = "linux"
-	GetMachineListRetiredPaginatedParamsOsOpenbsd GetMachineListRetiredPaginatedParamsOs = "openbsd"
-	GetMachineListRetiredPaginatedParamsOsOther   GetMachineListRetiredPaginatedParamsOs = "other"
-	GetMachineListRetiredPaginatedParamsOsWindows GetMachineListRetiredPaginatedParamsOs = "windows"
-)
-
-// Defines values for GetMachinePaginatedParamsShowCompleted.
-const (
-	GetMachinePaginatedParamsShowCompletedComplete   GetMachinePaginatedParamsShowCompleted = "complete"
-	GetMachinePaginatedParamsShowCompletedIncomplete GetMachinePaginatedParamsShowCompleted = "incomplete"
-)
-
-// Defines values for GetMachinePaginatedParamsSortBy.
-const (
-	GetMachinePaginatedParamsSortByName           GetMachinePaginatedParamsSortBy = "name"
-	GetMachinePaginatedParamsSortByRating         GetMachinePaginatedParamsSortBy = "rating"
-	GetMachinePaginatedParamsSortByReleaseDate    GetMachinePaginatedParamsSortBy = "release-date"
-	GetMachinePaginatedParamsSortBySystemOwns     GetMachinePaginatedParamsSortBy = "system-owns"
-	GetMachinePaginatedParamsSortByUserDifficulty GetMachinePaginatedParamsSortBy = "user-difficulty"
-	GetMachinePaginatedParamsSortByUserOwns       GetMachinePaginatedParamsSortBy = "user-owns"
-)
-
-// Defines values for GetMachinePaginatedParamsSortType.
-const (
-	GetMachinePaginatedParamsSortTypeAsc  GetMachinePaginatedParamsSortType = "asc"
-	GetMachinePaginatedParamsSortTypeDesc GetMachinePaginatedParamsSortType = "desc"
-)
-
-// Defines values for GetMachinePaginatedParamsDifficulty.
-const (
-	GetMachinePaginatedParamsDifficultyEasy     GetMachinePaginatedParamsDifficulty = "easy"
-	GetMachinePaginatedParamsDifficultyHard     GetMachinePaginatedParamsDifficulty = "hard"
-	GetMachinePaginatedParamsDifficultyInsane   GetMachinePaginatedParamsDifficulty = "insane"
-	GetMachinePaginatedParamsDifficultyMedium   GetMachinePaginatedParamsDifficulty = "medium"
-	GetMachinePaginatedParamsDifficultyVeryEasy GetMachinePaginatedParamsDifficulty = "very-easy"
-)
-
-// Defines values for GetMachinePaginatedParamsOs.
-const (
-	GetMachinePaginatedParamsOsFreebsd GetMachinePaginatedParamsOs = "freebsd"
-	GetMachinePaginatedParamsOsLinux   GetMachinePaginatedParamsOs = "linux"
-	GetMachinePaginatedParamsOsOpenbsd GetMachinePaginatedParamsOs = "openbsd"
-	GetMachinePaginatedParamsOsOther   GetMachinePaginatedParamsOs = "other"
-	GetMachinePaginatedParamsOsWindows GetMachinePaginatedParamsOs = "windows"
-)
-
-// Defines values for GetMachineTodoPaginatedParamsSortType.
-const (
-	GetMachineTodoPaginatedParamsSortTypeAsc  GetMachineTodoPaginatedParamsSortType = "asc"
-	GetMachineTodoPaginatedParamsSortTypeDesc GetMachineTodoPaginatedParamsSortType = "desc"
-)
-
-// Defines values for GetMachineTodoPaginatedParamsDifficulty.
-const (
-	GetMachineTodoPaginatedParamsDifficultyEasy     GetMachineTodoPaginatedParamsDifficulty = "easy"
-	GetMachineTodoPaginatedParamsDifficultyHard     GetMachineTodoPaginatedParamsDifficulty = "hard"
-	GetMachineTodoPaginatedParamsDifficultyInsane   GetMachineTodoPaginatedParamsDifficulty = "insane"
-	GetMachineTodoPaginatedParamsDifficultyMedium   GetMachineTodoPaginatedParamsDifficulty = "medium"
-	GetMachineTodoPaginatedParamsDifficultyVeryEasy GetMachineTodoPaginatedParamsDifficulty = "very-easy"
-)
-
-// Defines values for GetMachineTodoPaginatedParamsShowCompleted.
-const (
-	GetMachineTodoPaginatedParamsShowCompletedComplete   GetMachineTodoPaginatedParamsShowCompleted = "complete"
-	GetMachineTodoPaginatedParamsShowCompletedIncomplete GetMachineTodoPaginatedParamsShowCompleted = "incomplete"
-)
-
-// Defines values for GetMachineTodoPaginatedParamsOs.
-const (
-	GetMachineTodoPaginatedParamsOsFreebsd GetMachineTodoPaginatedParamsOs = "freebsd"
-	GetMachineTodoPaginatedParamsOsLinux   GetMachineTodoPaginatedParamsOs = "linux"
-	GetMachineTodoPaginatedParamsOsOpenbsd GetMachineTodoPaginatedParamsOs = "openbsd"
-	GetMachineTodoPaginatedParamsOsOther   GetMachineTodoPaginatedParamsOs = "other"
-	GetMachineTodoPaginatedParamsOsWindows GetMachineTodoPaginatedParamsOs = "windows"
-)
-
-// Defines values for GetMachineUnreleasedParamsDifficulty.
-const (
-	GetMachineUnreleasedParamsDifficultyEasy     GetMachineUnreleasedParamsDifficulty = "easy"
-	GetMachineUnreleasedParamsDifficultyHard     GetMachineUnreleasedParamsDifficulty = "hard"
-	GetMachineUnreleasedParamsDifficultyInsane   GetMachineUnreleasedParamsDifficulty = "insane"
-	GetMachineUnreleasedParamsDifficultyMedium   GetMachineUnreleasedParamsDifficulty = "medium"
-	GetMachineUnreleasedParamsDifficultyVeryEasy GetMachineUnreleasedParamsDifficulty = "very-easy"
-)
-
-// Defines values for GetMachineUnreleasedParamsOs.
-const (
-	GetMachineUnreleasedParamsOsFreebsd GetMachineUnreleasedParamsOs = "freebsd"
-	GetMachineUnreleasedParamsOsLinux   GetMachineUnreleasedParamsOs = "linux"
-	GetMachineUnreleasedParamsOsOpenbsd GetMachineUnreleasedParamsOs = "openbsd"
-	GetMachineUnreleasedParamsOsOther   GetMachineUnreleasedParamsOs = "other"
-	GetMachineUnreleasedParamsOsWindows GetMachineUnreleasedParamsOs = "windows"
-)
-
-// Defines values for GetRankingsCountryBestParamsPeriod.
-const (
-	GetRankingsCountryBestParamsPeriodN1M GetRankingsCountryBestParamsPeriod = "1M"
-	GetRankingsCountryBestParamsPeriodN1W GetRankingsCountryBestParamsPeriod = "1W"
-	GetRankingsCountryBestParamsPeriodN1Y GetRankingsCountryBestParamsPeriod = "1Y"
-	GetRankingsCountryBestParamsPeriodN3M GetRankingsCountryBestParamsPeriod = "3M"
-	GetRankingsCountryBestParamsPeriodN6M GetRankingsCountryBestParamsPeriod = "6M"
-)
-
-// Defines values for GetRankingsCountryOverviewParamsPeriod.
-const (
-	GetRankingsCountryOverviewParamsPeriodN1M GetRankingsCountryOverviewParamsPeriod = "1M"
-	GetRankingsCountryOverviewParamsPeriodN1W GetRankingsCountryOverviewParamsPeriod = "1W"
-	GetRankingsCountryOverviewParamsPeriodN1Y GetRankingsCountryOverviewParamsPeriod = "1Y"
-	GetRankingsCountryOverviewParamsPeriodN3M GetRankingsCountryOverviewParamsPeriod = "3M"
-	GetRankingsCountryOverviewParamsPeriodN6M GetRankingsCountryOverviewParamsPeriod = "6M"
-)
-
-// Defines values for GetRankingsTeamBestParamsPeriod.
-const (
-	GetRankingsTeamBestParamsPeriodN1M GetRankingsTeamBestParamsPeriod = "1M"
-	GetRankingsTeamBestParamsPeriodN1W GetRankingsTeamBestParamsPeriod = "1W"
-	GetRankingsTeamBestParamsPeriodN1Y GetRankingsTeamBestParamsPeriod = "1Y"
-	GetRankingsTeamBestParamsPeriodN3M GetRankingsTeamBestParamsPeriod = "3M"
-	GetRankingsTeamBestParamsPeriodN6M GetRankingsTeamBestParamsPeriod = "6M"
-)
-
-// Defines values for GetRankingsTeamBestIdParamsPeriod.
-const (
-	GetRankingsTeamBestIdParamsPeriodN1M GetRankingsTeamBestIdParamsPeriod = "1M"
-	GetRankingsTeamBestIdParamsPeriodN1W GetRankingsTeamBestIdParamsPeriod = "1W"
-	GetRankingsTeamBestIdParamsPeriodN1Y GetRankingsTeamBestIdParamsPeriod = "1Y"
-	GetRankingsTeamBestIdParamsPeriodN3M GetRankingsTeamBestIdParamsPeriod = "3M"
-	GetRankingsTeamBestIdParamsPeriodN6M GetRankingsTeamBestIdParamsPeriod = "6M"
-)
-
-// Defines values for GetRankingsTeamOverviewParamsPeriod.
-const (
-	GetRankingsTeamOverviewParamsPeriodN1M GetRankingsTeamOverviewParamsPeriod = "1M"
-	GetRankingsTeamOverviewParamsPeriodN1W GetRankingsTeamOverviewParamsPeriod = "1W"
-	GetRankingsTeamOverviewParamsPeriodN1Y GetRankingsTeamOverviewParamsPeriod = "1Y"
-	GetRankingsTeamOverviewParamsPeriodN3M GetRankingsTeamOverviewParamsPeriod = "3M"
-	GetRankingsTeamOverviewParamsPeriodN6M GetRankingsTeamOverviewParamsPeriod = "6M"
-)
-
-// Defines values for GetRankingsTeamOverviewIdParamsPeriod.
-const (
-	GetRankingsTeamOverviewIdParamsPeriodN1M GetRankingsTeamOverviewIdParamsPeriod = "1M"
-	GetRankingsTeamOverviewIdParamsPeriodN1W GetRankingsTeamOverviewIdParamsPeriod = "1W"
-	GetRankingsTeamOverviewIdParamsPeriodN1Y GetRankingsTeamOverviewIdParamsPeriod = "1Y"
-	GetRankingsTeamOverviewIdParamsPeriodN3M GetRankingsTeamOverviewIdParamsPeriod = "3M"
-	GetRankingsTeamOverviewIdParamsPeriodN6M GetRankingsTeamOverviewIdParamsPeriod = "6M"
-)
-
-// Defines values for GetRankingsUserBestParamsPeriod.
-const (
-	GetRankingsUserBestParamsPeriodN1M GetRankingsUserBestParamsPeriod = "1M"
-	GetRankingsUserBestParamsPeriodN1W GetRankingsUserBestParamsPeriod = "1W"
-	GetRankingsUserBestParamsPeriodN1Y GetRankingsUserBestParamsPeriod = "1Y"
-	GetRankingsUserBestParamsPeriodN3M GetRankingsUserBestParamsPeriod = "3M"
-	GetRankingsUserBestParamsPeriodN6M GetRankingsUserBestParamsPeriod = "6M"
-)
-
-// Defines values for GetRankingsUserOverviewParamsPeriod.
-const (
-	GetRankingsUserOverviewParamsPeriodN1M GetRankingsUserOverviewParamsPeriod = "1M"
-	GetRankingsUserOverviewParamsPeriodN1W GetRankingsUserOverviewParamsPeriod = "1W"
-	GetRankingsUserOverviewParamsPeriodN1Y GetRankingsUserOverviewParamsPeriod = "1Y"
-	GetRankingsUserOverviewParamsPeriodN3M GetRankingsUserOverviewParamsPeriod = "3M"
-	GetRankingsUserOverviewParamsPeriodN6M GetRankingsUserOverviewParamsPeriod = "6M"
-)
-
-// Defines values for GetReviewParamsProduct.
-const (
-	GetReviewParamsProductChallenge GetReviewParamsProduct = "challenge"
-	GetReviewParamsProductMachine   GetReviewParamsProduct = "machine"
-	GetReviewParamsProductSherlock  GetReviewParamsProduct = "sherlock"
 )
 
 // Defines values for GetReviewPaginatedParamsProduct.
@@ -465,8 +206,8 @@ const (
 
 // Defines values for GetSherlocksParamsSortType.
 const (
-	GetSherlocksParamsSortTypeAsc  GetSherlocksParamsSortType = "asc"
-	GetSherlocksParamsSortTypeDesc GetSherlocksParamsSortType = "desc"
+	Asc  GetSherlocksParamsSortType = "asc"
+	Desc GetSherlocksParamsSortType = "desc"
 )
 
 // Defines values for GetSherlocksParamsDifficulty.
@@ -497,15 +238,6 @@ const (
 const (
 	Complete    GetSherlocksParamsStatus = "complete"
 	Incompleted GetSherlocksParamsStatus = "incompleted"
-)
-
-// Defines values for GetTeamGraphParamsPeriod.
-const (
-	GetTeamGraphParamsPeriodN1M GetTeamGraphParamsPeriod = "1M"
-	GetTeamGraphParamsPeriodN1W GetTeamGraphParamsPeriod = "1W"
-	GetTeamGraphParamsPeriodN1Y GetTeamGraphParamsPeriod = "1Y"
-	GetTeamGraphParamsPeriodN3M GetTeamGraphParamsPeriod = "3M"
-	GetTeamGraphParamsPeriodN6M GetTeamGraphParamsPeriod = "6M"
 )
 
 // Defines values for GetUserProfileGraphParamsPeriod.
@@ -574,36 +306,6 @@ type ActiveMachineInfo struct {
 // ActiveMachineResponse defines model for ActiveMachineResponse.
 type ActiveMachineResponse struct {
 	Info ActiveMachineInfo `json:"info"`
-}
-
-// Announcement Schema definition for Announcement
-type Announcement struct {
-	CreatedAt time.Time `json:"created_at,omitempty"`
-	Id        int       `json:"id,omitempty"`
-	Title     string    `json:"title,omitempty"`
-	UpdatedAt time.Time `json:"updated_at,omitempty"`
-}
-
-// AnnouncementItem defines model for AnnouncementItem.
-type AnnouncementItem struct {
-	CreatedAt string `json:"created_at,omitempty"`
-	Id        int    `json:"id,omitempty"`
-	Text      string `json:"text,omitempty"`
-	Title     string `json:"title,omitempty"`
-	UpdatedAt string `json:"updated_at,omitempty"`
-}
-
-// AnnouncementItems defines model for AnnouncementItems.
-type AnnouncementItems = []AnnouncementItem
-
-// AnnouncementResponse defines model for AnnouncementResponse.
-type AnnouncementResponse struct {
-	Announcements AnnouncementItems `json:"announcements,omitempty"`
-}
-
-// ArenaOwnError Schema definition for Own Error Response
-type ArenaOwnError struct {
-	Message string `json:"message,omitempty"`
 }
 
 // AssignedServerConnectionsServers Schema definition for Assigned Server
@@ -684,183 +386,6 @@ type BloodsChallengesItems = []UserProfileBloodsChallenges
 
 // BloodsMachinesItems defines model for BloodsMachinesItems.
 type BloodsMachinesItems = []UserProfileBloodsMachines
-
-// BloodsObtained defines model for BloodsObtained.
-type BloodsObtained struct {
-	BloodsObtained int `json:"bloods_obtained,omitempty"`
-	FlagsPawned    int `json:"flags_pawned,omitempty"`
-}
-
-// CareerCompaniesDataItems defines model for CareerCompaniesDataItems.
-type CareerCompaniesDataItems = []CareerCompaniesItem
-
-// CareerCompaniesItem defines model for CareerCompaniesItem.
-type CareerCompaniesItem struct {
-	CareerLogo string  `json:"career_logo"`
-	Featured   bool    `json:"featured,omitempty"`
-	Id         int     `json:"id,omitempty"`
-	JobOffers  float32 `json:"job_offers,omitempty"`
-	Logo       string  `json:"logo"`
-	Name       string  `json:"name,omitempty"`
-}
-
-// CareerCompaniesResponse defines model for CareerCompaniesResponse.
-type CareerCompaniesResponse struct {
-	Data CareerCompaniesDataItems `json:"data,omitempty"`
-}
-
-// CareerCompany defines model for CareerCompany.
-type CareerCompany struct {
-	Description string `json:"description,omitempty"`
-	Featured    bool   `json:"featured,omitempty"`
-	Id          int    `json:"id,omitempty"`
-	LatestPost  string `json:"latest_post"`
-	Logo        string `json:"logo,omitempty"`
-	Name        string `json:"name,omitempty"`
-	Url         string `json:"url,omitempty"`
-}
-
-// CareerCompanyData defines model for CareerCompanyData.
-type CareerCompanyData struct {
-	Company CareerCompany `json:"company,omitempty"`
-	Jobs    CareerJobs    `json:"jobs,omitempty"`
-}
-
-// CareerCompanyResponse defines model for CareerCompanyResponse.
-type CareerCompanyResponse struct {
-	Data CareerCompanyData `json:"data,omitempty"`
-	Meta MetaAlt           `json:"meta,omitempty"`
-}
-
-// CareerFeaturedData defines model for CareerFeaturedData.
-type CareerFeaturedData = []CareerFeaturedItems
-
-// CareerFeaturedItems defines model for CareerFeaturedItems.
-type CareerFeaturedItems struct {
-	Id   int    `json:"id,omitempty"`
-	Logo string `json:"logo,omitempty"`
-	Name string `json:"name,omitempty"`
-}
-
-// CareerFeaturedResponse Schema definition for Career Featured Response
-type CareerFeaturedResponse struct {
-	Data CareerFeaturedData `json:"data,omitempty"`
-}
-
-// CareerHistoryResponse Schema definition for Career History Response
-type CareerHistoryResponse struct {
-	Data StringArray `json:"data"`
-	Meta MetaAlt     `json:"meta,omitempty"`
-}
-
-// CareerInfoData defines model for CareerInfoData.
-type CareerInfoData struct {
-	ApplicationUrl       string       `json:"application_url"`
-	Applied              bool         `json:"applied,omitempty"`
-	Company              CompanyBasic `json:"company,omitempty"`
-	CompanyLogo          string       `json:"company_logo,omitempty"`
-	Country              string       `json:"country,omitempty"`
-	CreatedAt            string       `json:"created_at,omitempty"`
-	Description          string       `json:"description,omitempty"`
-	ExternalEmployerName string       `json:"external_employer_name"`
-	ExternalLink         string       `json:"external_link"`
-	HasApplicationUrl    bool         `json:"has_application_url,omitempty"`
-	Id                   int          `json:"id,omitempty"`
-	MinimumRankId        float32      `json:"minimum_rank_id,omitempty"`
-	MinimumRankName      string       `json:"minimum_rank_name,omitempty"`
-	OtherJobs            ObjectArray  `json:"other_jobs,omitempty"`
-	Remote               bool         `json:"remote"`
-	Title                string       `json:"title,omitempty"`
-	UpdatedAt            string       `json:"updated_at,omitempty"`
-	WorkType             string       `json:"work_type,omitempty"`
-}
-
-// CareerInfoResponse defines model for CareerInfoResponse.
-type CareerInfoResponse struct {
-	Data CareerInfoData `json:"data,omitempty"`
-}
-
-// CareerJobs defines model for CareerJobs.
-type CareerJobs = []CareerJobsItem
-
-// CareerJobsItem defines model for CareerJobsItem.
-type CareerJobsItem struct {
-	ApplicationUrl       string       `json:"application_url"`
-	Applied              bool         `json:"applied,omitempty"`
-	Company              CompanyBasic `json:"company,omitempty"`
-	CompanyLogo          string       `json:"company_logo,omitempty"`
-	Country              string       `json:"country,omitempty"`
-	CreatedAt            string       `json:"created_at,omitempty"`
-	ExternalEmployerName string       `json:"external_employer_name"`
-	ExternalLink         string       `json:"external_link"`
-	HasApplicationUrl    bool         `json:"has_application_url,omitempty"`
-	Id                   int          `json:"id,omitempty"`
-	MinimumRankId        float32      `json:"minimum_rank_id,omitempty"`
-	MinimumRankName      string       `json:"minimum_rank_name,omitempty"`
-	Remote               string       `json:"remote"`
-	Title                string       `json:"title,omitempty"`
-	UpdatedAt            string       `json:"updated_at,omitempty"`
-	WorkType             string       `json:"work_type,omitempty"`
-}
-
-// CareerProfileData defines model for CareerProfileData.
-type CareerProfileData struct {
-	Freelance string      `json:"freelance"`
-	FullTime  string      `json:"full_time"`
-	OptIn     bool        `json:"opt_in,omitempty"`
-	Skills    StringArray `json:"skills"`
-}
-
-// CareerProfileResponse Schema definition for Career Profile Response
-type CareerProfileResponse struct {
-	Data CareerProfileData `json:"data,omitempty"`
-}
-
-// CareerRequestsResponse defines model for CareerRequestsResponse.
-type CareerRequestsResponse struct {
-	Data ObjectArray `json:"data,omitempty"`
-	Meta MetaAlt     `json:"meta,omitempty"`
-}
-
-// CareerSearchData defines model for CareerSearchData.
-type CareerSearchData = []CareerSearchItem
-
-// CareerSearchItem defines model for CareerSearchItem.
-type CareerSearchItem struct {
-	ApplicationUrl       string       `json:"application_url"`
-	Applied              bool         `json:"applied,omitempty"`
-	Company              CompanyBasic `json:"company,omitempty"`
-	CompanyLogo          string       `json:"company_logo,omitempty"`
-	Country              string       `json:"country"`
-	CreatedAt            time.Time    `json:"created_at,omitempty"`
-	ExternalEmployerName string       `json:"external_employer_name"`
-	ExternalLink         string       `json:"external_link"`
-	HasApplicationUrl    bool         `json:"has_application_url,omitempty"`
-	Id                   int          `json:"id,omitempty"`
-	MinimumRankId        int          `json:"minimum_rank_id,omitempty"`
-	MinimumRankName      string       `json:"minimum_rank_name,omitempty"`
-	Remote               string       `json:"remote"`
-	Title                string       `json:"title,omitempty"`
-	UpdatedAt            time.Time    `json:"updated_at,omitempty"`
-	WorkType             string       `json:"work_type"`
-}
-
-// CareerSearchResponse Schema definition for Career Search Response
-type CareerSearchResponse struct {
-	Data CareerSearchData `json:"data,omitempty"`
-	Meta MetaAlt          `json:"meta,omitempty"`
-}
-
-// CareerStatsData defines model for CareerStatsData.
-type CareerStatsData struct {
-	NewToday       int `json:"new_today,omitempty"`
-	TotalJobOffers int `json:"total_job_offers,omitempty"`
-}
-
-// CareerStatsResponse Schema definition for Career Stats Response
-type CareerStatsResponse struct {
-	Data CareerStatsData `json:"data,omitempty"`
-}
 
 // CategoriesItem defines model for CategoriesItem.
 type CategoriesItem struct {
@@ -979,23 +504,6 @@ type ChallengeCategories struct {
 	TotalFlags           float32 `json:"total_flags,omitempty"`
 }
 
-// ChallengeCategoriesData defines model for ChallengeCategoriesData.
-type ChallengeCategoriesData = []ChallengeCategoriesDetailsItem
-
-// ChallengeCategoriesDetails Schema definition for Challenge Categories Details
-type ChallengeCategoriesDetails struct {
-	Data   ChallengeCategoriesData `json:"data,omitempty"`
-	Status bool                    `json:"status,omitempty"`
-}
-
-// ChallengeCategoriesDetailsItem defines model for ChallengeCategoriesDetailsItem.
-type ChallengeCategoriesDetailsItem struct {
-	AllTeamsAvgPercentage float32 `json:"all_teams_avg_percentage,omitempty"`
-	Id                    int     `json:"id,omitempty"`
-	Name                  string  `json:"name,omitempty"`
-	TeamPercentage        float32 `json:"team_percentage,omitempty"`
-}
-
 // ChallengeCategoriesItems defines model for ChallengeCategoriesItems.
 type ChallengeCategoriesItems struct {
 	AvgUserSolved        float32 `json:"avg_user_solved,omitempty"`
@@ -1066,15 +574,6 @@ type ChallengeOwnRequest struct {
 	Flag        string `json:"flag"`
 }
 
-// ChallengeOwns defines model for ChallengeOwns.
-type ChallengeOwns struct {
-	// Category Schema definition for Common Id Name
-	Category            CommonIdName `json:"category,omitempty"`
-	ChallengeCategoryId int          `json:"challenge_category_id,omitempty"`
-	Id                  int          `json:"id,omitempty"`
-	Name                string       `json:"name,omitempty"`
-}
-
 // ChallengeRecommendedResponse Schema definition for Challenge Recommended Response
 type ChallengeRecommendedResponse struct {
 	// Card1 Schema definition for Recommended Card
@@ -1083,15 +582,6 @@ type ChallengeRecommendedResponse struct {
 	// Card2 Schema definition for Recommended Card
 	Card2 RecommendedCard `json:"card2,omitempty"`
 	State StringArray     `json:"state"`
-}
-
-// ChallengeRecommendedRetiredResponse Schema definition for Challenge Recommended Retired Response
-type ChallengeRecommendedRetiredResponse struct {
-	// Card1 Schema definition for Recommended Card Retired
-	Card1 RecommendedCardRetired `json:"card1,omitempty"`
-
-	// Card2 Schema definition for Recommended Card Retired
-	Card2 RecommendedCardRetired `json:"card2,omitempty"`
 }
 
 // ChallengeResponse Schema definition for Challenge Id Response
@@ -1104,11 +594,6 @@ type ChallengeResponse struct {
 type ChallengeRetires struct {
 	Difficulty string `json:"difficulty,omitempty"`
 	Name       string `json:"name,omitempty"`
-}
-
-// ChallengeReviewsUserIdResponse Schema definition for Challenge Reviews User Id Response
-type ChallengeReviewsUserIdResponse struct {
-	Info string `json:"info"`
 }
 
 // ChallengeStartResponse Schema definition for Challenge Start Response
@@ -1138,40 +623,6 @@ type ChallengeWriteupResponse struct {
 	Data WriteupData `json:"data,omitempty"`
 }
 
-// Change Schema definition for Change
-type Change struct {
-	ChangelogId int    `json:"changelog_id,omitempty"`
-	Id          int    `json:"id,omitempty"`
-	Text        string `json:"text,omitempty"`
-	Type        string `json:"type,omitempty"`
-}
-
-// ChangeLog Schema definition for Change Log
-type ChangeLog struct {
-	Changes     Changes   `json:"changes,omitempty"`
-	CreatedAt   time.Time `json:"created_at,omitempty"`
-	Description string    `json:"description"`
-	Id          int       `json:"id,omitempty"`
-	Version     string    `json:"version,omitempty"`
-}
-
-// ChangeLogsItems defines model for ChangeLogsItems.
-type ChangeLogsItems = []ChangeLog
-
-// ChangeLogsResponse Schema definition for Change Logs Response
-type ChangeLogsResponse struct {
-	Changelogs ChangeLogsItems `json:"changelogs,omitempty"`
-}
-
-// Changes defines model for Changes.
-type Changes = []Change
-
-// CommonIdName Schema definition for Common Id Name
-type CommonIdName struct {
-	Id   int    `json:"id,omitempty"`
-	Name string `json:"name,omitempty"`
-}
-
 // Company Schema definition for Company
 type Company struct {
 	Description string `json:"description,omitempty"`
@@ -1179,13 +630,6 @@ type Company struct {
 	Image       string `json:"image,omitempty"`
 	Name        string `json:"name,omitempty"`
 	Url         string `json:"url,omitempty"`
-}
-
-// CompanyBasic defines model for CompanyBasic.
-type CompanyBasic struct {
-	Id   int    `json:"id,omitempty"`
-	Name string `json:"name,omitempty"`
-	Url  string `json:"url,omitempty"`
 }
 
 // Connection defines model for Connection.
@@ -1198,56 +642,11 @@ type Connection struct {
 	Up            float32 `json:"up,omitempty"`
 }
 
-// ConnectionCompetitive defines model for ConnectionCompetitive.
-type ConnectionCompetitive struct {
-	// AssignedServer Schema definition for Assigned Server
-	AssignedServer       ServerConnection  `json:"assigned_server"`
-	Available            bool              `json:"available,omitempty"`
-	CanAccess            bool              `json:"can_access,omitempty"`
-	LocationTypeFriendly string            `json:"location_type_friendly,omitempty"`
-	Machine              ConnectionMachine `json:"machine,omitempty"`
-}
-
 // ConnectionDataMachine defines model for ConnectionDataMachine.
 type ConnectionDataMachine struct {
 	AvatarThumbUrl string `json:"avatar_thumb_url,omitempty"`
 	Id             int    `json:"id,omitempty"`
 	Name           string `json:"name,omitempty"`
-}
-
-// ConnectionLab defines model for ConnectionLab.
-type ConnectionLab struct {
-	// AssignedServer Schema definition for Assigned Server
-	AssignedServer       ServerConnection `json:"assigned_server"`
-	CanAccess            bool             `json:"can_access,omitempty"`
-	LocationTypeFriendly string           `json:"location_type_friendly,omitempty"`
-}
-
-// ConnectionMachine defines model for ConnectionMachine.
-type ConnectionMachine struct {
-	AvatarThumbUrl string `json:"avatar_thumb_url,omitempty"`
-	Id             int    `json:"id,omitempty"`
-	Name           string `json:"name,omitempty"`
-}
-
-// ConnectionProlab defines model for ConnectionProlab.
-type ConnectionProlab struct {
-	// AssignedServer Schema definition for Assigned Server
-	AssignedServer ServerConnection    `json:"assigned_server"`
-	CanAccess      bool                `json:"can_access,omitempty"`
-	Mythical       ConnectionProlabLab `json:"mythical,omitempty"`
-	Puppet         ConnectionProlabLab `json:"puppet,omitempty"`
-}
-
-// ConnectionProlabLab defines model for ConnectionProlabLab.
-type ConnectionProlabLab struct {
-	// AssignedServer Schema definition for Assigned Server
-	AssignedServer       ServerConnection `json:"assigned_server"`
-	CanAccess            bool             `json:"can_access,omitempty"`
-	LocationTypeFriendly string           `json:"location_type_friendly"`
-
-	// ProLab Schema definition for Id Name Identifier
-	ProLab IdNameIdentifier `json:"pro_lab,omitempty"`
 }
 
 // ConnectionServer defines model for ConnectionServer.
@@ -1275,43 +674,8 @@ type ConnectionStatusItem struct {
 	Type                 string           `json:"type,omitempty"`
 }
 
-// ConnectionStatusProductData defines model for ConnectionStatusProductData.
-type ConnectionStatusProductData struct {
-	Connection           ConnectionStatusProductData_Connection `json:"connection"`
-	LocationTypeFriendly string                                 `json:"location_type_friendly,omitempty"`
-	Server               ConnectionServer                       `json:"server,omitempty"`
-}
-
-// ConnectionStatusProductData_Connection defines model for ConnectionStatusProductData.Connection.
-type ConnectionStatusProductData_Connection struct {
-	union json.RawMessage
-}
-
-// ConnectionStatusProductResponse defines model for ConnectionStatusProductResponse.
-type ConnectionStatusProductResponse struct {
-	Data   ConnectionStatusProductData `json:"data,omitempty"`
-	Status bool                        `json:"status,omitempty"`
-	Type   string                      `json:"type,omitempty"`
-}
-
 // ConnectionStatusResponse Schema definition for Connection Status Response
 type ConnectionStatusResponse = []ConnectionStatusItem
-
-// ConnectionsData defines model for ConnectionsData.
-type ConnectionsData struct {
-	Competitive   ConnectionCompetitive `json:"competitive,omitempty"`
-	Fortresses    ConnectionLab         `json:"fortresses,omitempty"`
-	Lab           ConnectionLab         `json:"lab,omitempty"`
-	ProLabs       ConnectionProlab      `json:"pro_labs,omitempty"`
-	ReleaseArena  ConnectionCompetitive `json:"release_arena,omitempty"`
-	StartingPoint ConnectionLab         `json:"starting_point,omitempty"`
-}
-
-// ConnectionsResponse Schema definition for Connections Response
-type ConnectionsResponse struct {
-	Data   ConnectionsData `json:"data,omitempty"`
-	Status bool            `json:"status,omitempty"`
-}
 
 // ConnectionsServerData defines model for ConnectionsServerData.
 type ConnectionsServerData struct {
@@ -1350,28 +714,6 @@ type ContainerStartResponse struct {
 	Message string `json:"message,omitempty"`
 }
 
-// ContentStatsResponse Schema definition for Content Stats Response
-type ContentStatsResponse struct {
-	Challenges int `json:"challenges,omitempty"`
-	Machines   int `json:"machines,omitempty"`
-}
-
-// Country defines model for Country.
-type Country struct {
-	Code string `json:"code,omitempty"`
-	Name string `json:"name,omitempty"`
-}
-
-// DashboardPlayers Schema definition for Dashboard Players
-type DashboardPlayers struct {
-	OnlinePlayers string `json:"online_players,omitempty"`
-}
-
-// DashboardTabloid defines model for DashboardTabloid.
-type DashboardTabloid struct {
-	Owns TabloidOwns `json:"owns,omitempty"`
-}
-
 // DesignatedLevel Schema definition for Designated Level
 type DesignatedLevel struct {
 	Category    string `json:"category,omitempty"`
@@ -1402,8 +744,11 @@ type DifficultyChart1 struct {
 	CounterVeryEasy  int `json:"counterVeryEasy,omitempty"`
 }
 
-// EmptyArray defines model for EmptyArray.
-type EmptyArray = []interface{}
+// DownloadLink Schema definition for Sherlock Download Link
+type DownloadLink struct {
+	ExpiresIn int    `json:"expires_in,omitempty"`
+	Url       string `json:"url,omitempty"`
+}
 
 // FaqItem Schema definition for Faq Item
 type FaqItem struct {
@@ -1456,9 +801,6 @@ type FlagsToNextRank0 struct {
 
 // FlagsToNextRank1 defines model for .
 type FlagsToNextRank1 = []interface{}
-
-// FollowerItems defines model for FollowerItems.
-type FollowerItems = []TopUserItem
 
 // Fortress Schema definition for Fortress
 type Fortress struct {
@@ -1558,333 +900,6 @@ type HomeBannerResponse struct {
 	Data HomeBannerItems `json:"data,omitempty"`
 }
 
-// HomeProgresTracksCardItem defines model for HomeProgresTracksCardItem.
-type HomeProgresTracksCardItem struct {
-	Avatar     string  `json:"avatar,omitempty"`
-	Difficulty string  `json:"difficulty,omitempty"`
-	Id         int     `json:"id,omitempty"`
-	Name       string  `json:"name,omitempty"`
-	Percentage float32 `json:"percentage,omitempty"`
-	Points     int     `json:"points,omitempty"`
-	Url        string  `json:"url,omitempty"`
-}
-
-// HomeProgressChallengeCard Schema definition for Home Challenge Card
-type HomeProgressChallengeCard = []HomeProgressChallengeCardItem
-
-// HomeProgressChallengeCardItem defines model for HomeProgressChallengeCardItem.
-type HomeProgressChallengeCardItem struct {
-	Avatar       string  `json:"avatar,omitempty"`
-	AvatarUrl    string  `json:"avatarUrl,omitempty"`
-	CategoryID   int     `json:"categoryID,omitempty"`
-	CategoryName string  `json:"categoryName,omitempty"`
-	Difficulty   string  `json:"difficulty,omitempty"`
-	Id           int     `json:"id,omitempty"`
-	Name         string  `json:"name,omitempty"`
-	Points       float32 `json:"points"`
-	Progress     float32 `json:"progress"`
-	Rating       float32 `json:"rating,omitempty"`
-	RatingCount  int     `json:"ratingCount,omitempty"`
-	Status       string  `json:"status"`
-	Type         string  `json:"type,omitempty"`
-	Url          string  `json:"url,omitempty"`
-	UrlName      string  `json:"urlName,omitempty"`
-}
-
-// HomeProgressMachineCard Schema definition for Home Machine Card
-type HomeProgressMachineCard = []HomeProgressMachineCardItem
-
-// HomeProgressMachineCardItem defines model for HomeProgressMachineCardItem.
-type HomeProgressMachineCardItem struct {
-	Avatar         string  `json:"avatar,omitempty"`
-	AvatarUrl      string  `json:"avatarUrl,omitempty"`
-	Difficulty     string  `json:"difficulty,omitempty"`
-	Guided         bool    `json:"guided,omitempty"`
-	Id             int     `json:"id,omitempty"`
-	Name           string  `json:"name,omitempty"`
-	Os             string  `json:"os,omitempty"`
-	Points         float32 `json:"points"`
-	Progress       float32 `json:"progress"`
-	Rating         float32 `json:"rating,omitempty"`
-	RatingCount    int     `json:"ratingCount,omitempty"`
-	RootFlag       bool    `json:"root_flag,omitempty"`
-	Status         string  `json:"status"`
-	TasksCompleted int     `json:"tasksCompleted,omitempty"`
-	TasksTotal     int     `json:"tasksTotal,omitempty"`
-	Type           string  `json:"type,omitempty"`
-	Url            string  `json:"url,omitempty"`
-	UserFlag       bool    `json:"user_flag,omitempty"`
-}
-
-// HomeProgressProlabCard Schema definition for Home Prolab Card
-type HomeProgressProlabCard = []HomeProgressProlabItems
-
-// HomeProgressProlabItems defines model for HomeProgressProlabItems.
-type HomeProgressProlabItems struct {
-	Avatar     string  `json:"avatar"`
-	Difficulty string  `json:"difficulty,omitempty"`
-	Id         int     `json:"id,omitempty"`
-	Identifier string  `json:"identifier,omitempty"`
-	Name       string  `json:"name,omitempty"`
-	Percentage float32 `json:"percentage,omitempty"`
-	Points     string  `json:"points,omitempty"`
-}
-
-// HomeProgressTracksCard Schema definition for Home Tracks Card
-type HomeProgressTracksCard map[string]HomeProgresTracksCardItem
-
-// HomeRecommendedChallengeCard Schema definition for Home Challenge Card
-type HomeRecommendedChallengeCard = []HomeRecommendedChallengeItems
-
-// HomeRecommendedChallengeItems defines model for HomeRecommendedChallengeItems.
-type HomeRecommendedChallengeItems struct {
-	Avatar       string  `json:"avatar,omitempty"`
-	AvatarUrl    string  `json:"avatarUrl,omitempty"`
-	CategoryID   int     `json:"categoryID,omitempty"`
-	CategoryName string  `json:"categoryName,omitempty"`
-	Difficulty   string  `json:"difficulty,omitempty"`
-	Id           int     `json:"id,omitempty"`
-	Name         string  `json:"name,omitempty"`
-	Points       int     `json:"points"`
-	Progress     float32 `json:"progress"`
-	Rating       float32 `json:"rating,omitempty"`
-	RatingCount  int     `json:"ratingCount,omitempty"`
-	Status       string  `json:"status"`
-	Type         string  `json:"type,omitempty"`
-	Url          string  `json:"url,omitempty"`
-	UrlName      string  `json:"urlName,omitempty"`
-}
-
-// HomeRecommendedData defines model for HomeRecommendedData.
-type HomeRecommendedData struct {
-	// Challenges Schema definition for Home Challenge Card
-	Challenges HomeRecommendedChallengeCard `json:"challenges,omitempty"`
-
-	// Machines Schema definition for Home Machine Card
-	Machines HomeRecommendedMachineCard `json:"machines,omitempty"`
-
-	// Prolabs Schema definition for Home Prolab Card
-	Prolabs HomeRecommendedProlabCard `json:"prolabs,omitempty"`
-
-	// Sherlocks Schema definition for Home Tracks Card
-	Sherlocks HomeRecommendedSherlocksCard `json:"sherlocks,omitempty"`
-
-	// Sps Schema definition for Home Sps Card
-	Sps SpsCard `json:"sps,omitempty"`
-
-	// Tracks Schema definition for Home Tracks Card
-	Tracks HomeRecommendedTracksCard `json:"tracks,omitempty"`
-}
-
-// HomeRecommendedMachineCard Schema definition for Home Machine Card
-type HomeRecommendedMachineCard = []HomeRecommendedMachineCardItem
-
-// HomeRecommendedMachineCardItem defines model for HomeRecommendedMachineCardItem.
-type HomeRecommendedMachineCardItem struct {
-	Avatar         string  `json:"avatar,omitempty"`
-	AvatarUrl      string  `json:"avatarUrl,omitempty"`
-	Difficulty     string  `json:"difficulty,omitempty"`
-	Guided         bool    `json:"guided,omitempty"`
-	Id             int     `json:"id,omitempty"`
-	Name           string  `json:"name,omitempty"`
-	Os             string  `json:"os,omitempty"`
-	Points         float32 `json:"points"`
-	Progress       float32 `json:"progress"`
-	Rating         int     `json:"rating,omitempty"`
-	RatingCount    int     `json:"ratingCount,omitempty"`
-	RootFlag       bool    `json:"root_flag,omitempty"`
-	Status         string  `json:"status"`
-	TasksCompleted float32 `json:"tasksCompleted,omitempty"`
-	TasksTotal     int     `json:"tasksTotal,omitempty"`
-	Type           string  `json:"type,omitempty"`
-	Url            string  `json:"url,omitempty"`
-	UserFlag       bool    `json:"user_flag,omitempty"`
-}
-
-// HomeRecommendedProlabCard Schema definition for Home Prolab Card
-type HomeRecommendedProlabCard = []HomeRecommendedProlabCardItem
-
-// HomeRecommendedProlabCardItem defines model for HomeRecommendedProlabCardItem.
-type HomeRecommendedProlabCardItem struct {
-	Avatar         string  `json:"avatar"`
-	AvatarUrl      string  `json:"avatarUrl,omitempty"`
-	CategoryName   string  `json:"categoryName,omitempty"`
-	Difficulty     string  `json:"difficulty,omitempty"`
-	Id             int     `json:"id,omitempty"`
-	Identifier     string  `json:"identifier,omitempty"`
-	Name           string  `json:"name,omitempty"`
-	Points         int     `json:"points,omitempty"`
-	Progress       float32 `json:"progress"`
-	Rating         float32 `json:"rating,omitempty"`
-	RatingCount    int     `json:"ratingCount,omitempty"`
-	TasksCompleted int     `json:"tasksCompleted,omitempty"`
-	TasksTotal     int     `json:"tasksTotal,omitempty"`
-	Type           string  `json:"type,omitempty"`
-	Url            string  `json:"url,omitempty"`
-}
-
-// HomeRecommendedRepsonse Schema definition for Home Recommended Repsonse
-type HomeRecommendedRepsonse struct {
-	Data HomeRecommendedData `json:"data,omitempty"`
-}
-
-// HomeRecommendedSherlocksCard Schema definition for Home Tracks Card
-type HomeRecommendedSherlocksCard = []HomeRecommendedSherlocksCardItem
-
-// HomeRecommendedSherlocksCardItem defines model for HomeRecommendedSherlocksCardItem.
-type HomeRecommendedSherlocksCardItem struct {
-	Avatar         string  `json:"avatar,omitempty"`
-	AvatarUrl      string  `json:"avatarUrl,omitempty"`
-	CategoryID     int     `json:"categoryID,omitempty"`
-	CategoryName   string  `json:"categoryName,omitempty"`
-	Difficulty     string  `json:"difficulty,omitempty"`
-	Id             int     `json:"id,omitempty"`
-	Name           string  `json:"name,omitempty"`
-	Progress       float32 `json:"progress"`
-	Rating         float32 `json:"rating,omitempty"`
-	RatingCount    int     `json:"ratingCount,omitempty"`
-	Status         string  `json:"status"`
-	TasksCompleted int     `json:"tasksCompleted,omitempty"`
-	TasksTotal     int     `json:"tasksTotal,omitempty"`
-	Type           string  `json:"type,omitempty"`
-	Url            string  `json:"url,omitempty"`
-	UrlName        string  `json:"urlName,omitempty"`
-}
-
-// HomeRecommendedTracksCard Schema definition for Home Tracks Card
-type HomeRecommendedTracksCard = []HomeRecommendedTracksCardItem
-
-// HomeRecommendedTracksCardItem defines model for HomeRecommendedTracksCardItem.
-type HomeRecommendedTracksCardItem struct {
-	Avatar     string `json:"avatar,omitempty"`
-	Difficulty string `json:"difficulty,omitempty"`
-	Id         int    `json:"id,omitempty"`
-	Name       string `json:"name,omitempty"`
-	Points     int    `json:"points,omitempty"`
-	Progress   int    `json:"progress,omitempty"`
-	Url        string `json:"url,omitempty"`
-}
-
-// HomeTodoChallengeCard Schema definition for Home Challenge Card
-type HomeTodoChallengeCard = []HomeTodoChallengeCardItem
-
-// HomeTodoChallengeCardItem defines model for HomeTodoChallengeCardItem.
-type HomeTodoChallengeCardItem struct {
-	Avatar              string `json:"avatar,omitempty"`
-	ChallengeCategoryId int    `json:"challenge_category_id,omitempty"`
-	Difficulty          string `json:"difficulty,omitempty"`
-	Id                  int    `json:"id,omitempty"`
-	Name                string `json:"name,omitempty"`
-	Points              string `json:"points"`
-	Url                 string `json:"url,omitempty"`
-	UrlName             string `json:"url_name,omitempty"`
-}
-
-// HomeTodoMachineCard Schema definition for Home Machine Card
-type HomeTodoMachineCard = []HomeTodoMachineCardItem
-
-// HomeTodoMachineCardItem defines model for HomeTodoMachineCardItem.
-type HomeTodoMachineCardItem struct {
-	Avatar       string  `json:"avatar,omitempty"`
-	Difficulty   string  `json:"difficulty,omitempty"`
-	Id           int     `json:"id,omitempty"`
-	Name         string  `json:"name,omitempty"`
-	Os           string  `json:"os,omitempty"`
-	Points       float32 `json:"points"`
-	RootFlag     bool    `json:"root_flag,omitempty"`
-	RootFlagOnly bool    `json:"root_flag_only,omitempty"`
-	Url          string  `json:"url,omitempty"`
-	UserFlag     bool    `json:"user_flag,omitempty"`
-}
-
-// HomeTodoProlabCard Schema definition for Home Prolab Card
-type HomeTodoProlabCard = []HomeTodoProlabCardItem
-
-// HomeTodoProlabCardItem defines model for HomeTodoProlabCardItem.
-type HomeTodoProlabCardItem struct {
-	Avatar     string  `json:"avatar"`
-	Difficulty string  `json:"difficulty,omitempty"`
-	Id         int     `json:"id,omitempty"`
-	Identifier string  `json:"identifier,omitempty"`
-	Name       string  `json:"name,omitempty"`
-	Points     string  `json:"points,omitempty"`
-	Progress   float32 `json:"progress,omitempty"`
-	Url        string  `json:"url,omitempty"`
-}
-
-// HomeUserProgressData defines model for HomeUserProgressData.
-type HomeUserProgressData struct {
-	// Challenges Schema definition for Home Challenge Card
-	Challenges HomeProgressChallengeCard      `json:"challenges,omitempty"`
-	Fortresses HomeUserProgressFortressesCard `json:"fortresses,omitempty"`
-
-	// Machines Schema definition for Home Machine Card
-	Machines HomeProgressMachineCard `json:"machines,omitempty"`
-
-	// Prolabs Schema definition for Home Prolab Card
-	Prolabs HomeProgressProlabCard `json:"prolabs,omitempty"`
-
-	// Sps Schema definition for Home Sps Card
-	Sps SpsCard `json:"sps,omitempty"`
-
-	// Tracks Schema definition for Home Tracks Card
-	Tracks HomeProgressTracksCard `json:"tracks,omitempty"`
-}
-
-// HomeUserProgressFortressItem defines model for HomeUserProgressFortressItem.
-type HomeUserProgressFortressItem struct {
-	Avatar         string  `json:"avatar,omitempty"`
-	AvatarUrl      string  `json:"avatarUrl,omitempty"`
-	Id             int     `json:"id,omitempty"`
-	Name           string  `json:"name,omitempty"`
-	Percentage     float32 `json:"percentage,omitempty"`
-	Points         int     `json:"points,omitempty"`
-	Progress       int     `json:"progress,omitempty"`
-	SolvesCount    int     `json:"solvesCount,omitempty"`
-	TasksCompleted int     `json:"tasksCompleted,omitempty"`
-	TasksTotal     int     `json:"tasksTotal,omitempty"`
-	Type           string  `json:"type,omitempty"`
-	Url            string  `json:"url,omitempty"`
-}
-
-// HomeUserProgressFortressesCard defines model for HomeUserProgressFortressesCard.
-type HomeUserProgressFortressesCard = []HomeUserProgressFortressItem
-
-// HomeUserProgressResponse Schema definition for Home User Progress Response
-type HomeUserProgressResponse struct {
-	Data HomeUserProgressData `json:"data,omitempty"`
-}
-
-// HomeUserTodoData defines model for HomeUserTodoData.
-type HomeUserTodoData struct {
-	// Challenges Schema definition for Home Challenge Card
-	Challenges HomeTodoChallengeCard `json:"challenges,omitempty"`
-
-	// Machines Schema definition for Home Machine Card
-	Machines HomeTodoMachineCard `json:"machines,omitempty"`
-
-	// Prolabs Schema definition for Home Prolab Card
-	Prolabs HomeTodoProlabCard `json:"prolabs,omitempty"`
-
-	// Sherlocks Schema definition for Home Tracks Card
-	Sherlocks HomeRecommendedSherlocksCard `json:"sherlocks,omitempty"`
-
-	// Tracks Schema definition for Home Tracks Card
-	Tracks HomeRecommendedTracksCard `json:"tracks,omitempty"`
-}
-
-// HomeUserTodoRepsonse Schema definition for Home User Todo Repsonse
-type HomeUserTodoRepsonse struct {
-	Data HomeUserTodoData `json:"data,omitempty"`
-}
-
-// IdNameIdentifier Schema definition for Id Name Identifier
-type IdNameIdentifier struct {
-	Id         int    `json:"id,omitempty"`
-	Identifier string `json:"identifier,omitempty"`
-	Name       string `json:"name,omitempty"`
-}
-
 // InfoArray defines model for InfoArray.
 type InfoArray = []Item
 
@@ -1971,36 +986,6 @@ type MachineActivityInfo struct {
 // MachineActivityItems defines model for MachineActivityItems.
 type MachineActivityItems = []MachineAcitivtyItem
 
-// MachineAttackDetails Schema definition for Machine Attack Details
-type MachineAttackDetails struct {
-	MachineAttackPaths TeamMachineAttackPaths `json:"machine_attack_paths,omitempty"`
-
-	// MachineOwns Schema definition for Machine Owns Card
-	MachineOwns MachineOwnsCard `json:"machine_owns,omitempty"`
-}
-
-// MachineAttackPathItem defines model for MachineAttackPathItem.
-type MachineAttackPathItem struct {
-	AvgUniversitysSolved float32 `json:"avg_universitys_solved,omitempty"`
-	Name                 string  `json:"name,omitempty"`
-	Solved               float32 `json:"solved,omitempty"`
-	Total                float32 `json:"total,omitempty"`
-}
-
-// MachineAttackPaths defines model for MachineAttackPaths.
-type MachineAttackPaths struct {
-	EnterpriseNetwork       MachineAttackPathItem `json:"Enterprise Network,omitempty"`
-	Forensics               MachineAttackPathItem `json:"Forensics,omitempty"`
-	IoT                     MachineAttackPathItem `json:"IoT,omitempty"`
-	Mobile                  MachineAttackPathItem `json:"Mobile,omitempty"`
-	NicheTechnologies       MachineAttackPathItem `json:"Niche Technologies,omitempty"`
-	Person                  MachineAttackPathItem `json:"Person,omitempty"`
-	Reconnaissance          MachineAttackPathItem `json:"Reconnaissance,omitempty"`
-	SecurityOperations      MachineAttackPathItem `json:"Security Operations,omitempty"`
-	VulnerabilityAssessment MachineAttackPathItem `json:"Vulnerability Assessment,omitempty"`
-	WebApplication          MachineAttackPathItem `json:"Web Application,omitempty"`
-}
-
 // MachineCard1 Schema definition for Machine Card
 type MachineCard1 struct {
 	Avatar         string        `json:"avatar"`
@@ -2059,67 +1044,6 @@ type MachineChangelogIdResponse struct {
 	Info MachineChangeLogItems `json:"info,omitempty"`
 }
 
-// MachineCreatorResponse Schema definition for Machine Creator Resposne
-type MachineCreatorResponse struct {
-	Cocreators UserBasicInfoItemsWithRespect `json:"cocreators"`
-	Creator    UserBasicInfoItemsWithRespect `json:"creator"`
-}
-
-// MachineData Schema definition for Machine Data
-type MachineData struct {
-	Active              bool               `json:"active"`
-	AuthUserHasReviewed bool               `json:"authUserHasReviewed,omitempty"`
-	AuthUserInRootOwns  bool               `json:"authUserInRootOwns,omitempty"`
-	AuthUserInUserOwns  bool               `json:"authUserInUserOwns,omitempty"`
-	Avatar              string             `json:"avatar,omitempty"`
-	Difficulty          int                `json:"difficulty,omitempty"`
-	DifficultyText      string             `json:"difficultyText,omitempty"`
-	EasyMonth           int                `json:"easy_month,omitempty"`
-	FeedbackForChart    DifficultyChart    `json:"feedbackForChart,omitempty"`
-	Free                bool               `json:"free,omitempty"`
-	Id                  int                `json:"id,omitempty"`
-	Ip                  string             `json:"ip"`
-	IsTodo              MachineData_IsTodo `json:"isTodo,omitempty"`
-	IsCompetitive       bool               `json:"is_competitive,omitempty"`
-	Labels              LabelItems         `json:"labels,omitempty"`
-	Name                string             `json:"name,omitempty"`
-	Os                  string             `json:"os,omitempty"`
-	PlayInfo            MachinePlayInfo    `json:"playInfo,omitempty"`
-	Points              int                `json:"points,omitempty"`
-	Poweroff            int                `json:"poweroff,omitempty"`
-	Recommended         int                `json:"recommended,omitempty"`
-	Release             time.Time          `json:"release,omitempty"`
-	RootOwnsCount       int                `json:"root_owns_count,omitempty"`
-	SpFlag              int                `json:"sp_flag,omitempty"`
-	Star                float32            `json:"star,omitempty"`
-	StaticPoints        int                `json:"static_points,omitempty"`
-	UserOwnsCount       int                `json:"user_owns_count,omitempty"`
-}
-
-// MachineDataIsTodo0 defines model for .
-type MachineDataIsTodo0 = bool
-
-// MachineDataIsTodo1 defines model for .
-type MachineDataIsTodo1 = int
-
-// MachineData_IsTodo defines model for MachineData.IsTodo.
-type MachineData_IsTodo struct {
-	union json.RawMessage
-}
-
-// MachineGraphActivityIdResponse Schema definition for Machine Graph Activity Id Response
-type MachineGraphActivityIdResponse struct {
-	Info MachineGraphActivityInfo `json:"info,omitempty"`
-}
-
-// MachineGraphActivityInfo defines model for MachineGraphActivityInfo.
-type MachineGraphActivityInfo struct {
-	Periods    PeriodsStringArray `json:"periods,omitempty"`
-	Resets     IntArray           `json:"resets"`
-	SystemOwns IntArray           `json:"system_owns"`
-	UserOwns   IntArray           `json:"user_owns"`
-}
-
 // MachineGraphMatrixIdResponse Schema definition for Machine Graph Matrix Id Response
 type MachineGraphMatrixIdResponse struct {
 	Info MachineGraphMatrixInfo `json:"info,omitempty"`
@@ -2132,79 +1056,10 @@ type MachineGraphMatrixInfo struct {
 	User      MatrixInfo `json:"user,omitempty"`
 }
 
-// MachineGraphOwnsDifficultyIdResponse Schema definition for Machine Graph Owns Difficulty Id Response
-type MachineGraphOwnsDifficultyIdResponse struct {
-	Info MachineGraphOwnsDifficultyInfoItems `json:"info,omitempty"`
-}
-
-// MachineGraphOwnsDifficultyInfoItem defines model for MachineGraphOwnsDifficultyInfoItem.
-type MachineGraphOwnsDifficultyInfoItem struct {
-	Root int `json:"root,omitempty"`
-	User int `json:"user,omitempty"`
-}
-
-// MachineGraphOwnsDifficultyInfoItems defines model for MachineGraphOwnsDifficultyInfoItems.
-type MachineGraphOwnsDifficultyInfoItems struct {
-	N1  MachineGraphOwnsDifficultyInfoItem `json:"1,omitempty"`
-	N10 MachineGraphOwnsDifficultyInfoItem `json:"10,omitempty"`
-	N2  MachineGraphOwnsDifficultyInfoItem `json:"2,omitempty"`
-	N3  MachineGraphOwnsDifficultyInfoItem `json:"3,omitempty"`
-	N4  MachineGraphOwnsDifficultyInfoItem `json:"4,omitempty"`
-	N5  MachineGraphOwnsDifficultyInfoItem `json:"5,omitempty"`
-	N6  MachineGraphOwnsDifficultyInfoItem `json:"6,omitempty"`
-	N7  MachineGraphOwnsDifficultyInfoItem `json:"7,omitempty"`
-	N8  MachineGraphOwnsDifficultyInfoItem `json:"8,omitempty"`
-	N9  MachineGraphOwnsDifficultyInfoItem `json:"9,omitempty"`
-}
-
-// MachineOwns defines model for MachineOwns.
-type MachineOwns struct {
-	Solved float32 `json:"solved,omitempty"`
-	Total  float32 `json:"total,omitempty"`
-}
-
 // MachineOwnsCard Schema definition for Machine Owns Card
 type MachineOwnsCard struct {
 	Solved int `json:"solved,omitempty"`
 	Total  int `json:"total,omitempty"`
-}
-
-// MachineOwnsItems defines model for MachineOwnsItems.
-type MachineOwnsItems = []MachineOwnsTopItem
-
-// MachineOwnsTabloid defines model for MachineOwnsTabloid.
-type MachineOwnsTabloid struct {
-	AvatarThumpUrl string `json:"avatar_thump_url,omitempty"`
-	AvatarUrl      string `json:"avatar_url,omitempty"`
-	Id             int    `json:"id,omitempty"`
-	Name           string `json:"name,omitempty"`
-}
-
-// MachineOwnsTopIdResponse Schema definition for Machine Owns Top Id Response
-type MachineOwnsTopIdResponse struct {
-	Info MachineOwnsItems `json:"info,omitempty"`
-}
-
-// MachineOwnsTopItem defines model for MachineOwnsTopItem.
-type MachineOwnsTopItem struct {
-	Avatar      string `json:"avatar"`
-	Id          int    `json:"id,omitempty"`
-	IsRootBlood bool   `json:"is_root_blood,omitempty"`
-	IsUserBlood bool   `json:"is_user_blood,omitempty"`
-	Name        string `json:"name,omitempty"`
-	OwnDate     string `json:"own_date,omitempty"`
-	Position    int    `json:"position,omitempty"`
-	RankId      int    `json:"rank_id,omitempty"`
-	RankText    string `json:"rank_text,omitempty"`
-	RootOwnTime string `json:"root_own_time,omitempty"`
-	UserOwnDate string `json:"user_own_date,omitempty"`
-	UserOwnTime string `json:"user_own_time,omitempty"`
-}
-
-// MachinePlayInfo defines model for MachinePlayInfo.
-type MachinePlayInfo struct {
-	ExpiresAt string `json:"expires_at"`
-	IsActive  bool   `json:"isActive"`
 }
 
 // MachineProfileInfo Schema definition for Machine Profile Info
@@ -2277,87 +1132,6 @@ type MachineProfileResponse struct {
 	Info MachineProfileInfo `json:"info,omitempty"`
 }
 
-// MachineRecommendedRetiredCard defines model for MachineRecommendedRetiredCard.
-type MachineRecommendedRetiredCard struct {
-	Avatar           string          `json:"avatar,omitempty"`
-	DifficultyText   string          `json:"difficultyText,omitempty"`
-	FeedbackForChart DifficultyChart `json:"feedbackForChart,omitempty"`
-	Id               int             `json:"id,omitempty"`
-	Name             string          `json:"name,omitempty"`
-	Os               string          `json:"os,omitempty"`
-	Release          string          `json:"release,omitempty"`
-	Retired          int             `json:"retired,omitempty"`
-	RetiredDate      string          `json:"retired_date,omitempty"`
-}
-
-// MachineRecommendedRetiredResponse Schema definition for Machine Recommended Retired Response
-type MachineRecommendedRetiredResponse struct {
-	Card1 MachineRecommendedRetiredCard `json:"card1,omitempty"`
-	Card2 MachineRecommendedRetiredCard `json:"card2,omitempty"`
-}
-
-// MachineRetiring defines model for MachineRetiring.
-type MachineRetiring struct {
-	Avatar         string `json:"avatar,omitempty"`
-	DifficultyText string `json:"difficulty_text,omitempty"`
-	Id             int    `json:"id,omitempty"`
-	Name           string `json:"name,omitempty"`
-	Os             string `json:"os,omitempty"`
-}
-
-// MachineReview Schema definition for Machine Review
-type MachineReview struct {
-	Id       int  `json:"id,omitempty"`
-	Reviewed bool `json:"reviewed,omitempty"`
-}
-
-// MachineReviewMessageItems defines model for MachineReviewMessageItems.
-type MachineReviewMessageItems = []MachineReview
-
-// MachineReviewRequest Schema definition for Machine Review Request
-type MachineReviewRequest struct {
-	Headline string  `json:"headline"`
-	Id       int     `json:"id"`
-	Review   string  `json:"review"`
-	Stars    float32 `json:"stars"`
-}
-
-// MachineReviewResponse Schema definition for Machine Review Response
-type MachineReviewResponse struct {
-	Message MachineReviewMessageItems `json:"message,omitempty"`
-}
-
-// MachineReviewsMessageItem defines model for MachineReviewsMessageItem.
-type MachineReviewsMessageItem struct {
-	AuthUserInHelpfulReviews bool                `json:"authUserInHelpfulReviews,omitempty"`
-	CreatedAt                string              `json:"created_at,omitempty"`
-	Difficulty               int                 `json:"difficulty"`
-	Featured                 int                 `json:"featured,omitempty"`
-	Headline                 string              `json:"headline"`
-	HelpfulReviews           HelpfulReviewsItems `json:"helpful_reviews,omitempty"`
-	HelpfulReviewsCount      float32             `json:"helpful_reviews_count,omitempty"`
-	Id                       int                 `json:"id,omitempty"`
-	Message                  string              `json:"message"`
-	Released                 float32             `json:"released,omitempty"`
-	Review                   string              `json:"review"`
-	Stars                    float32             `json:"stars,omitempty"`
-	Title                    string              `json:"title"`
-	User                     UserBasicInfo       `json:"user"`
-	UserId                   int                 `json:"user_id,omitempty"`
-}
-
-// MachineReviewsResponse defines model for MachineReviewsResponse.
-type MachineReviewsResponse struct {
-	Average float32                     `json:"average,omitempty"`
-	Count   float32                     `json:"count,omitempty"`
-	Message MaschineReviewsMessageItems `json:"message,omitempty"`
-}
-
-// MachineReviewsUserIdResponse Schema definition for Machine Reviews User Id Response
-type MachineReviewsUserIdResponse struct {
-	Message string `json:"message"`
-}
-
 // MachineTagIdResponse Schema definition for Machine Tag Id Response
 type MachineTagIdResponse struct {
 	Info MachineTagInfo `json:"info,omitempty"`
@@ -2384,34 +1158,6 @@ type MachineTasksData_Item struct {
 // MachineTasksResponse defines model for MachineTasksResponse.
 type MachineTasksResponse struct {
 	Data MachineTasksData `json:"data,omitempty"`
-}
-
-// MachineUnreleasedData defines model for MachineUnreleasedData.
-type MachineUnreleasedData struct {
-	Avatar         string             `json:"avatar,omitempty"`
-	CoCreators     UserBasicInfoItems `json:"coCreators"`
-	Difficulty     int                `json:"difficulty,omitempty"`
-	DifficultyText string             `json:"difficulty_text,omitempty"`
-	FirstCreator   UserBasicInfoItems `json:"firstCreator"`
-	Id             int                `json:"id,omitempty"`
-	Name           string             `json:"name,omitempty"`
-	Os             string             `json:"os,omitempty"`
-	Release        time.Time          `json:"release,omitempty"`
-	Retiring       MachineRetiring    `json:"retiring,omitempty"`
-}
-
-// MachineUnreleasedDataItems defines model for MachineUnreleasedDataItems.
-type MachineUnreleasedDataItems = []MachineUnreleasedData
-
-// MachineUnreleasedResponse Schema definition for Machine Unreleased Response
-type MachineUnreleasedResponse struct {
-	Data MachineUnreleasedDataItems `json:"data,omitempty"`
-
-	// Links Schema definition for Links
-	Links Links `json:"links,omitempty"`
-
-	// Meta Schema definition for Meta
-	Meta Meta `json:"meta,omitempty"`
 }
 
 // MachineWalkthroughIdResponse Schema definition for Machine Walkthrough Id Response
@@ -2459,11 +1205,6 @@ type MachineWalkthroughMessageWriteupsItem struct {
 
 // MachineWalkthroughMessageWriteupsItems defines model for MachineWalkthroughMessageWriteupsItems.
 type MachineWalkthroughMessageWriteupsItems = []MachineWalkthroughMessageWriteupsItem
-
-// MachineWalkthroughOfficialFeedbackChoicesResponse defines model for MachineWalkthroughOfficialFeedbackChoicesResponse.
-type MachineWalkthroughOfficialFeedbackChoicesResponse struct {
-	FeedbackChoices StringArray `json:"feedback_choices"`
-}
 
 // MachineWalkthroughRandomResponse defines model for MachineWalkthroughRandomResponse.
 type MachineWalkthroughRandomResponse struct {
@@ -2522,9 +1263,6 @@ type Maker struct {
 	ProfileUrl  string `json:"profile_url"`
 }
 
-// MaschineReviewsMessageItems defines model for MaschineReviewsMessageItems.
-type MaschineReviewsMessageItems = []MachineReviewsMessageItem
-
 // MatrixInfo defines model for MatrixInfo.
 type MatrixInfo struct {
 	Ctf    float32 `json:"ctf,omitempty"`
@@ -2557,12 +1295,6 @@ type Meta struct {
 	PerPage     int             `json:"per_page,omitempty"`
 	To          int             `json:"to,omitempty"`
 	Total       int             `json:"total,omitempty"`
-}
-
-// MetaAlt defines model for MetaAlt.
-type MetaAlt struct {
-	CurrentPage int `json:"currentPage,omitempty"`
-	Pages       int `json:"pages,omitempty"`
 }
 
 // NavigationMainData defines model for NavigationMainData.
@@ -2649,62 +1381,11 @@ type OwnMachineErrorResponse struct {
 	Status  int    `json:"status,omitempty"`
 }
 
-// OwnRequest Schema definition for Own Request
-type OwnRequest struct {
-	Difficulty int    `json:"difficulty,omitempty"`
-	Flag       string `json:"flag"`
-	Id         int    `json:"id"`
-}
-
 // OwnResponse Schema definition for Own Response
 type OwnResponse struct {
 	Message  string   `json:"message,omitempty"`
 	UserRank UserRank `json:"user_rank,omitempty"`
 }
-
-// OwnStats Schema definition for Own Stats
-type OwnStats struct {
-	ChallengeOwns int               `json:"challenge_owns,omitempty"`
-	FirstBloods   int               `json:"first_bloods,omitempty"`
-	Rank          int               `json:"rank,omitempty"`
-	Respects      int               `json:"respects,omitempty"`
-	SystemOwns    int               `json:"system_owns,omitempty"`
-	UserOwns      int               `json:"user_owns,omitempty"`
-	Weekly        map[string]Weekly `json:"weekly,omitempty"`
-}
-
-// OwnsItems defines model for OwnsItems.
-type OwnsItems struct {
-	Challenge       ChallengeOwns      `json:"challenge,omitempty"`
-	ChallengeId     int                `json:"challenge_id,omitempty"`
-	CreatedAt       time.Time          `json:"created_at"`
-	DeletedAt       time.Time          `json:"deleted_at"`
-	DeletedIndexFix int                `json:"deleted_index_fix,omitempty"`
-	Id              int                `json:"id,omitempty"`
-	Machine         MachineOwnsTabloid `json:"machine,omitempty"`
-	MachineFlagId   int                `json:"machine_flag_id"`
-	MachineId       int                `json:"machine_id,omitempty"`
-	SpFlag          int                `json:"sp_flag,omitempty"`
-	SyncSource      string             `json:"sync_source"`
-	UpdatedAt       time.Time          `json:"updated_at"`
-	User            UserOwnsUser       `json:"user,omitempty"`
-	UserId          int                `json:"user_id,omitempty"`
-	VpnServerId     int                `json:"vpn_server_id,omitempty"`
-}
-
-// PaginatedMachineData Schema definition for Paginated Machine Data
-type PaginatedMachineData struct {
-	Data PaginatedMachineDataItems `json:"data,omitempty"`
-
-	// Links Schema definition for Links
-	Links Links `json:"links,omitempty"`
-
-	// Meta Schema definition for Meta
-	Meta Meta `json:"meta,omitempty"`
-}
-
-// PaginatedMachineDataItems defines model for PaginatedMachineDataItems.
-type PaginatedMachineDataItems = []MachineData
 
 // PaginationLink Schema definition for Pagination Link
 type PaginationLink struct {
@@ -2717,8 +1398,17 @@ type PaginationLink struct {
 // PaginationLinks defines model for PaginationLinks.
 type PaginationLinks = []PaginationLink
 
-// PeriodsStringArray defines model for PeriodsStringArray.
-type PeriodsStringArray = []StringArray
+// PesentationDetail defines model for PesentationDetail.
+type PesentationDetail struct {
+	Attitude            StringArray `json:"attitude"`
+	Mission             string      `json:"mission,omitempty"`
+	Skills              StringArray `json:"skills"`
+	WhatIsDescription   string      `json:"whatIsDescription,omitempty"`
+	WhatIsTitle         string      `json:"whatIsTitle,omitempty"`
+	WhatWillGainPoints  StringArray `json:"whatWillGainPoints"`
+	WhatWillGainTitle   string      `json:"whatWillGainTitle,omitempty"`
+	WhoIsForDescription string      `json:"whoIsForDescription,omitempty"`
+}
 
 // PlayInfo Schema definition for Play Info
 type PlayInfo struct {
@@ -2746,19 +1436,6 @@ type PlayInfoCasing struct {
 	IsSpawned         bool      `json:"isSpawned"`
 	IsSpawning        bool      `json:"isSpawning"`
 	LifeRemaining     int       `json:"life_remaining"`
-}
-
-// PorfileContentProfile defines model for PorfileContentProfile.
-type PorfileContentProfile struct {
-	Content PorfileContentProfileContent `json:"content,omitempty"`
-}
-
-// PorfileContentProfileContent defines model for PorfileContentProfileContent.
-type PorfileContentProfileContent struct {
-	Challenges []interface{}              `json:"challenges,omitempty"`
-	Machines   ProfileContentMachineItems `json:"machines,omitempty"`
-	Sherlocks  []interface{}              `json:"sherlocks,omitempty"`
-	Writeups   []interface{}              `json:"writeups,omitempty"`
 }
 
 // ProductFlagsResponse Schema definition for Prodcut Flags Response
@@ -2840,26 +1517,6 @@ type ProfileChartMachineAttackProfileMachineAttackPaths struct {
 
 	// WebApplication Schema definition for Profile Chart Machine Attack Card
 	WebApplication ProfileChartMachineAttackCard `json:"Web Application,omitempty"`
-}
-
-// ProfileContentIdResponse Schema definition for Profile Content Id Response
-type ProfileContentIdResponse struct {
-	Profile PorfileContentProfile `json:"profile,omitempty"`
-}
-
-// ProfileContentMachineItems defines model for ProfileContentMachineItems.
-type ProfileContentMachineItems = []ProfileContentMachinesItem
-
-// ProfileContentMachinesItem defines model for ProfileContentMachinesItem.
-type ProfileContentMachinesItem struct {
-	Difficulty    string `json:"difficulty,omitempty"`
-	Id            int    `json:"id,omitempty"`
-	MachineAvatar string `json:"machine_avatar,omitempty"`
-	Name          string `json:"name,omitempty"`
-	Os            string `json:"os,omitempty"`
-	Rating        string `json:"rating,omitempty"`
-	SystemOwns    int    `json:"system_owns,omitempty"`
-	UserOwns      int    `json:"user_owns,omitempty"`
 }
 
 // ProfileGraopPeriodProfile defines model for ProfileGraopPeriodProfile.
@@ -3000,6 +1657,9 @@ type ProfileUserTeamWrapper struct {
 
 // Prolab Schema definition for Prolab
 type Prolab struct {
+	Avatar48CircleUrl          string    `json:"avatar_48_circle_url,omitempty"`
+	Avatar48Url                string    `json:"avatar_48_url,omitempty"`
+	AvatarUrl                  string    `json:"avatar_url,omitempty"`
 	ContentId                  string    `json:"content_id,omitempty"`
 	CoverImgUrl                string    `json:"cover_img_url"`
 	DesignatedCategory         string    `json:"designated_category,omitempty"`
@@ -3025,23 +1685,30 @@ type Prolab struct {
 
 // ProlabData Schema definition for Prolab Data
 type ProlabData struct {
-	ActiveUsers      int            `json:"active_users,omitempty"`
-	CanInteract      bool           `json:"can_interact,omitempty"`
-	CoverImageUrl    string         `json:"cover_image_url"`
-	Description      string         `json:"description,omitempty"`
-	EntryPoints      StringArray    `json:"entry_points"`
-	Id               int            `json:"id,omitempty"`
-	Identifier       string         `json:"identifier,omitempty"`
-	LabMasters       LabMasterItems `json:"lab_masters,omitempty"`
-	LabServersCount  int            `json:"lab_servers_count,omitempty"`
-	Mini             bool           `json:"mini,omitempty"`
-	Name             string         `json:"name,omitempty"`
-	ProFlagsCount    int            `json:"pro_flags_count,omitempty"`
-	ProMachinesCount int            `json:"pro_machines_count,omitempty"`
-	State            string         `json:"state,omitempty"`
-	Version          string         `json:"version,omitempty"`
-	VideoUrl         string         `json:"video_url"`
-	Writeup          string         `json:"writeup"`
+	ActiveUsers        int               `json:"active_users,omitempty"`
+	Avatar48CircleUrl  string            `json:"avatar_48_circle_url,omitempty"`
+	Avatar48Url        string            `json:"avatar_48_url,omitempty"`
+	AvatarUrl          string            `json:"avatar_url,omitempty"`
+	CanInteract        bool              `json:"can_interact,omitempty"`
+	CoverImageUrl      string            `json:"cover_image_url"`
+	Description        string            `json:"description,omitempty"`
+	EntryPoints        StringArray       `json:"entry_points"`
+	Id                 int               `json:"id,omitempty"`
+	Identifier         string            `json:"identifier,omitempty"`
+	LabMasters         LabMasterItems    `json:"lab_masters,omitempty"`
+	LabServersCount    int               `json:"lab_servers_count,omitempty"`
+	Mini               bool              `json:"mini,omitempty"`
+	Name               string            `json:"name,omitempty"`
+	PresentationDetail PesentationDetail `json:"presentation_detail,omitempty"`
+	ProFlagsCount      int               `json:"pro_flags_count,omitempty"`
+	ProMachinesCount   int               `json:"pro_machines_count,omitempty"`
+	ReviewsAverage     string            `json:"reviews_average,omitempty"`
+	ReviewsCount       int               `json:"reviews_count,omitempty"`
+	State              string            `json:"state,omitempty"`
+	UserHasReviewed    bool              `json:"user_has_reviewed,omitempty"`
+	Version            string            `json:"version,omitempty"`
+	VideoUrl           string            `json:"video_url"`
+	Writeup            string            `json:"writeup"`
 }
 
 // ProlabDataItems defines model for ProlabDataItems.
@@ -3076,30 +1743,13 @@ type ProlabIdOverviewResponse struct {
 	Status bool               `json:"status,omitempty"`
 }
 
-// ProlabIdReviewsOverviewResponse Schema definition for Prolab Id Reviews Overview Response
-type ProlabIdReviewsOverviewResponse struct {
-	// Data Schema definition for Prolab Reviews Overview Data
-	Data   ProlabReviewsOverviewData `json:"data,omitempty"`
-	Status bool                      `json:"status,omitempty"`
-}
-
-// ProlabIdReviewsResponse Schema definition for Prolab Id Reviews Response
-type ProlabIdReviewsResponse struct {
-	Data ProlabReviewData `json:"data,omitempty"`
-
-	// Links Schema definition for Links
-	Links Links `json:"links,omitempty"`
-
-	// Meta Schema definition for Meta
-	Meta Meta `json:"meta,omitempty"`
-}
-
 // ProlabMachineData defines model for ProlabMachineData.
 type ProlabMachineData = []Machine
 
 // ProlabOverviewData Schema definition for Prolab Overview Data
 type ProlabOverviewData struct {
-	ContentId string `json:"content_id,omitempty"`
+	ContentId     string `json:"content_id,omitempty"`
+	CoverImageUrl string `json:"cover_image_url,omitempty"`
 
 	// DesignatedLevel Schema definition for Designated Level
 	DesignatedLevel  DesignatedLevel `json:"designated_level,omitempty"`
@@ -3133,56 +1783,6 @@ type ProlabProgressData struct {
 // ProlabProgressResponse defines model for ProlabProgressResponse.
 type ProlabProgressResponse struct {
 	Data   ProlabProgressData `json:"data,omitempty"`
-	Status bool               `json:"status,omitempty"`
-}
-
-// ProlabRatingData defines model for ProlabRatingData.
-type ProlabRatingData struct {
-	Rating ProlabRatingData_Rating `json:"rating,omitempty"`
-}
-
-// ProlabRatingDataRating0 defines model for .
-type ProlabRatingDataRating0 = float32
-
-// ProlabRatingDataRating1 defines model for .
-type ProlabRatingDataRating1 = string
-
-// ProlabRatingData_Rating defines model for ProlabRatingData.Rating.
-type ProlabRatingData_Rating struct {
-	union json.RawMessage
-}
-
-// ProlabRatingResponse defines model for ProlabRatingResponse.
-type ProlabRatingResponse struct {
-	Data ProlabRatingData `json:"data,omitempty"`
-}
-
-// ProlabReviewData defines model for ProlabReviewData.
-type ProlabReviewData = []ReviewProlab
-
-// ProlabReviewOverviewFeedbackItems defines model for ProlabReviewOverviewFeedbackItems.
-type ProlabReviewOverviewFeedbackItems = []ReviewOverview
-
-// ProlabReviewsOverviewData Schema definition for Prolab Reviews Overview Data
-type ProlabReviewsOverviewData struct {
-	Feedbacks            ProlabReviewOverviewFeedbackItems `json:"feedbacks,omitempty"`
-	TotalNumberOfRatings int                               `json:"total_number_of_ratings,omitempty"`
-	UsersAverageRating   float32                           `json:"users_average_rating,omitempty"`
-}
-
-// ProlabSubscription defines model for ProlabSubscription.
-type ProlabSubscription struct {
-	Active             bool   `json:"active,omitempty"`
-	EndsAt             string `json:"ends_at"`
-	Name               string `json:"name"`
-	RenewsAt           string `json:"renews_at"`
-	SubscriptionPeriod string `json:"subscription_period"`
-	Type               string `json:"type"`
-}
-
-// ProlabSubscriptionResponse defines model for ProlabSubscriptionResponse.
-type ProlabSubscriptionResponse struct {
-	Data   ProlabSubscription `json:"data,omitempty"`
 	Status bool               `json:"status,omitempty"`
 }
 
@@ -3314,48 +1914,8 @@ type RankingGraphStats struct {
 	RanksDiff    int      `json:"ranks_diff,omitempty"`
 }
 
-// RankingTeam defines model for RankingTeam.
-type RankingTeam struct {
-	AvatarThumbUrl string `json:"avatar_thumb_url,omitempty"`
-	AvatarUrl      string `json:"avatar_url,omitempty"`
-	Id             int    `json:"id,omitempty"`
-	Name           string `json:"name,omitempty"`
-}
-
 // RankingUserDataItems defines model for RankingUserDataItems.
 type RankingUserDataItems = []RankingsUserData
-
-// RankingUserInfo defines model for RankingUserInfo.
-type RankingUserInfo struct {
-	Avatar      string `json:"avatar,omitempty"`
-	AvatarThumb string `json:"avatar_thumb,omitempty"`
-	Id          int    `json:"id,omitempty"`
-	Name        string `json:"name,omitempty"`
-}
-
-// RankingUserRankBracketData defines model for RankingUserRankBracketData.
-type RankingUserRankBracketData struct {
-	CurrentBracket       string  `json:"current_bracket,omitempty"`
-	NextBracket          string  `json:"next_bracket,omitempty"`
-	Points               int     `json:"points,omitempty"`
-	PointsForNextBracket float32 `json:"points_for_next_bracket,omitempty"`
-	Rank                 int     `json:"rank,omitempty"`
-}
-
-// RankingsBracketData defines model for RankingsBracketData.
-type RankingsBracketData struct {
-	CurrentBracket       string `json:"current_bracket,omitempty"`
-	NextBracket          string `json:"next_bracket"`
-	Points               int    `json:"points,omitempty"`
-	PointsForNextBracket int    `json:"points_for_next_bracket"`
-	Rank                 int    `json:"rank,omitempty"`
-}
-
-// RankingsCountrRankingBracketResponse defines model for RankingsCountrRankingBracketResponse.
-type RankingsCountrRankingBracketResponse struct {
-	Data   RankingsBracketData `json:"data,omitempty"`
-	Status bool                `json:"status,omitempty"`
-}
 
 // RankingsCountries defines model for RankingsCountries.
 type RankingsCountries struct {
@@ -3382,38 +1942,10 @@ type RankingsCountriesItem struct {
 // RankingsCountriesItems defines model for RankingsCountriesItems.
 type RankingsCountriesItems = []RankingsCountriesItem
 
-// RankingsCountryBest defines model for RankingsCountryBest.
-type RankingsCountryBest struct {
-	Data   RankingsCountryData `json:"data,omitempty"`
-	Status bool                `json:"status,omitempty"`
-}
-
-// RankingsCountryData defines model for RankingsCountryData.
-type RankingsCountryData struct {
-	Date          string   `json:"date,omitempty"`
-	Rank          int      `json:"rank,omitempty"`
-	RankChartData IntArray `json:"rank_chart_data"`
-}
-
 // RankingsCountryMembersResponse defines model for RankingsCountryMembersResponse.
 type RankingsCountryMembersResponse struct {
 	Data   RankingCountryMemberData `json:"data,omitempty"`
 	Status bool                     `json:"status,omitempty"`
-}
-
-// RankingsCountryOverviewData defines model for RankingsCountryOverviewData.
-type RankingsCountryOverviewData struct {
-	ChartData    IntArray `json:"chart_data"`
-	Country      Country  `json:"country,omitempty"`
-	PointsDiff   int      `json:"points_diff,omitempty"`
-	PointsGrowth string   `json:"points_growth,omitempty"`
-	RanksDiff    int      `json:"ranks_diff,omitempty"`
-}
-
-// RankingsCountryOverviewResponse defines model for RankingsCountryOverviewResponse.
-type RankingsCountryOverviewResponse struct {
-	Data   RankingsCountryOverviewData `json:"data,omitempty"`
-	Status bool                        `json:"status,omitempty"`
 }
 
 // RankingsData defines model for RankingsData.
@@ -3447,19 +1979,6 @@ type RankingsResponse struct {
 	Status bool         `json:"status,omitempty"`
 }
 
-// RankingsTeamBestData defines model for RankingsTeamBestData.
-type RankingsTeamBestData struct {
-	Date          openapi_types.Date `json:"date,omitempty"`
-	Rank          int                `json:"rank,omitempty"`
-	RankChartData IntArray           `json:"rank_chart_data"`
-}
-
-// RankingsTeamBestResponse Schema definition for Rankings Team Best Response
-type RankingsTeamBestResponse struct {
-	Data   RankingsTeamBestData `json:"data,omitempty"`
-	Status bool                 `json:"status,omitempty"`
-}
-
 // RankingsTeamItem defines model for RankingsTeamItem.
 type RankingsTeamItem struct {
 	AvatarThumbUrl  string `json:"avatar_thumb_url,omitempty"`
@@ -3480,36 +1999,6 @@ type RankingsTeamItem struct {
 
 // RankingsTeamItems defines model for RankingsTeamItems.
 type RankingsTeamItems = []RankingsTeamItem
-
-// RankingsTeamOverviewData defines model for RankingsTeamOverviewData.
-type RankingsTeamOverviewData struct {
-	ChartData    IntArray    `json:"chart_data"`
-	PointsDiff   int         `json:"points_diff,omitempty"`
-	PointsGrowth string      `json:"points_growth,omitempty"`
-	RanksDiff    int         `json:"ranks_diff"`
-	Team         RankingTeam `json:"team,omitempty"`
-}
-
-// RankingsTeamOverviewResponse Schema definition for Rankings Team Overview Response
-type RankingsTeamOverviewResponse struct {
-	Data   RankingsTeamOverviewData `json:"data,omitempty"`
-	Status bool                     `json:"status,omitempty"`
-}
-
-// RankingsTeamRankingBracketData defines model for RankingsTeamRankingBracketData.
-type RankingsTeamRankingBracketData struct {
-	CurrentBracket       string `json:"current_bracket,omitempty"`
-	NextBracket          string `json:"next_bracket"`
-	Points               int    `json:"points,omitempty"`
-	PointsForNextBracket int    `json:"points_for_next_bracket"`
-	Rank                 int    `json:"rank,omitempty"`
-}
-
-// RankingsTeamRankingBracketResponse Schema definition for Rankings Team Ranking Bracket Response
-type RankingsTeamRankingBracketResponse struct {
-	Data   RankingsTeamRankingBracketData `json:"data,omitempty"`
-	Status bool                           `json:"status,omitempty"`
-}
 
 // RankingsTeamResponse Schema definition for Rankings Team Response
 type RankingsTeamResponse struct {
@@ -3544,25 +2033,6 @@ type RankingsUniversitiesResponse struct {
 	Status bool                      `json:"status,omitempty"`
 }
 
-// RankingsUniversityRankingBracketByIdResponse defines model for RankingsUniversityRankingBracketByIdResponse.
-type RankingsUniversityRankingBracketByIdResponse struct {
-	Data   RankingsBracketData `json:"data,omitempty"`
-	Status bool                `json:"status,omitempty"`
-}
-
-// RankingsUserBestData defines model for RankingsUserBestData.
-type RankingsUserBestData struct {
-	Date          string   `json:"date,omitempty"`
-	Rank          float32  `json:"rank,omitempty"`
-	RankChartData IntArray `json:"rank_chart_data"`
-}
-
-// RankingsUserBestResponse defines model for RankingsUserBestResponse.
-type RankingsUserBestResponse struct {
-	Data   RankingsUserBestData `json:"data,omitempty"`
-	Status bool                 `json:"status,omitempty"`
-}
-
 // RankingsUserData defines model for RankingsUserData.
 type RankingsUserData struct {
 	AvatarThumb     string `json:"avatar_thumb"`
@@ -3580,27 +2050,6 @@ type RankingsUserData struct {
 	RootOwns        int    `json:"root_owns,omitempty"`
 	UserBloods      int    `json:"user_bloods,omitempty"`
 	UserOwns        int    `json:"user_owns,omitempty"`
-}
-
-// RankingsUserOverviewData defines model for RankingsUserOverviewData.
-type RankingsUserOverviewData struct {
-	ChartData    IntArray        `json:"chart_data"`
-	PointsDiff   float32         `json:"points_diff,omitempty"`
-	PointsGrowth string          `json:"points_growth,omitempty"`
-	RanksDiff    float32         `json:"ranks_diff,omitempty"`
-	User         RankingUserInfo `json:"user,omitempty"`
-}
-
-// RankingsUserOverviewResponse defines model for RankingsUserOverviewResponse.
-type RankingsUserOverviewResponse struct {
-	Data   RankingsUserOverviewData `json:"data,omitempty"`
-	Status bool                     `json:"status,omitempty"`
-}
-
-// RankingsUserRankingBracketResponse defines model for RankingsUserRankingBracketResponse.
-type RankingsUserRankingBracketResponse struct {
-	Data   RankingUserRankBracketData `json:"data,omitempty"`
-	Status bool                       `json:"status,omitempty"`
 }
 
 // RankingsUsersResponse Schema definition for Rankings Users Response
@@ -3622,18 +2071,6 @@ type RecommendedCard struct {
 	Retired           bool    `json:"retired,omitempty"`
 	State             string  `json:"state,omitempty"`
 	UrlName           string  `json:"url_name,omitempty"`
-}
-
-// RecommendedCardRetired Schema definition for Recommended Card Retired
-type RecommendedCardRetired struct {
-	CategoryName string `json:"category_name,omitempty"`
-	Difficulty   string `json:"difficulty,omitempty"`
-	Id           int    `json:"id,omitempty"`
-	Name         string `json:"name,omitempty"`
-	ReleaseDate  string `json:"release_date,omitempty"`
-	Retired      bool   `json:"retired,omitempty"`
-	State        string `json:"state,omitempty"`
-	UrlName      string `json:"url_name,omitempty"`
 }
 
 // RecommendedMachineResponse Schema definition for Recommended Machine Response
@@ -3668,15 +2105,6 @@ type ReviewMessageItem struct {
 	UserId                   int                 `json:"user_id,omitempty"`
 }
 
-// ReviewOverview Schema definition for Review Overview
-type ReviewOverview struct {
-	Rating int    `json:"rating,omitempty"`
-	Text   string `json:"text,omitempty"`
-
-	// User Schema definition for Common Id Name
-	User CommonIdName `json:"user,omitempty"`
-}
-
 // ReviewPaginatedResponse Schema definition for Reviews Response
 type ReviewPaginatedResponse struct {
 	Average float32 `json:"average,omitempty"`
@@ -3690,29 +2118,6 @@ type ReviewPaginatedResponse struct {
 
 	// Meta Schema definition for Meta
 	Meta Meta `json:"meta,omitempty"`
-}
-
-// ReviewProlab Schema definition for Review Prolab
-type ReviewProlab struct {
-	CreatedAt                time.Time `json:"created_at,omitempty"`
-	Difficulty               int       `json:"difficulty"`
-	HelpfulProFeedbacksCount int       `json:"helpful_pro_feedbacks_count,omitempty"`
-	Id                       int       `json:"id,omitempty"`
-	Rating                   int       `json:"rating,omitempty"`
-	Text                     string    `json:"text"`
-
-	// User Schema definition for Lab Master
-	User                      UserIdNameThumb `json:"user,omitempty"`
-	UserInHelpfulProFeedbacks bool            `json:"user_in_helpful_pro_feedbacks,omitempty"`
-}
-
-// ReviewsResponse Schema definition for Reviews Response
-type ReviewsResponse struct {
-	Average float32 `json:"average,omitempty"`
-	Count   int     `json:"count,omitempty"`
-
-	// Info Schema definition for Review Message
-	Info ReviewMessage `json:"info,omitempty"`
 }
 
 // SearchChallengeItem defines model for SearchChallengeItem.
@@ -3824,38 +2229,6 @@ type SeasonActiveData struct {
 	UserPoints      int       `json:"user_points,omitempty"`
 }
 
-// SeasonCompletedMachine Schema definition for Season Completed Machine
-type SeasonCompletedMachine struct {
-	Data SeasonCompletedMachineData `json:"data,omitempty"`
-}
-
-// SeasonCompletedMachineData defines model for SeasonCompletedMachineData.
-type SeasonCompletedMachineData struct {
-	SeasonFlags      int `json:"season_flags,omitempty"`
-	SeasonPwnedFlags int `json:"season_pwned_flags,omitempty"`
-}
-
-// SeasonEndData defines model for SeasonEndData.
-type SeasonEndData struct {
-	Owns   SeasonOwns      `json:"owns,omitempty"`
-	Rank   SeasonRank      `json:"rank,omitempty"`
-	Season SeasonEndSeason `json:"season,omitempty"`
-	User   UserBasicInfo   `json:"user"`
-}
-
-// SeasonEndResponse defines model for SeasonEndResponse.
-type SeasonEndResponse struct {
-	Data SeasonEndData `json:"data,omitempty"`
-}
-
-// SeasonEndSeason defines model for SeasonEndSeason.
-type SeasonEndSeason struct {
-	Id        int    `json:"id,omitempty"`
-	Name      string `json:"name,omitempty"`
-	Tier      string `json:"tier,omitempty"`
-	TierFrame string `json:"tier_frame,omitempty"`
-}
-
 // SeasonListData defines model for SeasonListData.
 type SeasonListData = []SeasonListDataItem
 
@@ -3914,13 +2287,6 @@ type SeasonMachinesDataItem struct {
 
 // SeasonMachinesDataItems defines model for SeasonMachinesDataItems.
 type SeasonMachinesDataItems = []SeasonMachinesDataItem
-
-// SeasonOwns defines model for SeasonOwns.
-type SeasonOwns struct {
-	Root          BloodsObtained `json:"root,omitempty"`
-	TotalMachines int            `json:"total_machines,omitempty"`
-	User          BloodsObtained `json:"user,omitempty"`
-}
 
 // SeasonPlatersLeaderboardTopDataItem defines model for SeasonPlatersLeaderboardTopDataItem.
 type SeasonPlatersLeaderboardTopDataItem struct {
@@ -3982,13 +2348,6 @@ type SeasonPlayersLeaderboardTopResponse struct {
 	Data SeasonPlayersLeaderBoardTopData `json:"data,omitempty"`
 }
 
-// SeasonRank defines model for SeasonRank.
-type SeasonRank struct {
-	Current int    `json:"current,omitempty"`
-	Suffix  string `json:"suffix,omitempty"`
-	Total   int    `json:"total,omitempty"`
-}
-
 // SeasonRewardGroupItem defines model for SeasonRewardGroupItem.
 type SeasonRewardGroupItem struct {
 	Description       string             `json:"description"`
@@ -4035,17 +2394,6 @@ type SeasonRewardsItems = []SeasonRewardItem
 // SeasonRewardsResponse defines model for SeasonRewardsResponse.
 type SeasonRewardsResponse struct {
 	Data SeasonRewardsData `json:"data,omitempty"`
-}
-
-// SeasonUserFollowerData defines model for SeasonUserFollowerData.
-type SeasonUserFollowerData struct {
-	TopRankedFollowers FollowerItems `json:"top_ranked_followers,omitempty"`
-	TopSeasonUsers     FollowerItems `json:"top_season_users,omitempty"`
-}
-
-// SeasonUserFollowers Schema definition for Season User Followers
-type SeasonUserFollowers struct {
-	Data SeasonUserFollowerData `json:"data,omitempty"`
 }
 
 // SeasonUserRank Schema definition for Season User Rank
@@ -4121,12 +2469,6 @@ type SherlockDetail struct {
 	Description    string              `json:"description,omitempty"`
 	Id             int                 `json:"id,omitempty"`
 	UserOwnsCount  int                 `json:"user_owns_count,omitempty"`
-}
-
-// SherlockDownloadLink Schema definition for Sherlock Download Link
-type SherlockDownloadLink struct {
-	ExpiresIn int    `json:"expires_in,omitempty"`
-	Url       string `json:"url,omitempty"`
 }
 
 // SherlockInfo Schema definition for Sherlock Info
@@ -4270,104 +2612,14 @@ type SherlockWriteup struct {
 	Data WriteupData `json:"data,omitempty"`
 }
 
-// SidebarAnnouncementResponse Schema definition for Sidebar Announcement Response
-type SidebarAnnouncementResponse struct {
-	// Announcement Schema definition for Announcement
-	Announcement Announcement `json:"announcement,omitempty"`
-}
-
-// SidebarChangeLog Schema definition for Sidebar Change Log
-type SidebarChangeLog struct {
-	CreatedAt time.Time `json:"created_at,omitempty"`
-	Id        int       `json:"id,omitempty"`
-	Version   string    `json:"version,omitempty"`
-}
-
-// SidebarChangeLogResponse Schema definition for Sidebar Change Log Response
-type SidebarChangeLogResponse struct {
-	// Changelog Schema definition for Sidebar Change Log
-	Changelog SidebarChangeLog `json:"changelog,omitempty"`
-}
-
 // SocialLinks Schema definition for Social Links
 type SocialLinks struct {
 	Discord string `json:"discord,omitempty"`
 	Forum   string `json:"forum,omitempty"`
 }
 
-// SpProfileIdResponse Schema definition for Sp Profile Id Response
-type SpProfileIdResponse struct {
-	Info SpProfileInfo `json:"info,omitempty"`
-}
-
-// SpProfileInfo defines model for SpProfileInfo.
-type SpProfileInfo struct {
-	Ip string `json:"ip"`
-
-	// PlayInfo Schema definition for Play Info
-	PlayInfo PlayInfoCasing `json:"playInfo,omitempty"`
-}
-
-// SpTierData defines model for SpTierData.
-type SpTierData struct {
-	Description string             `json:"description,omitempty"`
-	Id          int                `json:"id,omitempty"`
-	Machines    SpTierMachineItems `json:"machines,omitempty"`
-	Name        string             `json:"name,omitempty"`
-}
-
-// SpTierMachine defines model for SpTierMachine.
-type SpTierMachine struct {
-	Avatar         string                       `json:"avatar,omitempty"`
-	DifficultyText string                       `json:"difficultyText,omitempty"`
-	Id             int                          `json:"id,omitempty"`
-	InfoStatus     string                       `json:"info_status"`
-	Name           string                       `json:"name,omitempty"`
-	Order          int                          `json:"order,omitempty"`
-	Os             string                       `json:"os,omitempty"`
-	RootOwn        bool                         `json:"rootOwn,omitempty"`
-	SpFlag         int                          `json:"sp_flag,omitempty"`
-	StaticPoints   int                          `json:"static_points,omitempty"`
-	Tasks          SpTierTasksItems             `json:"tasks,omitempty"`
-	UserOwn        bool                         `json:"userOwn,omitempty"`
-	Video          Video                        `json:"video,omitempty"`
-	Walkthrough    SpTierMachineWalkthroughItem `json:"walkthrough,omitempty"`
-	YoutubeId      string                       `json:"youtube_id"`
-}
-
-// SpTierMachineItems defines model for SpTierMachineItems.
-type SpTierMachineItems = []SpTierMachine
-
-// SpTierMachineTasks defines model for SpTierMachineTasks.
-type SpTierMachineTasks struct {
-	Description          string      `json:"description,omitempty"`
-	Flag                 string      `json:"flag,omitempty"`
-	Hint                 string      `json:"hint"`
-	Id                   int         `json:"id,omitempty"`
-	MaskedFlag           string      `json:"masked_flag"`
-	Options              ObjectArray `json:"options,omitempty"`
-	TaskType             int         `json:"task_type,omitempty"`
-	Title                string      `json:"title,omitempty"`
-	Type                 int         `json:"type,omitempty"`
-	UserCompletionsCount int         `json:"user_completions_count,omitempty"`
-}
-
-// SpTierMachineWalkthroughItem defines model for SpTierMachineWalkthroughItem.
-type SpTierMachineWalkthroughItem struct {
-	Filename string `json:"filename,omitempty"`
-	Sha256   string `json:"sha256,omitempty"`
-}
-
 // SpTierProgressItems defines model for SpTierProgressItems.
 type SpTierProgressItems = []SpTiersProgressItem
-
-// SpTierResponse Schema definition for Sp Tier Info
-type SpTierResponse struct {
-	Data SpTierData `json:"data,omitempty"`
-}
-
-// SpTierTasksItems defines model for SpTierTasksItems.
-type SpTierTasksItems = []SpTierMachineTasks
 
 // SpTiersProgressItem defines model for SpTiersProgressItem.
 type SpTiersProgressItem struct {
@@ -4388,30 +2640,8 @@ type SpawnExtendRequest struct {
 	MachineId int `json:"machine_id"`
 }
 
-// SpsCard Schema definition for Home Sps Card
-type SpsCard = []SpsCardItem
-
-// SpsCardItem defines model for SpsCardItem.
-type SpsCardItem struct {
-	Avatar                          string `json:"avatar,omitempty"`
-	CompletionPercentage            int    `json:"completion_percentage,omitempty"`
-	FreeMachineCompletionPercentage int    `json:"free_machine_completion_percentage,omitempty"`
-	Id                              int    `json:"id,omitempty"`
-	Name                            string `json:"name,omitempty"`
-}
-
 // StringArray defines model for StringArray.
 type StringArray = []string
-
-// TabloidOwns defines model for TabloidOwns.
-type TabloidOwns struct {
-	Challenges int              `json:"challenges,omitempty"`
-	Latest     TabloidOwnsItems `json:"latest,omitempty"`
-	Machines   int              `json:"machines,omitempty"`
-}
-
-// TabloidOwnsItems defines model for TabloidOwnsItems.
-type TabloidOwnsItems = []OwnsItems
 
 // Tag Schema definition for Tag
 type Tag struct {
@@ -4478,40 +2708,25 @@ type TeamActivityUser struct {
 	Public      int    `json:"public"`
 }
 
-// TeamGraphData defines model for TeamGraphData.
-type TeamGraphData struct {
-	Points  IntArray `json:"points"`
-	Rank    IntArray `json:"rank"`
-	Respect IntArray `json:"respect"`
-}
-
-// TeamGraphIdResponse Schema definition for Team Graph Id Response
-type TeamGraphIdResponse struct {
-	Data   TeamGraphData `json:"data,omitempty"`
-	Status bool          `json:"status,omitempty"`
-}
-
 // TeamInfoIdResponse Schema definition for Team Info Id Response
 type TeamInfoIdResponse struct {
-	AvatarUrl       string `json:"avatar_url,omitempty"`
-	CanDeleteAvatar bool   `json:"can_delete_avatar,omitempty"`
-
-	// Captain Schema definition for Lab Master
-	Captain         UserIdNameThumb `json:"captain,omitempty"`
-	CountryCode     string          `json:"country_code"`
-	CountryName     string          `json:"country_name,omitempty"`
-	CoverImageUrl   string          `json:"cover_image_url"`
-	Description     string          `json:"description"`
-	Discord         string          `json:"discord"`
-	Facebook        string          `json:"facebook"`
-	Id              int             `json:"id,omitempty"`
-	IsRespected     bool            `json:"is_respected,omitempty"`
-	JoinRequestSent bool            `json:"join_request_sent,omitempty"`
-	Motto           string          `json:"motto,omitempty"`
-	Name            string          `json:"name,omitempty"`
-	Points          int             `json:"points,omitempty"`
-	Public          bool            `json:"public,omitempty"`
-	Twitter         string          `json:"twitter"`
+	AvatarUrl       string             `json:"avatar_url,omitempty"`
+	CanDeleteAvatar bool               `json:"can_delete_avatar,omitempty"`
+	Captain         UserBasicInfoThumb `json:"captain"`
+	CountryCode     string             `json:"country_code"`
+	CountryName     string             `json:"country_name,omitempty"`
+	CoverImageUrl   string             `json:"cover_image_url"`
+	Description     string             `json:"description"`
+	Discord         string             `json:"discord"`
+	Facebook        string             `json:"facebook"`
+	Id              int                `json:"id,omitempty"`
+	IsRespected     bool               `json:"is_respected,omitempty"`
+	JoinRequestSent bool               `json:"join_request_sent,omitempty"`
+	Motto           string             `json:"motto,omitempty"`
+	Name            string             `json:"name,omitempty"`
+	Points          int                `json:"points,omitempty"`
+	Public          bool               `json:"public,omitempty"`
+	Twitter         string             `json:"twitter"`
 }
 
 // TeamInformationProfileData defines model for TeamInformationProfileData.
@@ -4549,39 +2764,6 @@ type TeamInvitationsIdResponse struct {
 	Exception string                 `json:"exception"`
 	Headers   map[string]interface{} `json:"headers,omitempty"`
 	Original  []UserEntry            `json:"original,omitempty"`
-}
-
-// TeamMachineAttackPaths defines model for TeamMachineAttackPaths.
-type TeamMachineAttackPaths struct {
-	// Blockchain Schema definition for Teams Attack Path Card
-	Blockchain TeamsAttackPathCard `json:"Blockchain,omitempty"`
-
-	// Cloud Schema definition for Teams Attack Path Card
-	Cloud TeamsAttackPathCard `json:"Cloud,omitempty"`
-
-	// EnterpriseNetwork Schema definition for Teams Attack Path Card
-	EnterpriseNetwork TeamsAttackPathCard `json:"Enterprise Network,omitempty"`
-
-	// Forensics Schema definition for Teams Attack Path Card
-	Forensics TeamsAttackPathCard `json:"Forensics,omitempty"`
-
-	// Mobile Schema definition for Teams Attack Path Card
-	Mobile TeamsAttackPathCard `json:"Mobile,omitempty"`
-
-	// NicheTechnologies Schema definition for Teams Attack Path Card
-	NicheTechnologies TeamsAttackPathCard `json:"Niche Technologies,omitempty"`
-
-	// Person Schema definition for Teams Attack Path Card
-	Person TeamsAttackPathCard `json:"Person,omitempty"`
-
-	// SecurityOperations Schema definition for Teams Attack Path Card
-	SecurityOperations TeamsAttackPathCard `json:"Security Operations,omitempty"`
-
-	// VulnerabilityAssessment Schema definition for Teams Attack Path Card
-	VulnerabilityAssessment TeamsAttackPathCard `json:"Vulnerability Assessment,omitempty"`
-
-	// WebApplication Schema definition for Teams Attack Path Card
-	WebApplication TeamsAttackPathCard `json:"Web Application,omitempty"`
 }
 
 // TeamMember University Members Resposne
@@ -4622,22 +2804,6 @@ type TeamMemberTeam struct {
 
 // TeamMembersIdResponse Schema definition for Team Members Id Response
 type TeamMembersIdResponse = []TeamMember
-
-// TeamsAttackPathCard Schema definition for Teams Attack Path Card
-type TeamsAttackPathCard struct {
-	AvgTeamsSolved float32 `json:"avg_teams_solved,omitempty"`
-	Name           string  `json:"name,omitempty"`
-	Solved         int     `json:"solved,omitempty"`
-	Total          int     `json:"total,omitempty"`
-}
-
-// TopUserItem defines model for TopUserItem.
-type TopUserItem struct {
-	Id         int    `json:"id,omitempty"`
-	Name       string `json:"name,omitempty"`
-	Points     int    `json:"points"`
-	UserAvatar string `json:"user_avatar"`
-}
 
 // TrackErrorResponse defines model for TrackErrorResponse.
 type TrackErrorResponse struct {
@@ -4727,12 +2893,12 @@ type TracksResponse = []TracksItems
 
 // UniversityAcitivtyItem defines model for UniversityAcitivtyItem.
 type UniversityAcitivtyItem struct {
+	AvatarUrl         string                 `json:"avatar_url,omitempty"`
 	ChallengeCategory string                 `json:"challenge_category,omitempty"`
 	Date              string                 `json:"date,omitempty"`
 	DateDiff          string                 `json:"date_diff,omitempty"`
 	FirstBlood        bool                   `json:"first_blood,omitempty"`
 	Id                int                    `json:"id,omitempty"`
-	MachineAvatar     string                 `json:"machine_avatar,omitempty"`
 	Name              string                 `json:"name,omitempty"`
 	ObjectType        string                 `json:"object_type,omitempty"`
 	Points            float32                `json:"points,omitempty"`
@@ -4745,36 +2911,6 @@ type UniversityActivityResponse = []UniversityAcitivtyItem
 
 // UniversityAllListResponse Schema for University All List Response
 type UniversityAllListResponse struct {
-	Data    UniversityListData `json:"data,omitempty"`
-	Message string             `json:"message,omitempty"`
-	Section string             `json:"section,omitempty"`
-}
-
-// UniversityChartChallengeCategoriesItem defines model for UniversityChartChallengeCategoriesItem.
-type UniversityChartChallengeCategoriesItem struct {
-	AllUniversitysAvgPercentage float32 `json:"all_universitys_avg_percentage,omitempty"`
-	Id                          int     `json:"id,omitempty"`
-	Name                        string  `json:"name,omitempty"`
-	UniversityPercentage        float32 `json:"university_percentage,omitempty"`
-}
-
-// UniversityChartChallengeCategoriesItems defines model for UniversityChartChallengeCategoriesItems.
-type UniversityChartChallengeCategoriesItems = []UniversityChartChallengeCategoriesItem
-
-// UniversityChartChallengeCategoriesResponse defines model for UniversityChartChallengeCategoriesResponse.
-type UniversityChartChallengeCategoriesResponse struct {
-	Data   UniversityChartChallengeCategoriesItems `json:"data,omitempty"`
-	Status bool                                    `json:"status,omitempty"`
-}
-
-// UniversityChartMachinesAttackResponse defines model for UniversityChartMachinesAttackResponse.
-type UniversityChartMachinesAttackResponse struct {
-	MachineAttackPaths MachineAttackPaths `json:"machine_attack_paths,omitempty"`
-	MachineOwns        MachineOwns        `json:"machine_owns,omitempty"`
-}
-
-// UniversityCountryListResponse defines model for UniversityCountryListResponse.
-type UniversityCountryListResponse struct {
 	Data    UniversityListData `json:"data,omitempty"`
 	Message string             `json:"message,omitempty"`
 	Section string             `json:"section,omitempty"`
@@ -4843,49 +2979,6 @@ type UniversityMembersResponse_Rank struct {
 	union json.RawMessage
 }
 
-// UniversityNewListData defines model for UniversityNewListData.
-type UniversityNewListData struct {
-	Data     UniversityListItems `json:"data,omitempty"`
-	LastPage int                 `json:"last_page,omitempty"`
-}
-
-// UniversityNewListResponse defines model for UniversityNewListResponse.
-type UniversityNewListResponse struct {
-	Data    UniversityNewListData `json:"data,omitempty"`
-	Message string                `json:"message,omitempty"`
-	Section string                `json:"section,omitempty"`
-}
-
-// UniversityTopListData defines model for UniversityTopListData.
-type UniversityTopListData struct {
-	Data     UniversityTopListItems `json:"data,omitempty"`
-	LastPage int                    `json:"last_page,omitempty"`
-}
-
-// UniversityTopListItem defines model for UniversityTopListItem.
-type UniversityTopListItem struct {
-	Cca2                 string      `json:"cca2,omitempty"`
-	Country              string      `json:"country,omitempty"`
-	CreatedAt            string      `json:"created_at,omitempty"`
-	HasAutoGeneratedLogo int         `json:"has_auto_generated_logo,omitempty"`
-	Id                   int         `json:"id,omitempty"`
-	Name                 string      `json:"name,omitempty"`
-	Rank                 float32     `json:"rank,omitempty"`
-	RespectedByCount     int         `json:"respected_by_count,omitempty"`
-	UserAvatars          StringArray `json:"user_avatars"`
-	UsersCount           int         `json:"users_count,omitempty"`
-}
-
-// UniversityTopListItems defines model for UniversityTopListItems.
-type UniversityTopListItems = []UniversityTopListItem
-
-// UniversityTopListResponse defines model for UniversityTopListResponse.
-type UniversityTopListResponse struct {
-	Data    UniversityTopListData `json:"data,omitempty"`
-	Message string                `json:"message,omitempty"`
-	Section string                `json:"section,omitempty"`
-}
-
 // UpcomingSeason defines model for UpcomingSeason.
 type UpcomingSeason struct {
 	BackgroundImage string `json:"background_image"`
@@ -4948,34 +3041,6 @@ type UserAchievementTarTypeUserOwn struct {
 	Rank        int       `json:"rank,omitempty"`
 }
 
-// UserActivity defines model for UserActivity.
-type UserActivity struct {
-	Profile UserActivityProfile `json:"profile,omitempty"`
-}
-
-// UserActivityItem defines model for UserActivityItem.
-type UserActivityItem struct {
-	ChallengeCategory string    `json:"challenge_category"`
-	Date              time.Time `json:"date"`
-	DateDiff          string    `json:"date_diff"`
-	FirstBlood        bool      `json:"first_blood"`
-	FlagTitle         string    `json:"flag_title"`
-	Id                int       `json:"id"`
-	MachineAvatar     string    `json:"machine_avatar"`
-	Name              string    `json:"name"`
-	ObjectType        string    `json:"object_type"`
-	Points            int       `json:"points"`
-	Type              string    `json:"type"`
-}
-
-// UserActivityProfile defines model for UserActivityProfile.
-type UserActivityProfile struct {
-	Activity UserActivityProfileActivity `json:"activity,omitempty"`
-}
-
-// UserActivityProfileActivity defines model for UserActivityProfileActivity.
-type UserActivityProfileActivity = []UserActivityItem
-
 // UserAnonymizedIdResponse Schema definition for User Anonymized Id Response
 type UserAnonymizedIdResponse struct {
 	AccountId string `json:"account_id,omitempty"`
@@ -5021,11 +3086,15 @@ type UserBasicInfo struct {
 	Name   string `json:"name,omitempty"`
 }
 
-// UserBasicInfoItems defines model for UserBasicInfoItems.
-type UserBasicInfoItems = []UserBasicInfo
-
 // UserBasicInfoItemsWithRespect defines model for UserBasicInfoItemsWithRespect.
 type UserBasicInfoItemsWithRespect = []UserBasicInfoWithRespect
+
+// UserBasicInfoThumb defines model for UserBasicInfoThumb.
+type UserBasicInfoThumb struct {
+	AvatarThumb string `json:"avatar_thumb"`
+	Id          int    `json:"id,omitempty"`
+	Name        string `json:"name,omitempty"`
+}
 
 // UserBasicInfoWithRespect defines model for UserBasicInfoWithRespect.
 type UserBasicInfoWithRespect struct {
@@ -5057,17 +3126,6 @@ type UserConnectionStatusResponseConnection1 = string
 // UserConnectionStatusResponse_Connection defines model for UserConnectionStatusResponse.Connection.
 type UserConnectionStatusResponse_Connection struct {
 	union json.RawMessage
-}
-
-// UserDashboardResponse Schema definition for User Dashboard Response
-type UserDashboardResponse struct {
-	// DashboardPlayers Schema definition for Dashboard Players
-	DashboardPlayers DashboardPlayers `json:"dashboard_players,omitempty"`
-}
-
-// UserDashboardTabloidResponse defines model for UserDashboardTabloidResponse.
-type UserDashboardTabloidResponse struct {
-	DashboardTabloid DashboardTabloid `json:"dashboard_tabloid,omitempty"`
 }
 
 // UserEntry defines model for UserEntry.
@@ -5129,16 +3187,9 @@ type UserInfoResponse struct {
 	Info UserInfo `json:"info,omitempty"`
 }
 
-// UserOwnsUser defines model for UserOwnsUser.
-type UserOwnsUser struct {
-	Country     string `json:"country"`
-	CountryName string `json:"country_name"`
-	Id          int    `json:"id,omitempty"`
-	Name        string `json:"name,omitempty"`
-}
-
 // UserProfile defines model for UserProfile.
 type UserProfile struct {
+	AccountId           string                    `json:"account_id,omitempty"`
 	Avatar              string                    `json:"avatar,omitempty"`
 	ChallengeBloods     int                       `json:"challenge_bloods,omitempty"`
 	CountryCode         string                    `json:"country_code,omitempty"`
@@ -5328,35 +3379,10 @@ type VMExtend struct {
 	Success bool   `json:"success,omitempty"`
 }
 
-// Video defines model for Video.
-type Video struct {
-	union json.RawMessage
-}
-
-// VideoObject defines model for VideoObject.
-type VideoObject struct {
-	CreatorId   int    `json:"creator_id,omitempty"`
-	CreatorName string `json:"creator_name,omitempty"`
-	YoutubeId   string `json:"youtube_id,omitempty"`
-}
-
-// Weekly defines model for Weekly.
-type Weekly struct {
-	ChallengeOwns int                `json:"challenge_owns,omitempty"`
-	FirstBloods   int                `json:"first_bloods,omitempty"`
-	Respects      int                `json:"respects,omitempty"`
-	SystemOwns    int                `json:"system_owns,omitempty"`
-	UserOwns      int                `json:"user_owns,omitempty"`
-	WeekEndDate   openapi_types.Date `json:"week_end_date,omitempty"`
-}
-
 // WriteupData defines model for WriteupData.
 type WriteupData struct {
 	Official OfficialWriteup `json:"official,omitempty"`
 }
-
-// AfterDate defines model for AfterDate.
-type AfterDate = openapi_types.Date
 
 // Category defines model for Category.
 type Category = []int
@@ -5367,20 +3393,11 @@ type ChallengeId = int
 // ChallengeSlug defines model for ChallengeSlug.
 type ChallengeSlug = string
 
-// CompanyId defines model for CompanyId.
-type CompanyId = int
-
 // Difficulty defines model for Difficulty.
 type Difficulty = []string
 
 // FortressId defines model for FortressId.
 type FortressId = int
-
-// Free defines model for Free.
-type Free int
-
-// JobId defines model for JobId.
-type JobId = int
 
 // Keyword defines model for Keyword.
 type Keyword = string
@@ -5396,9 +3413,6 @@ type MachineSlug = string
 
 // NPastDays defines model for NPastDays.
 type NPastDays = int
-
-// Os defines model for Os.
-type Os = []string
 
 // Page defines model for Page.
 type Page = int
@@ -5418,9 +3432,6 @@ type Product string
 // ProductId defines model for ProductId.
 type ProductId = int
 
-// ProductName defines model for ProductName.
-type ProductName string
-
 // ProductPath defines model for ProductPath.
 type ProductPath string
 
@@ -5430,23 +3441,14 @@ type ProlabId = int
 // Query defines model for Query.
 type Query = string
 
-// Rank defines model for Rank.
-type Rank = []int
-
 // Rare defines model for Rare.
 type Rare = int
 
 // RequestId defines model for RequestId.
 type RequestId = int
 
-// ReviewId defines model for ReviewId.
-type ReviewId = int
-
 // Search defines model for Search.
 type Search = string
-
-// SearchQuery defines model for SearchQuery.
-type SearchQuery = string
 
 // SearchTags defines model for SearchTags.
 type SearchTags = []string
@@ -5463,17 +3465,11 @@ type SherlockSlug = string
 // SherlockSortBy defines model for SherlockSortBy.
 type SherlockSortBy string
 
-// ShowCompleted defines model for ShowCompleted.
-type ShowCompleted string
-
 // SortBy defines model for SortBy.
 type SortBy string
 
 // SortType defines model for SortType.
 type SortType string
-
-// StartingPointId defines model for StartingPointId.
-type StartingPointId = int
 
 // State defines model for State.
 type State = []string
@@ -5481,17 +3477,11 @@ type State = []string
 // Status defines model for Status.
 type Status string
 
-// Tags defines model for Tags.
-type Tags = []int
-
 // TaskId defines model for TaskId.
 type TaskId = int
 
 // TeamId defines model for TeamId.
 type TeamId = int
-
-// TierId defines model for TierId.
-type TierId = int
 
 // Todo defines model for Todo.
 type Todo int
@@ -5505,9 +3495,6 @@ type UserId = int
 // VpnId defines model for VpnId.
 type VpnId = int
 
-// ArenaOwnErrorResponse Schema definition for Own Error Response
-type ArenaOwnErrorResponse = ArenaOwnError
-
 // ChallengeCategoriesListResponse Schema definition for Categories List Response
 type ChallengeCategoriesListResponse = CategoriesListResponse
 
@@ -5517,14 +3504,8 @@ type ChallengeChangelogChallengeIdResponse = ChallengeChangelogIdResponse
 // ChallengeInfoChallengeResponse Schema definition for Challenge Id Response
 type ChallengeInfoChallengeResponse = ChallengeResponse
 
-// ChallengeReviewsUserChallengeIdResponse Schema definition for Challenge Reviews User Id Response
-type ChallengeReviewsUserChallengeIdResponse = ChallengeReviewsUserIdResponse
-
 // ChallengeStopResponse Schema definition for Message
 type ChallengeStopResponse = Messagesuccess
-
-// ChangelogsResponse Schema definition for Change Logs Response
-type ChangelogsResponse = ChangeLogsResponse
 
 // ConnectionsServersResponse Schema definition for Connections Server Response
 type ConnectionsServersResponse = ConnectionsServerResponse
@@ -5534,6 +3515,9 @@ type ConnectionsServersSwitchVpnIdResponse = ConnectionServerSwitchResponse
 
 // ContainerStopResponse Schema definition for Message
 type ContainerStopResponse = Messagesuccess
+
+// DownloadLinkResponse Schema definition for Sherlock Download Link
+type DownloadLinkResponse = DownloadLink
 
 // FortressFortressIdResponse Schema definition for Fortress Id Response
 type FortressFortressIdResponse = FortressIdResponse
@@ -5553,12 +3537,6 @@ type GenericSuccess2xx = Messagesuccess
 // HomeBannersResponse Schema definition for Home Banner Response
 type HomeBannersResponse = HomeBannerResponse
 
-// HomeRecommendedResponse Schema definition for Home Recommended Repsonse
-type HomeRecommendedResponse = HomeRecommendedRepsonse
-
-// HomeUserTodoResponse Schema definition for Home User Todo Repsonse
-type HomeUserTodoResponse = HomeUserTodoRepsonse
-
 // MachineActiveResponse defines model for MachineActiveResponse.
 type MachineActiveResponse = ActiveMachineResponse
 
@@ -5568,32 +3546,17 @@ type MachineActivityMachineIdResponse = MachineActivityIdResponse
 // MachineChangelogMachineIdResponse Schema definition for Machine Changelog Id Response
 type MachineChangelogMachineIdResponse = MachineChangelogIdResponse
 
-// MachineGraphActivityMachineIdPeriodResponse Schema definition for Machine Graph Activity Id Response
-type MachineGraphActivityMachineIdPeriodResponse = MachineGraphActivityIdResponse
-
 // MachineGraphMatrixMachineIdResponse Schema definition for Machine Graph Matrix Id Response
 type MachineGraphMatrixMachineIdResponse = MachineGraphMatrixIdResponse
 
-// MachineGraphOwnsDifficultyMachineIdResponse Schema definition for Machine Graph Owns Difficulty Id Response
-type MachineGraphOwnsDifficultyMachineIdResponse = MachineGraphOwnsDifficultyIdResponse
-
 // MachineOwn400 Schema definition for Own Machine Error Response
 type MachineOwn400 = OwnMachineErrorResponse
-
-// MachineOwnsTopMachineIdResponse Schema definition for Machine Owns Top Id Response
-type MachineOwnsTopMachineIdResponse = MachineOwnsTopIdResponse
-
-// MachinePaginatedResponse Schema definition for Paginated Machine Data
-type MachinePaginatedResponse = PaginatedMachineData
 
 // MachineProfileMachineResponse Schema definition for Machine Profile Response
 type MachineProfileMachineResponse = MachineProfileResponse
 
 // MachineRecommendedResponse Schema definition for Recommended Machine Response
 type MachineRecommendedResponse = RecommendedMachineResponse
-
-// MachineReviewsUserMachineIdResponse Schema definition for Machine Reviews User Id Response
-type MachineReviewsUserMachineIdResponse = MachineReviewsUserIdResponse
 
 // MachineTagsMachineIdResponse Schema definition for Machine Tag Id Response
 type MachineTagsMachineIdResponse = MachineTagIdResponse
@@ -5607,9 +3570,6 @@ type MultiOwn400 = OwnMachineErrorResponse
 // MultiOwnResponse Schema definition for Own Machine Error Response
 type MultiOwnResponse = OwnMachineErrorResponse
 
-// ProfileActivityUserIdResponse defines model for ProfileActivityUserIdResponse.
-type ProfileActivityUserIdResponse = UserActivity
-
 // ProfileBadgesUserIdResponse Schema definition for Profile Badges Id Repsonse
 type ProfileBadgesUserIdResponse = ProfileBadgesIdRepsonse
 
@@ -5618,9 +3578,6 @@ type ProfileBloodsUserIdResponse = UserProfileBloodsResponse
 
 // ProfileChartMachinesAttackUserIdResponse Schema definition for Profile Chart Machine Attack Id Response
 type ProfileChartMachinesAttackUserIdResponse = ProfileChartMachineAttackIdResponse
-
-// ProfileContentUserIdResponse Schema definition for Profile Content Id Response
-type ProfileContentUserIdResponse = ProfileContentIdResponse
 
 // ProfileGraphPeriodUserIdResponse Schema definition for Profile Graph Period Id Response
 type ProfileGraphPeriodUserIdResponse = ProfileGraphPeriodIdResponse
@@ -5646,12 +3603,6 @@ type ProlabmachinesResponse = ProlabIdMachineResponse
 // ProlaboverviewResponse Schema definition for Prolab Id Overview Response
 type ProlaboverviewResponse = ProlabIdOverviewResponse
 
-// ProlabreviewsOverviewResponse Schema definition for Prolab Id Reviews Overview Response
-type ProlabreviewsOverviewResponse = ProlabIdReviewsOverviewResponse
-
-// ProlabreviewsResponse Schema definition for Prolab Id Reviews Response
-type ProlabreviewsResponse = ProlabIdReviewsResponse
-
 // PwnboxStatusResponse defines model for PwnboxStatusResponse.
 type PwnboxStatusResponse struct {
 	union json.RawMessage
@@ -5660,35 +3611,20 @@ type PwnboxStatusResponse struct {
 // RankingsCountriesResponse defines model for RankingsCountriesResponse.
 type RankingsCountriesResponse = RankingsCountries
 
-// RankingsCountryBestResponse defines model for RankingsCountryBestResponse.
-type RankingsCountryBestResponse = RankingsCountryBest
-
-// RankingsCountryRankingBracketResponse defines model for RankingsCountryRankingBracketResponse.
-type RankingsCountryRankingBracketResponse = RankingsCountrRankingBracketResponse
-
 // RankingsTeamsResponse Schema definition for Rankings Team Response
 type RankingsTeamsResponse = RankingsTeamResponse
 
 // ReviewProductPaginatedResponse Schema definition for Reviews Response
 type ReviewProductPaginatedResponse = ReviewPaginatedResponse
 
-// ReviewProductResponse Schema definition for Reviews Response
-type ReviewProductResponse = ReviewsResponse
-
 // SeasonMachineActiveResponse Schema definition for Season Active
 type SeasonMachineActiveResponse = SeasonActive
-
-// SeasonMachinesCompletedSeasonIdResponse Schema definition for Season Completed Machine
-type SeasonMachinesCompletedSeasonIdResponse = SeasonCompletedMachine
 
 // SeasonMachinesResponse Schema definition for Season Machines
 type SeasonMachinesResponse = SeasonMachines
 
 // SeasonPlatersLeaderboardTopResponse defines model for SeasonPlatersLeaderboardTopResponse.
 type SeasonPlatersLeaderboardTopResponse = SeasonPlayersLeaderboardTopResponse
-
-// SeasonUserFollowersSeasonIdResponse Schema definition for Season User Followers
-type SeasonUserFollowersSeasonIdResponse = SeasonUserFollowers
 
 // SeasonUserRankSeasonIdRanksResponse Schema definition for Season User Rank
 type SeasonUserRankSeasonIdRanksResponse = SeasonUserRankRanks
@@ -5698,9 +3634,6 @@ type SeasonUserRankSeasonIdResponse = SeasonUserRank
 
 // SherlocksCategoriesListResponse Schema definition for Categories List Response
 type SherlocksCategoriesListResponse = CategoriesListResponse
-
-// SherlocksDownloadLinkResponse Schema definition for Sherlock Download Link
-type SherlocksDownloadLinkResponse = SherlockDownloadLink
 
 // SherlocksNameResponse Schema definition for Sherlock Named Item
 type SherlocksNameResponse = SherlockNamedItem
@@ -5732,23 +3665,8 @@ type SherlocksSherlockIdTasksTaskIdFlag400 = BadRequestError
 // SherlocksSherlockIdWriteupResponse Schema definition for Sherlock Writeup
 type SherlocksSherlockIdWriteupResponse = SherlockWriteup
 
-// SidebarChangelogResponse Schema definition for Sidebar Change Log Response
-type SidebarChangelogResponse = SidebarChangeLogResponse
-
-// SpProfileStartingPointIdResponse Schema definition for Sp Profile Id Response
-type SpProfileStartingPointIdResponse = SpProfileIdResponse
-
 // TeamActivityTeamIdResponse Schema definition for Team Activity Id Response
 type TeamActivityTeamIdResponse = TeamActivityIdResponse
-
-// TeamChartChallengeTeamIdResponse Schema definition for Challenge Categories Details
-type TeamChartChallengeTeamIdResponse = ChallengeCategoriesDetails
-
-// TeamChartMachinesAttackTeamIdResponse Schema definition for Machine Attack Details
-type TeamChartMachinesAttackTeamIdResponse = MachineAttackDetails
-
-// TeamGraphTeamIdResponse Schema definition for Team Graph Id Response
-type TeamGraphTeamIdResponse = TeamGraphIdResponse
 
 // TeamInfoTeamIdResponse Schema definition for Team Info Id Response
 type TeamInfoTeamIdResponse = TeamInfoIdResponse
@@ -5759,9 +3677,6 @@ type TeamInvitationsTeamIdResponse = TeamInvitationsIdResponse
 // TeamMembersTeamIdResponse Schema definition for Team Members Id Response
 type TeamMembersTeamIdResponse = TeamMembersIdResponse
 
-// TeamStatsOwnsTeamIdResponse Schema definition for Own Stats
-type TeamStatsOwnsTeamIdResponse = OwnStats
-
 // TodoUpdateResponse Update Response
 type TodoUpdateResponse = UpdateResponse
 
@@ -5770,9 +3685,6 @@ type UniversityMembersTeamIdResponse = []UniversityMembersResponse
 
 // UniversityProfileTeamIdResponse Schema definition for Team Information Profile Response
 type UniversityProfileTeamIdResponse = TeamInformationProfileResponse
-
-// UniversityStatsOwnsUserIdResponse Schema definition for Own Stats
-type UniversityStatsOwnsUserIdResponse = OwnStats
 
 // UserFollowersResponse Update Response
 type UserFollowersResponse = UpdateResponse
@@ -5791,12 +3703,6 @@ type VMResponse = Messagesuccess
 
 // VmReset400 defines model for VmReset400.
 type VmReset400 interface{}
-
-// ArenaOwnRequest defines model for ArenaOwnRequest.
-type ArenaOwnRequest struct {
-	Flag string `json:"flag"`
-	Id   int    `json:"id"`
-}
 
 // ContainerStartStopRequest defines model for ContainerStartStopRequest.
 type ContainerStartStopRequest struct {
@@ -5818,61 +3724,6 @@ type SherlocksTasksFlagRequest struct {
 
 // VirtualMachineRequest Schema definition for Spawn Request
 type VirtualMachineRequest = SpawnExtendRequest
-
-// PostArenaOwnJSONBody defines parameters for PostArenaOwn.
-type PostArenaOwnJSONBody struct {
-	Flag string `json:"flag"`
-	Id   int    `json:"id"`
-}
-
-// PostArenaOwnFormdataBody defines parameters for PostArenaOwn.
-type PostArenaOwnFormdataBody struct {
-	Flag string `form:"flag" json:"flag"`
-	Id   int    `form:"id" json:"id"`
-}
-
-// GetCareerCompanyParams defines parameters for GetCareerCompany.
-type GetCareerCompanyParams struct {
-	// Page Page number
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-}
-
-// GetCareerRequestsParams defines parameters for GetCareerRequests.
-type GetCareerRequestsParams struct {
-	// Page Page number
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-}
-
-// GetCareerSearchParams defines parameters for GetCareerSearch.
-type GetCareerSearchParams struct {
-	// SearchQuery Search Param
-	SearchQuery *SearchQuery `form:"search_query,omitempty" json:"search_query,omitempty"`
-
-	// Page Page number
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// AfterDate Get items after a date in the past
-	AfterDate *AfterDate `form:"after_date,omitempty" json:"after_date,omitempty"`
-
-	// Rank Rank integer
-	Rank *Rank `form:"rank[],omitempty" json:"rank[],omitempty"`
-}
-
-// PostCareerTemporaryContactOptinJSONBody defines parameters for PostCareerTemporaryContactOptin.
-type PostCareerTemporaryContactOptinJSONBody struct {
-	OptIn bool `json:"opt_in,omitempty"`
-}
-
-// PostChallengeReviewFormdataBody defines parameters for PostChallengeReview.
-type PostChallengeReviewFormdataBody struct {
-	Headline string                               `form:"headline" json:"headline"`
-	Id       int                                  `form:"id" json:"id"`
-	Review   string                               `form:"review" json:"review"`
-	Stars    PostChallengeReviewFormdataBodyStars `form:"stars,omitempty" json:"stars,omitempty"`
-}
-
-// PostChallengeReviewFormdataBodyStars defines parameters for PostChallengeReview.
-type PostChallengeReviewFormdataBodyStars int
 
 // PostChallengeStartFormdataBody defines parameters for PostChallengeStart.
 type PostChallengeStartFormdataBody struct {
@@ -5936,9 +3787,6 @@ type GetChallengesParamsDifficulty string
 // GetChallengesParamsTodo defines parameters for GetChallenges.
 type GetChallengesParamsTodo int
 
-// GetConnectionStatusProductnameParamsProductName defines parameters for GetConnectionStatusProductname.
-type GetConnectionStatusProductnameParamsProductName string
-
 // GetConnectionsServersParams defines parameters for GetConnectionsServers.
 type GetConnectionsServersParams struct {
 	// Product Select vpn server
@@ -5978,156 +3826,6 @@ type PostFortressFlagFormdataBody struct {
 	Flag string `form:"flag" json:"flag"`
 }
 
-// GetMachineGraphActivityParamsPeriod defines parameters for GetMachineGraphActivity.
-type GetMachineGraphActivityParamsPeriod string
-
-// GetMachineListRetiredPaginatedParams defines parameters for GetMachineListRetiredPaginated.
-type GetMachineListRetiredPaginatedParams struct {
-	// Free limits retired results to free machines, values must either be 1 for true or 0 for false or omit the parameter for no filter
-	Free *GetMachineListRetiredPaginatedParamsFree `form:"free,omitempty" json:"free,omitempty"`
-
-	// PerPage Limit results per page
-	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
-
-	// Page Page number
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// ShowCompleted Omit for both
-	ShowCompleted *GetMachineListRetiredPaginatedParamsShowCompleted `form:"show_completed,omitempty" json:"show_completed,omitempty"`
-
-	// SortBy Field to sort by
-	SortBy *GetMachineListRetiredPaginatedParamsSortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
-
-	// SortType Sort type (asc or desc)
-	SortType *GetMachineListRetiredPaginatedParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
-
-	// Difficulty Filter by difficulty level
-	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
-
-	// Os Filter by os
-	Os *Os `form:"os[],omitempty" json:"os[],omitempty"`
-
-	// Tag Filter by tag ID. Can be repeated.
-	Tag *Tags `form:"tag[],omitempty" json:"tag[],omitempty"`
-
-	// Keyword Search String
-	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
-}
-
-// GetMachineListRetiredPaginatedParamsFree defines parameters for GetMachineListRetiredPaginated.
-type GetMachineListRetiredPaginatedParamsFree int
-
-// GetMachineListRetiredPaginatedParamsShowCompleted defines parameters for GetMachineListRetiredPaginated.
-type GetMachineListRetiredPaginatedParamsShowCompleted string
-
-// GetMachineListRetiredPaginatedParamsSortBy defines parameters for GetMachineListRetiredPaginated.
-type GetMachineListRetiredPaginatedParamsSortBy string
-
-// GetMachineListRetiredPaginatedParamsSortType defines parameters for GetMachineListRetiredPaginated.
-type GetMachineListRetiredPaginatedParamsSortType string
-
-// GetMachineListRetiredPaginatedParamsDifficulty defines parameters for GetMachineListRetiredPaginated.
-type GetMachineListRetiredPaginatedParamsDifficulty string
-
-// GetMachineListRetiredPaginatedParamsOs defines parameters for GetMachineListRetiredPaginated.
-type GetMachineListRetiredPaginatedParamsOs string
-
-// GetMachinePaginatedParams defines parameters for GetMachinePaginated.
-type GetMachinePaginatedParams struct {
-	// PerPage Limit results per page
-	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
-
-	// Page Page number
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// ShowCompleted Omit for both
-	ShowCompleted *GetMachinePaginatedParamsShowCompleted `form:"show_completed,omitempty" json:"show_completed,omitempty"`
-
-	// SortBy Field to sort by
-	SortBy *GetMachinePaginatedParamsSortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
-
-	// SortType Sort type (asc or desc)
-	SortType *GetMachinePaginatedParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
-
-	// Difficulty Filter by difficulty level
-	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
-
-	// Os Filter by os
-	Os *Os `form:"os[],omitempty" json:"os[],omitempty"`
-
-	// Keyword Search String
-	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
-}
-
-// GetMachinePaginatedParamsShowCompleted defines parameters for GetMachinePaginated.
-type GetMachinePaginatedParamsShowCompleted string
-
-// GetMachinePaginatedParamsSortBy defines parameters for GetMachinePaginated.
-type GetMachinePaginatedParamsSortBy string
-
-// GetMachinePaginatedParamsSortType defines parameters for GetMachinePaginated.
-type GetMachinePaginatedParamsSortType string
-
-// GetMachinePaginatedParamsDifficulty defines parameters for GetMachinePaginated.
-type GetMachinePaginatedParamsDifficulty string
-
-// GetMachinePaginatedParamsOs defines parameters for GetMachinePaginated.
-type GetMachinePaginatedParamsOs string
-
-// GetMachineTodoPaginatedParams defines parameters for GetMachineTodoPaginated.
-type GetMachineTodoPaginatedParams struct {
-	// SortType Sort type (asc or desc)
-	SortType *GetMachineTodoPaginatedParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
-
-	// Keyword Search String
-	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
-
-	// Difficulty Filter by difficulty level
-	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
-
-	// ShowCompleted Omit for both
-	ShowCompleted *GetMachineTodoPaginatedParamsShowCompleted `form:"show_completed,omitempty" json:"show_completed,omitempty"`
-
-	// Os Filter by os
-	Os *Os `form:"os[],omitempty" json:"os[],omitempty"`
-}
-
-// GetMachineTodoPaginatedParamsSortType defines parameters for GetMachineTodoPaginated.
-type GetMachineTodoPaginatedParamsSortType string
-
-// GetMachineTodoPaginatedParamsDifficulty defines parameters for GetMachineTodoPaginated.
-type GetMachineTodoPaginatedParamsDifficulty string
-
-// GetMachineTodoPaginatedParamsShowCompleted defines parameters for GetMachineTodoPaginated.
-type GetMachineTodoPaginatedParamsShowCompleted string
-
-// GetMachineTodoPaginatedParamsOs defines parameters for GetMachineTodoPaginated.
-type GetMachineTodoPaginatedParamsOs string
-
-// GetMachineUnreleasedParams defines parameters for GetMachineUnreleased.
-type GetMachineUnreleasedParams struct {
-	// Page Page number
-	Page *Page `form:"page,omitempty" json:"page,omitempty"`
-
-	// PerPage Limit results per page
-	PerPage *PerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
-
-	// Difficulty Filter by difficulty level
-	Difficulty *Difficulty `form:"difficulty[],omitempty" json:"difficulty[],omitempty"`
-
-	// Os Filter by os
-	Os *Os `form:"os[],omitempty" json:"os[],omitempty"`
-
-	// Keyword Search String
-	Keyword *Keyword `form:"keyword,omitempty" json:"keyword,omitempty"`
-}
-
-// GetMachineUnreleasedParamsDifficulty defines parameters for GetMachineUnreleased.
-type GetMachineUnreleasedParamsDifficulty string
-
-// GetMachineUnreleasedParamsOs defines parameters for GetMachineUnreleased.
-type GetMachineUnreleasedParamsOs string
-
 // PostProlabFlagJSONBody defines parameters for PostProlabFlag.
 type PostProlabFlagJSONBody struct {
 	Flag string `json:"flag"`
@@ -6137,87 +3835,6 @@ type PostProlabFlagJSONBody struct {
 type PostProlabFlagFormdataBody struct {
 	Flag string `form:"flag" json:"flag"`
 }
-
-// GetProlabReviewsParams defines parameters for GetProlabReviews.
-type GetProlabReviewsParams struct {
-	// Page Page number
-	Page int `form:"page,omitempty" json:"page,omitempty"`
-}
-
-// GetRankingsCountryBestParams defines parameters for GetRankingsCountryBest.
-type GetRankingsCountryBestParams struct {
-	// Period One of ["1Y", "6M", "3M", "1M", "1W"]
-	Period GetRankingsCountryBestParamsPeriod `form:"period" json:"period"`
-}
-
-// GetRankingsCountryBestParamsPeriod defines parameters for GetRankingsCountryBest.
-type GetRankingsCountryBestParamsPeriod string
-
-// GetRankingsCountryOverviewParams defines parameters for GetRankingsCountryOverview.
-type GetRankingsCountryOverviewParams struct {
-	// Period One of ["1Y", "6M", "3M", "1M", "1W"]
-	Period GetRankingsCountryOverviewParamsPeriod `form:"period" json:"period"`
-}
-
-// GetRankingsCountryOverviewParamsPeriod defines parameters for GetRankingsCountryOverview.
-type GetRankingsCountryOverviewParamsPeriod string
-
-// GetRankingsTeamBestParams defines parameters for GetRankingsTeamBest.
-type GetRankingsTeamBestParams struct {
-	// Period One of ["1Y", "6M", "3M", "1M", "1W"]
-	Period GetRankingsTeamBestParamsPeriod `form:"period" json:"period"`
-}
-
-// GetRankingsTeamBestParamsPeriod defines parameters for GetRankingsTeamBest.
-type GetRankingsTeamBestParamsPeriod string
-
-// GetRankingsTeamBestIdParams defines parameters for GetRankingsTeamBestId.
-type GetRankingsTeamBestIdParams struct {
-	// Period One of ["1Y", "6M", "3M", "1M", "1W"]
-	Period GetRankingsTeamBestIdParamsPeriod `form:"period" json:"period"`
-}
-
-// GetRankingsTeamBestIdParamsPeriod defines parameters for GetRankingsTeamBestId.
-type GetRankingsTeamBestIdParamsPeriod string
-
-// GetRankingsTeamOverviewParams defines parameters for GetRankingsTeamOverview.
-type GetRankingsTeamOverviewParams struct {
-	// Period One of ["1Y", "6M", "3M", "1M", "1W"]
-	Period GetRankingsTeamOverviewParamsPeriod `form:"period" json:"period"`
-}
-
-// GetRankingsTeamOverviewParamsPeriod defines parameters for GetRankingsTeamOverview.
-type GetRankingsTeamOverviewParamsPeriod string
-
-// GetRankingsTeamOverviewIdParams defines parameters for GetRankingsTeamOverviewId.
-type GetRankingsTeamOverviewIdParams struct {
-	// Period One of ["1Y", "6M", "3M", "1M", "1W"]
-	Period GetRankingsTeamOverviewIdParamsPeriod `form:"period" json:"period"`
-}
-
-// GetRankingsTeamOverviewIdParamsPeriod defines parameters for GetRankingsTeamOverviewId.
-type GetRankingsTeamOverviewIdParamsPeriod string
-
-// GetRankingsUserBestParams defines parameters for GetRankingsUserBest.
-type GetRankingsUserBestParams struct {
-	// Period One of ["1Y", "6M", "3M", "1M", "1W"]
-	Period GetRankingsUserBestParamsPeriod `form:"period" json:"period"`
-}
-
-// GetRankingsUserBestParamsPeriod defines parameters for GetRankingsUserBest.
-type GetRankingsUserBestParamsPeriod string
-
-// GetRankingsUserOverviewParams defines parameters for GetRankingsUserOverview.
-type GetRankingsUserOverviewParams struct {
-	// Period One of ["1Y", "6M", "3M", "1M", "1W"]
-	Period GetRankingsUserOverviewParamsPeriod `form:"period" json:"period"`
-}
-
-// GetRankingsUserOverviewParamsPeriod defines parameters for GetRankingsUserOverview.
-type GetRankingsUserOverviewParamsPeriod string
-
-// GetReviewParamsProduct defines parameters for GetReview.
-type GetReviewParamsProduct string
 
 // GetReviewPaginatedParamsProduct defines parameters for GetReviewPaginated.
 type GetReviewPaginatedParamsProduct string
@@ -6316,15 +3933,6 @@ type GetTeamActivityParams struct {
 	NPastDays *NPastDays `form:"n_past_days,omitempty" json:"n_past_days,omitempty"`
 }
 
-// GetTeamGraphParams defines parameters for GetTeamGraph.
-type GetTeamGraphParams struct {
-	// Period One of ["1Y", "6M", "3M", "1M", "1W"]
-	Period GetTeamGraphParamsPeriod `form:"period" json:"period"`
-}
-
-// GetTeamGraphParamsPeriod defines parameters for GetTeamGraph.
-type GetTeamGraphParamsPeriod string
-
 // GetUniversityAllListParams defines parameters for GetUniversityAllList.
 type GetUniversityAllListParams struct {
 	// Search Search
@@ -6357,29 +3965,17 @@ type GetUserProfileGraphParamsPeriod string
 // PostTodoUpdateParamsProduct defines parameters for PostTodoUpdate.
 type PostTodoUpdateParamsProduct string
 
-// PostArenaOwnJSONRequestBody defines body for PostArenaOwn for application/json ContentType.
-type PostArenaOwnJSONRequestBody PostArenaOwnJSONBody
+// PostChallengeStartFormdataRequestBody defines body for PostChallengeStart for application/x-www-form-urlencoded ContentType.
+type PostChallengeStartFormdataRequestBody PostChallengeStartFormdataBody
 
-// PostArenaOwnFormdataRequestBody defines body for PostArenaOwn for application/x-www-form-urlencoded ContentType.
-type PostArenaOwnFormdataRequestBody PostArenaOwnFormdataBody
-
-// PostCareerTemporaryContactOptinJSONRequestBody defines body for PostCareerTemporaryContactOptin for application/json ContentType.
-type PostCareerTemporaryContactOptinJSONRequestBody PostCareerTemporaryContactOptinJSONBody
+// PostChallengeStopFormdataRequestBody defines body for PostChallengeStop for application/x-www-form-urlencoded ContentType.
+type PostChallengeStopFormdataRequestBody PostChallengeStopFormdataBody
 
 // PostChallengeOwnJSONRequestBody defines body for PostChallengeOwn for application/json ContentType.
 type PostChallengeOwnJSONRequestBody = ChallengeOwnRequest
 
 // PostChallengeOwnFormdataRequestBody defines body for PostChallengeOwn for application/x-www-form-urlencoded ContentType.
 type PostChallengeOwnFormdataRequestBody = ChallengeOwnRequest
-
-// PostChallengeReviewFormdataRequestBody defines body for PostChallengeReview for application/x-www-form-urlencoded ContentType.
-type PostChallengeReviewFormdataRequestBody PostChallengeReviewFormdataBody
-
-// PostChallengeStartFormdataRequestBody defines body for PostChallengeStart for application/x-www-form-urlencoded ContentType.
-type PostChallengeStartFormdataRequestBody PostChallengeStartFormdataBody
-
-// PostChallengeStopFormdataRequestBody defines body for PostChallengeStop for application/x-www-form-urlencoded ContentType.
-type PostChallengeStopFormdataRequestBody PostChallengeStopFormdataBody
 
 // PostContainerStartJSONRequestBody defines body for PostContainerStart for application/json ContentType.
 type PostContainerStartJSONRequestBody PostContainerStartJSONBody
@@ -6398,18 +3994,6 @@ type PostFortressFlagJSONRequestBody PostFortressFlagJSONBody
 
 // PostFortressFlagFormdataRequestBody defines body for PostFortressFlag for application/x-www-form-urlencoded ContentType.
 type PostFortressFlagFormdataRequestBody PostFortressFlagFormdataBody
-
-// PostMachineOwnJSONRequestBody defines body for PostMachineOwn for application/json ContentType.
-type PostMachineOwnJSONRequestBody = OwnRequest
-
-// PostMachineOwnFormdataRequestBody defines body for PostMachineOwn for application/x-www-form-urlencoded ContentType.
-type PostMachineOwnFormdataRequestBody = OwnRequest
-
-// PostMachineReviewJSONRequestBody defines body for PostMachineReview for application/json ContentType.
-type PostMachineReviewJSONRequestBody = MachineReviewRequest
-
-// PostMachineReviewFormdataRequestBody defines body for PostMachineReview for application/x-www-form-urlencoded ContentType.
-type PostMachineReviewFormdataRequestBody = MachineReviewRequest
 
 // PostProlabFlagJSONRequestBody defines body for PostProlabFlag for application/json ContentType.
 type PostProlabFlagJSONRequestBody PostProlabFlagJSONBody
@@ -6529,42 +4113,6 @@ func (t Challenge_Points) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Challenge_Points) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsConnection returns the union data inside the ConnectionStatusProductData_Connection as a Connection
-func (t ConnectionStatusProductData_Connection) AsConnection() (Connection, error) {
-	var body Connection
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromConnection overwrites any union data inside the ConnectionStatusProductData_Connection as the provided Connection
-func (t *ConnectionStatusProductData_Connection) FromConnection(v Connection) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeConnection performs a merge with any union data inside the ConnectionStatusProductData_Connection, using the provided Connection
-func (t *ConnectionStatusProductData_Connection) MergeConnection(v Connection) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ConnectionStatusProductData_Connection) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ConnectionStatusProductData_Connection) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -6693,68 +4241,6 @@ func (t *FlagsToNextRank) UnmarshalJSON(b []byte) error {
 	return err
 }
 
-// AsMachineDataIsTodo0 returns the union data inside the MachineData_IsTodo as a MachineDataIsTodo0
-func (t MachineData_IsTodo) AsMachineDataIsTodo0() (MachineDataIsTodo0, error) {
-	var body MachineDataIsTodo0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromMachineDataIsTodo0 overwrites any union data inside the MachineData_IsTodo as the provided MachineDataIsTodo0
-func (t *MachineData_IsTodo) FromMachineDataIsTodo0(v MachineDataIsTodo0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeMachineDataIsTodo0 performs a merge with any union data inside the MachineData_IsTodo, using the provided MachineDataIsTodo0
-func (t *MachineData_IsTodo) MergeMachineDataIsTodo0(v MachineDataIsTodo0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsMachineDataIsTodo1 returns the union data inside the MachineData_IsTodo as a MachineDataIsTodo1
-func (t MachineData_IsTodo) AsMachineDataIsTodo1() (MachineDataIsTodo1, error) {
-	var body MachineDataIsTodo1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromMachineDataIsTodo1 overwrites any union data inside the MachineData_IsTodo as the provided MachineDataIsTodo1
-func (t *MachineData_IsTodo) FromMachineDataIsTodo1(v MachineDataIsTodo1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeMachineDataIsTodo1 performs a merge with any union data inside the MachineData_IsTodo, using the provided MachineDataIsTodo1
-func (t *MachineData_IsTodo) MergeMachineDataIsTodo1(v MachineDataIsTodo1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t MachineData_IsTodo) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *MachineData_IsTodo) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsBaseTask returns the union data inside the MachineTasksData_Item as a BaseTask
 func (t MachineTasksData_Item) AsBaseTask() (BaseTask, error) {
 	var body BaseTask
@@ -6849,68 +4335,6 @@ func (t ProfileUserTeamWrapper) MarshalJSON() ([]byte, error) {
 }
 
 func (t *ProfileUserTeamWrapper) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
-// AsProlabRatingDataRating0 returns the union data inside the ProlabRatingData_Rating as a ProlabRatingDataRating0
-func (t ProlabRatingData_Rating) AsProlabRatingDataRating0() (ProlabRatingDataRating0, error) {
-	var body ProlabRatingDataRating0
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromProlabRatingDataRating0 overwrites any union data inside the ProlabRatingData_Rating as the provided ProlabRatingDataRating0
-func (t *ProlabRatingData_Rating) FromProlabRatingDataRating0(v ProlabRatingDataRating0) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeProlabRatingDataRating0 performs a merge with any union data inside the ProlabRatingData_Rating, using the provided ProlabRatingDataRating0
-func (t *ProlabRatingData_Rating) MergeProlabRatingDataRating0(v ProlabRatingDataRating0) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsProlabRatingDataRating1 returns the union data inside the ProlabRatingData_Rating as a ProlabRatingDataRating1
-func (t ProlabRatingData_Rating) AsProlabRatingDataRating1() (ProlabRatingDataRating1, error) {
-	var body ProlabRatingDataRating1
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromProlabRatingDataRating1 overwrites any union data inside the ProlabRatingData_Rating as the provided ProlabRatingDataRating1
-func (t *ProlabRatingData_Rating) FromProlabRatingDataRating1(v ProlabRatingDataRating1) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeProlabRatingDataRating1 performs a merge with any union data inside the ProlabRatingData_Rating, using the provided ProlabRatingDataRating1
-func (t *ProlabRatingData_Rating) MergeProlabRatingDataRating1(v ProlabRatingDataRating1) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t ProlabRatingData_Rating) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *ProlabRatingData_Rating) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -7225,68 +4649,6 @@ func (t *UserConnectionStatusResponse_Connection) UnmarshalJSON(b []byte) error 
 	return err
 }
 
-// AsVideoObject returns the union data inside the Video as a VideoObject
-func (t Video) AsVideoObject() (VideoObject, error) {
-	var body VideoObject
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromVideoObject overwrites any union data inside the Video as the provided VideoObject
-func (t *Video) FromVideoObject(v VideoObject) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeVideoObject performs a merge with any union data inside the Video, using the provided VideoObject
-func (t *Video) MergeVideoObject(v VideoObject) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-// AsEmptyArray returns the union data inside the Video as a EmptyArray
-func (t Video) AsEmptyArray() (EmptyArray, error) {
-	var body EmptyArray
-	err := json.Unmarshal(t.union, &body)
-	return body, err
-}
-
-// FromEmptyArray overwrites any union data inside the Video as the provided EmptyArray
-func (t *Video) FromEmptyArray(v EmptyArray) error {
-	b, err := json.Marshal(v)
-	t.union = b
-	return err
-}
-
-// MergeEmptyArray performs a merge with any union data inside the Video, using the provided EmptyArray
-func (t *Video) MergeEmptyArray(v EmptyArray) error {
-	b, err := json.Marshal(v)
-	if err != nil {
-		return err
-	}
-
-	merged, err := runtime.JSONMerge(t.union, b)
-	t.union = merged
-	return err
-}
-
-func (t Video) MarshalJSON() ([]byte, error) {
-	b, err := t.union.MarshalJSON()
-	return b, err
-}
-
-func (t *Video) UnmarshalJSON(b []byte) error {
-	err := t.union.UnmarshalJSON(b)
-	return err
-}
-
 // AsPwnboxStatusNotRunningResponse returns the union data inside the PwnboxStatusResponse as a PwnboxStatusNotRunningResponse
 func (t PwnboxStatusResponse) AsPwnboxStatusNotRunningResponse() (PwnboxStatusNotRunningResponse, error) {
 	var body PwnboxStatusNotRunningResponse
@@ -7428,50 +4790,8 @@ type ClientInterface interface {
 	// GetAccessOvpnfileVpnIdTCP request
 	GetAccessOvpnfileVpnIdTCP(ctx context.Context, vpnId VpnId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetAnnouncements request
-	GetAnnouncements(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PostArenaOwnWithBody request with any body
-	PostArenaOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostArenaOwn(ctx context.Context, body PostArenaOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostArenaOwnWithFormdataBody(ctx context.Context, body PostArenaOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetBadges request
 	GetBadges(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetCareerCompanies request
-	GetCareerCompanies(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetCareerCompany request
-	GetCareerCompany(ctx context.Context, companyId CompanyId, params *GetCareerCompanyParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetCareerFeatured request
-	GetCareerFeatured(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetCareerHistory request
-	GetCareerHistory(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetCareerInfo request
-	GetCareerInfo(ctx context.Context, jobId JobId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetCareerProfile request
-	GetCareerProfile(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetCareerRequests request
-	GetCareerRequests(ctx context.Context, params *GetCareerRequestsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetCareerSearch request
-	GetCareerSearch(ctx context.Context, params *GetCareerSearchParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetCareerStats request
-	GetCareerStats(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PostCareerTemporaryContactOptinWithBody request with any body
-	PostCareerTemporaryContactOptinWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostCareerTemporaryContactOptin(ctx context.Context, body PostCareerTemporaryContactOptinJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetChallengeActivity request
 	GetChallengeActivity(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7482,35 +4802,11 @@ type ClientInterface interface {
 	// GetChallengeChangelog request
 	GetChallengeChangelog(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetChallengeDownload request
-	GetChallengeDownload(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetChallengeInfo request
 	GetChallengeInfo(ctx context.Context, challengeSlug ChallengeSlug, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// PostChallengeOwnWithBody request with any body
-	PostChallengeOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostChallengeOwn(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostChallengeOwnWithFormdataBody(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetChallengeRecommended request
 	GetChallengeRecommended(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetChallengeRecommendedRetired request
-	GetChallengeRecommendedRetired(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PostChallengeReviewWithBody request with any body
-	PostChallengeReviewWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostChallengeReviewWithFormdataBody(ctx context.Context, body PostChallengeReviewFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PostChallengeHelpfull request
-	PostChallengeHelpfull(ctx context.Context, reviewId ReviewId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetChallengeReviewsUser request
-	GetChallengeReviewsUser(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostChallengeStartWithBody request with any body
 	PostChallengeStartWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7521,6 +4817,13 @@ type ClientInterface interface {
 	PostChallengeStopWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	PostChallengeStopWithFormdataBody(ctx context.Context, body PostChallengeStopFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// PostChallengeOwnWithBody request with any body
+	PostChallengeOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PostChallengeOwn(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PostChallengeOwnWithFormdataBody(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetChallengeSuggested request
 	GetChallengeSuggested(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7534,20 +4837,11 @@ type ClientInterface interface {
 	// GetChallenges request
 	GetChallenges(ctx context.Context, params *GetChallengesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetChangelogs request
-	GetChangelogs(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+	// GetChallengeDownload request
+	GetChallengeDownload(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetConnectionStatus request
 	GetConnectionStatus(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetConnectionStatusProlab request
-	GetConnectionStatusProlab(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetConnectionStatusProductname request
-	GetConnectionStatusProductname(ctx context.Context, productName GetConnectionStatusProductnameParamsProductName, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetConnections request
-	GetConnections(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetConnectionsServers request
 	GetConnectionsServers(ctx context.Context, params *GetConnectionsServersParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7572,9 +4866,6 @@ type ClientInterface interface {
 
 	PostContainerStopWithFormdataBody(ctx context.Context, body PostContainerStopFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetContentStats request
-	GetContentStats(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetFortress request
 	GetFortress(ctx context.Context, fortressId FortressId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -7597,15 +4888,6 @@ type ClientInterface interface {
 	// GetHomeBanner request
 	GetHomeBanner(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetHomeRecommended request
-	GetHomeRecommended(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetHomeUserProgress request
-	GetHomeUserProgress(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetHomeUserTodo request
-	GetHomeUserTodo(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetMachineActive request
 	GetMachineActive(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -7615,33 +4897,8 @@ type ClientInterface interface {
 	// GetMachineChangelog request
 	GetMachineChangelog(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetMachineCreators request
-	GetMachineCreators(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetMachineGraphActivity request
-	GetMachineGraphActivity(ctx context.Context, machineId MachineId, period GetMachineGraphActivityParamsPeriod, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetMachineGraphMatrix request
 	GetMachineGraphMatrix(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetMachineGraphOwnsDifficulty request
-	GetMachineGraphOwnsDifficulty(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetMachineListRetiredPaginated request
-	GetMachineListRetiredPaginated(ctx context.Context, params *GetMachineListRetiredPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PostMachineOwnWithBody request with any body
-	PostMachineOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostMachineOwn(ctx context.Context, body PostMachineOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostMachineOwnWithFormdataBody(ctx context.Context, body PostMachineOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetMachineOwnsTop request
-	GetMachineOwnsTop(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetMachinePaginated request
-	GetMachinePaginated(ctx context.Context, params *GetMachinePaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetMachineProfile request
 	GetMachineProfile(ctx context.Context, machineSlug MachineSlug, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7649,39 +4906,14 @@ type ClientInterface interface {
 	// GetMachineRecommended request
 	GetMachineRecommended(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetMachineRecommendedRetired request
-	GetMachineRecommendedRetired(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PostMachineReviewWithBody request with any body
-	PostMachineReviewWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostMachineReview(ctx context.Context, body PostMachineReviewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostMachineReviewWithFormdataBody(ctx context.Context, body PostMachineReviewFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetMachineReviewsUser request
-	GetMachineReviewsUser(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetMachineReviews request
-	GetMachineReviews(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetMachineTags request
 	GetMachineTags(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetMachineTodoPaginated request
-	GetMachineTodoPaginated(ctx context.Context, params *GetMachineTodoPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetMachineUnreleased request
-	GetMachineUnreleased(ctx context.Context, params *GetMachineUnreleasedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetMachineWalkthroughRandom request
 	GetMachineWalkthroughRandom(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetMachineWalkthroughsLanguageList request
 	GetMachineWalkthroughsLanguageList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetMachineWalkthroughOfficialFeedbackChoices request
-	GetMachineWalkthroughOfficialFeedbackChoices(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetMachineWalkthroughs request
 	GetMachineWalkthroughs(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7729,18 +4961,6 @@ type ClientInterface interface {
 	// GetProlabProgress request
 	GetProlabProgress(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetProlabRating request
-	GetProlabRating(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetProlabReviews request
-	GetProlabReviews(ctx context.Context, prolabId ProlabId, params *GetProlabReviewsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetProlabReviewsOverview request
-	GetProlabReviewsOverview(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetProlabSubscription request
-	GetProlabSubscription(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetProlabs request
 	GetProlabs(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -7766,35 +4986,8 @@ type ClientInterface interface {
 	// GetRankingsCountries request
 	GetRankingsCountries(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetRankingsCountryBest request
-	GetRankingsCountryBest(ctx context.Context, params *GetRankingsCountryBestParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetRankingsCountryOverview request
-	GetRankingsCountryOverview(ctx context.Context, params *GetRankingsCountryOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetRankingsCountryRankingBracket request
-	GetRankingsCountryRankingBracket(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetRankingsCountryUSMembers request
 	GetRankingsCountryUSMembers(ctx context.Context, countryShortName string, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetRankingsTeamBest request
-	GetRankingsTeamBest(ctx context.Context, params *GetRankingsTeamBestParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetRankingsTeamBestId request
-	GetRankingsTeamBestId(ctx context.Context, teamId TeamId, params *GetRankingsTeamBestIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetRankingsTeamOverview request
-	GetRankingsTeamOverview(ctx context.Context, params *GetRankingsTeamOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetRankingsTeamOverviewId request
-	GetRankingsTeamOverviewId(ctx context.Context, teamId TeamId, params *GetRankingsTeamOverviewIdParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetRankingsTeamRankingBracket request
-	GetRankingsTeamRankingBracket(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetRankingsTeamRankingBracketId request
-	GetRankingsTeamRankingBracketId(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetRankingsTeams request
 	GetRankingsTeams(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7802,32 +4995,14 @@ type ClientInterface interface {
 	// GetRankingsUniversities request
 	GetRankingsUniversities(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetRankingsUniversityRankingBracketId request
-	GetRankingsUniversityRankingBracketId(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetRankingsUserBest request
-	GetRankingsUserBest(ctx context.Context, params *GetRankingsUserBestParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetRankingsUserOverview request
-	GetRankingsUserOverview(ctx context.Context, params *GetRankingsUserOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetRankingsUserRankingBracket request
-	GetRankingsUserRankingBracket(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetRankingsUsers request
 	GetRankingsUsers(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetReview request
-	GetReview(ctx context.Context, product GetReviewParamsProduct, productId ProductId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetReviewPaginated request
 	GetReviewPaginated(ctx context.Context, product GetReviewPaginatedParamsProduct, productId ProductId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSearchFetch request
 	GetSearchFetch(ctx context.Context, params *GetSearchFetchParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetSeasonEnd request
-	GetSeasonEnd(ctx context.Context, seasonId SeasonId, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSeasonList request
 	GetSeasonList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7836,16 +5011,10 @@ type ClientInterface interface {
 	GetSeasonMachineActive(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSeasonMachines request
-	GetSeasonMachines(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetSeasonMachinesCompleted request
-	GetSeasonMachinesCompleted(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error)
+	GetSeasonMachines(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSeasonRewards request
 	GetSeasonRewards(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetSeasonUserFollowers request
-	GetSeasonUserFollowers(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetSeasonUserRank request
 	GetSeasonUserRank(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7896,21 +5065,6 @@ type ClientInterface interface {
 	// GetSherlock request
 	GetSherlock(ctx context.Context, sherlockSlug SherlockSlug, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetSidebarAnnouncement request
-	GetSidebarAnnouncement(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetSidebarChangelog request
-	GetSidebarChangelog(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetSPProfile request
-	GetSPProfile(ctx context.Context, startingPointId StartingPointId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PostSPTaskFlag request
-	PostSPTaskFlag(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetSPTier request
-	GetSPTier(ctx context.Context, tierId TierId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetSPTiersProgress request
 	GetSPTiersProgress(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -7919,15 +5073,6 @@ type ClientInterface interface {
 
 	// GetTeamActivity request
 	GetTeamActivity(ctx context.Context, teamId TeamId, params *GetTeamActivityParams, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetTeamChartChallengeCategories request
-	GetTeamChartChallengeCategories(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetTeamChartMachinesAttack request
-	GetTeamChartMachinesAttack(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetTeamGraph request
-	GetTeamGraph(ctx context.Context, teamId TeamId, params *GetTeamGraphParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetTeamInfo request
 	GetTeamInfo(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7940,9 +5085,6 @@ type ClientInterface interface {
 
 	// GetTeamMembers request
 	GetTeamMembers(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetTeamStatsOwns request
-	GetTeamStatsOwns(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostTeamInviteAccept request
 	PostTeamInviteAccept(ctx context.Context, requestId RequestId, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -7968,29 +5110,11 @@ type ClientInterface interface {
 	// GetUniversityAllList request
 	GetUniversityAllList(ctx context.Context, params *GetUniversityAllListParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetUniversityChartChallengeCategories request
-	GetUniversityChartChallengeCategories(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetUniversityChartMachinesAttack request
-	GetUniversityChartMachinesAttack(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetUniversityCountryList request
-	GetUniversityCountryList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetUniversityMembers request
 	GetUniversityMembers(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetUniversityNewList request
-	GetUniversityNewList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetUniversityProfile request
 	GetUniversityProfile(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetUniversityStatsOwns request
-	GetUniversityStatsOwns(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetUniversityTopList request
-	GetUniversityTopList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetUserAchievement request
 	GetUserAchievement(ctx context.Context, targetType string, userId UserId, targetId int, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -8014,12 +5138,6 @@ type ClientInterface interface {
 	// GetUserConnectionStatus request
 	GetUserConnectionStatus(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetUserDashboard request
-	GetUserDashboard(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetUserDashboardTabloid request
-	GetUserDashboardTabloid(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// PostUserDisrespect request
 	PostUserDisrespect(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -8032,9 +5150,6 @@ type ClientInterface interface {
 	// GetUserInfo request
 	GetUserInfo(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	// GetUserProfileActivity request
-	GetUserProfileActivity(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
 	// GetUserProfileBadges request
 	GetUserProfileBadges(ctx context.Context, userId UserId, params *GetUserProfileBadgesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -8046,9 +5161,6 @@ type ClientInterface interface {
 
 	// GetUserProfileChartMachinesAttack request
 	GetUserProfileChartMachinesAttack(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// GetUserProfileContent request
-	GetUserProfileContent(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetUserProfileGraph request
 	GetUserProfileGraph(ctx context.Context, period GetUserProfileGraphParamsPeriod, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -8150,188 +5262,8 @@ func (c *Client) GetAccessOvpnfileVpnIdTCP(ctx context.Context, vpnId VpnId, req
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetAnnouncements(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetAnnouncementsRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostArenaOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostArenaOwnRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostArenaOwn(ctx context.Context, body PostArenaOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostArenaOwnRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostArenaOwnWithFormdataBody(ctx context.Context, body PostArenaOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostArenaOwnRequestWithFormdataBody(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetBadges(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetBadgesRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetCareerCompanies(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCareerCompaniesRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetCareerCompany(ctx context.Context, companyId CompanyId, params *GetCareerCompanyParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCareerCompanyRequest(c.Server, companyId, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetCareerFeatured(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCareerFeaturedRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetCareerHistory(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCareerHistoryRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetCareerInfo(ctx context.Context, jobId JobId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCareerInfoRequest(c.Server, jobId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetCareerProfile(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCareerProfileRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetCareerRequests(ctx context.Context, params *GetCareerRequestsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCareerRequestsRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetCareerSearch(ctx context.Context, params *GetCareerSearchParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCareerSearchRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetCareerStats(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetCareerStatsRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostCareerTemporaryContactOptinWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostCareerTemporaryContactOptinRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostCareerTemporaryContactOptin(ctx context.Context, body PostCareerTemporaryContactOptinJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostCareerTemporaryContactOptinRequest(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -8378,18 +5310,6 @@ func (c *Client) GetChallengeChangelog(ctx context.Context, challengeId Challeng
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetChallengeDownload(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetChallengeDownloadRequest(c.Server, challengeId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetChallengeInfo(ctx context.Context, challengeSlug ChallengeSlug, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetChallengeInfoRequest(c.Server, challengeSlug)
 	if err != nil {
@@ -8402,104 +5322,8 @@ func (c *Client) GetChallengeInfo(ctx context.Context, challengeSlug ChallengeSl
 	return c.Client.Do(req)
 }
 
-func (c *Client) PostChallengeOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostChallengeOwnRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostChallengeOwn(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostChallengeOwnRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostChallengeOwnWithFormdataBody(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostChallengeOwnRequestWithFormdataBody(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetChallengeRecommended(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetChallengeRecommendedRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetChallengeRecommendedRetired(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetChallengeRecommendedRetiredRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostChallengeReviewWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostChallengeReviewRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostChallengeReviewWithFormdataBody(ctx context.Context, body PostChallengeReviewFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostChallengeReviewRequestWithFormdataBody(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostChallengeHelpfull(ctx context.Context, reviewId ReviewId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostChallengeHelpfullRequest(c.Server, reviewId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetChallengeReviewsUser(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetChallengeReviewsUserRequest(c.Server, challengeId)
 	if err != nil {
 		return nil, err
 	}
@@ -8558,6 +5382,42 @@ func (c *Client) PostChallengeStopWithFormdataBody(ctx context.Context, body Pos
 	return c.Client.Do(req)
 }
 
+func (c *Client) PostChallengeOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostChallengeOwnRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PostChallengeOwn(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostChallengeOwnRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PostChallengeOwnWithFormdataBody(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostChallengeOwnRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) GetChallengeSuggested(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetChallengeSuggestedRequest(c.Server)
 	if err != nil {
@@ -8606,8 +5466,8 @@ func (c *Client) GetChallenges(ctx context.Context, params *GetChallengesParams,
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetChangelogs(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetChangelogsRequest(c.Server)
+func (c *Client) GetChallengeDownload(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetChallengeDownloadRequest(c.Server, challengeId)
 	if err != nil {
 		return nil, err
 	}
@@ -8620,42 +5480,6 @@ func (c *Client) GetChangelogs(ctx context.Context, reqEditors ...RequestEditorF
 
 func (c *Client) GetConnectionStatus(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetConnectionStatusRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetConnectionStatusProlab(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetConnectionStatusProlabRequest(c.Server, prolabId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetConnectionStatusProductname(ctx context.Context, productName GetConnectionStatusProductnameParamsProductName, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetConnectionStatusProductnameRequest(c.Server, productName)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetConnections(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetConnectionsRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -8774,18 +5598,6 @@ func (c *Client) PostContainerStopWithFormdataBody(ctx context.Context, body Pos
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetContentStats(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetContentStatsRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetFortress(ctx context.Context, fortressId FortressId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetFortressRequest(c.Server, fortressId)
 	if err != nil {
@@ -8882,42 +5694,6 @@ func (c *Client) GetHomeBanner(ctx context.Context, reqEditors ...RequestEditorF
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetHomeRecommended(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetHomeRecommendedRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetHomeUserProgress(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetHomeUserProgressRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetHomeUserTodo(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetHomeUserTodoRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetMachineActive(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetMachineActiveRequest(c.Server)
 	if err != nil {
@@ -8954,116 +5730,8 @@ func (c *Client) GetMachineChangelog(ctx context.Context, machineId MachineId, r
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetMachineCreators(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachineCreatorsRequest(c.Server, machineId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetMachineGraphActivity(ctx context.Context, machineId MachineId, period GetMachineGraphActivityParamsPeriod, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachineGraphActivityRequest(c.Server, machineId, period)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetMachineGraphMatrix(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetMachineGraphMatrixRequest(c.Server, machineId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetMachineGraphOwnsDifficulty(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachineGraphOwnsDifficultyRequest(c.Server, machineId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetMachineListRetiredPaginated(ctx context.Context, params *GetMachineListRetiredPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachineListRetiredPaginatedRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostMachineOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostMachineOwnRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostMachineOwn(ctx context.Context, body PostMachineOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostMachineOwnRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostMachineOwnWithFormdataBody(ctx context.Context, body PostMachineOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostMachineOwnRequestWithFormdataBody(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetMachineOwnsTop(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachineOwnsTopRequest(c.Server, machineId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetMachinePaginated(ctx context.Context, params *GetMachinePaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachinePaginatedRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -9098,104 +5766,8 @@ func (c *Client) GetMachineRecommended(ctx context.Context, reqEditors ...Reques
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetMachineRecommendedRetired(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachineRecommendedRetiredRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostMachineReviewWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostMachineReviewRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostMachineReview(ctx context.Context, body PostMachineReviewJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostMachineReviewRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostMachineReviewWithFormdataBody(ctx context.Context, body PostMachineReviewFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostMachineReviewRequestWithFormdataBody(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetMachineReviewsUser(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachineReviewsUserRequest(c.Server, machineId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetMachineReviews(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachineReviewsRequest(c.Server, machineId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetMachineTags(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetMachineTagsRequest(c.Server, machineId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetMachineTodoPaginated(ctx context.Context, params *GetMachineTodoPaginatedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachineTodoPaginatedRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetMachineUnreleased(ctx context.Context, params *GetMachineUnreleasedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachineUnreleasedRequest(c.Server, params)
 	if err != nil {
 		return nil, err
 	}
@@ -9220,18 +5792,6 @@ func (c *Client) GetMachineWalkthroughRandom(ctx context.Context, reqEditors ...
 
 func (c *Client) GetMachineWalkthroughsLanguageList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetMachineWalkthroughsLanguageListRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetMachineWalkthroughOfficialFeedbackChoices(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetMachineWalkthroughOfficialFeedbackChoicesRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -9434,54 +5994,6 @@ func (c *Client) GetProlabProgress(ctx context.Context, prolabId ProlabId, reqEd
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetProlabRating(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetProlabRatingRequest(c.Server, prolabId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetProlabReviews(ctx context.Context, prolabId ProlabId, params *GetProlabReviewsParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetProlabReviewsRequest(c.Server, prolabId, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetProlabReviewsOverview(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetProlabReviewsOverviewRequest(c.Server, prolabId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetProlabSubscription(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetProlabSubscriptionRequest(c.Server, prolabId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetProlabs(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetProlabsRequest(c.Server)
 	if err != nil {
@@ -9590,116 +6102,8 @@ func (c *Client) GetRankingsCountries(ctx context.Context, reqEditors ...Request
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetRankingsCountryBest(ctx context.Context, params *GetRankingsCountryBestParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsCountryBestRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetRankingsCountryOverview(ctx context.Context, params *GetRankingsCountryOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsCountryOverviewRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetRankingsCountryRankingBracket(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsCountryRankingBracketRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetRankingsCountryUSMembers(ctx context.Context, countryShortName string, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetRankingsCountryUSMembersRequest(c.Server, countryShortName)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetRankingsTeamBest(ctx context.Context, params *GetRankingsTeamBestParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsTeamBestRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetRankingsTeamBestId(ctx context.Context, teamId TeamId, params *GetRankingsTeamBestIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsTeamBestIdRequest(c.Server, teamId, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetRankingsTeamOverview(ctx context.Context, params *GetRankingsTeamOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsTeamOverviewRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetRankingsTeamOverviewId(ctx context.Context, teamId TeamId, params *GetRankingsTeamOverviewIdParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsTeamOverviewIdRequest(c.Server, teamId, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetRankingsTeamRankingBracket(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsTeamRankingBracketRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetRankingsTeamRankingBracketId(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsTeamRankingBracketIdRequest(c.Server, teamId)
 	if err != nil {
 		return nil, err
 	}
@@ -9734,68 +6138,8 @@ func (c *Client) GetRankingsUniversities(ctx context.Context, reqEditors ...Requ
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetRankingsUniversityRankingBracketId(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsUniversityRankingBracketIdRequest(c.Server, universityId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetRankingsUserBest(ctx context.Context, params *GetRankingsUserBestParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsUserBestRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetRankingsUserOverview(ctx context.Context, params *GetRankingsUserOverviewParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsUserOverviewRequest(c.Server, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetRankingsUserRankingBracket(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetRankingsUserRankingBracketRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetRankingsUsers(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetRankingsUsersRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetReview(ctx context.Context, product GetReviewParamsProduct, productId ProductId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetReviewRequest(c.Server, product, productId)
 	if err != nil {
 		return nil, err
 	}
@@ -9830,18 +6174,6 @@ func (c *Client) GetSearchFetch(ctx context.Context, params *GetSearchFetchParam
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetSeasonEnd(ctx context.Context, seasonId SeasonId, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSeasonEndRequest(c.Server, seasonId, userId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetSeasonList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetSeasonListRequest(c.Server)
 	if err != nil {
@@ -9866,20 +6198,8 @@ func (c *Client) GetSeasonMachineActive(ctx context.Context, reqEditors ...Reque
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetSeasonMachines(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSeasonMachinesRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetSeasonMachinesCompleted(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSeasonMachinesCompletedRequest(c.Server, seasonId)
+func (c *Client) GetSeasonMachines(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSeasonMachinesRequest(c.Server, seasonId)
 	if err != nil {
 		return nil, err
 	}
@@ -9892,18 +6212,6 @@ func (c *Client) GetSeasonMachinesCompleted(ctx context.Context, seasonId Season
 
 func (c *Client) GetSeasonRewards(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetSeasonRewardsRequest(c.Server, seasonId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetSeasonUserFollowers(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSeasonUserFollowersRequest(c.Server, seasonId)
 	if err != nil {
 		return nil, err
 	}
@@ -10118,66 +6426,6 @@ func (c *Client) GetSherlock(ctx context.Context, sherlockSlug SherlockSlug, req
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetSidebarAnnouncement(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSidebarAnnouncementRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetSidebarChangelog(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSidebarChangelogRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetSPProfile(ctx context.Context, startingPointId StartingPointId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSPProfileRequest(c.Server, startingPointId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostSPTaskFlag(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostSPTaskFlagRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetSPTier(ctx context.Context, tierId TierId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetSPTierRequest(c.Server, tierId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetSPTiersProgress(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetSPTiersProgressRequest(c.Server)
 	if err != nil {
@@ -10204,42 +6452,6 @@ func (c *Client) GetTagsList(ctx context.Context, reqEditors ...RequestEditorFn)
 
 func (c *Client) GetTeamActivity(ctx context.Context, teamId TeamId, params *GetTeamActivityParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetTeamActivityRequest(c.Server, teamId, params)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetTeamChartChallengeCategories(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetTeamChartChallengeCategoriesRequest(c.Server, teamId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetTeamChartMachinesAttack(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetTeamChartMachinesAttackRequest(c.Server, teamId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetTeamGraph(ctx context.Context, teamId TeamId, params *GetTeamGraphParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetTeamGraphRequest(c.Server, teamId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -10288,18 +6500,6 @@ func (c *Client) PostTeamKickUser(ctx context.Context, userId UserId, reqEditors
 
 func (c *Client) GetTeamMembers(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetTeamMembersRequest(c.Server, teamId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetTeamStatsOwns(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetTeamStatsOwnsRequest(c.Server, teamId)
 	if err != nil {
 		return nil, err
 	}
@@ -10406,42 +6606,6 @@ func (c *Client) GetUniversityAllList(ctx context.Context, params *GetUniversity
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetUniversityChartChallengeCategories(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUniversityChartChallengeCategoriesRequest(c.Server, universityId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetUniversityChartMachinesAttack(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUniversityChartMachinesAttackRequest(c.Server, universityId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetUniversityCountryList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUniversityCountryListRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetUniversityMembers(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetUniversityMembersRequest(c.Server, universityId)
 	if err != nil {
@@ -10454,44 +6618,8 @@ func (c *Client) GetUniversityMembers(ctx context.Context, universityId Universi
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetUniversityNewList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUniversityNewListRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetUniversityProfile(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetUniversityProfileRequest(c.Server, universityId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetUniversityStatsOwns(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUniversityStatsOwnsRequest(c.Server, userId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetUniversityTopList(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUniversityTopListRequest(c.Server)
 	if err != nil {
 		return nil, err
 	}
@@ -10598,30 +6726,6 @@ func (c *Client) GetUserConnectionStatus(ctx context.Context, reqEditors ...Requ
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetUserDashboard(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUserDashboardRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetUserDashboardTabloid(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUserDashboardTabloidRequest(c.Server)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) PostUserDisrespect(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPostUserDisrespectRequest(c.Server, userId)
 	if err != nil {
@@ -10670,18 +6774,6 @@ func (c *Client) GetUserInfo(ctx context.Context, reqEditors ...RequestEditorFn)
 	return c.Client.Do(req)
 }
 
-func (c *Client) GetUserProfileActivity(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUserProfileActivityRequest(c.Server, userId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
 func (c *Client) GetUserProfileBadges(ctx context.Context, userId UserId, params *GetUserProfileBadgesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetUserProfileBadgesRequest(c.Server, userId, params)
 	if err != nil {
@@ -10720,18 +6812,6 @@ func (c *Client) GetUserProfileBloods(ctx context.Context, userId UserId, reqEdi
 
 func (c *Client) GetUserProfileChartMachinesAttack(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetUserProfileChartMachinesAttackRequest(c.Server, userId)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) GetUserProfileContent(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewGetUserProfileContentRequest(c.Server, userId)
 	if err != nil {
 		return nil, err
 	}
@@ -11158,84 +7238,6 @@ func NewGetAccessOvpnfileVpnIdTCPRequest(server string, vpnId VpnId) (*http.Requ
 	return req, nil
 }
 
-// NewGetAnnouncementsRequest generates requests for GetAnnouncements
-func NewGetAnnouncementsRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/announcements")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewPostArenaOwnRequest calls the generic PostArenaOwn builder with application/json body
-func NewPostArenaOwnRequest(server string, body PostArenaOwnJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewPostArenaOwnRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewPostArenaOwnRequestWithFormdataBody calls the generic PostArenaOwn builder with application/x-www-form-urlencoded body
-func NewPostArenaOwnRequestWithFormdataBody(server string, body PostArenaOwnFormdataRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	bodyStr, err := runtime.MarshalForm(body, nil)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = strings.NewReader(bodyStr.Encode())
-	return NewPostArenaOwnRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
-}
-
-// NewPostArenaOwnRequestWithBody generates requests for PostArenaOwn with any type of body
-func NewPostArenaOwnRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/arena/own")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewGetBadgesRequest generates requests for GetBadges
 func NewGetBadgesRequest(server string) (*http.Request, error) {
 	var err error
@@ -11259,417 +7261,6 @@ func NewGetBadgesRequest(server string) (*http.Request, error) {
 	if err != nil {
 		return nil, err
 	}
-
-	return req, nil
-}
-
-// NewGetCareerCompaniesRequest generates requests for GetCareerCompanies
-func NewGetCareerCompaniesRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/career/companies")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetCareerCompanyRequest generates requests for GetCareerCompany
-func NewGetCareerCompanyRequest(server string, companyId CompanyId, params *GetCareerCompanyParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "companyId", runtime.ParamLocationPath, companyId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/career/company/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetCareerFeaturedRequest generates requests for GetCareerFeatured
-func NewGetCareerFeaturedRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/career/featured")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetCareerHistoryRequest generates requests for GetCareerHistory
-func NewGetCareerHistoryRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/career/history")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetCareerInfoRequest generates requests for GetCareerInfo
-func NewGetCareerInfoRequest(server string, jobId JobId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "jobId", runtime.ParamLocationPath, jobId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/career/info/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetCareerProfileRequest generates requests for GetCareerProfile
-func NewGetCareerProfileRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/career/profile")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetCareerRequestsRequest generates requests for GetCareerRequests
-func NewGetCareerRequestsRequest(server string, params *GetCareerRequestsParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/career/requests")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetCareerSearchRequest generates requests for GetCareerSearch
-func NewGetCareerSearchRequest(server string, params *GetCareerSearchParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/career/search")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.SearchQuery != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "search_query", runtime.ParamLocationQuery, *params.SearchQuery); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.AfterDate != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "after_date", runtime.ParamLocationQuery, *params.AfterDate); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Rank != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "rank[]", runtime.ParamLocationQuery, *params.Rank); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetCareerStatsRequest generates requests for GetCareerStats
-func NewGetCareerStatsRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/career/stats")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewPostCareerTemporaryContactOptinRequest calls the generic PostCareerTemporaryContactOptin builder with application/json body
-func NewPostCareerTemporaryContactOptinRequest(server string, body PostCareerTemporaryContactOptinJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewPostCareerTemporaryContactOptinRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewPostCareerTemporaryContactOptinRequestWithBody generates requests for PostCareerTemporaryContactOptin with any type of body
-func NewPostCareerTemporaryContactOptinRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/career/temporary/contact/optin")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
 
 	return req, nil
 }
@@ -11769,40 +7360,6 @@ func NewGetChallengeChangelogRequest(server string, challengeId ChallengeId) (*h
 	return req, nil
 }
 
-// NewGetChallengeDownloadRequest generates requests for GetChallengeDownload
-func NewGetChallengeDownloadRequest(server string, challengeId ChallengeId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "challengeId", runtime.ParamLocationPath, challengeId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/challenge/download/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetChallengeInfoRequest generates requests for GetChallengeInfo
 func NewGetChallengeInfoRequest(server string, challengeSlug ChallengeSlug) (*http.Request, error) {
 	var err error
@@ -11837,57 +7394,6 @@ func NewGetChallengeInfoRequest(server string, challengeSlug ChallengeSlug) (*ht
 	return req, nil
 }
 
-// NewPostChallengeOwnRequest calls the generic PostChallengeOwn builder with application/json body
-func NewPostChallengeOwnRequest(server string, body PostChallengeOwnJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewPostChallengeOwnRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewPostChallengeOwnRequestWithFormdataBody calls the generic PostChallengeOwn builder with application/x-www-form-urlencoded body
-func NewPostChallengeOwnRequestWithFormdataBody(server string, body PostChallengeOwnFormdataRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	bodyStr, err := runtime.MarshalForm(body, nil)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = strings.NewReader(bodyStr.Encode())
-	return NewPostChallengeOwnRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
-}
-
-// NewPostChallengeOwnRequestWithBody generates requests for PostChallengeOwn with any type of body
-func NewPostChallengeOwnRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/challenge/own")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
 // NewGetChallengeRecommendedRequest generates requests for GetChallengeRecommended
 func NewGetChallengeRecommendedRequest(server string) (*http.Request, error) {
 	var err error
@@ -11898,141 +7404,6 @@ func NewGetChallengeRecommendedRequest(server string) (*http.Request, error) {
 	}
 
 	operationPath := fmt.Sprintf("/challenge/recommended")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetChallengeRecommendedRetiredRequest generates requests for GetChallengeRecommendedRetired
-func NewGetChallengeRecommendedRetiredRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/challenge/recommended/retired")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewPostChallengeReviewRequestWithFormdataBody calls the generic PostChallengeReview builder with application/x-www-form-urlencoded body
-func NewPostChallengeReviewRequestWithFormdataBody(server string, body PostChallengeReviewFormdataRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	bodyStr, err := runtime.MarshalForm(body, nil)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = strings.NewReader(bodyStr.Encode())
-	return NewPostChallengeReviewRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
-}
-
-// NewPostChallengeReviewRequestWithBody generates requests for PostChallengeReview with any type of body
-func NewPostChallengeReviewRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/challenge/review")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewPostChallengeHelpfullRequest generates requests for PostChallengeHelpfull
-func NewPostChallengeHelpfullRequest(server string, reviewId ReviewId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "reviewId", runtime.ParamLocationPath, reviewId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/challenge/review/helpful/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetChallengeReviewsUserRequest generates requests for GetChallengeReviewsUser
-func NewGetChallengeReviewsUserRequest(server string, challengeId ChallengeId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "challengeId", runtime.ParamLocationPath, challengeId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/challenge/reviews/user/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -12111,6 +7482,57 @@ func NewPostChallengeStopRequestWithBody(server string, contentType string, body
 	}
 
 	operationPath := fmt.Sprintf("/challenge/stop")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
+// NewPostChallengeOwnRequest calls the generic PostChallengeOwn builder with application/json body
+func NewPostChallengeOwnRequest(server string, body PostChallengeOwnJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPostChallengeOwnRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPostChallengeOwnRequestWithFormdataBody calls the generic PostChallengeOwn builder with application/x-www-form-urlencoded body
+func NewPostChallengeOwnRequestWithFormdataBody(server string, body PostChallengeOwnFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewPostChallengeOwnRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewPostChallengeOwnRequestWithBody generates requests for PostChallengeOwn with any type of body
+func NewPostChallengeOwnRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/challenge/submit")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -12418,16 +7840,23 @@ func NewGetChallengesRequest(server string, params *GetChallengesParams) (*http.
 	return req, nil
 }
 
-// NewGetChangelogsRequest generates requests for GetChangelogs
-func NewGetChangelogsRequest(server string) (*http.Request, error) {
+// NewGetChallengeDownloadRequest generates requests for GetChallengeDownload
+func NewGetChallengeDownloadRequest(server string, challengeId ChallengeId) (*http.Request, error) {
 	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "challengeId", runtime.ParamLocationPath, challengeId)
+	if err != nil {
+		return nil, err
+	}
 
 	serverURL, err := url.Parse(server)
 	if err != nil {
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/changelogs")
+	operationPath := fmt.Sprintf("/challenges/%s/download_link", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -12455,101 +7884,6 @@ func NewGetConnectionStatusRequest(server string) (*http.Request, error) {
 	}
 
 	operationPath := fmt.Sprintf("/connection/status")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetConnectionStatusProlabRequest generates requests for GetConnectionStatusProlab
-func NewGetConnectionStatusProlabRequest(server string, prolabId ProlabId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "prolabId", runtime.ParamLocationPath, prolabId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/connection/status/prolab/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetConnectionStatusProductnameRequest generates requests for GetConnectionStatusProductname
-func NewGetConnectionStatusProductnameRequest(server string, productName GetConnectionStatusProductnameParamsProductName) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "productName", runtime.ParamLocationPath, productName)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/connection/status/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetConnectionsRequest generates requests for GetConnections
-func NewGetConnectionsRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/connections")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -12782,33 +8116,6 @@ func NewPostContainerStopRequestWithBody(server string, contentType string, body
 	return req, nil
 }
 
-// NewGetContentStatsRequest generates requests for GetContentStats
-func NewGetContentStatsRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/content/stats")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetFortressRequest generates requests for GetFortress
 func NewGetFortressRequest(server string, fortressId FortressId) (*http.Request, error) {
 	var err error
@@ -13023,87 +8330,6 @@ func NewGetHomeBannerRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewGetHomeRecommendedRequest generates requests for GetHomeRecommended
-func NewGetHomeRecommendedRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/home/recommended")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetHomeUserProgressRequest generates requests for GetHomeUserProgress
-func NewGetHomeUserProgressRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/home/user/progress")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetHomeUserTodoRequest generates requests for GetHomeUserTodo
-func NewGetHomeUserTodoRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/home/user/todo")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetMachineActiveRequest generates requests for GetMachineActive
 func NewGetMachineActiveRequest(server string) (*http.Request, error) {
 	var err error
@@ -13199,81 +8425,6 @@ func NewGetMachineChangelogRequest(server string, machineId MachineId) (*http.Re
 	return req, nil
 }
 
-// NewGetMachineCreatorsRequest generates requests for GetMachineCreators
-func NewGetMachineCreatorsRequest(server string, machineId MachineId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "machineId", runtime.ParamLocationPath, machineId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/creators/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetMachineGraphActivityRequest generates requests for GetMachineGraphActivity
-func NewGetMachineGraphActivityRequest(server string, machineId MachineId, period GetMachineGraphActivityParamsPeriod) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "machineId", runtime.ParamLocationPath, machineId)
-	if err != nil {
-		return nil, err
-	}
-
-	var pathParam1 string
-
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "period", runtime.ParamLocationPath, period)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/graph/activity/%s/%s", pathParam0, pathParam1)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetMachineGraphMatrixRequest generates requests for GetMachineGraphMatrix
 func NewGetMachineGraphMatrixRequest(server string, machineId MachineId) (*http.Request, error) {
 	var err error
@@ -13298,479 +8449,6 @@ func NewGetMachineGraphMatrixRequest(server string, machineId MachineId) (*http.
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetMachineGraphOwnsDifficultyRequest generates requests for GetMachineGraphOwnsDifficulty
-func NewGetMachineGraphOwnsDifficultyRequest(server string, machineId MachineId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "machineId", runtime.ParamLocationPath, machineId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/graph/owns/difficulty/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetMachineListRetiredPaginatedRequest generates requests for GetMachineListRetiredPaginated
-func NewGetMachineListRetiredPaginatedRequest(server string, params *GetMachineListRetiredPaginatedParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/list/retired/paginated")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Free != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "free", runtime.ParamLocationQuery, *params.Free); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PerPage != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, *params.PerPage); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.ShowCompleted != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "show_completed", runtime.ParamLocationQuery, *params.ShowCompleted); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.SortBy != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_by", runtime.ParamLocationQuery, *params.SortBy); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.SortType != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, *params.SortType); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Difficulty != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Os != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os[]", runtime.ParamLocationQuery, *params.Os); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Tag != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "tag[]", runtime.ParamLocationQuery, *params.Tag); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Keyword != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewPostMachineOwnRequest calls the generic PostMachineOwn builder with application/json body
-func NewPostMachineOwnRequest(server string, body PostMachineOwnJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewPostMachineOwnRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewPostMachineOwnRequestWithFormdataBody calls the generic PostMachineOwn builder with application/x-www-form-urlencoded body
-func NewPostMachineOwnRequestWithFormdataBody(server string, body PostMachineOwnFormdataRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	bodyStr, err := runtime.MarshalForm(body, nil)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = strings.NewReader(bodyStr.Encode())
-	return NewPostMachineOwnRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
-}
-
-// NewPostMachineOwnRequestWithBody generates requests for PostMachineOwn with any type of body
-func NewPostMachineOwnRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/own")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewGetMachineOwnsTopRequest generates requests for GetMachineOwnsTop
-func NewGetMachineOwnsTopRequest(server string, machineId MachineId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "machineId", runtime.ParamLocationPath, machineId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/owns/top/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetMachinePaginatedRequest generates requests for GetMachinePaginated
-func NewGetMachinePaginatedRequest(server string, params *GetMachinePaginatedParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/paginated")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.PerPage != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, *params.PerPage); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.ShowCompleted != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "show_completed", runtime.ParamLocationQuery, *params.ShowCompleted); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.SortBy != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_by", runtime.ParamLocationQuery, *params.SortBy); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.SortType != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, *params.SortType); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Difficulty != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Os != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os[]", runtime.ParamLocationQuery, *params.Os); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Keyword != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -13842,152 +8520,6 @@ func NewGetMachineRecommendedRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewGetMachineRecommendedRetiredRequest generates requests for GetMachineRecommendedRetired
-func NewGetMachineRecommendedRetiredRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/recommended/retired")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewPostMachineReviewRequest calls the generic PostMachineReview builder with application/json body
-func NewPostMachineReviewRequest(server string, body PostMachineReviewJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewPostMachineReviewRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewPostMachineReviewRequestWithFormdataBody calls the generic PostMachineReview builder with application/x-www-form-urlencoded body
-func NewPostMachineReviewRequestWithFormdataBody(server string, body PostMachineReviewFormdataRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	bodyStr, err := runtime.MarshalForm(body, nil)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = strings.NewReader(bodyStr.Encode())
-	return NewPostMachineReviewRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
-}
-
-// NewPostMachineReviewRequestWithBody generates requests for PostMachineReview with any type of body
-func NewPostMachineReviewRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/review")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewGetMachineReviewsUserRequest generates requests for GetMachineReviewsUser
-func NewGetMachineReviewsUserRequest(server string, machineId MachineId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "machineId", runtime.ParamLocationPath, machineId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/reviews/user/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetMachineReviewsRequest generates requests for GetMachineReviews
-func NewGetMachineReviewsRequest(server string, machineId MachineId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "machineId", runtime.ParamLocationPath, machineId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/reviews/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetMachineTagsRequest generates requests for GetMachineTags
 func NewGetMachineTagsRequest(server string, machineId MachineId) (*http.Request, error) {
 	var err error
@@ -14012,232 +8544,6 @@ func NewGetMachineTagsRequest(server string, machineId MachineId) (*http.Request
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetMachineTodoPaginatedRequest generates requests for GetMachineTodoPaginated
-func NewGetMachineTodoPaginatedRequest(server string, params *GetMachineTodoPaginatedParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/todo/paginated")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.SortType != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "sort_type", runtime.ParamLocationQuery, *params.SortType); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Keyword != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Difficulty != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.ShowCompleted != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "show_completed", runtime.ParamLocationQuery, *params.ShowCompleted); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Os != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os[]", runtime.ParamLocationQuery, *params.Os); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetMachineUnreleasedRequest generates requests for GetMachineUnreleased
-func NewGetMachineUnreleasedRequest(server string, params *GetMachineUnreleasedParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/unreleased")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if params.Page != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, *params.Page); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.PerPage != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "per_page", runtime.ParamLocationQuery, *params.PerPage); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Difficulty != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "difficulty[]", runtime.ParamLocationQuery, *params.Difficulty); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Os != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "os[]", runtime.ParamLocationQuery, *params.Os); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		if params.Keyword != nil {
-
-			if queryFrag, err := runtime.StyleParamWithLocation("form", true, "keyword", runtime.ParamLocationQuery, *params.Keyword); err != nil {
-				return nil, err
-			} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-				return nil, err
-			} else {
-				for k, v := range parsed {
-					for _, v2 := range v {
-						queryValues.Add(k, v2)
-					}
-				}
-			}
-
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
 	}
 
 	req, err := http.NewRequest("GET", queryURL.String(), nil)
@@ -14285,33 +8591,6 @@ func NewGetMachineWalkthroughsLanguageListRequest(server string) (*http.Request,
 	}
 
 	operationPath := fmt.Sprintf("/machine/walkthroughs/language/list")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetMachineWalkthroughOfficialFeedbackChoicesRequest generates requests for GetMachineWalkthroughOfficialFeedbackChoices
-func NewGetMachineWalkthroughOfficialFeedbackChoicesRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/machine/walkthroughs/official/feedback-choices")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -14815,160 +9094,6 @@ func NewGetProlabProgressRequest(server string, prolabId ProlabId) (*http.Reques
 	return req, nil
 }
 
-// NewGetProlabRatingRequest generates requests for GetProlabRating
-func NewGetProlabRatingRequest(server string, prolabId ProlabId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "prolabId", runtime.ParamLocationPath, prolabId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/prolab/%s/rating", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetProlabReviewsRequest generates requests for GetProlabReviews
-func NewGetProlabReviewsRequest(server string, prolabId ProlabId, params *GetProlabReviewsParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "prolabId", runtime.ParamLocationPath, prolabId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/prolab/%s/reviews", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "page", runtime.ParamLocationQuery, params.Page); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
-				}
-			}
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetProlabReviewsOverviewRequest generates requests for GetProlabReviewsOverview
-func NewGetProlabReviewsOverviewRequest(server string, prolabId ProlabId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "prolabId", runtime.ParamLocationPath, prolabId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/prolab/%s/reviews_overview", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetProlabSubscriptionRequest generates requests for GetProlabSubscription
-func NewGetProlabSubscriptionRequest(server string, prolabId ProlabId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "prolabId", runtime.ParamLocationPath, prolabId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/prolab/%s/subscription", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetProlabsRequest generates requests for GetProlabs
 func NewGetProlabsRequest(server string) (*http.Request, error) {
 	var err error
@@ -15182,123 +9307,6 @@ func NewGetRankingsCountriesRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewGetRankingsCountryBestRequest generates requests for GetRankingsCountryBest
-func NewGetRankingsCountryBestRequest(server string, params *GetRankingsCountryBestParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/country/best")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, params.Period); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
-				}
-			}
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetRankingsCountryOverviewRequest generates requests for GetRankingsCountryOverview
-func NewGetRankingsCountryOverviewRequest(server string, params *GetRankingsCountryOverviewParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/country/overview")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, params.Period); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
-				}
-			}
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetRankingsCountryRankingBracketRequest generates requests for GetRankingsCountryRankingBracket
-func NewGetRankingsCountryRankingBracketRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/country/ranking_bracket")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetRankingsCountryUSMembersRequest generates requests for GetRankingsCountryUSMembers
 func NewGetRankingsCountryUSMembersRequest(server string, countryShortName string) (*http.Request, error) {
 	var err error
@@ -15316,261 +9324,6 @@ func NewGetRankingsCountryUSMembersRequest(server string, countryShortName strin
 	}
 
 	operationPath := fmt.Sprintf("/rankings/country/%s/members", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetRankingsTeamBestRequest generates requests for GetRankingsTeamBest
-func NewGetRankingsTeamBestRequest(server string, params *GetRankingsTeamBestParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/team/best")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, params.Period); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
-				}
-			}
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetRankingsTeamBestIdRequest generates requests for GetRankingsTeamBestId
-func NewGetRankingsTeamBestIdRequest(server string, teamId TeamId, params *GetRankingsTeamBestIdParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "teamId", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/team/best/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, params.Period); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
-				}
-			}
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetRankingsTeamOverviewRequest generates requests for GetRankingsTeamOverview
-func NewGetRankingsTeamOverviewRequest(server string, params *GetRankingsTeamOverviewParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/team/overview")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, params.Period); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
-				}
-			}
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetRankingsTeamOverviewIdRequest generates requests for GetRankingsTeamOverviewId
-func NewGetRankingsTeamOverviewIdRequest(server string, teamId TeamId, params *GetRankingsTeamOverviewIdParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "teamId", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/team/overview/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, params.Period); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
-				}
-			}
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetRankingsTeamRankingBracketRequest generates requests for GetRankingsTeamRankingBracket
-func NewGetRankingsTeamRankingBracketRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/team/ranking_bracket")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetRankingsTeamRankingBracketIdRequest generates requests for GetRankingsTeamRankingBracketId
-func NewGetRankingsTeamRankingBracketIdRequest(server string, teamId TeamId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "teamId", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/team/ranking_bracket/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -15642,157 +9395,6 @@ func NewGetRankingsUniversitiesRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewGetRankingsUniversityRankingBracketIdRequest generates requests for GetRankingsUniversityRankingBracketId
-func NewGetRankingsUniversityRankingBracketIdRequest(server string, universityId UniversityId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "universityId", runtime.ParamLocationPath, universityId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/university/ranking_bracket/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetRankingsUserBestRequest generates requests for GetRankingsUserBest
-func NewGetRankingsUserBestRequest(server string, params *GetRankingsUserBestParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/user/best")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, params.Period); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
-				}
-			}
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetRankingsUserOverviewRequest generates requests for GetRankingsUserOverview
-func NewGetRankingsUserOverviewRequest(server string, params *GetRankingsUserOverviewParams) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/user/overview")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, params.Period); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
-				}
-			}
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetRankingsUserRankingBracketRequest generates requests for GetRankingsUserRankingBracket
-func NewGetRankingsUserRankingBracketRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/rankings/user/ranking_bracket")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetRankingsUsersRequest generates requests for GetRankingsUsers
 func NewGetRankingsUsersRequest(server string) (*http.Request, error) {
 	var err error
@@ -15803,47 +9405,6 @@ func NewGetRankingsUsersRequest(server string) (*http.Request, error) {
 	}
 
 	operationPath := fmt.Sprintf("/rankings/users")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetReviewRequest generates requests for GetReview
-func NewGetReviewRequest(server string, product GetReviewParamsProduct, productId ProductId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "product", runtime.ParamLocationPath, product)
-	if err != nil {
-		return nil, err
-	}
-
-	var pathParam1 string
-
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "productId", runtime.ParamLocationPath, productId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/review/%s/%s", pathParam0, pathParam1)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -15963,47 +9524,6 @@ func NewGetSearchFetchRequest(server string, params *GetSearchFetchParams) (*htt
 	return req, nil
 }
 
-// NewGetSeasonEndRequest generates requests for GetSeasonEnd
-func NewGetSeasonEndRequest(server string, seasonId SeasonId, userId UserId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "seasonId", runtime.ParamLocationPath, seasonId)
-	if err != nil {
-		return nil, err
-	}
-
-	var pathParam1 string
-
-	pathParam1, err = runtime.StyleParamWithLocation("simple", false, "userId", runtime.ParamLocationPath, userId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/season/end/%s/%s", pathParam0, pathParam1)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetSeasonListRequest generates requests for GetSeasonList
 func NewGetSeasonListRequest(server string) (*http.Request, error) {
 	var err error
@@ -16059,34 +9579,7 @@ func NewGetSeasonMachineActiveRequest(server string) (*http.Request, error) {
 }
 
 // NewGetSeasonMachinesRequest generates requests for GetSeasonMachines
-func NewGetSeasonMachinesRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/season/machines")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetSeasonMachinesCompletedRequest generates requests for GetSeasonMachinesCompleted
-func NewGetSeasonMachinesCompletedRequest(server string, seasonId SeasonId) (*http.Request, error) {
+func NewGetSeasonMachinesRequest(server string, seasonId SeasonId) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -16101,7 +9594,7 @@ func NewGetSeasonMachinesCompletedRequest(server string, seasonId SeasonId) (*ht
 		return nil, err
 	}
 
-	operationPath := fmt.Sprintf("/season/machines/completed/%s", pathParam0)
+	operationPath := fmt.Sprintf("/season/machines/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -16136,40 +9629,6 @@ func NewGetSeasonRewardsRequest(server string, seasonId SeasonId) (*http.Request
 	}
 
 	operationPath := fmt.Sprintf("/season/rewards/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetSeasonUserFollowersRequest generates requests for GetSeasonUserFollowers
-func NewGetSeasonUserFollowersRequest(server string, seasonId SeasonId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "seasonId", runtime.ParamLocationPath, seasonId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/season/user/followers/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -16907,155 +10366,6 @@ func NewGetSherlockRequest(server string, sherlockSlug SherlockSlug) (*http.Requ
 	return req, nil
 }
 
-// NewGetSidebarAnnouncementRequest generates requests for GetSidebarAnnouncement
-func NewGetSidebarAnnouncementRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/sidebar/announcement")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetSidebarChangelogRequest generates requests for GetSidebarChangelog
-func NewGetSidebarChangelogRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/sidebar/changelog")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetSPProfileRequest generates requests for GetSPProfile
-func NewGetSPProfileRequest(server string, startingPointId StartingPointId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "startingPointId", runtime.ParamLocationPath, startingPointId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/sp/profile/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewPostSPTaskFlagRequest generates requests for PostSPTaskFlag
-func NewPostSPTaskFlagRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/sp/task/flag")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetSPTierRequest generates requests for GetSPTier
-func NewGetSPTierRequest(server string, tierId TierId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "tierId", runtime.ParamLocationPath, tierId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/sp/tier/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetSPTiersProgressRequest generates requests for GetSPTiersProgress
 func NewGetSPTiersProgressRequest(server string) (*http.Request, error) {
 	var err error
@@ -17153,126 +10463,6 @@ func NewGetTeamActivityRequest(server string, teamId TeamId, params *GetTeamActi
 				}
 			}
 
-		}
-
-		queryURL.RawQuery = queryValues.Encode()
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetTeamChartChallengeCategoriesRequest generates requests for GetTeamChartChallengeCategories
-func NewGetTeamChartChallengeCategoriesRequest(server string, teamId TeamId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "teamId", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/team/chart/challenge/categories/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetTeamChartMachinesAttackRequest generates requests for GetTeamChartMachinesAttack
-func NewGetTeamChartMachinesAttackRequest(server string, teamId TeamId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "teamId", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/team/chart/machines/attack/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetTeamGraphRequest generates requests for GetTeamGraph
-func NewGetTeamGraphRequest(server string, teamId TeamId, params *GetTeamGraphParams) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "teamId", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/team/graph/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	if params != nil {
-		queryValues := queryURL.Query()
-
-		if queryFrag, err := runtime.StyleParamWithLocation("form", true, "period", runtime.ParamLocationQuery, params.Period); err != nil {
-			return nil, err
-		} else if parsed, err := url.ParseQuery(queryFrag); err != nil {
-			return nil, err
-		} else {
-			for k, v := range parsed {
-				for _, v2 := range v {
-					queryValues.Add(k, v2)
-				}
-			}
 		}
 
 		queryURL.RawQuery = queryValues.Encode()
@@ -17405,40 +10595,6 @@ func NewGetTeamMembersRequest(server string, teamId TeamId) (*http.Request, erro
 	}
 
 	operationPath := fmt.Sprintf("/team/members/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetTeamStatsOwnsRequest generates requests for GetTeamStatsOwns
-func NewGetTeamStatsOwnsRequest(server string, teamId TeamId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "teamId", runtime.ParamLocationPath, teamId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/team/stats/owns/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -17752,101 +10908,6 @@ func NewGetUniversityAllListRequest(server string, params *GetUniversityAllListP
 	return req, nil
 }
 
-// NewGetUniversityChartChallengeCategoriesRequest generates requests for GetUniversityChartChallengeCategories
-func NewGetUniversityChartChallengeCategoriesRequest(server string, universityId UniversityId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "universityId", runtime.ParamLocationPath, universityId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/university/chart/challenge/categories/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetUniversityChartMachinesAttackRequest generates requests for GetUniversityChartMachinesAttack
-func NewGetUniversityChartMachinesAttackRequest(server string, universityId UniversityId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "universityId", runtime.ParamLocationPath, universityId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/university/chart/machines/attack/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetUniversityCountryListRequest generates requests for GetUniversityCountryList
-func NewGetUniversityCountryListRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/university/country/list")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetUniversityMembersRequest generates requests for GetUniversityMembers
 func NewGetUniversityMembersRequest(server string, universityId UniversityId) (*http.Request, error) {
 	var err error
@@ -17881,33 +10942,6 @@ func NewGetUniversityMembersRequest(server string, universityId UniversityId) (*
 	return req, nil
 }
 
-// NewGetUniversityNewListRequest generates requests for GetUniversityNewList
-func NewGetUniversityNewListRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/university/new/list")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewGetUniversityProfileRequest generates requests for GetUniversityProfile
 func NewGetUniversityProfileRequest(server string, universityId UniversityId) (*http.Request, error) {
 	var err error
@@ -17925,67 +10959,6 @@ func NewGetUniversityProfileRequest(server string, universityId UniversityId) (*
 	}
 
 	operationPath := fmt.Sprintf("/university/profile/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetUniversityStatsOwnsRequest generates requests for GetUniversityStatsOwns
-func NewGetUniversityStatsOwnsRequest(server string, userId UserId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "userId", runtime.ParamLocationPath, userId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/university/stats/owns/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetUniversityTopListRequest generates requests for GetUniversityTopList
-func NewGetUniversityTopListRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/university/top/list")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -18212,60 +11185,6 @@ func NewGetUserConnectionStatusRequest(server string) (*http.Request, error) {
 	return req, nil
 }
 
-// NewGetUserDashboardRequest generates requests for GetUserDashboard
-func NewGetUserDashboardRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/user/dashboard")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetUserDashboardTabloidRequest generates requests for GetUserDashboardTabloid
-func NewGetUserDashboardTabloidRequest(server string) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/user/dashboard/tabloid")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
 // NewPostUserDisrespectRequest generates requests for PostUserDisrespect
 func NewPostUserDisrespectRequest(server string, userId UserId) (*http.Request, error) {
 	var err error
@@ -18371,40 +11290,6 @@ func NewGetUserInfoRequest(server string) (*http.Request, error) {
 	}
 
 	operationPath := fmt.Sprintf("/user/info")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetUserProfileActivityRequest generates requests for GetUserProfileActivity
-func NewGetUserProfileActivityRequest(server string, userId UserId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "userId", runtime.ParamLocationPath, userId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/user/profile/activity/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -18559,40 +11444,6 @@ func NewGetUserProfileChartMachinesAttackRequest(server string, userId UserId) (
 	}
 
 	operationPath := fmt.Sprintf("/user/profile/chart/machines/attack/%s", pathParam0)
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("GET", queryURL.String(), nil)
-	if err != nil {
-		return nil, err
-	}
-
-	return req, nil
-}
-
-// NewGetUserProfileContentRequest generates requests for GetUserProfileContent
-func NewGetUserProfileContentRequest(server string, userId UserId) (*http.Request, error) {
-	var err error
-
-	var pathParam0 string
-
-	pathParam0, err = runtime.StyleParamWithLocation("simple", false, "userId", runtime.ParamLocationPath, userId)
-	if err != nil {
-		return nil, err
-	}
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/user/profile/content/%s", pathParam0)
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -19332,50 +12183,8 @@ type ClientWithResponsesInterface interface {
 	// GetAccessOvpnfileVpnIdTCPWithResponse request
 	GetAccessOvpnfileVpnIdTCPWithResponse(ctx context.Context, vpnId VpnId, reqEditors ...RequestEditorFn) (*GetAccessOvpnfileVpnIdTCPResponse, error)
 
-	// GetAnnouncementsWithResponse request
-	GetAnnouncementsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAnnouncementsResponse, error)
-
-	// PostArenaOwnWithBodyWithResponse request with any body
-	PostArenaOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostArenaOwnResponse, error)
-
-	PostArenaOwnWithResponse(ctx context.Context, body PostArenaOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostArenaOwnResponse, error)
-
-	PostArenaOwnWithFormdataBodyWithResponse(ctx context.Context, body PostArenaOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostArenaOwnResponse, error)
-
 	// GetBadgesWithResponse request
 	GetBadgesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetBadgesResponse, error)
-
-	// GetCareerCompaniesWithResponse request
-	GetCareerCompaniesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCareerCompaniesResponse, error)
-
-	// GetCareerCompanyWithResponse request
-	GetCareerCompanyWithResponse(ctx context.Context, companyId CompanyId, params *GetCareerCompanyParams, reqEditors ...RequestEditorFn) (*GetCareerCompanyResponse, error)
-
-	// GetCareerFeaturedWithResponse request
-	GetCareerFeaturedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCareerFeaturedResponse, error)
-
-	// GetCareerHistoryWithResponse request
-	GetCareerHistoryWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCareerHistoryResponse, error)
-
-	// GetCareerInfoWithResponse request
-	GetCareerInfoWithResponse(ctx context.Context, jobId JobId, reqEditors ...RequestEditorFn) (*GetCareerInfoResponse, error)
-
-	// GetCareerProfileWithResponse request
-	GetCareerProfileWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCareerProfileResponse, error)
-
-	// GetCareerRequestsWithResponse request
-	GetCareerRequestsWithResponse(ctx context.Context, params *GetCareerRequestsParams, reqEditors ...RequestEditorFn) (*GetCareerRequestsResponse, error)
-
-	// GetCareerSearchWithResponse request
-	GetCareerSearchWithResponse(ctx context.Context, params *GetCareerSearchParams, reqEditors ...RequestEditorFn) (*GetCareerSearchResponse, error)
-
-	// GetCareerStatsWithResponse request
-	GetCareerStatsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCareerStatsResponse, error)
-
-	// PostCareerTemporaryContactOptinWithBodyWithResponse request with any body
-	PostCareerTemporaryContactOptinWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostCareerTemporaryContactOptinResponse, error)
-
-	PostCareerTemporaryContactOptinWithResponse(ctx context.Context, body PostCareerTemporaryContactOptinJSONRequestBody, reqEditors ...RequestEditorFn) (*PostCareerTemporaryContactOptinResponse, error)
 
 	// GetChallengeActivityWithResponse request
 	GetChallengeActivityWithResponse(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*GetChallengeActivityResponse, error)
@@ -19386,35 +12195,11 @@ type ClientWithResponsesInterface interface {
 	// GetChallengeChangelogWithResponse request
 	GetChallengeChangelogWithResponse(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*GetChallengeChangelogResponse, error)
 
-	// GetChallengeDownloadWithResponse request
-	GetChallengeDownloadWithResponse(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*GetChallengeDownloadResponse, error)
-
 	// GetChallengeInfoWithResponse request
 	GetChallengeInfoWithResponse(ctx context.Context, challengeSlug ChallengeSlug, reqEditors ...RequestEditorFn) (*GetChallengeInfoResponse, error)
 
-	// PostChallengeOwnWithBodyWithResponse request with any body
-	PostChallengeOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
-
-	PostChallengeOwnWithResponse(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
-
-	PostChallengeOwnWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
-
 	// GetChallengeRecommendedWithResponse request
 	GetChallengeRecommendedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetChallengeRecommendedResponse, error)
-
-	// GetChallengeRecommendedRetiredWithResponse request
-	GetChallengeRecommendedRetiredWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetChallengeRecommendedRetiredResponse, error)
-
-	// PostChallengeReviewWithBodyWithResponse request with any body
-	PostChallengeReviewWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeReviewResponse, error)
-
-	PostChallengeReviewWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeReviewFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeReviewResponse, error)
-
-	// PostChallengeHelpfullWithResponse request
-	PostChallengeHelpfullWithResponse(ctx context.Context, reviewId ReviewId, reqEditors ...RequestEditorFn) (*PostChallengeHelpfullResponse, error)
-
-	// GetChallengeReviewsUserWithResponse request
-	GetChallengeReviewsUserWithResponse(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*GetChallengeReviewsUserResponse, error)
 
 	// PostChallengeStartWithBodyWithResponse request with any body
 	PostChallengeStartWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeStartResponse, error)
@@ -19425,6 +12210,13 @@ type ClientWithResponsesInterface interface {
 	PostChallengeStopWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeStopResponse, error)
 
 	PostChallengeStopWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeStopFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeStopResponse, error)
+
+	// PostChallengeOwnWithBodyWithResponse request with any body
+	PostChallengeOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
+
+	PostChallengeOwnWithResponse(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
+
+	PostChallengeOwnWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
 
 	// GetChallengeSuggestedWithResponse request
 	GetChallengeSuggestedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetChallengeSuggestedResponse, error)
@@ -19438,20 +12230,11 @@ type ClientWithResponsesInterface interface {
 	// GetChallengesWithResponse request
 	GetChallengesWithResponse(ctx context.Context, params *GetChallengesParams, reqEditors ...RequestEditorFn) (*GetChallengesResponse, error)
 
-	// GetChangelogsWithResponse request
-	GetChangelogsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetChangelogsResponse, error)
+	// GetChallengeDownloadWithResponse request
+	GetChallengeDownloadWithResponse(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*GetChallengeDownloadResponse, error)
 
 	// GetConnectionStatusWithResponse request
 	GetConnectionStatusWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetConnectionStatusResponse, error)
-
-	// GetConnectionStatusProlabWithResponse request
-	GetConnectionStatusProlabWithResponse(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*GetConnectionStatusProlabResponse, error)
-
-	// GetConnectionStatusProductnameWithResponse request
-	GetConnectionStatusProductnameWithResponse(ctx context.Context, productName GetConnectionStatusProductnameParamsProductName, reqEditors ...RequestEditorFn) (*GetConnectionStatusProductnameResponse, error)
-
-	// GetConnectionsWithResponse request
-	GetConnectionsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetConnectionsResponse, error)
 
 	// GetConnectionsServersWithResponse request
 	GetConnectionsServersWithResponse(ctx context.Context, params *GetConnectionsServersParams, reqEditors ...RequestEditorFn) (*GetConnectionsServersResponse, error)
@@ -19476,9 +12259,6 @@ type ClientWithResponsesInterface interface {
 
 	PostContainerStopWithFormdataBodyWithResponse(ctx context.Context, body PostContainerStopFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostContainerStopResponse, error)
 
-	// GetContentStatsWithResponse request
-	GetContentStatsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetContentStatsResponse, error)
-
 	// GetFortressWithResponse request
 	GetFortressWithResponse(ctx context.Context, fortressId FortressId, reqEditors ...RequestEditorFn) (*GetFortressResponse, error)
 
@@ -19501,15 +12281,6 @@ type ClientWithResponsesInterface interface {
 	// GetHomeBannerWithResponse request
 	GetHomeBannerWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetHomeBannerResponse, error)
 
-	// GetHomeRecommendedWithResponse request
-	GetHomeRecommendedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetHomeRecommendedResponse, error)
-
-	// GetHomeUserProgressWithResponse request
-	GetHomeUserProgressWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetHomeUserProgressResponse, error)
-
-	// GetHomeUserTodoWithResponse request
-	GetHomeUserTodoWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetHomeUserTodoResponse, error)
-
 	// GetMachineActiveWithResponse request
 	GetMachineActiveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetMachineActiveResponse, error)
 
@@ -19519,33 +12290,8 @@ type ClientWithResponsesInterface interface {
 	// GetMachineChangelogWithResponse request
 	GetMachineChangelogWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineChangelogResponse, error)
 
-	// GetMachineCreatorsWithResponse request
-	GetMachineCreatorsWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineCreatorsResponse, error)
-
-	// GetMachineGraphActivityWithResponse request
-	GetMachineGraphActivityWithResponse(ctx context.Context, machineId MachineId, period GetMachineGraphActivityParamsPeriod, reqEditors ...RequestEditorFn) (*GetMachineGraphActivityResponse, error)
-
 	// GetMachineGraphMatrixWithResponse request
 	GetMachineGraphMatrixWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineGraphMatrixResponse, error)
-
-	// GetMachineGraphOwnsDifficultyWithResponse request
-	GetMachineGraphOwnsDifficultyWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineGraphOwnsDifficultyResponse, error)
-
-	// GetMachineListRetiredPaginatedWithResponse request
-	GetMachineListRetiredPaginatedWithResponse(ctx context.Context, params *GetMachineListRetiredPaginatedParams, reqEditors ...RequestEditorFn) (*GetMachineListRetiredPaginatedResponse, error)
-
-	// PostMachineOwnWithBodyWithResponse request with any body
-	PostMachineOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostMachineOwnResponse, error)
-
-	PostMachineOwnWithResponse(ctx context.Context, body PostMachineOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostMachineOwnResponse, error)
-
-	PostMachineOwnWithFormdataBodyWithResponse(ctx context.Context, body PostMachineOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostMachineOwnResponse, error)
-
-	// GetMachineOwnsTopWithResponse request
-	GetMachineOwnsTopWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineOwnsTopResponse, error)
-
-	// GetMachinePaginatedWithResponse request
-	GetMachinePaginatedWithResponse(ctx context.Context, params *GetMachinePaginatedParams, reqEditors ...RequestEditorFn) (*GetMachinePaginatedResponse, error)
 
 	// GetMachineProfileWithResponse request
 	GetMachineProfileWithResponse(ctx context.Context, machineSlug MachineSlug, reqEditors ...RequestEditorFn) (*GetMachineProfileResponse, error)
@@ -19553,39 +12299,14 @@ type ClientWithResponsesInterface interface {
 	// GetMachineRecommendedWithResponse request
 	GetMachineRecommendedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetMachineRecommendedResponse, error)
 
-	// GetMachineRecommendedRetiredWithResponse request
-	GetMachineRecommendedRetiredWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetMachineRecommendedRetiredResponse, error)
-
-	// PostMachineReviewWithBodyWithResponse request with any body
-	PostMachineReviewWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostMachineReviewResponse, error)
-
-	PostMachineReviewWithResponse(ctx context.Context, body PostMachineReviewJSONRequestBody, reqEditors ...RequestEditorFn) (*PostMachineReviewResponse, error)
-
-	PostMachineReviewWithFormdataBodyWithResponse(ctx context.Context, body PostMachineReviewFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostMachineReviewResponse, error)
-
-	// GetMachineReviewsUserWithResponse request
-	GetMachineReviewsUserWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineReviewsUserResponse, error)
-
-	// GetMachineReviewsWithResponse request
-	GetMachineReviewsWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineReviewsResponse, error)
-
 	// GetMachineTagsWithResponse request
 	GetMachineTagsWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineTagsResponse, error)
-
-	// GetMachineTodoPaginatedWithResponse request
-	GetMachineTodoPaginatedWithResponse(ctx context.Context, params *GetMachineTodoPaginatedParams, reqEditors ...RequestEditorFn) (*GetMachineTodoPaginatedResponse, error)
-
-	// GetMachineUnreleasedWithResponse request
-	GetMachineUnreleasedWithResponse(ctx context.Context, params *GetMachineUnreleasedParams, reqEditors ...RequestEditorFn) (*GetMachineUnreleasedResponse, error)
 
 	// GetMachineWalkthroughRandomWithResponse request
 	GetMachineWalkthroughRandomWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetMachineWalkthroughRandomResponse, error)
 
 	// GetMachineWalkthroughsLanguageListWithResponse request
 	GetMachineWalkthroughsLanguageListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetMachineWalkthroughsLanguageListResponse, error)
-
-	// GetMachineWalkthroughOfficialFeedbackChoicesWithResponse request
-	GetMachineWalkthroughOfficialFeedbackChoicesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetMachineWalkthroughOfficialFeedbackChoicesResponse, error)
 
 	// GetMachineWalkthroughsWithResponse request
 	GetMachineWalkthroughsWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineWalkthroughsResponse, error)
@@ -19633,18 +12354,6 @@ type ClientWithResponsesInterface interface {
 	// GetProlabProgressWithResponse request
 	GetProlabProgressWithResponse(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*GetProlabProgressResponse, error)
 
-	// GetProlabRatingWithResponse request
-	GetProlabRatingWithResponse(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*GetProlabRatingResponse, error)
-
-	// GetProlabReviewsWithResponse request
-	GetProlabReviewsWithResponse(ctx context.Context, prolabId ProlabId, params *GetProlabReviewsParams, reqEditors ...RequestEditorFn) (*GetProlabReviewsResponse, error)
-
-	// GetProlabReviewsOverviewWithResponse request
-	GetProlabReviewsOverviewWithResponse(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*GetProlabReviewsOverviewResponse, error)
-
-	// GetProlabSubscriptionWithResponse request
-	GetProlabSubscriptionWithResponse(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*GetProlabSubscriptionResponse, error)
-
 	// GetProlabsWithResponse request
 	GetProlabsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetProlabsResponse, error)
 
@@ -19670,35 +12379,8 @@ type ClientWithResponsesInterface interface {
 	// GetRankingsCountriesWithResponse request
 	GetRankingsCountriesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetRankingsCountriesResponse, error)
 
-	// GetRankingsCountryBestWithResponse request
-	GetRankingsCountryBestWithResponse(ctx context.Context, params *GetRankingsCountryBestParams, reqEditors ...RequestEditorFn) (*GetRankingsCountryBestResponse, error)
-
-	// GetRankingsCountryOverviewWithResponse request
-	GetRankingsCountryOverviewWithResponse(ctx context.Context, params *GetRankingsCountryOverviewParams, reqEditors ...RequestEditorFn) (*GetRankingsCountryOverviewResponse, error)
-
-	// GetRankingsCountryRankingBracketWithResponse request
-	GetRankingsCountryRankingBracketWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetRankingsCountryRankingBracketResponse, error)
-
 	// GetRankingsCountryUSMembersWithResponse request
 	GetRankingsCountryUSMembersWithResponse(ctx context.Context, countryShortName string, reqEditors ...RequestEditorFn) (*GetRankingsCountryUSMembersResponse, error)
-
-	// GetRankingsTeamBestWithResponse request
-	GetRankingsTeamBestWithResponse(ctx context.Context, params *GetRankingsTeamBestParams, reqEditors ...RequestEditorFn) (*GetRankingsTeamBestResponse, error)
-
-	// GetRankingsTeamBestIdWithResponse request
-	GetRankingsTeamBestIdWithResponse(ctx context.Context, teamId TeamId, params *GetRankingsTeamBestIdParams, reqEditors ...RequestEditorFn) (*GetRankingsTeamBestIdResponse, error)
-
-	// GetRankingsTeamOverviewWithResponse request
-	GetRankingsTeamOverviewWithResponse(ctx context.Context, params *GetRankingsTeamOverviewParams, reqEditors ...RequestEditorFn) (*GetRankingsTeamOverviewResponse, error)
-
-	// GetRankingsTeamOverviewIdWithResponse request
-	GetRankingsTeamOverviewIdWithResponse(ctx context.Context, teamId TeamId, params *GetRankingsTeamOverviewIdParams, reqEditors ...RequestEditorFn) (*GetRankingsTeamOverviewIdResponse, error)
-
-	// GetRankingsTeamRankingBracketWithResponse request
-	GetRankingsTeamRankingBracketWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetRankingsTeamRankingBracketResponse, error)
-
-	// GetRankingsTeamRankingBracketIdWithResponse request
-	GetRankingsTeamRankingBracketIdWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetRankingsTeamRankingBracketIdResponse, error)
 
 	// GetRankingsTeamsWithResponse request
 	GetRankingsTeamsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetRankingsTeamsResponse, error)
@@ -19706,32 +12388,14 @@ type ClientWithResponsesInterface interface {
 	// GetRankingsUniversitiesWithResponse request
 	GetRankingsUniversitiesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetRankingsUniversitiesResponse, error)
 
-	// GetRankingsUniversityRankingBracketIdWithResponse request
-	GetRankingsUniversityRankingBracketIdWithResponse(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*GetRankingsUniversityRankingBracketIdResponse, error)
-
-	// GetRankingsUserBestWithResponse request
-	GetRankingsUserBestWithResponse(ctx context.Context, params *GetRankingsUserBestParams, reqEditors ...RequestEditorFn) (*GetRankingsUserBestResponse, error)
-
-	// GetRankingsUserOverviewWithResponse request
-	GetRankingsUserOverviewWithResponse(ctx context.Context, params *GetRankingsUserOverviewParams, reqEditors ...RequestEditorFn) (*GetRankingsUserOverviewResponse, error)
-
-	// GetRankingsUserRankingBracketWithResponse request
-	GetRankingsUserRankingBracketWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetRankingsUserRankingBracketResponse, error)
-
 	// GetRankingsUsersWithResponse request
 	GetRankingsUsersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetRankingsUsersResponse, error)
-
-	// GetReviewWithResponse request
-	GetReviewWithResponse(ctx context.Context, product GetReviewParamsProduct, productId ProductId, reqEditors ...RequestEditorFn) (*GetReviewResponse, error)
 
 	// GetReviewPaginatedWithResponse request
 	GetReviewPaginatedWithResponse(ctx context.Context, product GetReviewPaginatedParamsProduct, productId ProductId, reqEditors ...RequestEditorFn) (*GetReviewPaginatedResponse, error)
 
 	// GetSearchFetchWithResponse request
 	GetSearchFetchWithResponse(ctx context.Context, params *GetSearchFetchParams, reqEditors ...RequestEditorFn) (*GetSearchFetchResponse, error)
-
-	// GetSeasonEndWithResponse request
-	GetSeasonEndWithResponse(ctx context.Context, seasonId SeasonId, userId UserId, reqEditors ...RequestEditorFn) (*GetSeasonEndResponse, error)
 
 	// GetSeasonListWithResponse request
 	GetSeasonListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSeasonListResponse, error)
@@ -19740,16 +12404,10 @@ type ClientWithResponsesInterface interface {
 	GetSeasonMachineActiveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSeasonMachineActiveResponse, error)
 
 	// GetSeasonMachinesWithResponse request
-	GetSeasonMachinesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSeasonMachinesResponse, error)
-
-	// GetSeasonMachinesCompletedWithResponse request
-	GetSeasonMachinesCompletedWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonMachinesCompletedResponse, error)
+	GetSeasonMachinesWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonMachinesResponse, error)
 
 	// GetSeasonRewardsWithResponse request
 	GetSeasonRewardsWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonRewardsResponse, error)
-
-	// GetSeasonUserFollowersWithResponse request
-	GetSeasonUserFollowersWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonUserFollowersResponse, error)
 
 	// GetSeasonUserRankWithResponse request
 	GetSeasonUserRankWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonUserRankResponse, error)
@@ -19800,21 +12458,6 @@ type ClientWithResponsesInterface interface {
 	// GetSherlockWithResponse request
 	GetSherlockWithResponse(ctx context.Context, sherlockSlug SherlockSlug, reqEditors ...RequestEditorFn) (*GetSherlockResponse, error)
 
-	// GetSidebarAnnouncementWithResponse request
-	GetSidebarAnnouncementWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSidebarAnnouncementResponse, error)
-
-	// GetSidebarChangelogWithResponse request
-	GetSidebarChangelogWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSidebarChangelogResponse, error)
-
-	// GetSPProfileWithResponse request
-	GetSPProfileWithResponse(ctx context.Context, startingPointId StartingPointId, reqEditors ...RequestEditorFn) (*GetSPProfileResponse, error)
-
-	// PostSPTaskFlagWithResponse request
-	PostSPTaskFlagWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PostSPTaskFlagResponse, error)
-
-	// GetSPTierWithResponse request
-	GetSPTierWithResponse(ctx context.Context, tierId TierId, reqEditors ...RequestEditorFn) (*GetSPTierResponse, error)
-
 	// GetSPTiersProgressWithResponse request
 	GetSPTiersProgressWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSPTiersProgressResponse, error)
 
@@ -19823,15 +12466,6 @@ type ClientWithResponsesInterface interface {
 
 	// GetTeamActivityWithResponse request
 	GetTeamActivityWithResponse(ctx context.Context, teamId TeamId, params *GetTeamActivityParams, reqEditors ...RequestEditorFn) (*GetTeamActivityResponse, error)
-
-	// GetTeamChartChallengeCategoriesWithResponse request
-	GetTeamChartChallengeCategoriesWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetTeamChartChallengeCategoriesResponse, error)
-
-	// GetTeamChartMachinesAttackWithResponse request
-	GetTeamChartMachinesAttackWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetTeamChartMachinesAttackResponse, error)
-
-	// GetTeamGraphWithResponse request
-	GetTeamGraphWithResponse(ctx context.Context, teamId TeamId, params *GetTeamGraphParams, reqEditors ...RequestEditorFn) (*GetTeamGraphResponse, error)
 
 	// GetTeamInfoWithResponse request
 	GetTeamInfoWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetTeamInfoResponse, error)
@@ -19844,9 +12478,6 @@ type ClientWithResponsesInterface interface {
 
 	// GetTeamMembersWithResponse request
 	GetTeamMembersWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetTeamMembersResponse, error)
-
-	// GetTeamStatsOwnsWithResponse request
-	GetTeamStatsOwnsWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetTeamStatsOwnsResponse, error)
 
 	// PostTeamInviteAcceptWithResponse request
 	PostTeamInviteAcceptWithResponse(ctx context.Context, requestId RequestId, reqEditors ...RequestEditorFn) (*PostTeamInviteAcceptResponse, error)
@@ -19872,29 +12503,11 @@ type ClientWithResponsesInterface interface {
 	// GetUniversityAllListWithResponse request
 	GetUniversityAllListWithResponse(ctx context.Context, params *GetUniversityAllListParams, reqEditors ...RequestEditorFn) (*GetUniversityAllListResponse, error)
 
-	// GetUniversityChartChallengeCategoriesWithResponse request
-	GetUniversityChartChallengeCategoriesWithResponse(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*GetUniversityChartChallengeCategoriesResponse, error)
-
-	// GetUniversityChartMachinesAttackWithResponse request
-	GetUniversityChartMachinesAttackWithResponse(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*GetUniversityChartMachinesAttackResponse, error)
-
-	// GetUniversityCountryListWithResponse request
-	GetUniversityCountryListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUniversityCountryListResponse, error)
-
 	// GetUniversityMembersWithResponse request
 	GetUniversityMembersWithResponse(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*GetUniversityMembersResponse, error)
 
-	// GetUniversityNewListWithResponse request
-	GetUniversityNewListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUniversityNewListResponse, error)
-
 	// GetUniversityProfileWithResponse request
 	GetUniversityProfileWithResponse(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*GetUniversityProfileResponse, error)
-
-	// GetUniversityStatsOwnsWithResponse request
-	GetUniversityStatsOwnsWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUniversityStatsOwnsResponse, error)
-
-	// GetUniversityTopListWithResponse request
-	GetUniversityTopListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUniversityTopListResponse, error)
 
 	// GetUserAchievementWithResponse request
 	GetUserAchievementWithResponse(ctx context.Context, targetType string, userId UserId, targetId int, reqEditors ...RequestEditorFn) (*GetUserAchievementResponse, error)
@@ -19918,12 +12531,6 @@ type ClientWithResponsesInterface interface {
 	// GetUserConnectionStatusWithResponse request
 	GetUserConnectionStatusWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserConnectionStatusResponse, error)
 
-	// GetUserDashboardWithResponse request
-	GetUserDashboardWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserDashboardResponse, error)
-
-	// GetUserDashboardTabloidWithResponse request
-	GetUserDashboardTabloidWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserDashboardTabloidResponse, error)
-
 	// PostUserDisrespectWithResponse request
 	PostUserDisrespectWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*PostUserDisrespectResponse, error)
 
@@ -19936,9 +12543,6 @@ type ClientWithResponsesInterface interface {
 	// GetUserInfoWithResponse request
 	GetUserInfoWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserInfoResponse, error)
 
-	// GetUserProfileActivityWithResponse request
-	GetUserProfileActivityWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileActivityResponse, error)
-
 	// GetUserProfileBadgesWithResponse request
 	GetUserProfileBadgesWithResponse(ctx context.Context, userId UserId, params *GetUserProfileBadgesParams, reqEditors ...RequestEditorFn) (*GetUserProfileBadgesResponse, error)
 
@@ -19950,9 +12554,6 @@ type ClientWithResponsesInterface interface {
 
 	// GetUserProfileChartMachinesAttackWithResponse request
 	GetUserProfileChartMachinesAttackWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileChartMachinesAttackResponse, error)
-
-	// GetUserProfileContentWithResponse request
-	GetUserProfileContentWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileContentResponse, error)
 
 	// GetUserProfileGraphWithResponse request
 	GetUserProfileGraphWithResponse(ctx context.Context, period GetUserProfileGraphParamsPeriod, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileGraphResponse, error)
@@ -20074,53 +12675,6 @@ func (r GetAccessOvpnfileVpnIdTCPResponse) StatusCode() int {
 	return 0
 }
 
-type GetAnnouncementsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *AnnouncementResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetAnnouncementsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetAnnouncementsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PostArenaOwnResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MultiOwnResponse
-	JSON400      *Generic400Error
-	JSON500      *ArenaOwnErrorResponse
-}
-
-// Status returns HTTPResponse.Status
-func (r PostArenaOwnResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PostArenaOwnResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetBadgesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -20138,235 +12692,6 @@ func (r GetBadgesResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetBadgesResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetCareerCompaniesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CareerCompaniesResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetCareerCompaniesResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetCareerCompaniesResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetCareerCompanyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CareerCompanyResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetCareerCompanyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetCareerCompanyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetCareerFeaturedResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CareerFeaturedResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetCareerFeaturedResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetCareerFeaturedResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetCareerHistoryResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CareerHistoryResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetCareerHistoryResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetCareerHistoryResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetCareerInfoResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CareerInfoResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetCareerInfoResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetCareerInfoResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetCareerProfileResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CareerProfileResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetCareerProfileResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetCareerProfileResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetCareerRequestsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CareerRequestsResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetCareerRequestsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetCareerRequestsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetCareerSearchResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CareerSearchResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetCareerSearchResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetCareerSearchResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetCareerStatsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *CareerStatsResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetCareerStatsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetCareerStatsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PostCareerTemporaryContactOptinResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r PostCareerTemporaryContactOptinResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PostCareerTemporaryContactOptinResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -20442,28 +12767,6 @@ func (r GetChallengeChangelogResponse) StatusCode() int {
 	return 0
 }
 
-type GetChallengeDownloadResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetChallengeDownloadResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetChallengeDownloadResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetChallengeInfoResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -20487,29 +12790,6 @@ func (r GetChallengeInfoResponse) StatusCode() int {
 	return 0
 }
 
-type PostChallengeOwnResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *OwnResponse
-	JSON400      *MachineOwn400
-}
-
-// Status returns HTTPResponse.Status
-func (r PostChallengeOwnResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PostChallengeOwnResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetChallengeRecommendedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -20527,98 +12807,6 @@ func (r GetChallengeRecommendedResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetChallengeRecommendedResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetChallengeRecommendedRetiredResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ChallengeRecommendedRetiredResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetChallengeRecommendedRetiredResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetChallengeRecommendedRetiredResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PostChallengeReviewResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *GenericSuccess2xx
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r PostChallengeReviewResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PostChallengeReviewResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PostChallengeHelpfullResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *GenericSuccess2xx
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r PostChallengeHelpfullResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PostChallengeHelpfullResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetChallengeReviewsUserResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ChallengeReviewsUserChallengeIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetChallengeReviewsUserResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetChallengeReviewsUserResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -20665,6 +12853,29 @@ func (r PostChallengeStopResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r PostChallengeStopResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+type PostChallengeOwnResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OwnResponse
+	JSON400      *MachineOwn400
+}
+
+// Status returns HTTPResponse.Status
+func (r PostChallengeOwnResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PostChallengeOwnResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -20762,15 +12973,15 @@ func (r GetChallengesResponse) StatusCode() int {
 	return 0
 }
 
-type GetChangelogsResponse struct {
+type GetChallengeDownloadResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *ChangelogsResponse
+	JSON200      *DownloadLinkResponse
 	JSON400      *GenericError
 }
 
 // Status returns HTTPResponse.Status
-func (r GetChangelogsResponse) Status() string {
+func (r GetChallengeDownloadResponse) Status() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Status
 	}
@@ -20778,7 +12989,7 @@ func (r GetChangelogsResponse) Status() string {
 }
 
 // StatusCode returns HTTPResponse.StatusCode
-func (r GetChangelogsResponse) StatusCode() int {
+func (r GetChallengeDownloadResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -20802,75 +13013,6 @@ func (r GetConnectionStatusResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetConnectionStatusResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetConnectionStatusProlabResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ConnectionStatusProductResponse
-	JSON400      *Generic400Error
-}
-
-// Status returns HTTPResponse.Status
-func (r GetConnectionStatusProlabResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetConnectionStatusProlabResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetConnectionStatusProductnameResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ConnectionStatusProductResponse
-	JSON400      *Generic400Error
-}
-
-// Status returns HTTPResponse.Status
-func (r GetConnectionStatusProductnameResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetConnectionStatusProductnameResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetConnectionsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ConnectionsResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetConnectionsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetConnectionsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -20986,29 +13128,6 @@ func (r PostContainerStopResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r PostContainerStopResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetContentStatsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ContentStatsResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetContentStatsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetContentStatsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -21153,75 +13272,6 @@ func (r GetHomeBannerResponse) StatusCode() int {
 	return 0
 }
 
-type GetHomeRecommendedResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *HomeRecommendedResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetHomeRecommendedResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetHomeRecommendedResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetHomeUserProgressResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *HomeUserProgressResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetHomeUserProgressResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetHomeUserProgressResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetHomeUserTodoResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *HomeUserTodoResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetHomeUserTodoResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetHomeUserTodoResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetMachineActiveResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -21291,52 +13341,6 @@ func (r GetMachineChangelogResponse) StatusCode() int {
 	return 0
 }
 
-type GetMachineCreatorsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachineCreatorResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachineCreatorsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachineCreatorsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetMachineGraphActivityResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachineGraphActivityMachineIdPeriodResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachineGraphActivityResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachineGraphActivityResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetMachineGraphMatrixResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -21354,122 +13358,6 @@ func (r GetMachineGraphMatrixResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetMachineGraphMatrixResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetMachineGraphOwnsDifficultyResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachineGraphOwnsDifficultyMachineIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachineGraphOwnsDifficultyResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachineGraphOwnsDifficultyResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetMachineListRetiredPaginatedResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachinePaginatedResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachineListRetiredPaginatedResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachineListRetiredPaginatedResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PostMachineOwnResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *OwnResponse
-	JSON400      *MachineOwn400
-}
-
-// Status returns HTTPResponse.Status
-func (r PostMachineOwnResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PostMachineOwnResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetMachineOwnsTopResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachineOwnsTopMachineIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachineOwnsTopResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachineOwnsTopResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetMachinePaginatedResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachinePaginatedResponse
-	JSON400      *GenericError
-	JSON422      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachinePaginatedResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachinePaginatedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -21522,98 +13410,6 @@ func (r GetMachineRecommendedResponse) StatusCode() int {
 	return 0
 }
 
-type GetMachineRecommendedRetiredResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachineRecommendedRetiredResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachineRecommendedRetiredResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachineRecommendedRetiredResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PostMachineReviewResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachineReviewResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r PostMachineReviewResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PostMachineReviewResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetMachineReviewsUserResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachineReviewsUserMachineIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachineReviewsUserResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachineReviewsUserResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetMachineReviewsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachineReviewsResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachineReviewsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachineReviewsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetMachineTagsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -21631,52 +13427,6 @@ func (r GetMachineTagsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetMachineTagsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetMachineTodoPaginatedResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachinePaginatedResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachineTodoPaginatedResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachineTodoPaginatedResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetMachineUnreleasedResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachineUnreleasedResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachineUnreleasedResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachineUnreleasedResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -21723,29 +13473,6 @@ func (r GetMachineWalkthroughsLanguageListResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetMachineWalkthroughsLanguageListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetMachineWalkthroughOfficialFeedbackChoicesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *MachineWalkthroughOfficialFeedbackChoicesResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetMachineWalkthroughOfficialFeedbackChoicesResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetMachineWalkthroughOfficialFeedbackChoicesResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -22076,98 +13803,6 @@ func (r GetProlabProgressResponse) StatusCode() int {
 	return 0
 }
 
-type GetProlabRatingResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ProlabRatingResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetProlabRatingResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetProlabRatingResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetProlabReviewsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ProlabreviewsResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetProlabReviewsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetProlabReviewsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetProlabReviewsOverviewResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ProlabreviewsOverviewResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetProlabReviewsOverviewResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetProlabReviewsOverviewResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetProlabSubscriptionResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ProlabSubscriptionResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetProlabSubscriptionResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetProlabSubscriptionResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetProlabsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -22328,75 +13963,6 @@ func (r GetRankingsCountriesResponse) StatusCode() int {
 	return 0
 }
 
-type GetRankingsCountryBestResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsCountryBestResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsCountryBestResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsCountryBestResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetRankingsCountryOverviewResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsCountryOverviewResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsCountryOverviewResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsCountryOverviewResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetRankingsCountryRankingBracketResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsCountryRankingBracketResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsCountryRankingBracketResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsCountryRankingBracketResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetRankingsCountryUSMembersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -22414,144 +13980,6 @@ func (r GetRankingsCountryUSMembersResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetRankingsCountryUSMembersResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetRankingsTeamBestResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsTeamBestResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsTeamBestResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsTeamBestResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetRankingsTeamBestIdResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsTeamBestResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsTeamBestIdResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsTeamBestIdResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetRankingsTeamOverviewResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsTeamOverviewResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsTeamOverviewResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsTeamOverviewResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetRankingsTeamOverviewIdResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsTeamOverviewResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsTeamOverviewIdResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsTeamOverviewIdResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetRankingsTeamRankingBracketResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsTeamRankingBracketResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsTeamRankingBracketResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsTeamRankingBracketResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetRankingsTeamRankingBracketIdResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsTeamRankingBracketResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsTeamRankingBracketIdResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsTeamRankingBracketIdResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -22604,98 +14032,6 @@ func (r GetRankingsUniversitiesResponse) StatusCode() int {
 	return 0
 }
 
-type GetRankingsUniversityRankingBracketIdResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsUniversityRankingBracketByIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsUniversityRankingBracketIdResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsUniversityRankingBracketIdResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetRankingsUserBestResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsUserBestResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsUserBestResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsUserBestResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetRankingsUserOverviewResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsUserOverviewResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsUserOverviewResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsUserOverviewResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetRankingsUserRankingBracketResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *RankingsUserRankingBracketResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetRankingsUserRankingBracketResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetRankingsUserRankingBracketResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetRankingsUsersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -22713,29 +14049,6 @@ func (r GetRankingsUsersResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetRankingsUsersResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetReviewResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ReviewProductResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetReviewResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetReviewResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -22782,29 +14095,6 @@ func (r GetSearchFetchResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetSearchFetchResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetSeasonEndResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *SeasonEndResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetSeasonEndResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetSeasonEndResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -22880,29 +14170,6 @@ func (r GetSeasonMachinesResponse) StatusCode() int {
 	return 0
 }
 
-type GetSeasonMachinesCompletedResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *SeasonMachinesCompletedSeasonIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetSeasonMachinesCompletedResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetSeasonMachinesCompletedResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetSeasonRewardsResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -22920,29 +14187,6 @@ func (r GetSeasonRewardsResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetSeasonRewardsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetSeasonUserFollowersResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *SeasonUserFollowersSeasonIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetSeasonUserFollowersResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetSeasonUserFollowersResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -23090,7 +14334,7 @@ func (r GetSherlocksCategoriesListResponse) StatusCode() int {
 type GetSherlockDownloadlinkResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
-	JSON200      *SherlocksDownloadLinkResponse
+	JSON200      *DownloadLinkResponse
 }
 
 // Status returns HTTPResponse.Status
@@ -23285,120 +14529,6 @@ func (r GetSherlockResponse) StatusCode() int {
 	return 0
 }
 
-type GetSidebarAnnouncementResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *SidebarAnnouncementResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetSidebarAnnouncementResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetSidebarAnnouncementResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetSidebarChangelogResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *SidebarChangelogResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetSidebarChangelogResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetSidebarChangelogResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetSPProfileResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *SpProfileStartingPointIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetSPProfileResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetSPProfileResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PostSPTaskFlagResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r PostSPTaskFlagResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PostSPTaskFlagResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetSPTierResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *SpTierResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetSPTierResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetSPTierResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetSPTiersProgressResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -23462,75 +14592,6 @@ func (r GetTeamActivityResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetTeamActivityResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetTeamChartChallengeCategoriesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *TeamChartChallengeTeamIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetTeamChartChallengeCategoriesResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetTeamChartChallengeCategoriesResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetTeamChartMachinesAttackResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *TeamChartMachinesAttackTeamIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetTeamChartMachinesAttackResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetTeamChartMachinesAttackResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetTeamGraphResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *TeamGraphTeamIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetTeamGraphResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetTeamGraphResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -23623,29 +14684,6 @@ func (r GetTeamMembersResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetTeamMembersResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetTeamStatsOwnsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *TeamStatsOwnsTeamIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetTeamStatsOwnsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetTeamStatsOwnsResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -23836,75 +14874,6 @@ func (r GetUniversityAllListResponse) StatusCode() int {
 	return 0
 }
 
-type GetUniversityChartChallengeCategoriesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UniversityChartChallengeCategoriesResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUniversityChartChallengeCategoriesResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUniversityChartChallengeCategoriesResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetUniversityChartMachinesAttackResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UniversityChartMachinesAttackResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUniversityChartMachinesAttackResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUniversityChartMachinesAttackResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetUniversityCountryListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UniversityCountryListResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUniversityCountryListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUniversityCountryListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetUniversityMembersResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -23928,29 +14897,6 @@ func (r GetUniversityMembersResponse) StatusCode() int {
 	return 0
 }
 
-type GetUniversityNewListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UniversityNewListResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUniversityNewListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUniversityNewListResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetUniversityProfileResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -23968,52 +14914,6 @@ func (r GetUniversityProfileResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetUniversityProfileResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetUniversityStatsOwnsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UniversityStatsOwnsUserIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUniversityStatsOwnsResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUniversityStatsOwnsResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetUniversityTopListResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UniversityTopListResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUniversityTopListResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUniversityTopListResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -24158,52 +15058,6 @@ func (r GetUserConnectionStatusResponse) StatusCode() int {
 	return 0
 }
 
-type GetUserDashboardResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UserDashboardResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUserDashboardResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUserDashboardResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetUserDashboardTabloidResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *UserDashboardTabloidResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUserDashboardTabloidResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUserDashboardTabloidResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type PostUserDisrespectResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -24296,29 +15150,6 @@ func (r GetUserInfoResponse) StatusCode() int {
 	return 0
 }
 
-type GetUserProfileActivityResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ProfileActivityUserIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUserProfileActivityResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUserProfileActivityResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
 type GetUserProfileBadgesResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -24405,29 +15236,6 @@ func (r GetUserProfileChartMachinesAttackResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r GetUserProfileChartMachinesAttackResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type GetUserProfileContentResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *ProfileContentUserIdResponse
-	JSON400      *GenericError
-}
-
-// Status returns HTTPResponse.Status
-func (r GetUserProfileContentResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r GetUserProfileContentResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -24842,40 +15650,6 @@ func (c *ClientWithResponses) GetAccessOvpnfileVpnIdTCPWithResponse(ctx context.
 	return ParseGetAccessOvpnfileVpnIdTCPResponse(rsp)
 }
 
-// GetAnnouncementsWithResponse request returning *GetAnnouncementsResponse
-func (c *ClientWithResponses) GetAnnouncementsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetAnnouncementsResponse, error) {
-	rsp, err := c.GetAnnouncements(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetAnnouncementsResponse(rsp)
-}
-
-// PostArenaOwnWithBodyWithResponse request with arbitrary body returning *PostArenaOwnResponse
-func (c *ClientWithResponses) PostArenaOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostArenaOwnResponse, error) {
-	rsp, err := c.PostArenaOwnWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostArenaOwnResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostArenaOwnWithResponse(ctx context.Context, body PostArenaOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostArenaOwnResponse, error) {
-	rsp, err := c.PostArenaOwn(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostArenaOwnResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostArenaOwnWithFormdataBodyWithResponse(ctx context.Context, body PostArenaOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostArenaOwnResponse, error) {
-	rsp, err := c.PostArenaOwnWithFormdataBody(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostArenaOwnResponse(rsp)
-}
-
 // GetBadgesWithResponse request returning *GetBadgesResponse
 func (c *ClientWithResponses) GetBadgesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetBadgesResponse, error) {
 	rsp, err := c.GetBadges(ctx, reqEditors...)
@@ -24883,104 +15657,6 @@ func (c *ClientWithResponses) GetBadgesWithResponse(ctx context.Context, reqEdit
 		return nil, err
 	}
 	return ParseGetBadgesResponse(rsp)
-}
-
-// GetCareerCompaniesWithResponse request returning *GetCareerCompaniesResponse
-func (c *ClientWithResponses) GetCareerCompaniesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCareerCompaniesResponse, error) {
-	rsp, err := c.GetCareerCompanies(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetCareerCompaniesResponse(rsp)
-}
-
-// GetCareerCompanyWithResponse request returning *GetCareerCompanyResponse
-func (c *ClientWithResponses) GetCareerCompanyWithResponse(ctx context.Context, companyId CompanyId, params *GetCareerCompanyParams, reqEditors ...RequestEditorFn) (*GetCareerCompanyResponse, error) {
-	rsp, err := c.GetCareerCompany(ctx, companyId, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetCareerCompanyResponse(rsp)
-}
-
-// GetCareerFeaturedWithResponse request returning *GetCareerFeaturedResponse
-func (c *ClientWithResponses) GetCareerFeaturedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCareerFeaturedResponse, error) {
-	rsp, err := c.GetCareerFeatured(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetCareerFeaturedResponse(rsp)
-}
-
-// GetCareerHistoryWithResponse request returning *GetCareerHistoryResponse
-func (c *ClientWithResponses) GetCareerHistoryWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCareerHistoryResponse, error) {
-	rsp, err := c.GetCareerHistory(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetCareerHistoryResponse(rsp)
-}
-
-// GetCareerInfoWithResponse request returning *GetCareerInfoResponse
-func (c *ClientWithResponses) GetCareerInfoWithResponse(ctx context.Context, jobId JobId, reqEditors ...RequestEditorFn) (*GetCareerInfoResponse, error) {
-	rsp, err := c.GetCareerInfo(ctx, jobId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetCareerInfoResponse(rsp)
-}
-
-// GetCareerProfileWithResponse request returning *GetCareerProfileResponse
-func (c *ClientWithResponses) GetCareerProfileWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCareerProfileResponse, error) {
-	rsp, err := c.GetCareerProfile(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetCareerProfileResponse(rsp)
-}
-
-// GetCareerRequestsWithResponse request returning *GetCareerRequestsResponse
-func (c *ClientWithResponses) GetCareerRequestsWithResponse(ctx context.Context, params *GetCareerRequestsParams, reqEditors ...RequestEditorFn) (*GetCareerRequestsResponse, error) {
-	rsp, err := c.GetCareerRequests(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetCareerRequestsResponse(rsp)
-}
-
-// GetCareerSearchWithResponse request returning *GetCareerSearchResponse
-func (c *ClientWithResponses) GetCareerSearchWithResponse(ctx context.Context, params *GetCareerSearchParams, reqEditors ...RequestEditorFn) (*GetCareerSearchResponse, error) {
-	rsp, err := c.GetCareerSearch(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetCareerSearchResponse(rsp)
-}
-
-// GetCareerStatsWithResponse request returning *GetCareerStatsResponse
-func (c *ClientWithResponses) GetCareerStatsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetCareerStatsResponse, error) {
-	rsp, err := c.GetCareerStats(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetCareerStatsResponse(rsp)
-}
-
-// PostCareerTemporaryContactOptinWithBodyWithResponse request with arbitrary body returning *PostCareerTemporaryContactOptinResponse
-func (c *ClientWithResponses) PostCareerTemporaryContactOptinWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostCareerTemporaryContactOptinResponse, error) {
-	rsp, err := c.PostCareerTemporaryContactOptinWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostCareerTemporaryContactOptinResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostCareerTemporaryContactOptinWithResponse(ctx context.Context, body PostCareerTemporaryContactOptinJSONRequestBody, reqEditors ...RequestEditorFn) (*PostCareerTemporaryContactOptinResponse, error) {
-	rsp, err := c.PostCareerTemporaryContactOptin(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostCareerTemporaryContactOptinResponse(rsp)
 }
 
 // GetChallengeActivityWithResponse request returning *GetChallengeActivityResponse
@@ -25010,15 +15686,6 @@ func (c *ClientWithResponses) GetChallengeChangelogWithResponse(ctx context.Cont
 	return ParseGetChallengeChangelogResponse(rsp)
 }
 
-// GetChallengeDownloadWithResponse request returning *GetChallengeDownloadResponse
-func (c *ClientWithResponses) GetChallengeDownloadWithResponse(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*GetChallengeDownloadResponse, error) {
-	rsp, err := c.GetChallengeDownload(ctx, challengeId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetChallengeDownloadResponse(rsp)
-}
-
 // GetChallengeInfoWithResponse request returning *GetChallengeInfoResponse
 func (c *ClientWithResponses) GetChallengeInfoWithResponse(ctx context.Context, challengeSlug ChallengeSlug, reqEditors ...RequestEditorFn) (*GetChallengeInfoResponse, error) {
 	rsp, err := c.GetChallengeInfo(ctx, challengeSlug, reqEditors...)
@@ -25028,31 +15695,6 @@ func (c *ClientWithResponses) GetChallengeInfoWithResponse(ctx context.Context, 
 	return ParseGetChallengeInfoResponse(rsp)
 }
 
-// PostChallengeOwnWithBodyWithResponse request with arbitrary body returning *PostChallengeOwnResponse
-func (c *ClientWithResponses) PostChallengeOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
-	rsp, err := c.PostChallengeOwnWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostChallengeOwnResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostChallengeOwnWithResponse(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
-	rsp, err := c.PostChallengeOwn(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostChallengeOwnResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostChallengeOwnWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
-	rsp, err := c.PostChallengeOwnWithFormdataBody(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostChallengeOwnResponse(rsp)
-}
-
 // GetChallengeRecommendedWithResponse request returning *GetChallengeRecommendedResponse
 func (c *ClientWithResponses) GetChallengeRecommendedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetChallengeRecommendedResponse, error) {
 	rsp, err := c.GetChallengeRecommended(ctx, reqEditors...)
@@ -25060,50 +15702,6 @@ func (c *ClientWithResponses) GetChallengeRecommendedWithResponse(ctx context.Co
 		return nil, err
 	}
 	return ParseGetChallengeRecommendedResponse(rsp)
-}
-
-// GetChallengeRecommendedRetiredWithResponse request returning *GetChallengeRecommendedRetiredResponse
-func (c *ClientWithResponses) GetChallengeRecommendedRetiredWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetChallengeRecommendedRetiredResponse, error) {
-	rsp, err := c.GetChallengeRecommendedRetired(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetChallengeRecommendedRetiredResponse(rsp)
-}
-
-// PostChallengeReviewWithBodyWithResponse request with arbitrary body returning *PostChallengeReviewResponse
-func (c *ClientWithResponses) PostChallengeReviewWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeReviewResponse, error) {
-	rsp, err := c.PostChallengeReviewWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostChallengeReviewResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostChallengeReviewWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeReviewFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeReviewResponse, error) {
-	rsp, err := c.PostChallengeReviewWithFormdataBody(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostChallengeReviewResponse(rsp)
-}
-
-// PostChallengeHelpfullWithResponse request returning *PostChallengeHelpfullResponse
-func (c *ClientWithResponses) PostChallengeHelpfullWithResponse(ctx context.Context, reviewId ReviewId, reqEditors ...RequestEditorFn) (*PostChallengeHelpfullResponse, error) {
-	rsp, err := c.PostChallengeHelpfull(ctx, reviewId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostChallengeHelpfullResponse(rsp)
-}
-
-// GetChallengeReviewsUserWithResponse request returning *GetChallengeReviewsUserResponse
-func (c *ClientWithResponses) GetChallengeReviewsUserWithResponse(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*GetChallengeReviewsUserResponse, error) {
-	rsp, err := c.GetChallengeReviewsUser(ctx, challengeId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetChallengeReviewsUserResponse(rsp)
 }
 
 // PostChallengeStartWithBodyWithResponse request with arbitrary body returning *PostChallengeStartResponse
@@ -25138,6 +15736,31 @@ func (c *ClientWithResponses) PostChallengeStopWithFormdataBodyWithResponse(ctx 
 		return nil, err
 	}
 	return ParsePostChallengeStopResponse(rsp)
+}
+
+// PostChallengeOwnWithBodyWithResponse request with arbitrary body returning *PostChallengeOwnResponse
+func (c *ClientWithResponses) PostChallengeOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
+	rsp, err := c.PostChallengeOwnWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostChallengeOwnResponse(rsp)
+}
+
+func (c *ClientWithResponses) PostChallengeOwnWithResponse(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
+	rsp, err := c.PostChallengeOwn(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostChallengeOwnResponse(rsp)
+}
+
+func (c *ClientWithResponses) PostChallengeOwnWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
+	rsp, err := c.PostChallengeOwnWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostChallengeOwnResponse(rsp)
 }
 
 // GetChallengeSuggestedWithResponse request returning *GetChallengeSuggestedResponse
@@ -25176,13 +15799,13 @@ func (c *ClientWithResponses) GetChallengesWithResponse(ctx context.Context, par
 	return ParseGetChallengesResponse(rsp)
 }
 
-// GetChangelogsWithResponse request returning *GetChangelogsResponse
-func (c *ClientWithResponses) GetChangelogsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetChangelogsResponse, error) {
-	rsp, err := c.GetChangelogs(ctx, reqEditors...)
+// GetChallengeDownloadWithResponse request returning *GetChallengeDownloadResponse
+func (c *ClientWithResponses) GetChallengeDownloadWithResponse(ctx context.Context, challengeId ChallengeId, reqEditors ...RequestEditorFn) (*GetChallengeDownloadResponse, error) {
+	rsp, err := c.GetChallengeDownload(ctx, challengeId, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
-	return ParseGetChangelogsResponse(rsp)
+	return ParseGetChallengeDownloadResponse(rsp)
 }
 
 // GetConnectionStatusWithResponse request returning *GetConnectionStatusResponse
@@ -25192,33 +15815,6 @@ func (c *ClientWithResponses) GetConnectionStatusWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseGetConnectionStatusResponse(rsp)
-}
-
-// GetConnectionStatusProlabWithResponse request returning *GetConnectionStatusProlabResponse
-func (c *ClientWithResponses) GetConnectionStatusProlabWithResponse(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*GetConnectionStatusProlabResponse, error) {
-	rsp, err := c.GetConnectionStatusProlab(ctx, prolabId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetConnectionStatusProlabResponse(rsp)
-}
-
-// GetConnectionStatusProductnameWithResponse request returning *GetConnectionStatusProductnameResponse
-func (c *ClientWithResponses) GetConnectionStatusProductnameWithResponse(ctx context.Context, productName GetConnectionStatusProductnameParamsProductName, reqEditors ...RequestEditorFn) (*GetConnectionStatusProductnameResponse, error) {
-	rsp, err := c.GetConnectionStatusProductname(ctx, productName, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetConnectionStatusProductnameResponse(rsp)
-}
-
-// GetConnectionsWithResponse request returning *GetConnectionsResponse
-func (c *ClientWithResponses) GetConnectionsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetConnectionsResponse, error) {
-	rsp, err := c.GetConnections(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetConnectionsResponse(rsp)
 }
 
 // GetConnectionsServersWithResponse request returning *GetConnectionsServersResponse
@@ -25298,15 +15894,6 @@ func (c *ClientWithResponses) PostContainerStopWithFormdataBodyWithResponse(ctx 
 	return ParsePostContainerStopResponse(rsp)
 }
 
-// GetContentStatsWithResponse request returning *GetContentStatsResponse
-func (c *ClientWithResponses) GetContentStatsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetContentStatsResponse, error) {
-	rsp, err := c.GetContentStats(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetContentStatsResponse(rsp)
-}
-
 // GetFortressWithResponse request returning *GetFortressResponse
 func (c *ClientWithResponses) GetFortressWithResponse(ctx context.Context, fortressId FortressId, reqEditors ...RequestEditorFn) (*GetFortressResponse, error) {
 	rsp, err := c.GetFortress(ctx, fortressId, reqEditors...)
@@ -25377,33 +15964,6 @@ func (c *ClientWithResponses) GetHomeBannerWithResponse(ctx context.Context, req
 	return ParseGetHomeBannerResponse(rsp)
 }
 
-// GetHomeRecommendedWithResponse request returning *GetHomeRecommendedResponse
-func (c *ClientWithResponses) GetHomeRecommendedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetHomeRecommendedResponse, error) {
-	rsp, err := c.GetHomeRecommended(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetHomeRecommendedResponse(rsp)
-}
-
-// GetHomeUserProgressWithResponse request returning *GetHomeUserProgressResponse
-func (c *ClientWithResponses) GetHomeUserProgressWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetHomeUserProgressResponse, error) {
-	rsp, err := c.GetHomeUserProgress(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetHomeUserProgressResponse(rsp)
-}
-
-// GetHomeUserTodoWithResponse request returning *GetHomeUserTodoResponse
-func (c *ClientWithResponses) GetHomeUserTodoWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetHomeUserTodoResponse, error) {
-	rsp, err := c.GetHomeUserTodo(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetHomeUserTodoResponse(rsp)
-}
-
 // GetMachineActiveWithResponse request returning *GetMachineActiveResponse
 func (c *ClientWithResponses) GetMachineActiveWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetMachineActiveResponse, error) {
 	rsp, err := c.GetMachineActive(ctx, reqEditors...)
@@ -25431,24 +15991,6 @@ func (c *ClientWithResponses) GetMachineChangelogWithResponse(ctx context.Contex
 	return ParseGetMachineChangelogResponse(rsp)
 }
 
-// GetMachineCreatorsWithResponse request returning *GetMachineCreatorsResponse
-func (c *ClientWithResponses) GetMachineCreatorsWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineCreatorsResponse, error) {
-	rsp, err := c.GetMachineCreators(ctx, machineId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachineCreatorsResponse(rsp)
-}
-
-// GetMachineGraphActivityWithResponse request returning *GetMachineGraphActivityResponse
-func (c *ClientWithResponses) GetMachineGraphActivityWithResponse(ctx context.Context, machineId MachineId, period GetMachineGraphActivityParamsPeriod, reqEditors ...RequestEditorFn) (*GetMachineGraphActivityResponse, error) {
-	rsp, err := c.GetMachineGraphActivity(ctx, machineId, period, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachineGraphActivityResponse(rsp)
-}
-
 // GetMachineGraphMatrixWithResponse request returning *GetMachineGraphMatrixResponse
 func (c *ClientWithResponses) GetMachineGraphMatrixWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineGraphMatrixResponse, error) {
 	rsp, err := c.GetMachineGraphMatrix(ctx, machineId, reqEditors...)
@@ -25456,67 +15998,6 @@ func (c *ClientWithResponses) GetMachineGraphMatrixWithResponse(ctx context.Cont
 		return nil, err
 	}
 	return ParseGetMachineGraphMatrixResponse(rsp)
-}
-
-// GetMachineGraphOwnsDifficultyWithResponse request returning *GetMachineGraphOwnsDifficultyResponse
-func (c *ClientWithResponses) GetMachineGraphOwnsDifficultyWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineGraphOwnsDifficultyResponse, error) {
-	rsp, err := c.GetMachineGraphOwnsDifficulty(ctx, machineId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachineGraphOwnsDifficultyResponse(rsp)
-}
-
-// GetMachineListRetiredPaginatedWithResponse request returning *GetMachineListRetiredPaginatedResponse
-func (c *ClientWithResponses) GetMachineListRetiredPaginatedWithResponse(ctx context.Context, params *GetMachineListRetiredPaginatedParams, reqEditors ...RequestEditorFn) (*GetMachineListRetiredPaginatedResponse, error) {
-	rsp, err := c.GetMachineListRetiredPaginated(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachineListRetiredPaginatedResponse(rsp)
-}
-
-// PostMachineOwnWithBodyWithResponse request with arbitrary body returning *PostMachineOwnResponse
-func (c *ClientWithResponses) PostMachineOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostMachineOwnResponse, error) {
-	rsp, err := c.PostMachineOwnWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostMachineOwnResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostMachineOwnWithResponse(ctx context.Context, body PostMachineOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostMachineOwnResponse, error) {
-	rsp, err := c.PostMachineOwn(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostMachineOwnResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostMachineOwnWithFormdataBodyWithResponse(ctx context.Context, body PostMachineOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostMachineOwnResponse, error) {
-	rsp, err := c.PostMachineOwnWithFormdataBody(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostMachineOwnResponse(rsp)
-}
-
-// GetMachineOwnsTopWithResponse request returning *GetMachineOwnsTopResponse
-func (c *ClientWithResponses) GetMachineOwnsTopWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineOwnsTopResponse, error) {
-	rsp, err := c.GetMachineOwnsTop(ctx, machineId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachineOwnsTopResponse(rsp)
-}
-
-// GetMachinePaginatedWithResponse request returning *GetMachinePaginatedResponse
-func (c *ClientWithResponses) GetMachinePaginatedWithResponse(ctx context.Context, params *GetMachinePaginatedParams, reqEditors ...RequestEditorFn) (*GetMachinePaginatedResponse, error) {
-	rsp, err := c.GetMachinePaginated(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachinePaginatedResponse(rsp)
 }
 
 // GetMachineProfileWithResponse request returning *GetMachineProfileResponse
@@ -25537,58 +16018,6 @@ func (c *ClientWithResponses) GetMachineRecommendedWithResponse(ctx context.Cont
 	return ParseGetMachineRecommendedResponse(rsp)
 }
 
-// GetMachineRecommendedRetiredWithResponse request returning *GetMachineRecommendedRetiredResponse
-func (c *ClientWithResponses) GetMachineRecommendedRetiredWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetMachineRecommendedRetiredResponse, error) {
-	rsp, err := c.GetMachineRecommendedRetired(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachineRecommendedRetiredResponse(rsp)
-}
-
-// PostMachineReviewWithBodyWithResponse request with arbitrary body returning *PostMachineReviewResponse
-func (c *ClientWithResponses) PostMachineReviewWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostMachineReviewResponse, error) {
-	rsp, err := c.PostMachineReviewWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostMachineReviewResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostMachineReviewWithResponse(ctx context.Context, body PostMachineReviewJSONRequestBody, reqEditors ...RequestEditorFn) (*PostMachineReviewResponse, error) {
-	rsp, err := c.PostMachineReview(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostMachineReviewResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostMachineReviewWithFormdataBodyWithResponse(ctx context.Context, body PostMachineReviewFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostMachineReviewResponse, error) {
-	rsp, err := c.PostMachineReviewWithFormdataBody(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostMachineReviewResponse(rsp)
-}
-
-// GetMachineReviewsUserWithResponse request returning *GetMachineReviewsUserResponse
-func (c *ClientWithResponses) GetMachineReviewsUserWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineReviewsUserResponse, error) {
-	rsp, err := c.GetMachineReviewsUser(ctx, machineId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachineReviewsUserResponse(rsp)
-}
-
-// GetMachineReviewsWithResponse request returning *GetMachineReviewsResponse
-func (c *ClientWithResponses) GetMachineReviewsWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineReviewsResponse, error) {
-	rsp, err := c.GetMachineReviews(ctx, machineId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachineReviewsResponse(rsp)
-}
-
 // GetMachineTagsWithResponse request returning *GetMachineTagsResponse
 func (c *ClientWithResponses) GetMachineTagsWithResponse(ctx context.Context, machineId MachineId, reqEditors ...RequestEditorFn) (*GetMachineTagsResponse, error) {
 	rsp, err := c.GetMachineTags(ctx, machineId, reqEditors...)
@@ -25596,24 +16025,6 @@ func (c *ClientWithResponses) GetMachineTagsWithResponse(ctx context.Context, ma
 		return nil, err
 	}
 	return ParseGetMachineTagsResponse(rsp)
-}
-
-// GetMachineTodoPaginatedWithResponse request returning *GetMachineTodoPaginatedResponse
-func (c *ClientWithResponses) GetMachineTodoPaginatedWithResponse(ctx context.Context, params *GetMachineTodoPaginatedParams, reqEditors ...RequestEditorFn) (*GetMachineTodoPaginatedResponse, error) {
-	rsp, err := c.GetMachineTodoPaginated(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachineTodoPaginatedResponse(rsp)
-}
-
-// GetMachineUnreleasedWithResponse request returning *GetMachineUnreleasedResponse
-func (c *ClientWithResponses) GetMachineUnreleasedWithResponse(ctx context.Context, params *GetMachineUnreleasedParams, reqEditors ...RequestEditorFn) (*GetMachineUnreleasedResponse, error) {
-	rsp, err := c.GetMachineUnreleased(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachineUnreleasedResponse(rsp)
 }
 
 // GetMachineWalkthroughRandomWithResponse request returning *GetMachineWalkthroughRandomResponse
@@ -25632,15 +16043,6 @@ func (c *ClientWithResponses) GetMachineWalkthroughsLanguageListWithResponse(ctx
 		return nil, err
 	}
 	return ParseGetMachineWalkthroughsLanguageListResponse(rsp)
-}
-
-// GetMachineWalkthroughOfficialFeedbackChoicesWithResponse request returning *GetMachineWalkthroughOfficialFeedbackChoicesResponse
-func (c *ClientWithResponses) GetMachineWalkthroughOfficialFeedbackChoicesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetMachineWalkthroughOfficialFeedbackChoicesResponse, error) {
-	rsp, err := c.GetMachineWalkthroughOfficialFeedbackChoices(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetMachineWalkthroughOfficialFeedbackChoicesResponse(rsp)
 }
 
 // GetMachineWalkthroughsWithResponse request returning *GetMachineWalkthroughsResponse
@@ -25785,42 +16187,6 @@ func (c *ClientWithResponses) GetProlabProgressWithResponse(ctx context.Context,
 	return ParseGetProlabProgressResponse(rsp)
 }
 
-// GetProlabRatingWithResponse request returning *GetProlabRatingResponse
-func (c *ClientWithResponses) GetProlabRatingWithResponse(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*GetProlabRatingResponse, error) {
-	rsp, err := c.GetProlabRating(ctx, prolabId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetProlabRatingResponse(rsp)
-}
-
-// GetProlabReviewsWithResponse request returning *GetProlabReviewsResponse
-func (c *ClientWithResponses) GetProlabReviewsWithResponse(ctx context.Context, prolabId ProlabId, params *GetProlabReviewsParams, reqEditors ...RequestEditorFn) (*GetProlabReviewsResponse, error) {
-	rsp, err := c.GetProlabReviews(ctx, prolabId, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetProlabReviewsResponse(rsp)
-}
-
-// GetProlabReviewsOverviewWithResponse request returning *GetProlabReviewsOverviewResponse
-func (c *ClientWithResponses) GetProlabReviewsOverviewWithResponse(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*GetProlabReviewsOverviewResponse, error) {
-	rsp, err := c.GetProlabReviewsOverview(ctx, prolabId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetProlabReviewsOverviewResponse(rsp)
-}
-
-// GetProlabSubscriptionWithResponse request returning *GetProlabSubscriptionResponse
-func (c *ClientWithResponses) GetProlabSubscriptionWithResponse(ctx context.Context, prolabId ProlabId, reqEditors ...RequestEditorFn) (*GetProlabSubscriptionResponse, error) {
-	rsp, err := c.GetProlabSubscription(ctx, prolabId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetProlabSubscriptionResponse(rsp)
-}
-
 // GetProlabsWithResponse request returning *GetProlabsResponse
 func (c *ClientWithResponses) GetProlabsWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetProlabsResponse, error) {
 	rsp, err := c.GetProlabs(ctx, reqEditors...)
@@ -25900,33 +16266,6 @@ func (c *ClientWithResponses) GetRankingsCountriesWithResponse(ctx context.Conte
 	return ParseGetRankingsCountriesResponse(rsp)
 }
 
-// GetRankingsCountryBestWithResponse request returning *GetRankingsCountryBestResponse
-func (c *ClientWithResponses) GetRankingsCountryBestWithResponse(ctx context.Context, params *GetRankingsCountryBestParams, reqEditors ...RequestEditorFn) (*GetRankingsCountryBestResponse, error) {
-	rsp, err := c.GetRankingsCountryBest(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsCountryBestResponse(rsp)
-}
-
-// GetRankingsCountryOverviewWithResponse request returning *GetRankingsCountryOverviewResponse
-func (c *ClientWithResponses) GetRankingsCountryOverviewWithResponse(ctx context.Context, params *GetRankingsCountryOverviewParams, reqEditors ...RequestEditorFn) (*GetRankingsCountryOverviewResponse, error) {
-	rsp, err := c.GetRankingsCountryOverview(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsCountryOverviewResponse(rsp)
-}
-
-// GetRankingsCountryRankingBracketWithResponse request returning *GetRankingsCountryRankingBracketResponse
-func (c *ClientWithResponses) GetRankingsCountryRankingBracketWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetRankingsCountryRankingBracketResponse, error) {
-	rsp, err := c.GetRankingsCountryRankingBracket(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsCountryRankingBracketResponse(rsp)
-}
-
 // GetRankingsCountryUSMembersWithResponse request returning *GetRankingsCountryUSMembersResponse
 func (c *ClientWithResponses) GetRankingsCountryUSMembersWithResponse(ctx context.Context, countryShortName string, reqEditors ...RequestEditorFn) (*GetRankingsCountryUSMembersResponse, error) {
 	rsp, err := c.GetRankingsCountryUSMembers(ctx, countryShortName, reqEditors...)
@@ -25934,60 +16273,6 @@ func (c *ClientWithResponses) GetRankingsCountryUSMembersWithResponse(ctx contex
 		return nil, err
 	}
 	return ParseGetRankingsCountryUSMembersResponse(rsp)
-}
-
-// GetRankingsTeamBestWithResponse request returning *GetRankingsTeamBestResponse
-func (c *ClientWithResponses) GetRankingsTeamBestWithResponse(ctx context.Context, params *GetRankingsTeamBestParams, reqEditors ...RequestEditorFn) (*GetRankingsTeamBestResponse, error) {
-	rsp, err := c.GetRankingsTeamBest(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsTeamBestResponse(rsp)
-}
-
-// GetRankingsTeamBestIdWithResponse request returning *GetRankingsTeamBestIdResponse
-func (c *ClientWithResponses) GetRankingsTeamBestIdWithResponse(ctx context.Context, teamId TeamId, params *GetRankingsTeamBestIdParams, reqEditors ...RequestEditorFn) (*GetRankingsTeamBestIdResponse, error) {
-	rsp, err := c.GetRankingsTeamBestId(ctx, teamId, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsTeamBestIdResponse(rsp)
-}
-
-// GetRankingsTeamOverviewWithResponse request returning *GetRankingsTeamOverviewResponse
-func (c *ClientWithResponses) GetRankingsTeamOverviewWithResponse(ctx context.Context, params *GetRankingsTeamOverviewParams, reqEditors ...RequestEditorFn) (*GetRankingsTeamOverviewResponse, error) {
-	rsp, err := c.GetRankingsTeamOverview(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsTeamOverviewResponse(rsp)
-}
-
-// GetRankingsTeamOverviewIdWithResponse request returning *GetRankingsTeamOverviewIdResponse
-func (c *ClientWithResponses) GetRankingsTeamOverviewIdWithResponse(ctx context.Context, teamId TeamId, params *GetRankingsTeamOverviewIdParams, reqEditors ...RequestEditorFn) (*GetRankingsTeamOverviewIdResponse, error) {
-	rsp, err := c.GetRankingsTeamOverviewId(ctx, teamId, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsTeamOverviewIdResponse(rsp)
-}
-
-// GetRankingsTeamRankingBracketWithResponse request returning *GetRankingsTeamRankingBracketResponse
-func (c *ClientWithResponses) GetRankingsTeamRankingBracketWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetRankingsTeamRankingBracketResponse, error) {
-	rsp, err := c.GetRankingsTeamRankingBracket(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsTeamRankingBracketResponse(rsp)
-}
-
-// GetRankingsTeamRankingBracketIdWithResponse request returning *GetRankingsTeamRankingBracketIdResponse
-func (c *ClientWithResponses) GetRankingsTeamRankingBracketIdWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetRankingsTeamRankingBracketIdResponse, error) {
-	rsp, err := c.GetRankingsTeamRankingBracketId(ctx, teamId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsTeamRankingBracketIdResponse(rsp)
 }
 
 // GetRankingsTeamsWithResponse request returning *GetRankingsTeamsResponse
@@ -26008,42 +16293,6 @@ func (c *ClientWithResponses) GetRankingsUniversitiesWithResponse(ctx context.Co
 	return ParseGetRankingsUniversitiesResponse(rsp)
 }
 
-// GetRankingsUniversityRankingBracketIdWithResponse request returning *GetRankingsUniversityRankingBracketIdResponse
-func (c *ClientWithResponses) GetRankingsUniversityRankingBracketIdWithResponse(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*GetRankingsUniversityRankingBracketIdResponse, error) {
-	rsp, err := c.GetRankingsUniversityRankingBracketId(ctx, universityId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsUniversityRankingBracketIdResponse(rsp)
-}
-
-// GetRankingsUserBestWithResponse request returning *GetRankingsUserBestResponse
-func (c *ClientWithResponses) GetRankingsUserBestWithResponse(ctx context.Context, params *GetRankingsUserBestParams, reqEditors ...RequestEditorFn) (*GetRankingsUserBestResponse, error) {
-	rsp, err := c.GetRankingsUserBest(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsUserBestResponse(rsp)
-}
-
-// GetRankingsUserOverviewWithResponse request returning *GetRankingsUserOverviewResponse
-func (c *ClientWithResponses) GetRankingsUserOverviewWithResponse(ctx context.Context, params *GetRankingsUserOverviewParams, reqEditors ...RequestEditorFn) (*GetRankingsUserOverviewResponse, error) {
-	rsp, err := c.GetRankingsUserOverview(ctx, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsUserOverviewResponse(rsp)
-}
-
-// GetRankingsUserRankingBracketWithResponse request returning *GetRankingsUserRankingBracketResponse
-func (c *ClientWithResponses) GetRankingsUserRankingBracketWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetRankingsUserRankingBracketResponse, error) {
-	rsp, err := c.GetRankingsUserRankingBracket(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetRankingsUserRankingBracketResponse(rsp)
-}
-
 // GetRankingsUsersWithResponse request returning *GetRankingsUsersResponse
 func (c *ClientWithResponses) GetRankingsUsersWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetRankingsUsersResponse, error) {
 	rsp, err := c.GetRankingsUsers(ctx, reqEditors...)
@@ -26051,15 +16300,6 @@ func (c *ClientWithResponses) GetRankingsUsersWithResponse(ctx context.Context, 
 		return nil, err
 	}
 	return ParseGetRankingsUsersResponse(rsp)
-}
-
-// GetReviewWithResponse request returning *GetReviewResponse
-func (c *ClientWithResponses) GetReviewWithResponse(ctx context.Context, product GetReviewParamsProduct, productId ProductId, reqEditors ...RequestEditorFn) (*GetReviewResponse, error) {
-	rsp, err := c.GetReview(ctx, product, productId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetReviewResponse(rsp)
 }
 
 // GetReviewPaginatedWithResponse request returning *GetReviewPaginatedResponse
@@ -26078,15 +16318,6 @@ func (c *ClientWithResponses) GetSearchFetchWithResponse(ctx context.Context, pa
 		return nil, err
 	}
 	return ParseGetSearchFetchResponse(rsp)
-}
-
-// GetSeasonEndWithResponse request returning *GetSeasonEndResponse
-func (c *ClientWithResponses) GetSeasonEndWithResponse(ctx context.Context, seasonId SeasonId, userId UserId, reqEditors ...RequestEditorFn) (*GetSeasonEndResponse, error) {
-	rsp, err := c.GetSeasonEnd(ctx, seasonId, userId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetSeasonEndResponse(rsp)
 }
 
 // GetSeasonListWithResponse request returning *GetSeasonListResponse
@@ -26108,21 +16339,12 @@ func (c *ClientWithResponses) GetSeasonMachineActiveWithResponse(ctx context.Con
 }
 
 // GetSeasonMachinesWithResponse request returning *GetSeasonMachinesResponse
-func (c *ClientWithResponses) GetSeasonMachinesWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSeasonMachinesResponse, error) {
-	rsp, err := c.GetSeasonMachines(ctx, reqEditors...)
+func (c *ClientWithResponses) GetSeasonMachinesWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonMachinesResponse, error) {
+	rsp, err := c.GetSeasonMachines(ctx, seasonId, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParseGetSeasonMachinesResponse(rsp)
-}
-
-// GetSeasonMachinesCompletedWithResponse request returning *GetSeasonMachinesCompletedResponse
-func (c *ClientWithResponses) GetSeasonMachinesCompletedWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonMachinesCompletedResponse, error) {
-	rsp, err := c.GetSeasonMachinesCompleted(ctx, seasonId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetSeasonMachinesCompletedResponse(rsp)
 }
 
 // GetSeasonRewardsWithResponse request returning *GetSeasonRewardsResponse
@@ -26132,15 +16354,6 @@ func (c *ClientWithResponses) GetSeasonRewardsWithResponse(ctx context.Context, 
 		return nil, err
 	}
 	return ParseGetSeasonRewardsResponse(rsp)
-}
-
-// GetSeasonUserFollowersWithResponse request returning *GetSeasonUserFollowersResponse
-func (c *ClientWithResponses) GetSeasonUserFollowersWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonUserFollowersResponse, error) {
-	rsp, err := c.GetSeasonUserFollowers(ctx, seasonId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetSeasonUserFollowersResponse(rsp)
 }
 
 // GetSeasonUserRankWithResponse request returning *GetSeasonUserRankResponse
@@ -26294,51 +16507,6 @@ func (c *ClientWithResponses) GetSherlockWithResponse(ctx context.Context, sherl
 	return ParseGetSherlockResponse(rsp)
 }
 
-// GetSidebarAnnouncementWithResponse request returning *GetSidebarAnnouncementResponse
-func (c *ClientWithResponses) GetSidebarAnnouncementWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSidebarAnnouncementResponse, error) {
-	rsp, err := c.GetSidebarAnnouncement(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetSidebarAnnouncementResponse(rsp)
-}
-
-// GetSidebarChangelogWithResponse request returning *GetSidebarChangelogResponse
-func (c *ClientWithResponses) GetSidebarChangelogWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSidebarChangelogResponse, error) {
-	rsp, err := c.GetSidebarChangelog(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetSidebarChangelogResponse(rsp)
-}
-
-// GetSPProfileWithResponse request returning *GetSPProfileResponse
-func (c *ClientWithResponses) GetSPProfileWithResponse(ctx context.Context, startingPointId StartingPointId, reqEditors ...RequestEditorFn) (*GetSPProfileResponse, error) {
-	rsp, err := c.GetSPProfile(ctx, startingPointId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetSPProfileResponse(rsp)
-}
-
-// PostSPTaskFlagWithResponse request returning *PostSPTaskFlagResponse
-func (c *ClientWithResponses) PostSPTaskFlagWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*PostSPTaskFlagResponse, error) {
-	rsp, err := c.PostSPTaskFlag(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostSPTaskFlagResponse(rsp)
-}
-
-// GetSPTierWithResponse request returning *GetSPTierResponse
-func (c *ClientWithResponses) GetSPTierWithResponse(ctx context.Context, tierId TierId, reqEditors ...RequestEditorFn) (*GetSPTierResponse, error) {
-	rsp, err := c.GetSPTier(ctx, tierId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetSPTierResponse(rsp)
-}
-
 // GetSPTiersProgressWithResponse request returning *GetSPTiersProgressResponse
 func (c *ClientWithResponses) GetSPTiersProgressWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSPTiersProgressResponse, error) {
 	rsp, err := c.GetSPTiersProgress(ctx, reqEditors...)
@@ -26364,33 +16532,6 @@ func (c *ClientWithResponses) GetTeamActivityWithResponse(ctx context.Context, t
 		return nil, err
 	}
 	return ParseGetTeamActivityResponse(rsp)
-}
-
-// GetTeamChartChallengeCategoriesWithResponse request returning *GetTeamChartChallengeCategoriesResponse
-func (c *ClientWithResponses) GetTeamChartChallengeCategoriesWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetTeamChartChallengeCategoriesResponse, error) {
-	rsp, err := c.GetTeamChartChallengeCategories(ctx, teamId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetTeamChartChallengeCategoriesResponse(rsp)
-}
-
-// GetTeamChartMachinesAttackWithResponse request returning *GetTeamChartMachinesAttackResponse
-func (c *ClientWithResponses) GetTeamChartMachinesAttackWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetTeamChartMachinesAttackResponse, error) {
-	rsp, err := c.GetTeamChartMachinesAttack(ctx, teamId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetTeamChartMachinesAttackResponse(rsp)
-}
-
-// GetTeamGraphWithResponse request returning *GetTeamGraphResponse
-func (c *ClientWithResponses) GetTeamGraphWithResponse(ctx context.Context, teamId TeamId, params *GetTeamGraphParams, reqEditors ...RequestEditorFn) (*GetTeamGraphResponse, error) {
-	rsp, err := c.GetTeamGraph(ctx, teamId, params, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetTeamGraphResponse(rsp)
 }
 
 // GetTeamInfoWithResponse request returning *GetTeamInfoResponse
@@ -26427,15 +16568,6 @@ func (c *ClientWithResponses) GetTeamMembersWithResponse(ctx context.Context, te
 		return nil, err
 	}
 	return ParseGetTeamMembersResponse(rsp)
-}
-
-// GetTeamStatsOwnsWithResponse request returning *GetTeamStatsOwnsResponse
-func (c *ClientWithResponses) GetTeamStatsOwnsWithResponse(ctx context.Context, teamId TeamId, reqEditors ...RequestEditorFn) (*GetTeamStatsOwnsResponse, error) {
-	rsp, err := c.GetTeamStatsOwns(ctx, teamId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetTeamStatsOwnsResponse(rsp)
 }
 
 // PostTeamInviteAcceptWithResponse request returning *PostTeamInviteAcceptResponse
@@ -26510,33 +16642,6 @@ func (c *ClientWithResponses) GetUniversityAllListWithResponse(ctx context.Conte
 	return ParseGetUniversityAllListResponse(rsp)
 }
 
-// GetUniversityChartChallengeCategoriesWithResponse request returning *GetUniversityChartChallengeCategoriesResponse
-func (c *ClientWithResponses) GetUniversityChartChallengeCategoriesWithResponse(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*GetUniversityChartChallengeCategoriesResponse, error) {
-	rsp, err := c.GetUniversityChartChallengeCategories(ctx, universityId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUniversityChartChallengeCategoriesResponse(rsp)
-}
-
-// GetUniversityChartMachinesAttackWithResponse request returning *GetUniversityChartMachinesAttackResponse
-func (c *ClientWithResponses) GetUniversityChartMachinesAttackWithResponse(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*GetUniversityChartMachinesAttackResponse, error) {
-	rsp, err := c.GetUniversityChartMachinesAttack(ctx, universityId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUniversityChartMachinesAttackResponse(rsp)
-}
-
-// GetUniversityCountryListWithResponse request returning *GetUniversityCountryListResponse
-func (c *ClientWithResponses) GetUniversityCountryListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUniversityCountryListResponse, error) {
-	rsp, err := c.GetUniversityCountryList(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUniversityCountryListResponse(rsp)
-}
-
 // GetUniversityMembersWithResponse request returning *GetUniversityMembersResponse
 func (c *ClientWithResponses) GetUniversityMembersWithResponse(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*GetUniversityMembersResponse, error) {
 	rsp, err := c.GetUniversityMembers(ctx, universityId, reqEditors...)
@@ -26546,15 +16651,6 @@ func (c *ClientWithResponses) GetUniversityMembersWithResponse(ctx context.Conte
 	return ParseGetUniversityMembersResponse(rsp)
 }
 
-// GetUniversityNewListWithResponse request returning *GetUniversityNewListResponse
-func (c *ClientWithResponses) GetUniversityNewListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUniversityNewListResponse, error) {
-	rsp, err := c.GetUniversityNewList(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUniversityNewListResponse(rsp)
-}
-
 // GetUniversityProfileWithResponse request returning *GetUniversityProfileResponse
 func (c *ClientWithResponses) GetUniversityProfileWithResponse(ctx context.Context, universityId UniversityId, reqEditors ...RequestEditorFn) (*GetUniversityProfileResponse, error) {
 	rsp, err := c.GetUniversityProfile(ctx, universityId, reqEditors...)
@@ -26562,24 +16658,6 @@ func (c *ClientWithResponses) GetUniversityProfileWithResponse(ctx context.Conte
 		return nil, err
 	}
 	return ParseGetUniversityProfileResponse(rsp)
-}
-
-// GetUniversityStatsOwnsWithResponse request returning *GetUniversityStatsOwnsResponse
-func (c *ClientWithResponses) GetUniversityStatsOwnsWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUniversityStatsOwnsResponse, error) {
-	rsp, err := c.GetUniversityStatsOwns(ctx, userId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUniversityStatsOwnsResponse(rsp)
-}
-
-// GetUniversityTopListWithResponse request returning *GetUniversityTopListResponse
-func (c *ClientWithResponses) GetUniversityTopListWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUniversityTopListResponse, error) {
-	rsp, err := c.GetUniversityTopList(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUniversityTopListResponse(rsp)
 }
 
 // GetUserAchievementWithResponse request returning *GetUserAchievementResponse
@@ -26652,24 +16730,6 @@ func (c *ClientWithResponses) GetUserConnectionStatusWithResponse(ctx context.Co
 	return ParseGetUserConnectionStatusResponse(rsp)
 }
 
-// GetUserDashboardWithResponse request returning *GetUserDashboardResponse
-func (c *ClientWithResponses) GetUserDashboardWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserDashboardResponse, error) {
-	rsp, err := c.GetUserDashboard(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUserDashboardResponse(rsp)
-}
-
-// GetUserDashboardTabloidWithResponse request returning *GetUserDashboardTabloidResponse
-func (c *ClientWithResponses) GetUserDashboardTabloidWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserDashboardTabloidResponse, error) {
-	rsp, err := c.GetUserDashboardTabloid(ctx, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUserDashboardTabloidResponse(rsp)
-}
-
 // PostUserDisrespectWithResponse request returning *PostUserDisrespectResponse
 func (c *ClientWithResponses) PostUserDisrespectWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*PostUserDisrespectResponse, error) {
 	rsp, err := c.PostUserDisrespect(ctx, userId, reqEditors...)
@@ -26706,15 +16766,6 @@ func (c *ClientWithResponses) GetUserInfoWithResponse(ctx context.Context, reqEd
 	return ParseGetUserInfoResponse(rsp)
 }
 
-// GetUserProfileActivityWithResponse request returning *GetUserProfileActivityResponse
-func (c *ClientWithResponses) GetUserProfileActivityWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileActivityResponse, error) {
-	rsp, err := c.GetUserProfileActivity(ctx, userId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUserProfileActivityResponse(rsp)
-}
-
 // GetUserProfileBadgesWithResponse request returning *GetUserProfileBadgesResponse
 func (c *ClientWithResponses) GetUserProfileBadgesWithResponse(ctx context.Context, userId UserId, params *GetUserProfileBadgesParams, reqEditors ...RequestEditorFn) (*GetUserProfileBadgesResponse, error) {
 	rsp, err := c.GetUserProfileBadges(ctx, userId, params, reqEditors...)
@@ -26749,15 +16800,6 @@ func (c *ClientWithResponses) GetUserProfileChartMachinesAttackWithResponse(ctx 
 		return nil, err
 	}
 	return ParseGetUserProfileChartMachinesAttackResponse(rsp)
-}
-
-// GetUserProfileContentWithResponse request returning *GetUserProfileContentResponse
-func (c *ClientWithResponses) GetUserProfileContentWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetUserProfileContentResponse, error) {
-	rsp, err := c.GetUserProfileContent(ctx, userId, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParseGetUserProfileContentResponse(rsp)
 }
 
 // GetUserProfileGraphWithResponse request returning *GetUserProfileGraphResponse
@@ -27061,79 +17103,6 @@ func ParseGetAccessOvpnfileVpnIdTCPResponse(rsp *http.Response) (*GetAccessOvpnf
 	return response, nil
 }
 
-// ParseGetAnnouncementsResponse parses an HTTP response from a GetAnnouncementsWithResponse call
-func ParseGetAnnouncementsResponse(rsp *http.Response) (*GetAnnouncementsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetAnnouncementsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest AnnouncementResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePostArenaOwnResponse parses an HTTP response from a PostArenaOwnWithResponse call
-func ParsePostArenaOwnResponse(rsp *http.Response) (*PostArenaOwnResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PostArenaOwnResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MultiOwnResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest Generic400Error
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
-		var dest ArenaOwnErrorResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON500 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetBadgesResponse parses an HTTP response from a GetBadgesWithResponse call
 func ParseGetBadgesResponse(rsp *http.Response) (*GetBadgesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -27155,329 +17124,6 @@ func ParseGetBadgesResponse(rsp *http.Response) (*GetBadgesResponse, error) {
 		}
 		response.JSON200 = &dest
 
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetCareerCompaniesResponse parses an HTTP response from a GetCareerCompaniesWithResponse call
-func ParseGetCareerCompaniesResponse(rsp *http.Response) (*GetCareerCompaniesResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetCareerCompaniesResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CareerCompaniesResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetCareerCompanyResponse parses an HTTP response from a GetCareerCompanyWithResponse call
-func ParseGetCareerCompanyResponse(rsp *http.Response) (*GetCareerCompanyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetCareerCompanyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CareerCompanyResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetCareerFeaturedResponse parses an HTTP response from a GetCareerFeaturedWithResponse call
-func ParseGetCareerFeaturedResponse(rsp *http.Response) (*GetCareerFeaturedResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetCareerFeaturedResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CareerFeaturedResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetCareerHistoryResponse parses an HTTP response from a GetCareerHistoryWithResponse call
-func ParseGetCareerHistoryResponse(rsp *http.Response) (*GetCareerHistoryResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetCareerHistoryResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CareerHistoryResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetCareerInfoResponse parses an HTTP response from a GetCareerInfoWithResponse call
-func ParseGetCareerInfoResponse(rsp *http.Response) (*GetCareerInfoResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetCareerInfoResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CareerInfoResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetCareerProfileResponse parses an HTTP response from a GetCareerProfileWithResponse call
-func ParseGetCareerProfileResponse(rsp *http.Response) (*GetCareerProfileResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetCareerProfileResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CareerProfileResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetCareerRequestsResponse parses an HTTP response from a GetCareerRequestsWithResponse call
-func ParseGetCareerRequestsResponse(rsp *http.Response) (*GetCareerRequestsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetCareerRequestsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CareerRequestsResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetCareerSearchResponse parses an HTTP response from a GetCareerSearchWithResponse call
-func ParseGetCareerSearchResponse(rsp *http.Response) (*GetCareerSearchResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetCareerSearchResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CareerSearchResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetCareerStatsResponse parses an HTTP response from a GetCareerStatsWithResponse call
-func ParseGetCareerStatsResponse(rsp *http.Response) (*GetCareerStatsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetCareerStatsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest CareerStatsResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePostCareerTemporaryContactOptinResponse parses an HTTP response from a PostCareerTemporaryContactOptinWithResponse call
-func ParsePostCareerTemporaryContactOptinResponse(rsp *http.Response) (*PostCareerTemporaryContactOptinResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PostCareerTemporaryContactOptinResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest GenericError
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
@@ -27589,32 +17235,6 @@ func ParseGetChallengeChangelogResponse(rsp *http.Response) (*GetChallengeChange
 	return response, nil
 }
 
-// ParseGetChallengeDownloadResponse parses an HTTP response from a GetChallengeDownloadWithResponse call
-func ParseGetChallengeDownloadResponse(rsp *http.Response) (*GetChallengeDownloadResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetChallengeDownloadResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetChallengeInfoResponse parses an HTTP response from a GetChallengeInfoWithResponse call
 func ParseGetChallengeInfoResponse(rsp *http.Response) (*GetChallengeInfoResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -27648,39 +17268,6 @@ func ParseGetChallengeInfoResponse(rsp *http.Response) (*GetChallengeInfoRespons
 	return response, nil
 }
 
-// ParsePostChallengeOwnResponse parses an HTTP response from a PostChallengeOwnWithResponse call
-func ParsePostChallengeOwnResponse(rsp *http.Response) (*PostChallengeOwnResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PostChallengeOwnResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OwnResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest MachineOwn400
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetChallengeRecommendedResponse parses an HTTP response from a GetChallengeRecommendedWithResponse call
 func ParseGetChallengeRecommendedResponse(rsp *http.Response) (*GetChallengeRecommendedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -27697,138 +17284,6 @@ func ParseGetChallengeRecommendedResponse(rsp *http.Response) (*GetChallengeReco
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ChallengeRecommendedResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetChallengeRecommendedRetiredResponse parses an HTTP response from a GetChallengeRecommendedRetiredWithResponse call
-func ParseGetChallengeRecommendedRetiredResponse(rsp *http.Response) (*GetChallengeRecommendedRetiredResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetChallengeRecommendedRetiredResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ChallengeRecommendedRetiredResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePostChallengeReviewResponse parses an HTTP response from a PostChallengeReviewWithResponse call
-func ParsePostChallengeReviewResponse(rsp *http.Response) (*PostChallengeReviewResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PostChallengeReviewResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest GenericSuccess2xx
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePostChallengeHelpfullResponse parses an HTTP response from a PostChallengeHelpfullWithResponse call
-func ParsePostChallengeHelpfullResponse(rsp *http.Response) (*PostChallengeHelpfullResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PostChallengeHelpfullResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest GenericSuccess2xx
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetChallengeReviewsUserResponse parses an HTTP response from a GetChallengeReviewsUserWithResponse call
-func ParseGetChallengeReviewsUserResponse(rsp *http.Response) (*GetChallengeReviewsUserResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetChallengeReviewsUserResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ChallengeReviewsUserChallengeIdResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -27902,6 +17357,39 @@ func ParsePostChallengeStopResponse(rsp *http.Response) (*PostChallengeStopRespo
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest GenericError
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParsePostChallengeOwnResponse parses an HTTP response from a PostChallengeOwnWithResponse call
+func ParsePostChallengeOwnResponse(rsp *http.Response) (*PostChallengeOwnResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PostChallengeOwnResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OwnResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest MachineOwn400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28037,22 +17525,22 @@ func ParseGetChallengesResponse(rsp *http.Response) (*GetChallengesResponse, err
 	return response, nil
 }
 
-// ParseGetChangelogsResponse parses an HTTP response from a GetChangelogsWithResponse call
-func ParseGetChangelogsResponse(rsp *http.Response) (*GetChangelogsResponse, error) {
+// ParseGetChallengeDownloadResponse parses an HTTP response from a GetChallengeDownloadWithResponse call
+func ParseGetChallengeDownloadResponse(rsp *http.Response) (*GetChallengeDownloadResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
 	defer func() { _ = rsp.Body.Close() }()
 	if err != nil {
 		return nil, err
 	}
 
-	response := &GetChangelogsResponse{
+	response := &GetChallengeDownloadResponse{
 		Body:         bodyBytes,
 		HTTPResponse: rsp,
 	}
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ChangelogsResponse
+		var dest DownloadLinkResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28086,105 +17574,6 @@ func ParseGetConnectionStatusResponse(rsp *http.Response) (*GetConnectionStatusR
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ConnectionStatusResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetConnectionStatusProlabResponse parses an HTTP response from a GetConnectionStatusProlabWithResponse call
-func ParseGetConnectionStatusProlabResponse(rsp *http.Response) (*GetConnectionStatusProlabResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetConnectionStatusProlabResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ConnectionStatusProductResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest Generic400Error
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetConnectionStatusProductnameResponse parses an HTTP response from a GetConnectionStatusProductnameWithResponse call
-func ParseGetConnectionStatusProductnameResponse(rsp *http.Response) (*GetConnectionStatusProductnameResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetConnectionStatusProductnameResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ConnectionStatusProductResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest Generic400Error
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetConnectionsResponse parses an HTTP response from a GetConnectionsWithResponse call
-func ParseGetConnectionsResponse(rsp *http.Response) (*GetConnectionsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetConnectionsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ConnectionsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28350,39 +17739,6 @@ func ParsePostContainerStopResponse(rsp *http.Response) (*PostContainerStopRespo
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ContainerStopResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetContentStatsResponse parses an HTTP response from a GetContentStatsWithResponse call
-func ParseGetContentStatsResponse(rsp *http.Response) (*GetContentStatsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetContentStatsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ContentStatsResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -28598,105 +17954,6 @@ func ParseGetHomeBannerResponse(rsp *http.Response) (*GetHomeBannerResponse, err
 	return response, nil
 }
 
-// ParseGetHomeRecommendedResponse parses an HTTP response from a GetHomeRecommendedWithResponse call
-func ParseGetHomeRecommendedResponse(rsp *http.Response) (*GetHomeRecommendedResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetHomeRecommendedResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest HomeRecommendedResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetHomeUserProgressResponse parses an HTTP response from a GetHomeUserProgressWithResponse call
-func ParseGetHomeUserProgressResponse(rsp *http.Response) (*GetHomeUserProgressResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetHomeUserProgressResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest HomeUserProgressResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetHomeUserTodoResponse parses an HTTP response from a GetHomeUserTodoWithResponse call
-func ParseGetHomeUserTodoResponse(rsp *http.Response) (*GetHomeUserTodoResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetHomeUserTodoResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest HomeUserTodoResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetMachineActiveResponse parses an HTTP response from a GetMachineActiveWithResponse call
 func ParseGetMachineActiveResponse(rsp *http.Response) (*GetMachineActiveResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -28796,72 +18053,6 @@ func ParseGetMachineChangelogResponse(rsp *http.Response) (*GetMachineChangelogR
 	return response, nil
 }
 
-// ParseGetMachineCreatorsResponse parses an HTTP response from a GetMachineCreatorsWithResponse call
-func ParseGetMachineCreatorsResponse(rsp *http.Response) (*GetMachineCreatorsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachineCreatorsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachineCreatorResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetMachineGraphActivityResponse parses an HTTP response from a GetMachineGraphActivityWithResponse call
-func ParseGetMachineGraphActivityResponse(rsp *http.Response) (*GetMachineGraphActivityResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachineGraphActivityResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachineGraphActivityMachineIdPeriodResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetMachineGraphMatrixResponse parses an HTTP response from a GetMachineGraphMatrixWithResponse call
 func ParseGetMachineGraphMatrixResponse(rsp *http.Response) (*GetMachineGraphMatrixResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -28889,178 +18080,6 @@ func ParseGetMachineGraphMatrixResponse(rsp *http.Response) (*GetMachineGraphMat
 			return nil, err
 		}
 		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetMachineGraphOwnsDifficultyResponse parses an HTTP response from a GetMachineGraphOwnsDifficultyWithResponse call
-func ParseGetMachineGraphOwnsDifficultyResponse(rsp *http.Response) (*GetMachineGraphOwnsDifficultyResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachineGraphOwnsDifficultyResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachineGraphOwnsDifficultyMachineIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetMachineListRetiredPaginatedResponse parses an HTTP response from a GetMachineListRetiredPaginatedWithResponse call
-func ParseGetMachineListRetiredPaginatedResponse(rsp *http.Response) (*GetMachineListRetiredPaginatedResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachineListRetiredPaginatedResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachinePaginatedResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePostMachineOwnResponse parses an HTTP response from a PostMachineOwnWithResponse call
-func ParsePostMachineOwnResponse(rsp *http.Response) (*PostMachineOwnResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PostMachineOwnResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OwnResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest MachineOwn400
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetMachineOwnsTopResponse parses an HTTP response from a GetMachineOwnsTopWithResponse call
-func ParseGetMachineOwnsTopResponse(rsp *http.Response) (*GetMachineOwnsTopResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachineOwnsTopResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachineOwnsTopMachineIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetMachinePaginatedResponse parses an HTTP response from a GetMachinePaginatedWithResponse call
-func ParseGetMachinePaginatedResponse(rsp *http.Response) (*GetMachinePaginatedResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachinePaginatedResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachinePaginatedResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 422:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON422 = &dest
 
 	}
 
@@ -29133,138 +18152,6 @@ func ParseGetMachineRecommendedResponse(rsp *http.Response) (*GetMachineRecommen
 	return response, nil
 }
 
-// ParseGetMachineRecommendedRetiredResponse parses an HTTP response from a GetMachineRecommendedRetiredWithResponse call
-func ParseGetMachineRecommendedRetiredResponse(rsp *http.Response) (*GetMachineRecommendedRetiredResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachineRecommendedRetiredResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachineRecommendedRetiredResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePostMachineReviewResponse parses an HTTP response from a PostMachineReviewWithResponse call
-func ParsePostMachineReviewResponse(rsp *http.Response) (*PostMachineReviewResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PostMachineReviewResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachineReviewResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetMachineReviewsUserResponse parses an HTTP response from a GetMachineReviewsUserWithResponse call
-func ParseGetMachineReviewsUserResponse(rsp *http.Response) (*GetMachineReviewsUserResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachineReviewsUserResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachineReviewsUserMachineIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetMachineReviewsResponse parses an HTTP response from a GetMachineReviewsWithResponse call
-func ParseGetMachineReviewsResponse(rsp *http.Response) (*GetMachineReviewsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachineReviewsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachineReviewsResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetMachineTagsResponse parses an HTTP response from a GetMachineTagsWithResponse call
 func ParseGetMachineTagsResponse(rsp *http.Response) (*GetMachineTagsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -29281,72 +18168,6 @@ func ParseGetMachineTagsResponse(rsp *http.Response) (*GetMachineTagsResponse, e
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest MachineTagsMachineIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetMachineTodoPaginatedResponse parses an HTTP response from a GetMachineTodoPaginatedWithResponse call
-func ParseGetMachineTodoPaginatedResponse(rsp *http.Response) (*GetMachineTodoPaginatedResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachineTodoPaginatedResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachinePaginatedResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetMachineUnreleasedResponse parses an HTTP response from a GetMachineUnreleasedWithResponse call
-func ParseGetMachineUnreleasedResponse(rsp *http.Response) (*GetMachineUnreleasedResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachineUnreleasedResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachineUnreleasedResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29413,39 +18234,6 @@ func ParseGetMachineWalkthroughsLanguageListResponse(rsp *http.Response) (*GetMa
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest MachineWalkthroughsLanguageListResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetMachineWalkthroughOfficialFeedbackChoicesResponse parses an HTTP response from a GetMachineWalkthroughOfficialFeedbackChoicesWithResponse call
-func ParseGetMachineWalkthroughOfficialFeedbackChoicesResponse(rsp *http.Response) (*GetMachineWalkthroughOfficialFeedbackChoicesResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetMachineWalkthroughOfficialFeedbackChoicesResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest MachineWalkthroughOfficialFeedbackChoicesResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -29921,138 +18709,6 @@ func ParseGetProlabProgressResponse(rsp *http.Response) (*GetProlabProgressRespo
 	return response, nil
 }
 
-// ParseGetProlabRatingResponse parses an HTTP response from a GetProlabRatingWithResponse call
-func ParseGetProlabRatingResponse(rsp *http.Response) (*GetProlabRatingResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetProlabRatingResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProlabRatingResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetProlabReviewsResponse parses an HTTP response from a GetProlabReviewsWithResponse call
-func ParseGetProlabReviewsResponse(rsp *http.Response) (*GetProlabReviewsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetProlabReviewsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProlabreviewsResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetProlabReviewsOverviewResponse parses an HTTP response from a GetProlabReviewsOverviewWithResponse call
-func ParseGetProlabReviewsOverviewResponse(rsp *http.Response) (*GetProlabReviewsOverviewResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetProlabReviewsOverviewResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProlabreviewsOverviewResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetProlabSubscriptionResponse parses an HTTP response from a GetProlabSubscriptionWithResponse call
-func ParseGetProlabSubscriptionResponse(rsp *http.Response) (*GetProlabSubscriptionResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetProlabSubscriptionResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProlabSubscriptionResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetProlabsResponse parses an HTTP response from a GetProlabsWithResponse call
 func ParseGetProlabsResponse(rsp *http.Response) (*GetProlabsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -30277,105 +18933,6 @@ func ParseGetRankingsCountriesResponse(rsp *http.Response) (*GetRankingsCountrie
 	return response, nil
 }
 
-// ParseGetRankingsCountryBestResponse parses an HTTP response from a GetRankingsCountryBestWithResponse call
-func ParseGetRankingsCountryBestResponse(rsp *http.Response) (*GetRankingsCountryBestResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsCountryBestResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsCountryBestResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRankingsCountryOverviewResponse parses an HTTP response from a GetRankingsCountryOverviewWithResponse call
-func ParseGetRankingsCountryOverviewResponse(rsp *http.Response) (*GetRankingsCountryOverviewResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsCountryOverviewResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsCountryOverviewResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRankingsCountryRankingBracketResponse parses an HTTP response from a GetRankingsCountryRankingBracketWithResponse call
-func ParseGetRankingsCountryRankingBracketResponse(rsp *http.Response) (*GetRankingsCountryRankingBracketResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsCountryRankingBracketResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsCountryRankingBracketResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetRankingsCountryUSMembersResponse parses an HTTP response from a GetRankingsCountryUSMembersWithResponse call
 func ParseGetRankingsCountryUSMembersResponse(rsp *http.Response) (*GetRankingsCountryUSMembersResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -30392,204 +18949,6 @@ func ParseGetRankingsCountryUSMembersResponse(rsp *http.Response) (*GetRankingsC
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RankingsCountryMembersResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRankingsTeamBestResponse parses an HTTP response from a GetRankingsTeamBestWithResponse call
-func ParseGetRankingsTeamBestResponse(rsp *http.Response) (*GetRankingsTeamBestResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsTeamBestResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsTeamBestResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRankingsTeamBestIdResponse parses an HTTP response from a GetRankingsTeamBestIdWithResponse call
-func ParseGetRankingsTeamBestIdResponse(rsp *http.Response) (*GetRankingsTeamBestIdResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsTeamBestIdResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsTeamBestResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRankingsTeamOverviewResponse parses an HTTP response from a GetRankingsTeamOverviewWithResponse call
-func ParseGetRankingsTeamOverviewResponse(rsp *http.Response) (*GetRankingsTeamOverviewResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsTeamOverviewResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsTeamOverviewResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRankingsTeamOverviewIdResponse parses an HTTP response from a GetRankingsTeamOverviewIdWithResponse call
-func ParseGetRankingsTeamOverviewIdResponse(rsp *http.Response) (*GetRankingsTeamOverviewIdResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsTeamOverviewIdResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsTeamOverviewResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRankingsTeamRankingBracketResponse parses an HTTP response from a GetRankingsTeamRankingBracketWithResponse call
-func ParseGetRankingsTeamRankingBracketResponse(rsp *http.Response) (*GetRankingsTeamRankingBracketResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsTeamRankingBracketResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsTeamRankingBracketResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRankingsTeamRankingBracketIdResponse parses an HTTP response from a GetRankingsTeamRankingBracketIdWithResponse call
-func ParseGetRankingsTeamRankingBracketIdResponse(rsp *http.Response) (*GetRankingsTeamRankingBracketIdResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsTeamRankingBracketIdResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsTeamRankingBracketResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30673,138 +19032,6 @@ func ParseGetRankingsUniversitiesResponse(rsp *http.Response) (*GetRankingsUnive
 	return response, nil
 }
 
-// ParseGetRankingsUniversityRankingBracketIdResponse parses an HTTP response from a GetRankingsUniversityRankingBracketIdWithResponse call
-func ParseGetRankingsUniversityRankingBracketIdResponse(rsp *http.Response) (*GetRankingsUniversityRankingBracketIdResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsUniversityRankingBracketIdResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsUniversityRankingBracketByIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRankingsUserBestResponse parses an HTTP response from a GetRankingsUserBestWithResponse call
-func ParseGetRankingsUserBestResponse(rsp *http.Response) (*GetRankingsUserBestResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsUserBestResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsUserBestResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRankingsUserOverviewResponse parses an HTTP response from a GetRankingsUserOverviewWithResponse call
-func ParseGetRankingsUserOverviewResponse(rsp *http.Response) (*GetRankingsUserOverviewResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsUserOverviewResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsUserOverviewResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetRankingsUserRankingBracketResponse parses an HTTP response from a GetRankingsUserRankingBracketWithResponse call
-func ParseGetRankingsUserRankingBracketResponse(rsp *http.Response) (*GetRankingsUserRankingBracketResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetRankingsUserRankingBracketResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest RankingsUserRankingBracketResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetRankingsUsersResponse parses an HTTP response from a GetRankingsUsersWithResponse call
 func ParseGetRankingsUsersResponse(rsp *http.Response) (*GetRankingsUsersResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -30821,39 +19048,6 @@ func ParseGetRankingsUsersResponse(rsp *http.Response) (*GetRankingsUsersRespons
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest RankingsUsersResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetReviewResponse parses an HTTP response from a GetReviewWithResponse call
-func ParseGetReviewResponse(rsp *http.Response) (*GetReviewResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetReviewResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ReviewProductResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -30920,39 +19114,6 @@ func ParseGetSearchFetchResponse(rsp *http.Response) (*GetSearchFetchResponse, e
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest SearchFetchResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetSeasonEndResponse parses an HTTP response from a GetSeasonEndWithResponse call
-func ParseGetSeasonEndResponse(rsp *http.Response) (*GetSeasonEndResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetSeasonEndResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SeasonEndResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31069,39 +19230,6 @@ func ParseGetSeasonMachinesResponse(rsp *http.Response) (*GetSeasonMachinesRespo
 	return response, nil
 }
 
-// ParseGetSeasonMachinesCompletedResponse parses an HTTP response from a GetSeasonMachinesCompletedWithResponse call
-func ParseGetSeasonMachinesCompletedResponse(rsp *http.Response) (*GetSeasonMachinesCompletedResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetSeasonMachinesCompletedResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SeasonMachinesCompletedSeasonIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetSeasonRewardsResponse parses an HTTP response from a GetSeasonRewardsWithResponse call
 func ParseGetSeasonRewardsResponse(rsp *http.Response) (*GetSeasonRewardsResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -31118,39 +19246,6 @@ func ParseGetSeasonRewardsResponse(rsp *http.Response) (*GetSeasonRewardsRespons
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest SeasonRewardsResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetSeasonUserFollowersResponse parses an HTTP response from a GetSeasonUserFollowersWithResponse call
-func ParseGetSeasonUserFollowersResponse(rsp *http.Response) (*GetSeasonUserFollowersResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetSeasonUserFollowersResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SeasonUserFollowersSeasonIdResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31381,7 +19476,7 @@ func ParseGetSherlockDownloadlinkResponse(rsp *http.Response) (*GetSherlockDownl
 
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SherlocksDownloadLinkResponse
+		var dest DownloadLinkResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -31597,164 +19692,6 @@ func ParseGetSherlockResponse(rsp *http.Response) (*GetSherlockResponse, error) 
 	return response, nil
 }
 
-// ParseGetSidebarAnnouncementResponse parses an HTTP response from a GetSidebarAnnouncementWithResponse call
-func ParseGetSidebarAnnouncementResponse(rsp *http.Response) (*GetSidebarAnnouncementResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetSidebarAnnouncementResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SidebarAnnouncementResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetSidebarChangelogResponse parses an HTTP response from a GetSidebarChangelogWithResponse call
-func ParseGetSidebarChangelogResponse(rsp *http.Response) (*GetSidebarChangelogResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetSidebarChangelogResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SidebarChangelogResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetSPProfileResponse parses an HTTP response from a GetSPProfileWithResponse call
-func ParseGetSPProfileResponse(rsp *http.Response) (*GetSPProfileResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetSPProfileResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SpProfileStartingPointIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePostSPTaskFlagResponse parses an HTTP response from a PostSPTaskFlagWithResponse call
-func ParsePostSPTaskFlagResponse(rsp *http.Response) (*PostSPTaskFlagResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PostSPTaskFlagResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetSPTierResponse parses an HTTP response from a GetSPTierWithResponse call
-func ParseGetSPTierResponse(rsp *http.Response) (*GetSPTierResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetSPTierResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest SpTierResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetSPTiersProgressResponse parses an HTTP response from a GetSPTiersProgressWithResponse call
 func ParseGetSPTiersProgressResponse(rsp *http.Response) (*GetSPTiersProgressResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -31837,105 +19774,6 @@ func ParseGetTeamActivityResponse(rsp *http.Response) (*GetTeamActivityResponse,
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest TeamActivityTeamIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetTeamChartChallengeCategoriesResponse parses an HTTP response from a GetTeamChartChallengeCategoriesWithResponse call
-func ParseGetTeamChartChallengeCategoriesResponse(rsp *http.Response) (*GetTeamChartChallengeCategoriesResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetTeamChartChallengeCategoriesResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TeamChartChallengeTeamIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetTeamChartMachinesAttackResponse parses an HTTP response from a GetTeamChartMachinesAttackWithResponse call
-func ParseGetTeamChartMachinesAttackResponse(rsp *http.Response) (*GetTeamChartMachinesAttackResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetTeamChartMachinesAttackResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TeamChartMachinesAttackTeamIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetTeamGraphResponse parses an HTTP response from a GetTeamGraphWithResponse call
-func ParseGetTeamGraphResponse(rsp *http.Response) (*GetTeamGraphResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetTeamGraphResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TeamGraphTeamIdResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -32068,39 +19906,6 @@ func ParseGetTeamMembersResponse(rsp *http.Response) (*GetTeamMembersResponse, e
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest TeamMembersTeamIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetTeamStatsOwnsResponse parses an HTTP response from a GetTeamStatsOwnsWithResponse call
-func ParseGetTeamStatsOwnsResponse(rsp *http.Response) (*GetTeamStatsOwnsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetTeamStatsOwnsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest TeamStatsOwnsTeamIdResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -32382,105 +20187,6 @@ func ParseGetUniversityAllListResponse(rsp *http.Response) (*GetUniversityAllLis
 	return response, nil
 }
 
-// ParseGetUniversityChartChallengeCategoriesResponse parses an HTTP response from a GetUniversityChartChallengeCategoriesWithResponse call
-func ParseGetUniversityChartChallengeCategoriesResponse(rsp *http.Response) (*GetUniversityChartChallengeCategoriesResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUniversityChartChallengeCategoriesResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UniversityChartChallengeCategoriesResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetUniversityChartMachinesAttackResponse parses an HTTP response from a GetUniversityChartMachinesAttackWithResponse call
-func ParseGetUniversityChartMachinesAttackResponse(rsp *http.Response) (*GetUniversityChartMachinesAttackResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUniversityChartMachinesAttackResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UniversityChartMachinesAttackResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetUniversityCountryListResponse parses an HTTP response from a GetUniversityCountryListWithResponse call
-func ParseGetUniversityCountryListResponse(rsp *http.Response) (*GetUniversityCountryListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUniversityCountryListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UniversityCountryListResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetUniversityMembersResponse parses an HTTP response from a GetUniversityMembersWithResponse call
 func ParseGetUniversityMembersResponse(rsp *http.Response) (*GetUniversityMembersResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -32514,39 +20220,6 @@ func ParseGetUniversityMembersResponse(rsp *http.Response) (*GetUniversityMember
 	return response, nil
 }
 
-// ParseGetUniversityNewListResponse parses an HTTP response from a GetUniversityNewListWithResponse call
-func ParseGetUniversityNewListResponse(rsp *http.Response) (*GetUniversityNewListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUniversityNewListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UniversityNewListResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetUniversityProfileResponse parses an HTTP response from a GetUniversityProfileWithResponse call
 func ParseGetUniversityProfileResponse(rsp *http.Response) (*GetUniversityProfileResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -32563,72 +20236,6 @@ func ParseGetUniversityProfileResponse(rsp *http.Response) (*GetUniversityProfil
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest UniversityProfileTeamIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetUniversityStatsOwnsResponse parses an HTTP response from a GetUniversityStatsOwnsWithResponse call
-func ParseGetUniversityStatsOwnsResponse(rsp *http.Response) (*GetUniversityStatsOwnsResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUniversityStatsOwnsResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UniversityStatsOwnsUserIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetUniversityTopListResponse parses an HTTP response from a GetUniversityTopListWithResponse call
-func ParseGetUniversityTopListResponse(rsp *http.Response) (*GetUniversityTopListResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUniversityTopListResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UniversityTopListResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
@@ -32844,72 +20451,6 @@ func ParseGetUserConnectionStatusResponse(rsp *http.Response) (*GetUserConnectio
 	return response, nil
 }
 
-// ParseGetUserDashboardResponse parses an HTTP response from a GetUserDashboardWithResponse call
-func ParseGetUserDashboardResponse(rsp *http.Response) (*GetUserDashboardResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUserDashboardResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserDashboardResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetUserDashboardTabloidResponse parses an HTTP response from a GetUserDashboardTabloidWithResponse call
-func ParseGetUserDashboardTabloidResponse(rsp *http.Response) (*GetUserDashboardTabloidResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUserDashboardTabloidResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest UserDashboardTabloidResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParsePostUserDisrespectResponse parses an HTTP response from a PostUserDisrespectWithResponse call
 func ParsePostUserDisrespectResponse(rsp *http.Response) (*PostUserDisrespectResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -33042,39 +20583,6 @@ func ParseGetUserInfoResponse(rsp *http.Response) (*GetUserInfoResponse, error) 
 	return response, nil
 }
 
-// ParseGetUserProfileActivityResponse parses an HTTP response from a GetUserProfileActivityWithResponse call
-func ParseGetUserProfileActivityResponse(rsp *http.Response) (*GetUserProfileActivityResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUserProfileActivityResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProfileActivityUserIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
 // ParseGetUserProfileBadgesResponse parses an HTTP response from a GetUserProfileBadgesWithResponse call
 func ParseGetUserProfileBadgesResponse(rsp *http.Response) (*GetUserProfileBadgesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -33190,39 +20698,6 @@ func ParseGetUserProfileChartMachinesAttackResponse(rsp *http.Response) (*GetUse
 	switch {
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
 		var dest ProfileChartMachinesAttackUserIdResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParseGetUserProfileContentResponse parses an HTTP response from a GetUserProfileContentWithResponse call
-func ParseGetUserProfileContentResponse(rsp *http.Response) (*GetUserProfileContentResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &GetUserProfileContentResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest ProfileContentUserIdResponse
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}

@@ -411,7 +411,6 @@ func (q *MachineQuery) fetchResults(ctx context.Context) (MachinesResponse, erro
 	if err != nil {
 		return MachinesResponse{ResponseMeta: meta}, err
 	}
-
 	return MachinesResponse{
 		Data:         wrapMachinesData(parsed.JSON200.Data),
 		ResponseMeta: meta,
