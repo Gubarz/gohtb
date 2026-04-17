@@ -1163,7 +1163,7 @@ func (t Connection) AsConnectionLabEntry() (ConnectionLabEntry, error) {
 
 // FromConnectionLabEntry overwrites any union data inside the Connection as the provided ConnectionLabEntry
 func (t *Connection) FromConnectionLabEntry(v ConnectionLabEntry) error {
-	v.Type = "fortresses"
+	v.Type = "starting_point"
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
@@ -1171,7 +1171,7 @@ func (t *Connection) FromConnectionLabEntry(v ConnectionLabEntry) error {
 
 // MergeConnectionLabEntry performs a merge with any union data inside the Connection, using the provided ConnectionLabEntry
 func (t *Connection) MergeConnectionLabEntry(v ConnectionLabEntry) error {
-	v.Type = "fortresses"
+	v.Type = "starting_point"
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -1254,10 +1254,10 @@ func (t Connection) ValueByDiscriminator() (interface{}, error) {
 	switch discriminator {
 	case "competitive":
 		return t.AsConnectionCompetitiveEntry()
-	case "fortresses":
-		return t.AsConnectionLabEntry()
 	case "prolab":
 		return t.AsConnectionProLabEntry()
+	case "starting_point":
+		return t.AsConnectionLabEntry()
 	default:
 		return nil, errors.New("unknown discriminator value: " + discriminator)
 	}
@@ -1310,7 +1310,7 @@ func (t UserProfileActivityItem) AsUserProfileActivityMachineOwn() (UserProfileA
 
 // FromUserProfileActivityMachineOwn overwrites any union data inside the UserProfileActivityItem as the provided UserProfileActivityMachineOwn
 func (t *UserProfileActivityItem) FromUserProfileActivityMachineOwn(v UserProfileActivityMachineOwn) error {
-	v.Type = "user"
+	v.Type = "root"
 	b, err := json.Marshal(v)
 	t.union = b
 	return err
@@ -1318,7 +1318,7 @@ func (t *UserProfileActivityItem) FromUserProfileActivityMachineOwn(v UserProfil
 
 // MergeUserProfileActivityMachineOwn performs a merge with any union data inside the UserProfileActivityItem, using the provided UserProfileActivityMachineOwn
 func (t *UserProfileActivityItem) MergeUserProfileActivityMachineOwn(v UserProfileActivityMachineOwn) error {
-	v.Type = "user"
+	v.Type = "root"
 	b, err := json.Marshal(v)
 	if err != nil {
 		return err
@@ -1433,10 +1433,10 @@ func (t UserProfileActivityItem) ValueByDiscriminator() (interface{}, error) {
 		return t.AsUserProfileActivityFortress()
 	case "prolab":
 		return t.AsUserProfileActivityProlab()
+	case "root":
+		return t.AsUserProfileActivityMachineOwn()
 	case "sherlock":
 		return t.AsUserProfileActivitySherlock()
-	case "user":
-		return t.AsUserProfileActivityMachineOwn()
 	default:
 		return nil, errors.New("unknown discriminator value: " + discriminator)
 	}

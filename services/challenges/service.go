@@ -365,7 +365,6 @@ func (h *Handle) Own(ctx context.Context, flag string, difficulty int) (common.M
 		h.client.Limiter().Wrap(ctx),
 		v4Client.ChallengeOwnRequest{
 			ChallengeId: h.id,
-			Difficulty:  difficulty,
 			Flag:        flag,
 		},
 	)

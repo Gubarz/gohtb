@@ -570,7 +570,6 @@ type ChallengeListResponse struct {
 // ChallengeOwnRequest Schema definition for Own Request
 type ChallengeOwnRequest struct {
 	ChallengeId int    `json:"challenge_id"`
-	Difficulty  int    `json:"difficulty"`
 	Flag        string `json:"flag"`
 }
 
@@ -3965,17 +3964,17 @@ type GetUserProfileGraphParamsPeriod string
 // PostTodoUpdateParamsProduct defines parameters for PostTodoUpdate.
 type PostTodoUpdateParamsProduct string
 
-// PostChallengeStartFormdataRequestBody defines body for PostChallengeStart for application/x-www-form-urlencoded ContentType.
-type PostChallengeStartFormdataRequestBody PostChallengeStartFormdataBody
-
-// PostChallengeStopFormdataRequestBody defines body for PostChallengeStop for application/x-www-form-urlencoded ContentType.
-type PostChallengeStopFormdataRequestBody PostChallengeStopFormdataBody
-
 // PostChallengeOwnJSONRequestBody defines body for PostChallengeOwn for application/json ContentType.
 type PostChallengeOwnJSONRequestBody = ChallengeOwnRequest
 
 // PostChallengeOwnFormdataRequestBody defines body for PostChallengeOwn for application/x-www-form-urlencoded ContentType.
 type PostChallengeOwnFormdataRequestBody = ChallengeOwnRequest
+
+// PostChallengeStartFormdataRequestBody defines body for PostChallengeStart for application/x-www-form-urlencoded ContentType.
+type PostChallengeStartFormdataRequestBody PostChallengeStartFormdataBody
+
+// PostChallengeStopFormdataRequestBody defines body for PostChallengeStop for application/x-www-form-urlencoded ContentType.
+type PostChallengeStopFormdataRequestBody PostChallengeStopFormdataBody
 
 // PostContainerStartJSONRequestBody defines body for PostContainerStart for application/json ContentType.
 type PostContainerStartJSONRequestBody PostContainerStartJSONBody
@@ -4805,6 +4804,13 @@ type ClientInterface interface {
 	// GetChallengeInfo request
 	GetChallengeInfo(ctx context.Context, challengeSlug ChallengeSlug, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// PostChallengeOwnWithBody request with any body
+	PostChallengeOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PostChallengeOwn(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	PostChallengeOwnWithFormdataBody(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetChallengeRecommended request
 	GetChallengeRecommended(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -4817,13 +4823,6 @@ type ClientInterface interface {
 	PostChallengeStopWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	PostChallengeStopWithFormdataBody(ctx context.Context, body PostChallengeStopFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	// PostChallengeOwnWithBody request with any body
-	PostChallengeOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostChallengeOwn(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
-
-	PostChallengeOwnWithFormdataBody(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetChallengeSuggested request
 	GetChallengeSuggested(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -5322,6 +5321,42 @@ func (c *Client) GetChallengeInfo(ctx context.Context, challengeSlug ChallengeSl
 	return c.Client.Do(req)
 }
 
+func (c *Client) PostChallengeOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostChallengeOwnRequestWithBody(c.Server, contentType, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PostChallengeOwn(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostChallengeOwnRequest(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) PostChallengeOwnWithFormdataBody(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostChallengeOwnRequestWithFormdataBody(c.Server, body)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) GetChallengeRecommended(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetChallengeRecommendedRequest(c.Server)
 	if err != nil {
@@ -5372,42 +5407,6 @@ func (c *Client) PostChallengeStopWithBody(ctx context.Context, contentType stri
 
 func (c *Client) PostChallengeStopWithFormdataBody(ctx context.Context, body PostChallengeStopFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewPostChallengeStopRequestWithFormdataBody(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostChallengeOwnWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostChallengeOwnRequestWithBody(c.Server, contentType, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostChallengeOwn(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostChallengeOwnRequest(c.Server, body)
-	if err != nil {
-		return nil, err
-	}
-	req = req.WithContext(ctx)
-	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
-		return nil, err
-	}
-	return c.Client.Do(req)
-}
-
-func (c *Client) PostChallengeOwnWithFormdataBody(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostChallengeOwnRequestWithFormdataBody(c.Server, body)
 	if err != nil {
 		return nil, err
 	}
@@ -7394,6 +7393,57 @@ func NewGetChallengeInfoRequest(server string, challengeSlug ChallengeSlug) (*ht
 	return req, nil
 }
 
+// NewPostChallengeOwnRequest calls the generic PostChallengeOwn builder with application/json body
+func NewPostChallengeOwnRequest(server string, body PostChallengeOwnJSONRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	buf, err := json.Marshal(body)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = bytes.NewReader(buf)
+	return NewPostChallengeOwnRequestWithBody(server, "application/json", bodyReader)
+}
+
+// NewPostChallengeOwnRequestWithFormdataBody calls the generic PostChallengeOwn builder with application/x-www-form-urlencoded body
+func NewPostChallengeOwnRequestWithFormdataBody(server string, body PostChallengeOwnFormdataRequestBody) (*http.Request, error) {
+	var bodyReader io.Reader
+	bodyStr, err := runtime.MarshalForm(body, nil)
+	if err != nil {
+		return nil, err
+	}
+	bodyReader = strings.NewReader(bodyStr.Encode())
+	return NewPostChallengeOwnRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
+}
+
+// NewPostChallengeOwnRequestWithBody generates requests for PostChallengeOwn with any type of body
+func NewPostChallengeOwnRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/challenge/own")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest("POST", queryURL.String(), body)
+	if err != nil {
+		return nil, err
+	}
+
+	req.Header.Add("Content-Type", contentType)
+
+	return req, nil
+}
+
 // NewGetChallengeRecommendedRequest generates requests for GetChallengeRecommended
 func NewGetChallengeRecommendedRequest(server string) (*http.Request, error) {
 	var err error
@@ -7482,57 +7532,6 @@ func NewPostChallengeStopRequestWithBody(server string, contentType string, body
 	}
 
 	operationPath := fmt.Sprintf("/challenge/stop")
-	if operationPath[0] == '/' {
-		operationPath = "." + operationPath
-	}
-
-	queryURL, err := serverURL.Parse(operationPath)
-	if err != nil {
-		return nil, err
-	}
-
-	req, err := http.NewRequest("POST", queryURL.String(), body)
-	if err != nil {
-		return nil, err
-	}
-
-	req.Header.Add("Content-Type", contentType)
-
-	return req, nil
-}
-
-// NewPostChallengeOwnRequest calls the generic PostChallengeOwn builder with application/json body
-func NewPostChallengeOwnRequest(server string, body PostChallengeOwnJSONRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	buf, err := json.Marshal(body)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = bytes.NewReader(buf)
-	return NewPostChallengeOwnRequestWithBody(server, "application/json", bodyReader)
-}
-
-// NewPostChallengeOwnRequestWithFormdataBody calls the generic PostChallengeOwn builder with application/x-www-form-urlencoded body
-func NewPostChallengeOwnRequestWithFormdataBody(server string, body PostChallengeOwnFormdataRequestBody) (*http.Request, error) {
-	var bodyReader io.Reader
-	bodyStr, err := runtime.MarshalForm(body, nil)
-	if err != nil {
-		return nil, err
-	}
-	bodyReader = strings.NewReader(bodyStr.Encode())
-	return NewPostChallengeOwnRequestWithBody(server, "application/x-www-form-urlencoded", bodyReader)
-}
-
-// NewPostChallengeOwnRequestWithBody generates requests for PostChallengeOwn with any type of body
-func NewPostChallengeOwnRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
-	var err error
-
-	serverURL, err := url.Parse(server)
-	if err != nil {
-		return nil, err
-	}
-
-	operationPath := fmt.Sprintf("/challenge/submit")
 	if operationPath[0] == '/' {
 		operationPath = "." + operationPath
 	}
@@ -12198,6 +12197,13 @@ type ClientWithResponsesInterface interface {
 	// GetChallengeInfoWithResponse request
 	GetChallengeInfoWithResponse(ctx context.Context, challengeSlug ChallengeSlug, reqEditors ...RequestEditorFn) (*GetChallengeInfoResponse, error)
 
+	// PostChallengeOwnWithBodyWithResponse request with any body
+	PostChallengeOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
+
+	PostChallengeOwnWithResponse(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
+
+	PostChallengeOwnWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
+
 	// GetChallengeRecommendedWithResponse request
 	GetChallengeRecommendedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetChallengeRecommendedResponse, error)
 
@@ -12210,13 +12216,6 @@ type ClientWithResponsesInterface interface {
 	PostChallengeStopWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeStopResponse, error)
 
 	PostChallengeStopWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeStopFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeStopResponse, error)
-
-	// PostChallengeOwnWithBodyWithResponse request with any body
-	PostChallengeOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
-
-	PostChallengeOwnWithResponse(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
-
-	PostChallengeOwnWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error)
 
 	// GetChallengeSuggestedWithResponse request
 	GetChallengeSuggestedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetChallengeSuggestedResponse, error)
@@ -12790,6 +12789,29 @@ func (r GetChallengeInfoResponse) StatusCode() int {
 	return 0
 }
 
+type PostChallengeOwnResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *OwnResponse
+	JSON400      *MachineOwn400
+}
+
+// Status returns HTTPResponse.Status
+func (r PostChallengeOwnResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r PostChallengeOwnResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
 type GetChallengeRecommendedResponse struct {
 	Body         []byte
 	HTTPResponse *http.Response
@@ -12853,29 +12875,6 @@ func (r PostChallengeStopResponse) Status() string {
 
 // StatusCode returns HTTPResponse.StatusCode
 func (r PostChallengeStopResponse) StatusCode() int {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.StatusCode
-	}
-	return 0
-}
-
-type PostChallengeOwnResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *OwnResponse
-	JSON400      *MachineOwn400
-}
-
-// Status returns HTTPResponse.Status
-func (r PostChallengeOwnResponse) Status() string {
-	if r.HTTPResponse != nil {
-		return r.HTTPResponse.Status
-	}
-	return http.StatusText(0)
-}
-
-// StatusCode returns HTTPResponse.StatusCode
-func (r PostChallengeOwnResponse) StatusCode() int {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.StatusCode
 	}
@@ -15695,6 +15694,31 @@ func (c *ClientWithResponses) GetChallengeInfoWithResponse(ctx context.Context, 
 	return ParseGetChallengeInfoResponse(rsp)
 }
 
+// PostChallengeOwnWithBodyWithResponse request with arbitrary body returning *PostChallengeOwnResponse
+func (c *ClientWithResponses) PostChallengeOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
+	rsp, err := c.PostChallengeOwnWithBody(ctx, contentType, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostChallengeOwnResponse(rsp)
+}
+
+func (c *ClientWithResponses) PostChallengeOwnWithResponse(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
+	rsp, err := c.PostChallengeOwn(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostChallengeOwnResponse(rsp)
+}
+
+func (c *ClientWithResponses) PostChallengeOwnWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
+	rsp, err := c.PostChallengeOwnWithFormdataBody(ctx, body, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParsePostChallengeOwnResponse(rsp)
+}
+
 // GetChallengeRecommendedWithResponse request returning *GetChallengeRecommendedResponse
 func (c *ClientWithResponses) GetChallengeRecommendedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetChallengeRecommendedResponse, error) {
 	rsp, err := c.GetChallengeRecommended(ctx, reqEditors...)
@@ -15736,31 +15760,6 @@ func (c *ClientWithResponses) PostChallengeStopWithFormdataBodyWithResponse(ctx 
 		return nil, err
 	}
 	return ParsePostChallengeStopResponse(rsp)
-}
-
-// PostChallengeOwnWithBodyWithResponse request with arbitrary body returning *PostChallengeOwnResponse
-func (c *ClientWithResponses) PostChallengeOwnWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
-	rsp, err := c.PostChallengeOwnWithBody(ctx, contentType, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostChallengeOwnResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostChallengeOwnWithResponse(ctx context.Context, body PostChallengeOwnJSONRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
-	rsp, err := c.PostChallengeOwn(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostChallengeOwnResponse(rsp)
-}
-
-func (c *ClientWithResponses) PostChallengeOwnWithFormdataBodyWithResponse(ctx context.Context, body PostChallengeOwnFormdataRequestBody, reqEditors ...RequestEditorFn) (*PostChallengeOwnResponse, error) {
-	rsp, err := c.PostChallengeOwnWithFormdataBody(ctx, body, reqEditors...)
-	if err != nil {
-		return nil, err
-	}
-	return ParsePostChallengeOwnResponse(rsp)
 }
 
 // GetChallengeSuggestedWithResponse request returning *GetChallengeSuggestedResponse
@@ -17268,6 +17267,39 @@ func ParseGetChallengeInfoResponse(rsp *http.Response) (*GetChallengeInfoRespons
 	return response, nil
 }
 
+// ParsePostChallengeOwnResponse parses an HTTP response from a PostChallengeOwnWithResponse call
+func ParsePostChallengeOwnResponse(rsp *http.Response) (*PostChallengeOwnResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &PostChallengeOwnResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest OwnResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest MachineOwn400
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseGetChallengeRecommendedResponse parses an HTTP response from a GetChallengeRecommendedWithResponse call
 func ParseGetChallengeRecommendedResponse(rsp *http.Response) (*GetChallengeRecommendedResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -17357,39 +17389,6 @@ func ParsePostChallengeStopResponse(rsp *http.Response) (*PostChallengeStopRespo
 
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
 		var dest GenericError
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON400 = &dest
-
-	}
-
-	return response, nil
-}
-
-// ParsePostChallengeOwnResponse parses an HTTP response from a PostChallengeOwnWithResponse call
-func ParsePostChallengeOwnResponse(rsp *http.Response) (*PostChallengeOwnResponse, error) {
-	bodyBytes, err := io.ReadAll(rsp.Body)
-	defer func() { _ = rsp.Body.Close() }()
-	if err != nil {
-		return nil, err
-	}
-
-	response := &PostChallengeOwnResponse{
-		Body:         bodyBytes,
-		HTTPResponse: rsp,
-	}
-
-	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
-		var dest OwnResponse
-		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
-			return nil, err
-		}
-		response.JSON200 = &dest
-
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
-		var dest MachineOwn400
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
