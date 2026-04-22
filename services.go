@@ -3,6 +3,7 @@ package gohtb
 import (
 	"context"
 
+	v1client "github.com/gubarz/gohtb/httpclient/experience"
 	v4client "github.com/gubarz/gohtb/httpclient/v4"
 	v5client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/logging"
@@ -15,6 +16,11 @@ type serviceAdapter struct {
 // Create an adapter from the client
 func (c *Client) asServiceClient() *serviceAdapter {
 	return &serviceAdapter{client: c}
+}
+
+// Implement the service interface methods
+func (a *serviceAdapter) ExperienceV1() v1client.ClientInterface {
+	return a.client.experienceapi
 }
 
 // Implement the service interface methods

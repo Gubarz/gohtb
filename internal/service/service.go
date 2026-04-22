@@ -3,6 +3,7 @@ package service
 import (
 	"context"
 
+	v1client "github.com/gubarz/gohtb/httpclient/experience"
 	v4client "github.com/gubarz/gohtb/httpclient/v4"
 	v5client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/logging"
@@ -10,6 +11,7 @@ import (
 
 // Client defines the common interface that all services expect
 type Client interface {
+	ExperienceV1() v1client.ClientInterface
 	V4() v4client.ClientInterface
 	V5() v5client.ClientInterface
 	Limiter() interface {

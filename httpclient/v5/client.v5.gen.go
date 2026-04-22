@@ -472,7 +472,8 @@ type UserDashboardChallenge struct {
 	CategoryName string `json:"categoryName"`
 
 	// Difficulty Challenge difficulty label.
-	Difficulty string `json:"difficulty"`
+	Difficulty       string `json:"difficulty"`
+	ExperiencePoints int    `json:"experiencePoints"`
 
 	// Id Challenge identifier.
 	Id int `json:"id"`
@@ -568,7 +569,8 @@ type UserDashboardMachine struct {
 	AvatarUrl string `json:"avatarUrl"`
 
 	// Difficulty Difficulty label as shown in the UI.
-	Difficulty string `json:"difficulty"`
+	Difficulty       string `json:"difficulty"`
+	ExperiencePoints int    `json:"experiencePoints"`
 
 	// Guided Whether the machine is part of a guided experience.
 	Guided bool `json:"guided"`

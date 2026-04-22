@@ -429,6 +429,7 @@ type Challenge struct {
 	DockerPorts          IntArray        `json:"docker_ports"`
 	DockerStatus         string          `json:"docker_status"`
 	Download             bool            `json:"download,omitempty"`
+	ExperiencePoints     int             `json:"experience_points,omitempty"`
 	FileName             string          `json:"file_name"`
 	FileSize             string          `json:"file_size"`
 	FirstBloodTime       string          `json:"first_blood_time,omitempty"`
@@ -1075,6 +1076,7 @@ type MachineProfileInfo struct {
 	BotHasBlood                bool                `json:"botHasBlood,omitempty"`
 	CanAccessWalkthrough       bool                `json:"can_access_walkthrough,omitempty"`
 	DifficultyText             string              `json:"difficultyText,omitempty"`
+	ExperiencePoints           int                 `json:"experience_points,omitempty"`
 	FeedbackForChart           DifficultyChart     `json:"feedbackForChart,omitempty"`
 	Free                       bool                `json:"free,omitempty"`
 	HasChangelog               bool                `json:"has_changelog,omitempty"`
@@ -2015,7 +2017,7 @@ type RankingsUniversitiesItem struct {
 	Name            string `json:"name,omitempty"`
 	Points          int    `json:"points,omitempty"`
 	Rank            int    `json:"rank,omitempty"`
-	RanksDiff       int    `json:"ranks_diff,omitempty"`
+	RanksDiff       int    `json:"ranks_diff"`
 	RootBloods      int    `json:"root_bloods,omitempty"`
 	RootOwns        int    `json:"root_owns,omitempty"`
 	Students        int    `json:"students,omitempty"`
@@ -3034,10 +3036,11 @@ type UserAchievementTarTypeUserIdTarIdResponse struct {
 
 // UserAchievementTarTypeUserOwn defines model for UserAchievementTarTypeUserOwn.
 type UserAchievementTarTypeUserOwn struct {
-	Date        string    `json:"date,omitempty"`
-	DateIso8601 time.Time `json:"date_iso8601,omitempty"`
-	Points      int       `json:"points,omitempty"`
-	Rank        int       `json:"rank,omitempty"`
+	Date             string    `json:"date,omitempty"`
+	DateIso8601      time.Time `json:"date_iso8601,omitempty"`
+	ExperiencePoints int       `json:"experience_points,omitempty"`
+	Points           int       `json:"points,omitempty"`
+	Rank             int       `json:"rank,omitempty"`
 }
 
 // UserAnonymizedIdResponse Schema definition for User Anonymized Id Response

@@ -11,9 +11,11 @@ import (
 	"strings"
 	"time"
 
+	v1client "github.com/gubarz/gohtb/httpclient/experience"
 	v4client "github.com/gubarz/gohtb/httpclient/v4"
 	v5client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/logging"
+	"github.com/gubarz/gohtb/services/account"
 	"github.com/gubarz/gohtb/services/badges"
 	"github.com/gubarz/gohtb/services/challenges"
 	"github.com/gubarz/gohtb/services/containers"
@@ -40,20 +42,22 @@ import (
 // It holds configuration settings and provides access to various API endpoints
 // through its service fields (e.g., Challenges, Machines, Seasons).
 type Client struct {
-	v4api       v4client.ClientInterface
-	v5api       v5client.ClientInterface
-	httpClient  *http.Client
-	htbToken    string
-	logger      Logger
-	rateLimiter *RateLimiter
-	server      string
-	userAgent   string
-	timeout     time.Duration
-	debug       bool
-	retryConfig RetryConfig
+	v4api         v4client.ClientInterface
+	v5api         v5client.ClientInterface
+	experienceapi v1client.ClientInterface
+	httpClient    *http.Client
+	htbToken      string
+	logger        Logger
+	rateLimiter   *RateLimiter
+	server        string
+	userAgent     string
+	timeout       time.Duration
+	debug         bool
+	retryConfig   RetryConfig
 
 	// Services
 
+	Account    *account.Service
 	Badges     *badges.Service
 	Challenges *challenges.Service
 	Containers *containers.Service
@@ -188,8 +192,19 @@ func New(token string, options ...Option) (*Client, error) {
 		return nil, fmt.Errorf("init v5 client: %w", err)
 	}
 
+	v1Server := c.server + "/experience/v1"
+	experienceapi, err := v1client.NewClient(
+		v1Server,
+		v1client.WithHTTPClient(finalHTTPClient),
+		v1client.WithRequestEditorFn(c.addHeaders),
+	)
+	if err != nil {
+		return nil, fmt.Errorf("init experience v1 client: %w", err)
+	}
+
 	c.v4api = v4
 	c.v5api = v5
+	c.experienceapi = experienceapi
 	wireServices(c)
 	return c, nil
 }
@@ -202,6 +217,7 @@ func (c *Client) addHeaders(ctx context.Context, req *http.Request) error {
 }
 
 func wireServices(c *Client) {
+	c.Account = account.NewService(c.asServiceClient())
 	c.Badges = badges.NewService(c.asServiceClient())
 	c.Challenges = challenges.NewService(c.asServiceClient(), "challenge")
 	c.Containers = containers.NewService(c.asServiceClient())
