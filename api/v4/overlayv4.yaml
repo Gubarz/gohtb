@@ -51,6 +51,3 @@ actions:
   - target: $.components.parameters.NPastDays.schema
     update:
       x-go-type-skip-optional-pointer: false
-  - target: $.components.parameters.Search.schema
-    update:
-      x-go-type-skip-optional-pointer: false

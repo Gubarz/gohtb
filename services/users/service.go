@@ -346,17 +346,6 @@ func (h *Handle) ProfileBadges(ctx context.Context) (ProfileBadgesResponse, erro
 	}, nil
 }
 
-// GraphPeriod identifies allowed periods for profile graph requests.
-type GraphPeriod = v4Client.GetUserProfileGraphParamsPeriod
-
-const (
-	GraphPeriod1W GraphPeriod = v4Client.GetUserProfileGraphParamsPeriodN1W
-	GraphPeriod1M GraphPeriod = v4Client.GetUserProfileGraphParamsPeriodN1M
-	GraphPeriod3M GraphPeriod = v4Client.GetUserProfileGraphParamsPeriodN3M
-	GraphPeriod6M GraphPeriod = v4Client.GetUserProfileGraphParamsPeriodN6M
-	GraphPeriod1Y GraphPeriod = v4Client.GetUserProfileGraphParamsPeriodN1Y
-)
-
 // ContentType identifies v5 profile content filter values.
 type ContentType = v5Client.GetUserProfileContentParamsType
 
@@ -640,68 +629,6 @@ func (s *Service) Info(ctx context.Context) (InfoResponse, error) {
 	return InfoResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
 }
 
-type ProfileBloodsData = v4Client.ProfileBloodsUserIdResponse
-
-// ProfileBloodsResponse contains first-blood statistics for a user.
-type ProfileBloodsResponse struct {
-	Data         ProfileBloodsData
-	ResponseMeta common.ResponseMeta
-}
-
-// ProfileBloods retrieves blood information for the selected user.
-//
-// Example:
-//
-//	bloods, err := client.Users.User(12345).ProfileBloods(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Profile bloods: %+v\n", bloods.Data)
-func (h *Handle) ProfileBloods(ctx context.Context) (ProfileBloodsResponse, error) {
-	resp, err := h.client.V4().GetUserProfileBloods(h.client.Limiter().Wrap(ctx), h.id)
-	if err != nil {
-		return ProfileBloodsResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserProfileBloodsResponse)
-	if err != nil {
-		return ProfileBloodsResponse{ResponseMeta: meta}, err
-	}
-
-	return ProfileBloodsResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
-}
-
-type ProfileChartMachinesAttackData = v4Client.ProfileChartMachinesAttackUserIdResponse
-
-// ProfileChartMachinesAttackResponse contains machine attack chart for a user.
-type ProfileChartMachinesAttackResponse struct {
-	Data         ProfileChartMachinesAttackData
-	ResponseMeta common.ResponseMeta
-}
-
-// ProfileChartMachinesAttack retrieves machine attack chart data for the selected user.
-//
-// Example:
-//
-//	chart, err := client.Users.User(12345).ProfileChartMachinesAttack(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Machine attack chart: %+v\n", chart.Data)
-func (h *Handle) ProfileChartMachinesAttack(ctx context.Context) (ProfileChartMachinesAttackResponse, error) {
-	resp, err := h.client.V4().GetUserProfileChartMachinesAttack(h.client.Limiter().Wrap(ctx), h.id)
-	if err != nil {
-		return ProfileChartMachinesAttackResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserProfileChartMachinesAttackResponse)
-	if err != nil {
-		return ProfileChartMachinesAttackResponse{ResponseMeta: meta}, err
-	}
-
-	return ProfileChartMachinesAttackResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
-}
-
 type ProfileContentData = v5Client.UserProfileContentResponse
 
 // ProfileContentResponse contains v5 profile content payload.
@@ -731,37 +658,6 @@ func (h *Handle) ProfileContent(ctx context.Context, params *v5Client.GetUserPro
 	}
 
 	return ProfileContentResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
-}
-
-type ProfileGraphData = v4Client.ProfileGraphPeriodUserIdResponse
-
-// ProfileGraphResponse contains profile graph data for the selected user.
-type ProfileGraphResponse struct {
-	Data         ProfileGraphData
-	ResponseMeta common.ResponseMeta
-}
-
-// ProfileGraph retrieves profile graph data for the selected user and period.
-//
-// Example:
-//
-//	graph, err := client.Users.User(12345).ProfileGraph(ctx, users.GraphPeriod1Y)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Profile graph: %+v\n", graph.Data)
-func (h *Handle) ProfileGraph(ctx context.Context, period GraphPeriod) (ProfileGraphResponse, error) {
-	resp, err := h.client.V4().GetUserProfileGraph(h.client.Limiter().Wrap(ctx), v4Client.GetUserProfileGraphParamsPeriod(period), h.id)
-	if err != nil {
-		return ProfileGraphResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserProfileGraphResponse)
-	if err != nil {
-		return ProfileGraphResponse{ResponseMeta: meta}, err
-	}
-
-	return ProfileGraphResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
 }
 
 type ProfileProgressChallengesData = v4Client.ProfileProgressChallengesUserIdResponse

@@ -4,6 +4,7 @@ import (
 	"context"
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
+	v5Client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/service"
 )
@@ -48,6 +49,52 @@ func (s *Service) VM(id int) *Handle {
 type Response struct {
 	Data         common.Message
 	ResponseMeta common.ResponseMeta
+}
+
+type ActiveInfo = v5Client.VirtualMachineActiveInfo
+
+type ActiveResponse struct {
+	Data         ActiveInfo
+	ResponseMeta common.ResponseMeta
+}
+
+// Active retrieves information about the currently active virtual machine.
+//
+// Example:
+//
+//	active, err := client.VMs.Active(ctx)
+//	if err != nil {
+//		log.Fatal(err)
+//	}
+//	fmt.Printf("Active VM: %s (%s)\n", active.Data.Name, active.Data.Ip)
+func (s *Service) Active(ctx context.Context) (ActiveResponse, error) {
+	resp, err := s.base.Client.V5().GetVirtualMachineActive(s.base.Client.Limiter().Wrap(ctx))
+	if err != nil {
+		return ActiveResponse{ResponseMeta: common.ResponseMeta{}}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v5Client.ParseGetVirtualMachineActiveResponse)
+	if err != nil {
+		return ActiveResponse{ResponseMeta: meta}, err
+	}
+
+	rawInfo, err := parsed.JSON200.Info.MarshalJSON()
+	if err != nil {
+		return ActiveResponse{ResponseMeta: meta}, err
+	}
+	if string(rawInfo) == "null" {
+		return ActiveResponse{ResponseMeta: meta}, nil
+	}
+
+	info, err := parsed.JSON200.Info.AsVirtualMachineActiveInfo()
+	if err != nil {
+		return ActiveResponse{ResponseMeta: meta}, err
+	}
+
+	return ActiveResponse{
+		Data:         info,
+		ResponseMeta: meta,
+	}, nil
 }
 
 // Reset performs a hard reset of the virtual machine.
@@ -170,74 +217,6 @@ func (h *Handle) Terminate(ctx context.Context) (Response, error) {
 	}
 
 	parsed, meta, err := common.Parse(req, v4Client.ParsePostVMTerminateResponse)
-	if err != nil {
-		return Response{ResponseMeta: meta}, err
-	}
-
-	return Response{
-		Data: common.Message{
-			Message: parsed.JSON200.Message,
-			Success: parsed.JSON200.Success,
-		},
-		ResponseMeta: meta,
-	}, nil
-}
-
-// VoteReset initiates a vote to reset the virtual machine.
-// This is typically used in shared environments where multiple users
-// can vote to reset a machine instance.
-//
-// Example:
-//
-//	result, err := client.VMs.VM(12345).VoteReset(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Vote reset result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
-func (h *Handle) VoteReset(ctx context.Context) (Response, error) {
-	params := v4Client.PostVMResetVoteJSONRequestBody{
-		MachineId: h.id,
-	}
-	resp, err := h.client.V4().PostVMResetVote(h.client.Limiter().Wrap(ctx), params)
-	if err != nil {
-		return Response{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParsePostVMResetVoteResponse)
-	if err != nil {
-		return Response{ResponseMeta: meta}, err
-	}
-
-	return Response{
-		Data: common.Message{
-			Message: parsed.JSON200.Message,
-			Success: parsed.JSON200.Success,
-		},
-		ResponseMeta: meta,
-	}, nil
-}
-
-// VoteResetAccept accepts a pending reset vote for the virtual machine.
-// This operation confirms participation in a reset vote that was
-// previously initiated by VoteReset.
-//
-// Example:
-//
-//	result, err := client.VMs.VM(12345).VoteResetAccept(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Vote accept result: %s (Success: %t)\n", result.Data.Message, result.Data.Success)
-func (h *Handle) VoteResetAccept(ctx context.Context) (Response, error) {
-	params := v4Client.PostVMResetVoteAcceptJSONRequestBody{
-		MachineId: h.id,
-	}
-	resp, err := h.client.V4().PostVMResetVoteAccept(h.client.Limiter().Wrap(ctx), params)
-	if err != nil {
-		return Response{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParsePostVMResetVoteAcceptResponse)
 	if err != nil {
 		return Response{ResponseMeta: meta}, err
 	}

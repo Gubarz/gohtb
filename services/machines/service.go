@@ -82,8 +82,13 @@ func (s *Service) Active(ctx context.Context) (ActiveResponse, error) {
 		return ActiveResponse{ResponseMeta: meta}, err
 	}
 
+	info, err := parsed.JSON200.Info.AsActiveMachineInfo()
+	if err != nil {
+		return ActiveResponse{ResponseMeta: meta}, err
+	}
+
 	return ActiveResponse{
-		Data:         parsed.JSON200.Info,
+		Data:         info,
 		ResponseMeta: meta,
 	}, nil
 }
