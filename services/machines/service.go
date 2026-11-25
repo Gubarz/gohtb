@@ -54,15 +54,13 @@ func NewService(client service.Client, product string) *Service {
 	}
 }
 
-type ActiveMachineInfo = v4Client.ActiveMachineInfo
+// ActiveMachineInfo describes the active virtual machine.
+type ActiveMachineInfo = vms.ActiveInfo
 
-type ActiveResponse struct {
-	Data         ActiveMachineInfo
-	ResponseMeta common.ResponseMeta
-}
+// ActiveResponse contains active virtual machine details and HTTP response metadata.
+type ActiveResponse = vms.ActiveResponse
 
-// Active retrieves information about the currently active machine.
-// This returns details about the machine that is currently available for solving.
+// Active retrieves the active virtual machine and its content type.
 //
 // Example:
 //
@@ -72,25 +70,7 @@ type ActiveResponse struct {
 //	}
 //	fmt.Printf("Active machine: %s (ID: %d)\n", active.Data.Name, active.Data.Id)
 func (s *Service) Active(ctx context.Context) (ActiveResponse, error) {
-	resp, err := s.base.Client.V4().GetMachineActive(s.base.Client.Limiter().Wrap(ctx))
-	if err != nil {
-		return ActiveResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetMachineActiveResponse)
-	if err != nil {
-		return ActiveResponse{ResponseMeta: meta}, err
-	}
-
-	info, err := parsed.JSON200.Info.AsActiveMachineInfo()
-	if err != nil {
-		return ActiveResponse{ResponseMeta: meta}, err
-	}
-
-	return ActiveResponse{
-		Data:         info,
-		ResponseMeta: meta,
-	}, nil
+	return vms.NewService(s.base.Client).Active(ctx)
 }
 
 type Handle struct {

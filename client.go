@@ -30,9 +30,11 @@ import (
 	"github.com/gubarz/gohtb/services/search"
 	"github.com/gubarz/gohtb/services/seasons"
 	"github.com/gubarz/gohtb/services/sherlocks"
+	"github.com/gubarz/gohtb/services/subscriptions"
 	"github.com/gubarz/gohtb/services/tags"
 	"github.com/gubarz/gohtb/services/teams"
 	"github.com/gubarz/gohtb/services/tracks"
+	"github.com/gubarz/gohtb/services/universities"
 	"github.com/gubarz/gohtb/services/users"
 	"github.com/gubarz/gohtb/services/vms"
 	"github.com/gubarz/gohtb/services/vpn"
@@ -72,10 +74,14 @@ type Client struct {
 	Search     *search.Service
 	Seasons    *seasons.Service
 	Sherlocks  *sherlocks.Service
-	Tags       *tags.Service
-	Teams      *teams.Service
-	Tracks     *tracks.Service
-	Users      *users.Service
+	// Subscriptions provides access to subscription plans and pricing.
+	Subscriptions *subscriptions.Service
+	Tags          *tags.Service
+	Teams         *teams.Service
+	Tracks        *tracks.Service
+	// Universities provides access to university listings and statistics.
+	Universities *universities.Service
+	Users        *users.Service
 	// VMs is a service for managing virtual machines.
 	// Can be used to Spawn, Stop, Extend, and Terminate VMs.
 	VMs *vms.Service
@@ -232,9 +238,11 @@ func wireServices(c *Client) {
 	c.Search = search.NewService(c.asServiceClient())
 	c.Seasons = seasons.NewService(c.asServiceClient())
 	c.Sherlocks = sherlocks.NewService(c.asServiceClient())
+	c.Subscriptions = subscriptions.NewService(c.asServiceClient())
 	c.Tags = tags.NewService(c.asServiceClient())
 	c.Teams = teams.NewService(c.asServiceClient())
 	c.Tracks = tracks.NewService(c.asServiceClient())
+	c.Universities = universities.NewService(c.asServiceClient())
 	c.Users = users.NewService(c.asServiceClient())
 	c.VMs = vms.NewService(c.asServiceClient())
 	c.VPN = vpn.NewService(c.asServiceClient())

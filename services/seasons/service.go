@@ -4,10 +4,12 @@ import (
 	"context"
 
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
+	v5Client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/common"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
+// Service provides access to seasonal content and rankings.
 type Service struct {
 	base service.Base
 }
@@ -24,6 +26,7 @@ func NewService(client service.Client) *Service {
 	}
 }
 
+// Handle selects a season for content, rankings, and rewards.
 type Handle struct {
 	client service.Client
 	id     int
@@ -44,75 +47,52 @@ func (s *Service) Season(id int) *Handle {
 	}
 }
 
-type SeasonRewardsDataItem = v4Client.SeasonRewardsDataItem
-
+// RewardsResponse contains the seasonal reward groups and HTTP response metadata.
 type RewardsResponse struct {
-	Data         []SeasonRewardsDataItem
+	Data         []v5Client.SeasonRewardsResponse_Data_Item
 	ResponseMeta common.ResponseMeta
 }
 
-// Rewards retrieves the rewards available for the specified season.
-// This includes information about prizes, achievements, and other rewards
-// that can be earned during the season.
+// Rewards returns the rewards for this season.
 //
 // Example:
 //
-//	rewards, err := client.Seasons.Season(123).Rewards(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	for _, reward := range rewards.Data {
-//		fmt.Printf("Reward: %s\n", reward.RewardTypes.Name)
-//	}
+//	result, err := client.Seasons.Season(21).Rewards(ctx)
 func (h *Handle) Rewards(ctx context.Context) (RewardsResponse, error) {
-	resp, err := h.client.V4().GetSeasonRewards(h.client.Limiter().Wrap(ctx), h.id)
+	client := h.client
+	resp, err := client.V5().GetSeasonRewards(client.Limiter().Wrap(ctx), h.id)
 	if err != nil {
-		return RewardsResponse{ResponseMeta: common.ResponseMeta{}}, err
+		return RewardsResponse{}, err
 	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonRewardsResponse)
+	parsed, meta, err := common.Parse(resp, v5Client.ParseGetSeasonRewardsResponse)
 	if err != nil {
 		return RewardsResponse{ResponseMeta: meta}, err
 	}
-
-	return RewardsResponse{
-		Data:         parsed.JSON200.Data,
-		ResponseMeta: meta,
-	}, nil
+	return RewardsResponse{Data: parsed.JSON200.Data, ResponseMeta: meta}, nil
 }
 
-type SeasonUserRankData = v4Client.SeasonUserRankData
-
+// UserRankResponse contains the signed-in user’s league progress and HTTP response metadata.
 type UserRankResponse struct {
-	Data         SeasonUserRankData
+	Data         v5Client.SeasonUserRankResponse_Data
 	ResponseMeta common.ResponseMeta
 }
 
-// UserRank retrieves the current user's ranking information for the specified season.
-// This includes position, points, and other ranking details for the authenticated user.
+// UserRank returns the signed-in user’s league rankings and progress.
 //
 // Example:
 //
-//	rank, err := client.Seasons.Season(123).UserRank(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Current rank: %d (Points: %d)\n", rank.Data.Rank, rank.Data.TotalSeasonPoints)
+//	result, err := client.Seasons.Season(21).UserRank(ctx)
 func (h *Handle) UserRank(ctx context.Context) (UserRankResponse, error) {
-	resp, err := h.client.V4().GetSeasonUserRank(h.client.Limiter().Wrap(ctx), h.id)
+	client := h.client
+	resp, err := client.V5().GetSeasonUserRank(client.Limiter().Wrap(ctx), h.id)
 	if err != nil {
-		return UserRankResponse{ResponseMeta: common.ResponseMeta{}}, err
+		return UserRankResponse{}, err
 	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonUserRankResponse)
+	parsed, meta, err := common.Parse(resp, v5Client.ParseGetSeasonUserRankResponse)
 	if err != nil {
 		return UserRankResponse{ResponseMeta: meta}, err
 	}
-
-	return UserRankResponse{
-		Data:         parsed.JSON200.Data,
-		ResponseMeta: meta,
-	}, nil
+	return UserRankResponse{Data: parsed.JSON200.Data, ResponseMeta: meta}, nil
 }
 
 type SeasonListDataItem = v4Client.SeasonListDataItem
@@ -188,6 +168,30 @@ func (h *Handle) Machines(ctx context.Context) (MachinesResponse, error) {
 	}, nil
 }
 
+// ContentResponse contains the seasonal content and HTTP response metadata.
+type ContentResponse struct {
+	Data         v5Client.SeasonContentResponse_Data
+	ResponseMeta common.ResponseMeta
+}
+
+// Content returns the seasonal content for this season.
+//
+// Example:
+//
+//	result, err := client.Seasons.Season(21).Content(ctx)
+func (h *Handle) Content(ctx context.Context) (ContentResponse, error) {
+	client := h.client
+	resp, err := client.V5().GetSeasonContent(client.Limiter().Wrap(ctx), h.id)
+	if err != nil {
+		return ContentResponse{}, err
+	}
+	parsed, meta, err := common.Parse(resp, v5Client.ParseGetSeasonContentResponse)
+	if err != nil {
+		return ContentResponse{ResponseMeta: meta}, err
+	}
+	return ContentResponse{Data: parsed.JSON200.Data, ResponseMeta: meta}, nil
+}
+
 type SeasonActiveData = v4Client.SeasonActiveData
 
 type ActiveMachineResponse struct {
@@ -223,6 +227,30 @@ func (s *Service) ActiveMachine(ctx context.Context) (ActiveMachineResponse, err
 	}, nil
 }
 
+// ActiveContentResponse contains current seasonal content and HTTP response metadata.
+type ActiveContentResponse struct {
+	Data         v5Client.SeasonActiveContentResponse_Data
+	ResponseMeta common.ResponseMeta
+}
+
+// ActiveContent returns current offensive and defensive seasonal content.
+//
+// Example:
+//
+//	result, err := client.Seasons.ActiveContent(ctx)
+func (s *Service) ActiveContent(ctx context.Context) (ActiveContentResponse, error) {
+	client := s.base.Client
+	resp, err := client.V5().GetSeasonActiveContent(client.Limiter().Wrap(ctx))
+	if err != nil {
+		return ActiveContentResponse{}, err
+	}
+	parsed, meta, err := common.Parse(resp, v5Client.ParseGetSeasonActiveContentResponse)
+	if err != nil {
+		return ActiveContentResponse{ResponseMeta: meta}, err
+	}
+	return ActiveContentResponse{Data: parsed.JSON200.Data, ResponseMeta: meta}, nil
+}
+
 type LeaderboardType = v4Client.GetSeasonLeaderboardParamsLeaderboard
 
 const (
@@ -230,25 +258,8 @@ const (
 	LeaderboardTeams   LeaderboardType = v4Client.GetSeasonLeaderboardParamsLeaderboardTeams
 )
 
-type LeaderboardTopType = v4Client.GetSeasonLeaderboardTopParamsLeaderboard
-
-const (
-	LeaderboardTopPlayers LeaderboardTopType = v4Client.GetSeasonLeaderboardTopParamsLeaderboardPlayers
-	LeaderboardTopTeams   LeaderboardTopType = v4Client.GetSeasonLeaderboardTopParamsLeaderboardTeams
-)
-
-type LeaderboardTopPeriod = v4Client.GetSeasonLeaderboardTopParamsPeriod
-
-const (
-	LeaderboardTopPeriod1W LeaderboardTopPeriod = v4Client.GetSeasonLeaderboardTopParamsPeriodN1W
-	LeaderboardTopPeriod1M LeaderboardTopPeriod = v4Client.GetSeasonLeaderboardTopParamsPeriodN1M
-	LeaderboardTopPeriod3M LeaderboardTopPeriod = v4Client.GetSeasonLeaderboardTopParamsPeriodN3M
-	LeaderboardTopPeriod6M LeaderboardTopPeriod = v4Client.GetSeasonLeaderboardTopParamsPeriodN6M
-	LeaderboardTopPeriod1Y LeaderboardTopPeriod = v4Client.GetSeasonLeaderboardTopParamsPeriodN1Y
-)
-
 type UserRankRanksResponse struct {
-	Data         []SeasonUserRankData
+	Data         []v4Client.SeasonUserRankData
 	ResponseMeta common.ResponseMeta
 }
 
@@ -279,6 +290,30 @@ func (s *Service) UserRankById(ctx context.Context, userId int) (UserRankRanksRe
 		Data:         parsed.JSON200.Data,
 		ResponseMeta: meta,
 	}, nil
+}
+
+// UserRanksResponse contains a user’s rankings across seasons and HTTP response metadata.
+type UserRanksResponse struct {
+	Data         []v5Client.SeasonUserRanksEntry
+	ResponseMeta common.ResponseMeta
+}
+
+// UserRanks returns the given user’s rankings across seasons.
+//
+// Example:
+//
+//	result, err := client.Seasons.UserRanks(ctx, 12345)
+func (s *Service) UserRanks(ctx context.Context, userID int) (UserRanksResponse, error) {
+	client := s.base.Client
+	resp, err := client.V5().GetSeasonUserRanks(client.Limiter().Wrap(ctx), userID)
+	if err != nil {
+		return UserRanksResponse{}, err
+	}
+	parsed, meta, err := common.Parse(resp, v5Client.ParseGetSeasonUserRanksResponse)
+	if err != nil {
+		return UserRanksResponse{ResponseMeta: meta}, err
+	}
+	return UserRanksResponse{Data: parsed.JSON200.Data, ResponseMeta: meta}, nil
 }
 
 type LeaderboardData = v4Client.SeasonPlayersLeaderboardResponse
@@ -322,49 +357,50 @@ func (s *Service) Leaderboard(ctx context.Context, leaderboard LeaderboardType, 
 	}, nil
 }
 
-type LeaderboardTopData = v4Client.SeasonPlayersLeaderboardTopResponse
-
-type LeaderboardTopResponse struct {
-	Data         LeaderboardTopData
+// SeasonLeaderboardResponse contains a page of season rankings and HTTP response metadata.
+type SeasonLeaderboardResponse struct {
+	Data         v5Client.SeasonLeaderboardResponse
 	ResponseMeta common.ResponseMeta
 }
 
-// LeaderboardTop retrieves top season leaderboard entries for this season.
+// Leaderboard returns a page of rankings for this season.
 //
 // Example:
 //
-//	top, err := client.Seasons.Season(3).LeaderboardTop(ctx, seasons.LeaderboardTopPlayers, nil)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Top entries: %d\n", len(top.Data.Data))
-func (h *Handle) LeaderboardTop(ctx context.Context, leaderboard LeaderboardTopType, params *v4Client.GetSeasonLeaderboardTopParams) (LeaderboardTopResponse, error) {
-	if leaderboard == "" {
-		leaderboard = LeaderboardTopPlayers
-	}
-	if params == nil {
-		params = &v4Client.GetSeasonLeaderboardTopParams{
-			Period: v4Client.GetSeasonLeaderboardTopParamsPeriod(LeaderboardTopPeriod1M),
-		}
-	}
-
-	resp, err := h.client.V4().GetSeasonLeaderboardTop(
-		h.client.Limiter().Wrap(ctx),
-		v4Client.GetSeasonLeaderboardTopParamsLeaderboard(leaderboard),
-		h.id,
-		params,
-	)
+//	result, err := client.Seasons.Season(21).Leaderboard(ctx, params)
+func (h *Handle) Leaderboard(ctx context.Context, params *v5Client.GetSeasonLeaderboardParams) (SeasonLeaderboardResponse, error) {
+	client := h.client
+	resp, err := client.V5().GetSeasonLeaderboard(client.Limiter().Wrap(ctx), h.id, params)
 	if err != nil {
-		return LeaderboardTopResponse{ResponseMeta: common.ResponseMeta{}}, err
+		return SeasonLeaderboardResponse{}, err
 	}
+	parsed, meta, err := common.Parse(resp, v5Client.ParseGetSeasonLeaderboardResponse)
+	if err != nil {
+		return SeasonLeaderboardResponse{ResponseMeta: meta}, err
+	}
+	return SeasonLeaderboardResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}
 
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetSeasonLeaderboardTopResponse)
+// LeaderboardTopResponse contains top season rankings and HTTP response metadata.
+type LeaderboardTopResponse struct {
+	Data         v5Client.SeasonLeaderboardTopResponse
+	ResponseMeta common.ResponseMeta
+}
+
+// LeaderboardTop returns the top-ranked entries for this season.
+//
+// Example:
+//
+//	result, err := client.Seasons.Season(21).LeaderboardTop(ctx, params)
+func (h *Handle) LeaderboardTop(ctx context.Context, params *v5Client.GetSeasonLeaderboardTopParams) (LeaderboardTopResponse, error) {
+	client := h.client
+	resp, err := client.V5().GetSeasonLeaderboardTop(client.Limiter().Wrap(ctx), h.id, params)
+	if err != nil {
+		return LeaderboardTopResponse{}, err
+	}
+	parsed, meta, err := common.Parse(resp, v5Client.ParseGetSeasonLeaderboardTopResponse)
 	if err != nil {
 		return LeaderboardTopResponse{ResponseMeta: meta}, err
 	}
-
-	return LeaderboardTopResponse{
-		Data:         *parsed.JSON200,
-		ResponseMeta: meta,
-	}, nil
+	return LeaderboardTopResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
 }

@@ -2,9 +2,12 @@ package account
 
 import (
 	"context"
+	"errors"
 
 	experienceClient "github.com/gubarz/gohtb/httpclient/experience"
 	"github.com/gubarz/gohtb/internal/common"
+	"github.com/gubarz/gohtb/internal/errutil"
+	"github.com/gubarz/gohtb/internal/extract"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -81,4 +84,39 @@ func (h *Handle) Account(ctx context.Context) (AccountResponse, error) {
 	}
 
 	return AccountResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}
+
+// XPEarnedResponse contains XP history points and HTTP response metadata.
+type XPEarnedResponse struct {
+	Data         experienceClient.AccountXpEarnedResponse
+	ResponseMeta common.ResponseMeta
+}
+
+// XPEarned returns experience points earned over the selected period.
+//
+// Example:
+//
+//	history, err := client.Account.Id(accountID).XPEarned(ctx, params)
+func (h *Handle) XPEarned(ctx context.Context, params *experienceClient.GetAccountXpEarnedParams) (XPEarnedResponse, error) {
+	client := h.client
+	resp, err := client.ExperienceV1().GetAccountXpEarned(client.Limiter().Wrap(ctx), h.id, params)
+	if err != nil {
+		return XPEarnedResponse{}, err
+	}
+	meta := common.ResponseMeta{
+		Raw:        extract.Raw(resp),
+		StatusCode: resp.StatusCode,
+		Headers:    resp.Header,
+		CFRay:      resp.Header.Get("CF-Ray"),
+	}
+	parsed, err := experienceClient.ParseGetAccountXpEarnedResponse(resp)
+	if err == nil && meta.StatusCode >= 200 && meta.StatusCode < 300 && parsed.JSON2XX == nil {
+		err = errors.New("XP history response is missing its JSON body")
+	}
+	if err != nil || meta.StatusCode < 200 || meta.StatusCode >= 300 {
+		return errutil.UnwrapFailure(err, meta.Raw, meta.StatusCode, func([]byte) XPEarnedResponse {
+			return XPEarnedResponse{ResponseMeta: meta}
+		})
+	}
+	return XPEarnedResponse{Data: *parsed.JSON2XX, ResponseMeta: meta}, nil
 }

@@ -41,6 +41,7 @@ func (e ConnectionCompetitiveEntryType) Valid() bool {
 const (
 	Fortresses    ConnectionLabEntryType = "fortresses"
 	Labs          ConnectionLabEntryType = "labs"
+	Sherlocks     ConnectionLabEntryType = "sherlocks"
 	StartingPoint ConnectionLabEntryType = "starting_point"
 )
 
@@ -50,6 +51,8 @@ func (e ConnectionLabEntryType) Valid() bool {
 	case Fortresses:
 		return true
 	case Labs:
+		return true
+	case Sherlocks:
 		return true
 	case StartingPoint:
 		return true
@@ -187,6 +190,45 @@ func (e Free) Valid() bool {
 	}
 }
 
+// Defines values for SeasonLeaderboardEntity.
+const (
+	SeasonLeaderboardEntityPlayers SeasonLeaderboardEntity = "players"
+	SeasonLeaderboardEntityTeams   SeasonLeaderboardEntity = "teams"
+)
+
+// Valid indicates whether the value is a known member of the SeasonLeaderboardEntity enum.
+func (e SeasonLeaderboardEntity) Valid() bool {
+	switch e {
+	case SeasonLeaderboardEntityPlayers:
+		return true
+	case SeasonLeaderboardEntityTeams:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for SeasonLeaderboardFlavor.
+const (
+	SeasonLeaderboardFlavorBlue   SeasonLeaderboardFlavor = "blue"
+	SeasonLeaderboardFlavorPurple SeasonLeaderboardFlavor = "purple"
+	SeasonLeaderboardFlavorRed    SeasonLeaderboardFlavor = "red"
+)
+
+// Valid indicates whether the value is a known member of the SeasonLeaderboardFlavor enum.
+func (e SeasonLeaderboardFlavor) Valid() bool {
+	switch e {
+	case SeasonLeaderboardFlavorBlue:
+		return true
+	case SeasonLeaderboardFlavorPurple:
+		return true
+	case SeasonLeaderboardFlavorRed:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for ShowCompleted.
 const (
 	ShowCompletedComplete   ShowCompleted = "complete"
@@ -283,6 +325,24 @@ const (
 func (e Todo) Valid() bool {
 	switch e {
 	case TodoN1:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for UniversitySortType.
+const (
+	UniversitySortTypeAsc  UniversitySortType = "asc"
+	UniversitySortTypeDesc UniversitySortType = "desc"
+)
+
+// Valid indicates whether the value is a known member of the UniversitySortType enum.
+func (e UniversitySortType) Valid() bool {
+	switch e {
+	case UniversitySortTypeAsc:
+		return true
+	case UniversitySortTypeDesc:
 		return true
 	default:
 		return false
@@ -502,6 +562,102 @@ func (e GetMachinesParamsSpTier) Valid() bool {
 	}
 }
 
+// Defines values for GetSeasonLeaderboardParamsEntity.
+const (
+	GetSeasonLeaderboardParamsEntityPlayers GetSeasonLeaderboardParamsEntity = "players"
+	GetSeasonLeaderboardParamsEntityTeams   GetSeasonLeaderboardParamsEntity = "teams"
+)
+
+// Valid indicates whether the value is a known member of the GetSeasonLeaderboardParamsEntity enum.
+func (e GetSeasonLeaderboardParamsEntity) Valid() bool {
+	switch e {
+	case GetSeasonLeaderboardParamsEntityPlayers:
+		return true
+	case GetSeasonLeaderboardParamsEntityTeams:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GetSeasonLeaderboardParamsSeasonFlavor.
+const (
+	GetSeasonLeaderboardParamsSeasonFlavorBlue   GetSeasonLeaderboardParamsSeasonFlavor = "blue"
+	GetSeasonLeaderboardParamsSeasonFlavorPurple GetSeasonLeaderboardParamsSeasonFlavor = "purple"
+	GetSeasonLeaderboardParamsSeasonFlavorRed    GetSeasonLeaderboardParamsSeasonFlavor = "red"
+)
+
+// Valid indicates whether the value is a known member of the GetSeasonLeaderboardParamsSeasonFlavor enum.
+func (e GetSeasonLeaderboardParamsSeasonFlavor) Valid() bool {
+	switch e {
+	case GetSeasonLeaderboardParamsSeasonFlavorBlue:
+		return true
+	case GetSeasonLeaderboardParamsSeasonFlavorPurple:
+		return true
+	case GetSeasonLeaderboardParamsSeasonFlavorRed:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GetSeasonLeaderboardTopParamsEntity.
+const (
+	Players GetSeasonLeaderboardTopParamsEntity = "players"
+	Teams   GetSeasonLeaderboardTopParamsEntity = "teams"
+)
+
+// Valid indicates whether the value is a known member of the GetSeasonLeaderboardTopParamsEntity enum.
+func (e GetSeasonLeaderboardTopParamsEntity) Valid() bool {
+	switch e {
+	case Players:
+		return true
+	case Teams:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GetSeasonLeaderboardTopParamsSeasonFlavor.
+const (
+	Blue   GetSeasonLeaderboardTopParamsSeasonFlavor = "blue"
+	Purple GetSeasonLeaderboardTopParamsSeasonFlavor = "purple"
+	Red    GetSeasonLeaderboardTopParamsSeasonFlavor = "red"
+)
+
+// Valid indicates whether the value is a known member of the GetSeasonLeaderboardTopParamsSeasonFlavor enum.
+func (e GetSeasonLeaderboardTopParamsSeasonFlavor) Valid() bool {
+	switch e {
+	case Blue:
+		return true
+	case Purple:
+		return true
+	case Red:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GetUniversitiesParamsSortType.
+const (
+	GetUniversitiesParamsSortTypeAsc  GetUniversitiesParamsSortType = "asc"
+	GetUniversitiesParamsSortTypeDesc GetUniversitiesParamsSortType = "desc"
+)
+
+// Valid indicates whether the value is a known member of the GetUniversitiesParamsSortType enum.
+func (e GetUniversitiesParamsSortType) Valid() bool {
+	switch e {
+	case GetUniversitiesParamsSortTypeAsc:
+		return true
+	case GetUniversitiesParamsSortTypeDesc:
+		return true
+	default:
+		return false
+	}
+}
+
 // Defines values for GetUserProfileContentParamsType.
 const (
 	GetUserProfileContentParamsTypeChallenge GetUserProfileContentParamsType = "challenge"
@@ -547,6 +703,7 @@ type ConnectionBase struct {
 type ConnectionCompetitiveEntry struct {
 	AssignedServer       ConnectionAssignedServer       `json:"assigned_server,omitempty"`
 	Available            bool                           `json:"available"`
+	AvailableAt          time.Time                      `json:"available_at,omitempty"`
 	LocationTypeFriendly string                         `json:"location_type_friendly,omitempty"`
 	Machine              ConnectionMachine              `json:"machine,omitempty"`
 	Type                 ConnectionCompetitiveEntryType `json:"type"`
@@ -791,6 +948,689 @@ type RankUpdate struct {
 	NewRank NewRank `json:"newRank,omitempty"`
 }
 
+// SeasonActiveContentItem Active offensive seasonal content.
+type SeasonActiveContentItem struct {
+	AuthUserHasRootBlood  bool                                      `json:"auth_user_has_root_blood,omitempty"`
+	AuthUserHasUserBlood  bool                                      `json:"auth_user_has_user_blood,omitempty"`
+	AuthUserNumberOfFlags int                                       `json:"auth_user_number_of_flags,omitempty"`
+	Avatar                string                                    `json:"avatar,omitempty"`
+	BloodPoints           interface{}                               `json:"blood_points,omitempty"`
+	Category              interface{}                               `json:"category,omitempty"`
+	ContentId             string                                    `json:"content_id,omitempty"`
+	DifficultyText        string                                    `json:"difficulty_text,omitempty"`
+	Id                    int                                       `json:"id,omitempty"`
+	IsOwned               interface{}                               `json:"is_owned,omitempty"`
+	IsOwnedRoot           bool                                      `json:"is_owned_root,omitempty"`
+	IsOwnedUser           bool                                      `json:"is_owned_user,omitempty"`
+	IsReleased            bool                                      `json:"is_released,omitempty"`
+	Name                  string                                    `json:"name,omitempty"`
+	NumberOfFlags         int                                       `json:"number_of_flags,omitempty"`
+	Os                    string                                    `json:"os,omitempty"`
+	Rating                float32                                   `json:"rating,omitempty"`
+	RatingCount           int                                       `json:"rating_count,omitempty"`
+	ReleaseTime           string                                    `json:"release_time,omitempty"`
+	RootBloodPoints       int                                       `json:"root_blood_points,omitempty"`
+	RootOwnPoints         int                                       `json:"root_own_points,omitempty"`
+	TotalPoints           int                                       `json:"total_points,omitempty"`
+	Type                  string                                    `json:"type,omitempty"`
+	UserBloodPoints       int                                       `json:"user_blood_points,omitempty"`
+	UserBloods            []SeasonActiveContentItem_UserBloods_Item `json:"user_bloods,omitempty"`
+	UserOwnPoints         int                                       `json:"user_own_points,omitempty"`
+	AdditionalProperties  map[string]interface{}                    `json:"-"`
+}
+
+// SeasonActiveContentItem_UserBloods_Item defines model for SeasonActiveContentItem.user_bloods.Item.
+type SeasonActiveContentItem_UserBloods_Item struct {
+	Avatar               string                 `json:"avatar,omitempty"`
+	Id                   int                    `json:"id,omitempty"`
+	Name                 string                 `json:"name,omitempty"`
+	Type                 string                 `json:"type,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonActiveContentResponse Current offensive and defensive seasonal content.
+type SeasonActiveContentResponse struct {
+	Data                 SeasonActiveContentResponse_Data `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}           `json:"-"`
+}
+
+// SeasonActiveContentResponseDataBlue1 defines model for .
+type SeasonActiveContentResponseDataBlue1 = map[string]interface{}
+
+// SeasonActiveContentResponse_Data_Blue defines model for SeasonActiveContentResponse.Data.Blue.
+type SeasonActiveContentResponse_Data_Blue struct {
+	union json.RawMessage
+}
+
+// SeasonActiveContentResponse_Data defines model for SeasonActiveContentResponse.Data.
+type SeasonActiveContentResponse_Data struct {
+	Blue SeasonActiveContentResponse_Data_Blue `json:"blue,omitempty"`
+
+	// Red Active offensive seasonal content.
+	Red                  SeasonActiveContentItem `json:"red,omitempty"`
+	AdditionalProperties map[string]interface{}  `json:"-"`
+}
+
+// SeasonActiveDefensiveContent Active defensive seasonal content.
+type SeasonActiveDefensiveContent struct {
+	Avatar               interface{}                                    `json:"avatar,omitempty"`
+	BloodPoints          interface{}                                    `json:"blood_points,omitempty"`
+	Category             interface{}                                    `json:"category,omitempty"`
+	DifficultyText       interface{}                                    `json:"difficulty_text,omitempty"`
+	Id                   interface{}                                    `json:"id,omitempty"`
+	IsOwned              interface{}                                    `json:"is_owned,omitempty"`
+	IsOwnedRoot          interface{}                                    `json:"is_owned_root,omitempty"`
+	IsOwnedUser          interface{}                                    `json:"is_owned_user,omitempty"`
+	IsReleased           interface{}                                    `json:"is_released,omitempty"`
+	Name                 interface{}                                    `json:"name,omitempty"`
+	Os                   interface{}                                    `json:"os,omitempty"`
+	Rating               interface{}                                    `json:"rating,omitempty"`
+	RatingCount          interface{}                                    `json:"rating_count,omitempty"`
+	ReleaseTime          interface{}                                    `json:"release_time,omitempty"`
+	RootOwnPoints        interface{}                                    `json:"root_own_points,omitempty"`
+	TotalPoints          interface{}                                    `json:"total_points,omitempty"`
+	Type                 interface{}                                    `json:"type,omitempty"`
+	UserBloodPoints      interface{}                                    `json:"user_blood_points,omitempty"`
+	UserBloods           []SeasonActiveDefensiveContent_UserBloods_Item `json:"user_bloods,omitempty"`
+	UserOwnPoints        interface{}                                    `json:"user_own_points,omitempty"`
+	AdditionalProperties map[string]interface{}                         `json:"-"`
+}
+
+// SeasonActiveDefensiveContent_UserBloods_Item defines model for SeasonActiveDefensiveContent.user_bloods.Item.
+type SeasonActiveDefensiveContent_UserBloods_Item struct {
+	Avatar               interface{}            `json:"avatar,omitempty"`
+	Name                 interface{}            `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonContentItem Offensive seasonal content.
+type SeasonContentItem struct {
+	Active                bool                   `json:"active,omitempty"`
+	AuthUserHasBlood      interface{}            `json:"auth_user_has_blood,omitempty"`
+	AuthUserNumberOfFlags interface{}            `json:"auth_user_number_of_flags,omitempty"`
+	Avatar                string                 `json:"avatar,omitempty"`
+	BloodPoints           interface{}            `json:"blood_points,omitempty"`
+	ContentId             string                 `json:"content_id,omitempty"`
+	DifficultyText        string                 `json:"difficulty_text,omitempty"`
+	Id                    int                    `json:"id,omitempty"`
+	IsOwned               interface{}            `json:"is_owned,omitempty"`
+	IsOwnedRoot           bool                   `json:"is_owned_root,omitempty"`
+	IsOwnedUser           bool                   `json:"is_owned_user,omitempty"`
+	IsReleased            bool                   `json:"is_released,omitempty"`
+	IsRootBlood           bool                   `json:"is_root_blood,omitempty"`
+	IsUserBlood           bool                   `json:"is_user_blood,omitempty"`
+	Name                  string                 `json:"name,omitempty"`
+	NumberOfFlags         interface{}            `json:"number_of_flags,omitempty"`
+	Os                    string                 `json:"os,omitempty"`
+	Rating                float32                `json:"rating,omitempty"`
+	RatingCountCamel      interface{}            `json:"ratingCount,omitempty"`
+	RatingCount           int                    `json:"rating_count,omitempty"`
+	ReleaseTime           string                 `json:"release_time,omitempty"`
+	RootBloodPoints       int                    `json:"root_blood_points,omitempty"`
+	RootPoints            int                    `json:"root_points,omitempty"`
+	TotalPoints           interface{}            `json:"total_points,omitempty"`
+	Type                  string                 `json:"type,omitempty"`
+	Unknown               bool                   `json:"unknown,omitempty"`
+	UserBloodPoints       int                    `json:"user_blood_points,omitempty"`
+	UserPoints            int                    `json:"user_points,omitempty"`
+	AdditionalProperties  map[string]interface{} `json:"-"`
+}
+
+// SeasonContentResponse Offensive and defensive content collections for a season.
+type SeasonContentResponse struct {
+	Data                 SeasonContentResponse_Data `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}     `json:"-"`
+}
+
+// SeasonContentResponse_Data defines model for SeasonContentResponse.Data.
+type SeasonContentResponse_Data struct {
+	Blue                 []SeasonDefensiveContentItem `json:"blue,omitempty"`
+	Red                  []SeasonContentItem          `json:"red,omitempty"`
+	AdditionalProperties map[string]interface{}       `json:"-"`
+}
+
+// SeasonDefensiveContentItem Defensive seasonal content.
+type SeasonDefensiveContentItem struct {
+	Active                interface{}            `json:"active,omitempty"`
+	AuthUserHasBlood      interface{}            `json:"auth_user_has_blood,omitempty"`
+	AuthUserNumberOfFlags interface{}            `json:"auth_user_number_of_flags,omitempty"`
+	Avatar                interface{}            `json:"avatar,omitempty"`
+	BloodPoints           interface{}            `json:"blood_points,omitempty"`
+	DifficultyText        interface{}            `json:"difficulty_text,omitempty"`
+	Id                    interface{}            `json:"id,omitempty"`
+	IsOwned               interface{}            `json:"is_owned,omitempty"`
+	IsOwnedRoot           interface{}            `json:"is_owned_root,omitempty"`
+	IsOwnedUser           interface{}            `json:"is_owned_user,omitempty"`
+	IsReleased            interface{}            `json:"is_released,omitempty"`
+	IsRootBlood           interface{}            `json:"is_root_blood,omitempty"`
+	IsUserBlood           interface{}            `json:"is_user_blood,omitempty"`
+	Name                  interface{}            `json:"name,omitempty"`
+	NumberOfFlags         interface{}            `json:"number_of_flags,omitempty"`
+	Os                    interface{}            `json:"os,omitempty"`
+	Rating                interface{}            `json:"rating,omitempty"`
+	RatingCount           interface{}            `json:"ratingCount,omitempty"`
+	ReleaseTime           interface{}            `json:"release_time,omitempty"`
+	RootBloodPoints       interface{}            `json:"root_blood_points,omitempty"`
+	RootPoints            interface{}            `json:"root_points,omitempty"`
+	TotalPoints           interface{}            `json:"total_points,omitempty"`
+	Unknown               interface{}            `json:"unknown,omitempty"`
+	UserBloodPoints       interface{}            `json:"user_blood_points,omitempty"`
+	UserPoints            interface{}            `json:"user_points,omitempty"`
+	AdditionalProperties  map[string]interface{} `json:"-"`
+}
+
+// SeasonDefensiveUserProgress Defensive league ranking and season progress.
+type SeasonDefensiveUserProgress struct {
+	// FlagsToNextRank Completed and total counts.
+	FlagsToNextRank   SeasonProgressCount                          `json:"flags_to_next_rank,omitempty"`
+	League            SeasonDefensiveUserProgress_League           `json:"league,omitempty"`
+	Rank              SeasonDefensiveUserProgress_Rank             `json:"rank,omitempty"`
+	TotalSeasonBloods int                                          `json:"total_season_bloods,omitempty"`
+	TotalSeasonFlags  SeasonDefensiveUserProgress_TotalSeasonFlags `json:"total_season_flags,omitempty"`
+	TotalSeasonPoints int                                          `json:"total_season_points,omitempty"`
+
+	// TotalSeasonTasks Completed and total counts.
+	TotalSeasonTasks     SeasonProgressCount    `json:"total_season_tasks,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonDefensiveUserProgressLeague0 defines model for .
+type SeasonDefensiveUserProgressLeague0 = interface{}
+
+// SeasonDefensiveUserProgressLeague1 defines model for .
+type SeasonDefensiveUserProgressLeague1 = map[string]interface{}
+
+// SeasonDefensiveUserProgress_League defines model for SeasonDefensiveUserProgress.League.
+type SeasonDefensiveUserProgress_League struct {
+	union json.RawMessage
+}
+
+// SeasonDefensiveUserProgressRank0 defines model for .
+type SeasonDefensiveUserProgressRank0 = interface{}
+
+// SeasonDefensiveUserProgressRank1 defines model for .
+type SeasonDefensiveUserProgressRank1 = map[string]interface{}
+
+// SeasonDefensiveUserProgress_Rank defines model for SeasonDefensiveUserProgress.Rank.
+type SeasonDefensiveUserProgress_Rank struct {
+	union json.RawMessage
+}
+
+// SeasonDefensiveUserProgress_TotalSeasonFlags defines model for SeasonDefensiveUserProgress.TotalSeasonFlags.
+type SeasonDefensiveUserProgress_TotalSeasonFlags struct {
+	Obtained             interface{}            `json:"obtained,omitempty"`
+	Total                interface{}            `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonLeaderboardEntry A season leaderboard entry.
+type SeasonLeaderboardEntry struct {
+	AccountId            string                         `json:"account_id,omitempty"`
+	AvatarThumb          string                         `json:"avatar_thumb,omitempty"`
+	Bloods               interface{}                    `json:"bloods,omitempty"`
+	BlueLeagueRank       interface{}                    `json:"blue_league_rank,omitempty"`
+	Country              SeasonLeaderboardEntry_Country `json:"country,omitempty"`
+	CountryName          string                         `json:"country_name,omitempty"`
+	FlagBloods           interface{}                    `json:"flag_bloods,omitempty"`
+	FlagOwns             interface{}                    `json:"flag_owns,omitempty"`
+	Id                   interface{}                    `json:"id,omitempty"`
+	LeagueRank           string                         `json:"league_rank,omitempty"`
+	Name                 string                         `json:"name,omitempty"`
+	Owns                 interface{}                    `json:"owns,omitempty"`
+	Points               int                            `json:"points,omitempty"`
+	PositiveTrend        bool                           `json:"positive_trend,omitempty"`
+	Rank                 int                            `json:"rank,omitempty"`
+	RankTrend            int                            `json:"rank_trend,omitempty"`
+	RedLeagueRank        interface{}                    `json:"red_league_rank,omitempty"`
+	ResourceId           int                            `json:"resource_id,omitempty"`
+	RootBloods           int                            `json:"root_bloods,omitempty"`
+	RootOwns             int                            `json:"root_owns,omitempty"`
+	TaskBloods           interface{}                    `json:"task_bloods,omitempty"`
+	TaskOwns             interface{}                    `json:"task_owns,omitempty"`
+	UserBloods           int                            `json:"user_bloods,omitempty"`
+	UserOwns             int                            `json:"user_owns,omitempty"`
+	AdditionalProperties map[string]interface{}         `json:"-"`
+}
+
+// SeasonLeaderboardEntryCountry0 defines model for .
+type SeasonLeaderboardEntryCountry0 = string
+
+// SeasonLeaderboardEntryCountry1 defines model for .
+type SeasonLeaderboardEntryCountry1 = map[string]interface{}
+
+// SeasonLeaderboardEntry_Country defines model for SeasonLeaderboardEntry.Country.
+type SeasonLeaderboardEntry_Country struct {
+	union json.RawMessage
+}
+
+// SeasonLeaderboardResponse A paginated season leaderboard.
+type SeasonLeaderboardResponse struct {
+	Data                 []SeasonLeaderboardEntry        `json:"data,omitempty"`
+	Links                SeasonLeaderboardResponse_Links `json:"links,omitempty"`
+	Meta                 SeasonLeaderboardResponse_Meta  `json:"meta,omitempty"`
+	AdditionalProperties map[string]interface{}          `json:"-"`
+}
+
+// SeasonLeaderboardResponseLinksNext0 defines model for .
+type SeasonLeaderboardResponseLinksNext0 = string
+
+// SeasonLeaderboardResponseLinksNext1 defines model for .
+type SeasonLeaderboardResponseLinksNext1 = map[string]interface{}
+
+// SeasonLeaderboardResponse_Links_Next defines model for SeasonLeaderboardResponse.Links.Next.
+type SeasonLeaderboardResponse_Links_Next struct {
+	union json.RawMessage
+}
+
+// SeasonLeaderboardResponseLinksPrev0 defines model for .
+type SeasonLeaderboardResponseLinksPrev0 = interface{}
+
+// SeasonLeaderboardResponseLinksPrev1 defines model for .
+type SeasonLeaderboardResponseLinksPrev1 = map[string]interface{}
+
+// SeasonLeaderboardResponse_Links_Prev defines model for SeasonLeaderboardResponse.Links.Prev.
+type SeasonLeaderboardResponse_Links_Prev struct {
+	union json.RawMessage
+}
+
+// SeasonLeaderboardResponse_Links defines model for SeasonLeaderboardResponse.Links.
+type SeasonLeaderboardResponse_Links struct {
+	First                string                               `json:"first,omitempty"`
+	Last                 string                               `json:"last,omitempty"`
+	Next                 SeasonLeaderboardResponse_Links_Next `json:"next,omitempty"`
+	Prev                 SeasonLeaderboardResponse_Links_Prev `json:"prev,omitempty"`
+	AdditionalProperties map[string]interface{}               `json:"-"`
+}
+
+// SeasonLeaderboardResponseMetaFrom0 defines model for .
+type SeasonLeaderboardResponseMetaFrom0 = int
+
+// SeasonLeaderboardResponseMetaFrom1 defines model for .
+type SeasonLeaderboardResponseMetaFrom1 = map[string]interface{}
+
+// SeasonLeaderboardResponse_Meta_From defines model for SeasonLeaderboardResponse.Meta.From.
+type SeasonLeaderboardResponse_Meta_From struct {
+	union json.RawMessage
+}
+
+// SeasonLeaderboardResponseMetaLinksPage0 defines model for .
+type SeasonLeaderboardResponseMetaLinksPage0 = int
+
+// SeasonLeaderboardResponseMetaLinksPage1 defines model for .
+type SeasonLeaderboardResponseMetaLinksPage1 = map[string]interface{}
+
+// SeasonLeaderboardResponse_Meta_Links_Page defines model for SeasonLeaderboardResponse.Meta.Links.Page.
+type SeasonLeaderboardResponse_Meta_Links_Page struct {
+	union json.RawMessage
+}
+
+// SeasonLeaderboardResponseMetaLinksUrl0 defines model for .
+type SeasonLeaderboardResponseMetaLinksUrl0 = string
+
+// SeasonLeaderboardResponseMetaLinksUrl1 defines model for .
+type SeasonLeaderboardResponseMetaLinksUrl1 = map[string]interface{}
+
+// SeasonLeaderboardResponse_Meta_Links_Url defines model for SeasonLeaderboardResponse.Meta.Links.Url.
+type SeasonLeaderboardResponse_Meta_Links_Url struct {
+	union json.RawMessage
+}
+
+// SeasonLeaderboardResponse_Meta_Links_Item defines model for SeasonLeaderboardResponse.Meta.Links.Item.
+type SeasonLeaderboardResponse_Meta_Links_Item struct {
+	Active               bool                                      `json:"active,omitempty"`
+	Label                string                                    `json:"label,omitempty"`
+	Page                 SeasonLeaderboardResponse_Meta_Links_Page `json:"page,omitempty"`
+	Url                  SeasonLeaderboardResponse_Meta_Links_Url  `json:"url,omitempty"`
+	AdditionalProperties map[string]interface{}                    `json:"-"`
+}
+
+// SeasonLeaderboardResponseMetaTo0 defines model for .
+type SeasonLeaderboardResponseMetaTo0 = int
+
+// SeasonLeaderboardResponseMetaTo1 defines model for .
+type SeasonLeaderboardResponseMetaTo1 = map[string]interface{}
+
+// SeasonLeaderboardResponse_Meta_To defines model for SeasonLeaderboardResponse.Meta.To.
+type SeasonLeaderboardResponse_Meta_To struct {
+	union json.RawMessage
+}
+
+// SeasonLeaderboardResponse_Meta defines model for SeasonLeaderboardResponse.Meta.
+type SeasonLeaderboardResponse_Meta struct {
+	CurrentPage          int                                         `json:"current_page,omitempty"`
+	From                 SeasonLeaderboardResponse_Meta_From         `json:"from,omitempty"`
+	LastPage             int                                         `json:"last_page,omitempty"`
+	Links                []SeasonLeaderboardResponse_Meta_Links_Item `json:"links,omitempty"`
+	Path                 string                                      `json:"path,omitempty"`
+	PerPage              int                                         `json:"per_page,omitempty"`
+	To                   SeasonLeaderboardResponse_Meta_To           `json:"to,omitempty"`
+	Total                int                                         `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{}                      `json:"-"`
+}
+
+// SeasonLeaderboardTopEntry A top-ranked season leaderboard entry.
+type SeasonLeaderboardTopEntry struct {
+	AccountId            string                 `json:"account_id,omitempty"`
+	AvatarThumb          string                 `json:"avatar_thumb,omitempty"`
+	Bloods               interface{}            `json:"bloods,omitempty"`
+	BlueLeagueRank       interface{}            `json:"blue_league_rank,omitempty"`
+	Country              string                 `json:"country,omitempty"`
+	CountryName          string                 `json:"country_name,omitempty"`
+	FlagBloods           interface{}            `json:"flag_bloods,omitempty"`
+	FlagOwns             interface{}            `json:"flag_owns,omitempty"`
+	IsRespected          bool                   `json:"is_respected,omitempty"`
+	LeagueRank           string                 `json:"league_rank,omitempty"`
+	Name                 string                 `json:"name,omitempty"`
+	Owns                 interface{}            `json:"owns,omitempty"`
+	Points               int                    `json:"points,omitempty"`
+	Rank                 int                    `json:"rank,omitempty"`
+	RedLeagueRank        interface{}            `json:"red_league_rank,omitempty"`
+	ResourceId           int                    `json:"resource_id,omitempty"`
+	RootBloods           int                    `json:"root_bloods,omitempty"`
+	RootOwns             int                    `json:"root_owns,omitempty"`
+	TaskBloods           interface{}            `json:"task_bloods,omitempty"`
+	TaskOwns             interface{}            `json:"task_owns,omitempty"`
+	UserBloods           int                    `json:"user_bloods,omitempty"`
+	UserOwns             int                    `json:"user_owns,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonLeaderboardTopResponse The top-ranked players or teams for a season.
+type SeasonLeaderboardTopResponse struct {
+	Data                 []SeasonLeaderboardTopEntry `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}      `json:"-"`
+}
+
+// SeasonOffensiveUserProgress Offensive league ranking and season progress.
+type SeasonOffensiveUserProgress struct {
+	// FlagsToNextRank Completed and total counts.
+	FlagsToNextRank   SeasonProgressCount `json:"flags_to_next_rank,omitempty"`
+	League            string              `json:"league,omitempty"`
+	Rank              int                 `json:"rank,omitempty"`
+	TotalSeasonBloods int                 `json:"total_season_bloods,omitempty"`
+
+	// TotalSeasonFlags Completed and total counts.
+	TotalSeasonFlags     SeasonProgressCount                          `json:"total_season_flags,omitempty"`
+	TotalSeasonPoints    int                                          `json:"total_season_points,omitempty"`
+	TotalSeasonTasks     SeasonOffensiveUserProgress_TotalSeasonTasks `json:"total_season_tasks,omitempty"`
+	AdditionalProperties map[string]interface{}                       `json:"-"`
+}
+
+// SeasonOffensiveUserProgress_TotalSeasonTasks defines model for SeasonOffensiveUserProgress.TotalSeasonTasks.
+type SeasonOffensiveUserProgress_TotalSeasonTasks struct {
+	Obtained             interface{}            `json:"obtained,omitempty"`
+	Total                interface{}            `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonProgressCount Completed and total counts.
+type SeasonProgressCount struct {
+	Obtained             int                    `json:"obtained,omitempty"`
+	Total                int                    `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonReward A seasonal reward.
+type SeasonReward struct {
+	Id                   int                    `json:"id,omitempty"`
+	Name                 string                 `json:"name,omitempty"`
+	Order                int                    `json:"order,omitempty"`
+	RewardGroupId        int                    `json:"reward_group_id,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonRewardCard Rewards for top-ranked participants.
+type SeasonRewardCard struct {
+	Description          interface{}                     `json:"description,omitempty"`
+	Id                   interface{}                     `json:"id,omitempty"`
+	Name                 interface{}                     `json:"name,omitempty"`
+	Rewards              []SeasonRewardCard_Rewards_Item `json:"rewards,omitempty"`
+	AdditionalProperties map[string]interface{}          `json:"-"`
+}
+
+// SeasonRewardCard_Rewards_Item defines model for SeasonRewardCard.rewards.Item.
+type SeasonRewardCard_Rewards_Item struct {
+	Name                 interface{}            `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonRewardGroup A seasonal reward group and its requirements.
+type SeasonRewardGroup struct {
+	Description          SeasonRewardGroup_Description `json:"description,omitempty"`
+	FlagsNeeded          int                           `json:"flags_needed,omitempty"`
+	Id                   int                           `json:"id,omitempty"`
+	Name                 string                        `json:"name,omitempty"`
+	Order                int                           `json:"order,omitempty"`
+	RankUpRequirement    string                        `json:"rank_up_requirement,omitempty"`
+	RewardTypeId         int                           `json:"reward_type_id,omitempty"`
+	Rewards              []SeasonReward                `json:"rewards,omitempty"`
+	Subtitle             SeasonRewardGroup_Subtitle    `json:"subtitle,omitempty"`
+	AdditionalProperties map[string]interface{}        `json:"-"`
+}
+
+// SeasonRewardGroupDescription0 defines model for .
+type SeasonRewardGroupDescription0 = string
+
+// SeasonRewardGroupDescription1 defines model for .
+type SeasonRewardGroupDescription1 = map[string]interface{}
+
+// SeasonRewardGroup_Description defines model for SeasonRewardGroup.Description.
+type SeasonRewardGroup_Description struct {
+	union json.RawMessage
+}
+
+// SeasonRewardGroupSubtitle0 defines model for .
+type SeasonRewardGroupSubtitle0 = string
+
+// SeasonRewardGroupSubtitle1 defines model for .
+type SeasonRewardGroupSubtitle1 = map[string]interface{}
+
+// SeasonRewardGroup_Subtitle defines model for SeasonRewardGroup.Subtitle.
+type SeasonRewardGroup_Subtitle struct {
+	union json.RawMessage
+}
+
+// SeasonRewardType A seasonal reward category and its reward groups.
+type SeasonRewardType struct {
+	Description          string                 `json:"description,omitempty"`
+	Groups               []SeasonRewardGroup    `json:"groups,omitempty"`
+	Id                   int                    `json:"id,omitempty"`
+	Name                 string                 `json:"name,omitempty"`
+	Order                int                    `json:"order,omitempty"`
+	TopEarns             []SeasonRewardCard     `json:"top_earns,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonRewardsResponse Seasonal reward categories.
+type SeasonRewardsResponse struct {
+	Data                 []SeasonRewardsResponse_Data_Item `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}            `json:"-"`
+}
+
+// SeasonRewardsResponse_Data_Item defines model for SeasonRewardsResponse.data.Item.
+type SeasonRewardsResponse_Data_Item struct {
+	// RewardTypes A seasonal reward category and its reward groups.
+	RewardTypes          SeasonRewardType       `json:"reward_types,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonUserProgress Combined league ranking and season progress.
+type SeasonUserProgress struct {
+	FlagsToNextRank      SeasonUserProgress_FlagsToNextRank  `json:"flags_to_next_rank,omitempty"`
+	League               interface{}                         `json:"league,omitempty"`
+	Rank                 interface{}                         `json:"rank,omitempty"`
+	TotalSeasonBloods    interface{}                         `json:"total_season_bloods,omitempty"`
+	TotalSeasonFlags     SeasonUserProgress_TotalSeasonFlags `json:"total_season_flags,omitempty"`
+	TotalSeasonPoints    interface{}                         `json:"total_season_points,omitempty"`
+	TotalSeasonTasks     SeasonUserProgress_TotalSeasonTasks `json:"total_season_tasks,omitempty"`
+	AdditionalProperties map[string]interface{}              `json:"-"`
+}
+
+// SeasonUserProgress_FlagsToNextRank defines model for SeasonUserProgress.FlagsToNextRank.
+type SeasonUserProgress_FlagsToNextRank struct {
+	Obtained             interface{}            `json:"obtained,omitempty"`
+	Total                interface{}            `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonUserProgress_TotalSeasonFlags defines model for SeasonUserProgress.TotalSeasonFlags.
+type SeasonUserProgress_TotalSeasonFlags struct {
+	Obtained             interface{}            `json:"obtained,omitempty"`
+	Total                interface{}            `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonUserProgress_TotalSeasonTasks defines model for SeasonUserProgress.TotalSeasonTasks.
+type SeasonUserProgress_TotalSeasonTasks struct {
+	Obtained             interface{}            `json:"obtained,omitempty"`
+	Total                interface{}            `json:"total,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SeasonUserRankResponse The signed-in user's league rankings and progress.
+type SeasonUserRankResponse struct {
+	Data                 SeasonUserRankResponse_Data `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{}      `json:"-"`
+}
+
+// SeasonUserRankResponseDataPurple1 defines model for .
+type SeasonUserRankResponseDataPurple1 = map[string]interface{}
+
+// SeasonUserRankResponse_Data_Purple defines model for SeasonUserRankResponse.Data.Purple.
+type SeasonUserRankResponse_Data_Purple struct {
+	union json.RawMessage
+}
+
+// SeasonUserRankResponse_Data defines model for SeasonUserRankResponse.Data.
+type SeasonUserRankResponse_Data struct {
+	// Blue Defensive league ranking and season progress.
+	Blue   SeasonDefensiveUserProgress        `json:"blue,omitempty"`
+	Purple SeasonUserRankResponse_Data_Purple `json:"purple,omitempty"`
+
+	// Red Offensive league ranking and season progress.
+	Red                  SeasonOffensiveUserProgress `json:"red,omitempty"`
+	AdditionalProperties map[string]interface{}      `json:"-"`
+}
+
+// SeasonUserRanksEntry A user's rankings and progress for a season.
+type SeasonUserRanksEntry struct {
+	BackgroundImage string `json:"background_image,omitempty"`
+
+	// Blue Defensive league ranking and season progress.
+	Blue     SeasonDefensiveUserProgress `json:"blue,omitempty"`
+	EndDate  string                      `json:"end_date,omitempty"`
+	IsActive bool                        `json:"is_active,omitempty"`
+	Purple   SeasonUserRanksEntry_Purple `json:"purple,omitempty"`
+
+	// Red Offensive league ranking and season progress.
+	Red                  SeasonOffensiveUserProgress `json:"red,omitempty"`
+	SeasonContentId      string                      `json:"season_content_id,omitempty"`
+	SeasonId             int                         `json:"season_id,omitempty"`
+	SeasonName           string                      `json:"season_name,omitempty"`
+	StartDate            string                      `json:"start_date,omitempty"`
+	AdditionalProperties map[string]interface{}      `json:"-"`
+}
+
+// SeasonUserRanksEntryPurple1 defines model for .
+type SeasonUserRanksEntryPurple1 = map[string]interface{}
+
+// SeasonUserRanksEntry_Purple defines model for SeasonUserRanksEntry.Purple.
+type SeasonUserRanksEntry_Purple struct {
+	union json.RawMessage
+}
+
+// SeasonUserRanksResponse A user's seasonal ranking history.
+type SeasonUserRanksResponse struct {
+	Data                 []SeasonUserRanksEntry `json:"data,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SubscriptionPricingSourcePlan Subscription billing plan.
+type SubscriptionPricingSourcePlan struct {
+	BillingInterval      string                                   `json:"billing_interval,omitempty"`
+	BillingIntervalCount int                                      `json:"billing_interval_count,omitempty"`
+	Code                 string                                   `json:"code,omitempty"`
+	IsCurrentPlan        bool                                     `json:"is_current_plan,omitempty"`
+	Name                 string                                   `json:"name,omitempty"`
+	Prices               []SubscriptionPricingSourcePrice         `json:"prices,omitempty"`
+	UpgradesTo           SubscriptionPricingSourcePlan_UpgradesTo `json:"upgrades_to,omitempty"`
+	AdditionalProperties map[string]interface{}                   `json:"-"`
+}
+
+// SubscriptionPricingSourcePlanUpgradesTo0 defines model for .
+type SubscriptionPricingSourcePlanUpgradesTo0 = interface{}
+
+// SubscriptionPricingSourcePlanUpgradesTo1 defines model for .
+type SubscriptionPricingSourcePlanUpgradesTo1 = map[string]interface{}
+
+// SubscriptionPricingSourcePlan_UpgradesTo defines model for SubscriptionPricingSourcePlan.UpgradesTo.
+type SubscriptionPricingSourcePlan_UpgradesTo struct {
+	union json.RawMessage
+}
+
+// SubscriptionPricingSourcePrice Subscription price in a currency.
+type SubscriptionPricingSourcePrice struct {
+	Currency             string                 `json:"currency,omitempty"`
+	PerPeriod            int                    `json:"per_period,omitempty"`
+	Setup                int                    `json:"setup,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SubscriptionPricingSourceProduct Subscription product and available plans.
+type SubscriptionPricingSourceProduct struct {
+	Entitlements         SubscriptionPricingSourceProduct_Entitlements `json:"entitlements,omitempty"`
+	Perks                string                                        `json:"perks,omitempty"`
+	Plans                []SubscriptionPricingSourcePlan               `json:"plans,omitempty"`
+	Type                 string                                        `json:"type,omitempty"`
+	UpgradesTo           []string                                      `json:"upgrades_to,omitempty"`
+	AdditionalProperties map[string]interface{}                        `json:"-"`
+}
+
+// SubscriptionPricingSourceProduct_Entitlements_Content_MiniLabs_Item defines model for SubscriptionPricingSourceProduct.entitlements.content.mini_labs.Item.
+type SubscriptionPricingSourceProduct_Entitlements_Content_MiniLabs_Item struct {
+	Avatar               string                 `json:"avatar,omitempty"`
+	ContentId            string                 `json:"content_id,omitempty"`
+	Id                   int                    `json:"id,omitempty"`
+	Name                 string                 `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SubscriptionPricingSourceProduct_Entitlements_Content_ProLabs_Item defines model for SubscriptionPricingSourceProduct.entitlements.content.pro_labs.Item.
+type SubscriptionPricingSourceProduct_Entitlements_Content_ProLabs_Item struct {
+	Avatar               string                 `json:"avatar,omitempty"`
+	ContentId            string                 `json:"content_id,omitempty"`
+	Id                   int                    `json:"id,omitempty"`
+	Name                 string                 `json:"name,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
+}
+
+// SubscriptionPricingSourceProduct_Entitlements_Content defines model for SubscriptionPricingSourceProduct.Entitlements.Content.
+type SubscriptionPricingSourceProduct_Entitlements_Content struct {
+	MiniLabs             []SubscriptionPricingSourceProduct_Entitlements_Content_MiniLabs_Item `json:"mini_labs,omitempty"`
+	ProLabs              []SubscriptionPricingSourceProduct_Entitlements_Content_ProLabs_Item  `json:"pro_labs,omitempty"`
+	AdditionalProperties map[string]interface{}                                                `json:"-"`
+}
+
+// SubscriptionPricingSourceProduct_Entitlements defines model for SubscriptionPricingSourceProduct.Entitlements.
+type SubscriptionPricingSourceProduct_Entitlements struct {
+	Content              SubscriptionPricingSourceProduct_Entitlements_Content `json:"content,omitempty"`
+	AdditionalProperties map[string]interface{}                                `json:"-"`
+}
+
+// SubscriptionPricingSourceProductGroupsItem Subscription product group.
+type SubscriptionPricingSourceProductGroupsItem struct {
+	Name                 string                             `json:"name,omitempty"`
+	Products             []SubscriptionPricingSourceProduct `json:"products,omitempty"`
+	AdditionalProperties map[string]interface{}             `json:"-"`
+}
+
+// SubscriptionPricingSourceResponse Subscription pricing and default currency.
+type SubscriptionPricingSourceResponse struct {
+	DefaultCurrency      string                                       `json:"default_currency,omitempty"`
+	ProductGroups        []SubscriptionPricingSourceProductGroupsItem `json:"product_groups,omitempty"`
+	AdditionalProperties map[string]interface{}                       `json:"-"`
+}
+
 // UniversitiesData defines model for UniversitiesData.
 type UniversitiesData = []UniversitiesItem
 
@@ -829,352 +1669,419 @@ type UniversityStatsResponse struct {
 	TotalPoints     int    `json:"total_points"`
 }
 
-// UserDashboardChallenge Summary information for a challenge card surfaced on dashboard endpoints.
+// UserDashboardChallenge Dashboard challenge.
 type UserDashboardChallenge struct {
 	// Avatar Relative asset path for the challenge category icon.
-	Avatar string `json:"avatar"`
+	Avatar string `json:"avatar,omitempty"`
 
 	// AvatarUrl Absolute URL for the challenge avatar.
-	AvatarUrl string `json:"avatarUrl"`
+	AvatarUrl string `json:"avatarUrl,omitempty"`
 
 	// CategoryID Numerical identifier for the challenge category.
-	CategoryID int `json:"categoryID"`
+	CategoryID int `json:"categoryID,omitempty"`
 
 	// CategoryName Name of the challenge category.
-	CategoryName string `json:"categoryName"`
+	CategoryName string `json:"categoryName,omitempty"`
 
 	// Difficulty Challenge difficulty label.
-	Difficulty       string `json:"difficulty"`
-	ExperiencePoints int    `json:"experiencePoints"`
+	Difficulty       string `json:"difficulty,omitempty"`
+	ExperiencePoints int    `json:"experiencePoints,omitempty"`
 
 	// Id Challenge identifier.
-	Id int `json:"id"`
+	Id int `json:"id,omitempty"`
 
 	// Name Challenge display name.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// Points Points available for the challenge.
-	Points int `json:"points"`
+	Points UserDashboardChallenge_Points `json:"points,omitempty"`
 
 	// Progress Completion percentage for the challenge if applicable.
-	Progress int `json:"progress"`
+	Progress UserDashboardChallenge_Progress `json:"progress,omitempty"`
 
 	// Rating Average user rating for the challenge.
-	Rating float32 `json:"rating"`
+	Rating float32 `json:"rating,omitempty"`
 
 	// RatingCount Number of rating submissions.
-	RatingCount int `json:"ratingCount"`
+	RatingCount int `json:"ratingCount,omitempty"`
 
 	// Status Availability label such as vip.
-	Status string `json:"status"`
-
-	// Type Resource type label (e.g., Retired Challenge).
-	Type string `json:"type"`
+	Status UserDashboardChallenge_Status `json:"status,omitempty"`
+	Type   string                        `json:"type,omitempty"`
 
 	// Url Relative link to the challenge page.
-	Url string `json:"url"`
+	Url string `json:"url,omitempty"`
 
 	// UrlName Challenge slug used in URLs.
-	UrlName string `json:"urlName"`
+	UrlName              string                 `json:"urlName,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UserDashboardCollections Collections returned by dashboard endpoints such as favorites, in progress, and recommended.
+// UserDashboardChallengePoints0 defines model for .
+type UserDashboardChallengePoints0 = int
+
+// UserDashboardChallengePoints1 defines model for .
+type UserDashboardChallengePoints1 = map[string]interface{}
+
+// UserDashboardChallenge_Points Points available for the challenge.
+type UserDashboardChallenge_Points struct {
+	union json.RawMessage
+}
+
+// UserDashboardChallengeProgress0 defines model for .
+type UserDashboardChallengeProgress0 = int
+
+// UserDashboardChallengeProgress1 defines model for .
+type UserDashboardChallengeProgress1 = map[string]interface{}
+
+// UserDashboardChallenge_Progress Completion percentage for the challenge if applicable.
+type UserDashboardChallenge_Progress struct {
+	union json.RawMessage
+}
+
+// UserDashboardChallengeStatus0 defines model for .
+type UserDashboardChallengeStatus0 = string
+
+// UserDashboardChallengeStatus1 defines model for .
+type UserDashboardChallengeStatus1 = map[string]interface{}
+
+// UserDashboardChallenge_Status Availability label such as vip.
+type UserDashboardChallenge_Status struct {
+	union json.RawMessage
+}
+
+// UserDashboardCollections Dashboard content grouped by content kind.
 type UserDashboardCollections struct {
 	// Challenges Challenge cards curated for the user.
-	Challenges []UserDashboardChallenge `json:"challenges"`
+	Challenges []UserDashboardChallenge `json:"challenges,omitempty"`
 
 	// Fortresses Fortresses relevant to the dashboard view.
-	Fortresses []UserDashboardFortress `json:"fortresses"`
+	Fortresses []UserDashboardFortress `json:"fortresses,omitempty"`
 
 	// Machines Machines relevant to the dashboard section.
-	Machines []UserDashboardMachine `json:"machines"`
+	Machines []UserDashboardMachine `json:"machines,omitempty"`
 
 	// ProLabs Pro Lab recommendations or progress items.
-	ProLabs []UserDashboardProlab `json:"proLabs"`
+	ProLabs []UserDashboardProlab `json:"proLabs,omitempty"`
 
 	// Sherlocks Sherlock investigations that match the dashboard filter.
-	Sherlocks []UserDashboardSherlock `json:"sherlocks"`
+	Sherlocks []UserDashboardSherlock `json:"sherlocks,omitempty"`
 
 	// StartingPoints Starting Point tiers associated with the user.
-	StartingPoints []UserDashboardStartingPoint `json:"startingPoints"`
+	StartingPoints []UserDashboardStartingPoint `json:"startingPoints,omitempty"`
 
 	// Tracks Tracks highlighted for the user.
-	Tracks []UserDashboardTrack `json:"tracks"`
+	Tracks []UserDashboardTrack `json:"tracks,omitempty"`
 }
 
-// UserDashboardFortress Summary information for fortress cards surfaced on dashboard views.
+// UserDashboardFortress Dashboard fortress.
 type UserDashboardFortress struct {
 	// AvatarUrl Absolute URL for the fortress avatar.
-	AvatarUrl string `json:"avatarUrl"`
+	AvatarUrl string `json:"avatarUrl,omitempty"`
 
 	// Id Fortress identifier.
-	Id int `json:"id"`
+	Id int `json:"id,omitempty"`
 
 	// Name Fortress display name.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// Points Points available for the fortress.
-	Points int `json:"points"`
+	Points int `json:"points,omitempty"`
 
 	// Progress Completion percentage for the fortress.
-	Progress int `json:"progress"`
+	Progress int `json:"progress,omitempty"`
 
 	// SolvesCount Number of user solves recorded.
-	SolvesCount int `json:"solvesCount"`
+	SolvesCount int `json:"solvesCount,omitempty"`
 
 	// TasksCompleted Completed fortress tasks.
-	TasksCompleted int `json:"tasksCompleted"`
+	TasksCompleted int `json:"tasksCompleted,omitempty"`
 
 	// TasksTotal Total fortress tasks.
-	TasksTotal int `json:"tasksTotal"`
+	TasksTotal int `json:"tasksTotal,omitempty"`
 
 	// Type Resource type label (e.g., Fortress).
-	Type string `json:"type"`
+	Type string `json:"type,omitempty"`
 }
 
-// UserDashboardMachine Summary information for a machine card shown on dashboard endpoints.
+// UserDashboardMachine Dashboard machine.
 type UserDashboardMachine struct {
 	// Avatar Relative asset path for the machine avatar.
-	Avatar string `json:"avatar"`
+	Avatar string `json:"avatar,omitempty"`
 
 	// AvatarUrl Absolute URL for the machine avatar.
-	AvatarUrl string `json:"avatarUrl"`
+	AvatarUrl string `json:"avatarUrl,omitempty"`
 
 	// Difficulty Difficulty label as shown in the UI.
-	Difficulty       string `json:"difficulty"`
-	ExperiencePoints int    `json:"experiencePoints"`
+	Difficulty       string `json:"difficulty,omitempty"`
+	ExperiencePoints int    `json:"experiencePoints,omitempty"`
 
 	// Guided Whether the machine is part of a guided experience.
-	Guided bool `json:"guided"`
+	Guided bool `json:"guided,omitempty"`
 
 	// Id Internal machine identifier.
-	Id int `json:"id"`
+	Id int `json:"id,omitempty"`
 
 	// Name Machine display name.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// Os Operating system of the machine.
-	Os string `json:"os"`
+	Os string `json:"os,omitempty"`
 
 	// Points Points awarded for the machine.
-	Points int `json:"points"`
+	Points UserDashboardMachine_Points `json:"points,omitempty"`
 
 	// Progress Overall completion percentage.
-	Progress int `json:"progress"`
+	Progress int `json:"progress,omitempty"`
 
 	// Rating Average user rating.
-	Rating float32 `json:"rating"`
+	Rating float32 `json:"rating,omitempty"`
 
 	// RatingCount Number of ratings submitted.
-	RatingCount int `json:"ratingCount"`
-
-	// RootFlag Indicates whether the user captured the root flag.
-	RootFlag bool `json:"root_flag"`
+	RatingCount int  `json:"ratingCount,omitempty"`
+	RootFlag    bool `json:"root_flag,omitempty"`
 
 	// Status Subscription requirement or availability label.
-	Status string `json:"status"`
+	Status UserDashboardMachine_Status `json:"status,omitempty"`
 
 	// TasksCompleted Tasks completed within the machine entry.
-	TasksCompleted int `json:"tasksCompleted"`
+	TasksCompleted int `json:"tasksCompleted,omitempty"`
 
 	// TasksTotal Total tasks available for the machine entry.
-	TasksTotal int `json:"tasksTotal"`
+	TasksTotal int `json:"tasksTotal,omitempty"`
 
 	// Type Machine status label (e.g., Active Machine).
-	Type string `json:"type"`
+	Type string `json:"type,omitempty"`
 
 	// Url Relative link to the machine detail page.
-	Url string `json:"url"`
-
-	// UserFlag Indicates whether the user captured the user flag.
-	UserFlag bool `json:"user_flag"`
+	Url                  string                 `json:"url,omitempty"`
+	UserFlag             bool                   `json:"user_flag,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UserDashboardProlab Summary information for Pro Lab entries shown on dashboard endpoints.
+// UserDashboardMachinePoints0 defines model for .
+type UserDashboardMachinePoints0 = int
+
+// UserDashboardMachinePoints1 defines model for .
+type UserDashboardMachinePoints1 = map[string]interface{}
+
+// UserDashboardMachine_Points Points awarded for the machine.
+type UserDashboardMachine_Points struct {
+	union json.RawMessage
+}
+
+// UserDashboardMachineStatus0 defines model for .
+type UserDashboardMachineStatus0 = string
+
+// UserDashboardMachineStatus1 defines model for .
+type UserDashboardMachineStatus1 = map[string]interface{}
+
+// UserDashboardMachine_Status Subscription requirement or availability label.
+type UserDashboardMachine_Status struct {
+	union json.RawMessage
+}
+
+// UserDashboardProlab Dashboard Pro Lab.
 type UserDashboardProlab struct {
 	// Avatar Relative asset path for the lab image.
-	Avatar string `json:"avatar"`
+	Avatar string `json:"avatar,omitempty"`
 
 	// AvatarUrl Absolute URL for the lab image.
-	AvatarUrl string `json:"avatarUrl"`
+	AvatarUrl string `json:"avatarUrl,omitempty"`
 
 	// CategoryName Track or certification name associated with the lab.
-	CategoryName string `json:"categoryName"`
+	CategoryName string `json:"categoryName,omitempty"`
 
 	// Difficulty Reported difficulty for the lab.
-	Difficulty string `json:"difficulty"`
+	Difficulty string `json:"difficulty,omitempty"`
 
 	// Id Pro Lab identifier.
-	Id int `json:"id"`
+	Id int `json:"id,omitempty"`
 
 	// Identifier Short identifier or slug.
-	Identifier string `json:"identifier"`
+	Identifier string `json:"identifier,omitempty"`
 
 	// Mini Is item a mini-prolab or not
-	Mini bool `json:"mini"`
+	Mini bool `json:"mini,omitempty"`
 
 	// Name Pro Lab display name.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// Progress Completion percentage inside the lab.
-	Progress int `json:"progress"`
+	Progress int `json:"progress,omitempty"`
 
 	// Rating Average participant rating.
-	Rating float32 `json:"rating"`
+	Rating float32 `json:"rating,omitempty"`
 
 	// RatingCount Number of participant ratings.
-	RatingCount int `json:"ratingCount"`
+	RatingCount int    `json:"ratingCount,omitempty"`
+	Status      string `json:"status,omitempty"`
 
 	// TasksCompleted Completed task count.
-	TasksCompleted int `json:"tasksCompleted"`
+	TasksCompleted int `json:"tasksCompleted,omitempty"`
 
 	// TasksTotal Total task count.
-	TasksTotal int `json:"tasksTotal"`
-
-	// Type Resource type label (e.g., Pro Lab).
-	Type string `json:"type"`
+	TasksTotal int    `json:"tasksTotal,omitempty"`
+	Type       string `json:"type,omitempty"`
 
 	// Url Relative link to the Pro Lab overview.
-	Url string `json:"url"`
+	Url                  string                 `json:"url,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UserDashboardSherlock Summary information for Sherlock investigations displayed in dashboard feeds.
+// UserDashboardSherlock Dashboard Sherlock.
 type UserDashboardSherlock struct {
 	// Avatar Relative asset path for the Sherlock image.
-	Avatar string `json:"avatar"`
+	Avatar string `json:"avatar,omitempty"`
 
 	// AvatarUrl Absolute URL for the Sherlock image.
-	AvatarUrl string `json:"avatarUrl"`
+	AvatarUrl string `json:"avatarUrl,omitempty"`
 
 	// CategoryID Numerical identifier for the Sherlock category.
-	CategoryID int `json:"categoryID"`
+	CategoryID int `json:"categoryID,omitempty"`
 
 	// CategoryName Human readable category label.
-	CategoryName string `json:"categoryName"`
+	CategoryName string `json:"categoryName,omitempty"`
 
 	// Difficulty Difficulty rating for the Sherlock.
-	Difficulty string `json:"difficulty"`
+	Difficulty       string `json:"difficulty,omitempty"`
+	ExperiencePoints int    `json:"experiencePoints,omitempty"`
 
 	// Id Sherlock identifier.
-	Id int `json:"id"`
+	Id int `json:"id,omitempty"`
 
 	// Name Sherlock display name.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// Progress Completion percentage.
-	Progress int `json:"progress"`
+	Progress int `json:"progress,omitempty"`
 
 	// Rating Average user rating.
-	Rating float32 `json:"rating"`
+	Rating float32 `json:"rating,omitempty"`
 
 	// RatingCount Count of user ratings.
-	RatingCount int `json:"ratingCount"`
+	RatingCount int `json:"ratingCount,omitempty"`
 
 	// Status Availability label.
-	Status string `json:"status"`
+	Status UserDashboardSherlock_Status `json:"status,omitempty"`
 
 	// TasksCompleted Number of Sherlock tasks completed.
-	TasksCompleted int `json:"tasksCompleted"`
+	TasksCompleted int `json:"tasksCompleted,omitempty"`
 
 	// TasksTotal Total Sherlock tasks available.
-	TasksTotal int `json:"tasksTotal"`
-
-	// Type Resource type label (e.g., Retired Sherlock).
-	Type string `json:"type"`
+	TasksTotal int    `json:"tasksTotal,omitempty"`
+	Type       string `json:"type,omitempty"`
 
 	// Url Relative link to the Sherlock page.
-	Url string `json:"url"`
+	Url string `json:"url,omitempty"`
 
 	// UrlName Sherlock slug used in URLs.
-	UrlName string `json:"urlName"`
+	UrlName              string                 `json:"urlName,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
-// UserDashboardStartingPoint Summary information for a Starting Point tier card.
+// UserDashboardSherlockStatus0 defines model for .
+type UserDashboardSherlockStatus0 = string
+
+// UserDashboardSherlockStatus1 defines model for .
+type UserDashboardSherlockStatus1 = map[string]interface{}
+
+// UserDashboardSherlock_Status Availability label.
+type UserDashboardSherlock_Status struct {
+	union json.RawMessage
+}
+
+// UserDashboardStartingPoint Dashboard Starting Point content.
 type UserDashboardStartingPoint struct {
 	// Avatar Relative asset path for the tier avatar.
-	Avatar string `json:"avatar"`
+	Avatar string `json:"avatar,omitempty"`
 
 	// AvatarUrl Absolute URL to the tier avatar.
-	AvatarUrl string `json:"avatarUrl"`
+	AvatarUrl string `json:"avatarUrl,omitempty"`
 
 	// CompletionPercentage Overall completion percentage for the tier.
-	CompletionPercentage int `json:"completionPercentage"`
+	CompletionPercentage int `json:"completionPercentage,omitempty"`
 
 	// Description Short tier description shown in the dashboard.
-	Description string `json:"description"`
+	Description string `json:"description,omitempty"`
 
 	// FreeMachineCompletionPercentage Completion percentage for free machines within the tier.
-	FreeMachineCompletionPercentage int `json:"freeMachineCompletionPercentage"`
+	FreeMachineCompletionPercentage int `json:"freeMachineCompletionPercentage,omitempty"`
 
 	// Id Tier identifier.
-	Id int `json:"id"`
+	Id int `json:"id,omitempty"`
 
 	// Name Tier display name.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// Progress Percentage progress toward finishing the tier.
-	Progress int `json:"progress"`
+	Progress int `json:"progress,omitempty"`
 
 	// TasksCompleted Number of tasks completed.
-	TasksCompleted int `json:"tasksCompleted"`
+	TasksCompleted int `json:"tasksCompleted,omitempty"`
 
 	// TasksTotal Total number of tasks available.
-	TasksTotal int `json:"tasksTotal"`
+	TasksTotal int `json:"tasksTotal,omitempty"`
 
 	// Type Resource type label (e.g., Starting Point).
-	Type string `json:"type"`
+	Type string `json:"type,omitempty"`
 }
 
-// UserDashboardTrack Summary information for track cards surfaced on dashboard views.
+// UserDashboardTrack Dashboard track.
 type UserDashboardTrack struct {
 	// Avatar Relative asset path for the track image.
-	Avatar string `json:"avatar"`
+	Avatar string `json:"avatar,omitempty"`
 
 	// AvatarUrl Absolute URL for the track image.
-	AvatarUrl string `json:"avatarUrl"`
+	AvatarUrl string `json:"avatarUrl,omitempty"`
 
 	// Difficulty Difficulty level assigned to the track.
-	Difficulty string `json:"difficulty"`
+	Difficulty string `json:"difficulty,omitempty"`
 
 	// Id Track identifier.
-	Id int `json:"id"`
+	Id int `json:"id,omitempty"`
 
 	// LikeCount Number of likes.
-	LikeCount int `json:"likeCount"`
+	LikeCount int `json:"likeCount,omitempty"`
 
 	// Name Track display name.
-	Name string `json:"name"`
+	Name string `json:"name,omitempty"`
 
 	// Progress Completion percentage inside the track.
-	Progress int `json:"progress"`
+	Progress int `json:"progress,omitempty"`
 
 	// TasksCompleted Number of completed tasks.
-	TasksCompleted int `json:"tasksCompleted"`
+	TasksCompleted int `json:"tasksCompleted,omitempty"`
 
 	// TasksTotal Total number of tasks.
-	TasksTotal int `json:"tasksTotal"`
-
-	// Type Resource type label (e.g., Track).
-	Type string `json:"type"`
+	TasksTotal int    `json:"tasksTotal,omitempty"`
+	Type       string `json:"type,omitempty"`
 
 	// Url Relative link to the track landing page.
-	Url string `json:"url"`
+	Url                  string                 `json:"url,omitempty"`
+	AdditionalProperties map[string]interface{} `json:"-"`
 }
 
 // UserProfileActivityBase defines model for UserProfileActivityBase.
 type UserProfileActivityBase struct {
-	Avatar  string    `json:"avatar,omitempty"`
-	Blood   bool      `json:"blood,omitempty"`
-	Id      int       `json:"id"`
-	Name    string    `json:"name"`
-	OwnDate time.Time `json:"ownDate"`
-	Points  int       `json:"points"`
-	Type    string    `json:"type"`
+	Avatar string `json:"avatar,omitempty"`
+
+	// AvatarUrl Avatar URL for the activity entry.
+	AvatarUrl string    `json:"avatarUrl,omitempty"`
+	Blood     bool      `json:"blood,omitempty"`
+	Id        int       `json:"id"`
+	Name      string    `json:"name"`
+	OwnDate   time.Time `json:"ownDate"`
+	Points    int       `json:"points"`
+	Type      string    `json:"type"`
 }
 
 // UserProfileActivityChallenge defines model for UserProfileActivityChallenge.
 type UserProfileActivityChallenge struct {
-	Avatar       string                           `json:"avatar,omitempty"`
+	Avatar string `json:"avatar,omitempty"`
+
+	// AvatarUrl Avatar URL for the activity entry.
+	AvatarUrl    string                           `json:"avatarUrl,omitempty"`
 	Blood        bool                             `json:"blood"`
 	CategoryName string                           `json:"categoryName"`
 	Id           int                              `json:"id"`
@@ -1192,7 +2099,10 @@ type UserProfileActivityData = []UserProfileActivityItem
 
 // UserProfileActivityFortress defines model for UserProfileActivityFortress.
 type UserProfileActivityFortress struct {
-	Avatar       string                          `json:"avatar,omitempty"`
+	Avatar string `json:"avatar,omitempty"`
+
+	// AvatarUrl Avatar URL for the activity entry.
+	AvatarUrl    string                          `json:"avatarUrl,omitempty"`
 	Blood        bool                            `json:"blood,omitempty"`
 	FortressId   int                             `json:"fortressId"`
 	FortressName string                          `json:"fortressName"`
@@ -1213,24 +2123,30 @@ type UserProfileActivityItem struct {
 
 // UserProfileActivityMachineBase defines model for UserProfileActivityMachineBase.
 type UserProfileActivityMachineBase struct {
-	Avatar  string    `json:"avatar,omitempty"`
-	Blood   bool      `json:"blood"`
-	Id      int       `json:"id"`
-	Name    string    `json:"name"`
-	OwnDate time.Time `json:"ownDate"`
-	Points  int       `json:"points"`
-	Type    string    `json:"type"`
+	Avatar string `json:"avatar,omitempty"`
+
+	// AvatarUrl Avatar URL for the activity entry.
+	AvatarUrl string    `json:"avatarUrl,omitempty"`
+	Blood     bool      `json:"blood"`
+	Id        int       `json:"id"`
+	Name      string    `json:"name"`
+	OwnDate   time.Time `json:"ownDate"`
+	Points    int       `json:"points"`
+	Type      string    `json:"type"`
 }
 
 // UserProfileActivityMachineOwn defines model for UserProfileActivityMachineOwn.
 type UserProfileActivityMachineOwn struct {
-	Avatar  string                            `json:"avatar,omitempty"`
-	Blood   bool                              `json:"blood"`
-	Id      int                               `json:"id"`
-	Name    string                            `json:"name"`
-	OwnDate time.Time                         `json:"ownDate"`
-	Points  int                               `json:"points"`
-	Type    UserProfileActivityMachineOwnType `json:"type"`
+	Avatar string `json:"avatar,omitempty"`
+
+	// AvatarUrl Avatar URL for the activity entry.
+	AvatarUrl string                            `json:"avatarUrl,omitempty"`
+	Blood     bool                              `json:"blood"`
+	Id        int                               `json:"id"`
+	Name      string                            `json:"name"`
+	OwnDate   time.Time                         `json:"ownDate"`
+	Points    int                               `json:"points"`
+	Type      UserProfileActivityMachineOwnType `json:"type"`
 }
 
 // UserProfileActivityMachineOwnType defines model for UserProfileActivityMachineOwn.Type.
@@ -1238,7 +2154,10 @@ type UserProfileActivityMachineOwnType string
 
 // UserProfileActivityProlab defines model for UserProfileActivityProlab.
 type UserProfileActivityProlab struct {
-	Avatar           string                        `json:"avatar,omitempty"`
+	Avatar string `json:"avatar,omitempty"`
+
+	// AvatarUrl Avatar URL for the activity entry.
+	AvatarUrl        string                        `json:"avatarUrl,omitempty"`
 	Blood            bool                          `json:"blood,omitempty"`
 	Id               int                           `json:"id"`
 	Name             string                        `json:"name"`
@@ -1261,13 +2180,16 @@ type UserProfileActivityResponse struct {
 
 // UserProfileActivitySherlock defines model for UserProfileActivitySherlock.
 type UserProfileActivitySherlock struct {
-	Avatar  string                          `json:"avatar,omitempty"`
-	Blood   bool                            `json:"blood,omitempty"`
-	Id      int                             `json:"id"`
-	Name    string                          `json:"name"`
-	OwnDate time.Time                       `json:"ownDate"`
-	Points  int                             `json:"points"`
-	Type    UserProfileActivitySherlockType `json:"type"`
+	Avatar string `json:"avatar,omitempty"`
+
+	// AvatarUrl Avatar URL for the activity entry.
+	AvatarUrl string                          `json:"avatarUrl,omitempty"`
+	Blood     bool                            `json:"blood,omitempty"`
+	Id        int                             `json:"id"`
+	Name      string                          `json:"name"`
+	OwnDate   time.Time                       `json:"ownDate"`
+	Points    int                             `json:"points"`
+	Type      UserProfileActivitySherlockType `json:"type"`
 }
 
 // UserProfileActivitySherlockType defines model for UserProfileActivitySherlock.Type.
@@ -1386,7 +2308,7 @@ type UserProfileContentResponse struct {
 	Meta MetaAlt                `json:"meta"`
 }
 
-// VirtualMachineActiveInfo Schema definition for active virtual machine information
+// VirtualMachineActiveInfo Active virtual machine details.
 type VirtualMachineActiveInfo struct {
 	Avatar        string `json:"avatar"`
 	AvatarUrl     string `json:"avatar_url"`
@@ -1401,10 +2323,13 @@ type VirtualMachineActiveInfo struct {
 	VpnServerType string `json:"vpn_server_type"`
 }
 
-// VirtualMachineActiveResponse Schema definition for Virtual Machine Active responses
+// VirtualMachineActiveResponse Active virtual machine details, or null when no VM is active.
 type VirtualMachineActiveResponse struct {
 	Info VirtualMachineActiveResponse_Info `json:"info"`
 }
+
+// VirtualMachineActiveResponseInfo1 defines model for .
+type VirtualMachineActiveResponseInfo1 = map[string]interface{}
 
 // VirtualMachineActiveResponse_Info defines model for VirtualMachineActiveResponse.Info.
 type VirtualMachineActiveResponse_Info struct {
@@ -1429,6 +2354,33 @@ type Page = int
 // PerPage defines model for PerPage.
 type PerPage = int
 
+// SeasonId defines model for SeasonId.
+type SeasonId = int
+
+// SeasonLeaderboardCountry defines model for SeasonLeaderboardCountry.
+type SeasonLeaderboardCountry = string
+
+// SeasonLeaderboardEntity defines model for SeasonLeaderboardEntity.
+type SeasonLeaderboardEntity string
+
+// SeasonLeaderboardFlavor defines model for SeasonLeaderboardFlavor.
+type SeasonLeaderboardFlavor string
+
+// SeasonLeaderboardKeyword defines model for SeasonLeaderboardKeyword.
+type SeasonLeaderboardKeyword = string
+
+// SeasonLeaderboardLeagueRank defines model for SeasonLeaderboardLeagueRank.
+type SeasonLeaderboardLeagueRank = string
+
+// SeasonLeaderboardPage defines model for SeasonLeaderboardPage.
+type SeasonLeaderboardPage = int
+
+// SeasonLeaderboardPerPage defines model for SeasonLeaderboardPerPage.
+type SeasonLeaderboardPerPage = int
+
+// SeasonLeaderboardTopNumber defines model for SeasonLeaderboardTopNumber.
+type SeasonLeaderboardTopNumber = int
+
 // ShowCompleted defines model for ShowCompleted.
 type ShowCompleted string
 
@@ -1447,8 +2399,20 @@ type State = []string
 // Todo defines model for Todo.
 type Todo int
 
+// UniversityCountryCode defines model for UniversityCountryCode.
+type UniversityCountryCode = string
+
 // UniversityId defines model for UniversityId.
 type UniversityId = int
+
+// UniversityName defines model for UniversityName.
+type UniversityName = string
+
+// UniversitySortBy defines model for UniversitySortBy.
+type UniversitySortBy = string
+
+// UniversitySortType defines model for UniversitySortType.
+type UniversitySortType string
 
 // UserId defines model for UserId.
 type UserId = int
@@ -1459,13 +2423,13 @@ type UserProfileContentType string
 // MachineOwn400Response Schema definition for Own Error Response
 type MachineOwn400Response = MachineOwnErrorResponse
 
-// UserDashboardFavoritesResponse Collections returned by dashboard endpoints such as favorites, in progress, and recommended.
+// UserDashboardFavoritesResponse Dashboard content grouped by content kind.
 type UserDashboardFavoritesResponse = UserDashboardCollections
 
-// UserDashboardInProgressResponse Collections returned by dashboard endpoints such as favorites, in progress, and recommended.
+// UserDashboardInProgressResponse Dashboard content grouped by content kind.
 type UserDashboardInProgressResponse = UserDashboardCollections
 
-// UserDashboardRecommendedResponse Collections returned by dashboard endpoints such as favorites, in progress, and recommended.
+// UserDashboardRecommendedResponse Dashboard content grouped by content kind.
 type UserDashboardRecommendedResponse = UserDashboardCollections
 
 // bearerContextKey is the context key for bearer security scheme
@@ -1492,7 +2456,7 @@ type GetMachinesParams struct {
 	Os *Os `form:"os[],omitempty" json:"os[],omitempty"`
 
 	// ShowCompleted Omit for both
-	ShowCompleted *GetMachinesParamsShowCompleted `form:"show_completed,omitempty" json:"show_completed,omitempty"`
+	ShowCompleted *GetMachinesParamsShowCompleted `form:"showCompleted,omitempty" json:"showCompleted,omitempty"`
 
 	// SortBy Field to sort by
 	SortBy *GetMachinesParamsSortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
@@ -1537,6 +2501,54 @@ type GetMachinesParamsTodo int
 // GetMachinesParamsSpTier defines parameters for GetMachines.
 type GetMachinesParamsSpTier int
 
+// GetSeasonLeaderboardParams defines parameters for GetSeasonLeaderboard.
+type GetSeasonLeaderboardParams struct {
+	// Entity Whether to rank players or teams.
+	Entity *GetSeasonLeaderboardParamsEntity `form:"entity,omitempty" json:"entity,omitempty"`
+
+	// SeasonFlavor League to rank. Use `red` for offensive, `blue` for defensive, or `purple` for combined.
+	SeasonFlavor *GetSeasonLeaderboardParamsSeasonFlavor `form:"seasonFlavor,omitempty" json:"seasonFlavor,omitempty"`
+
+	// Country Filter by country.
+	Country *SeasonLeaderboardCountry `form:"country,omitempty" json:"country,omitempty"`
+
+	// Keyword Search term.
+	Keyword *SeasonLeaderboardKeyword `form:"keyword,omitempty" json:"keyword,omitempty"`
+
+	// LeagueRank Filter by league tier.
+	LeagueRank *SeasonLeaderboardLeagueRank `form:"league_rank,omitempty" json:"league_rank,omitempty"`
+
+	// Page Page number.
+	Page *SeasonLeaderboardPage `form:"page,omitempty" json:"page,omitempty"`
+
+	// PerPage Number of entries per page.
+	PerPage *SeasonLeaderboardPerPage `form:"per_page,omitempty" json:"per_page,omitempty"`
+}
+
+// GetSeasonLeaderboardParamsEntity defines parameters for GetSeasonLeaderboard.
+type GetSeasonLeaderboardParamsEntity string
+
+// GetSeasonLeaderboardParamsSeasonFlavor defines parameters for GetSeasonLeaderboard.
+type GetSeasonLeaderboardParamsSeasonFlavor string
+
+// GetSeasonLeaderboardTopParams defines parameters for GetSeasonLeaderboardTop.
+type GetSeasonLeaderboardTopParams struct {
+	// Entity Whether to rank players or teams.
+	Entity *GetSeasonLeaderboardTopParamsEntity `form:"entity,omitempty" json:"entity,omitempty"`
+
+	// SeasonFlavor League to rank. Use `red` for offensive, `blue` for defensive, or `purple` for combined.
+	SeasonFlavor *GetSeasonLeaderboardTopParamsSeasonFlavor `form:"seasonFlavor,omitempty" json:"seasonFlavor,omitempty"`
+
+	// Number Number of top-ranked entries to return.
+	Number *SeasonLeaderboardTopNumber `form:"number,omitempty" json:"number,omitempty"`
+}
+
+// GetSeasonLeaderboardTopParamsEntity defines parameters for GetSeasonLeaderboardTop.
+type GetSeasonLeaderboardTopParamsEntity string
+
+// GetSeasonLeaderboardTopParamsSeasonFlavor defines parameters for GetSeasonLeaderboardTop.
+type GetSeasonLeaderboardTopParamsSeasonFlavor string
+
 // GetUniversitiesParams defines parameters for GetUniversities.
 type GetUniversitiesParams struct {
 	// PerPage Limit results per page
@@ -1544,7 +2556,22 @@ type GetUniversitiesParams struct {
 
 	// Page Page number
 	Page *Page `form:"page,omitempty" json:"page,omitempty"`
+
+	// Name Filter universities by name.
+	Name *UniversityName `form:"name,omitempty" json:"name,omitempty"`
+
+	// CountryCode Filter universities by country code.
+	CountryCode *UniversityCountryCode `form:"country_code,omitempty" json:"country_code,omitempty"`
+
+	// SortBy Field to sort by, such as `name`, `respected_by_count`, or `users_count`.
+	SortBy *UniversitySortBy `form:"sort_by,omitempty" json:"sort_by,omitempty"`
+
+	// SortType Sort direction.
+	SortType *GetUniversitiesParamsSortType `form:"sort_type,omitempty" json:"sort_type,omitempty"`
 }
+
+// GetUniversitiesParamsSortType defines parameters for GetUniversities.
+type GetUniversitiesParamsSortType string
 
 // GetUserProfileActivityParams defines parameters for GetUserProfileActivity.
 type GetUserProfileActivityParams struct {
@@ -1575,6 +2602,7429 @@ type PostMachineOwnJSONRequestBody = MachineOwnRequest
 
 // PostMachineOwnFormdataRequestBody defines body for PostMachineOwn for application/x-www-form-urlencoded ContentType.
 type PostMachineOwnFormdataRequestBody = MachineOwnRequest
+
+// Getter for additional properties for SeasonActiveContentItem. Returns the specified
+// element and whether it was found
+func (a SeasonActiveContentItem) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonActiveContentItem
+func (a *SeasonActiveContentItem) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonActiveContentItem to handle AdditionalProperties
+func (a *SeasonActiveContentItem) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["auth_user_has_root_blood"]; found {
+		err = json.Unmarshal(raw, &a.AuthUserHasRootBlood)
+		if err != nil {
+			return fmt.Errorf("error reading 'auth_user_has_root_blood': %w", err)
+		}
+		delete(object, "auth_user_has_root_blood")
+	}
+
+	if raw, found := object["auth_user_has_user_blood"]; found {
+		err = json.Unmarshal(raw, &a.AuthUserHasUserBlood)
+		if err != nil {
+			return fmt.Errorf("error reading 'auth_user_has_user_blood': %w", err)
+		}
+		delete(object, "auth_user_has_user_blood")
+	}
+
+	if raw, found := object["auth_user_number_of_flags"]; found {
+		err = json.Unmarshal(raw, &a.AuthUserNumberOfFlags)
+		if err != nil {
+			return fmt.Errorf("error reading 'auth_user_number_of_flags': %w", err)
+		}
+		delete(object, "auth_user_number_of_flags")
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["blood_points"]; found {
+		err = json.Unmarshal(raw, &a.BloodPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'blood_points': %w", err)
+		}
+		delete(object, "blood_points")
+	}
+
+	if raw, found := object["category"]; found {
+		err = json.Unmarshal(raw, &a.Category)
+		if err != nil {
+			return fmt.Errorf("error reading 'category': %w", err)
+		}
+		delete(object, "category")
+	}
+
+	if raw, found := object["content_id"]; found {
+		err = json.Unmarshal(raw, &a.ContentId)
+		if err != nil {
+			return fmt.Errorf("error reading 'content_id': %w", err)
+		}
+		delete(object, "content_id")
+	}
+
+	if raw, found := object["difficulty_text"]; found {
+		err = json.Unmarshal(raw, &a.DifficultyText)
+		if err != nil {
+			return fmt.Errorf("error reading 'difficulty_text': %w", err)
+		}
+		delete(object, "difficulty_text")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["is_owned"]; found {
+		err = json.Unmarshal(raw, &a.IsOwned)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned': %w", err)
+		}
+		delete(object, "is_owned")
+	}
+
+	if raw, found := object["is_owned_root"]; found {
+		err = json.Unmarshal(raw, &a.IsOwnedRoot)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned_root': %w", err)
+		}
+		delete(object, "is_owned_root")
+	}
+
+	if raw, found := object["is_owned_user"]; found {
+		err = json.Unmarshal(raw, &a.IsOwnedUser)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned_user': %w", err)
+		}
+		delete(object, "is_owned_user")
+	}
+
+	if raw, found := object["is_released"]; found {
+		err = json.Unmarshal(raw, &a.IsReleased)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_released': %w", err)
+		}
+		delete(object, "is_released")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["number_of_flags"]; found {
+		err = json.Unmarshal(raw, &a.NumberOfFlags)
+		if err != nil {
+			return fmt.Errorf("error reading 'number_of_flags': %w", err)
+		}
+		delete(object, "number_of_flags")
+	}
+
+	if raw, found := object["os"]; found {
+		err = json.Unmarshal(raw, &a.Os)
+		if err != nil {
+			return fmt.Errorf("error reading 'os': %w", err)
+		}
+		delete(object, "os")
+	}
+
+	if raw, found := object["rating"]; found {
+		err = json.Unmarshal(raw, &a.Rating)
+		if err != nil {
+			return fmt.Errorf("error reading 'rating': %w", err)
+		}
+		delete(object, "rating")
+	}
+
+	if raw, found := object["rating_count"]; found {
+		err = json.Unmarshal(raw, &a.RatingCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'rating_count': %w", err)
+		}
+		delete(object, "rating_count")
+	}
+
+	if raw, found := object["release_time"]; found {
+		err = json.Unmarshal(raw, &a.ReleaseTime)
+		if err != nil {
+			return fmt.Errorf("error reading 'release_time': %w", err)
+		}
+		delete(object, "release_time")
+	}
+
+	if raw, found := object["root_blood_points"]; found {
+		err = json.Unmarshal(raw, &a.RootBloodPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_blood_points': %w", err)
+		}
+		delete(object, "root_blood_points")
+	}
+
+	if raw, found := object["root_own_points"]; found {
+		err = json.Unmarshal(raw, &a.RootOwnPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_own_points': %w", err)
+		}
+		delete(object, "root_own_points")
+	}
+
+	if raw, found := object["total_points"]; found {
+		err = json.Unmarshal(raw, &a.TotalPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_points': %w", err)
+		}
+		delete(object, "total_points")
+	}
+
+	if raw, found := object["type"]; found {
+		err = json.Unmarshal(raw, &a.Type)
+		if err != nil {
+			return fmt.Errorf("error reading 'type': %w", err)
+		}
+		delete(object, "type")
+	}
+
+	if raw, found := object["user_blood_points"]; found {
+		err = json.Unmarshal(raw, &a.UserBloodPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_blood_points': %w", err)
+		}
+		delete(object, "user_blood_points")
+	}
+
+	if raw, found := object["user_bloods"]; found {
+		err = json.Unmarshal(raw, &a.UserBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_bloods': %w", err)
+		}
+		delete(object, "user_bloods")
+	}
+
+	if raw, found := object["user_own_points"]; found {
+		err = json.Unmarshal(raw, &a.UserOwnPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_own_points': %w", err)
+		}
+		delete(object, "user_own_points")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonActiveContentItem to handle AdditionalProperties
+func (a SeasonActiveContentItem) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["auth_user_has_root_blood"], err = json.Marshal(a.AuthUserHasRootBlood)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'auth_user_has_root_blood': %w", err)
+	}
+
+	object["auth_user_has_user_blood"], err = json.Marshal(a.AuthUserHasUserBlood)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'auth_user_has_user_blood': %w", err)
+	}
+
+	object["auth_user_number_of_flags"], err = json.Marshal(a.AuthUserNumberOfFlags)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'auth_user_number_of_flags': %w", err)
+	}
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["blood_points"], err = json.Marshal(a.BloodPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'blood_points': %w", err)
+	}
+
+	object["category"], err = json.Marshal(a.Category)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'category': %w", err)
+	}
+
+	object["content_id"], err = json.Marshal(a.ContentId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'content_id': %w", err)
+	}
+
+	object["difficulty_text"], err = json.Marshal(a.DifficultyText)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'difficulty_text': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["is_owned"], err = json.Marshal(a.IsOwned)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned': %w", err)
+	}
+
+	object["is_owned_root"], err = json.Marshal(a.IsOwnedRoot)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned_root': %w", err)
+	}
+
+	object["is_owned_user"], err = json.Marshal(a.IsOwnedUser)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned_user': %w", err)
+	}
+
+	object["is_released"], err = json.Marshal(a.IsReleased)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_released': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["number_of_flags"], err = json.Marshal(a.NumberOfFlags)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'number_of_flags': %w", err)
+	}
+
+	object["os"], err = json.Marshal(a.Os)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'os': %w", err)
+	}
+
+	object["rating"], err = json.Marshal(a.Rating)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rating': %w", err)
+	}
+
+	object["rating_count"], err = json.Marshal(a.RatingCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rating_count': %w", err)
+	}
+
+	object["release_time"], err = json.Marshal(a.ReleaseTime)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'release_time': %w", err)
+	}
+
+	object["root_blood_points"], err = json.Marshal(a.RootBloodPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_blood_points': %w", err)
+	}
+
+	object["root_own_points"], err = json.Marshal(a.RootOwnPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_own_points': %w", err)
+	}
+
+	object["total_points"], err = json.Marshal(a.TotalPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_points': %w", err)
+	}
+
+	object["type"], err = json.Marshal(a.Type)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'type': %w", err)
+	}
+
+	object["user_blood_points"], err = json.Marshal(a.UserBloodPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_blood_points': %w", err)
+	}
+
+	if a.UserBloods != nil {
+		object["user_bloods"], err = json.Marshal(a.UserBloods)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'user_bloods': %w", err)
+		}
+	}
+
+	object["user_own_points"], err = json.Marshal(a.UserOwnPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_own_points': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonActiveContentItem_UserBloods_Item. Returns the specified
+// element and whether it was found
+func (a SeasonActiveContentItem_UserBloods_Item) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonActiveContentItem_UserBloods_Item
+func (a *SeasonActiveContentItem_UserBloods_Item) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonActiveContentItem_UserBloods_Item to handle AdditionalProperties
+func (a *SeasonActiveContentItem_UserBloods_Item) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["type"]; found {
+		err = json.Unmarshal(raw, &a.Type)
+		if err != nil {
+			return fmt.Errorf("error reading 'type': %w", err)
+		}
+		delete(object, "type")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonActiveContentItem_UserBloods_Item to handle AdditionalProperties
+func (a SeasonActiveContentItem_UserBloods_Item) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["type"], err = json.Marshal(a.Type)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'type': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonActiveContentResponse. Returns the specified
+// element and whether it was found
+func (a SeasonActiveContentResponse) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonActiveContentResponse
+func (a *SeasonActiveContentResponse) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonActiveContentResponse to handle AdditionalProperties
+func (a *SeasonActiveContentResponse) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["data"]; found {
+		err = json.Unmarshal(raw, &a.Data)
+		if err != nil {
+			return fmt.Errorf("error reading 'data': %w", err)
+		}
+		delete(object, "data")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonActiveContentResponse to handle AdditionalProperties
+func (a SeasonActiveContentResponse) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["data"], err = json.Marshal(a.Data)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'data': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonActiveContentResponse_Data. Returns the specified
+// element and whether it was found
+func (a SeasonActiveContentResponse_Data) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonActiveContentResponse_Data
+func (a *SeasonActiveContentResponse_Data) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonActiveContentResponse_Data to handle AdditionalProperties
+func (a *SeasonActiveContentResponse_Data) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["blue"]; found {
+		err = json.Unmarshal(raw, &a.Blue)
+		if err != nil {
+			return fmt.Errorf("error reading 'blue': %w", err)
+		}
+		delete(object, "blue")
+	}
+
+	if raw, found := object["red"]; found {
+		err = json.Unmarshal(raw, &a.Red)
+		if err != nil {
+			return fmt.Errorf("error reading 'red': %w", err)
+		}
+		delete(object, "red")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonActiveContentResponse_Data to handle AdditionalProperties
+func (a SeasonActiveContentResponse_Data) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["blue"], err = json.Marshal(a.Blue)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'blue': %w", err)
+	}
+
+	object["red"], err = json.Marshal(a.Red)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'red': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonActiveDefensiveContent. Returns the specified
+// element and whether it was found
+func (a SeasonActiveDefensiveContent) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonActiveDefensiveContent
+func (a *SeasonActiveDefensiveContent) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonActiveDefensiveContent to handle AdditionalProperties
+func (a *SeasonActiveDefensiveContent) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["blood_points"]; found {
+		err = json.Unmarshal(raw, &a.BloodPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'blood_points': %w", err)
+		}
+		delete(object, "blood_points")
+	}
+
+	if raw, found := object["category"]; found {
+		err = json.Unmarshal(raw, &a.Category)
+		if err != nil {
+			return fmt.Errorf("error reading 'category': %w", err)
+		}
+		delete(object, "category")
+	}
+
+	if raw, found := object["difficulty_text"]; found {
+		err = json.Unmarshal(raw, &a.DifficultyText)
+		if err != nil {
+			return fmt.Errorf("error reading 'difficulty_text': %w", err)
+		}
+		delete(object, "difficulty_text")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["is_owned"]; found {
+		err = json.Unmarshal(raw, &a.IsOwned)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned': %w", err)
+		}
+		delete(object, "is_owned")
+	}
+
+	if raw, found := object["is_owned_root"]; found {
+		err = json.Unmarshal(raw, &a.IsOwnedRoot)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned_root': %w", err)
+		}
+		delete(object, "is_owned_root")
+	}
+
+	if raw, found := object["is_owned_user"]; found {
+		err = json.Unmarshal(raw, &a.IsOwnedUser)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned_user': %w", err)
+		}
+		delete(object, "is_owned_user")
+	}
+
+	if raw, found := object["is_released"]; found {
+		err = json.Unmarshal(raw, &a.IsReleased)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_released': %w", err)
+		}
+		delete(object, "is_released")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["os"]; found {
+		err = json.Unmarshal(raw, &a.Os)
+		if err != nil {
+			return fmt.Errorf("error reading 'os': %w", err)
+		}
+		delete(object, "os")
+	}
+
+	if raw, found := object["rating"]; found {
+		err = json.Unmarshal(raw, &a.Rating)
+		if err != nil {
+			return fmt.Errorf("error reading 'rating': %w", err)
+		}
+		delete(object, "rating")
+	}
+
+	if raw, found := object["rating_count"]; found {
+		err = json.Unmarshal(raw, &a.RatingCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'rating_count': %w", err)
+		}
+		delete(object, "rating_count")
+	}
+
+	if raw, found := object["release_time"]; found {
+		err = json.Unmarshal(raw, &a.ReleaseTime)
+		if err != nil {
+			return fmt.Errorf("error reading 'release_time': %w", err)
+		}
+		delete(object, "release_time")
+	}
+
+	if raw, found := object["root_own_points"]; found {
+		err = json.Unmarshal(raw, &a.RootOwnPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_own_points': %w", err)
+		}
+		delete(object, "root_own_points")
+	}
+
+	if raw, found := object["total_points"]; found {
+		err = json.Unmarshal(raw, &a.TotalPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_points': %w", err)
+		}
+		delete(object, "total_points")
+	}
+
+	if raw, found := object["type"]; found {
+		err = json.Unmarshal(raw, &a.Type)
+		if err != nil {
+			return fmt.Errorf("error reading 'type': %w", err)
+		}
+		delete(object, "type")
+	}
+
+	if raw, found := object["user_blood_points"]; found {
+		err = json.Unmarshal(raw, &a.UserBloodPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_blood_points': %w", err)
+		}
+		delete(object, "user_blood_points")
+	}
+
+	if raw, found := object["user_bloods"]; found {
+		err = json.Unmarshal(raw, &a.UserBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_bloods': %w", err)
+		}
+		delete(object, "user_bloods")
+	}
+
+	if raw, found := object["user_own_points"]; found {
+		err = json.Unmarshal(raw, &a.UserOwnPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_own_points': %w", err)
+		}
+		delete(object, "user_own_points")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonActiveDefensiveContent to handle AdditionalProperties
+func (a SeasonActiveDefensiveContent) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["blood_points"], err = json.Marshal(a.BloodPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'blood_points': %w", err)
+	}
+
+	object["category"], err = json.Marshal(a.Category)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'category': %w", err)
+	}
+
+	object["difficulty_text"], err = json.Marshal(a.DifficultyText)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'difficulty_text': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["is_owned"], err = json.Marshal(a.IsOwned)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned': %w", err)
+	}
+
+	object["is_owned_root"], err = json.Marshal(a.IsOwnedRoot)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned_root': %w", err)
+	}
+
+	object["is_owned_user"], err = json.Marshal(a.IsOwnedUser)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned_user': %w", err)
+	}
+
+	object["is_released"], err = json.Marshal(a.IsReleased)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_released': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["os"], err = json.Marshal(a.Os)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'os': %w", err)
+	}
+
+	object["rating"], err = json.Marshal(a.Rating)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rating': %w", err)
+	}
+
+	object["rating_count"], err = json.Marshal(a.RatingCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rating_count': %w", err)
+	}
+
+	object["release_time"], err = json.Marshal(a.ReleaseTime)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'release_time': %w", err)
+	}
+
+	object["root_own_points"], err = json.Marshal(a.RootOwnPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_own_points': %w", err)
+	}
+
+	object["total_points"], err = json.Marshal(a.TotalPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_points': %w", err)
+	}
+
+	object["type"], err = json.Marshal(a.Type)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'type': %w", err)
+	}
+
+	object["user_blood_points"], err = json.Marshal(a.UserBloodPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_blood_points': %w", err)
+	}
+
+	if a.UserBloods != nil {
+		object["user_bloods"], err = json.Marshal(a.UserBloods)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'user_bloods': %w", err)
+		}
+	}
+
+	object["user_own_points"], err = json.Marshal(a.UserOwnPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_own_points': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonActiveDefensiveContent_UserBloods_Item. Returns the specified
+// element and whether it was found
+func (a SeasonActiveDefensiveContent_UserBloods_Item) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonActiveDefensiveContent_UserBloods_Item
+func (a *SeasonActiveDefensiveContent_UserBloods_Item) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonActiveDefensiveContent_UserBloods_Item to handle AdditionalProperties
+func (a *SeasonActiveDefensiveContent_UserBloods_Item) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonActiveDefensiveContent_UserBloods_Item to handle AdditionalProperties
+func (a SeasonActiveDefensiveContent_UserBloods_Item) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonContentItem. Returns the specified
+// element and whether it was found
+func (a SeasonContentItem) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonContentItem
+func (a *SeasonContentItem) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonContentItem to handle AdditionalProperties
+func (a *SeasonContentItem) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["active"]; found {
+		err = json.Unmarshal(raw, &a.Active)
+		if err != nil {
+			return fmt.Errorf("error reading 'active': %w", err)
+		}
+		delete(object, "active")
+	}
+
+	if raw, found := object["auth_user_has_blood"]; found {
+		err = json.Unmarshal(raw, &a.AuthUserHasBlood)
+		if err != nil {
+			return fmt.Errorf("error reading 'auth_user_has_blood': %w", err)
+		}
+		delete(object, "auth_user_has_blood")
+	}
+
+	if raw, found := object["auth_user_number_of_flags"]; found {
+		err = json.Unmarshal(raw, &a.AuthUserNumberOfFlags)
+		if err != nil {
+			return fmt.Errorf("error reading 'auth_user_number_of_flags': %w", err)
+		}
+		delete(object, "auth_user_number_of_flags")
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["blood_points"]; found {
+		err = json.Unmarshal(raw, &a.BloodPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'blood_points': %w", err)
+		}
+		delete(object, "blood_points")
+	}
+
+	if raw, found := object["content_id"]; found {
+		err = json.Unmarshal(raw, &a.ContentId)
+		if err != nil {
+			return fmt.Errorf("error reading 'content_id': %w", err)
+		}
+		delete(object, "content_id")
+	}
+
+	if raw, found := object["difficulty_text"]; found {
+		err = json.Unmarshal(raw, &a.DifficultyText)
+		if err != nil {
+			return fmt.Errorf("error reading 'difficulty_text': %w", err)
+		}
+		delete(object, "difficulty_text")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["is_owned"]; found {
+		err = json.Unmarshal(raw, &a.IsOwned)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned': %w", err)
+		}
+		delete(object, "is_owned")
+	}
+
+	if raw, found := object["is_owned_root"]; found {
+		err = json.Unmarshal(raw, &a.IsOwnedRoot)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned_root': %w", err)
+		}
+		delete(object, "is_owned_root")
+	}
+
+	if raw, found := object["is_owned_user"]; found {
+		err = json.Unmarshal(raw, &a.IsOwnedUser)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned_user': %w", err)
+		}
+		delete(object, "is_owned_user")
+	}
+
+	if raw, found := object["is_released"]; found {
+		err = json.Unmarshal(raw, &a.IsReleased)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_released': %w", err)
+		}
+		delete(object, "is_released")
+	}
+
+	if raw, found := object["is_root_blood"]; found {
+		err = json.Unmarshal(raw, &a.IsRootBlood)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_root_blood': %w", err)
+		}
+		delete(object, "is_root_blood")
+	}
+
+	if raw, found := object["is_user_blood"]; found {
+		err = json.Unmarshal(raw, &a.IsUserBlood)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_user_blood': %w", err)
+		}
+		delete(object, "is_user_blood")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["number_of_flags"]; found {
+		err = json.Unmarshal(raw, &a.NumberOfFlags)
+		if err != nil {
+			return fmt.Errorf("error reading 'number_of_flags': %w", err)
+		}
+		delete(object, "number_of_flags")
+	}
+
+	if raw, found := object["os"]; found {
+		err = json.Unmarshal(raw, &a.Os)
+		if err != nil {
+			return fmt.Errorf("error reading 'os': %w", err)
+		}
+		delete(object, "os")
+	}
+
+	if raw, found := object["rating"]; found {
+		err = json.Unmarshal(raw, &a.Rating)
+		if err != nil {
+			return fmt.Errorf("error reading 'rating': %w", err)
+		}
+		delete(object, "rating")
+	}
+
+	if raw, found := object["ratingCount"]; found {
+		err = json.Unmarshal(raw, &a.RatingCountCamel)
+		if err != nil {
+			return fmt.Errorf("error reading 'ratingCount': %w", err)
+		}
+		delete(object, "ratingCount")
+	}
+
+	if raw, found := object["rating_count"]; found {
+		err = json.Unmarshal(raw, &a.RatingCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'rating_count': %w", err)
+		}
+		delete(object, "rating_count")
+	}
+
+	if raw, found := object["release_time"]; found {
+		err = json.Unmarshal(raw, &a.ReleaseTime)
+		if err != nil {
+			return fmt.Errorf("error reading 'release_time': %w", err)
+		}
+		delete(object, "release_time")
+	}
+
+	if raw, found := object["root_blood_points"]; found {
+		err = json.Unmarshal(raw, &a.RootBloodPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_blood_points': %w", err)
+		}
+		delete(object, "root_blood_points")
+	}
+
+	if raw, found := object["root_points"]; found {
+		err = json.Unmarshal(raw, &a.RootPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_points': %w", err)
+		}
+		delete(object, "root_points")
+	}
+
+	if raw, found := object["total_points"]; found {
+		err = json.Unmarshal(raw, &a.TotalPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_points': %w", err)
+		}
+		delete(object, "total_points")
+	}
+
+	if raw, found := object["type"]; found {
+		err = json.Unmarshal(raw, &a.Type)
+		if err != nil {
+			return fmt.Errorf("error reading 'type': %w", err)
+		}
+		delete(object, "type")
+	}
+
+	if raw, found := object["unknown"]; found {
+		err = json.Unmarshal(raw, &a.Unknown)
+		if err != nil {
+			return fmt.Errorf("error reading 'unknown': %w", err)
+		}
+		delete(object, "unknown")
+	}
+
+	if raw, found := object["user_blood_points"]; found {
+		err = json.Unmarshal(raw, &a.UserBloodPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_blood_points': %w", err)
+		}
+		delete(object, "user_blood_points")
+	}
+
+	if raw, found := object["user_points"]; found {
+		err = json.Unmarshal(raw, &a.UserPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_points': %w", err)
+		}
+		delete(object, "user_points")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonContentItem to handle AdditionalProperties
+func (a SeasonContentItem) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["active"], err = json.Marshal(a.Active)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'active': %w", err)
+	}
+
+	object["auth_user_has_blood"], err = json.Marshal(a.AuthUserHasBlood)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'auth_user_has_blood': %w", err)
+	}
+
+	object["auth_user_number_of_flags"], err = json.Marshal(a.AuthUserNumberOfFlags)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'auth_user_number_of_flags': %w", err)
+	}
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["blood_points"], err = json.Marshal(a.BloodPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'blood_points': %w", err)
+	}
+
+	object["content_id"], err = json.Marshal(a.ContentId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'content_id': %w", err)
+	}
+
+	object["difficulty_text"], err = json.Marshal(a.DifficultyText)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'difficulty_text': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["is_owned"], err = json.Marshal(a.IsOwned)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned': %w", err)
+	}
+
+	object["is_owned_root"], err = json.Marshal(a.IsOwnedRoot)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned_root': %w", err)
+	}
+
+	object["is_owned_user"], err = json.Marshal(a.IsOwnedUser)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned_user': %w", err)
+	}
+
+	object["is_released"], err = json.Marshal(a.IsReleased)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_released': %w", err)
+	}
+
+	object["is_root_blood"], err = json.Marshal(a.IsRootBlood)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_root_blood': %w", err)
+	}
+
+	object["is_user_blood"], err = json.Marshal(a.IsUserBlood)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_user_blood': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["number_of_flags"], err = json.Marshal(a.NumberOfFlags)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'number_of_flags': %w", err)
+	}
+
+	object["os"], err = json.Marshal(a.Os)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'os': %w", err)
+	}
+
+	object["rating"], err = json.Marshal(a.Rating)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rating': %w", err)
+	}
+
+	object["ratingCount"], err = json.Marshal(a.RatingCountCamel)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'ratingCount': %w", err)
+	}
+
+	object["rating_count"], err = json.Marshal(a.RatingCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rating_count': %w", err)
+	}
+
+	object["release_time"], err = json.Marshal(a.ReleaseTime)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'release_time': %w", err)
+	}
+
+	object["root_blood_points"], err = json.Marshal(a.RootBloodPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_blood_points': %w", err)
+	}
+
+	object["root_points"], err = json.Marshal(a.RootPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_points': %w", err)
+	}
+
+	object["total_points"], err = json.Marshal(a.TotalPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_points': %w", err)
+	}
+
+	object["type"], err = json.Marshal(a.Type)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'type': %w", err)
+	}
+
+	object["unknown"], err = json.Marshal(a.Unknown)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'unknown': %w", err)
+	}
+
+	object["user_blood_points"], err = json.Marshal(a.UserBloodPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_blood_points': %w", err)
+	}
+
+	object["user_points"], err = json.Marshal(a.UserPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_points': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonContentResponse. Returns the specified
+// element and whether it was found
+func (a SeasonContentResponse) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonContentResponse
+func (a *SeasonContentResponse) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonContentResponse to handle AdditionalProperties
+func (a *SeasonContentResponse) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["data"]; found {
+		err = json.Unmarshal(raw, &a.Data)
+		if err != nil {
+			return fmt.Errorf("error reading 'data': %w", err)
+		}
+		delete(object, "data")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonContentResponse to handle AdditionalProperties
+func (a SeasonContentResponse) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["data"], err = json.Marshal(a.Data)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'data': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonContentResponse_Data. Returns the specified
+// element and whether it was found
+func (a SeasonContentResponse_Data) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonContentResponse_Data
+func (a *SeasonContentResponse_Data) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonContentResponse_Data to handle AdditionalProperties
+func (a *SeasonContentResponse_Data) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["blue"]; found {
+		err = json.Unmarshal(raw, &a.Blue)
+		if err != nil {
+			return fmt.Errorf("error reading 'blue': %w", err)
+		}
+		delete(object, "blue")
+	}
+
+	if raw, found := object["red"]; found {
+		err = json.Unmarshal(raw, &a.Red)
+		if err != nil {
+			return fmt.Errorf("error reading 'red': %w", err)
+		}
+		delete(object, "red")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonContentResponse_Data to handle AdditionalProperties
+func (a SeasonContentResponse_Data) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.Blue != nil {
+		object["blue"], err = json.Marshal(a.Blue)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'blue': %w", err)
+		}
+	}
+
+	if a.Red != nil {
+		object["red"], err = json.Marshal(a.Red)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'red': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonDefensiveContentItem. Returns the specified
+// element and whether it was found
+func (a SeasonDefensiveContentItem) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonDefensiveContentItem
+func (a *SeasonDefensiveContentItem) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonDefensiveContentItem to handle AdditionalProperties
+func (a *SeasonDefensiveContentItem) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["active"]; found {
+		err = json.Unmarshal(raw, &a.Active)
+		if err != nil {
+			return fmt.Errorf("error reading 'active': %w", err)
+		}
+		delete(object, "active")
+	}
+
+	if raw, found := object["auth_user_has_blood"]; found {
+		err = json.Unmarshal(raw, &a.AuthUserHasBlood)
+		if err != nil {
+			return fmt.Errorf("error reading 'auth_user_has_blood': %w", err)
+		}
+		delete(object, "auth_user_has_blood")
+	}
+
+	if raw, found := object["auth_user_number_of_flags"]; found {
+		err = json.Unmarshal(raw, &a.AuthUserNumberOfFlags)
+		if err != nil {
+			return fmt.Errorf("error reading 'auth_user_number_of_flags': %w", err)
+		}
+		delete(object, "auth_user_number_of_flags")
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["blood_points"]; found {
+		err = json.Unmarshal(raw, &a.BloodPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'blood_points': %w", err)
+		}
+		delete(object, "blood_points")
+	}
+
+	if raw, found := object["difficulty_text"]; found {
+		err = json.Unmarshal(raw, &a.DifficultyText)
+		if err != nil {
+			return fmt.Errorf("error reading 'difficulty_text': %w", err)
+		}
+		delete(object, "difficulty_text")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["is_owned"]; found {
+		err = json.Unmarshal(raw, &a.IsOwned)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned': %w", err)
+		}
+		delete(object, "is_owned")
+	}
+
+	if raw, found := object["is_owned_root"]; found {
+		err = json.Unmarshal(raw, &a.IsOwnedRoot)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned_root': %w", err)
+		}
+		delete(object, "is_owned_root")
+	}
+
+	if raw, found := object["is_owned_user"]; found {
+		err = json.Unmarshal(raw, &a.IsOwnedUser)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_owned_user': %w", err)
+		}
+		delete(object, "is_owned_user")
+	}
+
+	if raw, found := object["is_released"]; found {
+		err = json.Unmarshal(raw, &a.IsReleased)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_released': %w", err)
+		}
+		delete(object, "is_released")
+	}
+
+	if raw, found := object["is_root_blood"]; found {
+		err = json.Unmarshal(raw, &a.IsRootBlood)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_root_blood': %w", err)
+		}
+		delete(object, "is_root_blood")
+	}
+
+	if raw, found := object["is_user_blood"]; found {
+		err = json.Unmarshal(raw, &a.IsUserBlood)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_user_blood': %w", err)
+		}
+		delete(object, "is_user_blood")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["number_of_flags"]; found {
+		err = json.Unmarshal(raw, &a.NumberOfFlags)
+		if err != nil {
+			return fmt.Errorf("error reading 'number_of_flags': %w", err)
+		}
+		delete(object, "number_of_flags")
+	}
+
+	if raw, found := object["os"]; found {
+		err = json.Unmarshal(raw, &a.Os)
+		if err != nil {
+			return fmt.Errorf("error reading 'os': %w", err)
+		}
+		delete(object, "os")
+	}
+
+	if raw, found := object["rating"]; found {
+		err = json.Unmarshal(raw, &a.Rating)
+		if err != nil {
+			return fmt.Errorf("error reading 'rating': %w", err)
+		}
+		delete(object, "rating")
+	}
+
+	if raw, found := object["ratingCount"]; found {
+		err = json.Unmarshal(raw, &a.RatingCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'ratingCount': %w", err)
+		}
+		delete(object, "ratingCount")
+	}
+
+	if raw, found := object["release_time"]; found {
+		err = json.Unmarshal(raw, &a.ReleaseTime)
+		if err != nil {
+			return fmt.Errorf("error reading 'release_time': %w", err)
+		}
+		delete(object, "release_time")
+	}
+
+	if raw, found := object["root_blood_points"]; found {
+		err = json.Unmarshal(raw, &a.RootBloodPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_blood_points': %w", err)
+		}
+		delete(object, "root_blood_points")
+	}
+
+	if raw, found := object["root_points"]; found {
+		err = json.Unmarshal(raw, &a.RootPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_points': %w", err)
+		}
+		delete(object, "root_points")
+	}
+
+	if raw, found := object["total_points"]; found {
+		err = json.Unmarshal(raw, &a.TotalPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_points': %w", err)
+		}
+		delete(object, "total_points")
+	}
+
+	if raw, found := object["unknown"]; found {
+		err = json.Unmarshal(raw, &a.Unknown)
+		if err != nil {
+			return fmt.Errorf("error reading 'unknown': %w", err)
+		}
+		delete(object, "unknown")
+	}
+
+	if raw, found := object["user_blood_points"]; found {
+		err = json.Unmarshal(raw, &a.UserBloodPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_blood_points': %w", err)
+		}
+		delete(object, "user_blood_points")
+	}
+
+	if raw, found := object["user_points"]; found {
+		err = json.Unmarshal(raw, &a.UserPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_points': %w", err)
+		}
+		delete(object, "user_points")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonDefensiveContentItem to handle AdditionalProperties
+func (a SeasonDefensiveContentItem) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["active"], err = json.Marshal(a.Active)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'active': %w", err)
+	}
+
+	object["auth_user_has_blood"], err = json.Marshal(a.AuthUserHasBlood)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'auth_user_has_blood': %w", err)
+	}
+
+	object["auth_user_number_of_flags"], err = json.Marshal(a.AuthUserNumberOfFlags)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'auth_user_number_of_flags': %w", err)
+	}
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["blood_points"], err = json.Marshal(a.BloodPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'blood_points': %w", err)
+	}
+
+	object["difficulty_text"], err = json.Marshal(a.DifficultyText)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'difficulty_text': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["is_owned"], err = json.Marshal(a.IsOwned)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned': %w", err)
+	}
+
+	object["is_owned_root"], err = json.Marshal(a.IsOwnedRoot)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned_root': %w", err)
+	}
+
+	object["is_owned_user"], err = json.Marshal(a.IsOwnedUser)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_owned_user': %w", err)
+	}
+
+	object["is_released"], err = json.Marshal(a.IsReleased)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_released': %w", err)
+	}
+
+	object["is_root_blood"], err = json.Marshal(a.IsRootBlood)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_root_blood': %w", err)
+	}
+
+	object["is_user_blood"], err = json.Marshal(a.IsUserBlood)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_user_blood': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["number_of_flags"], err = json.Marshal(a.NumberOfFlags)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'number_of_flags': %w", err)
+	}
+
+	object["os"], err = json.Marshal(a.Os)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'os': %w", err)
+	}
+
+	object["rating"], err = json.Marshal(a.Rating)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rating': %w", err)
+	}
+
+	object["ratingCount"], err = json.Marshal(a.RatingCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'ratingCount': %w", err)
+	}
+
+	object["release_time"], err = json.Marshal(a.ReleaseTime)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'release_time': %w", err)
+	}
+
+	object["root_blood_points"], err = json.Marshal(a.RootBloodPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_blood_points': %w", err)
+	}
+
+	object["root_points"], err = json.Marshal(a.RootPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_points': %w", err)
+	}
+
+	object["total_points"], err = json.Marshal(a.TotalPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_points': %w", err)
+	}
+
+	object["unknown"], err = json.Marshal(a.Unknown)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'unknown': %w", err)
+	}
+
+	object["user_blood_points"], err = json.Marshal(a.UserBloodPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_blood_points': %w", err)
+	}
+
+	object["user_points"], err = json.Marshal(a.UserPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_points': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonDefensiveUserProgress. Returns the specified
+// element and whether it was found
+func (a SeasonDefensiveUserProgress) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonDefensiveUserProgress
+func (a *SeasonDefensiveUserProgress) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonDefensiveUserProgress to handle AdditionalProperties
+func (a *SeasonDefensiveUserProgress) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["flags_to_next_rank"]; found {
+		err = json.Unmarshal(raw, &a.FlagsToNextRank)
+		if err != nil {
+			return fmt.Errorf("error reading 'flags_to_next_rank': %w", err)
+		}
+		delete(object, "flags_to_next_rank")
+	}
+
+	if raw, found := object["league"]; found {
+		err = json.Unmarshal(raw, &a.League)
+		if err != nil {
+			return fmt.Errorf("error reading 'league': %w", err)
+		}
+		delete(object, "league")
+	}
+
+	if raw, found := object["rank"]; found {
+		err = json.Unmarshal(raw, &a.Rank)
+		if err != nil {
+			return fmt.Errorf("error reading 'rank': %w", err)
+		}
+		delete(object, "rank")
+	}
+
+	if raw, found := object["total_season_bloods"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_bloods': %w", err)
+		}
+		delete(object, "total_season_bloods")
+	}
+
+	if raw, found := object["total_season_flags"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonFlags)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_flags': %w", err)
+		}
+		delete(object, "total_season_flags")
+	}
+
+	if raw, found := object["total_season_points"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_points': %w", err)
+		}
+		delete(object, "total_season_points")
+	}
+
+	if raw, found := object["total_season_tasks"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonTasks)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_tasks': %w", err)
+		}
+		delete(object, "total_season_tasks")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonDefensiveUserProgress to handle AdditionalProperties
+func (a SeasonDefensiveUserProgress) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["flags_to_next_rank"], err = json.Marshal(a.FlagsToNextRank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'flags_to_next_rank': %w", err)
+	}
+
+	object["league"], err = json.Marshal(a.League)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'league': %w", err)
+	}
+
+	object["rank"], err = json.Marshal(a.Rank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rank': %w", err)
+	}
+
+	object["total_season_bloods"], err = json.Marshal(a.TotalSeasonBloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_bloods': %w", err)
+	}
+
+	object["total_season_flags"], err = json.Marshal(a.TotalSeasonFlags)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_flags': %w", err)
+	}
+
+	object["total_season_points"], err = json.Marshal(a.TotalSeasonPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_points': %w", err)
+	}
+
+	object["total_season_tasks"], err = json.Marshal(a.TotalSeasonTasks)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_tasks': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonDefensiveUserProgress_TotalSeasonFlags. Returns the specified
+// element and whether it was found
+func (a SeasonDefensiveUserProgress_TotalSeasonFlags) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonDefensiveUserProgress_TotalSeasonFlags
+func (a *SeasonDefensiveUserProgress_TotalSeasonFlags) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonDefensiveUserProgress_TotalSeasonFlags to handle AdditionalProperties
+func (a *SeasonDefensiveUserProgress_TotalSeasonFlags) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["obtained"]; found {
+		err = json.Unmarshal(raw, &a.Obtained)
+		if err != nil {
+			return fmt.Errorf("error reading 'obtained': %w", err)
+		}
+		delete(object, "obtained")
+	}
+
+	if raw, found := object["total"]; found {
+		err = json.Unmarshal(raw, &a.Total)
+		if err != nil {
+			return fmt.Errorf("error reading 'total': %w", err)
+		}
+		delete(object, "total")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonDefensiveUserProgress_TotalSeasonFlags to handle AdditionalProperties
+func (a SeasonDefensiveUserProgress_TotalSeasonFlags) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["obtained"], err = json.Marshal(a.Obtained)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'obtained': %w", err)
+	}
+
+	object["total"], err = json.Marshal(a.Total)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonLeaderboardEntry. Returns the specified
+// element and whether it was found
+func (a SeasonLeaderboardEntry) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonLeaderboardEntry
+func (a *SeasonLeaderboardEntry) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonLeaderboardEntry to handle AdditionalProperties
+func (a *SeasonLeaderboardEntry) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["account_id"]; found {
+		err = json.Unmarshal(raw, &a.AccountId)
+		if err != nil {
+			return fmt.Errorf("error reading 'account_id': %w", err)
+		}
+		delete(object, "account_id")
+	}
+
+	if raw, found := object["avatar_thumb"]; found {
+		err = json.Unmarshal(raw, &a.AvatarThumb)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar_thumb': %w", err)
+		}
+		delete(object, "avatar_thumb")
+	}
+
+	if raw, found := object["bloods"]; found {
+		err = json.Unmarshal(raw, &a.Bloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'bloods': %w", err)
+		}
+		delete(object, "bloods")
+	}
+
+	if raw, found := object["blue_league_rank"]; found {
+		err = json.Unmarshal(raw, &a.BlueLeagueRank)
+		if err != nil {
+			return fmt.Errorf("error reading 'blue_league_rank': %w", err)
+		}
+		delete(object, "blue_league_rank")
+	}
+
+	if raw, found := object["country"]; found {
+		err = json.Unmarshal(raw, &a.Country)
+		if err != nil {
+			return fmt.Errorf("error reading 'country': %w", err)
+		}
+		delete(object, "country")
+	}
+
+	if raw, found := object["country_name"]; found {
+		err = json.Unmarshal(raw, &a.CountryName)
+		if err != nil {
+			return fmt.Errorf("error reading 'country_name': %w", err)
+		}
+		delete(object, "country_name")
+	}
+
+	if raw, found := object["flag_bloods"]; found {
+		err = json.Unmarshal(raw, &a.FlagBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'flag_bloods': %w", err)
+		}
+		delete(object, "flag_bloods")
+	}
+
+	if raw, found := object["flag_owns"]; found {
+		err = json.Unmarshal(raw, &a.FlagOwns)
+		if err != nil {
+			return fmt.Errorf("error reading 'flag_owns': %w", err)
+		}
+		delete(object, "flag_owns")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["league_rank"]; found {
+		err = json.Unmarshal(raw, &a.LeagueRank)
+		if err != nil {
+			return fmt.Errorf("error reading 'league_rank': %w", err)
+		}
+		delete(object, "league_rank")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["owns"]; found {
+		err = json.Unmarshal(raw, &a.Owns)
+		if err != nil {
+			return fmt.Errorf("error reading 'owns': %w", err)
+		}
+		delete(object, "owns")
+	}
+
+	if raw, found := object["points"]; found {
+		err = json.Unmarshal(raw, &a.Points)
+		if err != nil {
+			return fmt.Errorf("error reading 'points': %w", err)
+		}
+		delete(object, "points")
+	}
+
+	if raw, found := object["positive_trend"]; found {
+		err = json.Unmarshal(raw, &a.PositiveTrend)
+		if err != nil {
+			return fmt.Errorf("error reading 'positive_trend': %w", err)
+		}
+		delete(object, "positive_trend")
+	}
+
+	if raw, found := object["rank"]; found {
+		err = json.Unmarshal(raw, &a.Rank)
+		if err != nil {
+			return fmt.Errorf("error reading 'rank': %w", err)
+		}
+		delete(object, "rank")
+	}
+
+	if raw, found := object["rank_trend"]; found {
+		err = json.Unmarshal(raw, &a.RankTrend)
+		if err != nil {
+			return fmt.Errorf("error reading 'rank_trend': %w", err)
+		}
+		delete(object, "rank_trend")
+	}
+
+	if raw, found := object["red_league_rank"]; found {
+		err = json.Unmarshal(raw, &a.RedLeagueRank)
+		if err != nil {
+			return fmt.Errorf("error reading 'red_league_rank': %w", err)
+		}
+		delete(object, "red_league_rank")
+	}
+
+	if raw, found := object["resource_id"]; found {
+		err = json.Unmarshal(raw, &a.ResourceId)
+		if err != nil {
+			return fmt.Errorf("error reading 'resource_id': %w", err)
+		}
+		delete(object, "resource_id")
+	}
+
+	if raw, found := object["root_bloods"]; found {
+		err = json.Unmarshal(raw, &a.RootBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_bloods': %w", err)
+		}
+		delete(object, "root_bloods")
+	}
+
+	if raw, found := object["root_owns"]; found {
+		err = json.Unmarshal(raw, &a.RootOwns)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_owns': %w", err)
+		}
+		delete(object, "root_owns")
+	}
+
+	if raw, found := object["task_bloods"]; found {
+		err = json.Unmarshal(raw, &a.TaskBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'task_bloods': %w", err)
+		}
+		delete(object, "task_bloods")
+	}
+
+	if raw, found := object["task_owns"]; found {
+		err = json.Unmarshal(raw, &a.TaskOwns)
+		if err != nil {
+			return fmt.Errorf("error reading 'task_owns': %w", err)
+		}
+		delete(object, "task_owns")
+	}
+
+	if raw, found := object["user_bloods"]; found {
+		err = json.Unmarshal(raw, &a.UserBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_bloods': %w", err)
+		}
+		delete(object, "user_bloods")
+	}
+
+	if raw, found := object["user_owns"]; found {
+		err = json.Unmarshal(raw, &a.UserOwns)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_owns': %w", err)
+		}
+		delete(object, "user_owns")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonLeaderboardEntry to handle AdditionalProperties
+func (a SeasonLeaderboardEntry) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["account_id"], err = json.Marshal(a.AccountId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'account_id': %w", err)
+	}
+
+	object["avatar_thumb"], err = json.Marshal(a.AvatarThumb)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar_thumb': %w", err)
+	}
+
+	object["bloods"], err = json.Marshal(a.Bloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'bloods': %w", err)
+	}
+
+	object["blue_league_rank"], err = json.Marshal(a.BlueLeagueRank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'blue_league_rank': %w", err)
+	}
+
+	object["country"], err = json.Marshal(a.Country)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'country': %w", err)
+	}
+
+	object["country_name"], err = json.Marshal(a.CountryName)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'country_name': %w", err)
+	}
+
+	object["flag_bloods"], err = json.Marshal(a.FlagBloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'flag_bloods': %w", err)
+	}
+
+	object["flag_owns"], err = json.Marshal(a.FlagOwns)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'flag_owns': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["league_rank"], err = json.Marshal(a.LeagueRank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'league_rank': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["owns"], err = json.Marshal(a.Owns)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'owns': %w", err)
+	}
+
+	object["points"], err = json.Marshal(a.Points)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'points': %w", err)
+	}
+
+	object["positive_trend"], err = json.Marshal(a.PositiveTrend)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'positive_trend': %w", err)
+	}
+
+	object["rank"], err = json.Marshal(a.Rank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rank': %w", err)
+	}
+
+	object["rank_trend"], err = json.Marshal(a.RankTrend)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rank_trend': %w", err)
+	}
+
+	object["red_league_rank"], err = json.Marshal(a.RedLeagueRank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'red_league_rank': %w", err)
+	}
+
+	object["resource_id"], err = json.Marshal(a.ResourceId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'resource_id': %w", err)
+	}
+
+	object["root_bloods"], err = json.Marshal(a.RootBloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_bloods': %w", err)
+	}
+
+	object["root_owns"], err = json.Marshal(a.RootOwns)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_owns': %w", err)
+	}
+
+	object["task_bloods"], err = json.Marshal(a.TaskBloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'task_bloods': %w", err)
+	}
+
+	object["task_owns"], err = json.Marshal(a.TaskOwns)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'task_owns': %w", err)
+	}
+
+	object["user_bloods"], err = json.Marshal(a.UserBloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_bloods': %w", err)
+	}
+
+	object["user_owns"], err = json.Marshal(a.UserOwns)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_owns': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonLeaderboardResponse. Returns the specified
+// element and whether it was found
+func (a SeasonLeaderboardResponse) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonLeaderboardResponse
+func (a *SeasonLeaderboardResponse) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonLeaderboardResponse to handle AdditionalProperties
+func (a *SeasonLeaderboardResponse) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["data"]; found {
+		err = json.Unmarshal(raw, &a.Data)
+		if err != nil {
+			return fmt.Errorf("error reading 'data': %w", err)
+		}
+		delete(object, "data")
+	}
+
+	if raw, found := object["links"]; found {
+		err = json.Unmarshal(raw, &a.Links)
+		if err != nil {
+			return fmt.Errorf("error reading 'links': %w", err)
+		}
+		delete(object, "links")
+	}
+
+	if raw, found := object["meta"]; found {
+		err = json.Unmarshal(raw, &a.Meta)
+		if err != nil {
+			return fmt.Errorf("error reading 'meta': %w", err)
+		}
+		delete(object, "meta")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonLeaderboardResponse to handle AdditionalProperties
+func (a SeasonLeaderboardResponse) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.Data != nil {
+		object["data"], err = json.Marshal(a.Data)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'data': %w", err)
+		}
+	}
+
+	object["links"], err = json.Marshal(a.Links)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'links': %w", err)
+	}
+
+	object["meta"], err = json.Marshal(a.Meta)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'meta': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonLeaderboardResponse_Links. Returns the specified
+// element and whether it was found
+func (a SeasonLeaderboardResponse_Links) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonLeaderboardResponse_Links
+func (a *SeasonLeaderboardResponse_Links) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonLeaderboardResponse_Links to handle AdditionalProperties
+func (a *SeasonLeaderboardResponse_Links) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["first"]; found {
+		err = json.Unmarshal(raw, &a.First)
+		if err != nil {
+			return fmt.Errorf("error reading 'first': %w", err)
+		}
+		delete(object, "first")
+	}
+
+	if raw, found := object["last"]; found {
+		err = json.Unmarshal(raw, &a.Last)
+		if err != nil {
+			return fmt.Errorf("error reading 'last': %w", err)
+		}
+		delete(object, "last")
+	}
+
+	if raw, found := object["next"]; found {
+		err = json.Unmarshal(raw, &a.Next)
+		if err != nil {
+			return fmt.Errorf("error reading 'next': %w", err)
+		}
+		delete(object, "next")
+	}
+
+	if raw, found := object["prev"]; found {
+		err = json.Unmarshal(raw, &a.Prev)
+		if err != nil {
+			return fmt.Errorf("error reading 'prev': %w", err)
+		}
+		delete(object, "prev")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonLeaderboardResponse_Links to handle AdditionalProperties
+func (a SeasonLeaderboardResponse_Links) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["first"], err = json.Marshal(a.First)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'first': %w", err)
+	}
+
+	object["last"], err = json.Marshal(a.Last)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'last': %w", err)
+	}
+
+	object["next"], err = json.Marshal(a.Next)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'next': %w", err)
+	}
+
+	object["prev"], err = json.Marshal(a.Prev)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'prev': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonLeaderboardResponse_Meta_Links_Item. Returns the specified
+// element and whether it was found
+func (a SeasonLeaderboardResponse_Meta_Links_Item) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonLeaderboardResponse_Meta_Links_Item
+func (a *SeasonLeaderboardResponse_Meta_Links_Item) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonLeaderboardResponse_Meta_Links_Item to handle AdditionalProperties
+func (a *SeasonLeaderboardResponse_Meta_Links_Item) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["active"]; found {
+		err = json.Unmarshal(raw, &a.Active)
+		if err != nil {
+			return fmt.Errorf("error reading 'active': %w", err)
+		}
+		delete(object, "active")
+	}
+
+	if raw, found := object["label"]; found {
+		err = json.Unmarshal(raw, &a.Label)
+		if err != nil {
+			return fmt.Errorf("error reading 'label': %w", err)
+		}
+		delete(object, "label")
+	}
+
+	if raw, found := object["page"]; found {
+		err = json.Unmarshal(raw, &a.Page)
+		if err != nil {
+			return fmt.Errorf("error reading 'page': %w", err)
+		}
+		delete(object, "page")
+	}
+
+	if raw, found := object["url"]; found {
+		err = json.Unmarshal(raw, &a.Url)
+		if err != nil {
+			return fmt.Errorf("error reading 'url': %w", err)
+		}
+		delete(object, "url")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonLeaderboardResponse_Meta_Links_Item to handle AdditionalProperties
+func (a SeasonLeaderboardResponse_Meta_Links_Item) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["active"], err = json.Marshal(a.Active)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'active': %w", err)
+	}
+
+	object["label"], err = json.Marshal(a.Label)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'label': %w", err)
+	}
+
+	object["page"], err = json.Marshal(a.Page)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'page': %w", err)
+	}
+
+	object["url"], err = json.Marshal(a.Url)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'url': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonLeaderboardResponse_Meta. Returns the specified
+// element and whether it was found
+func (a SeasonLeaderboardResponse_Meta) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonLeaderboardResponse_Meta
+func (a *SeasonLeaderboardResponse_Meta) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonLeaderboardResponse_Meta to handle AdditionalProperties
+func (a *SeasonLeaderboardResponse_Meta) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["current_page"]; found {
+		err = json.Unmarshal(raw, &a.CurrentPage)
+		if err != nil {
+			return fmt.Errorf("error reading 'current_page': %w", err)
+		}
+		delete(object, "current_page")
+	}
+
+	if raw, found := object["from"]; found {
+		err = json.Unmarshal(raw, &a.From)
+		if err != nil {
+			return fmt.Errorf("error reading 'from': %w", err)
+		}
+		delete(object, "from")
+	}
+
+	if raw, found := object["last_page"]; found {
+		err = json.Unmarshal(raw, &a.LastPage)
+		if err != nil {
+			return fmt.Errorf("error reading 'last_page': %w", err)
+		}
+		delete(object, "last_page")
+	}
+
+	if raw, found := object["links"]; found {
+		err = json.Unmarshal(raw, &a.Links)
+		if err != nil {
+			return fmt.Errorf("error reading 'links': %w", err)
+		}
+		delete(object, "links")
+	}
+
+	if raw, found := object["path"]; found {
+		err = json.Unmarshal(raw, &a.Path)
+		if err != nil {
+			return fmt.Errorf("error reading 'path': %w", err)
+		}
+		delete(object, "path")
+	}
+
+	if raw, found := object["per_page"]; found {
+		err = json.Unmarshal(raw, &a.PerPage)
+		if err != nil {
+			return fmt.Errorf("error reading 'per_page': %w", err)
+		}
+		delete(object, "per_page")
+	}
+
+	if raw, found := object["to"]; found {
+		err = json.Unmarshal(raw, &a.To)
+		if err != nil {
+			return fmt.Errorf("error reading 'to': %w", err)
+		}
+		delete(object, "to")
+	}
+
+	if raw, found := object["total"]; found {
+		err = json.Unmarshal(raw, &a.Total)
+		if err != nil {
+			return fmt.Errorf("error reading 'total': %w", err)
+		}
+		delete(object, "total")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonLeaderboardResponse_Meta to handle AdditionalProperties
+func (a SeasonLeaderboardResponse_Meta) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["current_page"], err = json.Marshal(a.CurrentPage)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'current_page': %w", err)
+	}
+
+	object["from"], err = json.Marshal(a.From)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'from': %w", err)
+	}
+
+	object["last_page"], err = json.Marshal(a.LastPage)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'last_page': %w", err)
+	}
+
+	if a.Links != nil {
+		object["links"], err = json.Marshal(a.Links)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'links': %w", err)
+		}
+	}
+
+	object["path"], err = json.Marshal(a.Path)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'path': %w", err)
+	}
+
+	object["per_page"], err = json.Marshal(a.PerPage)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'per_page': %w", err)
+	}
+
+	object["to"], err = json.Marshal(a.To)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'to': %w", err)
+	}
+
+	object["total"], err = json.Marshal(a.Total)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonLeaderboardTopEntry. Returns the specified
+// element and whether it was found
+func (a SeasonLeaderboardTopEntry) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonLeaderboardTopEntry
+func (a *SeasonLeaderboardTopEntry) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonLeaderboardTopEntry to handle AdditionalProperties
+func (a *SeasonLeaderboardTopEntry) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["account_id"]; found {
+		err = json.Unmarshal(raw, &a.AccountId)
+		if err != nil {
+			return fmt.Errorf("error reading 'account_id': %w", err)
+		}
+		delete(object, "account_id")
+	}
+
+	if raw, found := object["avatar_thumb"]; found {
+		err = json.Unmarshal(raw, &a.AvatarThumb)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar_thumb': %w", err)
+		}
+		delete(object, "avatar_thumb")
+	}
+
+	if raw, found := object["bloods"]; found {
+		err = json.Unmarshal(raw, &a.Bloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'bloods': %w", err)
+		}
+		delete(object, "bloods")
+	}
+
+	if raw, found := object["blue_league_rank"]; found {
+		err = json.Unmarshal(raw, &a.BlueLeagueRank)
+		if err != nil {
+			return fmt.Errorf("error reading 'blue_league_rank': %w", err)
+		}
+		delete(object, "blue_league_rank")
+	}
+
+	if raw, found := object["country"]; found {
+		err = json.Unmarshal(raw, &a.Country)
+		if err != nil {
+			return fmt.Errorf("error reading 'country': %w", err)
+		}
+		delete(object, "country")
+	}
+
+	if raw, found := object["country_name"]; found {
+		err = json.Unmarshal(raw, &a.CountryName)
+		if err != nil {
+			return fmt.Errorf("error reading 'country_name': %w", err)
+		}
+		delete(object, "country_name")
+	}
+
+	if raw, found := object["flag_bloods"]; found {
+		err = json.Unmarshal(raw, &a.FlagBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'flag_bloods': %w", err)
+		}
+		delete(object, "flag_bloods")
+	}
+
+	if raw, found := object["flag_owns"]; found {
+		err = json.Unmarshal(raw, &a.FlagOwns)
+		if err != nil {
+			return fmt.Errorf("error reading 'flag_owns': %w", err)
+		}
+		delete(object, "flag_owns")
+	}
+
+	if raw, found := object["is_respected"]; found {
+		err = json.Unmarshal(raw, &a.IsRespected)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_respected': %w", err)
+		}
+		delete(object, "is_respected")
+	}
+
+	if raw, found := object["league_rank"]; found {
+		err = json.Unmarshal(raw, &a.LeagueRank)
+		if err != nil {
+			return fmt.Errorf("error reading 'league_rank': %w", err)
+		}
+		delete(object, "league_rank")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["owns"]; found {
+		err = json.Unmarshal(raw, &a.Owns)
+		if err != nil {
+			return fmt.Errorf("error reading 'owns': %w", err)
+		}
+		delete(object, "owns")
+	}
+
+	if raw, found := object["points"]; found {
+		err = json.Unmarshal(raw, &a.Points)
+		if err != nil {
+			return fmt.Errorf("error reading 'points': %w", err)
+		}
+		delete(object, "points")
+	}
+
+	if raw, found := object["rank"]; found {
+		err = json.Unmarshal(raw, &a.Rank)
+		if err != nil {
+			return fmt.Errorf("error reading 'rank': %w", err)
+		}
+		delete(object, "rank")
+	}
+
+	if raw, found := object["red_league_rank"]; found {
+		err = json.Unmarshal(raw, &a.RedLeagueRank)
+		if err != nil {
+			return fmt.Errorf("error reading 'red_league_rank': %w", err)
+		}
+		delete(object, "red_league_rank")
+	}
+
+	if raw, found := object["resource_id"]; found {
+		err = json.Unmarshal(raw, &a.ResourceId)
+		if err != nil {
+			return fmt.Errorf("error reading 'resource_id': %w", err)
+		}
+		delete(object, "resource_id")
+	}
+
+	if raw, found := object["root_bloods"]; found {
+		err = json.Unmarshal(raw, &a.RootBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_bloods': %w", err)
+		}
+		delete(object, "root_bloods")
+	}
+
+	if raw, found := object["root_owns"]; found {
+		err = json.Unmarshal(raw, &a.RootOwns)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_owns': %w", err)
+		}
+		delete(object, "root_owns")
+	}
+
+	if raw, found := object["task_bloods"]; found {
+		err = json.Unmarshal(raw, &a.TaskBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'task_bloods': %w", err)
+		}
+		delete(object, "task_bloods")
+	}
+
+	if raw, found := object["task_owns"]; found {
+		err = json.Unmarshal(raw, &a.TaskOwns)
+		if err != nil {
+			return fmt.Errorf("error reading 'task_owns': %w", err)
+		}
+		delete(object, "task_owns")
+	}
+
+	if raw, found := object["user_bloods"]; found {
+		err = json.Unmarshal(raw, &a.UserBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_bloods': %w", err)
+		}
+		delete(object, "user_bloods")
+	}
+
+	if raw, found := object["user_owns"]; found {
+		err = json.Unmarshal(raw, &a.UserOwns)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_owns': %w", err)
+		}
+		delete(object, "user_owns")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonLeaderboardTopEntry to handle AdditionalProperties
+func (a SeasonLeaderboardTopEntry) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["account_id"], err = json.Marshal(a.AccountId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'account_id': %w", err)
+	}
+
+	object["avatar_thumb"], err = json.Marshal(a.AvatarThumb)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar_thumb': %w", err)
+	}
+
+	object["bloods"], err = json.Marshal(a.Bloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'bloods': %w", err)
+	}
+
+	object["blue_league_rank"], err = json.Marshal(a.BlueLeagueRank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'blue_league_rank': %w", err)
+	}
+
+	object["country"], err = json.Marshal(a.Country)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'country': %w", err)
+	}
+
+	object["country_name"], err = json.Marshal(a.CountryName)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'country_name': %w", err)
+	}
+
+	object["flag_bloods"], err = json.Marshal(a.FlagBloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'flag_bloods': %w", err)
+	}
+
+	object["flag_owns"], err = json.Marshal(a.FlagOwns)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'flag_owns': %w", err)
+	}
+
+	object["is_respected"], err = json.Marshal(a.IsRespected)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_respected': %w", err)
+	}
+
+	object["league_rank"], err = json.Marshal(a.LeagueRank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'league_rank': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["owns"], err = json.Marshal(a.Owns)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'owns': %w", err)
+	}
+
+	object["points"], err = json.Marshal(a.Points)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'points': %w", err)
+	}
+
+	object["rank"], err = json.Marshal(a.Rank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rank': %w", err)
+	}
+
+	object["red_league_rank"], err = json.Marshal(a.RedLeagueRank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'red_league_rank': %w", err)
+	}
+
+	object["resource_id"], err = json.Marshal(a.ResourceId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'resource_id': %w", err)
+	}
+
+	object["root_bloods"], err = json.Marshal(a.RootBloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_bloods': %w", err)
+	}
+
+	object["root_owns"], err = json.Marshal(a.RootOwns)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_owns': %w", err)
+	}
+
+	object["task_bloods"], err = json.Marshal(a.TaskBloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'task_bloods': %w", err)
+	}
+
+	object["task_owns"], err = json.Marshal(a.TaskOwns)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'task_owns': %w", err)
+	}
+
+	object["user_bloods"], err = json.Marshal(a.UserBloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_bloods': %w", err)
+	}
+
+	object["user_owns"], err = json.Marshal(a.UserOwns)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_owns': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonLeaderboardTopResponse. Returns the specified
+// element and whether it was found
+func (a SeasonLeaderboardTopResponse) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonLeaderboardTopResponse
+func (a *SeasonLeaderboardTopResponse) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonLeaderboardTopResponse to handle AdditionalProperties
+func (a *SeasonLeaderboardTopResponse) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["data"]; found {
+		err = json.Unmarshal(raw, &a.Data)
+		if err != nil {
+			return fmt.Errorf("error reading 'data': %w", err)
+		}
+		delete(object, "data")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonLeaderboardTopResponse to handle AdditionalProperties
+func (a SeasonLeaderboardTopResponse) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.Data != nil {
+		object["data"], err = json.Marshal(a.Data)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'data': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonOffensiveUserProgress. Returns the specified
+// element and whether it was found
+func (a SeasonOffensiveUserProgress) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonOffensiveUserProgress
+func (a *SeasonOffensiveUserProgress) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonOffensiveUserProgress to handle AdditionalProperties
+func (a *SeasonOffensiveUserProgress) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["flags_to_next_rank"]; found {
+		err = json.Unmarshal(raw, &a.FlagsToNextRank)
+		if err != nil {
+			return fmt.Errorf("error reading 'flags_to_next_rank': %w", err)
+		}
+		delete(object, "flags_to_next_rank")
+	}
+
+	if raw, found := object["league"]; found {
+		err = json.Unmarshal(raw, &a.League)
+		if err != nil {
+			return fmt.Errorf("error reading 'league': %w", err)
+		}
+		delete(object, "league")
+	}
+
+	if raw, found := object["rank"]; found {
+		err = json.Unmarshal(raw, &a.Rank)
+		if err != nil {
+			return fmt.Errorf("error reading 'rank': %w", err)
+		}
+		delete(object, "rank")
+	}
+
+	if raw, found := object["total_season_bloods"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_bloods': %w", err)
+		}
+		delete(object, "total_season_bloods")
+	}
+
+	if raw, found := object["total_season_flags"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonFlags)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_flags': %w", err)
+		}
+		delete(object, "total_season_flags")
+	}
+
+	if raw, found := object["total_season_points"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_points': %w", err)
+		}
+		delete(object, "total_season_points")
+	}
+
+	if raw, found := object["total_season_tasks"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonTasks)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_tasks': %w", err)
+		}
+		delete(object, "total_season_tasks")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonOffensiveUserProgress to handle AdditionalProperties
+func (a SeasonOffensiveUserProgress) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["flags_to_next_rank"], err = json.Marshal(a.FlagsToNextRank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'flags_to_next_rank': %w", err)
+	}
+
+	object["league"], err = json.Marshal(a.League)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'league': %w", err)
+	}
+
+	object["rank"], err = json.Marshal(a.Rank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rank': %w", err)
+	}
+
+	object["total_season_bloods"], err = json.Marshal(a.TotalSeasonBloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_bloods': %w", err)
+	}
+
+	object["total_season_flags"], err = json.Marshal(a.TotalSeasonFlags)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_flags': %w", err)
+	}
+
+	object["total_season_points"], err = json.Marshal(a.TotalSeasonPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_points': %w", err)
+	}
+
+	object["total_season_tasks"], err = json.Marshal(a.TotalSeasonTasks)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_tasks': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonOffensiveUserProgress_TotalSeasonTasks. Returns the specified
+// element and whether it was found
+func (a SeasonOffensiveUserProgress_TotalSeasonTasks) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonOffensiveUserProgress_TotalSeasonTasks
+func (a *SeasonOffensiveUserProgress_TotalSeasonTasks) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonOffensiveUserProgress_TotalSeasonTasks to handle AdditionalProperties
+func (a *SeasonOffensiveUserProgress_TotalSeasonTasks) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["obtained"]; found {
+		err = json.Unmarshal(raw, &a.Obtained)
+		if err != nil {
+			return fmt.Errorf("error reading 'obtained': %w", err)
+		}
+		delete(object, "obtained")
+	}
+
+	if raw, found := object["total"]; found {
+		err = json.Unmarshal(raw, &a.Total)
+		if err != nil {
+			return fmt.Errorf("error reading 'total': %w", err)
+		}
+		delete(object, "total")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonOffensiveUserProgress_TotalSeasonTasks to handle AdditionalProperties
+func (a SeasonOffensiveUserProgress_TotalSeasonTasks) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["obtained"], err = json.Marshal(a.Obtained)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'obtained': %w", err)
+	}
+
+	object["total"], err = json.Marshal(a.Total)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonProgressCount. Returns the specified
+// element and whether it was found
+func (a SeasonProgressCount) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonProgressCount
+func (a *SeasonProgressCount) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonProgressCount to handle AdditionalProperties
+func (a *SeasonProgressCount) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["obtained"]; found {
+		err = json.Unmarshal(raw, &a.Obtained)
+		if err != nil {
+			return fmt.Errorf("error reading 'obtained': %w", err)
+		}
+		delete(object, "obtained")
+	}
+
+	if raw, found := object["total"]; found {
+		err = json.Unmarshal(raw, &a.Total)
+		if err != nil {
+			return fmt.Errorf("error reading 'total': %w", err)
+		}
+		delete(object, "total")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonProgressCount to handle AdditionalProperties
+func (a SeasonProgressCount) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["obtained"], err = json.Marshal(a.Obtained)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'obtained': %w", err)
+	}
+
+	object["total"], err = json.Marshal(a.Total)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonReward. Returns the specified
+// element and whether it was found
+func (a SeasonReward) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonReward
+func (a *SeasonReward) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonReward to handle AdditionalProperties
+func (a *SeasonReward) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["order"]; found {
+		err = json.Unmarshal(raw, &a.Order)
+		if err != nil {
+			return fmt.Errorf("error reading 'order': %w", err)
+		}
+		delete(object, "order")
+	}
+
+	if raw, found := object["reward_group_id"]; found {
+		err = json.Unmarshal(raw, &a.RewardGroupId)
+		if err != nil {
+			return fmt.Errorf("error reading 'reward_group_id': %w", err)
+		}
+		delete(object, "reward_group_id")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonReward to handle AdditionalProperties
+func (a SeasonReward) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["order"], err = json.Marshal(a.Order)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'order': %w", err)
+	}
+
+	object["reward_group_id"], err = json.Marshal(a.RewardGroupId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'reward_group_id': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonRewardCard. Returns the specified
+// element and whether it was found
+func (a SeasonRewardCard) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonRewardCard
+func (a *SeasonRewardCard) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonRewardCard to handle AdditionalProperties
+func (a *SeasonRewardCard) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["description"]; found {
+		err = json.Unmarshal(raw, &a.Description)
+		if err != nil {
+			return fmt.Errorf("error reading 'description': %w", err)
+		}
+		delete(object, "description")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["rewards"]; found {
+		err = json.Unmarshal(raw, &a.Rewards)
+		if err != nil {
+			return fmt.Errorf("error reading 'rewards': %w", err)
+		}
+		delete(object, "rewards")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonRewardCard to handle AdditionalProperties
+func (a SeasonRewardCard) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["description"], err = json.Marshal(a.Description)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'description': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	if a.Rewards != nil {
+		object["rewards"], err = json.Marshal(a.Rewards)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'rewards': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonRewardCard_Rewards_Item. Returns the specified
+// element and whether it was found
+func (a SeasonRewardCard_Rewards_Item) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonRewardCard_Rewards_Item
+func (a *SeasonRewardCard_Rewards_Item) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonRewardCard_Rewards_Item to handle AdditionalProperties
+func (a *SeasonRewardCard_Rewards_Item) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonRewardCard_Rewards_Item to handle AdditionalProperties
+func (a SeasonRewardCard_Rewards_Item) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonRewardGroup. Returns the specified
+// element and whether it was found
+func (a SeasonRewardGroup) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonRewardGroup
+func (a *SeasonRewardGroup) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonRewardGroup to handle AdditionalProperties
+func (a *SeasonRewardGroup) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["description"]; found {
+		err = json.Unmarshal(raw, &a.Description)
+		if err != nil {
+			return fmt.Errorf("error reading 'description': %w", err)
+		}
+		delete(object, "description")
+	}
+
+	if raw, found := object["flags_needed"]; found {
+		err = json.Unmarshal(raw, &a.FlagsNeeded)
+		if err != nil {
+			return fmt.Errorf("error reading 'flags_needed': %w", err)
+		}
+		delete(object, "flags_needed")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["order"]; found {
+		err = json.Unmarshal(raw, &a.Order)
+		if err != nil {
+			return fmt.Errorf("error reading 'order': %w", err)
+		}
+		delete(object, "order")
+	}
+
+	if raw, found := object["rank_up_requirement"]; found {
+		err = json.Unmarshal(raw, &a.RankUpRequirement)
+		if err != nil {
+			return fmt.Errorf("error reading 'rank_up_requirement': %w", err)
+		}
+		delete(object, "rank_up_requirement")
+	}
+
+	if raw, found := object["reward_type_id"]; found {
+		err = json.Unmarshal(raw, &a.RewardTypeId)
+		if err != nil {
+			return fmt.Errorf("error reading 'reward_type_id': %w", err)
+		}
+		delete(object, "reward_type_id")
+	}
+
+	if raw, found := object["rewards"]; found {
+		err = json.Unmarshal(raw, &a.Rewards)
+		if err != nil {
+			return fmt.Errorf("error reading 'rewards': %w", err)
+		}
+		delete(object, "rewards")
+	}
+
+	if raw, found := object["subtitle"]; found {
+		err = json.Unmarshal(raw, &a.Subtitle)
+		if err != nil {
+			return fmt.Errorf("error reading 'subtitle': %w", err)
+		}
+		delete(object, "subtitle")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonRewardGroup to handle AdditionalProperties
+func (a SeasonRewardGroup) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["description"], err = json.Marshal(a.Description)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'description': %w", err)
+	}
+
+	object["flags_needed"], err = json.Marshal(a.FlagsNeeded)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'flags_needed': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["order"], err = json.Marshal(a.Order)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'order': %w", err)
+	}
+
+	object["rank_up_requirement"], err = json.Marshal(a.RankUpRequirement)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rank_up_requirement': %w", err)
+	}
+
+	object["reward_type_id"], err = json.Marshal(a.RewardTypeId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'reward_type_id': %w", err)
+	}
+
+	if a.Rewards != nil {
+		object["rewards"], err = json.Marshal(a.Rewards)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'rewards': %w", err)
+		}
+	}
+
+	object["subtitle"], err = json.Marshal(a.Subtitle)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'subtitle': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonRewardType. Returns the specified
+// element and whether it was found
+func (a SeasonRewardType) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonRewardType
+func (a *SeasonRewardType) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonRewardType to handle AdditionalProperties
+func (a *SeasonRewardType) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["description"]; found {
+		err = json.Unmarshal(raw, &a.Description)
+		if err != nil {
+			return fmt.Errorf("error reading 'description': %w", err)
+		}
+		delete(object, "description")
+	}
+
+	if raw, found := object["groups"]; found {
+		err = json.Unmarshal(raw, &a.Groups)
+		if err != nil {
+			return fmt.Errorf("error reading 'groups': %w", err)
+		}
+		delete(object, "groups")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["order"]; found {
+		err = json.Unmarshal(raw, &a.Order)
+		if err != nil {
+			return fmt.Errorf("error reading 'order': %w", err)
+		}
+		delete(object, "order")
+	}
+
+	if raw, found := object["top_earns"]; found {
+		err = json.Unmarshal(raw, &a.TopEarns)
+		if err != nil {
+			return fmt.Errorf("error reading 'top_earns': %w", err)
+		}
+		delete(object, "top_earns")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonRewardType to handle AdditionalProperties
+func (a SeasonRewardType) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["description"], err = json.Marshal(a.Description)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'description': %w", err)
+	}
+
+	if a.Groups != nil {
+		object["groups"], err = json.Marshal(a.Groups)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'groups': %w", err)
+		}
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["order"], err = json.Marshal(a.Order)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'order': %w", err)
+	}
+
+	if a.TopEarns != nil {
+		object["top_earns"], err = json.Marshal(a.TopEarns)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'top_earns': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonRewardsResponse. Returns the specified
+// element and whether it was found
+func (a SeasonRewardsResponse) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonRewardsResponse
+func (a *SeasonRewardsResponse) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonRewardsResponse to handle AdditionalProperties
+func (a *SeasonRewardsResponse) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["data"]; found {
+		err = json.Unmarshal(raw, &a.Data)
+		if err != nil {
+			return fmt.Errorf("error reading 'data': %w", err)
+		}
+		delete(object, "data")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonRewardsResponse to handle AdditionalProperties
+func (a SeasonRewardsResponse) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.Data != nil {
+		object["data"], err = json.Marshal(a.Data)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'data': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonRewardsResponse_Data_Item. Returns the specified
+// element and whether it was found
+func (a SeasonRewardsResponse_Data_Item) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonRewardsResponse_Data_Item
+func (a *SeasonRewardsResponse_Data_Item) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonRewardsResponse_Data_Item to handle AdditionalProperties
+func (a *SeasonRewardsResponse_Data_Item) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["reward_types"]; found {
+		err = json.Unmarshal(raw, &a.RewardTypes)
+		if err != nil {
+			return fmt.Errorf("error reading 'reward_types': %w", err)
+		}
+		delete(object, "reward_types")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonRewardsResponse_Data_Item to handle AdditionalProperties
+func (a SeasonRewardsResponse_Data_Item) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["reward_types"], err = json.Marshal(a.RewardTypes)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'reward_types': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonUserProgress. Returns the specified
+// element and whether it was found
+func (a SeasonUserProgress) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonUserProgress
+func (a *SeasonUserProgress) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonUserProgress to handle AdditionalProperties
+func (a *SeasonUserProgress) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["flags_to_next_rank"]; found {
+		err = json.Unmarshal(raw, &a.FlagsToNextRank)
+		if err != nil {
+			return fmt.Errorf("error reading 'flags_to_next_rank': %w", err)
+		}
+		delete(object, "flags_to_next_rank")
+	}
+
+	if raw, found := object["league"]; found {
+		err = json.Unmarshal(raw, &a.League)
+		if err != nil {
+			return fmt.Errorf("error reading 'league': %w", err)
+		}
+		delete(object, "league")
+	}
+
+	if raw, found := object["rank"]; found {
+		err = json.Unmarshal(raw, &a.Rank)
+		if err != nil {
+			return fmt.Errorf("error reading 'rank': %w", err)
+		}
+		delete(object, "rank")
+	}
+
+	if raw, found := object["total_season_bloods"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonBloods)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_bloods': %w", err)
+		}
+		delete(object, "total_season_bloods")
+	}
+
+	if raw, found := object["total_season_flags"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonFlags)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_flags': %w", err)
+		}
+		delete(object, "total_season_flags")
+	}
+
+	if raw, found := object["total_season_points"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonPoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_points': %w", err)
+		}
+		delete(object, "total_season_points")
+	}
+
+	if raw, found := object["total_season_tasks"]; found {
+		err = json.Unmarshal(raw, &a.TotalSeasonTasks)
+		if err != nil {
+			return fmt.Errorf("error reading 'total_season_tasks': %w", err)
+		}
+		delete(object, "total_season_tasks")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonUserProgress to handle AdditionalProperties
+func (a SeasonUserProgress) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["flags_to_next_rank"], err = json.Marshal(a.FlagsToNextRank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'flags_to_next_rank': %w", err)
+	}
+
+	object["league"], err = json.Marshal(a.League)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'league': %w", err)
+	}
+
+	object["rank"], err = json.Marshal(a.Rank)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rank': %w", err)
+	}
+
+	object["total_season_bloods"], err = json.Marshal(a.TotalSeasonBloods)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_bloods': %w", err)
+	}
+
+	object["total_season_flags"], err = json.Marshal(a.TotalSeasonFlags)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_flags': %w", err)
+	}
+
+	object["total_season_points"], err = json.Marshal(a.TotalSeasonPoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_points': %w", err)
+	}
+
+	object["total_season_tasks"], err = json.Marshal(a.TotalSeasonTasks)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total_season_tasks': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonUserProgress_FlagsToNextRank. Returns the specified
+// element and whether it was found
+func (a SeasonUserProgress_FlagsToNextRank) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonUserProgress_FlagsToNextRank
+func (a *SeasonUserProgress_FlagsToNextRank) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonUserProgress_FlagsToNextRank to handle AdditionalProperties
+func (a *SeasonUserProgress_FlagsToNextRank) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["obtained"]; found {
+		err = json.Unmarshal(raw, &a.Obtained)
+		if err != nil {
+			return fmt.Errorf("error reading 'obtained': %w", err)
+		}
+		delete(object, "obtained")
+	}
+
+	if raw, found := object["total"]; found {
+		err = json.Unmarshal(raw, &a.Total)
+		if err != nil {
+			return fmt.Errorf("error reading 'total': %w", err)
+		}
+		delete(object, "total")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonUserProgress_FlagsToNextRank to handle AdditionalProperties
+func (a SeasonUserProgress_FlagsToNextRank) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["obtained"], err = json.Marshal(a.Obtained)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'obtained': %w", err)
+	}
+
+	object["total"], err = json.Marshal(a.Total)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonUserProgress_TotalSeasonFlags. Returns the specified
+// element and whether it was found
+func (a SeasonUserProgress_TotalSeasonFlags) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonUserProgress_TotalSeasonFlags
+func (a *SeasonUserProgress_TotalSeasonFlags) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonUserProgress_TotalSeasonFlags to handle AdditionalProperties
+func (a *SeasonUserProgress_TotalSeasonFlags) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["obtained"]; found {
+		err = json.Unmarshal(raw, &a.Obtained)
+		if err != nil {
+			return fmt.Errorf("error reading 'obtained': %w", err)
+		}
+		delete(object, "obtained")
+	}
+
+	if raw, found := object["total"]; found {
+		err = json.Unmarshal(raw, &a.Total)
+		if err != nil {
+			return fmt.Errorf("error reading 'total': %w", err)
+		}
+		delete(object, "total")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonUserProgress_TotalSeasonFlags to handle AdditionalProperties
+func (a SeasonUserProgress_TotalSeasonFlags) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["obtained"], err = json.Marshal(a.Obtained)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'obtained': %w", err)
+	}
+
+	object["total"], err = json.Marshal(a.Total)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonUserProgress_TotalSeasonTasks. Returns the specified
+// element and whether it was found
+func (a SeasonUserProgress_TotalSeasonTasks) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonUserProgress_TotalSeasonTasks
+func (a *SeasonUserProgress_TotalSeasonTasks) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonUserProgress_TotalSeasonTasks to handle AdditionalProperties
+func (a *SeasonUserProgress_TotalSeasonTasks) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["obtained"]; found {
+		err = json.Unmarshal(raw, &a.Obtained)
+		if err != nil {
+			return fmt.Errorf("error reading 'obtained': %w", err)
+		}
+		delete(object, "obtained")
+	}
+
+	if raw, found := object["total"]; found {
+		err = json.Unmarshal(raw, &a.Total)
+		if err != nil {
+			return fmt.Errorf("error reading 'total': %w", err)
+		}
+		delete(object, "total")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonUserProgress_TotalSeasonTasks to handle AdditionalProperties
+func (a SeasonUserProgress_TotalSeasonTasks) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["obtained"], err = json.Marshal(a.Obtained)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'obtained': %w", err)
+	}
+
+	object["total"], err = json.Marshal(a.Total)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'total': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonUserRankResponse. Returns the specified
+// element and whether it was found
+func (a SeasonUserRankResponse) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonUserRankResponse
+func (a *SeasonUserRankResponse) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonUserRankResponse to handle AdditionalProperties
+func (a *SeasonUserRankResponse) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["data"]; found {
+		err = json.Unmarshal(raw, &a.Data)
+		if err != nil {
+			return fmt.Errorf("error reading 'data': %w", err)
+		}
+		delete(object, "data")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonUserRankResponse to handle AdditionalProperties
+func (a SeasonUserRankResponse) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["data"], err = json.Marshal(a.Data)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'data': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonUserRankResponse_Data. Returns the specified
+// element and whether it was found
+func (a SeasonUserRankResponse_Data) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonUserRankResponse_Data
+func (a *SeasonUserRankResponse_Data) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonUserRankResponse_Data to handle AdditionalProperties
+func (a *SeasonUserRankResponse_Data) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["blue"]; found {
+		err = json.Unmarshal(raw, &a.Blue)
+		if err != nil {
+			return fmt.Errorf("error reading 'blue': %w", err)
+		}
+		delete(object, "blue")
+	}
+
+	if raw, found := object["purple"]; found {
+		err = json.Unmarshal(raw, &a.Purple)
+		if err != nil {
+			return fmt.Errorf("error reading 'purple': %w", err)
+		}
+		delete(object, "purple")
+	}
+
+	if raw, found := object["red"]; found {
+		err = json.Unmarshal(raw, &a.Red)
+		if err != nil {
+			return fmt.Errorf("error reading 'red': %w", err)
+		}
+		delete(object, "red")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonUserRankResponse_Data to handle AdditionalProperties
+func (a SeasonUserRankResponse_Data) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["blue"], err = json.Marshal(a.Blue)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'blue': %w", err)
+	}
+
+	object["purple"], err = json.Marshal(a.Purple)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'purple': %w", err)
+	}
+
+	object["red"], err = json.Marshal(a.Red)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'red': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonUserRanksEntry. Returns the specified
+// element and whether it was found
+func (a SeasonUserRanksEntry) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonUserRanksEntry
+func (a *SeasonUserRanksEntry) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonUserRanksEntry to handle AdditionalProperties
+func (a *SeasonUserRanksEntry) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["background_image"]; found {
+		err = json.Unmarshal(raw, &a.BackgroundImage)
+		if err != nil {
+			return fmt.Errorf("error reading 'background_image': %w", err)
+		}
+		delete(object, "background_image")
+	}
+
+	if raw, found := object["blue"]; found {
+		err = json.Unmarshal(raw, &a.Blue)
+		if err != nil {
+			return fmt.Errorf("error reading 'blue': %w", err)
+		}
+		delete(object, "blue")
+	}
+
+	if raw, found := object["end_date"]; found {
+		err = json.Unmarshal(raw, &a.EndDate)
+		if err != nil {
+			return fmt.Errorf("error reading 'end_date': %w", err)
+		}
+		delete(object, "end_date")
+	}
+
+	if raw, found := object["is_active"]; found {
+		err = json.Unmarshal(raw, &a.IsActive)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_active': %w", err)
+		}
+		delete(object, "is_active")
+	}
+
+	if raw, found := object["purple"]; found {
+		err = json.Unmarshal(raw, &a.Purple)
+		if err != nil {
+			return fmt.Errorf("error reading 'purple': %w", err)
+		}
+		delete(object, "purple")
+	}
+
+	if raw, found := object["red"]; found {
+		err = json.Unmarshal(raw, &a.Red)
+		if err != nil {
+			return fmt.Errorf("error reading 'red': %w", err)
+		}
+		delete(object, "red")
+	}
+
+	if raw, found := object["season_content_id"]; found {
+		err = json.Unmarshal(raw, &a.SeasonContentId)
+		if err != nil {
+			return fmt.Errorf("error reading 'season_content_id': %w", err)
+		}
+		delete(object, "season_content_id")
+	}
+
+	if raw, found := object["season_id"]; found {
+		err = json.Unmarshal(raw, &a.SeasonId)
+		if err != nil {
+			return fmt.Errorf("error reading 'season_id': %w", err)
+		}
+		delete(object, "season_id")
+	}
+
+	if raw, found := object["season_name"]; found {
+		err = json.Unmarshal(raw, &a.SeasonName)
+		if err != nil {
+			return fmt.Errorf("error reading 'season_name': %w", err)
+		}
+		delete(object, "season_name")
+	}
+
+	if raw, found := object["start_date"]; found {
+		err = json.Unmarshal(raw, &a.StartDate)
+		if err != nil {
+			return fmt.Errorf("error reading 'start_date': %w", err)
+		}
+		delete(object, "start_date")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonUserRanksEntry to handle AdditionalProperties
+func (a SeasonUserRanksEntry) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["background_image"], err = json.Marshal(a.BackgroundImage)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'background_image': %w", err)
+	}
+
+	object["blue"], err = json.Marshal(a.Blue)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'blue': %w", err)
+	}
+
+	object["end_date"], err = json.Marshal(a.EndDate)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'end_date': %w", err)
+	}
+
+	object["is_active"], err = json.Marshal(a.IsActive)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_active': %w", err)
+	}
+
+	object["purple"], err = json.Marshal(a.Purple)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'purple': %w", err)
+	}
+
+	object["red"], err = json.Marshal(a.Red)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'red': %w", err)
+	}
+
+	object["season_content_id"], err = json.Marshal(a.SeasonContentId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'season_content_id': %w", err)
+	}
+
+	object["season_id"], err = json.Marshal(a.SeasonId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'season_id': %w", err)
+	}
+
+	object["season_name"], err = json.Marshal(a.SeasonName)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'season_name': %w", err)
+	}
+
+	object["start_date"], err = json.Marshal(a.StartDate)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'start_date': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SeasonUserRanksResponse. Returns the specified
+// element and whether it was found
+func (a SeasonUserRanksResponse) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SeasonUserRanksResponse
+func (a *SeasonUserRanksResponse) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SeasonUserRanksResponse to handle AdditionalProperties
+func (a *SeasonUserRanksResponse) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["data"]; found {
+		err = json.Unmarshal(raw, &a.Data)
+		if err != nil {
+			return fmt.Errorf("error reading 'data': %w", err)
+		}
+		delete(object, "data")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SeasonUserRanksResponse to handle AdditionalProperties
+func (a SeasonUserRanksResponse) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.Data != nil {
+		object["data"], err = json.Marshal(a.Data)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'data': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SubscriptionPricingSourcePlan. Returns the specified
+// element and whether it was found
+func (a SubscriptionPricingSourcePlan) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SubscriptionPricingSourcePlan
+func (a *SubscriptionPricingSourcePlan) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SubscriptionPricingSourcePlan to handle AdditionalProperties
+func (a *SubscriptionPricingSourcePlan) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["billing_interval"]; found {
+		err = json.Unmarshal(raw, &a.BillingInterval)
+		if err != nil {
+			return fmt.Errorf("error reading 'billing_interval': %w", err)
+		}
+		delete(object, "billing_interval")
+	}
+
+	if raw, found := object["billing_interval_count"]; found {
+		err = json.Unmarshal(raw, &a.BillingIntervalCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'billing_interval_count': %w", err)
+		}
+		delete(object, "billing_interval_count")
+	}
+
+	if raw, found := object["code"]; found {
+		err = json.Unmarshal(raw, &a.Code)
+		if err != nil {
+			return fmt.Errorf("error reading 'code': %w", err)
+		}
+		delete(object, "code")
+	}
+
+	if raw, found := object["is_current_plan"]; found {
+		err = json.Unmarshal(raw, &a.IsCurrentPlan)
+		if err != nil {
+			return fmt.Errorf("error reading 'is_current_plan': %w", err)
+		}
+		delete(object, "is_current_plan")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["prices"]; found {
+		err = json.Unmarshal(raw, &a.Prices)
+		if err != nil {
+			return fmt.Errorf("error reading 'prices': %w", err)
+		}
+		delete(object, "prices")
+	}
+
+	if raw, found := object["upgrades_to"]; found {
+		err = json.Unmarshal(raw, &a.UpgradesTo)
+		if err != nil {
+			return fmt.Errorf("error reading 'upgrades_to': %w", err)
+		}
+		delete(object, "upgrades_to")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SubscriptionPricingSourcePlan to handle AdditionalProperties
+func (a SubscriptionPricingSourcePlan) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["billing_interval"], err = json.Marshal(a.BillingInterval)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'billing_interval': %w", err)
+	}
+
+	object["billing_interval_count"], err = json.Marshal(a.BillingIntervalCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'billing_interval_count': %w", err)
+	}
+
+	object["code"], err = json.Marshal(a.Code)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'code': %w", err)
+	}
+
+	object["is_current_plan"], err = json.Marshal(a.IsCurrentPlan)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'is_current_plan': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	if a.Prices != nil {
+		object["prices"], err = json.Marshal(a.Prices)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'prices': %w", err)
+		}
+	}
+
+	object["upgrades_to"], err = json.Marshal(a.UpgradesTo)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'upgrades_to': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SubscriptionPricingSourcePrice. Returns the specified
+// element and whether it was found
+func (a SubscriptionPricingSourcePrice) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SubscriptionPricingSourcePrice
+func (a *SubscriptionPricingSourcePrice) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SubscriptionPricingSourcePrice to handle AdditionalProperties
+func (a *SubscriptionPricingSourcePrice) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["currency"]; found {
+		err = json.Unmarshal(raw, &a.Currency)
+		if err != nil {
+			return fmt.Errorf("error reading 'currency': %w", err)
+		}
+		delete(object, "currency")
+	}
+
+	if raw, found := object["per_period"]; found {
+		err = json.Unmarshal(raw, &a.PerPeriod)
+		if err != nil {
+			return fmt.Errorf("error reading 'per_period': %w", err)
+		}
+		delete(object, "per_period")
+	}
+
+	if raw, found := object["setup"]; found {
+		err = json.Unmarshal(raw, &a.Setup)
+		if err != nil {
+			return fmt.Errorf("error reading 'setup': %w", err)
+		}
+		delete(object, "setup")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SubscriptionPricingSourcePrice to handle AdditionalProperties
+func (a SubscriptionPricingSourcePrice) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["currency"], err = json.Marshal(a.Currency)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'currency': %w", err)
+	}
+
+	object["per_period"], err = json.Marshal(a.PerPeriod)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'per_period': %w", err)
+	}
+
+	object["setup"], err = json.Marshal(a.Setup)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'setup': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SubscriptionPricingSourceProduct. Returns the specified
+// element and whether it was found
+func (a SubscriptionPricingSourceProduct) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SubscriptionPricingSourceProduct
+func (a *SubscriptionPricingSourceProduct) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProduct to handle AdditionalProperties
+func (a *SubscriptionPricingSourceProduct) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["entitlements"]; found {
+		err = json.Unmarshal(raw, &a.Entitlements)
+		if err != nil {
+			return fmt.Errorf("error reading 'entitlements': %w", err)
+		}
+		delete(object, "entitlements")
+	}
+
+	if raw, found := object["perks"]; found {
+		err = json.Unmarshal(raw, &a.Perks)
+		if err != nil {
+			return fmt.Errorf("error reading 'perks': %w", err)
+		}
+		delete(object, "perks")
+	}
+
+	if raw, found := object["plans"]; found {
+		err = json.Unmarshal(raw, &a.Plans)
+		if err != nil {
+			return fmt.Errorf("error reading 'plans': %w", err)
+		}
+		delete(object, "plans")
+	}
+
+	if raw, found := object["type"]; found {
+		err = json.Unmarshal(raw, &a.Type)
+		if err != nil {
+			return fmt.Errorf("error reading 'type': %w", err)
+		}
+		delete(object, "type")
+	}
+
+	if raw, found := object["upgrades_to"]; found {
+		err = json.Unmarshal(raw, &a.UpgradesTo)
+		if err != nil {
+			return fmt.Errorf("error reading 'upgrades_to': %w", err)
+		}
+		delete(object, "upgrades_to")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProduct to handle AdditionalProperties
+func (a SubscriptionPricingSourceProduct) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["entitlements"], err = json.Marshal(a.Entitlements)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'entitlements': %w", err)
+	}
+
+	object["perks"], err = json.Marshal(a.Perks)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'perks': %w", err)
+	}
+
+	if a.Plans != nil {
+		object["plans"], err = json.Marshal(a.Plans)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'plans': %w", err)
+		}
+	}
+
+	object["type"], err = json.Marshal(a.Type)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'type': %w", err)
+	}
+
+	if a.UpgradesTo != nil {
+		object["upgrades_to"], err = json.Marshal(a.UpgradesTo)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'upgrades_to': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SubscriptionPricingSourceProduct_Entitlements_Content_MiniLabs_Item. Returns the specified
+// element and whether it was found
+func (a SubscriptionPricingSourceProduct_Entitlements_Content_MiniLabs_Item) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SubscriptionPricingSourceProduct_Entitlements_Content_MiniLabs_Item
+func (a *SubscriptionPricingSourceProduct_Entitlements_Content_MiniLabs_Item) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProduct_Entitlements_Content_MiniLabs_Item to handle AdditionalProperties
+func (a *SubscriptionPricingSourceProduct_Entitlements_Content_MiniLabs_Item) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["content_id"]; found {
+		err = json.Unmarshal(raw, &a.ContentId)
+		if err != nil {
+			return fmt.Errorf("error reading 'content_id': %w", err)
+		}
+		delete(object, "content_id")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProduct_Entitlements_Content_MiniLabs_Item to handle AdditionalProperties
+func (a SubscriptionPricingSourceProduct_Entitlements_Content_MiniLabs_Item) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["content_id"], err = json.Marshal(a.ContentId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'content_id': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SubscriptionPricingSourceProduct_Entitlements_Content_ProLabs_Item. Returns the specified
+// element and whether it was found
+func (a SubscriptionPricingSourceProduct_Entitlements_Content_ProLabs_Item) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SubscriptionPricingSourceProduct_Entitlements_Content_ProLabs_Item
+func (a *SubscriptionPricingSourceProduct_Entitlements_Content_ProLabs_Item) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProduct_Entitlements_Content_ProLabs_Item to handle AdditionalProperties
+func (a *SubscriptionPricingSourceProduct_Entitlements_Content_ProLabs_Item) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["content_id"]; found {
+		err = json.Unmarshal(raw, &a.ContentId)
+		if err != nil {
+			return fmt.Errorf("error reading 'content_id': %w", err)
+		}
+		delete(object, "content_id")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProduct_Entitlements_Content_ProLabs_Item to handle AdditionalProperties
+func (a SubscriptionPricingSourceProduct_Entitlements_Content_ProLabs_Item) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["content_id"], err = json.Marshal(a.ContentId)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'content_id': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SubscriptionPricingSourceProduct_Entitlements_Content. Returns the specified
+// element and whether it was found
+func (a SubscriptionPricingSourceProduct_Entitlements_Content) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SubscriptionPricingSourceProduct_Entitlements_Content
+func (a *SubscriptionPricingSourceProduct_Entitlements_Content) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProduct_Entitlements_Content to handle AdditionalProperties
+func (a *SubscriptionPricingSourceProduct_Entitlements_Content) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["mini_labs"]; found {
+		err = json.Unmarshal(raw, &a.MiniLabs)
+		if err != nil {
+			return fmt.Errorf("error reading 'mini_labs': %w", err)
+		}
+		delete(object, "mini_labs")
+	}
+
+	if raw, found := object["pro_labs"]; found {
+		err = json.Unmarshal(raw, &a.ProLabs)
+		if err != nil {
+			return fmt.Errorf("error reading 'pro_labs': %w", err)
+		}
+		delete(object, "pro_labs")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProduct_Entitlements_Content to handle AdditionalProperties
+func (a SubscriptionPricingSourceProduct_Entitlements_Content) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	if a.MiniLabs != nil {
+		object["mini_labs"], err = json.Marshal(a.MiniLabs)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'mini_labs': %w", err)
+		}
+	}
+
+	if a.ProLabs != nil {
+		object["pro_labs"], err = json.Marshal(a.ProLabs)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'pro_labs': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SubscriptionPricingSourceProduct_Entitlements. Returns the specified
+// element and whether it was found
+func (a SubscriptionPricingSourceProduct_Entitlements) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SubscriptionPricingSourceProduct_Entitlements
+func (a *SubscriptionPricingSourceProduct_Entitlements) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProduct_Entitlements to handle AdditionalProperties
+func (a *SubscriptionPricingSourceProduct_Entitlements) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["content"]; found {
+		err = json.Unmarshal(raw, &a.Content)
+		if err != nil {
+			return fmt.Errorf("error reading 'content': %w", err)
+		}
+		delete(object, "content")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProduct_Entitlements to handle AdditionalProperties
+func (a SubscriptionPricingSourceProduct_Entitlements) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["content"], err = json.Marshal(a.Content)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'content': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SubscriptionPricingSourceProductGroupsItem. Returns the specified
+// element and whether it was found
+func (a SubscriptionPricingSourceProductGroupsItem) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SubscriptionPricingSourceProductGroupsItem
+func (a *SubscriptionPricingSourceProductGroupsItem) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProductGroupsItem to handle AdditionalProperties
+func (a *SubscriptionPricingSourceProductGroupsItem) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["products"]; found {
+		err = json.Unmarshal(raw, &a.Products)
+		if err != nil {
+			return fmt.Errorf("error reading 'products': %w", err)
+		}
+		delete(object, "products")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SubscriptionPricingSourceProductGroupsItem to handle AdditionalProperties
+func (a SubscriptionPricingSourceProductGroupsItem) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	if a.Products != nil {
+		object["products"], err = json.Marshal(a.Products)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'products': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for SubscriptionPricingSourceResponse. Returns the specified
+// element and whether it was found
+func (a SubscriptionPricingSourceResponse) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for SubscriptionPricingSourceResponse
+func (a *SubscriptionPricingSourceResponse) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for SubscriptionPricingSourceResponse to handle AdditionalProperties
+func (a *SubscriptionPricingSourceResponse) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["default_currency"]; found {
+		err = json.Unmarshal(raw, &a.DefaultCurrency)
+		if err != nil {
+			return fmt.Errorf("error reading 'default_currency': %w", err)
+		}
+		delete(object, "default_currency")
+	}
+
+	if raw, found := object["product_groups"]; found {
+		err = json.Unmarshal(raw, &a.ProductGroups)
+		if err != nil {
+			return fmt.Errorf("error reading 'product_groups': %w", err)
+		}
+		delete(object, "product_groups")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for SubscriptionPricingSourceResponse to handle AdditionalProperties
+func (a SubscriptionPricingSourceResponse) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["default_currency"], err = json.Marshal(a.DefaultCurrency)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'default_currency': %w", err)
+	}
+
+	if a.ProductGroups != nil {
+		object["product_groups"], err = json.Marshal(a.ProductGroups)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling 'product_groups': %w", err)
+		}
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for UserDashboardChallenge. Returns the specified
+// element and whether it was found
+func (a UserDashboardChallenge) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for UserDashboardChallenge
+func (a *UserDashboardChallenge) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for UserDashboardChallenge to handle AdditionalProperties
+func (a *UserDashboardChallenge) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["avatarUrl"]; found {
+		err = json.Unmarshal(raw, &a.AvatarUrl)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatarUrl': %w", err)
+		}
+		delete(object, "avatarUrl")
+	}
+
+	if raw, found := object["categoryID"]; found {
+		err = json.Unmarshal(raw, &a.CategoryID)
+		if err != nil {
+			return fmt.Errorf("error reading 'categoryID': %w", err)
+		}
+		delete(object, "categoryID")
+	}
+
+	if raw, found := object["categoryName"]; found {
+		err = json.Unmarshal(raw, &a.CategoryName)
+		if err != nil {
+			return fmt.Errorf("error reading 'categoryName': %w", err)
+		}
+		delete(object, "categoryName")
+	}
+
+	if raw, found := object["difficulty"]; found {
+		err = json.Unmarshal(raw, &a.Difficulty)
+		if err != nil {
+			return fmt.Errorf("error reading 'difficulty': %w", err)
+		}
+		delete(object, "difficulty")
+	}
+
+	if raw, found := object["experiencePoints"]; found {
+		err = json.Unmarshal(raw, &a.ExperiencePoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'experiencePoints': %w", err)
+		}
+		delete(object, "experiencePoints")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["points"]; found {
+		err = json.Unmarshal(raw, &a.Points)
+		if err != nil {
+			return fmt.Errorf("error reading 'points': %w", err)
+		}
+		delete(object, "points")
+	}
+
+	if raw, found := object["progress"]; found {
+		err = json.Unmarshal(raw, &a.Progress)
+		if err != nil {
+			return fmt.Errorf("error reading 'progress': %w", err)
+		}
+		delete(object, "progress")
+	}
+
+	if raw, found := object["rating"]; found {
+		err = json.Unmarshal(raw, &a.Rating)
+		if err != nil {
+			return fmt.Errorf("error reading 'rating': %w", err)
+		}
+		delete(object, "rating")
+	}
+
+	if raw, found := object["ratingCount"]; found {
+		err = json.Unmarshal(raw, &a.RatingCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'ratingCount': %w", err)
+		}
+		delete(object, "ratingCount")
+	}
+
+	if raw, found := object["status"]; found {
+		err = json.Unmarshal(raw, &a.Status)
+		if err != nil {
+			return fmt.Errorf("error reading 'status': %w", err)
+		}
+		delete(object, "status")
+	}
+
+	if raw, found := object["type"]; found {
+		err = json.Unmarshal(raw, &a.Type)
+		if err != nil {
+			return fmt.Errorf("error reading 'type': %w", err)
+		}
+		delete(object, "type")
+	}
+
+	if raw, found := object["url"]; found {
+		err = json.Unmarshal(raw, &a.Url)
+		if err != nil {
+			return fmt.Errorf("error reading 'url': %w", err)
+		}
+		delete(object, "url")
+	}
+
+	if raw, found := object["urlName"]; found {
+		err = json.Unmarshal(raw, &a.UrlName)
+		if err != nil {
+			return fmt.Errorf("error reading 'urlName': %w", err)
+		}
+		delete(object, "urlName")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for UserDashboardChallenge to handle AdditionalProperties
+func (a UserDashboardChallenge) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["avatarUrl"], err = json.Marshal(a.AvatarUrl)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatarUrl': %w", err)
+	}
+
+	object["categoryID"], err = json.Marshal(a.CategoryID)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'categoryID': %w", err)
+	}
+
+	object["categoryName"], err = json.Marshal(a.CategoryName)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'categoryName': %w", err)
+	}
+
+	object["difficulty"], err = json.Marshal(a.Difficulty)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'difficulty': %w", err)
+	}
+
+	object["experiencePoints"], err = json.Marshal(a.ExperiencePoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'experiencePoints': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["points"], err = json.Marshal(a.Points)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'points': %w", err)
+	}
+
+	object["progress"], err = json.Marshal(a.Progress)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'progress': %w", err)
+	}
+
+	object["rating"], err = json.Marshal(a.Rating)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rating': %w", err)
+	}
+
+	object["ratingCount"], err = json.Marshal(a.RatingCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'ratingCount': %w", err)
+	}
+
+	object["status"], err = json.Marshal(a.Status)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'status': %w", err)
+	}
+
+	object["type"], err = json.Marshal(a.Type)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'type': %w", err)
+	}
+
+	object["url"], err = json.Marshal(a.Url)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'url': %w", err)
+	}
+
+	object["urlName"], err = json.Marshal(a.UrlName)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'urlName': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for UserDashboardMachine. Returns the specified
+// element and whether it was found
+func (a UserDashboardMachine) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for UserDashboardMachine
+func (a *UserDashboardMachine) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for UserDashboardMachine to handle AdditionalProperties
+func (a *UserDashboardMachine) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["avatarUrl"]; found {
+		err = json.Unmarshal(raw, &a.AvatarUrl)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatarUrl': %w", err)
+		}
+		delete(object, "avatarUrl")
+	}
+
+	if raw, found := object["difficulty"]; found {
+		err = json.Unmarshal(raw, &a.Difficulty)
+		if err != nil {
+			return fmt.Errorf("error reading 'difficulty': %w", err)
+		}
+		delete(object, "difficulty")
+	}
+
+	if raw, found := object["experiencePoints"]; found {
+		err = json.Unmarshal(raw, &a.ExperiencePoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'experiencePoints': %w", err)
+		}
+		delete(object, "experiencePoints")
+	}
+
+	if raw, found := object["guided"]; found {
+		err = json.Unmarshal(raw, &a.Guided)
+		if err != nil {
+			return fmt.Errorf("error reading 'guided': %w", err)
+		}
+		delete(object, "guided")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["os"]; found {
+		err = json.Unmarshal(raw, &a.Os)
+		if err != nil {
+			return fmt.Errorf("error reading 'os': %w", err)
+		}
+		delete(object, "os")
+	}
+
+	if raw, found := object["points"]; found {
+		err = json.Unmarshal(raw, &a.Points)
+		if err != nil {
+			return fmt.Errorf("error reading 'points': %w", err)
+		}
+		delete(object, "points")
+	}
+
+	if raw, found := object["progress"]; found {
+		err = json.Unmarshal(raw, &a.Progress)
+		if err != nil {
+			return fmt.Errorf("error reading 'progress': %w", err)
+		}
+		delete(object, "progress")
+	}
+
+	if raw, found := object["rating"]; found {
+		err = json.Unmarshal(raw, &a.Rating)
+		if err != nil {
+			return fmt.Errorf("error reading 'rating': %w", err)
+		}
+		delete(object, "rating")
+	}
+
+	if raw, found := object["ratingCount"]; found {
+		err = json.Unmarshal(raw, &a.RatingCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'ratingCount': %w", err)
+		}
+		delete(object, "ratingCount")
+	}
+
+	if raw, found := object["root_flag"]; found {
+		err = json.Unmarshal(raw, &a.RootFlag)
+		if err != nil {
+			return fmt.Errorf("error reading 'root_flag': %w", err)
+		}
+		delete(object, "root_flag")
+	}
+
+	if raw, found := object["status"]; found {
+		err = json.Unmarshal(raw, &a.Status)
+		if err != nil {
+			return fmt.Errorf("error reading 'status': %w", err)
+		}
+		delete(object, "status")
+	}
+
+	if raw, found := object["tasksCompleted"]; found {
+		err = json.Unmarshal(raw, &a.TasksCompleted)
+		if err != nil {
+			return fmt.Errorf("error reading 'tasksCompleted': %w", err)
+		}
+		delete(object, "tasksCompleted")
+	}
+
+	if raw, found := object["tasksTotal"]; found {
+		err = json.Unmarshal(raw, &a.TasksTotal)
+		if err != nil {
+			return fmt.Errorf("error reading 'tasksTotal': %w", err)
+		}
+		delete(object, "tasksTotal")
+	}
+
+	if raw, found := object["type"]; found {
+		err = json.Unmarshal(raw, &a.Type)
+		if err != nil {
+			return fmt.Errorf("error reading 'type': %w", err)
+		}
+		delete(object, "type")
+	}
+
+	if raw, found := object["url"]; found {
+		err = json.Unmarshal(raw, &a.Url)
+		if err != nil {
+			return fmt.Errorf("error reading 'url': %w", err)
+		}
+		delete(object, "url")
+	}
+
+	if raw, found := object["user_flag"]; found {
+		err = json.Unmarshal(raw, &a.UserFlag)
+		if err != nil {
+			return fmt.Errorf("error reading 'user_flag': %w", err)
+		}
+		delete(object, "user_flag")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for UserDashboardMachine to handle AdditionalProperties
+func (a UserDashboardMachine) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["avatarUrl"], err = json.Marshal(a.AvatarUrl)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatarUrl': %w", err)
+	}
+
+	object["difficulty"], err = json.Marshal(a.Difficulty)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'difficulty': %w", err)
+	}
+
+	object["experiencePoints"], err = json.Marshal(a.ExperiencePoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'experiencePoints': %w", err)
+	}
+
+	object["guided"], err = json.Marshal(a.Guided)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'guided': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["os"], err = json.Marshal(a.Os)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'os': %w", err)
+	}
+
+	object["points"], err = json.Marshal(a.Points)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'points': %w", err)
+	}
+
+	object["progress"], err = json.Marshal(a.Progress)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'progress': %w", err)
+	}
+
+	object["rating"], err = json.Marshal(a.Rating)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rating': %w", err)
+	}
+
+	object["ratingCount"], err = json.Marshal(a.RatingCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'ratingCount': %w", err)
+	}
+
+	object["root_flag"], err = json.Marshal(a.RootFlag)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'root_flag': %w", err)
+	}
+
+	object["status"], err = json.Marshal(a.Status)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'status': %w", err)
+	}
+
+	object["tasksCompleted"], err = json.Marshal(a.TasksCompleted)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'tasksCompleted': %w", err)
+	}
+
+	object["tasksTotal"], err = json.Marshal(a.TasksTotal)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'tasksTotal': %w", err)
+	}
+
+	object["type"], err = json.Marshal(a.Type)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'type': %w", err)
+	}
+
+	object["url"], err = json.Marshal(a.Url)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'url': %w", err)
+	}
+
+	object["user_flag"], err = json.Marshal(a.UserFlag)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'user_flag': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for UserDashboardProlab. Returns the specified
+// element and whether it was found
+func (a UserDashboardProlab) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for UserDashboardProlab
+func (a *UserDashboardProlab) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for UserDashboardProlab to handle AdditionalProperties
+func (a *UserDashboardProlab) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["avatarUrl"]; found {
+		err = json.Unmarshal(raw, &a.AvatarUrl)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatarUrl': %w", err)
+		}
+		delete(object, "avatarUrl")
+	}
+
+	if raw, found := object["categoryName"]; found {
+		err = json.Unmarshal(raw, &a.CategoryName)
+		if err != nil {
+			return fmt.Errorf("error reading 'categoryName': %w", err)
+		}
+		delete(object, "categoryName")
+	}
+
+	if raw, found := object["difficulty"]; found {
+		err = json.Unmarshal(raw, &a.Difficulty)
+		if err != nil {
+			return fmt.Errorf("error reading 'difficulty': %w", err)
+		}
+		delete(object, "difficulty")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["identifier"]; found {
+		err = json.Unmarshal(raw, &a.Identifier)
+		if err != nil {
+			return fmt.Errorf("error reading 'identifier': %w", err)
+		}
+		delete(object, "identifier")
+	}
+
+	if raw, found := object["mini"]; found {
+		err = json.Unmarshal(raw, &a.Mini)
+		if err != nil {
+			return fmt.Errorf("error reading 'mini': %w", err)
+		}
+		delete(object, "mini")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["progress"]; found {
+		err = json.Unmarshal(raw, &a.Progress)
+		if err != nil {
+			return fmt.Errorf("error reading 'progress': %w", err)
+		}
+		delete(object, "progress")
+	}
+
+	if raw, found := object["rating"]; found {
+		err = json.Unmarshal(raw, &a.Rating)
+		if err != nil {
+			return fmt.Errorf("error reading 'rating': %w", err)
+		}
+		delete(object, "rating")
+	}
+
+	if raw, found := object["ratingCount"]; found {
+		err = json.Unmarshal(raw, &a.RatingCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'ratingCount': %w", err)
+		}
+		delete(object, "ratingCount")
+	}
+
+	if raw, found := object["status"]; found {
+		err = json.Unmarshal(raw, &a.Status)
+		if err != nil {
+			return fmt.Errorf("error reading 'status': %w", err)
+		}
+		delete(object, "status")
+	}
+
+	if raw, found := object["tasksCompleted"]; found {
+		err = json.Unmarshal(raw, &a.TasksCompleted)
+		if err != nil {
+			return fmt.Errorf("error reading 'tasksCompleted': %w", err)
+		}
+		delete(object, "tasksCompleted")
+	}
+
+	if raw, found := object["tasksTotal"]; found {
+		err = json.Unmarshal(raw, &a.TasksTotal)
+		if err != nil {
+			return fmt.Errorf("error reading 'tasksTotal': %w", err)
+		}
+		delete(object, "tasksTotal")
+	}
+
+	if raw, found := object["type"]; found {
+		err = json.Unmarshal(raw, &a.Type)
+		if err != nil {
+			return fmt.Errorf("error reading 'type': %w", err)
+		}
+		delete(object, "type")
+	}
+
+	if raw, found := object["url"]; found {
+		err = json.Unmarshal(raw, &a.Url)
+		if err != nil {
+			return fmt.Errorf("error reading 'url': %w", err)
+		}
+		delete(object, "url")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for UserDashboardProlab to handle AdditionalProperties
+func (a UserDashboardProlab) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["avatarUrl"], err = json.Marshal(a.AvatarUrl)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatarUrl': %w", err)
+	}
+
+	object["categoryName"], err = json.Marshal(a.CategoryName)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'categoryName': %w", err)
+	}
+
+	object["difficulty"], err = json.Marshal(a.Difficulty)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'difficulty': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["identifier"], err = json.Marshal(a.Identifier)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'identifier': %w", err)
+	}
+
+	object["mini"], err = json.Marshal(a.Mini)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'mini': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["progress"], err = json.Marshal(a.Progress)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'progress': %w", err)
+	}
+
+	object["rating"], err = json.Marshal(a.Rating)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rating': %w", err)
+	}
+
+	object["ratingCount"], err = json.Marshal(a.RatingCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'ratingCount': %w", err)
+	}
+
+	object["status"], err = json.Marshal(a.Status)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'status': %w", err)
+	}
+
+	object["tasksCompleted"], err = json.Marshal(a.TasksCompleted)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'tasksCompleted': %w", err)
+	}
+
+	object["tasksTotal"], err = json.Marshal(a.TasksTotal)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'tasksTotal': %w", err)
+	}
+
+	object["type"], err = json.Marshal(a.Type)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'type': %w", err)
+	}
+
+	object["url"], err = json.Marshal(a.Url)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'url': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for UserDashboardSherlock. Returns the specified
+// element and whether it was found
+func (a UserDashboardSherlock) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for UserDashboardSherlock
+func (a *UserDashboardSherlock) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for UserDashboardSherlock to handle AdditionalProperties
+func (a *UserDashboardSherlock) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["avatarUrl"]; found {
+		err = json.Unmarshal(raw, &a.AvatarUrl)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatarUrl': %w", err)
+		}
+		delete(object, "avatarUrl")
+	}
+
+	if raw, found := object["categoryID"]; found {
+		err = json.Unmarshal(raw, &a.CategoryID)
+		if err != nil {
+			return fmt.Errorf("error reading 'categoryID': %w", err)
+		}
+		delete(object, "categoryID")
+	}
+
+	if raw, found := object["categoryName"]; found {
+		err = json.Unmarshal(raw, &a.CategoryName)
+		if err != nil {
+			return fmt.Errorf("error reading 'categoryName': %w", err)
+		}
+		delete(object, "categoryName")
+	}
+
+	if raw, found := object["difficulty"]; found {
+		err = json.Unmarshal(raw, &a.Difficulty)
+		if err != nil {
+			return fmt.Errorf("error reading 'difficulty': %w", err)
+		}
+		delete(object, "difficulty")
+	}
+
+	if raw, found := object["experiencePoints"]; found {
+		err = json.Unmarshal(raw, &a.ExperiencePoints)
+		if err != nil {
+			return fmt.Errorf("error reading 'experiencePoints': %w", err)
+		}
+		delete(object, "experiencePoints")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["progress"]; found {
+		err = json.Unmarshal(raw, &a.Progress)
+		if err != nil {
+			return fmt.Errorf("error reading 'progress': %w", err)
+		}
+		delete(object, "progress")
+	}
+
+	if raw, found := object["rating"]; found {
+		err = json.Unmarshal(raw, &a.Rating)
+		if err != nil {
+			return fmt.Errorf("error reading 'rating': %w", err)
+		}
+		delete(object, "rating")
+	}
+
+	if raw, found := object["ratingCount"]; found {
+		err = json.Unmarshal(raw, &a.RatingCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'ratingCount': %w", err)
+		}
+		delete(object, "ratingCount")
+	}
+
+	if raw, found := object["status"]; found {
+		err = json.Unmarshal(raw, &a.Status)
+		if err != nil {
+			return fmt.Errorf("error reading 'status': %w", err)
+		}
+		delete(object, "status")
+	}
+
+	if raw, found := object["tasksCompleted"]; found {
+		err = json.Unmarshal(raw, &a.TasksCompleted)
+		if err != nil {
+			return fmt.Errorf("error reading 'tasksCompleted': %w", err)
+		}
+		delete(object, "tasksCompleted")
+	}
+
+	if raw, found := object["tasksTotal"]; found {
+		err = json.Unmarshal(raw, &a.TasksTotal)
+		if err != nil {
+			return fmt.Errorf("error reading 'tasksTotal': %w", err)
+		}
+		delete(object, "tasksTotal")
+	}
+
+	if raw, found := object["type"]; found {
+		err = json.Unmarshal(raw, &a.Type)
+		if err != nil {
+			return fmt.Errorf("error reading 'type': %w", err)
+		}
+		delete(object, "type")
+	}
+
+	if raw, found := object["url"]; found {
+		err = json.Unmarshal(raw, &a.Url)
+		if err != nil {
+			return fmt.Errorf("error reading 'url': %w", err)
+		}
+		delete(object, "url")
+	}
+
+	if raw, found := object["urlName"]; found {
+		err = json.Unmarshal(raw, &a.UrlName)
+		if err != nil {
+			return fmt.Errorf("error reading 'urlName': %w", err)
+		}
+		delete(object, "urlName")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for UserDashboardSherlock to handle AdditionalProperties
+func (a UserDashboardSherlock) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["avatarUrl"], err = json.Marshal(a.AvatarUrl)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatarUrl': %w", err)
+	}
+
+	object["categoryID"], err = json.Marshal(a.CategoryID)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'categoryID': %w", err)
+	}
+
+	object["categoryName"], err = json.Marshal(a.CategoryName)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'categoryName': %w", err)
+	}
+
+	object["difficulty"], err = json.Marshal(a.Difficulty)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'difficulty': %w", err)
+	}
+
+	object["experiencePoints"], err = json.Marshal(a.ExperiencePoints)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'experiencePoints': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["progress"], err = json.Marshal(a.Progress)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'progress': %w", err)
+	}
+
+	object["rating"], err = json.Marshal(a.Rating)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'rating': %w", err)
+	}
+
+	object["ratingCount"], err = json.Marshal(a.RatingCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'ratingCount': %w", err)
+	}
+
+	object["status"], err = json.Marshal(a.Status)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'status': %w", err)
+	}
+
+	object["tasksCompleted"], err = json.Marshal(a.TasksCompleted)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'tasksCompleted': %w", err)
+	}
+
+	object["tasksTotal"], err = json.Marshal(a.TasksTotal)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'tasksTotal': %w", err)
+	}
+
+	object["type"], err = json.Marshal(a.Type)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'type': %w", err)
+	}
+
+	object["url"], err = json.Marshal(a.Url)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'url': %w", err)
+	}
+
+	object["urlName"], err = json.Marshal(a.UrlName)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'urlName': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
+
+// Getter for additional properties for UserDashboardTrack. Returns the specified
+// element and whether it was found
+func (a UserDashboardTrack) Get(fieldName string) (value interface{}, found bool) {
+	if a.AdditionalProperties != nil {
+		value, found = a.AdditionalProperties[fieldName]
+	}
+	return
+}
+
+// Setter for additional properties for UserDashboardTrack
+func (a *UserDashboardTrack) Set(fieldName string, value interface{}) {
+	if a.AdditionalProperties == nil {
+		a.AdditionalProperties = make(map[string]interface{})
+	}
+	a.AdditionalProperties[fieldName] = value
+}
+
+// Override default JSON handling for UserDashboardTrack to handle AdditionalProperties
+func (a *UserDashboardTrack) UnmarshalJSON(b []byte) error {
+	object := make(map[string]json.RawMessage)
+	err := json.Unmarshal(b, &object)
+	if err != nil {
+		return err
+	}
+
+	if raw, found := object["avatar"]; found {
+		err = json.Unmarshal(raw, &a.Avatar)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatar': %w", err)
+		}
+		delete(object, "avatar")
+	}
+
+	if raw, found := object["avatarUrl"]; found {
+		err = json.Unmarshal(raw, &a.AvatarUrl)
+		if err != nil {
+			return fmt.Errorf("error reading 'avatarUrl': %w", err)
+		}
+		delete(object, "avatarUrl")
+	}
+
+	if raw, found := object["difficulty"]; found {
+		err = json.Unmarshal(raw, &a.Difficulty)
+		if err != nil {
+			return fmt.Errorf("error reading 'difficulty': %w", err)
+		}
+		delete(object, "difficulty")
+	}
+
+	if raw, found := object["id"]; found {
+		err = json.Unmarshal(raw, &a.Id)
+		if err != nil {
+			return fmt.Errorf("error reading 'id': %w", err)
+		}
+		delete(object, "id")
+	}
+
+	if raw, found := object["likeCount"]; found {
+		err = json.Unmarshal(raw, &a.LikeCount)
+		if err != nil {
+			return fmt.Errorf("error reading 'likeCount': %w", err)
+		}
+		delete(object, "likeCount")
+	}
+
+	if raw, found := object["name"]; found {
+		err = json.Unmarshal(raw, &a.Name)
+		if err != nil {
+			return fmt.Errorf("error reading 'name': %w", err)
+		}
+		delete(object, "name")
+	}
+
+	if raw, found := object["progress"]; found {
+		err = json.Unmarshal(raw, &a.Progress)
+		if err != nil {
+			return fmt.Errorf("error reading 'progress': %w", err)
+		}
+		delete(object, "progress")
+	}
+
+	if raw, found := object["tasksCompleted"]; found {
+		err = json.Unmarshal(raw, &a.TasksCompleted)
+		if err != nil {
+			return fmt.Errorf("error reading 'tasksCompleted': %w", err)
+		}
+		delete(object, "tasksCompleted")
+	}
+
+	if raw, found := object["tasksTotal"]; found {
+		err = json.Unmarshal(raw, &a.TasksTotal)
+		if err != nil {
+			return fmt.Errorf("error reading 'tasksTotal': %w", err)
+		}
+		delete(object, "tasksTotal")
+	}
+
+	if raw, found := object["type"]; found {
+		err = json.Unmarshal(raw, &a.Type)
+		if err != nil {
+			return fmt.Errorf("error reading 'type': %w", err)
+		}
+		delete(object, "type")
+	}
+
+	if raw, found := object["url"]; found {
+		err = json.Unmarshal(raw, &a.Url)
+		if err != nil {
+			return fmt.Errorf("error reading 'url': %w", err)
+		}
+		delete(object, "url")
+	}
+
+	if len(object) != 0 {
+		a.AdditionalProperties = make(map[string]interface{})
+		for fieldName, fieldBuf := range object {
+			var fieldVal interface{}
+			err := json.Unmarshal(fieldBuf, &fieldVal)
+			if err != nil {
+				return fmt.Errorf("error unmarshaling field %s: %w", fieldName, err)
+			}
+			a.AdditionalProperties[fieldName] = fieldVal
+		}
+	}
+	return nil
+}
+
+// Override default JSON handling for UserDashboardTrack to handle AdditionalProperties
+func (a UserDashboardTrack) MarshalJSON() ([]byte, error) {
+	var err error
+	object := make(map[string]json.RawMessage)
+
+	object["avatar"], err = json.Marshal(a.Avatar)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatar': %w", err)
+	}
+
+	object["avatarUrl"], err = json.Marshal(a.AvatarUrl)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'avatarUrl': %w", err)
+	}
+
+	object["difficulty"], err = json.Marshal(a.Difficulty)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'difficulty': %w", err)
+	}
+
+	object["id"], err = json.Marshal(a.Id)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'id': %w", err)
+	}
+
+	object["likeCount"], err = json.Marshal(a.LikeCount)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'likeCount': %w", err)
+	}
+
+	object["name"], err = json.Marshal(a.Name)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'name': %w", err)
+	}
+
+	object["progress"], err = json.Marshal(a.Progress)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'progress': %w", err)
+	}
+
+	object["tasksCompleted"], err = json.Marshal(a.TasksCompleted)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'tasksCompleted': %w", err)
+	}
+
+	object["tasksTotal"], err = json.Marshal(a.TasksTotal)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'tasksTotal': %w", err)
+	}
+
+	object["type"], err = json.Marshal(a.Type)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'type': %w", err)
+	}
+
+	object["url"], err = json.Marshal(a.Url)
+	if err != nil {
+		return nil, fmt.Errorf("error marshaling 'url': %w", err)
+	}
+
+	for fieldName, field := range a.AdditionalProperties {
+		object[fieldName], err = json.Marshal(field)
+		if err != nil {
+			return nil, fmt.Errorf("error marshaling '%s': %w", fieldName, err)
+		}
+	}
+	return json.Marshal(object)
+}
 
 // AsConnectionLabEntry returns the union data inside the Connection as a ConnectionLabEntry
 func (t Connection) AsConnectionLabEntry() (ConnectionLabEntry, error) {
@@ -1676,6 +10126,8 @@ func (t Connection) ValueByDiscriminator() (interface{}, error) {
 		return t.AsConnectionLabEntry()
 	case "prolab":
 		return t.AsConnectionProLabEntry()
+	case "sherlocks":
+		return t.AsConnectionLabEntry()
 	case "starting_point":
 		return t.AsConnectionLabEntry()
 	default:
@@ -1689,6 +10141,1308 @@ func (t Connection) MarshalJSON() ([]byte, error) {
 }
 
 func (t *Connection) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonActiveDefensiveContent returns the union data inside the SeasonActiveContentResponse_Data_Blue as a SeasonActiveDefensiveContent
+func (t SeasonActiveContentResponse_Data_Blue) AsSeasonActiveDefensiveContent() (SeasonActiveDefensiveContent, error) {
+	var body SeasonActiveDefensiveContent
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonActiveDefensiveContent overwrites any union data inside the SeasonActiveContentResponse_Data_Blue as the provided SeasonActiveDefensiveContent
+func (t *SeasonActiveContentResponse_Data_Blue) FromSeasonActiveDefensiveContent(v SeasonActiveDefensiveContent) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonActiveDefensiveContent performs a merge with any union data inside the SeasonActiveContentResponse_Data_Blue, using the provided SeasonActiveDefensiveContent
+func (t *SeasonActiveContentResponse_Data_Blue) MergeSeasonActiveDefensiveContent(v SeasonActiveDefensiveContent) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonActiveContentResponseDataBlue1 returns the union data inside the SeasonActiveContentResponse_Data_Blue as a SeasonActiveContentResponseDataBlue1
+func (t SeasonActiveContentResponse_Data_Blue) AsSeasonActiveContentResponseDataBlue1() (SeasonActiveContentResponseDataBlue1, error) {
+	var body SeasonActiveContentResponseDataBlue1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonActiveContentResponseDataBlue1 overwrites any union data inside the SeasonActiveContentResponse_Data_Blue as the provided SeasonActiveContentResponseDataBlue1
+func (t *SeasonActiveContentResponse_Data_Blue) FromSeasonActiveContentResponseDataBlue1(v SeasonActiveContentResponseDataBlue1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonActiveContentResponseDataBlue1 performs a merge with any union data inside the SeasonActiveContentResponse_Data_Blue, using the provided SeasonActiveContentResponseDataBlue1
+func (t *SeasonActiveContentResponse_Data_Blue) MergeSeasonActiveContentResponseDataBlue1(v SeasonActiveContentResponseDataBlue1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonActiveContentResponse_Data_Blue) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonActiveContentResponse_Data_Blue) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonDefensiveUserProgressLeague0 returns the union data inside the SeasonDefensiveUserProgress_League as a SeasonDefensiveUserProgressLeague0
+func (t SeasonDefensiveUserProgress_League) AsSeasonDefensiveUserProgressLeague0() (SeasonDefensiveUserProgressLeague0, error) {
+	var body SeasonDefensiveUserProgressLeague0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonDefensiveUserProgressLeague0 overwrites any union data inside the SeasonDefensiveUserProgress_League as the provided SeasonDefensiveUserProgressLeague0
+func (t *SeasonDefensiveUserProgress_League) FromSeasonDefensiveUserProgressLeague0(v SeasonDefensiveUserProgressLeague0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonDefensiveUserProgressLeague0 performs a merge with any union data inside the SeasonDefensiveUserProgress_League, using the provided SeasonDefensiveUserProgressLeague0
+func (t *SeasonDefensiveUserProgress_League) MergeSeasonDefensiveUserProgressLeague0(v SeasonDefensiveUserProgressLeague0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonDefensiveUserProgressLeague1 returns the union data inside the SeasonDefensiveUserProgress_League as a SeasonDefensiveUserProgressLeague1
+func (t SeasonDefensiveUserProgress_League) AsSeasonDefensiveUserProgressLeague1() (SeasonDefensiveUserProgressLeague1, error) {
+	var body SeasonDefensiveUserProgressLeague1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonDefensiveUserProgressLeague1 overwrites any union data inside the SeasonDefensiveUserProgress_League as the provided SeasonDefensiveUserProgressLeague1
+func (t *SeasonDefensiveUserProgress_League) FromSeasonDefensiveUserProgressLeague1(v SeasonDefensiveUserProgressLeague1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonDefensiveUserProgressLeague1 performs a merge with any union data inside the SeasonDefensiveUserProgress_League, using the provided SeasonDefensiveUserProgressLeague1
+func (t *SeasonDefensiveUserProgress_League) MergeSeasonDefensiveUserProgressLeague1(v SeasonDefensiveUserProgressLeague1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonDefensiveUserProgress_League) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonDefensiveUserProgress_League) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonDefensiveUserProgressRank0 returns the union data inside the SeasonDefensiveUserProgress_Rank as a SeasonDefensiveUserProgressRank0
+func (t SeasonDefensiveUserProgress_Rank) AsSeasonDefensiveUserProgressRank0() (SeasonDefensiveUserProgressRank0, error) {
+	var body SeasonDefensiveUserProgressRank0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonDefensiveUserProgressRank0 overwrites any union data inside the SeasonDefensiveUserProgress_Rank as the provided SeasonDefensiveUserProgressRank0
+func (t *SeasonDefensiveUserProgress_Rank) FromSeasonDefensiveUserProgressRank0(v SeasonDefensiveUserProgressRank0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonDefensiveUserProgressRank0 performs a merge with any union data inside the SeasonDefensiveUserProgress_Rank, using the provided SeasonDefensiveUserProgressRank0
+func (t *SeasonDefensiveUserProgress_Rank) MergeSeasonDefensiveUserProgressRank0(v SeasonDefensiveUserProgressRank0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonDefensiveUserProgressRank1 returns the union data inside the SeasonDefensiveUserProgress_Rank as a SeasonDefensiveUserProgressRank1
+func (t SeasonDefensiveUserProgress_Rank) AsSeasonDefensiveUserProgressRank1() (SeasonDefensiveUserProgressRank1, error) {
+	var body SeasonDefensiveUserProgressRank1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonDefensiveUserProgressRank1 overwrites any union data inside the SeasonDefensiveUserProgress_Rank as the provided SeasonDefensiveUserProgressRank1
+func (t *SeasonDefensiveUserProgress_Rank) FromSeasonDefensiveUserProgressRank1(v SeasonDefensiveUserProgressRank1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonDefensiveUserProgressRank1 performs a merge with any union data inside the SeasonDefensiveUserProgress_Rank, using the provided SeasonDefensiveUserProgressRank1
+func (t *SeasonDefensiveUserProgress_Rank) MergeSeasonDefensiveUserProgressRank1(v SeasonDefensiveUserProgressRank1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonDefensiveUserProgress_Rank) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonDefensiveUserProgress_Rank) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonLeaderboardEntryCountry0 returns the union data inside the SeasonLeaderboardEntry_Country as a SeasonLeaderboardEntryCountry0
+func (t SeasonLeaderboardEntry_Country) AsSeasonLeaderboardEntryCountry0() (SeasonLeaderboardEntryCountry0, error) {
+	var body SeasonLeaderboardEntryCountry0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardEntryCountry0 overwrites any union data inside the SeasonLeaderboardEntry_Country as the provided SeasonLeaderboardEntryCountry0
+func (t *SeasonLeaderboardEntry_Country) FromSeasonLeaderboardEntryCountry0(v SeasonLeaderboardEntryCountry0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardEntryCountry0 performs a merge with any union data inside the SeasonLeaderboardEntry_Country, using the provided SeasonLeaderboardEntryCountry0
+func (t *SeasonLeaderboardEntry_Country) MergeSeasonLeaderboardEntryCountry0(v SeasonLeaderboardEntryCountry0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonLeaderboardEntryCountry1 returns the union data inside the SeasonLeaderboardEntry_Country as a SeasonLeaderboardEntryCountry1
+func (t SeasonLeaderboardEntry_Country) AsSeasonLeaderboardEntryCountry1() (SeasonLeaderboardEntryCountry1, error) {
+	var body SeasonLeaderboardEntryCountry1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardEntryCountry1 overwrites any union data inside the SeasonLeaderboardEntry_Country as the provided SeasonLeaderboardEntryCountry1
+func (t *SeasonLeaderboardEntry_Country) FromSeasonLeaderboardEntryCountry1(v SeasonLeaderboardEntryCountry1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardEntryCountry1 performs a merge with any union data inside the SeasonLeaderboardEntry_Country, using the provided SeasonLeaderboardEntryCountry1
+func (t *SeasonLeaderboardEntry_Country) MergeSeasonLeaderboardEntryCountry1(v SeasonLeaderboardEntryCountry1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonLeaderboardEntry_Country) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonLeaderboardEntry_Country) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonLeaderboardResponseLinksNext0 returns the union data inside the SeasonLeaderboardResponse_Links_Next as a SeasonLeaderboardResponseLinksNext0
+func (t SeasonLeaderboardResponse_Links_Next) AsSeasonLeaderboardResponseLinksNext0() (SeasonLeaderboardResponseLinksNext0, error) {
+	var body SeasonLeaderboardResponseLinksNext0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseLinksNext0 overwrites any union data inside the SeasonLeaderboardResponse_Links_Next as the provided SeasonLeaderboardResponseLinksNext0
+func (t *SeasonLeaderboardResponse_Links_Next) FromSeasonLeaderboardResponseLinksNext0(v SeasonLeaderboardResponseLinksNext0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseLinksNext0 performs a merge with any union data inside the SeasonLeaderboardResponse_Links_Next, using the provided SeasonLeaderboardResponseLinksNext0
+func (t *SeasonLeaderboardResponse_Links_Next) MergeSeasonLeaderboardResponseLinksNext0(v SeasonLeaderboardResponseLinksNext0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonLeaderboardResponseLinksNext1 returns the union data inside the SeasonLeaderboardResponse_Links_Next as a SeasonLeaderboardResponseLinksNext1
+func (t SeasonLeaderboardResponse_Links_Next) AsSeasonLeaderboardResponseLinksNext1() (SeasonLeaderboardResponseLinksNext1, error) {
+	var body SeasonLeaderboardResponseLinksNext1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseLinksNext1 overwrites any union data inside the SeasonLeaderboardResponse_Links_Next as the provided SeasonLeaderboardResponseLinksNext1
+func (t *SeasonLeaderboardResponse_Links_Next) FromSeasonLeaderboardResponseLinksNext1(v SeasonLeaderboardResponseLinksNext1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseLinksNext1 performs a merge with any union data inside the SeasonLeaderboardResponse_Links_Next, using the provided SeasonLeaderboardResponseLinksNext1
+func (t *SeasonLeaderboardResponse_Links_Next) MergeSeasonLeaderboardResponseLinksNext1(v SeasonLeaderboardResponseLinksNext1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonLeaderboardResponse_Links_Next) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonLeaderboardResponse_Links_Next) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonLeaderboardResponseLinksPrev0 returns the union data inside the SeasonLeaderboardResponse_Links_Prev as a SeasonLeaderboardResponseLinksPrev0
+func (t SeasonLeaderboardResponse_Links_Prev) AsSeasonLeaderboardResponseLinksPrev0() (SeasonLeaderboardResponseLinksPrev0, error) {
+	var body SeasonLeaderboardResponseLinksPrev0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseLinksPrev0 overwrites any union data inside the SeasonLeaderboardResponse_Links_Prev as the provided SeasonLeaderboardResponseLinksPrev0
+func (t *SeasonLeaderboardResponse_Links_Prev) FromSeasonLeaderboardResponseLinksPrev0(v SeasonLeaderboardResponseLinksPrev0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseLinksPrev0 performs a merge with any union data inside the SeasonLeaderboardResponse_Links_Prev, using the provided SeasonLeaderboardResponseLinksPrev0
+func (t *SeasonLeaderboardResponse_Links_Prev) MergeSeasonLeaderboardResponseLinksPrev0(v SeasonLeaderboardResponseLinksPrev0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonLeaderboardResponseLinksPrev1 returns the union data inside the SeasonLeaderboardResponse_Links_Prev as a SeasonLeaderboardResponseLinksPrev1
+func (t SeasonLeaderboardResponse_Links_Prev) AsSeasonLeaderboardResponseLinksPrev1() (SeasonLeaderboardResponseLinksPrev1, error) {
+	var body SeasonLeaderboardResponseLinksPrev1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseLinksPrev1 overwrites any union data inside the SeasonLeaderboardResponse_Links_Prev as the provided SeasonLeaderboardResponseLinksPrev1
+func (t *SeasonLeaderboardResponse_Links_Prev) FromSeasonLeaderboardResponseLinksPrev1(v SeasonLeaderboardResponseLinksPrev1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseLinksPrev1 performs a merge with any union data inside the SeasonLeaderboardResponse_Links_Prev, using the provided SeasonLeaderboardResponseLinksPrev1
+func (t *SeasonLeaderboardResponse_Links_Prev) MergeSeasonLeaderboardResponseLinksPrev1(v SeasonLeaderboardResponseLinksPrev1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonLeaderboardResponse_Links_Prev) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonLeaderboardResponse_Links_Prev) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonLeaderboardResponseMetaFrom0 returns the union data inside the SeasonLeaderboardResponse_Meta_From as a SeasonLeaderboardResponseMetaFrom0
+func (t SeasonLeaderboardResponse_Meta_From) AsSeasonLeaderboardResponseMetaFrom0() (SeasonLeaderboardResponseMetaFrom0, error) {
+	var body SeasonLeaderboardResponseMetaFrom0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseMetaFrom0 overwrites any union data inside the SeasonLeaderboardResponse_Meta_From as the provided SeasonLeaderboardResponseMetaFrom0
+func (t *SeasonLeaderboardResponse_Meta_From) FromSeasonLeaderboardResponseMetaFrom0(v SeasonLeaderboardResponseMetaFrom0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseMetaFrom0 performs a merge with any union data inside the SeasonLeaderboardResponse_Meta_From, using the provided SeasonLeaderboardResponseMetaFrom0
+func (t *SeasonLeaderboardResponse_Meta_From) MergeSeasonLeaderboardResponseMetaFrom0(v SeasonLeaderboardResponseMetaFrom0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonLeaderboardResponseMetaFrom1 returns the union data inside the SeasonLeaderboardResponse_Meta_From as a SeasonLeaderboardResponseMetaFrom1
+func (t SeasonLeaderboardResponse_Meta_From) AsSeasonLeaderboardResponseMetaFrom1() (SeasonLeaderboardResponseMetaFrom1, error) {
+	var body SeasonLeaderboardResponseMetaFrom1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseMetaFrom1 overwrites any union data inside the SeasonLeaderboardResponse_Meta_From as the provided SeasonLeaderboardResponseMetaFrom1
+func (t *SeasonLeaderboardResponse_Meta_From) FromSeasonLeaderboardResponseMetaFrom1(v SeasonLeaderboardResponseMetaFrom1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseMetaFrom1 performs a merge with any union data inside the SeasonLeaderboardResponse_Meta_From, using the provided SeasonLeaderboardResponseMetaFrom1
+func (t *SeasonLeaderboardResponse_Meta_From) MergeSeasonLeaderboardResponseMetaFrom1(v SeasonLeaderboardResponseMetaFrom1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonLeaderboardResponse_Meta_From) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonLeaderboardResponse_Meta_From) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonLeaderboardResponseMetaLinksPage0 returns the union data inside the SeasonLeaderboardResponse_Meta_Links_Page as a SeasonLeaderboardResponseMetaLinksPage0
+func (t SeasonLeaderboardResponse_Meta_Links_Page) AsSeasonLeaderboardResponseMetaLinksPage0() (SeasonLeaderboardResponseMetaLinksPage0, error) {
+	var body SeasonLeaderboardResponseMetaLinksPage0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseMetaLinksPage0 overwrites any union data inside the SeasonLeaderboardResponse_Meta_Links_Page as the provided SeasonLeaderboardResponseMetaLinksPage0
+func (t *SeasonLeaderboardResponse_Meta_Links_Page) FromSeasonLeaderboardResponseMetaLinksPage0(v SeasonLeaderboardResponseMetaLinksPage0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseMetaLinksPage0 performs a merge with any union data inside the SeasonLeaderboardResponse_Meta_Links_Page, using the provided SeasonLeaderboardResponseMetaLinksPage0
+func (t *SeasonLeaderboardResponse_Meta_Links_Page) MergeSeasonLeaderboardResponseMetaLinksPage0(v SeasonLeaderboardResponseMetaLinksPage0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonLeaderboardResponseMetaLinksPage1 returns the union data inside the SeasonLeaderboardResponse_Meta_Links_Page as a SeasonLeaderboardResponseMetaLinksPage1
+func (t SeasonLeaderboardResponse_Meta_Links_Page) AsSeasonLeaderboardResponseMetaLinksPage1() (SeasonLeaderboardResponseMetaLinksPage1, error) {
+	var body SeasonLeaderboardResponseMetaLinksPage1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseMetaLinksPage1 overwrites any union data inside the SeasonLeaderboardResponse_Meta_Links_Page as the provided SeasonLeaderboardResponseMetaLinksPage1
+func (t *SeasonLeaderboardResponse_Meta_Links_Page) FromSeasonLeaderboardResponseMetaLinksPage1(v SeasonLeaderboardResponseMetaLinksPage1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseMetaLinksPage1 performs a merge with any union data inside the SeasonLeaderboardResponse_Meta_Links_Page, using the provided SeasonLeaderboardResponseMetaLinksPage1
+func (t *SeasonLeaderboardResponse_Meta_Links_Page) MergeSeasonLeaderboardResponseMetaLinksPage1(v SeasonLeaderboardResponseMetaLinksPage1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonLeaderboardResponse_Meta_Links_Page) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonLeaderboardResponse_Meta_Links_Page) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonLeaderboardResponseMetaLinksUrl0 returns the union data inside the SeasonLeaderboardResponse_Meta_Links_Url as a SeasonLeaderboardResponseMetaLinksUrl0
+func (t SeasonLeaderboardResponse_Meta_Links_Url) AsSeasonLeaderboardResponseMetaLinksUrl0() (SeasonLeaderboardResponseMetaLinksUrl0, error) {
+	var body SeasonLeaderboardResponseMetaLinksUrl0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseMetaLinksUrl0 overwrites any union data inside the SeasonLeaderboardResponse_Meta_Links_Url as the provided SeasonLeaderboardResponseMetaLinksUrl0
+func (t *SeasonLeaderboardResponse_Meta_Links_Url) FromSeasonLeaderboardResponseMetaLinksUrl0(v SeasonLeaderboardResponseMetaLinksUrl0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseMetaLinksUrl0 performs a merge with any union data inside the SeasonLeaderboardResponse_Meta_Links_Url, using the provided SeasonLeaderboardResponseMetaLinksUrl0
+func (t *SeasonLeaderboardResponse_Meta_Links_Url) MergeSeasonLeaderboardResponseMetaLinksUrl0(v SeasonLeaderboardResponseMetaLinksUrl0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonLeaderboardResponseMetaLinksUrl1 returns the union data inside the SeasonLeaderboardResponse_Meta_Links_Url as a SeasonLeaderboardResponseMetaLinksUrl1
+func (t SeasonLeaderboardResponse_Meta_Links_Url) AsSeasonLeaderboardResponseMetaLinksUrl1() (SeasonLeaderboardResponseMetaLinksUrl1, error) {
+	var body SeasonLeaderboardResponseMetaLinksUrl1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseMetaLinksUrl1 overwrites any union data inside the SeasonLeaderboardResponse_Meta_Links_Url as the provided SeasonLeaderboardResponseMetaLinksUrl1
+func (t *SeasonLeaderboardResponse_Meta_Links_Url) FromSeasonLeaderboardResponseMetaLinksUrl1(v SeasonLeaderboardResponseMetaLinksUrl1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseMetaLinksUrl1 performs a merge with any union data inside the SeasonLeaderboardResponse_Meta_Links_Url, using the provided SeasonLeaderboardResponseMetaLinksUrl1
+func (t *SeasonLeaderboardResponse_Meta_Links_Url) MergeSeasonLeaderboardResponseMetaLinksUrl1(v SeasonLeaderboardResponseMetaLinksUrl1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonLeaderboardResponse_Meta_Links_Url) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonLeaderboardResponse_Meta_Links_Url) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonLeaderboardResponseMetaTo0 returns the union data inside the SeasonLeaderboardResponse_Meta_To as a SeasonLeaderboardResponseMetaTo0
+func (t SeasonLeaderboardResponse_Meta_To) AsSeasonLeaderboardResponseMetaTo0() (SeasonLeaderboardResponseMetaTo0, error) {
+	var body SeasonLeaderboardResponseMetaTo0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseMetaTo0 overwrites any union data inside the SeasonLeaderboardResponse_Meta_To as the provided SeasonLeaderboardResponseMetaTo0
+func (t *SeasonLeaderboardResponse_Meta_To) FromSeasonLeaderboardResponseMetaTo0(v SeasonLeaderboardResponseMetaTo0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseMetaTo0 performs a merge with any union data inside the SeasonLeaderboardResponse_Meta_To, using the provided SeasonLeaderboardResponseMetaTo0
+func (t *SeasonLeaderboardResponse_Meta_To) MergeSeasonLeaderboardResponseMetaTo0(v SeasonLeaderboardResponseMetaTo0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonLeaderboardResponseMetaTo1 returns the union data inside the SeasonLeaderboardResponse_Meta_To as a SeasonLeaderboardResponseMetaTo1
+func (t SeasonLeaderboardResponse_Meta_To) AsSeasonLeaderboardResponseMetaTo1() (SeasonLeaderboardResponseMetaTo1, error) {
+	var body SeasonLeaderboardResponseMetaTo1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonLeaderboardResponseMetaTo1 overwrites any union data inside the SeasonLeaderboardResponse_Meta_To as the provided SeasonLeaderboardResponseMetaTo1
+func (t *SeasonLeaderboardResponse_Meta_To) FromSeasonLeaderboardResponseMetaTo1(v SeasonLeaderboardResponseMetaTo1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonLeaderboardResponseMetaTo1 performs a merge with any union data inside the SeasonLeaderboardResponse_Meta_To, using the provided SeasonLeaderboardResponseMetaTo1
+func (t *SeasonLeaderboardResponse_Meta_To) MergeSeasonLeaderboardResponseMetaTo1(v SeasonLeaderboardResponseMetaTo1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonLeaderboardResponse_Meta_To) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonLeaderboardResponse_Meta_To) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonRewardGroupDescription0 returns the union data inside the SeasonRewardGroup_Description as a SeasonRewardGroupDescription0
+func (t SeasonRewardGroup_Description) AsSeasonRewardGroupDescription0() (SeasonRewardGroupDescription0, error) {
+	var body SeasonRewardGroupDescription0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonRewardGroupDescription0 overwrites any union data inside the SeasonRewardGroup_Description as the provided SeasonRewardGroupDescription0
+func (t *SeasonRewardGroup_Description) FromSeasonRewardGroupDescription0(v SeasonRewardGroupDescription0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonRewardGroupDescription0 performs a merge with any union data inside the SeasonRewardGroup_Description, using the provided SeasonRewardGroupDescription0
+func (t *SeasonRewardGroup_Description) MergeSeasonRewardGroupDescription0(v SeasonRewardGroupDescription0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonRewardGroupDescription1 returns the union data inside the SeasonRewardGroup_Description as a SeasonRewardGroupDescription1
+func (t SeasonRewardGroup_Description) AsSeasonRewardGroupDescription1() (SeasonRewardGroupDescription1, error) {
+	var body SeasonRewardGroupDescription1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonRewardGroupDescription1 overwrites any union data inside the SeasonRewardGroup_Description as the provided SeasonRewardGroupDescription1
+func (t *SeasonRewardGroup_Description) FromSeasonRewardGroupDescription1(v SeasonRewardGroupDescription1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonRewardGroupDescription1 performs a merge with any union data inside the SeasonRewardGroup_Description, using the provided SeasonRewardGroupDescription1
+func (t *SeasonRewardGroup_Description) MergeSeasonRewardGroupDescription1(v SeasonRewardGroupDescription1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonRewardGroup_Description) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonRewardGroup_Description) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonRewardGroupSubtitle0 returns the union data inside the SeasonRewardGroup_Subtitle as a SeasonRewardGroupSubtitle0
+func (t SeasonRewardGroup_Subtitle) AsSeasonRewardGroupSubtitle0() (SeasonRewardGroupSubtitle0, error) {
+	var body SeasonRewardGroupSubtitle0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonRewardGroupSubtitle0 overwrites any union data inside the SeasonRewardGroup_Subtitle as the provided SeasonRewardGroupSubtitle0
+func (t *SeasonRewardGroup_Subtitle) FromSeasonRewardGroupSubtitle0(v SeasonRewardGroupSubtitle0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonRewardGroupSubtitle0 performs a merge with any union data inside the SeasonRewardGroup_Subtitle, using the provided SeasonRewardGroupSubtitle0
+func (t *SeasonRewardGroup_Subtitle) MergeSeasonRewardGroupSubtitle0(v SeasonRewardGroupSubtitle0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonRewardGroupSubtitle1 returns the union data inside the SeasonRewardGroup_Subtitle as a SeasonRewardGroupSubtitle1
+func (t SeasonRewardGroup_Subtitle) AsSeasonRewardGroupSubtitle1() (SeasonRewardGroupSubtitle1, error) {
+	var body SeasonRewardGroupSubtitle1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonRewardGroupSubtitle1 overwrites any union data inside the SeasonRewardGroup_Subtitle as the provided SeasonRewardGroupSubtitle1
+func (t *SeasonRewardGroup_Subtitle) FromSeasonRewardGroupSubtitle1(v SeasonRewardGroupSubtitle1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonRewardGroupSubtitle1 performs a merge with any union data inside the SeasonRewardGroup_Subtitle, using the provided SeasonRewardGroupSubtitle1
+func (t *SeasonRewardGroup_Subtitle) MergeSeasonRewardGroupSubtitle1(v SeasonRewardGroupSubtitle1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonRewardGroup_Subtitle) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonRewardGroup_Subtitle) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonUserProgress returns the union data inside the SeasonUserRankResponse_Data_Purple as a SeasonUserProgress
+func (t SeasonUserRankResponse_Data_Purple) AsSeasonUserProgress() (SeasonUserProgress, error) {
+	var body SeasonUserProgress
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonUserProgress overwrites any union data inside the SeasonUserRankResponse_Data_Purple as the provided SeasonUserProgress
+func (t *SeasonUserRankResponse_Data_Purple) FromSeasonUserProgress(v SeasonUserProgress) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonUserProgress performs a merge with any union data inside the SeasonUserRankResponse_Data_Purple, using the provided SeasonUserProgress
+func (t *SeasonUserRankResponse_Data_Purple) MergeSeasonUserProgress(v SeasonUserProgress) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonUserRankResponseDataPurple1 returns the union data inside the SeasonUserRankResponse_Data_Purple as a SeasonUserRankResponseDataPurple1
+func (t SeasonUserRankResponse_Data_Purple) AsSeasonUserRankResponseDataPurple1() (SeasonUserRankResponseDataPurple1, error) {
+	var body SeasonUserRankResponseDataPurple1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonUserRankResponseDataPurple1 overwrites any union data inside the SeasonUserRankResponse_Data_Purple as the provided SeasonUserRankResponseDataPurple1
+func (t *SeasonUserRankResponse_Data_Purple) FromSeasonUserRankResponseDataPurple1(v SeasonUserRankResponseDataPurple1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonUserRankResponseDataPurple1 performs a merge with any union data inside the SeasonUserRankResponse_Data_Purple, using the provided SeasonUserRankResponseDataPurple1
+func (t *SeasonUserRankResponse_Data_Purple) MergeSeasonUserRankResponseDataPurple1(v SeasonUserRankResponseDataPurple1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonUserRankResponse_Data_Purple) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonUserRankResponse_Data_Purple) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSeasonUserProgress returns the union data inside the SeasonUserRanksEntry_Purple as a SeasonUserProgress
+func (t SeasonUserRanksEntry_Purple) AsSeasonUserProgress() (SeasonUserProgress, error) {
+	var body SeasonUserProgress
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonUserProgress overwrites any union data inside the SeasonUserRanksEntry_Purple as the provided SeasonUserProgress
+func (t *SeasonUserRanksEntry_Purple) FromSeasonUserProgress(v SeasonUserProgress) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonUserProgress performs a merge with any union data inside the SeasonUserRanksEntry_Purple, using the provided SeasonUserProgress
+func (t *SeasonUserRanksEntry_Purple) MergeSeasonUserProgress(v SeasonUserProgress) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSeasonUserRanksEntryPurple1 returns the union data inside the SeasonUserRanksEntry_Purple as a SeasonUserRanksEntryPurple1
+func (t SeasonUserRanksEntry_Purple) AsSeasonUserRanksEntryPurple1() (SeasonUserRanksEntryPurple1, error) {
+	var body SeasonUserRanksEntryPurple1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSeasonUserRanksEntryPurple1 overwrites any union data inside the SeasonUserRanksEntry_Purple as the provided SeasonUserRanksEntryPurple1
+func (t *SeasonUserRanksEntry_Purple) FromSeasonUserRanksEntryPurple1(v SeasonUserRanksEntryPurple1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSeasonUserRanksEntryPurple1 performs a merge with any union data inside the SeasonUserRanksEntry_Purple, using the provided SeasonUserRanksEntryPurple1
+func (t *SeasonUserRanksEntry_Purple) MergeSeasonUserRanksEntryPurple1(v SeasonUserRanksEntryPurple1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SeasonUserRanksEntry_Purple) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SeasonUserRanksEntry_Purple) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsSubscriptionPricingSourcePlanUpgradesTo0 returns the union data inside the SubscriptionPricingSourcePlan_UpgradesTo as a SubscriptionPricingSourcePlanUpgradesTo0
+func (t SubscriptionPricingSourcePlan_UpgradesTo) AsSubscriptionPricingSourcePlanUpgradesTo0() (SubscriptionPricingSourcePlanUpgradesTo0, error) {
+	var body SubscriptionPricingSourcePlanUpgradesTo0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSubscriptionPricingSourcePlanUpgradesTo0 overwrites any union data inside the SubscriptionPricingSourcePlan_UpgradesTo as the provided SubscriptionPricingSourcePlanUpgradesTo0
+func (t *SubscriptionPricingSourcePlan_UpgradesTo) FromSubscriptionPricingSourcePlanUpgradesTo0(v SubscriptionPricingSourcePlanUpgradesTo0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSubscriptionPricingSourcePlanUpgradesTo0 performs a merge with any union data inside the SubscriptionPricingSourcePlan_UpgradesTo, using the provided SubscriptionPricingSourcePlanUpgradesTo0
+func (t *SubscriptionPricingSourcePlan_UpgradesTo) MergeSubscriptionPricingSourcePlanUpgradesTo0(v SubscriptionPricingSourcePlanUpgradesTo0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsSubscriptionPricingSourcePlanUpgradesTo1 returns the union data inside the SubscriptionPricingSourcePlan_UpgradesTo as a SubscriptionPricingSourcePlanUpgradesTo1
+func (t SubscriptionPricingSourcePlan_UpgradesTo) AsSubscriptionPricingSourcePlanUpgradesTo1() (SubscriptionPricingSourcePlanUpgradesTo1, error) {
+	var body SubscriptionPricingSourcePlanUpgradesTo1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromSubscriptionPricingSourcePlanUpgradesTo1 overwrites any union data inside the SubscriptionPricingSourcePlan_UpgradesTo as the provided SubscriptionPricingSourcePlanUpgradesTo1
+func (t *SubscriptionPricingSourcePlan_UpgradesTo) FromSubscriptionPricingSourcePlanUpgradesTo1(v SubscriptionPricingSourcePlanUpgradesTo1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeSubscriptionPricingSourcePlanUpgradesTo1 performs a merge with any union data inside the SubscriptionPricingSourcePlan_UpgradesTo, using the provided SubscriptionPricingSourcePlanUpgradesTo1
+func (t *SubscriptionPricingSourcePlan_UpgradesTo) MergeSubscriptionPricingSourcePlanUpgradesTo1(v SubscriptionPricingSourcePlanUpgradesTo1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t SubscriptionPricingSourcePlan_UpgradesTo) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *SubscriptionPricingSourcePlan_UpgradesTo) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsUserDashboardChallengePoints0 returns the union data inside the UserDashboardChallenge_Points as a UserDashboardChallengePoints0
+func (t UserDashboardChallenge_Points) AsUserDashboardChallengePoints0() (UserDashboardChallengePoints0, error) {
+	var body UserDashboardChallengePoints0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardChallengePoints0 overwrites any union data inside the UserDashboardChallenge_Points as the provided UserDashboardChallengePoints0
+func (t *UserDashboardChallenge_Points) FromUserDashboardChallengePoints0(v UserDashboardChallengePoints0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardChallengePoints0 performs a merge with any union data inside the UserDashboardChallenge_Points, using the provided UserDashboardChallengePoints0
+func (t *UserDashboardChallenge_Points) MergeUserDashboardChallengePoints0(v UserDashboardChallengePoints0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUserDashboardChallengePoints1 returns the union data inside the UserDashboardChallenge_Points as a UserDashboardChallengePoints1
+func (t UserDashboardChallenge_Points) AsUserDashboardChallengePoints1() (UserDashboardChallengePoints1, error) {
+	var body UserDashboardChallengePoints1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardChallengePoints1 overwrites any union data inside the UserDashboardChallenge_Points as the provided UserDashboardChallengePoints1
+func (t *UserDashboardChallenge_Points) FromUserDashboardChallengePoints1(v UserDashboardChallengePoints1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardChallengePoints1 performs a merge with any union data inside the UserDashboardChallenge_Points, using the provided UserDashboardChallengePoints1
+func (t *UserDashboardChallenge_Points) MergeUserDashboardChallengePoints1(v UserDashboardChallengePoints1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UserDashboardChallenge_Points) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UserDashboardChallenge_Points) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsUserDashboardChallengeProgress0 returns the union data inside the UserDashboardChallenge_Progress as a UserDashboardChallengeProgress0
+func (t UserDashboardChallenge_Progress) AsUserDashboardChallengeProgress0() (UserDashboardChallengeProgress0, error) {
+	var body UserDashboardChallengeProgress0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardChallengeProgress0 overwrites any union data inside the UserDashboardChallenge_Progress as the provided UserDashboardChallengeProgress0
+func (t *UserDashboardChallenge_Progress) FromUserDashboardChallengeProgress0(v UserDashboardChallengeProgress0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardChallengeProgress0 performs a merge with any union data inside the UserDashboardChallenge_Progress, using the provided UserDashboardChallengeProgress0
+func (t *UserDashboardChallenge_Progress) MergeUserDashboardChallengeProgress0(v UserDashboardChallengeProgress0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUserDashboardChallengeProgress1 returns the union data inside the UserDashboardChallenge_Progress as a UserDashboardChallengeProgress1
+func (t UserDashboardChallenge_Progress) AsUserDashboardChallengeProgress1() (UserDashboardChallengeProgress1, error) {
+	var body UserDashboardChallengeProgress1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardChallengeProgress1 overwrites any union data inside the UserDashboardChallenge_Progress as the provided UserDashboardChallengeProgress1
+func (t *UserDashboardChallenge_Progress) FromUserDashboardChallengeProgress1(v UserDashboardChallengeProgress1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardChallengeProgress1 performs a merge with any union data inside the UserDashboardChallenge_Progress, using the provided UserDashboardChallengeProgress1
+func (t *UserDashboardChallenge_Progress) MergeUserDashboardChallengeProgress1(v UserDashboardChallengeProgress1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UserDashboardChallenge_Progress) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UserDashboardChallenge_Progress) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsUserDashboardChallengeStatus0 returns the union data inside the UserDashboardChallenge_Status as a UserDashboardChallengeStatus0
+func (t UserDashboardChallenge_Status) AsUserDashboardChallengeStatus0() (UserDashboardChallengeStatus0, error) {
+	var body UserDashboardChallengeStatus0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardChallengeStatus0 overwrites any union data inside the UserDashboardChallenge_Status as the provided UserDashboardChallengeStatus0
+func (t *UserDashboardChallenge_Status) FromUserDashboardChallengeStatus0(v UserDashboardChallengeStatus0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardChallengeStatus0 performs a merge with any union data inside the UserDashboardChallenge_Status, using the provided UserDashboardChallengeStatus0
+func (t *UserDashboardChallenge_Status) MergeUserDashboardChallengeStatus0(v UserDashboardChallengeStatus0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUserDashboardChallengeStatus1 returns the union data inside the UserDashboardChallenge_Status as a UserDashboardChallengeStatus1
+func (t UserDashboardChallenge_Status) AsUserDashboardChallengeStatus1() (UserDashboardChallengeStatus1, error) {
+	var body UserDashboardChallengeStatus1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardChallengeStatus1 overwrites any union data inside the UserDashboardChallenge_Status as the provided UserDashboardChallengeStatus1
+func (t *UserDashboardChallenge_Status) FromUserDashboardChallengeStatus1(v UserDashboardChallengeStatus1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardChallengeStatus1 performs a merge with any union data inside the UserDashboardChallenge_Status, using the provided UserDashboardChallengeStatus1
+func (t *UserDashboardChallenge_Status) MergeUserDashboardChallengeStatus1(v UserDashboardChallengeStatus1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UserDashboardChallenge_Status) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UserDashboardChallenge_Status) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsUserDashboardMachinePoints0 returns the union data inside the UserDashboardMachine_Points as a UserDashboardMachinePoints0
+func (t UserDashboardMachine_Points) AsUserDashboardMachinePoints0() (UserDashboardMachinePoints0, error) {
+	var body UserDashboardMachinePoints0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardMachinePoints0 overwrites any union data inside the UserDashboardMachine_Points as the provided UserDashboardMachinePoints0
+func (t *UserDashboardMachine_Points) FromUserDashboardMachinePoints0(v UserDashboardMachinePoints0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardMachinePoints0 performs a merge with any union data inside the UserDashboardMachine_Points, using the provided UserDashboardMachinePoints0
+func (t *UserDashboardMachine_Points) MergeUserDashboardMachinePoints0(v UserDashboardMachinePoints0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUserDashboardMachinePoints1 returns the union data inside the UserDashboardMachine_Points as a UserDashboardMachinePoints1
+func (t UserDashboardMachine_Points) AsUserDashboardMachinePoints1() (UserDashboardMachinePoints1, error) {
+	var body UserDashboardMachinePoints1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardMachinePoints1 overwrites any union data inside the UserDashboardMachine_Points as the provided UserDashboardMachinePoints1
+func (t *UserDashboardMachine_Points) FromUserDashboardMachinePoints1(v UserDashboardMachinePoints1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardMachinePoints1 performs a merge with any union data inside the UserDashboardMachine_Points, using the provided UserDashboardMachinePoints1
+func (t *UserDashboardMachine_Points) MergeUserDashboardMachinePoints1(v UserDashboardMachinePoints1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UserDashboardMachine_Points) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UserDashboardMachine_Points) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsUserDashboardMachineStatus0 returns the union data inside the UserDashboardMachine_Status as a UserDashboardMachineStatus0
+func (t UserDashboardMachine_Status) AsUserDashboardMachineStatus0() (UserDashboardMachineStatus0, error) {
+	var body UserDashboardMachineStatus0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardMachineStatus0 overwrites any union data inside the UserDashboardMachine_Status as the provided UserDashboardMachineStatus0
+func (t *UserDashboardMachine_Status) FromUserDashboardMachineStatus0(v UserDashboardMachineStatus0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardMachineStatus0 performs a merge with any union data inside the UserDashboardMachine_Status, using the provided UserDashboardMachineStatus0
+func (t *UserDashboardMachine_Status) MergeUserDashboardMachineStatus0(v UserDashboardMachineStatus0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUserDashboardMachineStatus1 returns the union data inside the UserDashboardMachine_Status as a UserDashboardMachineStatus1
+func (t UserDashboardMachine_Status) AsUserDashboardMachineStatus1() (UserDashboardMachineStatus1, error) {
+	var body UserDashboardMachineStatus1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardMachineStatus1 overwrites any union data inside the UserDashboardMachine_Status as the provided UserDashboardMachineStatus1
+func (t *UserDashboardMachine_Status) FromUserDashboardMachineStatus1(v UserDashboardMachineStatus1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardMachineStatus1 performs a merge with any union data inside the UserDashboardMachine_Status, using the provided UserDashboardMachineStatus1
+func (t *UserDashboardMachine_Status) MergeUserDashboardMachineStatus1(v UserDashboardMachineStatus1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UserDashboardMachine_Status) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UserDashboardMachine_Status) UnmarshalJSON(b []byte) error {
+	err := t.union.UnmarshalJSON(b)
+	return err
+}
+
+// AsUserDashboardSherlockStatus0 returns the union data inside the UserDashboardSherlock_Status as a UserDashboardSherlockStatus0
+func (t UserDashboardSherlock_Status) AsUserDashboardSherlockStatus0() (UserDashboardSherlockStatus0, error) {
+	var body UserDashboardSherlockStatus0
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardSherlockStatus0 overwrites any union data inside the UserDashboardSherlock_Status as the provided UserDashboardSherlockStatus0
+func (t *UserDashboardSherlock_Status) FromUserDashboardSherlockStatus0(v UserDashboardSherlockStatus0) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardSherlockStatus0 performs a merge with any union data inside the UserDashboardSherlock_Status, using the provided UserDashboardSherlockStatus0
+func (t *UserDashboardSherlock_Status) MergeUserDashboardSherlockStatus0(v UserDashboardSherlockStatus0) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+// AsUserDashboardSherlockStatus1 returns the union data inside the UserDashboardSherlock_Status as a UserDashboardSherlockStatus1
+func (t UserDashboardSherlock_Status) AsUserDashboardSherlockStatus1() (UserDashboardSherlockStatus1, error) {
+	var body UserDashboardSherlockStatus1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromUserDashboardSherlockStatus1 overwrites any union data inside the UserDashboardSherlock_Status as the provided UserDashboardSherlockStatus1
+func (t *UserDashboardSherlock_Status) FromUserDashboardSherlockStatus1(v UserDashboardSherlockStatus1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeUserDashboardSherlockStatus1 performs a merge with any union data inside the UserDashboardSherlock_Status, using the provided UserDashboardSherlockStatus1
+func (t *UserDashboardSherlock_Status) MergeUserDashboardSherlockStatus1(v UserDashboardSherlockStatus1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
+func (t UserDashboardSherlock_Status) MarshalJSON() ([]byte, error) {
+	b, err := t.union.MarshalJSON()
+	return b, err
+}
+
+func (t *UserDashboardSherlock_Status) UnmarshalJSON(b []byte) error {
 	err := t.union.UnmarshalJSON(b)
 	return err
 }
@@ -1978,6 +11732,32 @@ func (t *VirtualMachineActiveResponse_Info) MergeVirtualMachineActiveInfo(v Virt
 	return err
 }
 
+// AsVirtualMachineActiveResponseInfo1 returns the union data inside the VirtualMachineActiveResponse_Info as a VirtualMachineActiveResponseInfo1
+func (t VirtualMachineActiveResponse_Info) AsVirtualMachineActiveResponseInfo1() (VirtualMachineActiveResponseInfo1, error) {
+	var body VirtualMachineActiveResponseInfo1
+	err := json.Unmarshal(t.union, &body)
+	return body, err
+}
+
+// FromVirtualMachineActiveResponseInfo1 overwrites any union data inside the VirtualMachineActiveResponse_Info as the provided VirtualMachineActiveResponseInfo1
+func (t *VirtualMachineActiveResponse_Info) FromVirtualMachineActiveResponseInfo1(v VirtualMachineActiveResponseInfo1) error {
+	b, err := json.Marshal(v)
+	t.union = b
+	return err
+}
+
+// MergeVirtualMachineActiveResponseInfo1 performs a merge with any union data inside the VirtualMachineActiveResponse_Info, using the provided VirtualMachineActiveResponseInfo1
+func (t *VirtualMachineActiveResponse_Info) MergeVirtualMachineActiveResponseInfo1(v VirtualMachineActiveResponseInfo1) error {
+	b, err := json.Marshal(v)
+	if err != nil {
+		return err
+	}
+
+	merged, err := runtime.JSONMerge(t.union, b)
+	t.union = merged
+	return err
+}
+
 func (t VirtualMachineActiveResponse_Info) MarshalJSON() ([]byte, error) {
 	b, err := t.union.MarshalJSON()
 	return b, err
@@ -2074,6 +11854,30 @@ type ClientInterface interface {
 	// GetMachines request
 	GetMachines(ctx context.Context, params *GetMachinesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
+	// GetSeasonActiveContent request
+	GetSeasonActiveContent(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetSeasonUserRanks request
+	GetSeasonUserRanks(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetSeasonContent request
+	GetSeasonContent(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetSeasonLeaderboard request
+	GetSeasonLeaderboard(ctx context.Context, seasonId SeasonId, params *GetSeasonLeaderboardParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetSeasonLeaderboardTop request
+	GetSeasonLeaderboardTop(ctx context.Context, seasonId SeasonId, params *GetSeasonLeaderboardTopParams, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetSeasonRewards request
+	GetSeasonRewards(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetSeasonUserRank request
+	GetSeasonUserRank(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetSubscriptionPricing request
+	GetSubscriptionPricing(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
 	// GetUniversities request
 	GetUniversities(ctx context.Context, params *GetUniversitiesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
@@ -2085,6 +11889,9 @@ type ClientInterface interface {
 
 	// GetUserDashboardInProgress request
 	GetUserDashboardInProgress(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// DeleteSourceDashboardInProgressDelete request
+	DeleteSourceDashboardInProgressDelete(ctx context.Context, contentType string, contentId interface{}, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetUserDashboardRecommended request
 	GetUserDashboardRecommended(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -2162,6 +11969,102 @@ func (c *Client) GetMachines(ctx context.Context, params *GetMachinesParams, req
 	return c.Client.Do(req)
 }
 
+func (c *Client) GetSeasonActiveContent(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSeasonActiveContentRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetSeasonUserRanks(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSeasonUserRanksRequest(c.Server, userId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetSeasonContent(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSeasonContentRequest(c.Server, seasonId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetSeasonLeaderboard(ctx context.Context, seasonId SeasonId, params *GetSeasonLeaderboardParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSeasonLeaderboardRequest(c.Server, seasonId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetSeasonLeaderboardTop(ctx context.Context, seasonId SeasonId, params *GetSeasonLeaderboardTopParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSeasonLeaderboardTopRequest(c.Server, seasonId, params)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetSeasonRewards(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSeasonRewardsRequest(c.Server, seasonId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetSeasonUserRank(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSeasonUserRankRequest(c.Server, seasonId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetSubscriptionPricing(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetSubscriptionPricingRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
 func (c *Client) GetUniversities(ctx context.Context, params *GetUniversitiesParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetUniversitiesRequest(c.Server, params)
 	if err != nil {
@@ -2200,6 +12103,18 @@ func (c *Client) GetUserDashboardFavorites(ctx context.Context, reqEditors ...Re
 
 func (c *Client) GetUserDashboardInProgress(ctx context.Context, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetUserDashboardInProgressRequest(c.Server)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) DeleteSourceDashboardInProgressDelete(ctx context.Context, contentType string, contentId interface{}, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewDeleteSourceDashboardInProgressDeleteRequest(c.Server, contentType, contentId)
 	if err != nil {
 		return nil, err
 	}
@@ -2450,7 +12365,7 @@ func NewGetMachinesRequest(server string, params *GetMachinesParams) (*http.Requ
 
 		if params.ShowCompleted != nil {
 
-			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "show_completed", *params.ShowCompleted, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "showCompleted", *params.ShowCompleted, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -2534,6 +12449,414 @@ func NewGetMachinesRequest(server string, params *GetMachinesParams) (*http.Requ
 	return req, nil
 }
 
+// NewGetSeasonActiveContentRequest generates requests for GetSeasonActiveContent
+func NewGetSeasonActiveContentRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/season/content/active")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetSeasonUserRanksRequest generates requests for GetSeasonUserRanks
+func NewGetSeasonUserRanksRequest(server string, userId UserId) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "userId", userId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/season/user/%s/ranks", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetSeasonContentRequest generates requests for GetSeasonContent
+func NewGetSeasonContentRequest(server string, seasonId SeasonId) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "seasonId", seasonId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/season/%s/content", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetSeasonLeaderboardRequest generates requests for GetSeasonLeaderboard
+func NewGetSeasonLeaderboardRequest(server string, seasonId SeasonId, params *GetSeasonLeaderboardParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "seasonId", seasonId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/season/%s/leaderboard", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Entity != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "entity", *params.Entity, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SeasonFlavor != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "seasonFlavor", *params.SeasonFlavor, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Country != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "country", *params.Country, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Keyword != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "keyword", *params.Keyword, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.LeagueRank != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "league_rank", *params.LeagueRank, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Page != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.PerPage != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "per_page", *params.PerPage, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetSeasonLeaderboardTopRequest generates requests for GetSeasonLeaderboardTop
+func NewGetSeasonLeaderboardTopRequest(server string, seasonId SeasonId, params *GetSeasonLeaderboardTopParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "seasonId", seasonId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/season/%s/leaderboard/top", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Entity != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "entity", *params.Entity, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SeasonFlavor != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "seasonFlavor", *params.SeasonFlavor, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Number != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "number", *params.Number, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetSeasonRewardsRequest generates requests for GetSeasonRewards
+func NewGetSeasonRewardsRequest(server string, seasonId SeasonId) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "seasonId", seasonId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/season/%s/rewards", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetSeasonUserRankRequest generates requests for GetSeasonUserRank
+func NewGetSeasonUserRankRequest(server string, seasonId SeasonId) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "seasonId", seasonId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "integer", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/season/%s/user/rank", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetSubscriptionPricingRequest generates requests for GetSubscriptionPricing
+func NewGetSubscriptionPricingRequest(server string) (*http.Request, error) {
+	var err error
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/subscriptions/pricing")
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
 // NewGetUniversitiesRequest generates requests for GetUniversities
 func NewGetUniversitiesRequest(server string, params *GetUniversitiesParams) (*http.Request, error) {
 	var err error
@@ -2577,6 +12900,54 @@ func NewGetUniversitiesRequest(server string, params *GetUniversitiesParams) (*h
 		if params.Page != nil {
 
 			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "page", *params.Page, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "integer", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.Name != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "name", *params.Name, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.CountryCode != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "country_code", *params.CountryCode, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SortBy != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "sort_by", *params.SortBy, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if params.SortType != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "sort_type", *params.SortType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
 				return nil, err
 			} else {
 				for _, qp := range strings.Split(queryFrag, "&") {
@@ -2681,6 +13052,47 @@ func NewGetUserDashboardInProgressRequest(server string) (*http.Request, error) 
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewDeleteSourceDashboardInProgressDeleteRequest generates requests for DeleteSourceDashboardInProgressDelete
+func NewDeleteSourceDashboardInProgressDeleteRequest(server string, contentType string, contentId interface{}) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "contentType", contentType, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	var pathParam1 string
+
+	pathParam1, err = runtime.StyleParamWithOptions("simple", false, "contentId", contentId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/user/dashboard/inprogress/%s/%s", pathParam0, pathParam1)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodDelete, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
 	}
@@ -2986,6 +13398,30 @@ type ClientWithResponsesInterface interface {
 	// GetMachinesWithResponse request
 	GetMachinesWithResponse(ctx context.Context, params *GetMachinesParams, reqEditors ...RequestEditorFn) (*GetMachinesResponse, error)
 
+	// GetSeasonActiveContentWithResponse request
+	GetSeasonActiveContentWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSeasonActiveContentResponse, error)
+
+	// GetSeasonUserRanksWithResponse request
+	GetSeasonUserRanksWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetSeasonUserRanksResponse, error)
+
+	// GetSeasonContentWithResponse request
+	GetSeasonContentWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonContentResponse, error)
+
+	// GetSeasonLeaderboardWithResponse request
+	GetSeasonLeaderboardWithResponse(ctx context.Context, seasonId SeasonId, params *GetSeasonLeaderboardParams, reqEditors ...RequestEditorFn) (*GetSeasonLeaderboardResponse, error)
+
+	// GetSeasonLeaderboardTopWithResponse request
+	GetSeasonLeaderboardTopWithResponse(ctx context.Context, seasonId SeasonId, params *GetSeasonLeaderboardTopParams, reqEditors ...RequestEditorFn) (*GetSeasonLeaderboardTopResponse, error)
+
+	// GetSeasonRewardsWithResponse request
+	GetSeasonRewardsWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonRewardsResponse, error)
+
+	// GetSeasonUserRankWithResponse request
+	GetSeasonUserRankWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonUserRankResponse, error)
+
+	// GetSubscriptionPricingWithResponse request
+	GetSubscriptionPricingWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSubscriptionPricingResponse, error)
+
 	// GetUniversitiesWithResponse request
 	GetUniversitiesWithResponse(ctx context.Context, params *GetUniversitiesParams, reqEditors ...RequestEditorFn) (*GetUniversitiesResponse, error)
 
@@ -2997,6 +13433,9 @@ type ClientWithResponsesInterface interface {
 
 	// GetUserDashboardInProgressWithResponse request
 	GetUserDashboardInProgressWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserDashboardInProgressResponse, error)
+
+	// DeleteSourceDashboardInProgressDeleteWithResponse request
+	DeleteSourceDashboardInProgressDeleteWithResponse(ctx context.Context, contentType string, contentId interface{}, reqEditors ...RequestEditorFn) (*DeleteSourceDashboardInProgressDeleteResponse, error)
 
 	// GetUserDashboardRecommendedWithResponse request
 	GetUserDashboardRecommendedWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetUserDashboardRecommendedResponse, error)
@@ -3101,6 +13540,246 @@ func (r GetMachinesResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r GetMachinesResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetSeasonActiveContentResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SeasonActiveContentResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSeasonActiveContentResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSeasonActiveContentResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetSeasonActiveContentResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetSeasonUserRanksResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SeasonUserRanksResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSeasonUserRanksResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSeasonUserRanksResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetSeasonUserRanksResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetSeasonContentResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SeasonContentResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSeasonContentResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSeasonContentResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetSeasonContentResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetSeasonLeaderboardResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SeasonLeaderboardResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSeasonLeaderboardResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSeasonLeaderboardResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetSeasonLeaderboardResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetSeasonLeaderboardTopResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SeasonLeaderboardTopResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSeasonLeaderboardTopResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSeasonLeaderboardTopResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetSeasonLeaderboardTopResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetSeasonRewardsResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SeasonRewardsResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSeasonRewardsResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSeasonRewardsResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetSeasonRewardsResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetSeasonUserRankResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SeasonUserRankResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSeasonUserRankResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSeasonUserRankResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetSeasonUserRankResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type GetSubscriptionPricingResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON200      *SubscriptionPricingSourceResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetSubscriptionPricingResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetSubscriptionPricingResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetSubscriptionPricingResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -3225,6 +13904,35 @@ func (r GetUserDashboardInProgressResponse) StatusCode() int {
 
 // ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
 func (r GetUserDashboardInProgressResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
+type DeleteSourceDashboardInProgressDeleteResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+}
+
+// Status returns HTTPResponse.Status
+func (r DeleteSourceDashboardInProgressDeleteResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r DeleteSourceDashboardInProgressDeleteResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r DeleteSourceDashboardInProgressDeleteResponse) ContentType() string {
 	if r.HTTPResponse != nil {
 		return r.HTTPResponse.Header.Get("Content-Type")
 	}
@@ -3429,6 +14137,78 @@ func (c *ClientWithResponses) GetMachinesWithResponse(ctx context.Context, param
 	return ParseGetMachinesResponse(rsp)
 }
 
+// GetSeasonActiveContentWithResponse request returning *GetSeasonActiveContentResponse
+func (c *ClientWithResponses) GetSeasonActiveContentWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSeasonActiveContentResponse, error) {
+	rsp, err := c.GetSeasonActiveContent(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSeasonActiveContentResponse(rsp)
+}
+
+// GetSeasonUserRanksWithResponse request returning *GetSeasonUserRanksResponse
+func (c *ClientWithResponses) GetSeasonUserRanksWithResponse(ctx context.Context, userId UserId, reqEditors ...RequestEditorFn) (*GetSeasonUserRanksResponse, error) {
+	rsp, err := c.GetSeasonUserRanks(ctx, userId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSeasonUserRanksResponse(rsp)
+}
+
+// GetSeasonContentWithResponse request returning *GetSeasonContentResponse
+func (c *ClientWithResponses) GetSeasonContentWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonContentResponse, error) {
+	rsp, err := c.GetSeasonContent(ctx, seasonId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSeasonContentResponse(rsp)
+}
+
+// GetSeasonLeaderboardWithResponse request returning *GetSeasonLeaderboardResponse
+func (c *ClientWithResponses) GetSeasonLeaderboardWithResponse(ctx context.Context, seasonId SeasonId, params *GetSeasonLeaderboardParams, reqEditors ...RequestEditorFn) (*GetSeasonLeaderboardResponse, error) {
+	rsp, err := c.GetSeasonLeaderboard(ctx, seasonId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSeasonLeaderboardResponse(rsp)
+}
+
+// GetSeasonLeaderboardTopWithResponse request returning *GetSeasonLeaderboardTopResponse
+func (c *ClientWithResponses) GetSeasonLeaderboardTopWithResponse(ctx context.Context, seasonId SeasonId, params *GetSeasonLeaderboardTopParams, reqEditors ...RequestEditorFn) (*GetSeasonLeaderboardTopResponse, error) {
+	rsp, err := c.GetSeasonLeaderboardTop(ctx, seasonId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSeasonLeaderboardTopResponse(rsp)
+}
+
+// GetSeasonRewardsWithResponse request returning *GetSeasonRewardsResponse
+func (c *ClientWithResponses) GetSeasonRewardsWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonRewardsResponse, error) {
+	rsp, err := c.GetSeasonRewards(ctx, seasonId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSeasonRewardsResponse(rsp)
+}
+
+// GetSeasonUserRankWithResponse request returning *GetSeasonUserRankResponse
+func (c *ClientWithResponses) GetSeasonUserRankWithResponse(ctx context.Context, seasonId SeasonId, reqEditors ...RequestEditorFn) (*GetSeasonUserRankResponse, error) {
+	rsp, err := c.GetSeasonUserRank(ctx, seasonId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSeasonUserRankResponse(rsp)
+}
+
+// GetSubscriptionPricingWithResponse request returning *GetSubscriptionPricingResponse
+func (c *ClientWithResponses) GetSubscriptionPricingWithResponse(ctx context.Context, reqEditors ...RequestEditorFn) (*GetSubscriptionPricingResponse, error) {
+	rsp, err := c.GetSubscriptionPricing(ctx, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetSubscriptionPricingResponse(rsp)
+}
+
 // GetUniversitiesWithResponse request returning *GetUniversitiesResponse
 func (c *ClientWithResponses) GetUniversitiesWithResponse(ctx context.Context, params *GetUniversitiesParams, reqEditors ...RequestEditorFn) (*GetUniversitiesResponse, error) {
 	rsp, err := c.GetUniversities(ctx, params, reqEditors...)
@@ -3463,6 +14243,15 @@ func (c *ClientWithResponses) GetUserDashboardInProgressWithResponse(ctx context
 		return nil, err
 	}
 	return ParseGetUserDashboardInProgressResponse(rsp)
+}
+
+// DeleteSourceDashboardInProgressDeleteWithResponse request returning *DeleteSourceDashboardInProgressDeleteResponse
+func (c *ClientWithResponses) DeleteSourceDashboardInProgressDeleteWithResponse(ctx context.Context, contentType string, contentId interface{}, reqEditors ...RequestEditorFn) (*DeleteSourceDashboardInProgressDeleteResponse, error) {
+	rsp, err := c.DeleteSourceDashboardInProgressDelete(ctx, contentType, contentId, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseDeleteSourceDashboardInProgressDeleteResponse(rsp)
 }
 
 // GetUserDashboardRecommendedWithResponse request returning *GetUserDashboardRecommendedResponse
@@ -3609,6 +14398,214 @@ func ParseGetMachinesResponse(rsp *http.Response) (*GetMachinesResponse, error) 
 	return response, nil
 }
 
+// ParseGetSeasonActiveContentResponse parses an HTTP response from a GetSeasonActiveContentWithResponse call
+func ParseGetSeasonActiveContentResponse(rsp *http.Response) (*GetSeasonActiveContentResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSeasonActiveContentResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SeasonActiveContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetSeasonUserRanksResponse parses an HTTP response from a GetSeasonUserRanksWithResponse call
+func ParseGetSeasonUserRanksResponse(rsp *http.Response) (*GetSeasonUserRanksResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSeasonUserRanksResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SeasonUserRanksResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetSeasonContentResponse parses an HTTP response from a GetSeasonContentWithResponse call
+func ParseGetSeasonContentResponse(rsp *http.Response) (*GetSeasonContentResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSeasonContentResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SeasonContentResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetSeasonLeaderboardResponse parses an HTTP response from a GetSeasonLeaderboardWithResponse call
+func ParseGetSeasonLeaderboardResponse(rsp *http.Response) (*GetSeasonLeaderboardResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSeasonLeaderboardResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SeasonLeaderboardResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetSeasonLeaderboardTopResponse parses an HTTP response from a GetSeasonLeaderboardTopWithResponse call
+func ParseGetSeasonLeaderboardTopResponse(rsp *http.Response) (*GetSeasonLeaderboardTopResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSeasonLeaderboardTopResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SeasonLeaderboardTopResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetSeasonRewardsResponse parses an HTTP response from a GetSeasonRewardsWithResponse call
+func ParseGetSeasonRewardsResponse(rsp *http.Response) (*GetSeasonRewardsResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSeasonRewardsResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SeasonRewardsResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetSeasonUserRankResponse parses an HTTP response from a GetSeasonUserRankWithResponse call
+func ParseGetSeasonUserRankResponse(rsp *http.Response) (*GetSeasonUserRankResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSeasonUserRankResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SeasonUserRankResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetSubscriptionPricingResponse parses an HTTP response from a GetSubscriptionPricingWithResponse call
+func ParseGetSubscriptionPricingResponse(rsp *http.Response) (*GetSubscriptionPricingResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetSubscriptionPricingResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+		var dest SubscriptionPricingSourceResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON200 = &dest
+
+	}
+
+	return response, nil
+}
+
 // ParseGetUniversitiesResponse parses an HTTP response from a GetUniversitiesWithResponse call
 func ParseGetUniversitiesResponse(rsp *http.Response) (*GetUniversitiesResponse, error) {
 	bodyBytes, err := io.ReadAll(rsp.Body)
@@ -3736,6 +14733,22 @@ func ParseGetUserDashboardInProgressResponse(rsp *http.Response) (*GetUserDashbo
 		}
 		response.JSON400 = &dest
 
+	}
+
+	return response, nil
+}
+
+// ParseDeleteSourceDashboardInProgressDeleteResponse parses an HTTP response from a DeleteSourceDashboardInProgressDeleteWithResponse call
+func ParseDeleteSourceDashboardInProgressDeleteResponse(rsp *http.Response) (*DeleteSourceDashboardInProgressDeleteResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &DeleteSourceDashboardInProgressDeleteResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
 	}
 
 	return response, nil
