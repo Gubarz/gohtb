@@ -6,6 +6,7 @@ import (
 	v4Client "github.com/gubarz/gohtb/httpclient/v4"
 	v5Client "github.com/gubarz/gohtb/httpclient/v5"
 	"github.com/gubarz/gohtb/internal/common"
+	"github.com/gubarz/gohtb/internal/errutil"
 	"github.com/gubarz/gohtb/internal/service"
 )
 
@@ -391,7 +392,7 @@ func (h *Handle) Achievement(ctx context.Context, targetType string, targetId in
 	return AchievementResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
 }
 
-type ConnectionStatusData = v4Client.UserConnectionStatusResponse
+type ConnectionStatusData = v4Client.ConnectionStatusResponse
 
 // ConnectionStatusResponse contains VPN connection status for the current user.
 type ConnectionStatusResponse struct {
@@ -409,12 +410,12 @@ type ConnectionStatusResponse struct {
 //	}
 //	fmt.Printf("Connection status: %+v\n", status.Data)
 func (s *Service) ConnectionStatus(ctx context.Context) (ConnectionStatusResponse, error) {
-	resp, err := s.base.Client.V4().GetUserConnectionStatus(s.base.Client.Limiter().Wrap(ctx))
+	resp, err := s.base.Client.V4().GetConnectionStatus(s.base.Client.Limiter().Wrap(ctx))
 	if err != nil {
 		return ConnectionStatusResponse{ResponseMeta: common.ResponseMeta{}}, err
 	}
 
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserConnectionStatusResponse)
+	parsed, meta, err := common.Parse(resp, v4Client.ParseGetConnectionStatusResponse)
 	if err != nil {
 		return ConnectionStatusResponse{ResponseMeta: meta}, err
 	}
@@ -482,6 +483,44 @@ func (s *Service) DashboardInProgress(ctx context.Context) (DashboardInProgressR
 	}
 
 	return DashboardInProgressResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}
+
+// RemoveDashboardInProgressResponse contains the removal response body, when supplied.
+type RemoveDashboardInProgressResponse struct {
+	Data         []byte
+	ResponseMeta common.ResponseMeta
+}
+
+// RemoveDashboardInProgress removes content from the current user's in-progress dashboard.
+// contentType and contentID are the type and identifier supplied with the dashboard item.
+//
+// Example:
+//
+//	result, err := client.Users.RemoveDashboardInProgress(ctx, "machine", 42)
+func (s *Service) RemoveDashboardInProgress(ctx context.Context, contentType string, contentID interface{}) (RemoveDashboardInProgressResponse, error) {
+	resp, err := s.base.Client.V5().DeleteSourceDashboardInProgressDelete(
+		s.base.Client.Limiter().Wrap(ctx), contentType, contentID,
+	)
+	if err != nil {
+		return RemoveDashboardInProgressResponse{}, err
+	}
+
+	meta := common.ResponseMeta{
+		StatusCode: resp.StatusCode,
+		Headers:    resp.Header,
+		CFRay:      resp.Header.Get("CF-Ray"),
+	}
+	parsed, err := v5Client.ParseDeleteSourceDashboardInProgressDeleteResponse(resp)
+	if parsed != nil {
+		meta.Raw = parsed.Body
+	}
+	if err != nil || meta.StatusCode < 200 || meta.StatusCode >= 300 {
+		return errutil.UnwrapFailure(err, meta.Raw, meta.StatusCode, func([]byte) RemoveDashboardInProgressResponse {
+			return RemoveDashboardInProgressResponse{ResponseMeta: meta}
+		})
+	}
+
+	return RemoveDashboardInProgressResponse{Data: meta.Raw, ResponseMeta: meta}, nil
 }
 
 type DashboardRecommendedData = v5Client.UserDashboardRecommendedResponse
@@ -567,37 +606,6 @@ func (h *Handle) Follow(ctx context.Context) (common.MessageResponse, error) {
 	}, nil
 }
 
-type FollowersData = v4Client.UserFollowersResponse
-
-// FollowersResponse contains current user's follower list payload.
-type FollowersResponse struct {
-	Data         FollowersData
-	ResponseMeta common.ResponseMeta
-}
-
-// Followers retrieves current user's followers.
-//
-// Example:
-//
-//	followers, err := client.Users.Followers(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Followers payload: %+v\n", followers.Data)
-func (s *Service) Followers(ctx context.Context) (FollowersResponse, error) {
-	resp, err := s.base.Client.V4().GetUserFollowers(s.base.Client.Limiter().Wrap(ctx))
-	if err != nil {
-		return FollowersResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserFollowersResponse)
-	if err != nil {
-		return FollowersResponse{ResponseMeta: meta}, err
-	}
-
-	return FollowersResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
-}
-
 type InfoData = v4Client.UserInfoResponse
 
 // InfoResponse contains current authenticated user info.
@@ -658,6 +666,29 @@ func (h *Handle) ProfileContent(ctx context.Context, params *v5Client.GetUserPro
 	}
 
 	return ProfileContentResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
+}
+
+type ProfileContentCountsData = v5Client.UserProfileContentCountsResponse
+
+// ProfileContentCountsResponse contains content counts for the selected user.
+type ProfileContentCountsResponse struct {
+	Data         ProfileContentCountsData
+	ResponseMeta common.ResponseMeta
+}
+
+// ProfileContentCounts retrieves v5 profile content counts for the selected user.
+func (h *Handle) ProfileContentCounts(ctx context.Context) (ProfileContentCountsResponse, error) {
+	resp, err := h.client.V5().GetUserProfileContentCounts(h.client.Limiter().Wrap(ctx), h.id)
+	if err != nil {
+		return ProfileContentCountsResponse{}, err
+	}
+
+	parsed, meta, err := common.Parse(resp, v5Client.ParseGetUserProfileContentCountsResponse)
+	if err != nil {
+		return ProfileContentCountsResponse{ResponseMeta: meta}, err
+	}
+
+	return ProfileContentCountsResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
 }
 
 type ProfileProgressChallengesData = v4Client.ProfileProgressChallengesUserIdResponse
@@ -782,37 +813,6 @@ func (h *Handle) ProfileProgressSherlocks(ctx context.Context) (ProfileProgressS
 	}
 
 	return ProfileProgressSherlocksResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
-}
-
-type ProfileSummaryData = v4Client.UserProfileSummaryResponse
-
-// ProfileSummaryResponse contains compact profile summary for the current authenticated user.
-type ProfileSummaryResponse struct {
-	Data         ProfileSummaryData
-	ResponseMeta common.ResponseMeta
-}
-
-// ProfileSummary retrieves profile summary for the current authenticated user.
-//
-// Example:
-//
-//	summary, err := client.Users.ProfileSummary(ctx)
-//	if err != nil {
-//		log.Fatal(err)
-//	}
-//	fmt.Printf("Profile summary: %+v\n", summary.Data)
-func (s *Service) ProfileSummary(ctx context.Context) (ProfileSummaryResponse, error) {
-	resp, err := s.base.Client.V4().GetUserProfileSummary(s.base.Client.Limiter().Wrap(ctx))
-	if err != nil {
-		return ProfileSummaryResponse{ResponseMeta: common.ResponseMeta{}}, err
-	}
-
-	parsed, meta, err := common.Parse(resp, v4Client.ParseGetUserProfileSummaryResponse)
-	if err != nil {
-		return ProfileSummaryResponse{ResponseMeta: meta}, err
-	}
-
-	return ProfileSummaryResponse{Data: *parsed.JSON200, ResponseMeta: meta}, nil
 }
 
 // Respect gives respect to the selected user.

@@ -197,13 +197,14 @@ func wrapUserProfileActivityItem(item v5Client.UserProfileActivityItem) (UserPro
 		payload := activity
 		return UserProfileActivity{
 			UserProfileActivityBase: v5Client.UserProfileActivityBase{
-				Avatar:  payload.Avatar,
-				Blood:   payload.Blood,
-				Id:      payload.Id,
-				Name:    payload.Name,
-				OwnDate: payload.OwnDate,
-				Points:  payload.Points,
-				Type:    string(payload.Type),
+				Avatar:    payload.Avatar,
+				AvatarUrl: payload.AvatarUrl,
+				Blood:     payload.Blood,
+				Id:        payload.Id,
+				Name:      payload.Name,
+				OwnDate:   payload.OwnDate,
+				Points:    payload.Points,
+				Type:      string(payload.Type),
 			},
 			Challenge: payload,
 		}, nil
@@ -215,13 +216,14 @@ func wrapUserProfileActivityItem(item v5Client.UserProfileActivityItem) (UserPro
 		payload := activity
 		return UserProfileActivity{
 			UserProfileActivityBase: v5Client.UserProfileActivityBase{
-				Avatar:  payload.Avatar,
-				Blood:   payload.Blood,
-				Id:      payload.Id,
-				Name:    payload.Name,
-				OwnDate: payload.OwnDate,
-				Points:  payload.Points,
-				Type:    string(payload.Type),
+				Avatar:    payload.Avatar,
+				AvatarUrl: payload.AvatarUrl,
+				Blood:     payload.Blood,
+				Id:        payload.Id,
+				Name:      payload.Name,
+				OwnDate:   payload.OwnDate,
+				Points:    payload.Points,
+				Type:      string(payload.Type),
 			},
 			Fortress: payload,
 		}, nil
@@ -233,13 +235,14 @@ func wrapUserProfileActivityItem(item v5Client.UserProfileActivityItem) (UserPro
 		payload := activity
 		return UserProfileActivity{
 			UserProfileActivityBase: v5Client.UserProfileActivityBase{
-				Avatar:  payload.Avatar,
-				Blood:   payload.Blood,
-				Id:      payload.Id,
-				Name:    payload.Name,
-				OwnDate: payload.OwnDate,
-				Points:  payload.Points,
-				Type:    string(payload.Type),
+				Avatar:    payload.Avatar,
+				AvatarUrl: payload.AvatarUrl,
+				Blood:     payload.Blood,
+				Id:        payload.Id,
+				Name:      payload.Name,
+				OwnDate:   payload.OwnDate,
+				Points:    payload.Points,
+				Type:      string(payload.Type),
 			},
 			MachineOwn: payload,
 		}, nil
@@ -251,13 +254,14 @@ func wrapUserProfileActivityItem(item v5Client.UserProfileActivityItem) (UserPro
 		payload := activity
 		return UserProfileActivity{
 			UserProfileActivityBase: v5Client.UserProfileActivityBase{
-				Avatar:  payload.Avatar,
-				Blood:   payload.Blood,
-				Id:      payload.Id,
-				Name:    payload.Name,
-				OwnDate: payload.OwnDate,
-				Points:  payload.Points,
-				Type:    string(payload.Type),
+				Avatar:    payload.Avatar,
+				AvatarUrl: payload.AvatarUrl,
+				Blood:     payload.Blood,
+				Id:        payload.Id,
+				Name:      payload.Name,
+				OwnDate:   payload.OwnDate,
+				Points:    payload.Points,
+				Type:      string(payload.Type),
 			},
 			Prolab: payload,
 		}, nil
@@ -269,13 +273,14 @@ func wrapUserProfileActivityItem(item v5Client.UserProfileActivityItem) (UserPro
 		payload := activity
 		return UserProfileActivity{
 			UserProfileActivityBase: v5Client.UserProfileActivityBase{
-				Avatar:  payload.Avatar,
-				Blood:   payload.Blood,
-				Id:      payload.Id,
-				Name:    payload.Name,
-				OwnDate: payload.OwnDate,
-				Points:  payload.Points,
-				Type:    string(payload.Type),
+				Avatar:    payload.Avatar,
+				AvatarUrl: payload.AvatarUrl,
+				Blood:     payload.Blood,
+				Id:        payload.Id,
+				Name:      payload.Name,
+				OwnDate:   payload.OwnDate,
+				Points:    payload.Points,
+				Type:      string(payload.Type),
 			},
 			Sherlock: payload,
 		}, nil

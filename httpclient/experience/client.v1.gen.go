@@ -20,6 +20,54 @@ const (
 	BearerScopes bearerContextKey = "bearer.Scopes"
 )
 
+// Defines values for XpEarnedPeriod.
+const (
+	XpEarnedPeriodN1m XpEarnedPeriod = "1m"
+	XpEarnedPeriodN1w XpEarnedPeriod = "1w"
+	XpEarnedPeriodN1y XpEarnedPeriod = "1y"
+	XpEarnedPeriodN3m XpEarnedPeriod = "3m"
+)
+
+// Valid indicates whether the value is a known member of the XpEarnedPeriod enum.
+func (e XpEarnedPeriod) Valid() bool {
+	switch e {
+	case XpEarnedPeriodN1m:
+		return true
+	case XpEarnedPeriodN1w:
+		return true
+	case XpEarnedPeriodN1y:
+		return true
+	case XpEarnedPeriodN3m:
+		return true
+	default:
+		return false
+	}
+}
+
+// Defines values for GetAccountXpEarnedParamsPeriod.
+const (
+	GetAccountXpEarnedParamsPeriodN1m GetAccountXpEarnedParamsPeriod = "1m"
+	GetAccountXpEarnedParamsPeriodN1w GetAccountXpEarnedParamsPeriod = "1w"
+	GetAccountXpEarnedParamsPeriodN1y GetAccountXpEarnedParamsPeriod = "1y"
+	GetAccountXpEarnedParamsPeriodN3m GetAccountXpEarnedParamsPeriod = "3m"
+)
+
+// Valid indicates whether the value is a known member of the GetAccountXpEarnedParamsPeriod enum.
+func (e GetAccountXpEarnedParamsPeriod) Valid() bool {
+	switch e {
+	case GetAccountXpEarnedParamsPeriodN1m:
+		return true
+	case GetAccountXpEarnedParamsPeriodN1w:
+		return true
+	case GetAccountXpEarnedParamsPeriodN1y:
+		return true
+	case GetAccountXpEarnedParamsPeriodN3m:
+		return true
+	default:
+		return false
+	}
+}
+
 // AccountResponse Schema definition for Account response
 type AccountResponse struct {
 	ExperienceUntilNextLevel int        `json:"experienceUntilNextLevel"`
@@ -34,6 +82,18 @@ type AccountResponse struct {
 	StreakData               StreakData `json:"streakData"`
 	TotalExperiencePoints    int        `json:"totalExperiencePoints"`
 }
+
+// AccountXpEarnedPoint An XP-history point read by the frontend chart. No required-field or exact scalar-type guarantee is inferred from chart formatting or numeric fallback behavior.
+type AccountXpEarnedPoint struct {
+	// StartAt Time value copied to the chart; the wire scalar type has not been confirmed.
+	StartAt interface{} `json:"startAt,omitempty"`
+
+	// XpEarned Earned-XP value copied to the chart; a numeric UI fallback does not establish the wire scalar type.
+	XpEarned interface{} `json:"xpEarned,omitempty"`
+}
+
+// AccountXpEarnedResponse Partial XP history shape consumed by the web client; additional fields and exact scalar types are not established by the inspected source.
+type AccountXpEarnedResponse = []AccountXpEarnedPoint
 
 // Generic400Response Schema definition for Generic Error Response
 type Generic400Response struct {
@@ -57,8 +117,20 @@ type StreakData struct {
 // AccountId defines model for AccountId.
 type AccountId = string
 
+// XpEarnedPeriod defines model for XpEarnedPeriod.
+type XpEarnedPeriod string
+
 // bearerContextKey is the context key for bearer security scheme
 type bearerContextKey string
+
+// GetAccountXpEarnedParams defines parameters for GetAccountXpEarned.
+type GetAccountXpEarnedParams struct {
+	// Period History period offered by the web client. These lowercase values differ from the profile progress-chart duration values. Server defaults and omission behavior have not been verified.
+	Period *GetAccountXpEarnedParamsPeriod `form:"period,omitempty" json:"period,omitempty"`
+}
+
+// GetAccountXpEarnedParamsPeriod defines parameters for GetAccountXpEarned.
+type GetAccountXpEarnedParamsPeriod string
 
 // RequestEditorFn  is the function signature for the RequestEditor callback function
 type RequestEditorFn func(ctx context.Context, req *http.Request) error
@@ -135,10 +207,25 @@ func WithRequestEditorFn(fn RequestEditorFn) ClientOption {
 type ClientInterface interface {
 	// GetAccountAccountId request
 	GetAccountAccountId(ctx context.Context, accountId AccountId, reqEditors ...RequestEditorFn) (*http.Response, error)
+
+	// GetAccountXpEarned request
+	GetAccountXpEarned(ctx context.Context, accountId AccountId, params *GetAccountXpEarnedParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 }
 
 func (c *Client) GetAccountAccountId(ctx context.Context, accountId AccountId, reqEditors ...RequestEditorFn) (*http.Response, error) {
 	req, err := NewGetAccountAccountIdRequest(c.Server, accountId)
+	if err != nil {
+		return nil, err
+	}
+	req = req.WithContext(ctx)
+	if err := c.applyEditors(ctx, req, reqEditors); err != nil {
+		return nil, err
+	}
+	return c.Client.Do(req)
+}
+
+func (c *Client) GetAccountXpEarned(ctx context.Context, accountId AccountId, params *GetAccountXpEarnedParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewGetAccountXpEarnedRequest(c.Server, accountId, params)
 	if err != nil {
 		return nil, err
 	}
@@ -173,6 +260,67 @@ func NewGetAccountAccountIdRequest(server string, accountId AccountId) (*http.Re
 	queryURL, err := serverURL.Parse(operationPath)
 	if err != nil {
 		return nil, err
+	}
+
+	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
+	if err != nil {
+		return nil, err
+	}
+
+	return req, nil
+}
+
+// NewGetAccountXpEarnedRequest generates requests for GetAccountXpEarned
+func NewGetAccountXpEarnedRequest(server string, accountId AccountId, params *GetAccountXpEarnedParams) (*http.Request, error) {
+	var err error
+
+	var pathParam0 string
+
+	pathParam0, err = runtime.StyleParamWithOptions("simple", false, "accountId", accountId, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationPath, Type: "string", Format: ""})
+	if err != nil {
+		return nil, err
+	}
+
+	serverURL, err := url.Parse(server)
+	if err != nil {
+		return nil, err
+	}
+
+	operationPath := fmt.Sprintf("/account/%s/xp-earned", pathParam0)
+	if operationPath[0] == '/' {
+		operationPath = "." + operationPath
+	}
+
+	queryURL, err := serverURL.Parse(operationPath)
+	if err != nil {
+		return nil, err
+	}
+
+	if params != nil {
+		// queryValues collects non-styled parameters (passthrough, JSON)
+		// that are safe to round-trip through url.Values.Encode().
+		queryValues := queryURL.Query()
+		// rawQueryFragments collects pre-encoded query fragments from
+		// styled parameters, preserving literal commas as delimiters
+		// per the OpenAPI spec (e.g. "color=blue,black,brown").
+		var rawQueryFragments []string
+
+		if params.Period != nil {
+
+			if queryFrag, err := runtime.StyleParamWithOptions("form", true, "period", *params.Period, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationQuery, Type: "string", Format: ""}); err != nil {
+				return nil, err
+			} else {
+				for _, qp := range strings.Split(queryFrag, "&") {
+					rawQueryFragments = append(rawQueryFragments, qp)
+				}
+			}
+
+		}
+
+		if encoded := queryValues.Encode(); encoded != "" {
+			rawQueryFragments = append(rawQueryFragments, encoded)
+		}
+		queryURL.RawQuery = strings.Join(rawQueryFragments, "&")
 	}
 
 	req, err := http.NewRequest(http.MethodGet, queryURL.String(), nil)
@@ -228,6 +376,9 @@ func WithBaseURL(baseURL string) ClientOption {
 type ClientWithResponsesInterface interface {
 	// GetAccountAccountIdWithResponse request
 	GetAccountAccountIdWithResponse(ctx context.Context, accountId AccountId, reqEditors ...RequestEditorFn) (*GetAccountAccountIdResponse, error)
+
+	// GetAccountXpEarnedWithResponse request
+	GetAccountXpEarnedWithResponse(ctx context.Context, accountId AccountId, params *GetAccountXpEarnedParams, reqEditors ...RequestEditorFn) (*GetAccountXpEarnedResponse, error)
 }
 
 type GetAccountAccountIdResponse struct {
@@ -261,6 +412,36 @@ func (r GetAccountAccountIdResponse) ContentType() string {
 	return ""
 }
 
+type GetAccountXpEarnedResponse struct {
+	Body         []byte
+	HTTPResponse *http.Response
+	JSON2XX      *AccountXpEarnedResponse
+}
+
+// Status returns HTTPResponse.Status
+func (r GetAccountXpEarnedResponse) Status() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Status
+	}
+	return http.StatusText(0)
+}
+
+// StatusCode returns HTTPResponse.StatusCode
+func (r GetAccountXpEarnedResponse) StatusCode() int {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.StatusCode
+	}
+	return 0
+}
+
+// ContentType is a convenience method to retrieve the Content-Type value from the HTTP response headers
+func (r GetAccountXpEarnedResponse) ContentType() string {
+	if r.HTTPResponse != nil {
+		return r.HTTPResponse.Header.Get("Content-Type")
+	}
+	return ""
+}
+
 // GetAccountAccountIdWithResponse request returning *GetAccountAccountIdResponse
 func (c *ClientWithResponses) GetAccountAccountIdWithResponse(ctx context.Context, accountId AccountId, reqEditors ...RequestEditorFn) (*GetAccountAccountIdResponse, error) {
 	rsp, err := c.GetAccountAccountId(ctx, accountId, reqEditors...)
@@ -268,6 +449,15 @@ func (c *ClientWithResponses) GetAccountAccountIdWithResponse(ctx context.Contex
 		return nil, err
 	}
 	return ParseGetAccountAccountIdResponse(rsp)
+}
+
+// GetAccountXpEarnedWithResponse request returning *GetAccountXpEarnedResponse
+func (c *ClientWithResponses) GetAccountXpEarnedWithResponse(ctx context.Context, accountId AccountId, params *GetAccountXpEarnedParams, reqEditors ...RequestEditorFn) (*GetAccountXpEarnedResponse, error) {
+	rsp, err := c.GetAccountXpEarned(ctx, accountId, params, reqEditors...)
+	if err != nil {
+		return nil, err
+	}
+	return ParseGetAccountXpEarnedResponse(rsp)
 }
 
 // ParseGetAccountAccountIdResponse parses an HTTP response from a GetAccountAccountIdWithResponse call
@@ -297,6 +487,32 @@ func ParseGetAccountAccountIdResponse(rsp *http.Response) (*GetAccountAccountIdR
 			return nil, err
 		}
 		response.JSON400 = &dest
+
+	}
+
+	return response, nil
+}
+
+// ParseGetAccountXpEarnedResponse parses an HTTP response from a GetAccountXpEarnedWithResponse call
+func ParseGetAccountXpEarnedResponse(rsp *http.Response) (*GetAccountXpEarnedResponse, error) {
+	bodyBytes, err := io.ReadAll(rsp.Body)
+	defer func() { _ = rsp.Body.Close() }()
+	if err != nil {
+		return nil, err
+	}
+
+	response := &GetAccountXpEarnedResponse{
+		Body:         bodyBytes,
+		HTTPResponse: rsp,
+	}
+
+	switch {
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode/100 == 2:
+		var dest AccountXpEarnedResponse
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.JSON2XX = &dest
 
 	}
 
